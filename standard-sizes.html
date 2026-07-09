@@ -406,18 +406,32 @@ color:#050505;
 
 .glazed-label {
 max-width:210px;
+height:19px;
 border:1px solid rgba(255,255,255,.15);
 border-top:none;
-padding:4px 6px 5px;
+position:relative;
+overflow:hidden;
+margin-bottom:10px;
+background:rgba(255,255,255,.025);
+}
+
+.glazed-label span {
+position:absolute;
+top:4px;
+left:0;
+width:50%;
 text-align:center;
 font-size:9px;
 line-height:1;
-color:#bfbfbf;
+color:#ffffff;
 font-weight:950;
 letter-spacing:1.3px;
 text-transform:uppercase;
-margin-bottom:10px;
-background:rgba(255,255,255,.025);
+transition:left .28s ease;
+}
+
+.glazed-label.triple span {
+left:50%;
 }
 
 .price-row {
@@ -874,7 +888,7 @@ card.innerHTML = `
 <button class="active" onclick="setGlazing(this, '${size}', 'double')">Double</button>
 <button onclick="setGlazing(this, '${size}', 'triple')">Triple</button>
 </div>
-<div class="glazed-label">Glazed</div>
+<div class="glazed-label double"><span>Glazed</span></div>
 
 <div class="price-row">
 <div>
@@ -893,12 +907,17 @@ return card;
 function setGlazing(button, size, glazing) {
 const card = button.closest(".product-card");
 const price = prices[size][glazing];
+const glazedLabel = card.querySelector(".glazed-label");
 
 card.querySelectorAll(".toggle button").forEach(btn => {
 btn.classList.remove("active");
 });
 
 button.classList.add("active");
+
+glazedLabel.classList.remove("double", "triple");
+glazedLabel.classList.add(glazing);
+
 card.querySelector(".price").innerHTML = "£" + price + '<span class="vat-note">inc. vat</span>';
 }
 
