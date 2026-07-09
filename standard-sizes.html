@@ -384,7 +384,7 @@ grid-template-columns:1fr 1fr;
 border:1px solid rgba(255,255,255,.15);
 max-width:210px;
 margin-top:auto;
-margin-bottom:10px;
+margin-bottom:0;
 }
 
 .toggle button {
@@ -402,6 +402,22 @@ cursor:pointer;
 .toggle button.active {
 background:var(--orange);
 color:#050505;
+}
+
+.glazed-label {
+max-width:210px;
+border:1px solid rgba(255,255,255,.15);
+border-top:none;
+padding:4px 6px 5px;
+text-align:center;
+font-size:9px;
+line-height:1;
+color:#bfbfbf;
+font-weight:950;
+letter-spacing:1.3px;
+text-transform:uppercase;
+margin-bottom:10px;
+background:rgba(255,255,255,.025);
 }
 
 .price-row {
@@ -424,6 +440,19 @@ margin-bottom:3px;
 font-size:27px;
 font-weight:950;
 line-height:1;
+}
+
+.vat-note {
+font-size:9px;
+color:rgba(255,255,255,.58);
+font-weight:400;
+margin-left:5px;
+white-space:nowrap;
+text-transform:lowercase;
+letter-spacing:.1px;
+vertical-align:middle;
+position:relative;
+top:-1px;
 }
 
 .view-link {
@@ -465,6 +494,11 @@ margin:0 0 18px;
 font-size:clamp(34px,5vw,58px);
 line-height:.98;
 letter-spacing:-1.6px;
+}
+
+.bottom-cta h2.larger-title {
+margin-top:48px;
+font-size:clamp(28px,4vw,44px);
 }
 
 .bottom-cta p {
@@ -591,7 +625,9 @@ height:110px;
 .size-title { font-size:19px; }
 .spec-line { font-size:10px; }
 .toggle { max-width:none; }
+.glazed-label { max-width:none; }
 .price { font-size:23px; }
+.vat-note { font-size:8px; font-weight:400; display:block; margin-left:0; margin-top:3px; }
 .view-link { font-size:10px; }
 }
 </style>
@@ -604,12 +640,12 @@ height:110px;
 <span>Popular listed rooflight sizes ready to order online</span>
 <span>Switch between double and triple glazing instantly</span>
 <span>Free delivery UK mainland on listed sizes</span>
-<span>UV protected glazing</span>
+<span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
 <span>Popular listed rooflight sizes ready to order online</span>
 <span>Switch between double and triple glazing instantly</span>
 <span>Free delivery UK mainland on listed sizes</span>
-<span>UV protected glazing</span>
+<span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
 </div>
 </div>
@@ -651,7 +687,7 @@ Rooflights
 
 <div class="menu-links">
 <a href="index.html" onclick="closeMenu()">Home</a>
-<a href="#popular" onclick="closeMenu()">Popular Sizes</a>
+<a href="#popular" onclick="closeMenu()">Popular</a>
 <a href="#standard" onclick="closeMenu()">Standard Sizes</a>
 <a href="index.html#calculator" onclick="closeMenu()">Build Custom</a>
 <a href="index.html#oversized" onclick="closeMenu()">Oversized</a>
@@ -664,24 +700,24 @@ Rooflights
 <section class="intro">
 <div class="intro-grid">
 <h1 class="intro-title">
-Standard Sizes
-<span>Ready To Browse</span>
+Frameless Flat Roof Skylights
+<span>Standard Sizes</span>
 </h1>
 
 <div class="intro-block">
-<strong>Popular First</strong>
-<p>Start with the most commonly ordered frameless rooflight sizes, then continue into the full listed range.</p>
+<strong>Fast Manufacture</strong>
+<p>Manufactured to order with an estimated 4 working day lead time, then delivered across mainland UK.</p>
 </div>
 
 <div class="intro-block">
-<strong>Simple Selection</strong>
-<p>Switch each size between double and triple glazing instantly. Estimated manufacture is usually 4–6 working days.</p>
+<strong>Premium Specification</strong>
+<p>Choose between double and triple glazed Low-E Softcoat frameless flat roof skylights with instant price updates.</p>
 </div>
 </div>
 </section>
 
 <section id="popular" class="product-section popular-section">
-<h2 class="section-title">Popular Sizes</h2>
+<h2 class="section-title">Popular</h2>
 <div class="product-grid" id="popularGrid"></div>
 </section>
 
@@ -694,11 +730,18 @@ Standard Sizes
 <h2>Need a different size?</h2>
 <p>
 If your size is not listed, return to the calculator and build a made-to-order frameless rooflight online.
-Oversized units can be quoted manually.
 </p>
 
 <div class="cta-actions">
 <a href="index.html#calculator" class="button">Build Custom Size</a>
+</div>
+
+<h2 class="larger-title">Need Something Larger?</h2>
+<p>
+Looking for a frameless rooflight larger than our listed range? Contact us for an oversized quote and bespoke pricing.
+</p>
+
+<div class="cta-actions">
 <a href="index.html#oversized" class="button secondary">Oversized Quote</a>
 </div>
 </section>
@@ -763,7 +806,6 @@ const productImages = {
 "1500x2500": "jumbo.png"
 };
 
-
 const popularSizes = [
 "600x900",
 "800x800",
@@ -824,7 +866,7 @@ card.innerHTML = `
 
 <div class="spec-line">
 <span>${topGlass}</span>
-<span>UV Protected</span>
+<span>Low-E Softcoat Glass</span>
 <span>Free Delivery UK Mainland</span>
 </div>
 
@@ -832,11 +874,12 @@ card.innerHTML = `
 <button class="active" onclick="setGlazing(this, '${size}', 'double')">Double</button>
 <button onclick="setGlazing(this, '${size}', 'triple')">Triple</button>
 </div>
+<div class="glazed-label">Glazed</div>
 
 <div class="price-row">
 <div>
 <div class="price-label">From</div>
-<div class="price">£${data.double}</div>
+<div class="price">£${data.double}<span class="vat-note">inc. vat</span></div>
 </div>
 
 <a href="#" class="view-link">View →</a>
@@ -856,7 +899,7 @@ btn.classList.remove("active");
 });
 
 button.classList.add("active");
-card.querySelector(".price").innerText = "£" + price;
+card.querySelector(".price").innerHTML = "£" + price + '<span class="vat-note">inc. vat</span>';
 }
 
 function renderCards() {
