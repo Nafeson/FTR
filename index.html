@@ -288,44 +288,16 @@ animation-timing-function: cubic-bezier(.18,.74,.24,1);
 animation-fill-mode: both;
 }
 
-.hero-slide.enter-slide-left {
-animation-name: smoothSlideFromLeft;
-animation-duration: var(--transition-duration, .8s);
-animation-timing-function: cubic-bezier(.22,.72,.24,1);
-animation-fill-mode: both;
-}
-
-.hero-slide.enter-soft-right {
-animation-name: softSwipeFromRight;
-animation-duration: var(--transition-duration, .8s);
-animation-timing-function: cubic-bezier(.18,.72,.26,1);
-animation-fill-mode: both;
-}
-
 .hero-slide.enter-dissolve {
 animation-name: softDissolveIn;
-animation-duration: var(--transition-duration, 1s);
+animation-duration: var(--transition-duration, .9s);
 animation-timing-function: ease;
-animation-fill-mode: both;
-}
-
-.hero-slide.exit-slide-left {
-animation-name: smoothSlideOutLeft;
-animation-duration: var(--transition-duration, .8s);
-animation-timing-function: cubic-bezier(.22,.72,.24,1);
-animation-fill-mode: both;
-}
-
-.hero-slide.exit-soft-left {
-animation-name: softSwipeOutLeft;
-animation-duration: var(--transition-duration, .8s);
-animation-timing-function: cubic-bezier(.18,.72,.26,1);
 animation-fill-mode: both;
 }
 
 .hero-slide.exit-dissolve {
 animation-name: softDissolveOut;
-animation-duration: var(--transition-duration, 1s);
+animation-duration: var(--transition-duration, .9s);
 animation-timing-function: ease;
 animation-fill-mode: both;
 }
@@ -376,77 +348,36 @@ clip-path: polygon(
 }
 }
 
-@keyframes smoothSlideFromLeft {
-from {
-opacity: .72;
-transform: translateX(-12%);
-}
-
-to {
-opacity: 1;
-transform: translateX(0);
-}
-}
-
-@keyframes smoothSlideOutLeft {
-from {
-opacity: 1;
-transform: translateX(0);
-}
-
-to {
-opacity: .35;
-transform: translateX(8%);
-}
-}
-
-@keyframes softSwipeFromRight {
+@keyframes softDissolveIn {
 0% {
-opacity: .35;
-clip-path: inset(0 0 0 100%);
-transform: translateX(3%);
+opacity: 0;
+filter: blur(4px);
+transform: scale(1.01);
+}
+
+45% {
+opacity: .55;
+filter: blur(2px);
 }
 
 100% {
 opacity: 1;
-clip-path: inset(0 0 0 0);
-transform: translateX(0);
-}
-}
-
-@keyframes softSwipeOutLeft {
-from {
-opacity: 1;
-transform: translateX(0);
-}
-
-to {
-opacity: .35;
-transform: translateX(-3%);
-}
-}
-
-@keyframes softDissolveIn {
-from {
-opacity: 0;
-filter: blur(3px);
-}
-
-to {
-opacity: 1;
 filter: blur(0);
+transform: scale(1);
 }
 }
 
 @keyframes softDissolveOut {
-from {
+0% {
 opacity: 1;
 filter: blur(0);
+transform: scale(1);
 }
 
-to {
+100% {
 opacity: 0;
 filter: blur(3px);
+transform: scale(1.008);
 }
 }
 
@@ -562,7 +493,7 @@ letter-spacing: -3px;
 
 .hero p {
 font-size: 22px;
-max-width: 780px;
+max-width: 800px;
 line-height: 1.55;
 color: var(--muted);
 margin-bottom: 44px;
@@ -1571,7 +1502,7 @@ alt="Frameless flat roof skylight installation in progress"
 
 <div class="hero-slide">
 <img
-src="images/hero-homepage-3.jpeg"
+src="images/hero-homepage-3.png"
 alt="Factory Toughened frameless rooflight being installed"
 />
 </div>
@@ -1615,9 +1546,10 @@ Modernising British Ceilings With Frameless Glass Design
 </h1>
 
 <p>
-A cleaner, sharper way to finish a flat roof. Minimalist glass design,
-a sleek black border and no visible internal frame — creating a fuller
-sky view with a modern architectural finish.
+The go-to minimalist rooflight design for a cleaner, more uninterrupted ceiling finish.
+With no visible internal frame, the glass creates the fullest possible sky view and allows
+natural light to become the main feature of the room. It is the reason we focus solely on
+frameless rooflights, with a specialist team dedicated to manufacturing them consistently well.
 </p>
 
 </div>
@@ -1629,8 +1561,9 @@ Buy Your Frameless Rooflight Online
 </h2>
 
 <p>
-Choose from listed standard sizes or build your own made-to-order rooflight
-online. Select your glazing, see your estimated price and keep the process simple.
+Know exactly what you want? Our best prices can be found on our Standard Sizes page,
+where you can shop special deals on popular, best-selling rooflight sizes. Alternatively,
+build a made-to-order rooflight using the calculator below.
 </p>
 
 <div class="hero-actions">
@@ -2052,21 +1985,16 @@ const HERO_IMAGE_ONE_TIME = 5800;
 const HERO_IMAGE_TWO_TIME = 5800;
 const HERO_IMAGE_THREE_TIME = 5500;
 
-const HERO_SLIDE_TRANSITION = 800;
-const HERO_SWIPE_TRANSITION = 800;
+const HERO_DISSOLVE_TRANSITION = 900;
 const HERO_RETURN_TRANSITION = 1000;
-const HERO_MANUAL_TRANSITION = 750;
+const HERO_MANUAL_TRANSITION = 850;
 
 function clearHeroSlideClasses(slide) {
 slide.classList.remove(
 "active",
 "previous",
 "initial-reveal",
-"enter-slide-left",
-"enter-soft-right",
 "enter-dissolve",
-"exit-slide-left",
-"exit-soft-left",
 "exit-dissolve"
 );
 
@@ -2105,9 +2033,8 @@ heroSequenceTimer = null;
 
 function showHeroSlide(
 nextIndex,
-transitionType = "slide",
 manualChange = false,
-transitionDuration = HERO_SLIDE_TRANSITION
+transitionDuration = HERO_DISSOLVE_TRANSITION
 ) {
 if (
 heroTransitionBusy ||
@@ -2148,11 +2075,7 @@ incomingSlide.style.setProperty(
 );
 
 outgoingSlide.classList.add(
-"previous"
-);
-
-if (transitionType === "dissolve") {
-outgoingSlide.classList.add(
+"previous",
 "exit-dissolve"
 );
 
@@ -2160,25 +2083,6 @@ incomingSlide.classList.add(
 "active",
 "enter-dissolve"
 );
-} else if (transitionType === "swipe") {
-outgoingSlide.classList.add(
-"exit-soft-left"
-);
-
-incomingSlide.classList.add(
-"active",
-"enter-soft-right"
-);
-} else {
-outgoingSlide.classList.add(
-"exit-slide-left"
-);
-
-incomingSlide.classList.add(
-"active",
-"enter-slide-left"
-);
-}
 
 currentHeroSlide =
 nextIndex;
@@ -2191,8 +2095,6 @@ outgoingSlide
 );
 
 incomingSlide.classList.remove(
-"enter-slide-left",
-"enter-soft-right",
 "enter-dissolve"
 );
 
@@ -2223,9 +2125,8 @@ window.setTimeout(() => {
 const changedToSecond =
 showHeroSlide(
 1,
-"slide",
 false,
-HERO_SLIDE_TRANSITION
+HERO_DISSOLVE_TRANSITION
 );
 
 if (!changedToSecond) {
@@ -2241,9 +2142,8 @@ return;
 const changedToThird =
 showHeroSlide(
 2,
-"swipe",
 false,
-HERO_SWIPE_TRANSITION
+HERO_DISSOLVE_TRANSITION
 );
 
 if (!changedToThird) {
@@ -2259,7 +2159,6 @@ return;
 const returnedToFirst =
 showHeroSlide(
 0,
-"dissolve",
 false,
 HERO_RETURN_TRANSITION
 );
@@ -2274,9 +2173,9 @@ automaticHeroSequenceFinished = true;
 heroSequenceTimer = null;
 }, HERO_RETURN_TRANSITION + 80);
 
-}, HERO_IMAGE_THREE_TIME + HERO_SWIPE_TRANSITION);
+}, HERO_IMAGE_THREE_TIME + HERO_DISSOLVE_TRANSITION);
 
-}, HERO_IMAGE_TWO_TIME + HERO_SLIDE_TRANSITION);
+}, HERO_IMAGE_TWO_TIME + HERO_DISSOLVE_TRANSITION);
 
 }, HERO_IMAGE_ONE_TIME);
 }
@@ -2288,7 +2187,6 @@ heroSlides.length;
 
 showHeroSlide(
 nextIndex,
-"swipe",
 true,
 HERO_MANUAL_TRANSITION
 );
@@ -2305,7 +2203,6 @@ heroSlides.length;
 
 showHeroSlide(
 previousIndex,
-"slide",
 true,
 HERO_MANUAL_TRANSITION
 );
@@ -2327,16 +2224,8 @@ requestedIndex === currentHeroSlide
 return;
 }
 
-const transitionType =
-requestedIndex === 0
-? "dissolve"
-: requestedIndex > currentHeroSlide
-? "swipe"
-: "slide";
-
 showHeroSlide(
 requestedIndex,
-transitionType,
 true,
 HERO_MANUAL_TRANSITION
 );
