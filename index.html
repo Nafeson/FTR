@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Factory Toughened Rooflights | Frameless Flat Roof Skylights</title>
-<meta name="description" content="Modern frameless flat roof skylights made to order in 4–5 working days. Low-E energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes." />
+
+<meta
+name="description"
+content="Modern frameless flat roof skylights made to order in 4–5 working days. Low-E energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
+/>
 
 <style>
 :root {
@@ -19,9 +23,13 @@
 --line: rgba(245,124,0,.32);
 }
 
-* { box-sizing: border-box; }
+* {
+box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+scroll-behavior: smooth;
+}
 
 body {
 margin: 0;
@@ -53,8 +61,13 @@ margin-right: 86px;
 }
 
 @keyframes ticker {
-from { transform: translateX(0); }
-to { transform: translateX(-50%); }
+from {
+transform: translateX(0);
+}
+
+to {
+transform: translateX(-50%);
+}
 }
 
 header {
@@ -118,14 +131,22 @@ justify-content: center;
 font-size: 19px;
 font-weight: 900;
 cursor: pointer;
-transition: .25s ease;
+transition:
+transform .25s ease,
+border-color .25s ease,
+color .25s ease,
+background .25s ease,
+box-shadow .25s ease;
 line-height: 1;
+padding: 0;
 }
 
 .action-icons button:hover,
 .action-icons a:hover {
 border-color: var(--orange);
 color: var(--orange);
+background: rgba(245,124,0,.06);
+box-shadow: 0 8px 24px rgba(245,124,0,.10);
 transform: translateY(-2px);
 }
 
@@ -136,9 +157,12 @@ background: rgba(5,5,5,.985);
 z-index: 100;
 display: none;
 padding: 55px 6%;
+overflow-y: auto;
 }
 
-.menu-overlay.active { display: block; }
+.menu-overlay.active {
+display: block;
+}
 
 .menu-top {
 display: flex;
@@ -185,7 +209,12 @@ padding-left: 12px;
 min-height: 780px;
 padding: 130px 6% 165px;
 background:
-linear-gradient(90deg, rgba(5,5,5,.96) 0%, rgba(5,5,5,.80) 48%, rgba(16,42,68,.58) 100%),
+linear-gradient(
+90deg,
+rgba(5,5,5,.96) 0%,
+rgba(5,5,5,.80) 48%,
+rgba(16,42,68,.58) 100%
+),
 url("images/hero-rooflight.jpg");
 background-size: cover;
 background-position: center;
@@ -198,8 +227,15 @@ animation: fadeUp .75s ease both;
 }
 
 @keyframes fadeUp {
-from { opacity: 0; transform: translateY(18px); }
-to { opacity: 1; transform: translateY(0); }
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
 }
 
 .eyebrow,
@@ -294,9 +330,22 @@ align-self: center;
 position: relative;
 overflow: visible;
 background:
-radial-gradient(circle at 16% 18%, rgba(255,154,47,.20), transparent 26%),
-radial-gradient(circle at 86% 70%, rgba(245,124,0,.14), transparent 28%),
-linear-gradient(135deg, #050505 0%, #0b0b0b 45%, #101010 100%);
+radial-gradient(
+circle at 16% 18%,
+rgba(255,154,47,.20),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(245,124,0,.14),
+transparent 28%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#0b0b0b 45%,
+#101010 100%
+);
 padding: 76px 6% 82px;
 border-top: 1px solid rgba(255,255,255,.08);
 border-bottom: 1px solid rgba(255,255,255,.08);
@@ -307,8 +356,15 @@ content: "";
 position: absolute;
 inset: 0;
 background-image:
-linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+linear-gradient(
+rgba(255,255,255,.026) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.022) 1px,
+transparent 1px
+);
 background-size: 44px 44px;
 opacity: .15;
 transform: skewY(-6deg) scale(1.2);
@@ -326,40 +382,65 @@ z-index: 1;
 }
 
 .trust-item {
+--sweep-x: -120%;
+--glow-opacity: 0;
+--title-colour: #ffffff;
+--text-colour: #d8d8d8;
+--title-spacing: 2.6px;
+--title-scale: 1;
+
 position: relative;
 overflow: hidden;
 padding: 34px 38px;
-background: linear-gradient(135deg,#0c0c0c,#141414);
+background: linear-gradient(135deg, #0c0c0c, #141414);
 border: 1px solid rgba(255,255,255,.11);
 box-shadow: 0 18px 50px rgba(0,0,0,.28);
 cursor: pointer;
-transition: .28s ease;
+transform: translateY(0) scale(1);
+transition:
+transform .28s ease,
+border-color .28s ease,
+box-shadow .28s ease,
+background .28s ease;
 touch-action: manipulation;
+will-change: transform, border-color, box-shadow;
 }
 
 .trust-item::before {
 content: "";
 position: absolute;
 inset: 0;
-background: linear-gradient(120deg,transparent 0%,rgba(245,124,0,.14) 45%,transparent 75%);
-transform: translateX(-120%);
-transition: .55s ease;
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(245,124,0,.19) 45%,
+transparent 75%
+);
+transform: translateX(var(--sweep-x));
+opacity: var(--glow-opacity);
 pointer-events: none;
+will-change: transform, opacity;
 }
 
-.trust-item:hover::before,
-.trust-item:active::before,
-.trust-item.mobile-propel::before {
-transform: translateX(120%);
-}
-
-.trust-item:hover,
-.trust-item:active,
-.trust-item.mobile-propel {
-transform: translateY(-8px) scale(1.055);
-border-color: rgba(255,154,47,.75);
-box-shadow: 0 26px 68px rgba(245,124,0,.18), 0 22px 48px rgba(0,0,0,.42);
-z-index: 4;
+.trust-item::after {
+content: "";
+position: absolute;
+inset: 0;
+background:
+radial-gradient(
+circle at 18% 50%,
+rgba(245,124,0,.20),
+transparent 34%
+),
+linear-gradient(
+135deg,
+rgba(245,124,0,.09),
+rgba(16,42,68,.09)
+);
+opacity: var(--glow-opacity);
+pointer-events: none;
+will-change: opacity;
 }
 
 .trust-item strong {
@@ -367,37 +448,50 @@ position: relative;
 z-index: 1;
 display: block;
 font-size: clamp(22px, 3vw, 38px);
-color: var(--white);
+color: var(--title-colour);
 text-transform: uppercase;
-letter-spacing: 2.6px;
+letter-spacing: var(--title-spacing);
 margin-bottom: 12px;
-transition: .25s ease;
+transform: scale(var(--title-scale));
+transform-origin: left center;
+transition:
+color .18s linear,
+letter-spacing .18s linear,
+transform .18s linear;
 }
 
 .trust-item span {
 position: relative;
 z-index: 1;
-color: var(--muted);
+color: var(--text-colour);
 font-size: clamp(17px, 2vw, 24px);
 line-height: 1.45;
 max-width: 860px;
 display: block;
-transition: .25s ease;
+transition: color .18s linear;
 }
 
-.trust-item:hover strong,
-.trust-item:active strong,
-.trust-item.mobile-propel strong {
-color: var(--orange);
-letter-spacing: 3.3px;
-transform: scale(1.025);
-transform-origin: left;
+@media (hover: hover) and (pointer: fine) {
+.trust-item:hover {
+--sweep-x: 120%;
+--glow-opacity: 1;
+--title-colour: #f57c00;
+--text-colour: rgba(255,255,255,.88);
+--title-spacing: 3.3px;
+--title-scale: 1.025;
+
+transform: translateY(-8px) scale(1.055);
+border-color: rgba(255,154,47,.75);
+background: linear-gradient(135deg, #111111, #1b130d);
+box-shadow:
+0 26px 68px rgba(245,124,0,.18),
+0 22px 48px rgba(0,0,0,.42);
+z-index: 4;
 }
 
-.trust-item:hover span,
-.trust-item:active span,
-.trust-item.mobile-propel span {
-color: rgba(255,255,255,.88);
+.trust-item:hover::before {
+transition: transform .55s ease;
+}
 }
 
 .install-cta {
@@ -646,19 +740,18 @@ overflow: hidden;
 
 .trust-item {
 padding: 30px 24px;
+cursor: default;
+transition: none;
 }
 
-.trust-item:hover,
-.trust-item:active {
-transform: none;
+.trust-item::before,
+.trust-item::after {
+transition: none;
 }
 
-.trust-item.mobile-propel {
-transform: translateY(-5px) scale(1.025);
-}
-
-.trust-item.mobile-propel strong {
-letter-spacing: 2.9px;
+.trust-item strong,
+.trust-item span {
+transition: none;
 }
 
 .buy-intro {
@@ -674,6 +767,21 @@ align-items: flex-start;
 align-self: flex-start;
 }
 }
+
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+
+.ticker,
+.hero-inner {
+animation: none;
+}
+
+.trust-item {
+transition: none;
+}
+}
 </style>
 </head>
 
@@ -687,6 +795,7 @@ align-self: flex-start;
 <span>Factory insulated and ready for fitting</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
+
 <span>Low-E energy-saving glass for year-round comfort</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
@@ -703,16 +812,42 @@ Factory
 <span>Toughened</span>
 Rooflights
 </div>
+
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
 </div>
 
 <div class="action-icons">
-<button onclick="openMenu()" aria-label="Open menu">☰</button>
-<button type="button" aria-label="Basket">🛒</button>
-<a href="tel:" aria-label="Phone">📱</a>
-<a href="mailto:" aria-label="Email">✉</a>
+<button
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+>
+☰
+</button>
+
+<button
+type="button"
+aria-label="View basket and checkout"
+title="Basket and checkout"
+>
+💳
+</button>
+
+<a
+href="tel:"
+aria-label="Call Factory Toughened Rooflights"
+>
+📱
+</a>
+
+<a
+href="mailto:"
+aria-label="Email Factory Toughened Rooflights"
+>
+✉
+</a>
 </div>
 </header>
 
@@ -724,12 +859,20 @@ Factory
 <span>Toughened</span>
 Rooflights
 </div>
+
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
 </div>
 
-<button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
+<button
+class="close-menu"
+type="button"
+onclick="closeMenu()"
+aria-label="Close menu"
+>
+×
+</button>
 </div>
 
 <div class="menu-links">
@@ -745,9 +888,13 @@ Rooflights
 
 <section class="hero">
 <div class="hero-inner">
-<div class="eyebrow">Frameless flat roof skylights</div>
+<div class="eyebrow">
+Frameless flat roof skylights
+</div>
 
-<h1>Modernising Roofs With Frameless Glass Design</h1>
+<h1>
+Modernising Roofs With Frameless Glass Design
+</h1>
 
 <p>
 A cleaner, sharper way to finish a flat roof. Minimalist glass design,
@@ -756,17 +903,31 @@ sky view with a modern architectural finish.
 </p>
 
 <div class="buy-intro">
-<h2>Buy Your Frameless Rooflight Online</h2>
+<h2>
+Buy Your Frameless Rooflight Online
+</h2>
+
 <p>
 Choose from listed standard sizes or build your own made-to-order rooflight
 online. Select your glazing, see your estimated price and keep the process simple.
 </p>
 
 <div class="hero-actions">
-<a href="standard-sizes.html" class="button">Standard Sizes</a>
-<span class="or-divider">or</span>
-<a href="#calculator" class="button">Build Your Rooflight</a>
-<a href="#oversized" class="button secondary">Oversized Quote</a>
+<a href="standard-sizes.html" class="button">
+Standard Sizes
+</a>
+
+<span class="or-divider">
+or
+</span>
+
+<a href="#calculator" class="button">
+Build Your Rooflight
+</a>
+
+<a href="#oversized" class="button secondary">
+Oversized Quote
+</a>
 </div>
 </div>
 </div>
@@ -774,31 +935,56 @@ online. Select your glazing, see your estimated price and keep the process simpl
 
 <section class="trust-zone" id="trustZone">
 <div class="trust-strip">
+
 <div class="trust-item">
-<strong>Toughened Safety Glass</strong>
-<span>Built around strong toughened glass suitable for modern flat roof applications.</span>
+<strong>
+Toughened Safety Glass
+</strong>
+
+<span>
+Built around strong toughened glass suitable for modern flat roof applications.
+</span>
 </div>
 
 <div class="trust-item">
-<strong>In-House Manufacture</strong>
-<span>Units are assembled, sealed, insulated and prepared through our workshop process.</span>
+<strong>
+In-House Manufacture
+</strong>
+
+<span>
+Units are assembled, sealed, insulated and prepared through our workshop process.
+</span>
 </div>
 
 <div class="trust-item">
-<strong>Free Mainland UK Delivery</strong>
-<span>Available on listed sizes, with larger units quoted clearly before order.</span>
+<strong>
+Free Mainland UK Delivery
+</strong>
+
+<span>
+Available on listed sizes, with larger units quoted clearly before order.
+</span>
 </div>
+
 </div>
 
 <div class="install-cta">
-<a href="#contact" class="button">Need To Book An Installation? Contact Us</a>
+<a href="#contact" class="button">
+Need To Book An Installation? Contact Us
+</a>
 </div>
 </section>
 
 <section id="calculator" class="calculator-wrap">
 <div class="calculator">
-<div class="section-label">Build online</div>
-<h2>Build Your Rooflight</h2>
+
+<div class="section-label">
+Build online
+</div>
+
+<h2>
+Build Your Rooflight
+</h2>
 
 <p>
 Enter your internal visible glass size below. Listed qualifying sizes include
@@ -806,18 +992,40 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 </p>
 
 <div class="calc-grid">
+
 <div>
-<label>Width / Short Side</label>
-<input id="width" type="number" value="1000" min="300" max="1500">
+<label for="width">
+Width / Short Side
+</label>
+
+<input
+id="width"
+type="number"
+value="1000"
+min="300"
+max="1500"
+/>
 </div>
 
 <div>
-<label>Length / Long Side</label>
-<input id="length" type="number" value="2000" min="400" max="3000">
+<label for="length">
+Length / Long Side
+</label>
+
+<input
+id="length"
+type="number"
+value="2000"
+min="400"
+max="3000"
+/>
 </div>
 
 <div>
-<label>Glazing</label>
+<label for="glazing">
+Glazing
+</label>
+
 <select id="glazing">
 <option value="double">Double Glazed</option>
 <option value="triple">Triple Glazed</option>
@@ -825,7 +1033,10 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 </div>
 
 <div>
-<label>Glass Finish</label>
+<label for="finish">
+Glass Finish
+</label>
+
 <select id="finish">
 <option>Clear</option>
 <option>Satin Privacy</option>
@@ -833,33 +1044,57 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 <option>Solar Blue</option>
 </select>
 </div>
+
 </div>
 
 <div class="price-box">
 <div>
-<div class="price-label">Estimated Online Price</div>
-<div class="price" id="price">£580</div>
-<small>Includes VAT. Free mainland UK delivery applies on listed sizes.</small>
+<div class="price-label">
+Estimated Online Price
 </div>
 
-<a href="#" class="button">Order Online Soon</a>
+<div class="price" id="price">
+£580
 </div>
+
+<small>
+Includes VAT. Free mainland UK delivery applies on listed sizes.
+</small>
+</div>
+
+<a href="#" class="button">
+Order Online Soon
+</a>
+</div>
+
 </div>
 </section>
 
 <section id="engineered" class="engineered">
 <div class="engineered-intro">
-<div class="section-label">Engineered to last</div>
-<h2>Energy-saving glass. Factory sealed. Built for decades.</h2>
+
+<div class="section-label">
+Engineered to last
+</div>
+
+<h2>
+Energy-saving glass. Factory sealed. Built for decades.
+</h2>
+
 <p>
 Every unit is manufactured as a factory insulated glass rooflight, ready for immediate fitting.
 The specification is designed for comfort, durability and long-term weather performance.
 </p>
+
 </div>
 
 <div class="engineered-grid">
+
 <div class="engineered-card">
-<h3>UV Protected Low-E Glass</h3>
+<h3>
+UV Protected Low-E Glass
+</h3>
+
 <p>
 Low-E energy-saving glass helps keep rooms cooler in summer and retain heat in winter.
 It also helps protect interiors from UV exposure and reduces the risk of overheating compared with basic rooflight glazing.
@@ -867,7 +1102,10 @@ It also helps protect interiors from UV exposure and reduces the risk of overhea
 </div>
 
 <div class="engineered-card">
-<h3>Ceramic Fused Border</h3>
+<h3>
+Ceramic Fused Border
+</h3>
+
 <p>
 The black border is ceramic infused and fused into the glass during manufacture.
 It provides a permanent finish that supports long-term UV stability, durability and the clean frameless appearance.
@@ -875,70 +1113,124 @@ It provides a permanent finish that supports long-term UV stability, durability 
 </div>
 
 <div class="engineered-card">
-<h3>20 Year Warranty</h3>
+<h3>
+20 Year Warranty
+</h3>
+
 <p>
-All units are supplied with a 20 year warranty and are designed for an expected 30+ year service life when correctly specified and installed.
+All units are supplied with a 20 year warranty and are designed for an expected
+30+ year service life when correctly specified and installed.
 </p>
 </div>
 
 <div class="engineered-card">
-<h3>Two-Stage Sealing</h3>
+<h3>
+Two-Stage Sealing
+</h3>
+
 <p>
-Factory insulated units use a streamlined internal and external two-stage sealing process for a flush finish and engineered leak-resistant performance when installed correctly.
+Factory insulated units use a streamlined internal and external two-stage sealing
+process for a flush finish and engineered leak-resistant performance when installed correctly.
 </p>
 </div>
 
 <div class="engineered-card">
-<h3>Glass Finishes</h3>
+<h3>
+Glass Finishes
+</h3>
+
 <p>
 Clear, Satin Privacy, Solar Grey and Solar Blue options are available.
 Each finish changes light, privacy, glare and solar appearance while keeping the frameless look.
 </p>
 </div>
+
 </div>
 </section>
 
 <section id="oversized">
 <div class="oversized">
-<div class="section-label">Bespoke quotations</div>
-<h2>Oversized Rooflights Up To 5800mm</h2>
+
+<div class="section-label">
+Bespoke quotations
+</div>
+
+<h2>
+Oversized Rooflights Up To 5800mm
+</h2>
 
 <p>
 Need something larger than the listed range? We can quote oversized custom frameless
 rooflights up to approximately 5800mm, including specialist delivery pricing.
 </p>
 
-<a href="#" class="button">Request Oversized Quote</a>
+<a href="#" class="button">
+Request Oversized Quote
+</a>
+
 </div>
 </section>
 
 </main>
 
 <footer id="contact">
-<p><strong>Factory Toughened Rooflights</strong></p>
-<p>Frameless flat roof skylights, made to order and delivered across mainland UK.</p>
-<p>5-9 Willen Field Road, London, NW10 7BQ</p>
+<p>
+<strong>
+Factory Toughened Rooflights
+</strong>
+</p>
+
+<p>
+Frameless flat roof skylights, made to order and delivered across mainland UK.
+</p>
+
+<p>
+5-9 Willen Field Road, London, NW10 7BQ
+</p>
 </footer>
 
 <script>
 function openMenu() {
-document.getElementById("menuOverlay").classList.add("active");
+document
+.getElementById("menuOverlay")
+.classList
+.add("active");
+
+document.body.style.overflow = "hidden";
 }
 
 function closeMenu() {
-document.getElementById("menuOverlay").classList.remove("active");
+document
+.getElementById("menuOverlay")
+.classList
+.remove("active");
+
+document.body.style.overflow = "";
 }
 
 function calculatePrice() {
-const width = Number(document.getElementById("width").value);
-const length = Number(document.getElementById("length").value);
-const glazing = document.getElementById("glazing").value;
-const finish = document.getElementById("finish").value;
+const width = Number(
+document.getElementById("width").value
+);
 
-const area = (width * length) / 1000000;
+const length = Number(
+document.getElementById("length").value
+);
 
-let baseRate = glazing === "double" ? 290 : 375;
-let price = area * baseRate;
+const glazing =
+document.getElementById("glazing").value;
+
+const finish =
+document.getElementById("finish").value;
+
+const area =
+(width * length) / 1000000;
+
+let baseRate =
+glazing === "double" ? 290 : 375;
+
+let price =
+area * baseRate;
 
 if (finish !== "Clear") {
 price += area * 45;
@@ -946,55 +1238,331 @@ price += area * 45;
 
 price += 90;
 
-if (price < 250 && glazing === "double") price = 250;
-if (price < 300 && glazing === "triple") price = 300;
-
-document.getElementById("price").innerText = "£" + Math.round(price);
+if (
+price < 250 &&
+glazing === "double"
+) {
+price = 250;
 }
 
-document.querySelectorAll("input, select").forEach(el => {
-el.addEventListener("input", calculatePrice);
+if (
+price < 300 &&
+glazing === "triple"
+) {
+price = 300;
+}
+
+document.getElementById("price").innerText =
+"£" + Math.round(price);
+}
+
+document
+.querySelectorAll("input, select")
+.forEach(element => {
+element.addEventListener(
+"input",
+calculatePrice
+);
 });
 
 calculatePrice();
 
-function isMobileWidth() {
-return window.matchMedia("(max-width: 560px)").matches;
+/* ----------------------------------------
+MOBILE SCROLL-LINKED TRUST CARD EFFECT
+----------------------------------------- */
+
+const trustZone =
+document.getElementById("trustZone");
+
+const trustCards =
+Array.from(
+document.querySelectorAll(".trust-item")
+);
+
+const mobileMediaQuery =
+window.matchMedia("(max-width: 560px)");
+
+const reducedMotionQuery =
+window.matchMedia("(prefers-reduced-motion: reduce)");
+
+let scrollAnimationFrame = null;
+
+function clamp(value, minimum, maximum) {
+return Math.min(
+Math.max(value, minimum),
+maximum
+);
 }
 
-const trustZone = document.getElementById("trustZone");
-const trustCards = document.querySelectorAll(".trust-item");
-let mobileTrustAnimationDone = false;
-
-function pulseTrustCard(card) {
-card.classList.add("mobile-propel");
-
-setTimeout(() => {
-card.classList.remove("mobile-propel");
-}, 850);
+function mix(start, end, amount) {
+return start + ((end - start) * amount);
 }
 
-if (trustZone && trustCards.length) {
-const trustObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting && isMobileWidth() && !mobileTrustAnimationDone) {
-mobileTrustAnimationDone = true;
+function resetTrustCard(card) {
+card.style.removeProperty("transform");
+card.style.removeProperty("border-color");
+card.style.removeProperty("box-shadow");
+card.style.removeProperty("background");
+card.style.removeProperty("z-index");
+
+card.style.setProperty(
+"--sweep-x",
+"-120%"
+);
+
+card.style.setProperty(
+"--glow-opacity",
+"0"
+);
+
+card.style.setProperty(
+"--title-colour",
+"#ffffff"
+);
+
+card.style.setProperty(
+"--text-colour",
+"#d8d8d8"
+);
+
+card.style.setProperty(
+"--title-spacing",
+"2.6px"
+);
+
+card.style.setProperty(
+"--title-scale",
+"1"
+);
+}
+
+function resetAllTrustCards() {
+trustCards.forEach(resetTrustCard);
+}
+
+function updateMobileTrustCards() {
+scrollAnimationFrame = null;
+
+if (
+!mobileMediaQuery.matches ||
+reducedMotionQuery.matches ||
+!trustZone ||
+trustCards.length === 0
+) {
+resetAllTrustCards();
+return;
+}
+
+const viewportHeight =
+window.innerHeight ||
+document.documentElement.clientHeight;
+
+/*
+The strongest point sits slightly below the
+middle of the phone screen.
+
+The wide influence range allows the previous
+card to remain partly active while the next
+card becomes stronger.
+*/
+const activePoint =
+viewportHeight * 0.58;
+
+const influenceDistance =
+viewportHeight * 0.46;
+
+const trustBounds =
+trustZone.getBoundingClientRect();
+
+const sectionIsNearViewport =
+trustBounds.bottom > -influenceDistance &&
+trustBounds.top < viewportHeight + influenceDistance;
+
+if (!sectionIsNearViewport) {
+resetAllTrustCards();
+return;
+}
 
 trustCards.forEach((card, index) => {
-setTimeout(() => {
-pulseTrustCard(card);
-}, index * 650);
-});
+const cardBounds =
+card.getBoundingClientRect();
 
-trustObserver.unobserve(trustZone);
-}
-});
-}, {
-threshold: 0.35
-});
+const cardCentre =
+cardBounds.top +
+(cardBounds.height / 2);
 
-trustObserver.observe(trustZone);
+const distanceFromActivePoint =
+Math.abs(cardCentre - activePoint);
+
+let strength =
+1 -
+(distanceFromActivePoint / influenceDistance);
+
+strength =
+clamp(strength, 0, 1);
+
+/*
+A gentle curve keeps nearby cards visibly
+active while still making the closest card
+the strongest.
+*/
+strength =
+Math.pow(strength, 1.15);
+
+const lift =
+mix(0, -8, strength);
+
+const scale =
+mix(1, 1.052, strength);
+
+const borderAlpha =
+mix(.11, .78, strength);
+
+const orangeShadowAlpha =
+mix(0, .20, strength);
+
+const darkShadowAlpha =
+mix(.28, .46, strength);
+
+const glowOpacity =
+mix(0, 1, strength);
+
+const titleRed =
+Math.round(mix(255, 245, strength));
+
+const titleGreen =
+Math.round(mix(255, 124, strength));
+
+const titleBlue =
+Math.round(mix(255, 0, strength));
+
+const textValue =
+Math.round(mix(216, 244, strength));
+
+const titleSpacing =
+mix(2.6, 3.3, strength);
+
+const titleScale =
+mix(1, 1.025, strength);
+
+/*
+The orange light sweep moves across the card
+in direct relation to the scrolling position.
+It reverses naturally when scrolling upward.
+*/
+const sweepPosition =
+mix(-120, 120, strength);
+
+card.style.transform =
+`translateY(${lift.toFixed(2)}px) scale(${scale.toFixed(4)})`;
+
+card.style.borderColor =
+`rgba(255,154,47,${borderAlpha.toFixed(3)})`;
+
+card.style.boxShadow =
+`0 ${mix(18, 26, strength).toFixed(1)}px ${mix(50, 68, strength).toFixed(1)}px rgba(245,124,0,${orangeShadowAlpha.toFixed(3)}),
+0 ${mix(18, 22, strength).toFixed(1)}px ${mix(50, 48, strength).toFixed(1)}px rgba(0,0,0,${darkShadowAlpha.toFixed(3)})`;
+
+card.style.background =
+`linear-gradient(
+135deg,
+rgb(${Math.round(mix(12,17,strength))},${Math.round(mix(12,17,strength))},${Math.round(mix(12,17,strength))}),
+rgb(${Math.round(mix(20,27,strength))},${Math.round(mix(20,19,strength))},${Math.round(mix(20,13,strength))})
+)`;
+
+card.style.zIndex =
+String(
+Math.round(1 + (strength * 5))
+);
+
+card.style.setProperty(
+"--sweep-x",
+`${sweepPosition.toFixed(2)}%`
+);
+
+card.style.setProperty(
+"--glow-opacity",
+glowOpacity.toFixed(3)
+);
+
+card.style.setProperty(
+"--title-colour",
+`rgb(${titleRed},${titleGreen},${titleBlue})`
+);
+
+card.style.setProperty(
+"--text-colour",
+`rgb(${textValue},${textValue},${textValue})`
+);
+
+card.style.setProperty(
+"--title-spacing",
+`${titleSpacing.toFixed(2)}px`
+);
+
+card.style.setProperty(
+"--title-scale",
+titleScale.toFixed(4)
+);
+});
 }
+
+function requestTrustCardUpdate() {
+if (scrollAnimationFrame !== null) {
+return;
+}
+
+scrollAnimationFrame =
+window.requestAnimationFrame(
+updateMobileTrustCards
+);
+}
+
+window.addEventListener(
+"scroll",
+requestTrustCardUpdate,
+{
+passive: true
+}
+);
+
+window.addEventListener(
+"resize",
+requestTrustCardUpdate
+);
+
+window.addEventListener(
+"orientationchange",
+requestTrustCardUpdate
+);
+
+if (
+typeof mobileMediaQuery.addEventListener === "function"
+) {
+mobileMediaQuery.addEventListener(
+"change",
+requestTrustCardUpdate
+);
+} else {
+mobileMediaQuery.addListener(
+requestTrustCardUpdate
+);
+}
+
+if (
+typeof reducedMotionQuery.addEventListener === "function"
+) {
+reducedMotionQuery.addEventListener(
+"change",
+requestTrustCardUpdate
+);
+} else {
+reducedMotionQuery.addListener(
+requestTrustCardUpdate
+);
+}
+
+requestTrustCardUpdate();
 </script>
 
 </body>
