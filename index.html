@@ -206,30 +206,150 @@ padding-left: 12px;
 }
 
 .hero {
-min-height: 780px;
-padding: 130px 6% 165px;
+background:
+radial-gradient(
+circle at 86% 20%,
+rgba(16,42,68,.55),
+transparent 40%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#090909 56%,
+#101820 100%
+);
+border-bottom: 1px solid rgba(255,255,255,.08);
+padding: 0 0 145px;
+}
+
+.hero-category {
+margin: 0;
+padding: 16px 6% 15px;
+color: var(--orange);
+font-size: 12px;
+font-weight: 950;
+letter-spacing: 2.2px;
+line-height: 1;
+text-transform: uppercase;
+border-bottom: 1px solid rgba(255,255,255,.08);
+background: rgba(5,5,5,.88);
+opacity: 0;
+animation: heroCategoryFade 1s ease .12s forwards;
+}
+
+.hero-image-slot {
+width: 100%;
+height: clamp(280px, 46vw, 590px);
+position: relative;
+overflow: hidden;
+background: #0b0b0b;
+border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.hero-image-slot img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: 48% 48%;
+transform: scale(1.02);
+clip-path: polygon(
+0 100%,
+0 100%,
+0 100%,
+0 100%
+);
+animation:
+heroImageReveal 1.45s cubic-bezier(.18,.72,.26,1) .55s forwards,
+heroImageSettle 1.6s ease .55s forwards;
+will-change: clip-path, transform;
+}
+
+.hero-image-slot::after {
+content: "";
+position: absolute;
+inset: 0;
 background:
 linear-gradient(
-90deg,
-rgba(5,5,5,.96) 0%,
-rgba(5,5,5,.80) 48%,
-rgba(16,42,68,.58) 100%
-),
-url("images/hero-rooflight.jpg");
-background-size: cover;
-background-position: center;
-border-bottom: 1px solid rgba(255,255,255,.08);
+180deg,
+rgba(0,0,0,.02) 0%,
+rgba(0,0,0,.00) 58%,
+rgba(0,0,0,.12) 100%
+);
+pointer-events: none;
 }
 
 .hero-inner {
-max-width: 1080px;
-animation: fadeUp .75s ease both;
+max-width: 1180px;
+margin: 0 auto;
+padding: 105px 6% 0;
 }
 
-@keyframes fadeUp {
+.hero-main-copy {
+opacity: 0;
+transform: translateY(24px);
+animation: heroCopyFade 1s ease 1.82s forwards;
+}
+
+.hero-buy-content {
+opacity: 0;
+transform: translateY(20px);
+animation: heroBuyFade .9s ease 2.12s forwards;
+}
+
+@keyframes heroCategoryFade {
 from {
 opacity: 0;
-transform: translateY(18px);
+}
+
+to {
+opacity: 1;
+}
+}
+
+@keyframes heroImageReveal {
+0% {
+clip-path: polygon(
+0 100%,
+0 100%,
+0 100%,
+0 100%
+);
+}
+
+45% {
+clip-path: polygon(
+0 46%,
+0 100%,
+54% 100%,
+14% 60%
+);
+}
+
+100% {
+clip-path: polygon(
+0 0,
+100% 0,
+100% 100%,
+0 100%
+);
+}
+}
+
+@keyframes heroImageSettle {
+from {
+transform: scale(1.035);
+}
+
+to {
+transform: scale(1.02);
+}
+}
+
+@keyframes heroCopyFade {
+from {
+opacity: 0;
+transform: translateY(24px);
 }
 
 to {
@@ -238,7 +358,18 @@ transform: translateY(0);
 }
 }
 
-.eyebrow,
+@keyframes heroBuyFade {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
 .section-label {
 color: var(--orange);
 font-weight: 950;
@@ -328,17 +459,17 @@ align-self: center;
 
 .trust-zone {
 position: relative;
-overflow: visible;
+overflow: hidden;
 background:
 radial-gradient(
 circle at 16% 18%,
-rgba(255,154,47,.20),
+rgba(255,154,47,.16),
 transparent 26%
 ),
 radial-gradient(
 circle at 86% 70%,
-rgba(245,124,0,.14),
-transparent 28%
+rgba(16,42,68,.32),
+transparent 32%
 ),
 linear-gradient(
 135deg,
@@ -369,7 +500,6 @@ background-size: 44px 44px;
 opacity: .15;
 transform: skewY(-6deg) scale(1.2);
 pointer-events: none;
-overflow: hidden;
 }
 
 .trust-strip {
@@ -382,7 +512,8 @@ z-index: 1;
 }
 
 .trust-item {
---sweep-x: -120%;
+--gleam-x: -160%;
+--gleam-opacity: 0;
 --glow-opacity: 0;
 --title-colour: #ffffff;
 --text-colour: #d8d8d8;
@@ -391,6 +522,7 @@ z-index: 1;
 
 position: relative;
 overflow: hidden;
+isolation: isolate;
 padding: 34px 38px;
 background: linear-gradient(135deg, #0c0c0c, #141414);
 border: 1px solid rgba(255,255,255,.11);
@@ -409,16 +541,27 @@ will-change: transform, border-color, box-shadow;
 .trust-item::before {
 content: "";
 position: absolute;
-inset: 0;
+top: -12%;
+bottom: -12%;
+left: 0;
+width: 24%;
+z-index: 0;
 background:
 linear-gradient(
-120deg,
+90deg,
 transparent 0%,
-rgba(245,124,0,.19) 45%,
-transparent 75%
+rgba(255,255,255,.06) 13%,
+rgba(255,255,255,.28) 34%,
+rgba(255,255,255,.96) 50%,
+rgba(255,255,255,.28) 66%,
+rgba(255,255,255,.06) 87%,
+transparent 100%
 );
-transform: translateX(var(--sweep-x));
-opacity: var(--glow-opacity);
+filter: blur(4px);
+transform:
+translateX(var(--gleam-x))
+skewX(-17deg);
+opacity: var(--gleam-opacity);
 pointer-events: none;
 will-change: transform, opacity;
 }
@@ -427,25 +570,25 @@ will-change: transform, opacity;
 content: "";
 position: absolute;
 inset: 0;
+z-index: 0;
 background:
 radial-gradient(
-circle at 18% 50%,
-rgba(245,124,0,.20),
+circle at 22% 50%,
+rgba(255,255,255,.12),
 transparent 34%
 ),
 linear-gradient(
 135deg,
-rgba(245,124,0,.09),
-rgba(16,42,68,.09)
+rgba(245,124,0,.06),
+rgba(16,42,68,.07)
 );
 opacity: var(--glow-opacity);
 pointer-events: none;
-will-change: opacity;
 }
 
 .trust-item strong {
 position: relative;
-z-index: 1;
+z-index: 2;
 display: block;
 font-size: clamp(22px, 3vw, 38px);
 color: var(--title-colour);
@@ -462,7 +605,7 @@ transform .18s linear;
 
 .trust-item span {
 position: relative;
-z-index: 1;
+z-index: 2;
 color: var(--text-colour);
 font-size: clamp(17px, 2vw, 24px);
 line-height: 1.45;
@@ -473,24 +616,27 @@ transition: color .18s linear;
 
 @media (hover: hover) and (pointer: fine) {
 .trust-item:hover {
---sweep-x: 120%;
+--gleam-x: 500%;
+--gleam-opacity: 1;
 --glow-opacity: 1;
 --title-colour: #f57c00;
---text-colour: rgba(255,255,255,.88);
+--text-colour: rgba(255,255,255,.90);
 --title-spacing: 3.3px;
 --title-scale: 1.025;
 
-transform: translateY(-8px) scale(1.055);
+transform: translateY(-7px) scale(1.025);
 border-color: rgba(255,154,47,.75);
 background: linear-gradient(135deg, #111111, #1b130d);
 box-shadow:
-0 26px 68px rgba(245,124,0,.18),
-0 22px 48px rgba(0,0,0,.42);
+0 24px 62px rgba(245,124,0,.17),
+0 20px 46px rgba(0,0,0,.42);
 z-index: 4;
 }
 
 .trust-item:hover::before {
-transition: transform .55s ease;
+transition:
+transform .7s cubic-bezier(.18,.72,.28,1),
+opacity .12s ease;
 }
 }
 
@@ -673,8 +819,11 @@ letter-spacing: .8px;
 
 @media(max-width: 950px) {
 .hero {
-min-height: auto;
-padding: 90px 6% 130px;
+padding-bottom: 120px;
+}
+
+.hero-inner {
+padding-top: 82px;
 }
 
 .calc-grid,
@@ -721,6 +870,25 @@ height: 34px;
 font-size: 16px;
 }
 
+.hero-category {
+padding: 13px 6%;
+font-size: 12px;
+line-height: 1.08;
+letter-spacing: 1.8px;
+}
+
+.hero-image-slot {
+height: 285px;
+}
+
+.hero-image-slot img {
+object-position: 46% 50%;
+}
+
+.hero-inner {
+padding: 65px 6% 0;
+}
+
 .hero h1 {
 font-size: 45px;
 }
@@ -742,13 +910,11 @@ overflow: hidden;
 padding: 30px 24px;
 cursor: default;
 transition: none;
+transform-origin: center center;
 }
 
 .trust-item::before,
-.trust-item::after {
-transition: none;
-}
-
+.trust-item::after,
 .trust-item strong,
 .trust-item span {
 transition: none;
@@ -773,8 +939,17 @@ html {
 scroll-behavior: auto;
 }
 
-.ticker,
-.hero-inner {
+.ticker {
+animation: none;
+}
+
+.hero-category,
+.hero-image-slot img,
+.hero-main-copy,
+.hero-buy-content {
+opacity: 1;
+transform: none;
+clip-path: none;
 animation: none;
 }
 
@@ -819,13 +994,22 @@ Rooflights
 </div>
 
 <div class="action-icons">
-<button
-type="button"
-onclick="openMenu()"
-aria-label="Open menu"
+
+<a
+href="mailto:"
+aria-label="Email Factory Toughened Rooflights"
+title="Email"
 >
-☰
-</button>
+✉
+</a>
+
+<a
+href="tel:"
+aria-label="Call Factory Toughened Rooflights"
+title="Phone"
+>
+📱
+</a>
 
 <button
 type="button"
@@ -835,24 +1019,21 @@ title="Basket and checkout"
 💳
 </button>
 
-<a
-href="tel:"
-aria-label="Call Factory Toughened Rooflights"
+<button
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+title="Menu"
 >
-📱
-</a>
+☰
+</button>
 
-<a
-href="mailto:"
-aria-label="Email Factory Toughened Rooflights"
->
-✉
-</a>
 </div>
 </header>
 
 <div id="menuOverlay" class="menu-overlay">
 <div class="menu-top">
+
 <div class="wordmark-wrap">
 <div class="wordmark">
 Factory
@@ -873,6 +1054,7 @@ aria-label="Close menu"
 >
 ×
 </button>
+
 </div>
 
 <div class="menu-links">
@@ -887,13 +1069,26 @@ aria-label="Close menu"
 <main>
 
 <section class="hero">
-<div class="hero-inner">
-<div class="eyebrow">
-Frameless flat roof skylights
+
+<div class="hero-category">
+Frameless Flat Roof Skylights
 </div>
 
+<div
+class="hero-image-slot"
+id="heroImageSlot"
+>
+<img
+src="images/hero-homepage.png"
+alt="Frameless flat roof skylight installed on a flat roof"
+/>
+</div>
+
+<div class="hero-inner">
+
+<div class="hero-main-copy">
 <h1>
-Modernising Roofs With Frameless Glass Design
+Modernising British Ceilings With Frameless Glass Design
 </h1>
 
 <p>
@@ -901,8 +1096,9 @@ A cleaner, sharper way to finish a flat roof. Minimalist glass design,
 a sleek black border and no visible internal frame — creating a fuller
 sky view with a modern architectural finish.
 </p>
+</div>
 
-<div class="buy-intro">
+<div class="buy-intro hero-buy-content">
 <h2>
 Buy Your Frameless Rooflight Online
 </h2>
@@ -1286,6 +1482,8 @@ const reducedMotionQuery =
 window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let scrollAnimationFrame = null;
+let previousScrollY = window.scrollY;
+let scrollDirection = "down";
 
 function clamp(value, minimum, maximum) {
 return Math.min(
@@ -1299,6 +1497,8 @@ return start + ((end - start) * amount);
 }
 
 function resetTrustCard(card) {
+card.dataset.passed = "false";
+
 card.style.removeProperty("transform");
 card.style.removeProperty("border-color");
 card.style.removeProperty("box-shadow");
@@ -1306,8 +1506,13 @@ card.style.removeProperty("background");
 card.style.removeProperty("z-index");
 
 card.style.setProperty(
-"--sweep-x",
-"-120%"
+"--gleam-x",
+"-160%"
+);
+
+card.style.setProperty(
+"--gleam-opacity",
+"0"
 );
 
 card.style.setProperty(
@@ -1343,6 +1548,18 @@ trustCards.forEach(resetTrustCard);
 function updateMobileTrustCards() {
 scrollAnimationFrame = null;
 
+const currentScrollY =
+window.scrollY;
+
+if (currentScrollY > previousScrollY + 1) {
+scrollDirection = "down";
+} else if (currentScrollY < previousScrollY - 1) {
+scrollDirection = "up";
+}
+
+previousScrollY =
+currentScrollY;
+
 if (
 !mobileMediaQuery.matches ||
 reducedMotionQuery.matches ||
@@ -1357,19 +1574,17 @@ const viewportHeight =
 window.innerHeight ||
 document.documentElement.clientHeight;
 
-/*
-The strongest point sits slightly below the
-middle of the phone screen.
-
-The wide influence range allows the previous
-card to remain partly active while the next
-card becomes stronger.
-*/
 const activePoint =
-viewportHeight * 0.58;
+viewportHeight * 0.84;
 
 const influenceDistance =
-viewportHeight * 0.46;
+viewportHeight * 0.76;
+
+const completionPoint =
+viewportHeight * 0.44;
+
+const upwardResetPoint =
+viewportHeight * 0.72;
 
 const trustBounds =
 trustZone.getBoundingClientRect();
@@ -1379,11 +1594,14 @@ trustBounds.bottom > -influenceDistance &&
 trustBounds.top < viewportHeight + influenceDistance;
 
 if (!sectionIsNearViewport) {
+if (trustBounds.top > viewportHeight) {
 resetAllTrustCards();
+}
+
 return;
 }
 
-trustCards.forEach((card, index) => {
+trustCards.forEach(card => {
 const cardBounds =
 card.getBoundingClientRect();
 
@@ -1391,8 +1609,27 @@ const cardCentre =
 cardBounds.top +
 (cardBounds.height / 2);
 
+if (
+scrollDirection === "down" &&
+cardCentre <= completionPoint
+) {
+card.dataset.passed = "true";
+}
+
+if (
+scrollDirection === "up" &&
+cardCentre >= upwardResetPoint
+) {
+card.dataset.passed = "false";
+}
+
+const hasPassed =
+card.dataset.passed === "true";
+
 const distanceFromActivePoint =
-Math.abs(cardCentre - activePoint);
+Math.abs(
+cardCentre - activePoint
+);
 
 let strength =
 1 -
@@ -1401,57 +1638,89 @@ let strength =
 strength =
 clamp(strength, 0, 1);
 
-/*
-A gentle curve keeps nearby cards visibly
-active while still making the closest card
-the strongest.
-*/
 strength =
-Math.pow(strength, 1.15);
+Math.pow(strength, .72);
 
 const lift =
-mix(0, -8, strength);
+mix(0, -7, strength);
 
 const scale =
-mix(1, 1.052, strength);
-
-const borderAlpha =
-mix(.11, .78, strength);
-
-const orangeShadowAlpha =
-mix(0, .20, strength);
-
-const darkShadowAlpha =
-mix(.28, .46, strength);
-
-const glowOpacity =
-mix(0, 1, strength);
-
-const titleRed =
-Math.round(mix(255, 245, strength));
-
-const titleGreen =
-Math.round(mix(255, 124, strength));
-
-const titleBlue =
-Math.round(mix(255, 0, strength));
-
-const textValue =
-Math.round(mix(216, 244, strength));
-
-const titleSpacing =
-mix(2.6, 3.3, strength);
-
-const titleScale =
 mix(1, 1.025, strength);
 
-/*
-The orange light sweep moves across the card
-in direct relation to the scrolling position.
-It reverses naturally when scrolling upward.
-*/
-const sweepPosition =
-mix(-120, 120, strength);
+const borderAlpha =
+mix(.11, .76, strength);
+
+const whiteShadowAlpha =
+mix(0, .10, strength);
+
+const orangeShadowAlpha =
+mix(0, .10, strength);
+
+const darkShadowAlpha =
+mix(.28, .44, strength);
+
+const glowOpacity =
+mix(0, .78, strength);
+
+const gleamProgress =
+clamp(
+(
+(activePoint + influenceDistance) -
+cardCentre
+) /
+(
+influenceDistance * 1.55
+),
+0,
+1
+);
+
+const gleamPosition =
+mix(-160, 500, gleamProgress);
+
+const gleamOpacity =
+strength > .03
+? clamp(strength * 1.18, 0, 1)
+: 0;
+
+const titleStrength =
+hasPassed
+? 1
+: strength;
+
+const titleRed =
+Math.round(
+mix(255, 245, titleStrength)
+);
+
+const titleGreen =
+Math.round(
+mix(255, 124, titleStrength)
+);
+
+const titleBlue =
+Math.round(
+mix(255, 0, titleStrength)
+);
+
+const textValue =
+Math.round(
+mix(216, 244, strength)
+);
+
+const titleSpacing =
+mix(
+2.6,
+3.3,
+titleStrength
+);
+
+const titleScale =
+mix(
+1,
+1.025,
+strength
+);
 
 card.style.transform =
 `translateY(${lift.toFixed(2)}px) scale(${scale.toFixed(4)})`;
@@ -1460,24 +1729,40 @@ card.style.borderColor =
 `rgba(255,154,47,${borderAlpha.toFixed(3)})`;
 
 card.style.boxShadow =
-`0 ${mix(18, 26, strength).toFixed(1)}px ${mix(50, 68, strength).toFixed(1)}px rgba(245,124,0,${orangeShadowAlpha.toFixed(3)}),
-0 ${mix(18, 22, strength).toFixed(1)}px ${mix(50, 48, strength).toFixed(1)}px rgba(0,0,0,${darkShadowAlpha.toFixed(3)})`;
+`0 ${mix(18,24,strength).toFixed(1)}px ${mix(50,62,strength).toFixed(1)}px rgba(255,255,255,${whiteShadowAlpha.toFixed(3)}),
+0 ${mix(18,24,strength).toFixed(1)}px ${mix(50,62,strength).toFixed(1)}px rgba(245,124,0,${orangeShadowAlpha.toFixed(3)}),
+0 ${mix(18,20,strength).toFixed(1)}px ${mix(50,46,strength).toFixed(1)}px rgba(0,0,0,${darkShadowAlpha.toFixed(3)})`;
 
 card.style.background =
 `linear-gradient(
 135deg,
-rgb(${Math.round(mix(12,17,strength))},${Math.round(mix(12,17,strength))},${Math.round(mix(12,17,strength))}),
-rgb(${Math.round(mix(20,27,strength))},${Math.round(mix(20,19,strength))},${Math.round(mix(20,13,strength))})
+rgb(
+${Math.round(mix(12,17,strength))},
+${Math.round(mix(12,17,strength))},
+${Math.round(mix(12,17,strength))}
+),
+rgb(
+${Math.round(mix(20,27,strength))},
+${Math.round(mix(20,19,strength))},
+${Math.round(mix(20,13,strength))}
+)
 )`;
 
 card.style.zIndex =
 String(
-Math.round(1 + (strength * 5))
+Math.round(
+1 + (strength * 5)
+)
 );
 
 card.style.setProperty(
-"--sweep-x",
-`${sweepPosition.toFixed(2)}%`
+"--gleam-x",
+`${gleamPosition.toFixed(2)}%`
+);
+
+card.style.setProperty(
+"--gleam-opacity",
+gleamOpacity.toFixed(3)
 );
 
 card.style.setProperty(
