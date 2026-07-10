@@ -281,44 +281,32 @@ object-fit: cover;
 object-position: 48% 49%;
 }
 
-/*
-The first image appears without the old scale flick.
-It simply reveals smoothly from the lower-left.
-*/
-
 .hero-slide.initial-reveal {
-animation:
-initialDiagonalReveal 1.35s cubic-bezier(.18,.74,.24,1) both;
+animation-name: initialDiagonalReveal;
+animation-duration: 1.35s;
+animation-timing-function: cubic-bezier(.18,.74,.24,1);
+animation-fill-mode: both;
 }
-
-/*
-Slides entering from the left reveal diagonally
-from lower-left towards upper-right.
-*/
 
 .hero-slide.enter-left {
-animation:
-slideRevealLeft 1.2s cubic-bezier(.18,.74,.24,1) both;
+animation-name: slideRevealLeft;
+animation-duration: var(--transition-duration, .45s);
+animation-timing-function: cubic-bezier(.18,.74,.24,1);
+animation-fill-mode: both;
 }
-
-/*
-Slides entering from the right reveal diagonally
-from lower-right towards upper-left.
-*/
 
 .hero-slide.enter-right {
-animation:
-slideRevealRight 1.2s cubic-bezier(.18,.74,.24,1) both;
+animation-name: slideRevealRight;
+animation-duration: var(--transition-duration, .45s);
+animation-timing-function: cubic-bezier(.18,.74,.24,1);
+animation-fill-mode: both;
 }
 
-/*
-The outgoing image gently dissolves away underneath
-the new diagonal reveal, preventing a harsh flick.
-*/
-
 .hero-slide.exit-slide {
-animation:
-slideDissolveOut 1.15s ease both;
+animation-name: slideDissolveOut;
+animation-duration: var(--transition-duration, .45s);
+animation-timing-function: ease;
+animation-fill-mode: both;
 }
 
 @keyframes heroCategoryFade {
@@ -447,7 +435,7 @@ filter: blur(0);
 
 to {
 opacity: 0;
-filter: blur(2px);
+filter: blur(1px);
 }
 }
 
@@ -466,51 +454,7 @@ rgba(0,0,0,.12) 100%
 pointer-events: none;
 }
 
-/* Slideshow controls */
-
-.hero-slide-control {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-z-index: 12;
-width: 44px;
-height: 58px;
-border: 1px solid rgba(255,255,255,.22);
-background: rgba(5,5,5,.50);
-color: rgba(255,255,255,.90);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 25px;
-font-weight: 900;
-cursor: pointer;
-opacity: .34;
-transition:
-opacity .25s ease,
-background .25s ease,
-border-color .25s ease,
-color .25s ease;
-backdrop-filter: blur(6px);
-}
-
-.hero-slide-control.previous-button {
-left: 18px;
-}
-
-.hero-slide-control.next-button {
-right: 18px;
-}
-
-.hero-image-slot:hover .hero-slide-control,
-.hero-slide-control:focus-visible {
-opacity: 1;
-}
-
-.hero-slide-control:hover {
-background: rgba(5,5,5,.82);
-border-color: var(--orange);
-color: var(--orange);
-}
+/* Centre slideshow selector */
 
 .hero-slide-dots {
 position: absolute;
@@ -1104,21 +1048,6 @@ height: 285px;
 object-position: 47% 50%;
 }
 
-.hero-slide-control {
-width: 35px;
-height: 48px;
-font-size: 21px;
-opacity: .52;
-}
-
-.hero-slide-control.previous-button {
-left: 8px;
-}
-
-.hero-slide-control.next-button {
-right: 8px;
-}
-
 .hero-slide-dots {
 bottom: 10px;
 padding: 6px 8px;
@@ -1345,24 +1274,6 @@ src="images/hero-homepage-3.png"
 alt="Factory Toughened frameless rooflight being installed"
 />
 </div>
-
-<button
-type="button"
-class="hero-slide-control previous-button"
-id="previousHeroSlide"
-aria-label="Show previous rooflight image"
->
-‹
-</button>
-
-<button
-type="button"
-class="hero-slide-control next-button"
-id="nextHeroSlide"
-aria-label="Show next rooflight image"
->
-›
-</button>
 
 <div
 class="hero-slide-dots"
@@ -1629,8 +1540,7 @@ All units are supplied with a 20 year warranty and are designed for an expected
 
 <div class="engineered-card">
 <h3>
-Two-Stage Sealing
-</h3>
+Two-Stage Sealing</h3>
 
 <p>
 Factory insulated units use a streamlined internal and external two-stage sealing
@@ -1729,12 +1639,6 @@ Array.from(
 document.querySelectorAll(".hero-slide-dot")
 );
 
-const previousHeroSlideButton =
-document.getElementById("previousHeroSlide");
-
-const nextHeroSlideButton =
-document.getElementById("nextHeroSlide");
-
 let currentHeroSlide = 0;
 let automaticHeroSequenceFinished = false;
 let heroSequenceTimer = null;
@@ -1742,32 +1646,13 @@ let heroTransitionBusy = false;
 let heroTouchStartX = 0;
 let heroTouchStartY = 0;
 
-/*
-Initial sequence:
+const HERO_IMAGE_ONE_TIME = 5800;
+const HERO_IMAGE_TWO_TIME = 5800;
+const HERO_IMAGE_THREE_TIME = 5500;
 
-Image 1 remains for 4.5 seconds.
-Image 2 remains for 3 seconds.
-Image 3 remains for 3 seconds.
-The slideshow then returns to image 1 and stops.
-*/
-
-const initialHeroSequence = [
-{
-slideIndex: 1,
-delay: 4500,
-direction: "right"
-},
-{
-slideIndex: 2,
-delay: 3000,
-direction: "left"
-},
-{
-slideIndex: 0,
-delay: 3000,
-direction: "right"
-}
-];
+const HERO_STANDARD_TRANSITION = 450;
+const HERO_RETURN_TRANSITION = 800;
+const HERO_MANUAL_TRANSITION = 650;
 
 function clearHeroSlideClasses(slide) {
 slide.classList.remove(
@@ -1777,6 +1662,10 @@ slide.classList.remove(
 "enter-left",
 "enter-right",
 "exit-slide"
+);
+
+slide.style.removeProperty(
+"--transition-duration"
 );
 }
 
@@ -1796,10 +1685,23 @@ index === currentHeroSlide
 });
 }
 
+function stopAutomaticHeroSequence() {
+automaticHeroSequenceFinished = true;
+
+if (heroSequenceTimer !== null) {
+window.clearTimeout(
+heroSequenceTimer
+);
+
+heroSequenceTimer = null;
+}
+}
+
 function showHeroSlide(
 nextIndex,
 direction = "right",
-manualChange = false
+manualChange = false,
+transitionDuration = HERO_STANDARD_TRANSITION
 ) {
 if (
 heroTransitionBusy ||
@@ -1807,16 +1709,11 @@ nextIndex === currentHeroSlide ||
 nextIndex < 0 ||
 nextIndex >= heroSlides.length
 ) {
-return;
+return false;
 }
 
 if (manualChange) {
-automaticHeroSequenceFinished = true;
-
-if (heroSequenceTimer !== null) {
-window.clearTimeout(heroSequenceTimer);
-heroSequenceTimer = null;
-}
+stopAutomaticHeroSequence();
 }
 
 heroTransitionBusy = true;
@@ -1827,7 +1724,22 @@ heroSlides[currentHeroSlide];
 const incomingSlide =
 heroSlides[nextIndex];
 
-clearHeroSlideClasses(incomingSlide);
+clearHeroSlideClasses(
+incomingSlide
+);
+
+const transitionSeconds =
+transitionDuration / 1000;
+
+outgoingSlide.style.setProperty(
+"--transition-duration",
+`${transitionSeconds}s`
+);
+
+incomingSlide.style.setProperty(
+"--transition-duration",
+`${transitionSeconds}s`
+);
 
 outgoingSlide.classList.add(
 "previous",
@@ -1841,48 +1753,116 @@ direction === "left"
 : "enter-right"
 );
 
-currentHeroSlide = nextIndex;
+currentHeroSlide =
+nextIndex;
+
 updateHeroDots();
 
 window.setTimeout(() => {
-clearHeroSlideClasses(outgoingSlide);
+clearHeroSlideClasses(
+outgoingSlide
+);
 
 incomingSlide.classList.remove(
 "enter-left",
 "enter-right"
 );
 
-incomingSlide.classList.add("active");
+incomingSlide.style.removeProperty(
+"--transition-duration"
+);
+
+incomingSlide.classList.add(
+"active"
+);
 
 heroTransitionBusy = false;
-}, 1250);
+}, transitionDuration + 40);
+
+return true;
 }
 
-function runInitialHeroSequence(stepIndex = 0) {
+/*
+Initial slideshow:
+
+Image 1: 5.8 seconds
+Transition to image 2: 0.45 seconds
+Image 2: 5.8 seconds
+Transition to image 3: 0.45 seconds
+Image 3: 5.5 seconds
+Transition back to image 1: 0.8 seconds
+Then stop permanently on image 1.
+*/
+
+function beginInitialHeroSequence() {
 if (
 automaticHeroSequenceFinished ||
-stepIndex >= initialHeroSequence.length
+heroSlides.length < 3
 ) {
-automaticHeroSequenceFinished = true;
-heroSequenceTimer = null;
 return;
 }
 
-const step =
-initialHeroSequence[stepIndex];
+heroSequenceTimer =
+window.setTimeout(() => {
+const changedToSecond =
+showHeroSlide(
+1,
+"right",
+false,
+HERO_STANDARD_TRANSITION
+);
+
+if (!changedToSecond) {
+return;
+}
 
 heroSequenceTimer =
 window.setTimeout(() => {
+if (automaticHeroSequenceFinished) {
+return;
+}
+
+const changedToThird =
 showHeroSlide(
-step.slideIndex,
-step.direction,
-false
+2,
+"left",
+false,
+HERO_STANDARD_TRANSITION
 );
 
-runInitialHeroSequence(
-stepIndex + 1
+if (!changedToThird) {
+return;
+}
+
+heroSequenceTimer =
+window.setTimeout(() => {
+if (automaticHeroSequenceFinished) {
+return;
+}
+
+const returnedToFirst =
+showHeroSlide(
+0,
+"right",
+false,
+HERO_RETURN_TRANSITION
 );
-}, step.delay);
+
+if (!returnedToFirst) {
+return;
+}
+
+heroSequenceTimer =
+window.setTimeout(() => {
+automaticHeroSequenceFinished = true;
+heroSequenceTimer = null;
+}, HERO_RETURN_TRANSITION + 50);
+
+}, HERO_IMAGE_THREE_TIME + HERO_STANDARD_TRANSITION);
+
+}, HERO_IMAGE_TWO_TIME + HERO_STANDARD_TRANSITION);
+
+}, HERO_IMAGE_ONE_TIME);
 }
 
 function showNextHeroSlide() {
@@ -1893,7 +1873,8 @@ heroSlides.length;
 showHeroSlide(
 nextIndex,
 "right",
-true
+true,
+HERO_MANUAL_TRANSITION
 );
 }
 
@@ -1909,21 +1890,8 @@ heroSlides.length;
 showHeroSlide(
 previousIndex,
 "left",
-true
-);
-}
-
-if (nextHeroSlideButton) {
-nextHeroSlideButton.addEventListener(
-"click",
-showNextHeroSlide
-);
-}
-
-if (previousHeroSlideButton) {
-previousHeroSlideButton.addEventListener(
-"click",
-showPreviousHeroSlide
+true,
+HERO_MANUAL_TRANSITION
 );
 }
 
@@ -1951,7 +1919,8 @@ requestedIndex > currentHeroSlide
 showHeroSlide(
 requestedIndex,
 direction,
-true
+true,
+HERO_MANUAL_TRANSITION
 );
 }
 );
@@ -1959,7 +1928,7 @@ true
 
 /*
 Mobile swipe support.
-Horizontal movement changes the slide.
+Horizontal movement changes the image.
 Vertical page scrolling remains available.
 */
 
@@ -2030,7 +1999,7 @@ passive: true
 }
 
 updateHeroDots();
-runInitialHeroSequence();
+beginInitialHeroSequence();
 
 /* ===============================
 TEMPORARY PRICE CALCULATOR
