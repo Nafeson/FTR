@@ -348,12 +348,14 @@ pointer-events: none;
 }
 
 .trust-item:hover::before,
-.trust-item:active::before {
+.trust-item:active::before,
+.trust-item.mobile-propel::before {
 transform: translateX(120%);
 }
 
 .trust-item:hover,
-.trust-item:active {
+.trust-item:active,
+.trust-item.mobile-propel {
 transform: translateY(-8px) scale(1.055);
 border-color: rgba(255,154,47,.75);
 box-shadow: 0 26px 68px rgba(245,124,0,.18), 0 22px 48px rgba(0,0,0,.42);
@@ -384,7 +386,8 @@ transition: .25s ease;
 }
 
 .trust-item:hover strong,
-.trust-item:active strong {
+.trust-item:active strong,
+.trust-item.mobile-propel strong {
 color: var(--orange);
 letter-spacing: 3.3px;
 transform: scale(1.025);
@@ -392,7 +395,8 @@ transform-origin: left;
 }
 
 .trust-item:hover span,
-.trust-item:active span {
+.trust-item:active span,
+.trust-item.mobile-propel span {
 color: rgba(255,255,255,.88);
 }
 
@@ -646,11 +650,14 @@ padding: 30px 24px;
 
 .trust-item:hover,
 .trust-item:active {
+transform: none;
+}
+
+.trust-item.mobile-propel {
 transform: translateY(-5px) scale(1.025);
 }
 
-.trust-item:hover strong,
-.trust-item:active strong {
+.trust-item.mobile-propel strong {
 letter-spacing: 2.9px;
 }
 
@@ -765,7 +772,7 @@ online. Select your glazing, see your estimated price and keep the process simpl
 </div>
 </section>
 
-<section class="trust-zone">
+<section class="trust-zone" id="trustZone">
 <div class="trust-strip">
 <div class="trust-item">
 <strong>Toughened Safety Glass</strong>
@@ -950,6 +957,44 @@ el.addEventListener("input", calculatePrice);
 });
 
 calculatePrice();
+
+function isMobileWidth() {
+return window.matchMedia("(max-width: 560px)").matches;
+}
+
+const trustZone = document.getElementById("trustZone");
+const trustCards = document.querySelectorAll(".trust-item");
+let mobileTrustAnimationDone = false;
+
+function pulseTrustCard(card) {
+card.classList.add("mobile-propel");
+
+setTimeout(() => {
+card.classList.remove("mobile-propel");
+}, 850);
+}
+
+if (trustZone && trustCards.length) {
+const trustObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting && isMobileWidth() && !mobileTrustAnimationDone) {
+mobileTrustAnimationDone = true;
+
+trustCards.forEach((card, index) => {
+setTimeout(() => {
+pulseTrustCard(card);
+}, index * 650);
+});
+
+trustObserver.unobserve(trustZone);
+}
+});
+}, {
+threshold: 0.35
+});
+
+trustObserver.observe(trustZone);
+}
 </script>
 
 </body>
