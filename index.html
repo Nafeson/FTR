@@ -288,23 +288,44 @@ animation-timing-function: cubic-bezier(.18,.74,.24,1);
 animation-fill-mode: both;
 }
 
-.hero-slide.enter-left {
-animation-name: slideRevealLeft;
-animation-duration: var(--transition-duration, .45s);
-animation-timing-function: cubic-bezier(.18,.74,.24,1);
+.hero-slide.enter-slide-left {
+animation-name: smoothSlideFromLeft;
+animation-duration: var(--transition-duration, .8s);
+animation-timing-function: cubic-bezier(.22,.72,.24,1);
 animation-fill-mode: both;
 }
 
-.hero-slide.enter-right {
-animation-name: slideRevealRight;
-animation-duration: var(--transition-duration, .45s);
-animation-timing-function: cubic-bezier(.18,.74,.24,1);
+.hero-slide.enter-soft-right {
+animation-name: softSwipeFromRight;
+animation-duration: var(--transition-duration, .8s);
+animation-timing-function: cubic-bezier(.18,.72,.26,1);
 animation-fill-mode: both;
 }
 
-.hero-slide.exit-slide {
-animation-name: slideDissolveOut;
-animation-duration: var(--transition-duration, .45s);
+.hero-slide.enter-dissolve {
+animation-name: softDissolveIn;
+animation-duration: var(--transition-duration, 1s);
+animation-timing-function: ease;
+animation-fill-mode: both;
+}
+
+.hero-slide.exit-slide-left {
+animation-name: smoothSlideOutLeft;
+animation-duration: var(--transition-duration, .8s);
+animation-timing-function: cubic-bezier(.22,.72,.24,1);
+animation-fill-mode: both;
+}
+
+.hero-slide.exit-soft-left {
+animation-name: softSwipeOutLeft;
+animation-duration: var(--transition-duration, .8s);
+animation-timing-function: cubic-bezier(.18,.72,.26,1);
+animation-fill-mode: both;
+}
+
+.hero-slide.exit-dissolve {
+animation-name: softDissolveOut;
+animation-duration: var(--transition-duration, 1s);
 animation-timing-function: ease;
 animation-fill-mode: both;
 }
@@ -355,79 +376,69 @@ clip-path: polygon(
 }
 }
 
-@keyframes slideRevealLeft {
-0% {
-opacity: 0;
-clip-path: polygon(
-0 100%,
-0 100%,
-0 100%,
-0 100%
-);
+@keyframes smoothSlideFromLeft {
+from {
+opacity: .72;
+transform: translateX(-12%);
 }
 
-22% {
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes smoothSlideOutLeft {
+from {
+opacity: 1;
+transform: translateX(0);
+}
+
+to {
 opacity: .35;
+transform: translateX(8%);
+}
 }
 
-58% {
-opacity: .92;
-clip-path: polygon(
-0 34%,
-0 100%,
-70% 100%,
-25% 54%
-);
+@keyframes softSwipeFromRight {
+0% {
+opacity: .35;
+clip-path: inset(0 0 0 100%);
+transform: translateX(3%);
 }
 
 100% {
 opacity: 1;
-clip-path: polygon(
-0 0,
-100% 0,
-100% 100%,
-0 100%
-);
+clip-path: inset(0 0 0 0);
+transform: translateX(0);
 }
 }
 
-@keyframes slideRevealRight {
-0% {
-opacity: 0;
-clip-path: polygon(
-100% 100%,
-100% 100%,
-100% 100%,
-100% 100%
-);
-}
-
-22% {
-opacity: .35;
-}
-
-58% {
-opacity: .92;
-clip-path: polygon(
-30% 100%,
-100% 35%,
-100% 100%,
-76% 100%
-);
-}
-
-100% {
+@keyframes softSwipeOutLeft {
+from {
 opacity: 1;
-clip-path: polygon(
-0 0,
-100% 0,
-100% 100%,
-0 100%
-);
+transform: translateX(0);
+}
+
+to {
+opacity: .35;
+transform: translateX(-3%);
 }
 }
 
-@keyframes slideDissolveOut {
+@keyframes softDissolveIn {
+from {
+opacity: 0;
+filter: blur(3px);
+}
+
+to {
+opacity: 1;
+filter: blur(0);
+}
+}
+
+@keyframes softDissolveOut {
 from {
 opacity: 1;
 filter: blur(0);
@@ -435,7 +446,7 @@ filter: blur(0);
 
 to {
 opacity: 0;
-filter: blur(1px);
+filter: blur(3px);
 }
 }
 
@@ -568,34 +579,8 @@ max-width: 860px;
 color: var(--white);
 font-size: clamp(34px, 5vw, 64px);
 line-height: .98;
-margin: 0 0 18px;
-letter-spacing: -1.8px;
-}
-
-.production-queue-note {
-display: inline-flex;
-align-items: center;
-gap: 10px;
 margin: 0 0 20px;
-padding: 9px 13px;
-background: rgba(16,42,68,.72);
-border-left: 3px solid var(--orange);
-color: #f2f6fa;
-font-size: 12px;
-font-weight: 950;
-letter-spacing: 1.1px;
-line-height: 1.35;
-text-transform: uppercase;
-}
-
-.production-queue-note::before {
-content: "";
-width: 7px;
-height: 7px;
-border-radius: 50%;
-background: var(--orange);
-box-shadow: 0 0 0 5px rgba(245,124,0,.12);
-flex: 0 0 auto;
+letter-spacing: -1.8px;
 }
 
 .hero-actions {
@@ -734,7 +719,7 @@ line-height: 1.7;
 color: var(--muted);
 }
 
-.direct-copy p:last-child {
+.direct-copy p:last-of-type {
 margin-bottom: 0;
 }
 
@@ -742,7 +727,7 @@ margin-bottom: 0;
 display: inline-flex;
 align-items: center;
 gap: 10px;
-margin-top: 8px;
+margin-top: 30px;
 color: var(--orange);
 font-size: 12px;
 font-weight: 950;
@@ -919,6 +904,14 @@ display: block;
 transition: color .18s linear;
 }
 
+.trust-item .lead-time-note {
+margin-top: 12px;
+font-size: 11px;
+line-height: 1.45;
+color: rgba(255,255,255,.52);
+letter-spacing: .35px;
+}
+
 @media (hover: hover) and (pointer: fine) {
 .trust-item:hover {
 --gleam-x: 500%;
@@ -945,25 +938,69 @@ opacity .12s ease;
 }
 }
 
-.install-cta {
-max-width: 1120px;
-margin: 30px auto 0;
-display: flex;
-justify-content: center;
-position: relative;
-z-index: 1;
-}
+/* ===============================
+SHARED SECTIONS
+================================ */
 
 section {
 padding: 95px 6%;
 }
 
+/* ===============================
+CALCULATOR SECTION
+================================ */
+
 .calculator-wrap {
-background: var(--black);
-padding-top: 95px;
+position: relative;
+overflow: hidden;
+background:
+radial-gradient(
+circle at 88% 16%,
+rgba(16,42,68,.32),
+transparent 34%
+),
+linear-gradient(
+180deg,
+#050505 0%,
+#080808 100%
+);
+padding-top: 108px;
+border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.calculator-wrap::before {
+content: "";
+position: absolute;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+width: min(88%, 1120px);
+height: 1px;
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(245,124,0,.80),
+transparent
+);
+}
+
+.calculator-wrap::after {
+content: "Configure • Price • Continue";
+position: absolute;
+top: 25px;
+left: 50%;
+transform: translateX(-50%);
+color: rgba(255,255,255,.28);
+font-size: 9px;
+font-weight: 950;
+letter-spacing: 2.2px;
+text-transform: uppercase;
+white-space: nowrap;
 }
 
 .calculator {
+position: relative;
 background: #101010;
 border: 1px solid rgba(255,255,255,.09);
 max-width: 1180px;
@@ -971,6 +1008,54 @@ margin-left: auto;
 margin-right: auto;
 padding: 50px;
 box-shadow: 0 28px 85px rgba(0,0,0,.65);
+opacity: 0;
+transform: translateY(34px) scale(.988);
+transition:
+opacity .8s ease,
+transform .8s cubic-bezier(.18,.72,.28,1),
+border-color .8s ease,
+box-shadow .8s ease;
+}
+
+.calculator.is-visible {
+opacity: 1;
+transform: translateY(0) scale(1);
+border-color: rgba(245,124,0,.24);
+box-shadow:
+0 30px 90px rgba(0,0,0,.68),
+0 0 0 1px rgba(245,124,0,.04);
+}
+
+.calculator.is-visible .calc-grid {
+animation: calculatorFieldsEnter .7s ease .18s both;
+}
+
+.calculator.is-visible .price-box {
+animation: calculatorPriceEnter .7s ease .34s both;
+}
+
+@keyframes calculatorFieldsEnter {
+from {
+opacity: 0;
+transform: translateY(16px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes calculatorPriceEnter {
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
 }
 
 h2 {
@@ -1014,13 +1099,22 @@ font-size: 16px;
 background: #050505;
 color: white;
 border-radius: 0;
-transition: .25s ease;
+transition:
+border-color .25s ease,
+box-shadow .25s ease,
+background .25s ease;
+}
+
+input:hover,
+select:hover {
+border-color: rgba(245,124,0,.42);
 }
 
 input:focus,
 select:focus {
 outline: none;
 border-color: var(--orange);
+background: #080808;
 box-shadow: 0 0 0 3px rgba(245,124,0,.12);
 }
 
@@ -1216,14 +1310,6 @@ font-size: 45px;
 font-size: 18px;
 }
 
-.production-queue-note {
-display: flex;
-width: fit-content;
-max-width: 100%;
-font-size: 10px;
-letter-spacing: .85px;
-}
-
 .hero-actions {
 flex-direction: column;
 align-items: flex-start;
@@ -1263,7 +1349,7 @@ padding: 68px 6%;
 }
 
 .trust-zone {
-padding: 58px 6%;
+padding: 58px 6% 64px;
 overflow: hidden;
 }
 
@@ -1283,6 +1369,20 @@ transition: none;
 
 .buy-intro {
 padding-left: 20px;
+}
+
+.calculator-wrap {
+padding-top: 98px;
+}
+
+.calculator-wrap::after {
+top: 23px;
+font-size: 8px;
+letter-spacing: 1.7px;
+}
+
+.calculator {
+padding: 30px 24px;
 }
 }
 
@@ -1309,9 +1409,20 @@ animation: none;
 animation: none;
 clip-path: none;
 filter: none;
+transform: none;
 }
 
 .trust-item {
+transition: none;
+}
+
+.calculator,
+.calculator.is-visible,
+.calculator.is-visible .calc-grid,
+.calculator.is-visible .price-box {
+opacity: 1;
+transform: none;
+animation: none;
 transition: none;
 }
 }
@@ -1340,6 +1451,7 @@ transition: none;
 
 <header>
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
@@ -1349,6 +1461,7 @@ Rooflights
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
+
 </div>
 
 <div class="action-icons">
@@ -1390,9 +1503,11 @@ title="Menu"
 </header>
 
 <div id="menuOverlay" class="menu-overlay">
+
 <div class="menu-top">
 
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
@@ -1402,6 +1517,7 @@ Rooflights
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
+
 </div>
 
 <button
@@ -1422,6 +1538,7 @@ aria-label="Close menu"
 <a href="#oversized" onclick="closeMenu()">Oversized</a>
 <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
+
 </div>
 
 <main>
@@ -1454,7 +1571,7 @@ alt="Frameless flat roof skylight installation in progress"
 
 <div class="hero-slide">
 <img
-src="images/hero-homepage-3.png"
+src="images/hero-homepage-3.jpeg"
 alt="Factory Toughened frameless rooflight being installed"
 />
 </div>
@@ -1463,6 +1580,7 @@ alt="Factory Toughened frameless rooflight being installed"
 class="hero-slide-dots"
 aria-label="Select rooflight image"
 >
+
 <button
 type="button"
 class="hero-slide-dot active"
@@ -1483,6 +1601,7 @@ class="hero-slide-dot"
 data-slide-index="2"
 aria-label="Show image 3"
 ></button>
+
 </div>
 
 </div>
@@ -1490,6 +1609,7 @@ aria-label="Show image 3"
 <div class="hero-inner">
 
 <div class="hero-main-copy">
+
 <h1>
 Modernising British Ceilings With Frameless Glass Design
 </h1>
@@ -1499,16 +1619,14 @@ A cleaner, sharper way to finish a flat roof. Minimalist glass design,
 a sleek black border and no visible internal frame — creating a fuller
 sky view with a modern architectural finish.
 </p>
+
 </div>
 
 <div class="buy-intro hero-buy-content">
+
 <h2>
 Buy Your Frameless Rooflight Online
 </h2>
-
-<div class="production-queue-note">
-Enter your order into our production queue
-</div>
 
 <p>
 Choose from listed standard sizes or build your own made-to-order rooflight
@@ -1540,12 +1658,15 @@ href="#oversized"
 class="button secondary oversized-button"
 >
 <span>Oversized Rooflights</span>
-<span class="button-size-note">+2.7m</span>
+<span class="button-size-note">+4.5 m²</span>
 </a>
 
 </div>
+
 </div>
+
 </div>
+
 </section>
 
 <section class="direct-section">
@@ -1553,6 +1674,7 @@ class="button secondary oversized-button"
 <div class="direct-inner">
 
 <div>
+
 <div class="section-label">
 Made and supplied directly
 </div>
@@ -1560,23 +1682,31 @@ Made and supplied directly
 <h2 class="direct-heading">
 Buy Direct From Us
 </h2>
+
 </div>
 
 <div class="direct-copy">
+
 <p>
-Your order moves directly from the specification you approve into our production process.
-That means fewer handovers, clearer communication and a straightforward route from ordering
-to manufacture.
+We specialise solely in frameless flat roof skylights. Keeping our production focused
+on one core product range allows us to maintain a high output while applying the same
+specification, checks and manufacturing standards consistently across every order.
 </p>
 
 <p>
-You can order with confidence knowing the rooflight is being made to the measurements and
-options you selected, then checked and prepared before delivery.
+Your approved specification moves directly into our production process, which means
+fewer handovers, clearer communication and a straightforward route from ordering to manufacture.
+</p>
+
+<p>
+You can order with confidence knowing the rooflight is being made to the measurements
+and options you selected, then checked and prepared before delivery.
 </p>
 
 <div class="direct-assurance">
-One clear process from order to production
+One focused process from order to production
 </div>
+
 </div>
 
 </div>
@@ -1584,9 +1714,11 @@ One clear process from order to production
 </section>
 
 <section class="trust-zone" id="trustZone">
+
 <div class="trust-strip">
 
 <div class="trust-item">
+
 <strong>
 Toughened Safety Glass
 </strong>
@@ -1594,19 +1726,27 @@ Toughened Safety Glass
 <span>
 Built around strong toughened glass suitable for modern flat roof applications.
 </span>
+
 </div>
 
 <div class="trust-item">
+
 <strong>
-In-House Manufacture
+Fast Lead Times
 </strong>
 
 <span>
-Units are assembled, sealed, insulated and prepared through our workshop process.
+Manufactured in as quick as four working days.*
 </span>
+
+<span class="lead-time-note">
+*Lead time depends on the selected size, specification and delivery location.
+</span>
+
 </div>
 
 <div class="trust-item">
+
 <strong>
 Free Mainland UK Delivery
 </strong>
@@ -1614,19 +1754,16 @@ Free Mainland UK Delivery
 <span>
 Available on listed sizes, with larger units quoted clearly before order.
 </span>
-</div>
 
 </div>
 
-<div class="install-cta">
-<a href="#contact" class="button">
-Need To Book An Installation? Contact Us
-</a>
 </div>
+
 </section>
 
 <section id="calculator" class="calculator-wrap">
-<div class="calculator">
+
+<div class="calculator" id="homepageCalculator">
 
 <div class="section-label">
 Build online
@@ -1644,6 +1781,7 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 <div class="calc-grid">
 
 <div>
+
 <label for="width">
 Width / Short Side
 </label>
@@ -1655,9 +1793,11 @@ value="1000"
 min="300"
 max="1500"
 />
+
 </div>
 
 <div>
+
 <label for="length">
 Length / Long Side
 </label>
@@ -1669,9 +1809,11 @@ value="2000"
 min="400"
 max="3000"
 />
+
 </div>
 
 <div>
+
 <label for="glazing">
 Glazing
 </label>
@@ -1680,9 +1822,11 @@ Glazing
 <option value="double">Double Glazed</option>
 <option value="triple">Triple Glazed</option>
 </select>
+
 </div>
 
 <div>
+
 <label for="finish">
 Glass Finish
 </label>
@@ -1693,12 +1837,15 @@ Glass Finish
 <option>Solar Grey</option>
 <option>Solar Blue</option>
 </select>
+
 </div>
 
 </div>
 
 <div class="price-box">
+
 <div>
+
 <div class="price-label">
 Estimated Online Price
 </div>
@@ -1710,17 +1857,21 @@ Estimated Online Price
 <small>
 Includes VAT. Free mainland UK delivery applies on listed sizes.
 </small>
+
 </div>
 
 <a href="#" class="button">
 Order Online Soon
 </a>
+
 </div>
 
 </div>
+
 </section>
 
 <section id="engineered" class="engineered">
+
 <div class="engineered-intro">
 
 <div class="section-label">
@@ -1741,6 +1892,7 @@ The specification is designed for comfort, durability and long-term weather perf
 <div class="engineered-grid">
 
 <div class="engineered-card">
+
 <h3>
 UV Protected Low-E Glass
 </h3>
@@ -1749,9 +1901,11 @@ UV Protected Low-E Glass
 Low-E energy-saving glass helps keep rooms cooler in summer and retain heat in winter.
 It also helps protect interiors from UV exposure and reduces the risk of overheating compared with basic rooflight glazing.
 </p>
+
 </div>
 
 <div class="engineered-card">
+
 <h3>
 Ceramic Fused Border
 </h3>
@@ -1760,9 +1914,11 @@ Ceramic Fused Border
 The black border is ceramic infused and fused into the glass during manufacture.
 It provides a permanent finish that supports long-term UV stability, durability and the clean frameless appearance.
 </p>
+
 </div>
 
 <div class="engineered-card">
+
 <h3>
 20 Year Warranty
 </h3>
@@ -1771,9 +1927,11 @@ It provides a permanent finish that supports long-term UV stability, durability 
 All units are supplied with a 20 year warranty and are designed for an expected
 30+ year service life when correctly specified and installed.
 </p>
+
 </div>
 
 <div class="engineered-card">
+
 <h3>
 Two-Stage Sealing
 </h3>
@@ -1782,9 +1940,11 @@ Two-Stage Sealing
 Factory insulated units use a streamlined internal and external two-stage sealing
 process for a flush finish and engineered leak-resistant performance when installed correctly.
 </p>
+
 </div>
 
 <div class="engineered-card">
+
 <h3>
 Glass Finishes
 </h3>
@@ -1793,12 +1953,15 @@ Glass Finishes
 Clear, Satin Privacy, Solar Grey and Solar Blue options are available.
 Each finish changes light, privacy, glare and solar appearance while keeping the frameless look.
 </p>
+
 </div>
 
 </div>
+
 </section>
 
 <section id="oversized">
+
 <div class="oversized">
 
 <div class="section-label">
@@ -1819,11 +1982,13 @@ Request Oversized Quote
 </a>
 
 </div>
+
 </section>
 
 </main>
 
 <footer id="contact">
+
 <p>
 <strong>
 Factory Toughened Rooflights
@@ -1837,6 +2002,7 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 <p>
 5-9 Willen Field Road, London, NW10 7BQ
 </p>
+
 </footer>
 
 <script>
@@ -1886,18 +2052,22 @@ const HERO_IMAGE_ONE_TIME = 5800;
 const HERO_IMAGE_TWO_TIME = 5800;
 const HERO_IMAGE_THREE_TIME = 5500;
 
-const HERO_STANDARD_TRANSITION = 450;
-const HERO_RETURN_TRANSITION = 800;
-const HERO_MANUAL_TRANSITION = 650;
+const HERO_SLIDE_TRANSITION = 800;
+const HERO_SWIPE_TRANSITION = 800;
+const HERO_RETURN_TRANSITION = 1000;
+const HERO_MANUAL_TRANSITION = 750;
 
 function clearHeroSlideClasses(slide) {
 slide.classList.remove(
 "active",
 "previous",
 "initial-reveal",
-"enter-left",
-"enter-right",
-"exit-slide"
+"enter-slide-left",
+"enter-soft-right",
+"enter-dissolve",
+"exit-slide-left",
+"exit-soft-left",
+"exit-dissolve"
 );
 
 slide.style.removeProperty(
@@ -1935,9 +2105,9 @@ heroSequenceTimer = null;
 
 function showHeroSlide(
 nextIndex,
-direction = "right",
+transitionType = "slide",
 manualChange = false,
-transitionDuration = HERO_STANDARD_TRANSITION
+transitionDuration = HERO_SLIDE_TRANSITION
 ) {
 if (
 heroTransitionBusy ||
@@ -1978,16 +2148,37 @@ incomingSlide.style.setProperty(
 );
 
 outgoingSlide.classList.add(
-"previous",
-"exit-slide"
+"previous"
+);
+
+if (transitionType === "dissolve") {
+outgoingSlide.classList.add(
+"exit-dissolve"
 );
 
 incomingSlide.classList.add(
 "active",
-direction === "left"
-? "enter-left"
-: "enter-right"
+"enter-dissolve"
 );
+} else if (transitionType === "swipe") {
+outgoingSlide.classList.add(
+"exit-soft-left"
+);
+
+incomingSlide.classList.add(
+"active",
+"enter-soft-right"
+);
+} else {
+outgoingSlide.classList.add(
+"exit-slide-left"
+);
+
+incomingSlide.classList.add(
+"active",
+"enter-slide-left"
+);
+}
 
 currentHeroSlide =
 nextIndex;
@@ -2000,8 +2191,9 @@ outgoingSlide
 );
 
 incomingSlide.classList.remove(
-"enter-left",
-"enter-right"
+"enter-slide-left",
+"enter-soft-right",
+"enter-dissolve"
 );
 
 incomingSlide.style.removeProperty(
@@ -2013,7 +2205,7 @@ incomingSlide.classList.add(
 );
 
 heroTransitionBusy = false;
-}, transitionDuration + 40);
+}, transitionDuration + 60);
 
 return true;
 }
@@ -2031,9 +2223,9 @@ window.setTimeout(() => {
 const changedToSecond =
 showHeroSlide(
 1,
-"right",
+"slide",
 false,
-HERO_STANDARD_TRANSITION
+HERO_SLIDE_TRANSITION
 );
 
 if (!changedToSecond) {
@@ -2049,9 +2241,9 @@ return;
 const changedToThird =
 showHeroSlide(
 2,
-"left",
+"swipe",
 false,
-HERO_STANDARD_TRANSITION
+HERO_SWIPE_TRANSITION
 );
 
 if (!changedToThird) {
@@ -2067,7 +2259,7 @@ return;
 const returnedToFirst =
 showHeroSlide(
 0,
-"right",
+"dissolve",
 false,
 HERO_RETURN_TRANSITION
 );
@@ -2080,11 +2272,11 @@ heroSequenceTimer =
 window.setTimeout(() => {
 automaticHeroSequenceFinished = true;
 heroSequenceTimer = null;
-}, HERO_RETURN_TRANSITION + 50);
+}, HERO_RETURN_TRANSITION + 80);
 
-}, HERO_IMAGE_THREE_TIME + HERO_STANDARD_TRANSITION);
+}, HERO_IMAGE_THREE_TIME + HERO_SWIPE_TRANSITION);
 
-}, HERO_IMAGE_TWO_TIME + HERO_STANDARD_TRANSITION);
+}, HERO_IMAGE_TWO_TIME + HERO_SLIDE_TRANSITION);
 
 }, HERO_IMAGE_ONE_TIME);
 }
@@ -2096,7 +2288,7 @@ heroSlides.length;
 
 showHeroSlide(
 nextIndex,
-"right",
+"swipe",
 true,
 HERO_MANUAL_TRANSITION
 );
@@ -2113,7 +2305,7 @@ heroSlides.length;
 
 showHeroSlide(
 previousIndex,
-"left",
+"slide",
 true,
 HERO_MANUAL_TRANSITION
 );
@@ -2135,14 +2327,16 @@ requestedIndex === currentHeroSlide
 return;
 }
 
-const direction =
-requestedIndex > currentHeroSlide
-? "right"
-: "left";
+const transitionType =
+requestedIndex === 0
+? "dissolve"
+: requestedIndex > currentHeroSlide
+? "swipe"
+: "slide";
 
 showHeroSlide(
 requestedIndex,
-direction,
+transitionType,
 true,
 HERO_MANUAL_TRANSITION
 );
@@ -2281,6 +2475,40 @@ calculatePrice
 });
 
 calculatePrice();
+
+/* ===============================
+CALCULATOR SCROLL REVEAL
+================================ */
+
+const homepageCalculator =
+document.getElementById("homepageCalculator");
+
+if (homepageCalculator) {
+const calculatorObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add(
+"is-visible"
+);
+
+calculatorObserver.unobserve(
+entry.target
+);
+}
+});
+},
+{
+threshold: .22,
+rootMargin: "0px 0px -8% 0px"
+}
+);
+
+calculatorObserver.observe(
+homepageCalculator
+);
+}
 
 /* ----------------------------------------
 MOBILE SCROLL-LINKED TRUST CARD EFFECT
