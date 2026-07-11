@@ -212,7 +212,7 @@ padding-left:12px;
 }
 
 /* ===============================
-   SHARED TEXT
+SHARED TEXT
 ================================ */
 
 .section-label {
@@ -247,7 +247,7 @@ font-size:17px;
 }
 
 /* ===============================
-   SCROLL REVEALS
+SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -293,7 +293,7 @@ transition-delay:.32s;
 }
 
 /* ===============================
-   OPENING CATEGORY
+OPENING CATEGORY
 ================================ */
 
 .home-opening-heading {
@@ -328,22 +328,28 @@ margin:0 auto;
 
 .home-opening-title {
 margin:0;
-font-size:clamp(25px,4vw,48px);
-line-height:.95;
-letter-spacing:-1.2px;
-font-weight:950;
+font-family:"Space Grotesk","Manrope","Arial Narrow",Arial,sans-serif;
+font-size:clamp(13px,1.7vw,20px);
+line-height:1;
+letter-spacing:3.2px;
+font-weight:800;
 text-transform:uppercase;
-color:var(--white);
+color:rgba(255,255,255,.66);
 }
 
 .home-opening-title span {
 display:block;
+margin-top:3px;
+font-family:"Manrope","Aptos","Inter","Segoe UI",Arial,sans-serif;
+font-size:clamp(34px,5.3vw,66px);
+line-height:.96;
+letter-spacing:-1.8px;
+font-weight:950;
 color:var(--orange);
-margin-top:0;
 }
 
 /* ===============================
-   POPULAR SIZES
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -713,7 +719,7 @@ justify-content:center;
 }
 
 /* ===============================
-   DESIGN SECTION
+DESIGN SECTION
 ================================ */
 
 .opening-section {
@@ -775,7 +781,7 @@ object-position:center;
 }
 
 /* ===============================
-   BUY ONLINE
+BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -939,7 +945,7 @@ align-self:center;
 }
 
 /* ===============================
-   YEAR-ROUND COMFORT
+YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -995,7 +1001,7 @@ user-select:none;
 .comfort-frame {
 position:relative;
 width:100%;
-aspect-ratio:16 / 9;
+aspect-ratio:3 / 2;
 min-height:0;
 overflow:hidden;
 background:#050505;
@@ -1003,25 +1009,23 @@ background:#050505;
 
 .comfort-image {
 position:absolute;
-top:-7px;
-left:-7px;
-width:calc(100% + 14px);
-height:calc(100% + 14px);
-object-fit:cover;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
 object-position:center;
+background:#050505;
 opacity:0;
 visibility:hidden;
-transform:scale(1.012);
+transform:scale(1);
 transition:
-opacity 1.45s ease,
-visibility 1.45s ease,
-transform 1.45s ease;
+opacity 1.25s ease,
+visibility 1.25s ease;
 }
 
 .comfort-image.active {
 opacity:1;
 visibility:visible;
-transform:scale(1);
 }
 
 .comfort-uv-wrap {
@@ -1043,7 +1047,7 @@ color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-   DEDICATED TEAM
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1133,7 +1137,7 @@ background:var(--orange);
 }
 
 /* ===============================
-   TRUST CARDS
+TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1250,7 +1254,7 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-   CALCULATOR
+CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -1389,7 +1393,7 @@ color:var(--muted);
 }
 
 /* ===============================
-   LOWER SECTIONS
+LOWER SECTIONS
 ================================ */
 
 .engineered {
@@ -1465,7 +1469,7 @@ letter-spacing:.8px;
 }
 
 /* ===============================
-   TABLET
+TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -1509,7 +1513,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-   MOBILE
+MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -1538,11 +1542,17 @@ font-size:16px;
 }
 
 .home-opening-heading {
-padding:20px 6% 17px;
+padding:18px 6% 15px;
 }
 
 .home-opening-title {
-font-size:27px;
+font-size:11px;
+letter-spacing:2.6px;
+}
+
+.home-opening-title span {
+font-size:36px;
+margin-top:2px;
 }
 
 .home-popular-section {
@@ -1708,18 +1718,18 @@ font-size:17px;
 
 .comfort-frame {
 width:100%;
-aspect-ratio:16 / 9;
+aspect-ratio:3 / 2;
 min-height:0;
 background:#050505;
 }
 
 .comfort-image {
-top:-5px;
-left:-5px;
-width:calc(100% + 10px);
-height:calc(100% + 10px);
-object-fit:cover;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
 object-position:center;
+background:#050505;
 }
 
 .comfort-uv-wrap {
@@ -2877,7 +2887,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-   SCROLL REVEALS
+SCROLL REVEALS
 ================================ */
 
 const revealElements =
@@ -2925,7 +2935,7 @@ revealObserver.observe(element);
 }
 
 /* ===============================
-   ROOFLIGHT SLIDESHOW
+ROOFLIGHT SLIDESHOW
 ================================ */
 
 const rooflightSlideshow =
@@ -3138,7 +3148,7 @@ restartRooflightTimer();
 }
 
 /* ===============================
-   COMFORT SLIDESHOW
+COMFORT SLIDESHOW
 ================================ */
 
 const comfortSlideshow =
@@ -3213,7 +3223,7 @@ comfortTimer
 comfortTimer =
 window.setInterval(
 advanceComfortImages,
-28000
+8000
 );
 }
 
@@ -3309,7 +3319,7 @@ restartComfortTimer();
 }
 
 /* ===============================
-   POPULAR SIZE CONTROLS
+POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3369,7 +3379,7 @@ glazing === "triple"
 });
 
 /* ===============================
-   TEMPORARY CALCULATOR
+TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
