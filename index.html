@@ -212,7 +212,7 @@ padding-left:12px;
 }
 
 /* ===============================
-SHARED TEXT
+   SHARED TEXT
 ================================ */
 
 .section-label {
@@ -247,7 +247,7 @@ font-size:17px;
 }
 
 /* ===============================
-SCROLL REVEALS
+   SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -293,13 +293,32 @@ transition-delay:.32s;
 }
 
 /* ===============================
-OPENING CATEGORY
+   OPENING CATEGORY
 ================================ */
 
 .home-opening-heading {
+position:relative;
+z-index:3;
 padding:26px 6% 22px;
-background:#080808;
-border-bottom:1px solid rgba(255,255,255,.08);
+background:
+linear-gradient(
+180deg,
+#080808 0%,
+#070707 58%,
+#050505 100%
+);
+border-bottom:0;
+}
+
+.home-opening-heading::after {
+content:"";
+position:absolute;
+left:0;
+right:0;
+bottom:-2px;
+height:4px;
+background:#050505;
+pointer-events:none;
 }
 
 .home-opening-heading-inner {
@@ -324,7 +343,7 @@ margin-top:0;
 }
 
 /* ===============================
-POPULAR SIZES
+   POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -332,6 +351,14 @@ position:relative;
 overflow:hidden;
 padding:42px 6% 86px;
 background:
+linear-gradient(
+180deg,
+#050505 0px,
+rgba(5,5,5,.98) 34px,
+rgba(13,9,6,.94) 92px,
+rgba(23,16,10,.90) 160px,
+transparent 250px
+),
 radial-gradient(
 circle at 16% 18%,
 rgba(255,154,47,.32),
@@ -349,6 +376,7 @@ linear-gradient(
 #241406 68%,
 #050505 100%
 );
+border-top:0;
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -685,7 +713,7 @@ justify-content:center;
 }
 
 /* ===============================
-DESIGN SECTION
+   DESIGN SECTION
 ================================ */
 
 .opening-section {
@@ -747,7 +775,7 @@ object-position:center;
 }
 
 /* ===============================
-BUY ONLINE
+   BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -911,7 +939,7 @@ align-self:center;
 }
 
 /* ===============================
-YEAR-ROUND COMFORT
+   YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -967,25 +995,27 @@ user-select:none;
 .comfort-frame {
 position:relative;
 width:100%;
-aspect-ratio:16 / 8.3;
-min-height:420px;
+aspect-ratio:16 / 9;
+min-height:0;
 overflow:hidden;
+background:#050505;
 }
 
 .comfort-image {
 position:absolute;
-inset:0;
-width:100%;
-height:100%;
+top:-7px;
+left:-7px;
+width:calc(100% + 14px);
+height:calc(100% + 14px);
 object-fit:cover;
 object-position:center;
 opacity:0;
 visibility:hidden;
-transform:scale(1.018);
+transform:scale(1.012);
 transition:
-opacity 1.15s ease,
-visibility 1.15s ease,
-transform 1.15s ease;
+opacity 1.45s ease,
+visibility 1.45s ease,
+transform 1.45s ease;
 }
 
 .comfort-image.active {
@@ -1013,7 +1043,7 @@ color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-DEDICATED TEAM
+   DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1103,7 +1133,7 @@ background:var(--orange);
 }
 
 /* ===============================
-TRUST CARDS
+   TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1220,7 +1250,7 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-CALCULATOR
+   CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -1359,7 +1389,7 @@ color:var(--muted);
 }
 
 /* ===============================
-LOWER SECTIONS
+   LOWER SECTIONS
 ================================ */
 
 .engineered {
@@ -1435,7 +1465,7 @@ letter-spacing:.8px;
 }
 
 /* ===============================
-TABLET
+   TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -1479,7 +1509,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-MOBILE
+   MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -1517,6 +1547,32 @@ font-size:27px;
 
 .home-popular-section {
 padding:34px 6% 66px;
+background:
+linear-gradient(
+180deg,
+#050505 0px,
+rgba(5,5,5,.98) 28px,
+rgba(13,9,6,.94) 76px,
+rgba(23,16,10,.90) 132px,
+transparent 210px
+),
+radial-gradient(
+circle at 16% 18%,
+rgba(255,154,47,.32),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(245,124,0,.25),
+transparent 28%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#17100a 36%,
+#241406 68%,
+#050505 100%
+);
 }
 
 .home-popular-heading {
@@ -1651,11 +1707,17 @@ font-size:17px;
 }
 
 .comfort-frame {
-aspect-ratio:1 / 1;
+width:100%;
+aspect-ratio:16 / 9;
 min-height:0;
+background:#050505;
 }
 
 .comfort-image {
+top:-5px;
+left:-5px;
+width:calc(100% + 10px);
+height:calc(100% + 10px);
 object-fit:cover;
 object-position:center;
 }
@@ -1727,7 +1789,7 @@ scroll-behavior:auto;
 }
 
 .ticker,
-.popular-section::before {
+.home-popular-section::before {
 animation:none;
 }
 
@@ -2815,7 +2877,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-SCROLL REVEALS
+   SCROLL REVEALS
 ================================ */
 
 const revealElements =
@@ -2863,7 +2925,7 @@ revealObserver.observe(element);
 }
 
 /* ===============================
-ROOFLIGHT SLIDESHOW
+   ROOFLIGHT SLIDESHOW
 ================================ */
 
 const rooflightSlideshow =
@@ -3076,7 +3138,7 @@ restartRooflightTimer();
 }
 
 /* ===============================
-COMFORT SLIDESHOW
+   COMFORT SLIDESHOW
 ================================ */
 
 const comfortSlideshow =
@@ -3151,7 +3213,7 @@ comfortTimer
 comfortTimer =
 window.setInterval(
 advanceComfortImages,
-5000
+28000
 );
 }
 
@@ -3247,7 +3309,7 @@ restartComfortTimer();
 }
 
 /* ===============================
-POPULAR SIZE CONTROLS
+   POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3307,7 +3369,7 @@ glazing === "triple"
 });
 
 /* ===============================
-TEMPORARY CALCULATOR
+   TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
