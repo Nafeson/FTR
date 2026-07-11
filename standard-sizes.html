@@ -14,9 +14,13 @@
 --navy:#102a44;
 --white:#fff;
 --muted:#d8d8d8;
+--rooflight-scale:.84;
+--rooflight-hover-scale:.88;
 }
 
-* { box-sizing:border-box; }
+* {
+box-sizing:border-box;
+}
 
 body {
 margin:0;
@@ -42,11 +46,18 @@ padding:7px 0;
 animation:ticker 50s linear infinite;
 }
 
-.ticker span { margin-right:85px; }
+.ticker span {
+margin-right:85px;
+}
 
 @keyframes ticker {
-from { transform:translateX(0); }
-to { transform:translateX(-50%); }
+from {
+transform:translateX(0);
+}
+
+to {
+transform:translateX(-50%);
+}
 }
 
 header {
@@ -63,7 +74,10 @@ z-index:20;
 backdrop-filter:blur(10px);
 }
 
-.wordmark-wrap { display:grid; gap:10px; }
+.wordmark-wrap {
+display:grid;
+gap:10px;
+}
 
 .wordmark {
 line-height:.94;
@@ -123,7 +137,9 @@ display:none;
 padding:55px 6%;
 }
 
-.menu-overlay.active { display:block; }
+.menu-overlay.active {
+display:block;
+}
 
 .menu-top {
 display:flex;
@@ -234,16 +250,36 @@ max-width:1180px;
 position:relative;
 overflow:hidden;
 background:
-radial-gradient(circle at 16% 18%, rgba(255,154,47,.32), transparent 26%),
-radial-gradient(circle at 86% 70%, rgba(245,124,0,.25), transparent 28%),
-linear-gradient(135deg, #050505 0%, #17100a 36%, #241406 68%, #050505 100%);
+radial-gradient(
+circle at 16% 18%,
+rgba(255,154,47,.32),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(245,124,0,.25),
+transparent 28%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#17100a 36%,
+#241406 68%,
+#050505 100%
+);
 }
 
 .popular-section::before {
 content:"";
 position:absolute;
 inset:-40%;
-background:linear-gradient(120deg, transparent 0%, rgba(255,154,47,.13) 45%, transparent 75%);
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,154,47,.13) 45%,
+transparent 75%
+);
 animation:popularGlow 13s ease-in-out infinite alternate;
 pointer-events:none;
 }
@@ -253,8 +289,15 @@ content:"";
 position:absolute;
 inset:0;
 background-image:
-linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+linear-gradient(
+rgba(255,255,255,.035) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.035) 1px,
+transparent 1px
+);
 background-size:44px 44px;
 opacity:.25;
 transform:skewY(-6deg) scale(1.2);
@@ -262,8 +305,15 @@ pointer-events:none;
 }
 
 @keyframes popularGlow {
-from { transform:translateX(-10%) rotate(0deg); opacity:.55; }
-to { transform:translateX(10%) rotate(4deg); opacity:.95; }
+from {
+transform:translateX(-10%) rotate(0deg);
+opacity:.55;
+}
+
+to {
+transform:translateX(10%) rotate(4deg);
+opacity:.95;
+}
 }
 
 .popular-section .section-title,
@@ -298,7 +348,13 @@ transition:.28s ease;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(120deg,transparent 0%,rgba(245,124,0,.12) 45%,transparent 75%);
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(245,124,0,.12) 45%,
+transparent 75%
+);
 transform:translateX(-120%);
 transition:.55s ease;
 pointer-events:none;
@@ -320,9 +376,15 @@ box-shadow:0 18px 46px rgba(0,0,0,.35);
 .popular-section .product-card:active {
 transform:translateY(-8px) scale(1.055);
 border-color:rgba(255,154,47,.75);
-box-shadow:0 26px 68px rgba(245,124,0,.18), 0 22px 48px rgba(0,0,0,.42);
+box-shadow:
+0 26px 68px rgba(245,124,0,.18),
+0 22px 48px rgba(0,0,0,.42);
 z-index:4;
 }
+
+/* =================================
+PRODUCT IMAGE SCALE UPDATE
+================================= */
 
 .image-wrap {
 width:100%;
@@ -331,19 +393,28 @@ background:#f5f5f5;
 border:1px solid rgba(255,255,255,.10);
 overflow:hidden;
 position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .image-wrap img {
 width:100%;
-height:138px;
-object-fit:cover;
+height:100%;
+object-fit:contain;
+object-position:center;
 display:block;
-transition:.32s ease;
+background:#f5f5f5;
+transform:scale(var(--rooflight-scale));
+transform-origin:center;
+transition:
+transform .32s ease,
+filter .32s ease;
 }
 
 .product-card:hover .image-wrap img {
-transform:scale(1.04);
-filter:brightness(1.08);
+transform:scale(var(--rooflight-hover-scale));
+filter:brightness(1.06);
 }
 
 .card-content {
@@ -482,7 +553,9 @@ transition:.25s ease;
 white-space:nowrap;
 }
 
-.view-link:hover { color:var(--orange); }
+.view-link:hover {
+color:var(--orange);
+}
 
 .standard-section {
 background:linear-gradient(135deg,#102a44,#050505);
@@ -577,7 +650,9 @@ letter-spacing:.8px;
 }
 
 @media(max-width:900px) {
-.intro-grid { grid-template-columns:1fr; }
+.intro-grid {
+grid-template-columns:1fr;
+}
 
 .product-grid {
 grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -590,20 +665,31 @@ gap:12px;
 padding:12px;
 }
 
-.image-wrap,
-.image-wrap img {
+.image-wrap {
 height:122px;
 }
 
-.size-title { font-size:21px; }
-.spec-line { font-size:11px; }
+.size-title {
+font-size:21px;
+}
+
+.spec-line {
+font-size:11px;
+}
 }
 
 @media(max-width:620px) {
-header { padding:22px 6%; }
+header {
+padding:22px 6%;
+}
 
-.wordmark { font-size:20px; }
-.address-line { font-size:10px; }
+.wordmark {
+font-size:20px;
+}
+
+.address-line {
+font-size:10px;
+}
 
 .action-icons button,
 .action-icons a {
@@ -611,9 +697,13 @@ width:38px;
 height:38px;
 }
 
-.intro { padding:30px 6% 24px; }
+.intro {
+padding:30px 6% 24px;
+}
 
-.product-section { padding:28px 6% 46px; }
+.product-section {
+padding:28px 6% 46px;
+}
 
 .product-grid {
 grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -631,18 +721,41 @@ padding:10px;
 transform:translateY(-5px) scale(1.025);
 }
 
-.image-wrap,
-.image-wrap img {
+.image-wrap {
 height:110px;
 }
 
-.size-title { font-size:19px; }
-.spec-line { font-size:10px; }
-.toggle { max-width:none; }
-.glazed-label { max-width:none; }
-.price { font-size:23px; }
-.vat-note { font-size:8px; font-weight:400; display:block; margin-left:0; margin-top:3px; }
-.view-link { font-size:10px; }
+.size-title {
+font-size:19px;
+}
+
+.spec-line {
+font-size:10px;
+}
+
+.toggle {
+max-width:none;
+}
+
+.glazed-label {
+max-width:none;
+}
+
+.price {
+font-size:23px;
+}
+
+.vat-note {
+font-size:8px;
+font-weight:400;
+display:block;
+margin-left:0;
+margin-top:3px;
+}
+
+.view-link {
+font-size:10px;
+}
 }
 </style>
 </head>
@@ -656,6 +769,7 @@ height:110px;
 <span>Free delivery UK mainland on listed sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
+
 <span>Popular listed rooflight sizes ready to order online</span>
 <span>Switch between double and triple glazing instantly</span>
 <span>Free delivery UK mainland on listed sizes</span>
@@ -665,38 +779,76 @@ height:110px;
 </div>
 
 <header>
+
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
 Rooflights
 </div>
+
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
+
 </div>
 
 <div class="action-icons">
-<button onclick="openMenu()" aria-label="Open menu">☰</button>
-<a href="tel:" aria-label="Phone">⌕</a>
-<a href="mailto:" aria-label="Email">✉</a>
+
+<button
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+>
+☰
+</button>
+
+<a
+href="tel:"
+aria-label="Phone"
+>
+⌕
+</a>
+
+<a
+href="mailto:"
+aria-label="Email"
+>
+✉
+</a>
+
 </div>
+
 </header>
 
 <div id="menuOverlay" class="menu-overlay">
+
 <div class="menu-top">
+
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
 Rooflights
 </div>
+
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
+
 </div>
 
-<button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
+<button
+type="button"
+class="close-menu"
+onclick="closeMenu()"
+aria-label="Close menu"
+>
+×
+</button>
+
 </div>
 
 <div class="menu-links">
@@ -707,91 +859,233 @@ Rooflights
 <a href="index.html#oversized" onclick="closeMenu()">Oversized</a>
 <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
+
 </div>
 
 <main>
 
 <section class="intro">
+
 <div class="intro-grid">
+
 <h1 class="intro-title">
 Frameless Flat Roof Skylights
 <span>Standard Sizes</span>
 </h1>
 
 <div class="intro-block">
-<strong>Fast Manufacture</strong>
-<p>Manufactured to order with an estimated 4 working day lead time, then delivered across mainland UK.</p>
+
+<strong>
+Fast Manufacture
+</strong>
+
+<p>
+Manufactured to order with an estimated 4 working day lead time, then delivered across mainland UK.
+</p>
+
 </div>
 
 <div class="intro-block">
-<strong>Premium Specification</strong>
-<p>Choose between double and triple glazed Low-E Softcoat frameless flat roof skylights with instant price updates.</p>
+
+<strong>
+Premium Specification
+</strong>
+
+<p>
+Choose between double and triple glazed Low-E Softcoat frameless flat roof skylights with instant price updates.
+</p>
+
 </div>
+
 </div>
+
 </section>
 
-<section id="popular" class="product-section popular-section">
-<h2 class="section-title">Popular</h2>
-<div class="product-grid" id="popularGrid"></div>
+<section
+id="popular"
+class="product-section popular-section"
+>
+
+<h2 class="section-title">
+Popular
+</h2>
+
+<div
+class="product-grid"
+id="popularGrid"
+></div>
+
 </section>
 
-<section id="standard" class="product-section standard-section">
-<h2 class="section-title">Standard Sizes</h2>
-<div class="product-grid" id="standardGrid"></div>
+<section
+id="standard"
+class="product-section standard-section"
+>
+
+<h2 class="section-title">
+Standard Sizes
+</h2>
+
+<div
+class="product-grid"
+id="standardGrid"
+></div>
+
 </section>
 
 <section class="bottom-cta">
-<h2>Need a different size?</h2>
+
+<h2>
+Need a different size?
+</h2>
+
 <p>
 If your size is not listed, return to the calculator and build a made-to-order frameless rooflight online.
 </p>
 
 <div class="cta-actions">
-<a href="index.html#calculator" class="button">Build Custom Size</a>
+
+<a
+href="index.html#calculator"
+class="button"
+>
+Build Custom Size
+</a>
+
 </div>
 
-<h2 class="larger-title">Need Something Larger?</h2>
+<h2 class="larger-title">
+Need Something Larger?
+</h2>
+
 <p>
 Looking for a frameless rooflight larger than our listed range? Contact us for an oversized quote and bespoke pricing.
 </p>
 
 <div class="cta-actions">
-<a href="index.html#oversized" class="button secondary">Oversized Quote</a>
+
+<a
+href="index.html#oversized"
+class="button secondary"
+>
+Oversized Quote
+</a>
+
 </div>
+
 </section>
 
 </main>
 
 <footer id="contact">
-<p><strong>Factory Toughened Rooflights</strong></p>
-<p>Frameless flat roof skylights, made to order and delivered across mainland UK.</p>
-<p>5-9 Willen Field Road, London, NW10 7BQ</p>
+
+<p>
+<strong>
+Factory Toughened Rooflights
+</strong>
+</p>
+
+<p>
+Frameless flat roof skylights, made to order and delivered across mainland UK.
+</p>
+
+<p>
+5-9 Willen Field Road, London, NW10 7BQ
+</p>
+
 </footer>
 
 <script>
 const prices = {
-"600x600": { double: 220, triple: 270 },
-"600x900": { double: 250, triple: 300 },
-"600x1200": { double: 310, triple: 370 },
-"600x1500": { double: 360, triple: 430 },
-"600x2000": { double: 455, triple: 540 },
+"600x600": {
+double: 220,
+triple: 270
+},
 
-"800x800": { double: 290, triple: 350 },
-"800x1200": { double: 395, triple: 470 },
-"800x1500": { double: 455, triple: 545 },
-"800x2000": { double: 560, triple: 675 },
+"600x900": {
+double: 250,
+triple: 300
+},
 
-"1000x1000": { double: 420, triple: 505 },
-"1000x1500": { double: 520, triple: 625 },
-"1000x2000": { double: 650, triple: 780 },
-"1000x2500": { double: 785, triple: 945 },
+"600x1200": {
+double: 310,
+triple: 370
+},
 
-"1200x1200": { double: 510, triple: 615 },
+"600x1500": {
+double: 360,
+triple: 430
+},
 
-"1500x1500": { double: 760, triple: 910 },
-"1500x1800": { double: 880, triple: 1075 },
-"1500x2000": { double: 980, triple: 1180 },
-"1500x2500": { double: 1225, triple: 1475 }
+"600x2000": {
+double: 455,
+triple: 540
+},
+
+"800x800": {
+double: 290,
+triple: 350
+},
+
+"800x1200": {
+double: 395,
+triple: 470
+},
+
+"800x1500": {
+double: 455,
+triple: 545
+},
+
+"800x2000": {
+double: 560,
+triple: 675
+},
+
+"1000x1000": {
+double: 420,
+triple: 505
+},
+
+"1000x1500": {
+double: 520,
+triple: 625
+},
+
+"1000x2000": {
+double: 650,
+triple: 780
+},
+
+"1000x2500": {
+double: 785,
+triple: 945
+},
+
+"1200x1200": {
+double: 510,
+triple: 615
+},
+
+"1500x1500": {
+double: 760,
+triple: 910
+},
+
+"1500x1800": {
+double: 880,
+triple: 1075
+},
+
+"1500x2000": {
+double: 980,
+triple: 1180
+},
+
+"1500x2500": {
+double: 1225,
+triple: 1475
+}
 };
 
 const productImages = {
@@ -849,34 +1143,69 @@ const standardSizes = [
 ];
 
 function formatSize(size) {
-return size.replace("x", " × ");
+return size.replace(
+"x",
+" × "
+);
 }
 
 function getTopGlass(size) {
-const [w, l] = size.split("x").map(Number);
-const area = (w * l) / 1000000;
+const [width, length] =
+size
+.split("x")
+.map(Number);
 
-if (area > 3.4) return "10mm Toughened Safety Glass";
-if (area > 2.0) return "8mm Toughened Safety Glass";
+const area =
+(width * length) /
+1000000;
+
+if (area > 3.4) {
+return "10mm Toughened Safety Glass";
+}
+
+if (area > 2.0) {
+return "8mm Toughened Safety Glass";
+}
+
 return "6mm Toughened Safety Glass";
 }
 
 function createCard(size) {
-const data = prices[size];
-const topGlass = getTopGlass(size);
-const imageFile = productImages[size] || "medium-rectangle.png";
-const imagePath = "./images/product-cards/" + imageFile;
+const data =
+prices[size];
 
-const card = document.createElement("div");
-card.className = "product-card";
+const topGlass =
+getTopGlass(size);
+
+const imageFile =
+productImages[size] ||
+"medium-rectangle.png";
+
+const imagePath =
+"./images/product-cards/" +
+imageFile;
+
+const card =
+document.createElement("div");
+
+card.className =
+"product-card";
 
 card.innerHTML = `
 <div class="image-wrap">
-<img src="${imagePath}" alt="${formatSize(size)} frameless rooflight">
+
+<img
+src="${imagePath}"
+alt="${formatSize(size)} frameless rooflight"
+>
+
 </div>
 
 <div class="card-content">
-<div class="size-title">${formatSize(size)}</div>
+
+<div class="size-title">
+${formatSize(size)}
+</div>
 
 <div class="spec-line">
 <span>${topGlass}</span>
@@ -885,56 +1214,149 @@ card.innerHTML = `
 </div>
 
 <div class="toggle">
-<button class="active" onclick="setGlazing(this, '${size}', 'double')">Double</button>
-<button onclick="setGlazing(this, '${size}', 'triple')">Triple</button>
+
+<button
+type="button"
+class="active"
+onclick="setGlazing(this, '${size}', 'double')"
+>
+Double
+</button>
+
+<button
+type="button"
+onclick="setGlazing(this, '${size}', 'triple')"
+>
+Triple
+</button>
+
 </div>
-<div class="glazed-label double"><span>Glazed</span></div>
+
+<div class="glazed-label double">
+<span>Glazed</span>
+</div>
 
 <div class="price-row">
+
 <div>
-<div class="price-label">From</div>
-<div class="price">£${data.double}<span class="vat-note">inc. vat</span></div>
+
+<div class="price-label">
+From
 </div>
 
-<a href="#" class="view-link">View →</a>
+<div class="price">
+£${data.double}
+<span class="vat-note">inc. vat</span>
 </div>
+
+</div>
+
+<a
+href="#"
+class="view-link"
+>
+View →
+</a>
+
+</div>
+
 </div>
 `;
 
 return card;
 }
 
-function setGlazing(button, size, glazing) {
-const card = button.closest(".product-card");
-const price = prices[size][glazing];
-const glazedLabel = card.querySelector(".glazed-label");
+function setGlazing(
+button,
+size,
+glazing
+) {
+const card =
+button.closest(
+".product-card"
+);
 
-card.querySelectorAll(".toggle button").forEach(btn => {
-btn.classList.remove("active");
+const price =
+prices[size][glazing];
+
+const glazedLabel =
+card.querySelector(
+".glazed-label"
+);
+
+card
+.querySelectorAll(
+".toggle button"
+)
+.forEach(item => {
+item.classList.remove(
+"active"
+);
 });
 
-button.classList.add("active");
+button.classList.add(
+"active"
+);
 
-glazedLabel.classList.remove("double", "triple");
-glazedLabel.classList.add(glazing);
+glazedLabel.classList.remove(
+"double",
+"triple"
+);
 
-card.querySelector(".price").innerHTML = "£" + price + '<span class="vat-note">inc. vat</span>';
+glazedLabel.classList.add(
+glazing
+);
+
+card
+.querySelector(
+".price"
+)
+.innerHTML =
+"£" +
+price +
+'<span class="vat-note">inc. vat</span>';
 }
 
 function renderCards() {
-const popularGrid = document.getElementById("popularGrid");
-const standardGrid = document.getElementById("standardGrid");
+const popularGrid =
+document.getElementById(
+"popularGrid"
+);
 
-popularSizes.forEach(size => popularGrid.appendChild(createCard(size)));
-standardSizes.forEach(size => standardGrid.appendChild(createCard(size)));
+const standardGrid =
+document.getElementById(
+"standardGrid"
+);
+
+popularSizes.forEach(size => {
+popularGrid.appendChild(
+createCard(size)
+);
+});
+
+standardSizes.forEach(size => {
+standardGrid.appendChild(
+createCard(size)
+);
+});
 }
 
 function openMenu() {
-document.getElementById("menuOverlay").classList.add("active");
+document
+.getElementById(
+"menuOverlay"
+)
+.classList
+.add("active");
 }
 
 function closeMenu() {
-document.getElementById("menuOverlay").classList.remove("active");
+document
+.getElementById(
+"menuOverlay"
+)
+.classList
+.remove("active");
 }
 
 renderCards();
