@@ -8,332 +8,449 @@
 
 <meta
 name="description"
-content="Modern frameless flat roof skylights made to order in 4–5 working days. Low-E energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
+content="Modern frameless flat roof skylights made to order in 4–5 working days. Energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
 />
 
 <style>
 :root {
---orange: #f57c00;
---black: #050505;
---dark: #0b0b0b;
---panel: #141414;
---navy: #102a44;
---white: #ffffff;
---muted: #d8d8d8;
---line: rgba(245,124,0,.32);
+--orange:#f57c00;
+--sunset:#ff9a2f;
+--black:#050505;
+--dark:#0b0b0b;
+--panel:#141414;
+--navy:#102a44;
+--white:#ffffff;
+--muted:#d8d8d8;
+--line:rgba(245,124,0,.32);
 }
 
 * {
-box-sizing: border-box;
+box-sizing:border-box;
 }
 
 html {
-scroll-behavior: smooth;
+scroll-behavior:smooth;
 }
 
 body {
-margin: 0;
-font-family: "Manrope", "Aptos", "Inter", "Segoe UI", Arial, sans-serif;
-background: var(--black);
-color: var(--white);
+margin:0;
+font-family:"Manrope","Aptos","Inter","Segoe UI",Arial,sans-serif;
+background:var(--black);
+color:var(--white);
+overflow-x:hidden;
+}
+
+img {
+max-width:100%;
 }
 
 .top-banner {
-background: var(--orange);
-color: #050505;
-overflow: hidden;
-white-space: nowrap;
-font-family: "Space Grotesk", "Manrope", "Arial Narrow", Arial, sans-serif;
-font-size: 8.5px;
-font-weight: 950;
-letter-spacing: 1.5px;
-text-transform: uppercase;
+background:var(--orange);
+color:#050505;
+overflow:hidden;
+white-space:nowrap;
+font-family:"Space Grotesk","Manrope","Arial Narrow",Arial,sans-serif;
+font-size:8.5px;
+font-weight:950;
+letter-spacing:1.5px;
+text-transform:uppercase;
 }
 
 .ticker {
-display: inline-block;
-padding: 8px 0;
-animation: ticker 48s linear infinite;
+display:inline-block;
+padding:8px 0;
+animation:ticker 48s linear infinite;
 }
 
 .ticker span {
-margin-right: 86px;
+margin-right:86px;
 }
 
 @keyframes ticker {
 from {
-transform: translateX(0);
+transform:translateX(0);
 }
 
 to {
-transform: translateX(-50%);
+transform:translateX(-50%);
 }
 }
 
 header {
-background: rgba(5,5,5,.96);
-border-bottom: 1px solid rgba(255,255,255,.08);
-padding: 28px 6% 22px;
-display: grid;
-grid-template-columns: 1fr auto;
-align-items: start;
-gap: 32px;
-position: sticky;
-top: 0;
-z-index: 20;
-backdrop-filter: blur(10px);
+background:rgba(5,5,5,.96);
+border-bottom:1px solid rgba(255,255,255,.08);
+padding:28px 6% 22px;
+display:grid;
+grid-template-columns:1fr auto;
+align-items:start;
+gap:32px;
+position:sticky;
+top:0;
+z-index:30;
+backdrop-filter:blur(10px);
 }
 
 .wordmark-wrap {
-display: grid;
-gap: 10px;
+display:grid;
+gap:10px;
 }
 
 .wordmark {
-line-height: .94;
-font-weight: 950;
-letter-spacing: 2.4px;
-color: var(--white);
-font-size: 25px;
-text-transform: uppercase;
+line-height:.94;
+font-weight:950;
+letter-spacing:2.4px;
+color:var(--white);
+font-size:25px;
+text-transform:uppercase;
 }
 
 .wordmark span {
-color: var(--orange);
-display: block;
+color:var(--orange);
+display:block;
 }
 
 .address-line {
-font-size: 12px;
-color: rgba(255,255,255,.72);
-letter-spacing: .6px;
-text-transform: uppercase;
+font-size:12px;
+color:rgba(255,255,255,.72);
+letter-spacing:.6px;
+text-transform:uppercase;
 }
 
 .action-icons {
-display: flex;
-gap: 10px;
-align-self: end;
-padding-bottom: 1px;
+display:flex;
+gap:10px;
+align-self:end;
+padding-bottom:1px;
 }
 
 .action-icons button,
 .action-icons a {
-width: 44px;
-height: 44px;
-border: 1px solid rgba(255,255,255,.18);
-background: transparent;
-color: var(--white);
-text-decoration: none;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 19px;
-font-weight: 900;
-cursor: pointer;
+width:44px;
+height:44px;
+border:1px solid rgba(255,255,255,.18);
+background:transparent;
+color:var(--white);
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:19px;
+font-weight:900;
+cursor:pointer;
 transition:
 transform .25s ease,
 border-color .25s ease,
 color .25s ease,
 background .25s ease,
 box-shadow .25s ease;
-line-height: 1;
-padding: 0;
+line-height:1;
+padding:0;
 }
 
 .action-icons button:hover,
 .action-icons a:hover {
-border-color: var(--orange);
-color: var(--orange);
-background: rgba(245,124,0,.06);
-box-shadow: 0 8px 24px rgba(245,124,0,.10);
-transform: translateY(-2px);
+border-color:var(--orange);
+color:var(--orange);
+background:rgba(245,124,0,.06);
+box-shadow:0 8px 24px rgba(245,124,0,.10);
+transform:translateY(-2px);
 }
 
 .menu-overlay {
-position: fixed;
-inset: 0;
-background: rgba(5,5,5,.985);
-z-index: 100;
-display: none;
-padding: 55px 6%;
-overflow-y: auto;
+position:fixed;
+inset:0;
+background:rgba(5,5,5,.985);
+z-index:100;
+display:none;
+padding:55px 6%;
+overflow-y:auto;
 }
 
 .menu-overlay.active {
-display: block;
+display:block;
 }
 
 .menu-top {
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
-margin-bottom: 70px;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+margin-bottom:70px;
 }
 
 .close-menu {
-background: transparent;
-color: var(--white);
-border: 1px solid rgba(255,255,255,.18);
-width: 46px;
-height: 46px;
-font-size: 28px;
-cursor: pointer;
+background:transparent;
+color:var(--white);
+border:1px solid rgba(255,255,255,.18);
+width:46px;
+height:46px;
+font-size:28px;
+cursor:pointer;
 }
 
 .menu-links {
-display: grid;
-gap: 24px;
-max-width: 680px;
+display:grid;
+gap:24px;
+max-width:680px;
 }
 
 .menu-links a {
-color: var(--white);
-text-decoration: none;
-font-size: clamp(36px, 6vw, 76px);
-font-weight: 950;
-line-height: .94;
-letter-spacing: -2px;
-text-transform: uppercase;
-border-bottom: 1px solid rgba(255,255,255,.12);
-padding-bottom: 18px;
-transition: .25s ease;
+color:var(--white);
+text-decoration:none;
+font-size:clamp(36px,6vw,76px);
+font-weight:950;
+line-height:.94;
+letter-spacing:-2px;
+text-transform:uppercase;
+border-bottom:1px solid rgba(255,255,255,.12);
+padding-bottom:18px;
+transition:.25s ease;
 }
 
 .menu-links a:hover {
-color: var(--orange);
-padding-left: 12px;
-}
-
-.page-category {
-margin: 0;
-padding: 16px 6% 15px;
-color: var(--orange);
-font-size: 12px;
-font-weight: 950;
-letter-spacing: 2.2px;
-line-height: 1;
-text-transform: uppercase;
-border-bottom: 1px solid rgba(255,255,255,.08);
-background: rgba(5,5,5,.94);
+color:var(--orange);
+padding-left:12px;
 }
 
 /* ===============================
-   SHARED TYPOGRAPHY
+SHARED TEXT
 ================================ */
 
 .section-label {
-color: var(--orange);
-font-weight: 950;
-text-transform: uppercase;
-letter-spacing: 2.2px;
-font-size: 12px;
-margin-bottom: 20px;
+color:var(--orange);
+font-weight:950;
+text-transform:uppercase;
+letter-spacing:2.2px;
+font-size:12px;
+margin-bottom:20px;
+}
+
+h1,
+h2,
+h3,
+p {
+position:relative;
+z-index:1;
 }
 
 h2 {
-color: var(--white);
-font-size: clamp(38px, 5vw, 66px);
-line-height: .98;
-letter-spacing: -1.7px;
-margin: 0 0 26px;
+color:var(--white);
+font-size:clamp(38px,5vw,66px);
+line-height:.98;
+letter-spacing:-1.7px;
+margin:0 0 26px;
 }
 
 section p {
-color: var(--muted);
-line-height: 1.7;
-font-size: 17px;
+color:var(--muted);
+line-height:1.7;
+font-size:17px;
 }
 
 /* ===============================
-   POPULAR SIZES
+SCROLL REVEALS
+================================ */
+
+.reveal {
+opacity:0;
+transform:translateY(34px);
+transition:
+opacity .85s ease,
+transform .85s cubic-bezier(.18,.72,.28,1);
+will-change:opacity,transform;
+}
+
+.reveal.reveal-left {
+transform:translateX(-38px);
+}
+
+.reveal.reveal-right {
+transform:translateX(38px);
+}
+
+.reveal.reveal-scale {
+transform:translateY(22px) scale(.975);
+}
+
+.reveal.is-visible {
+opacity:1;
+transform:translate(0,0) scale(1);
+}
+
+.reveal-delay-1 {
+transition-delay:.08s;
+}
+
+.reveal-delay-2 {
+transition-delay:.16s;
+}
+
+.reveal-delay-3 {
+transition-delay:.24s;
+}
+
+.reveal-delay-4 {
+transition-delay:.32s;
+}
+
+/* ===============================
+OPENING CATEGORY
+================================ */
+
+.home-opening-heading {
+padding:26px 6% 22px;
+background:#080808;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.home-opening-heading-inner {
+max-width:1180px;
+margin:0 auto;
+}
+
+.home-opening-title {
+margin:0;
+font-size:clamp(25px,4vw,48px);
+line-height:.95;
+letter-spacing:-1.2px;
+font-weight:950;
+text-transform:uppercase;
+color:var(--white);
+}
+
+.home-opening-title span {
+display:block;
+color:var(--orange);
+margin-top:0;
+}
+
+/* ===============================
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
-position: relative;
-overflow: hidden;
-padding: 78px 6% 92px;
+position:relative;
+overflow:hidden;
+padding:42px 6% 86px;
 background:
 radial-gradient(
-circle at 12% 22%,
-rgba(245,124,0,.12),
-transparent 29%
+circle at 16% 18%,
+rgba(255,154,47,.32),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(245,124,0,.25),
+transparent 28%
 ),
 linear-gradient(
 135deg,
 #050505 0%,
-#0a0a0a 52%,
-#101820 100%
+#17100a 36%,
+#241406 68%,
+#050505 100%
 );
-border-bottom: 1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .home-popular-section::before {
-content: "";
-position: absolute;
-top: 0;
-left: 50%;
-transform: translateX(-50%);
-width: min(88%, 1180px);
-height: 1px;
+content:"";
+position:absolute;
+inset:-40%;
 background:
 linear-gradient(
-90deg,
-transparent,
-rgba(245,124,0,.82),
-transparent
+120deg,
+transparent 0%,
+rgba(255,154,47,.13) 45%,
+transparent 75%
 );
+animation:popularGlow 13s ease-in-out infinite alternate;
+pointer-events:none;
+}
+
+.home-popular-section::after {
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.035) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.035) 1px,
+transparent 1px
+);
+background-size:44px 44px;
+opacity:.25;
+transform:skewY(-6deg) scale(1.2);
+pointer-events:none;
+}
+
+@keyframes popularGlow {
+from {
+transform:translateX(-10%) rotate(0deg);
+opacity:.55;
+}
+
+to {
+transform:translateX(10%) rotate(4deg);
+opacity:.95;
+}
+}
+
+.home-popular-header,
+.home-popular-grid,
+.home-popular-footer {
+position:relative;
+z-index:2;
 }
 
 .home-popular-header {
-position: relative;
-z-index: 1;
-max-width: 1180px;
-margin: 0 auto 40px;
-display: flex;
-justify-content: space-between;
-align-items: end;
-gap: 30px;
+max-width:1180px;
+margin:0 auto 34px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:30px;
 }
 
 .home-popular-heading {
-margin: 0;
-font-size: clamp(40px, 5.8vw, 72px);
-line-height: .95;
-letter-spacing: -2px;
-color: var(--white);
+margin:0;
+font-size:clamp(34px,5.3vw,66px);
+line-height:.96;
+letter-spacing:-1.8px;
+color:var(--white);
 }
 
 .home-popular-description {
-max-width: 520px;
-margin: 0;
-color: var(--muted);
-font-size: 17px;
-line-height: 1.65;
+max-width:520px;
+margin:0;
+color:rgba(255,255,255,.78);
+font-size:17px;
+line-height:1.65;
 }
 
 .home-popular-grid {
-position: relative;
-z-index: 1;
-display: grid;
-grid-template-columns: repeat(2, minmax(0, 1fr));
-gap: 18px;
-max-width: 1180px;
-margin: 0 auto;
-width: 100%;
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:18px;
+max-width:1180px;
+margin:0 auto;
+width:100%;
 }
 
 .home-product-card {
-display: grid;
-grid-template-columns: 145px minmax(0, 1fr);
-gap: 16px;
-background: linear-gradient(135deg, #0c0c0c, #141414);
-border: 1px solid rgba(255,255,255,.11);
-padding: 14px;
-min-height: 178px;
-position: relative;
-overflow: hidden;
-isolation: isolate;
+display:grid;
+grid-template-columns:145px minmax(0,1fr);
+gap:16px;
+background:linear-gradient(135deg,#0c0c0c,#141414);
+border:1px solid rgba(255,255,255,.11);
+padding:14px;
+min-height:178px;
+position:relative;
+overflow:hidden;
+isolation:isolate;
 transition:
 transform .28s ease,
 border-color .28s ease,
@@ -342,10 +459,10 @@ background .28s ease;
 }
 
 .home-product-card::before {
-content: "";
-position: absolute;
-inset: 0;
-z-index: 0;
+content:"";
+position:absolute;
+inset:0;
+z-index:0;
 background:
 linear-gradient(
 120deg,
@@ -353,201 +470,201 @@ transparent 0%,
 rgba(245,124,0,.12) 45%,
 transparent 75%
 );
-transform: translateX(-120%);
-transition: transform .55s ease;
-pointer-events: none;
+transform:translateX(-120%);
+transition:transform .55s ease;
+pointer-events:none;
 }
 
 .home-product-card:hover::before,
 .home-product-card:active::before {
-transform: translateX(120%);
+transform:translateX(120%);
 }
 
 .home-product-card:hover,
 .home-product-card:active {
-transform: translateY(-8px) scale(1.035);
-border-color: rgba(255,154,47,.75);
-background: linear-gradient(135deg, #111111, #1b130d);
+transform:translateY(-8px) scale(1.035);
+border-color:rgba(255,154,47,.75);
+background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
 0 26px 68px rgba(245,124,0,.18),
 0 22px 48px rgba(0,0,0,.42);
-z-index: 4;
+z-index:4;
 }
 
 .home-product-image {
-position: relative;
-z-index: 1;
-width: 100%;
-height: 148px;
-background: #f5f5f5;
-border: 1px solid rgba(255,255,255,.10);
-overflow: hidden;
+position:relative;
+z-index:1;
+width:100%;
+height:148px;
+background:#f5f5f5;
+border:1px solid rgba(255,255,255,.10);
+overflow:hidden;
 }
 
 .home-product-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 transition:
 transform .32s ease,
 filter .32s ease;
 }
 
 .home-product-card:hover .home-product-image img {
-transform: scale(1.04);
-filter: brightness(1.08);
+transform:scale(1.04);
+filter:brightness(1.08);
 }
 
 .home-product-content {
-position: relative;
-z-index: 1;
-display: flex;
-flex-direction: column;
-min-width: 0;
+position:relative;
+z-index:1;
+display:flex;
+flex-direction:column;
+min-width:0;
 }
 
 .home-product-size {
-font-size: 24px;
-line-height: 1;
-font-weight: 950;
-letter-spacing: -1px;
-margin-bottom: 8px;
-color: var(--white);
+font-size:24px;
+line-height:1;
+font-weight:950;
+letter-spacing:-1px;
+margin-bottom:8px;
+color:var(--white);
 transition:
 color .25s ease,
 transform .25s ease;
 }
 
 .home-product-card:hover .home-product-size {
-color: var(--orange);
-transform: scale(1.025);
-transform-origin: left center;
+color:var(--orange);
+transform:scale(1.025);
+transform-origin:left center;
 }
 
 .home-product-spec {
-display: grid;
-gap: 4px;
-color: var(--muted);
-font-size: 12px;
-line-height: 1.3;
-margin-bottom: 10px;
+display:grid;
+gap:4px;
+color:var(--muted);
+font-size:12px;
+line-height:1.3;
+margin-bottom:10px;
 }
 
 .home-glazing-wrap {
-max-width: 210px;
-margin-top: auto;
-margin-bottom: 10px;
+max-width:210px;
+margin-top:auto;
+margin-bottom:10px;
 }
 
 .home-glazing-toggle {
-display: grid;
-grid-template-columns: 1fr 1fr;
-border: 1px solid rgba(255,255,255,.15);
-max-width: 210px;
+display:grid;
+grid-template-columns:1fr 1fr;
+border:1px solid rgba(255,255,255,.15);
+max-width:210px;
 }
 
 .home-glazing-toggle button {
-background: transparent;
-color: var(--white);
-border: none;
-padding: 8px 6px;
-font-size: 10px;
-font-weight: 950;
-letter-spacing: .8px;
-text-transform: uppercase;
-cursor: pointer;
+background:transparent;
+color:var(--white);
+border:none;
+padding:8px 6px;
+font-size:10px;
+font-weight:950;
+letter-spacing:.8px;
+text-transform:uppercase;
+cursor:pointer;
 transition:
 background .22s ease,
 color .22s ease;
 }
 
 .home-glazing-toggle button + button {
-border-left: 1px solid rgba(255,255,255,.15);
+border-left:1px solid rgba(255,255,255,.15);
 }
 
 .home-glazing-toggle button.active {
-background: var(--orange);
-color: #050505;
+background:var(--orange);
+color:#050505;
 }
 
 .home-glazed-label {
-max-width: 210px;
-height: 19px;
-border: 1px solid rgba(255,255,255,.15);
-border-top: none;
-position: relative;
-overflow: hidden;
-background: rgba(255,255,255,.025);
+max-width:210px;
+height:19px;
+border:1px solid rgba(255,255,255,.15);
+border-top:none;
+position:relative;
+overflow:hidden;
+background:rgba(255,255,255,.025);
 }
 
 .home-glazed-label span {
-position: absolute;
-top: 4px;
-left: 0;
-width: 50%;
-text-align: center;
-font-size: 9px;
-line-height: 1;
-color: #ffffff;
-font-weight: 950;
-letter-spacing: 1.3px;
-text-transform: uppercase;
-transition: left .28s ease;
+position:absolute;
+top:4px;
+left:0;
+width:50%;
+text-align:center;
+font-size:9px;
+line-height:1;
+color:#ffffff;
+font-weight:950;
+letter-spacing:1.3px;
+text-transform:uppercase;
+transition:left .28s ease;
 }
 
 .home-glazed-label.triple span {
-left: 50%;
+left:50%;
 }
 
 .home-product-price-row {
-display: flex;
-align-items: end;
-justify-content: space-between;
-gap: 14px;
-margin-top: auto;
+display:flex;
+align-items:end;
+justify-content:space-between;
+gap:14px;
+margin-top:auto;
 }
 
 .home-product-price-label {
-color: rgba(255,255,255,.60);
-font-size: 9px;
-font-weight: 900;
-letter-spacing: 1.2px;
-text-transform: uppercase;
-margin-bottom: 3px;
+color:rgba(255,255,255,.60);
+font-size:9px;
+font-weight:900;
+letter-spacing:1.2px;
+text-transform:uppercase;
+margin-bottom:3px;
 }
 
 .home-product-price {
-font-size: 28px;
-line-height: 1;
-font-weight: 950;
-color: var(--white);
-white-space: nowrap;
+font-size:28px;
+line-height:1;
+font-weight:950;
+color:var(--white);
+white-space:nowrap;
 }
 
 .home-vat-note {
-font-size: 9px;
-color: rgba(255,255,255,.58);
-font-weight: 400;
-margin-left: 5px;
-white-space: nowrap;
-text-transform: lowercase;
-letter-spacing: .1px;
-vertical-align: middle;
-position: relative;
-top: -1px;
+font-size:9px;
+color:rgba(255,255,255,.58);
+font-weight:400;
+margin-left:5px;
+white-space:nowrap;
+text-transform:lowercase;
+letter-spacing:.1px;
+vertical-align:middle;
+position:relative;
+top:-1px;
 }
 
 .home-product-link {
-color: var(--orange);
-font-size: 11px;
-font-weight: 950;
-letter-spacing: .8px;
-text-transform: uppercase;
-text-decoration: none;
-padding-bottom: 2px;
-border-bottom: 1px solid rgba(245,124,0,.45);
-white-space: nowrap;
+color:var(--orange);
+font-size:11px;
+font-weight:950;
+letter-spacing:.8px;
+text-transform:uppercase;
+text-decoration:none;
+padding-bottom:2px;
+border-bottom:1px solid rgba(245,124,0,.45);
+white-space:nowrap;
 transition:
 color .25s ease,
 border-color .25s ease,
@@ -555,28 +672,26 @@ transform .25s ease;
 }
 
 .home-product-link:hover {
-color: var(--white);
-border-color: var(--white);
-transform: translateX(3px);
+color:var(--white);
+border-color:var(--white);
+transform:translateX(3px);
 }
 
 .home-popular-footer {
-position: relative;
-z-index: 1;
-max-width: 1180px;
-margin: 32px auto 0;
-display: flex;
-justify-content: center;
+max-width:1180px;
+margin:32px auto 0;
+display:flex;
+justify-content:center;
 }
 
 /* ===============================
-   OPENING DESIGN SECTION
+DESIGN SECTION
 ================================ */
 
 .opening-section {
-position: relative;
-overflow: hidden;
-padding: 92px 0 88px;
+position:relative;
+overflow:hidden;
+padding:92px 0 94px;
 background:
 radial-gradient(
 circle at 86% 22%,
@@ -589,243 +704,56 @@ linear-gradient(
 #090909 56%,
 #101820 100%
 );
-border-bottom: 1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .opening-copy {
-max-width: 1180px;
-margin: 0 auto;
-padding: 0 6%;
+max-width:1180px;
+margin:0 auto;
+padding:0 6%;
 }
 
-.opening-section h1 {
-font-size: clamp(48px, 7vw, 94px);
-line-height: .93;
-max-width: 1080px;
-margin: 0 0 34px;
-color: var(--white);
-letter-spacing: -3px;
+.opening-section h2 {
+font-size:clamp(48px,7vw,94px);
+line-height:.93;
+max-width:1080px;
+margin:0 0 34px;
+color:var(--white);
+letter-spacing:-3px;
 }
 
 .opening-section p {
-font-size: 22px;
-max-width: 850px;
-line-height: 1.58;
-color: var(--muted);
-margin: 0 0 48px;
+font-size:22px;
+max-width:850px;
+line-height:1.58;
+color:var(--muted);
+margin:0 0 48px;
+}
+
+.interior-static-wrap {
+width:100%;
+position:relative;
+overflow:hidden;
+background:#050505;
+}
+
+.interior-static-image {
+display:block;
+width:100%;
+height:auto;
+aspect-ratio:1 / 1;
+object-fit:cover;
+object-position:center;
 }
 
 /* ===============================
-   SHARED SLIDESHOW
-================================ */
-
-.slideshow-shell {
-width: 100%;
-height: clamp(300px, 48vw, 640px);
-position: relative;
-overflow: hidden;
-background:
-radial-gradient(
-circle at 50% 25%,
-rgba(255,255,255,.07),
-transparent 34%
-),
-#090909;
-touch-action: pan-y;
-user-select: none;
-}
-
-.slideshow-slide {
-position: absolute;
-inset: 0;
-opacity: 0;
-visibility: hidden;
-pointer-events: none;
-z-index: 1;
-}
-
-.slideshow-slide.active {
-opacity: 1;
-visibility: visible;
-z-index: 3;
-}
-
-.slideshow-slide.previous {
-opacity: 1;
-visibility: visible;
-z-index: 2;
-}
-
-.slideshow-slide img {
-display: block;
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: center;
-}
-
-.slideshow-slide.initial-reveal {
-animation-name: initialDiagonalReveal;
-animation-duration: 1.35s;
-animation-timing-function: cubic-bezier(.18,.74,.24,1);
-animation-fill-mode: both;
-}
-
-.slideshow-slide.enter-dissolve {
-animation-name: softDissolveIn;
-animation-duration: var(--transition-duration, 1.1s);
-animation-timing-function: ease;
-animation-fill-mode: both;
-}
-
-.slideshow-slide.exit-dissolve {
-animation-name: softDissolveOut;
-animation-duration: var(--transition-duration, 1.1s);
-animation-timing-function: ease;
-animation-fill-mode: both;
-}
-
-@keyframes initialDiagonalReveal {
-0% {
-opacity: 0;
-clip-path: polygon(
-0 100%,
-0 100%,
-0 100%,
-0 100%
-);
-}
-
-18% {
-opacity: .28;
-}
-
-55% {
-opacity: .88;
-clip-path: polygon(
-0 38%,
-0 100%,
-64% 100%,
-22% 58%
-);
-}
-
-100% {
-opacity: 1;
-clip-path: polygon(
-0 0,
-100% 0,
-100% 100%,
-0 100%
-);
-}
-}
-
-@keyframes softDissolveIn {
-0% {
-opacity: 0;
-filter: blur(3px);
-transform: scale(1.008);
-}
-
-45% {
-opacity: .58;
-filter: blur(1.5px);
-}
-
-100% {
-opacity: 1;
-filter: blur(0);
-transform: scale(1);
-}
-}
-
-@keyframes softDissolveOut {
-0% {
-opacity: 1;
-filter: blur(0);
-transform: scale(1);
-}
-
-100% {
-opacity: 0;
-filter: blur(2.5px);
-transform: scale(1.006);
-}
-}
-
-.slideshow-shell::after {
-content: "";
-position: absolute;
-inset: 0;
-z-index: 6;
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,.01) 0%,
-rgba(0,0,0,0) 64%,
-rgba(0,0,0,.14) 100%
-);
-pointer-events: none;
-}
-
-.slideshow-dots {
-position: absolute;
-left: 50%;
-bottom: 17px;
-transform: translateX(-50%);
-z-index: 12;
-display: flex;
-align-items: center;
-gap: 8px;
-padding: 7px 10px;
-background: rgba(5,5,5,.48);
-border: 1px solid rgba(255,255,255,.13);
-backdrop-filter: blur(5px);
-}
-
-.slideshow-dot {
-width: 7px;
-height: 7px;
-padding: 0;
-border: 0;
-border-radius: 50%;
-background: rgba(255,255,255,.45);
-cursor: pointer;
-transition:
-width .22s ease,
-border-radius .22s ease,
-background .22s ease;
-}
-
-.slideshow-dot.active {
-width: 24px;
-border-radius: 20px;
-background: var(--orange);
-}
-
-.interior-slideshow {
-max-width: 100%;
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.interior-slideshow .slideshow-shell {
-height: clamp(340px, 50vw, 690px);
-}
-
-.interior-slideshow .slideshow-slide img {
-object-position: center 50%;
-}
-
-/* ===============================
-   BUY ONLINE
+BUY ONLINE
 ================================ */
 
 .buy-online-section {
-position: relative;
-overflow: hidden;
-padding: 92px 6% 100px;
+position:relative;
+overflow:hidden;
+padding:92px 6% 100px;
 background:
 radial-gradient(
 circle at 88% 25%,
@@ -838,121 +766,158 @@ linear-gradient(
 #0b0b0b 58%,
 #101820 100%
 );
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .buy-online-inner {
-max-width: 1180px;
-margin: 0 auto;
-border-left: 4px solid var(--orange);
-padding-left: 32px;
+max-width:1180px;
+margin:0 auto;
+border-left:4px solid var(--orange);
+padding-left:32px;
 }
 
 .buy-online-inner h2 {
-max-width: 860px;
+max-width:860px;
 }
 
 .buy-rooflight-slideshow {
-margin: 34px 0 38px;
-border: 1px solid rgba(255,255,255,.11);
-box-shadow: 0 24px 65px rgba(0,0,0,.40);
+margin:34px 0 38px;
+position:relative;
+overflow:hidden;
+background:#090909;
+box-shadow:0 24px 65px rgba(0,0,0,.40);
 }
 
-.buy-rooflight-slideshow .slideshow-shell {
-height: clamp(240px, 34vw, 450px);
+.rooflight-slideshow-shell {
+width:100%;
+height:clamp(250px,36vw,470px);
+position:relative;
+overflow:hidden;
+touch-action:pan-y;
+user-select:none;
 }
 
-.buy-rooflight-slideshow .slideshow-slide img {
-object-position: 48% 49%;
+.rooflight-slide {
+position:absolute;
+inset:0;
+opacity:0;
+visibility:hidden;
+transform:translateX(8%);
+transition:
+opacity .8s ease,
+visibility .8s ease,
+transform .8s cubic-bezier(.18,.72,.28,1);
+}
+
+.rooflight-slide.active {
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+z-index:3;
+}
+
+.rooflight-slide.previous {
+opacity:0;
+visibility:visible;
+transform:translateX(-8%);
+z-index:2;
+}
+
+.rooflight-slide img {
+display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:48% 49%;
 }
 
 .buy-online-inner p {
-font-size: 20px;
-max-width: 820px;
-line-height: 1.62;
-color: var(--muted);
-margin-bottom: 0;
+font-size:20px;
+max-width:820px;
+line-height:1.62;
+color:var(--muted);
+margin-bottom:0;
 }
 
 .hero-actions {
-display: flex;
-gap: 16px;
-flex-wrap: wrap;
-margin-top: 32px;
-align-items: stretch;
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+margin-top:32px;
+align-items:stretch;
 }
 
 .button {
-background: var(--orange);
-color: #050505;
-border: 1px solid var(--orange);
-padding: 18px 32px;
-font-size: 15px;
-font-weight: 950;
-text-decoration: none;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-text-transform: uppercase;
-letter-spacing: .8px;
-transition: .25s ease;
+background:var(--orange);
+color:#050505;
+border:1px solid var(--orange);
+padding:18px 32px;
+font-size:15px;
+font-weight:950;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+text-transform:uppercase;
+letter-spacing:.8px;
+transition:.25s ease;
 }
 
 .button:hover {
-transform: translateY(-2px);
-filter: brightness(1.08);
+transform:translateY(-2px);
+filter:brightness(1.08);
 }
 
 .button.secondary {
-background: transparent;
-color: var(--white);
-border-color: rgba(255,255,255,.25);
+background:transparent;
+color:var(--white);
+border-color:rgba(255,255,255,.25);
 }
 
 .button.secondary:hover {
-border-color: var(--orange);
-color: var(--orange);
+border-color:var(--orange);
+color:var(--orange);
 }
 
 .button.oversized-button {
-display: inline-flex;
-align-items: center;
-gap: 10px;
+display:inline-flex;
+align-items:center;
+gap:10px;
 }
 
 .button-size-note {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-padding: 4px 7px;
-border: 1px solid rgba(245,124,0,.52);
-background: rgba(245,124,0,.10);
-color: var(--orange);
-font-size: 10px;
-font-weight: 950;
-letter-spacing: .7px;
-line-height: 1;
-white-space: nowrap;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:4px 7px;
+border:1px solid rgba(245,124,0,.52);
+background:rgba(245,124,0,.10);
+color:var(--orange);
+font-size:10px;
+font-weight:950;
+letter-spacing:.7px;
+line-height:1;
+white-space:nowrap;
 }
 
 .or-divider {
-color: rgba(255,255,255,.72);
-font-size: 13px;
-font-weight: 900;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-align-self: center;
+color:rgba(255,255,255,.72);
+font-size:13px;
+font-weight:900;
+letter-spacing:1.5px;
+text-transform:uppercase;
+align-self:center;
 }
 
 /* ===============================
-   LOW-E SOFTCOAT
+YEAR-ROUND COMFORT
 ================================ */
 
-.low-e-section {
-position: relative;
-overflow: hidden;
-padding: 92px 6% 78px;
+.comfort-section {
+position:relative;
+overflow:hidden;
+padding:92px 0 76px;
 background:
 radial-gradient(
 circle at 16% 22%,
@@ -970,142 +935,91 @@ linear-gradient(
 #0c0c0c 55%,
 #101820 100%
 );
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.low-e-intro {
-max-width: 1120px;
-margin: 0 auto 34px;
+.comfort-intro {
+max-width:1120px;
+margin:0 auto 38px;
+padding:0 6%;
 }
 
-.low-e-intro h2 {
-max-width: 930px;
+.comfort-intro h2 {
+max-width:930px;
 }
 
-.low-e-intro p {
-max-width: 850px;
-margin-bottom: 0;
-font-size: 19px;
+.comfort-intro p {
+max-width:860px;
+margin-bottom:0;
+font-size:19px;
 }
 
-.season-switcher {
-max-width: 1120px;
-margin: 0 auto;
+.comfort-visual {
+position:relative;
+width:100%;
+overflow:hidden;
+background:#050505;
+touch-action:pan-y;
+user-select:none;
 }
 
-.season-controls {
-display: grid;
-grid-template-columns: 1fr 1fr;
-max-width: 420px;
-margin: 0 auto 18px;
-border: 1px solid rgba(255,255,255,.16);
-background: rgba(5,5,5,.68);
+.comfort-frame {
+position:relative;
+width:100%;
+aspect-ratio:16 / 8.3;
+min-height:420px;
+overflow:hidden;
 }
 
-.season-button {
-position: relative;
-border: 0;
-background: transparent;
-color: rgba(255,255,255,.70);
-padding: 14px 18px;
-font-family: inherit;
-font-size: 12px;
-font-weight: 950;
-letter-spacing: 1.4px;
-text-transform: uppercase;
-cursor: pointer;
+.comfort-image {
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center;
+opacity:0;
+visibility:hidden;
+transform:scale(1.018);
 transition:
-background .28s ease,
-color .28s ease,
-box-shadow .28s ease;
+opacity 1.15s ease,
+visibility 1.15s ease,
+transform 1.15s ease;
 }
 
-.season-button + .season-button {
-border-left: 1px solid rgba(255,255,255,.16);
+.comfort-image.active {
+opacity:1;
+visibility:visible;
+transform:scale(1);
 }
 
-.season-button.active {
-background: var(--orange);
-color: #050505;
-box-shadow: 0 8px 28px rgba(245,124,0,.18);
+.comfort-uv-wrap {
+min-height:132px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:26px 6% 0;
 }
 
-.season-panel {
-position: relative;
-width: 100%;
-aspect-ratio: 16 / 8.3;
-min-height: 320px;
-max-height: 580px;
-overflow: hidden;
-background: #0a0a0a;
-border: 1px solid rgba(255,255,255,.11);
-box-shadow: 0 28px 80px rgba(0,0,0,.44);
-}
-
-.season-image {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-object-fit: contain;
-object-position: center;
-background: #050505;
-opacity: 0;
-visibility: hidden;
-transform: scale(1.008);
-transition:
-opacity .85s ease,
-visibility .85s ease,
-transform .85s ease;
-}
-
-.season-image.active {
-opacity: 1;
-visibility: visible;
-transform: scale(1);
-}
-
-.season-panel::after {
-content: "";
-position: absolute;
-inset: 0;
-pointer-events: none;
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,.01) 0%,
-transparent 66%,
-rgba(0,0,0,.08) 100%
-);
-}
-
-.low-e-uv-wrap {
-min-height: 150px;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 26px 0 8px;
-}
-
-.low-e-uv-note {
-width: min(900px, 100%);
-margin: 0;
-padding: 4px 0 4px 24px;
-border-left: 3px solid var(--orange);
-font-size: 14px;
-line-height: 1.65;
-color: rgba(255,255,255,.66);
+.comfort-uv-note {
+width:min(900px,100%);
+margin:0;
+padding:4px 0 4px 24px;
+border-left:3px solid var(--orange);
+font-size:14px;
+line-height:1.65;
+color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-   DEDICATED TEAM
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
-position: relative;
-overflow: hidden;
-padding: 92px 6%;
+position:relative;
+overflow:hidden;
+padding:92px 6%;
 background:
 radial-gradient(
 circle at 88% 22%,
@@ -1118,83 +1032,83 @@ linear-gradient(
 #0d0d0d 54%,
 #101820 100%
 );
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .direct-section::before {
-content: "";
-position: absolute;
-top: 0;
-left: 6%;
-width: 170px;
-height: 3px;
-background: var(--orange);
+content:"";
+position:absolute;
+top:0;
+left:6%;
+width:170px;
+height:3px;
+background:var(--orange);
 }
 
 .direct-inner {
-position: relative;
-z-index: 1;
-max-width: 1120px;
-margin: 0 auto;
-display: grid;
-grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-gap: 70px;
-align-items: start;
+position:relative;
+z-index:1;
+max-width:1120px;
+margin:0 auto;
+display:grid;
+grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+gap:70px;
+align-items:start;
 }
 
 .direct-heading {
-margin: 0;
-max-width: 520px;
-font-size: clamp(42px, 6vw, 78px);
-line-height: .94;
-letter-spacing: -2.4px;
-color: var(--white);
+margin:0;
+max-width:520px;
+font-size:clamp(42px,6vw,78px);
+line-height:.94;
+letter-spacing:-2.4px;
+color:var(--white);
 }
 
 .direct-copy {
-max-width: 720px;
-padding-top: 4px;
+max-width:720px;
+padding-top:4px;
 }
 
 .direct-copy p {
-margin: 0 0 22px;
-font-size: 19px;
-line-height: 1.7;
-color: var(--muted);
+margin:0 0 22px;
+font-size:19px;
+line-height:1.7;
+color:var(--muted);
 }
 
 .direct-copy p:last-of-type {
-margin-bottom: 0;
+margin-bottom:0;
 }
 
 .direct-assurance {
-display: inline-flex;
-align-items: center;
-gap: 10px;
-margin-top: 30px;
-color: var(--orange);
-font-size: 12px;
-font-weight: 950;
-letter-spacing: 1.4px;
-line-height: 1.35;
-text-transform: uppercase;
+display:inline-flex;
+align-items:center;
+gap:10px;
+margin-top:30px;
+color:var(--orange);
+font-size:12px;
+font-weight:950;
+letter-spacing:1.4px;
+line-height:1.35;
+text-transform:uppercase;
 }
 
 .direct-assurance::before {
-content: "";
-width: 26px;
-height: 1px;
-background: var(--orange);
+content:"";
+width:26px;
+height:1px;
+background:var(--orange);
 }
 
 /* ===============================
-   TRUST CARDS
+TRUST CARDS
 ================================ */
 
 .trust-zone {
-position: relative;
-overflow: hidden;
+position:relative;
+overflow:hidden;
 background:
 radial-gradient(
 circle at 16% 18%,
@@ -1212,15 +1126,15 @@ linear-gradient(
 #0b0b0b 45%,
 #101010 100%
 );
-padding: 76px 6% 82px;
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
+padding:76px 6% 82px;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .trust-zone::after {
-content: "";
-position: absolute;
-inset: 0;
+content:"";
+position:absolute;
+inset:0;
 background-image:
 linear-gradient(
 rgba(255,255,255,.026) 1px,
@@ -1231,164 +1145,87 @@ linear-gradient(
 rgba(255,255,255,.022) 1px,
 transparent 1px
 );
-background-size: 44px 44px;
-opacity: .15;
-transform: skewY(-6deg) scale(1.2);
-pointer-events: none;
+background-size:44px 44px;
+opacity:.15;
+transform:skewY(-6deg) scale(1.2);
+pointer-events:none;
 }
 
 .trust-strip {
-max-width: 1120px;
-margin: auto;
-display: grid;
-gap: 18px;
-position: relative;
-z-index: 1;
+max-width:1120px;
+margin:auto;
+display:grid;
+gap:18px;
+position:relative;
+z-index:1;
 }
 
 .trust-item {
---gleam-x: -160%;
---gleam-opacity: 0;
---glow-opacity: 0;
---title-colour: #ffffff;
---text-colour: #d8d8d8;
---title-spacing: 2.6px;
---title-scale: 1;
-
-position: relative;
-overflow: hidden;
-isolation: isolate;
-padding: 34px 38px;
-background: linear-gradient(135deg, #0c0c0c, #141414);
-border: 1px solid rgba(255,255,255,.11);
-box-shadow: 0 18px 50px rgba(0,0,0,.28);
-cursor: pointer;
-transform: translateY(0) scale(1);
+position:relative;
+overflow:hidden;
+isolation:isolate;
+padding:34px 38px;
+background:linear-gradient(135deg,#0c0c0c,#141414);
+border:1px solid rgba(255,255,255,.11);
+box-shadow:0 18px 50px rgba(0,0,0,.28);
 transition:
 transform .28s ease,
 border-color .28s ease,
 box-shadow .28s ease,
 background .28s ease;
-touch-action: manipulation;
-will-change: transform, border-color, box-shadow;
-}
-
-.trust-item::before {
-content: "";
-position: absolute;
-top: -12%;
-bottom: -12%;
-left: 0;
-width: 24%;
-z-index: 0;
-background:
-linear-gradient(
-90deg,
-transparent 0%,
-rgba(255,255,255,.06) 13%,
-rgba(255,255,255,.28) 34%,
-rgba(255,255,255,.96) 50%,
-rgba(255,255,255,.28) 66%,
-rgba(255,255,255,.06) 87%,
-transparent 100%
-);
-filter: blur(4px);
-transform:
-translateX(var(--gleam-x))
-skewX(-17deg);
-opacity: var(--gleam-opacity);
-pointer-events: none;
-}
-
-.trust-item::after {
-content: "";
-position: absolute;
-inset: 0;
-z-index: 0;
-background:
-radial-gradient(
-circle at 22% 50%,
-rgba(255,255,255,.12),
-transparent 34%
-),
-linear-gradient(
-135deg,
-rgba(245,124,0,.06),
-rgba(16,42,68,.07)
-);
-opacity: var(--glow-opacity);
-pointer-events: none;
 }
 
 .trust-item strong {
-position: relative;
-z-index: 2;
-display: block;
-font-size: clamp(22px, 3vw, 38px);
-color: var(--title-colour);
-text-transform: uppercase;
-letter-spacing: var(--title-spacing);
-margin-bottom: 12px;
-transform: scale(var(--title-scale));
-transform-origin: left center;
-transition:
-color .18s linear,
-letter-spacing .18s linear,
-transform .18s linear;
+position:relative;
+z-index:2;
+display:block;
+font-size:clamp(22px,3vw,38px);
+color:var(--white);
+text-transform:uppercase;
+letter-spacing:2.6px;
+margin-bottom:12px;
+transition:.25s ease;
 }
 
 .trust-item span {
-position: relative;
-z-index: 2;
-color: var(--text-colour);
-font-size: clamp(17px, 2vw, 24px);
-line-height: 1.45;
-max-width: 860px;
-display: block;
-transition: color .18s linear;
+position:relative;
+z-index:2;
+color:var(--muted);
+font-size:clamp(17px,2vw,24px);
+line-height:1.45;
+max-width:860px;
+display:block;
 }
 
 .trust-item .lead-time-note {
-margin-top: 12px;
-font-size: 11px;
-line-height: 1.45;
-color: rgba(255,255,255,.52);
-letter-spacing: .35px;
+margin-top:12px;
+font-size:11px;
+line-height:1.45;
+color:rgba(255,255,255,.52);
+letter-spacing:.35px;
 }
 
-@media (hover: hover) and (pointer: fine) {
 .trust-item:hover {
---gleam-x: 500%;
---gleam-opacity: 1;
---glow-opacity: 1;
---title-colour: #f57c00;
---text-colour: rgba(255,255,255,.90);
---title-spacing: 3.3px;
---title-scale: 1.025;
-
-transform: translateY(-7px) scale(1.025);
-border-color: rgba(255,154,47,.75);
-background: linear-gradient(135deg, #111111, #1b130d);
+transform:translateY(-7px) scale(1.025);
+border-color:rgba(255,154,47,.75);
+background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
 0 24px 62px rgba(245,124,0,.17),
 0 20px 46px rgba(0,0,0,.42);
-z-index: 4;
 }
 
-.trust-item:hover::before {
-transition:
-transform .7s cubic-bezier(.18,.72,.28,1),
-opacity .12s ease;
-}
+.trust-item:hover strong {
+color:var(--orange);
+letter-spacing:3.3px;
 }
 
 /* ===============================
-   CALCULATOR
+CALCULATOR
 ================================ */
 
 .calculator-wrap {
-position: relative;
-overflow: hidden;
+position:relative;
+overflow:hidden;
 background:
 radial-gradient(
 circle at 88% 16%,
@@ -1400,18 +1237,18 @@ linear-gradient(
 #050505 0%,
 #080808 100%
 );
-padding: 108px 6% 95px;
-border-top: 1px solid rgba(255,255,255,.08);
+padding:108px 6% 95px;
+border-top:1px solid rgba(255,255,255,.08);
 }
 
 .calculator-wrap::before {
-content: "";
-position: absolute;
-top: 0;
-left: 50%;
-transform: translateX(-50%);
-width: min(88%, 1120px);
-height: 1px;
+content:"";
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:min(88%,1120px);
+height:1px;
 background:
 linear-gradient(
 90deg,
@@ -1422,103 +1259,55 @@ transparent
 }
 
 .calculator-wrap::after {
-content: "Configure • Price • Continue";
-position: absolute;
-top: 25px;
-left: 50%;
-transform: translateX(-50%);
-color: rgba(255,255,255,.28);
-font-size: 9px;
-font-weight: 950;
-letter-spacing: 2.2px;
-text-transform: uppercase;
-white-space: nowrap;
+content:"Configure • Price • Continue";
+position:absolute;
+top:25px;
+left:50%;
+transform:translateX(-50%);
+color:rgba(255,255,255,.28);
+font-size:9px;
+font-weight:950;
+letter-spacing:2.2px;
+text-transform:uppercase;
+white-space:nowrap;
 }
 
 .calculator {
-position: relative;
-background: #101010;
-border: 1px solid rgba(255,255,255,.09);
-max-width: 1180px;
-margin: 0 auto;
-padding: 50px;
-box-shadow: 0 28px 85px rgba(0,0,0,.65);
-opacity: 0;
-transform: translateY(34px) scale(.988);
-transition:
-opacity .8s ease,
-transform .8s cubic-bezier(.18,.72,.28,1),
-border-color .8s ease,
-box-shadow .8s ease;
-}
-
-.calculator.is-visible {
-opacity: 1;
-transform: translateY(0) scale(1);
-border-color: rgba(245,124,0,.24);
-box-shadow:
-0 30px 90px rgba(0,0,0,.68),
-0 0 0 1px rgba(245,124,0,.04);
-}
-
-.calculator.is-visible .calc-grid {
-animation: calculatorFieldsEnter .7s ease .18s both;
-}
-
-.calculator.is-visible .price-box {
-animation: calculatorPriceEnter .7s ease .34s both;
-}
-
-@keyframes calculatorFieldsEnter {
-from {
-opacity: 0;
-transform: translateY(16px);
-}
-
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-@keyframes calculatorPriceEnter {
-from {
-opacity: 0;
-transform: translateY(18px);
-}
-
-to {
-opacity: 1;
-transform: translateY(0);
-}
+position:relative;
+background:#101010;
+border:1px solid rgba(255,255,255,.09);
+max-width:1180px;
+margin:0 auto;
+padding:50px;
+box-shadow:0 28px 85px rgba(0,0,0,.65);
 }
 
 .calc-grid {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 20px;
-margin-top: 34px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-top:34px;
 }
 
 label {
-font-weight: 950;
-font-size: 13px;
-display: block;
-margin-bottom: 10px;
-color: var(--white);
-text-transform: uppercase;
-letter-spacing: .6px;
+font-weight:950;
+font-size:13px;
+display:block;
+margin-bottom:10px;
+color:var(--white);
+text-transform:uppercase;
+letter-spacing:.6px;
 }
 
 input,
 select {
-width: 100%;
-padding: 17px;
-border: 1px solid rgba(255,255,255,.14);
-font-size: 16px;
-background: #050505;
-color: white;
-border-radius: 0;
+width:100%;
+padding:17px;
+border:1px solid rgba(255,255,255,.14);
+font-size:16px;
+background:#050505;
+color:white;
+border-radius:0;
 transition:
 border-color .25s ease,
 box-shadow .25s ease,
@@ -1527,479 +1316,433 @@ background .25s ease;
 
 input:hover,
 select:hover {
-border-color: rgba(245,124,0,.42);
+border-color:rgba(245,124,0,.42);
 }
 
 input:focus,
 select:focus {
-outline: none;
-border-color: var(--orange);
-background: #080808;
-box-shadow: 0 0 0 3px rgba(245,124,0,.12);
+outline:none;
+border-color:var(--orange);
+background:#080808;
+box-shadow:0 0 0 3px rgba(245,124,0,.12);
 }
 
 .price-box {
-margin-top: 36px;
-padding: 34px;
-background: var(--navy);
-border: 1px solid rgba(255,255,255,.10);
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 24px;
-flex-wrap: wrap;
+margin-top:36px;
+padding:34px;
+background:var(--navy);
+border:1px solid rgba(255,255,255,.10);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:24px;
+flex-wrap:wrap;
 }
 
 .price-label {
-color: var(--muted);
-font-size: 14px;
-text-transform: uppercase;
-letter-spacing: .8px;
-font-weight: 900;
+color:var(--muted);
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.8px;
+font-weight:900;
 }
 
 .price {
-font-size: 54px;
-font-weight: 950;
-color: var(--white);
-margin-top: 6px;
+font-size:54px;
+font-weight:950;
+color:var(--white);
+margin-top:6px;
 }
 
 small {
-color: var(--muted);
+color:var(--muted);
 }
 
 /* ===============================
-   LOWER SECTIONS
+LOWER SECTIONS
 ================================ */
 
 .engineered {
-padding: 95px 6%;
-background: #080808;
-border-top: 1px solid rgba(255,255,255,.08);
-border-bottom: 1px solid rgba(255,255,255,.08);
+padding:95px 6%;
+background:#080808;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .engineered-intro {
-max-width: 930px;
-margin-bottom: 42px;
+max-width:930px;
+margin-bottom:42px;
 }
 
 .engineered-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 24px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:24px;
 }
 
 .engineered-card {
-background: #111;
-border: 1px solid rgba(255,255,255,.10);
-padding: 34px;
-transition: .25s ease;
+background:#111;
+border:1px solid rgba(255,255,255,.10);
+padding:34px;
+transition:.25s ease;
 }
 
 .engineered-card:hover {
-transform: translateY(-4px);
-border-color: rgba(245,124,0,.32);
+transform:translateY(-4px);
+border-color:rgba(245,124,0,.32);
 }
 
 .engineered-card h3 {
-margin: 0 0 16px;
-color: var(--white);
-font-size: 23px;
-line-height: 1.15;
+margin:0 0 16px;
+color:var(--white);
+font-size:23px;
+line-height:1.15;
 }
 
 .engineered-card p {
-margin: 0;
-color: var(--muted);
-font-size: 16px;
-line-height: 1.65;
+margin:0;
+color:var(--muted);
+font-size:16px;
+line-height:1.65;
 }
 
 .oversized-section {
-padding: 95px 6%;
+padding:95px 6%;
 }
 
 .oversized {
-background: #0d0d0d;
-border: 1px solid rgba(255,255,255,.10);
-border-left: 6px solid var(--orange);
-padding: 54px;
-max-width: 1080px;
-margin: auto;
+background:#0d0d0d;
+border:1px solid rgba(255,255,255,.10);
+border-left:6px solid var(--orange);
+padding:54px;
+max-width:1080px;
+margin:auto;
 }
 
 footer {
-background: #050505;
-border-top: 1px solid rgba(255,255,255,.10);
-color: var(--muted);
-padding: 46px 6%;
-font-size: 15px;
+background:#050505;
+border-top:1px solid rgba(255,255,255,.10);
+color:var(--muted);
+padding:46px 6%;
+font-size:15px;
 }
 
 footer strong {
-color: var(--white);
-font-size: 18px;
-text-transform: uppercase;
-letter-spacing: .8px;
+color:var(--white);
+font-size:18px;
+text-transform:uppercase;
+letter-spacing:.8px;
 }
 
-@media(max-width: 950px) {
+/* ===============================
+TABLET
+================================ */
+
+@media(max-width:950px) {
 .home-popular-header {
-display: grid;
-gap: 18px;
-align-items: start;
-}
-
-.engineered-grid {
-grid-template-columns: 1fr;
+display:grid;
+gap:18px;
+align-items:start;
 }
 
 .direct-inner {
-grid-template-columns: 1fr;
-gap: 32px;
+grid-template-columns:1fr;
+gap:32px;
 }
 
-.direct-copy {
-padding-top: 0;
-}
-
-.calc-grid {
-grid-template-columns: 1fr;
+.calc-grid,
+.engineered-grid {
+grid-template-columns:1fr;
 }
 
 .calculator {
-padding: 32px;
+padding:32px;
 }
 
 .wordmark {
-font-size: 20px;
+font-size:20px;
 }
 
 .address-line {
-font-size: 10px;
+font-size:10px;
 }
 }
 
-@media(max-width: 760px) {
+@media(max-width:760px) {
 .home-popular-grid {
-grid-template-columns: 1fr;
+grid-template-columns:1fr;
 }
 
 .home-product-card {
-grid-template-columns: 135px minmax(0, 1fr);
+grid-template-columns:135px minmax(0,1fr);
 }
 }
 
-@media(max-width: 560px) {
+/* ===============================
+MOBILE
+================================ */
+
+@media(max-width:560px) {
 .top-banner {
-font-size: 7.5px;
+font-size:7.5px;
 }
 
 .ticker {
-padding: 7px 0;
+padding:7px 0;
 }
 
 header {
-padding: 22px 6%;
-gap: 16px;
+padding:22px 6%;
+gap:16px;
 }
 
 .action-icons {
-gap: 6px;
+gap:6px;
 }
 
 .action-icons button,
 .action-icons a {
-width: 34px;
-height: 34px;
-font-size: 16px;
+width:34px;
+height:34px;
+font-size:16px;
 }
 
-.page-category {
-padding: 13px 6%;
-font-size: 12px;
-line-height: 1.08;
-letter-spacing: 1.8px;
+.home-opening-heading {
+padding:20px 6% 17px;
+}
+
+.home-opening-title {
+font-size:27px;
 }
 
 .home-popular-section {
-padding: 58px 6% 68px;
+padding:34px 6% 66px;
 }
 
 .home-popular-heading {
-font-size: 45px;
+font-size:42px;
 }
 
 .home-popular-description {
-font-size: 16px;
+font-size:16px;
 }
 
 .home-popular-grid {
-grid-template-columns: repeat(2, minmax(0, 1fr));
-gap: 10px;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px;
 }
 
 .home-product-card {
-grid-template-columns: 1fr;
-min-height: auto;
-padding: 10px;
-gap: 10px;
+grid-template-columns:1fr;
+min-height:auto;
+padding:10px;
+gap:10px;
 }
 
 .home-product-card:hover,
 .home-product-card:active {
-transform: translateY(-5px) scale(1.025);
+transform:translateY(-5px) scale(1.025);
 }
 
 .home-product-image {
-height: 110px;
+height:110px;
 }
 
 .home-product-size {
-font-size: 19px;
+font-size:19px;
 }
 
 .home-product-spec {
-font-size: 10px;
+font-size:10px;
 }
 
 .home-glazing-wrap,
 .home-glazing-toggle,
 .home-glazed-label {
-max-width: none;
+max-width:none;
 }
 
 .home-product-price-row {
-align-items: flex-end;
-gap: 8px;
+align-items:flex-end;
+gap:8px;
 }
 
 .home-product-price {
-font-size: 23px;
+font-size:23px;
 }
 
 .home-vat-note {
-font-size: 8px;
-display: block;
-margin-left: 0;
-margin-top: 3px;
+font-size:8px;
+display:block;
+margin-left:0;
+margin-top:3px;
 }
 
 .home-product-link {
-font-size: 9px;
+font-size:9px;
 }
 
 .opening-section {
-padding: 62px 0 64px;
+padding:64px 0 68px;
 }
 
-.opening-section h1 {
-font-size: 45px;
+.opening-section h2 {
+font-size:45px;
 }
 
 .opening-section p {
-font-size: 18px;
-margin-bottom: 34px;
+font-size:18px;
+margin-bottom:34px;
 }
 
-.interior-slideshow .slideshow-shell {
-height: auto;
-aspect-ratio: 16 / 10;
-background: #050505;
-}
-
-.interior-slideshow .slideshow-slide img {
-object-fit: contain;
-object-position: center;
-background: #050505;
-}
-
-.slideshow-dots {
-bottom: 10px;
-padding: 6px 8px;
+.interior-static-image {
+aspect-ratio:1 / 1;
+object-fit:cover;
+object-position:center;
 }
 
 .buy-online-section {
-padding: 68px 6%;
+padding:68px 6%;
 }
 
 .buy-online-inner {
-padding-left: 20px;
+padding-left:20px;
 }
 
 .buy-online-inner p {
-font-size: 18px;
+font-size:18px;
 }
 
 .buy-rooflight-slideshow {
-margin: 28px 0 32px;
+margin:28px 0 32px;
 }
 
-.buy-rooflight-slideshow .slideshow-shell {
-height: 245px;
+.rooflight-slideshow-shell {
+height:250px;
 }
 
 .hero-actions {
-flex-direction: column;
-align-items: flex-start;
+flex-direction:column;
+align-items:flex-start;
 }
 
 .button {
-width: 100%;
+width:100%;
 }
 
 .button.oversized-button {
-justify-content: space-between;
+justify-content:space-between;
 }
 
 .or-divider {
-align-self: flex-start;
+align-self:flex-start;
 }
 
-.low-e-section {
-padding: 68px 6% 48px;
+.comfort-section {
+padding:68px 0 48px;
 }
 
-.low-e-intro p {
-font-size: 17px;
+.comfort-intro {
+padding:0 6%;
 }
 
-.season-controls {
-max-width: none;
-margin-bottom: 12px;
+.comfort-intro p {
+font-size:17px;
 }
 
-.season-button {
-padding: 13px 10px;
-font-size: 10px;
+.comfort-frame {
+aspect-ratio:1 / 1;
+min-height:0;
 }
 
-.season-panel {
-aspect-ratio: 16 / 8.3;
-min-height: 0;
-max-height: none;
-background: #050505;
+.comfort-image {
+object-fit:cover;
+object-position:center;
 }
 
-.season-image {
-object-fit: contain;
-object-position: center;
-background: #050505;
+.comfort-uv-wrap {
+min-height:126px;
+padding:24px 6% 2px;
 }
 
-.low-e-uv-wrap {
-min-height: 126px;
-padding: 24px 0 2px;
-}
-
-.low-e-uv-note {
-font-size: 13px;
-padding-left: 16px;
+.comfort-uv-note {
+font-size:13px;
+padding-left:16px;
 }
 
 .direct-section {
-padding: 68px 6%;
+padding:68px 6%;
 }
 
 .direct-section::before {
-left: 6%;
-width: 110px;
+left:6%;
+width:110px;
 }
 
 .direct-heading {
-font-size: 45px;
+font-size:45px;
 }
 
 .direct-copy p {
-font-size: 17px;
+font-size:17px;
 }
 
 .trust-zone {
-padding: 58px 6% 64px;
+padding:58px 6% 64px;
 }
 
 .trust-item {
-padding: 30px 24px;
-cursor: default;
-transition: none;
-transform-origin: center center;
-}
-
-.trust-item::before,
-.trust-item::after,
-.trust-item strong,
-.trust-item span {
-transition: none;
+padding:30px 24px;
 }
 
 .calculator-wrap {
-padding: 98px 6% 68px;
+padding:98px 6% 68px;
 }
 
 .calculator-wrap::after {
-top: 23px;
-font-size: 8px;
-letter-spacing: 1.7px;
+top:23px;
+font-size:8px;
+letter-spacing:1.7px;
 }
 
 .calculator {
-padding: 30px 24px;
+padding:30px 24px;
 }
 
 .engineered,
 .oversized-section {
-padding: 68px 6%;
+padding:68px 6%;
 }
 }
 
-@media(max-width: 390px) {
+@media(max-width:390px) {
 .home-popular-grid {
-grid-template-columns: 1fr;
+grid-template-columns:1fr;
 }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media(prefers-reduced-motion:reduce) {
 html {
-scroll-behavior: auto;
+scroll-behavior:auto;
 }
 
-.ticker {
-animation: none;
+.ticker,
+.popular-section::before {
+animation:none;
 }
 
-.slideshow-slide,
-.slideshow-slide.active,
-.slideshow-slide.previous {
-animation: none;
-clip-path: none;
-filter: none;
-transform: none;
+.reveal,
+.reveal.reveal-left,
+.reveal.reveal-right,
+.reveal.reveal-scale {
+opacity:1;
+transform:none;
+transition:none;
 }
 
-.season-image {
-transition: none;
-}
-
-.home-product-card,
-.home-product-card::before,
-.home-product-image img {
-transition: none;
-}
-
-.trust-item {
-transition: none;
-}
-
-.calculator,
-.calculator.is-visible,
-.calculator.is-visible .calc-grid,
-.calculator.is-visible .price-box {
-opacity: 1;
-transform: none;
-animation: none;
-transition: none;
+.rooflight-slide,
+.comfort-image {
+transition:none;
 }
 }
 </style>
@@ -2010,14 +1753,14 @@ transition: none;
 <div class="top-banner">
 <div class="ticker">
 
-<span>Low-E energy-saving glass for year-round comfort</span>
+<span>Energy-saving glass for year-round comfort</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>Factory insulated and ready for fitting</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
 
-<span>Low-E energy-saving glass for year-round comfort</span>
+<span>Energy-saving glass for year-round comfort</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>Factory insulated and ready for fitting</span>
@@ -2082,10 +1825,6 @@ title="Menu"
 
 </header>
 
-<div class="page-category">
-Frameless Flat Roof Skylights
-</div>
-
 <div id="menuOverlay" class="menu-overlay">
 
 <div class="menu-top">
@@ -2127,6 +1866,19 @@ aria-label="Close menu"
 
 <main>
 
+<section class="home-opening-heading">
+
+<div class="home-opening-heading-inner reveal">
+
+<h1 class="home-opening-title">
+Frameless Flat Roof Skylights
+<span>Popular Best Sellers</span>
+</h1>
+
+</div>
+
+</section>
+
 <section
 class="home-popular-section"
 id="homepagePopular"
@@ -2134,19 +1886,15 @@ id="homepagePopular"
 
 <div class="home-popular-header">
 
-<div>
+<div class="reveal reveal-left">
 
-<div class="section-label">
-Popular best sellers
-</div>
-
-<h1 class="home-popular-heading">
+<h2 class="home-popular-heading">
 Shop Popular Sizes
-</h1>
+</h2>
 
 </div>
 
-<p class="home-popular-description">
+<p class="home-popular-description reveal reveal-right">
 Four of our larger, frequently selected frameless rooflight sizes.
 Switch between double and triple glazing to see the price instantly.
 </p>
@@ -2156,7 +1904,7 @@ Switch between double and triple glazing to see the price instantly.
 <div class="home-popular-grid">
 
 <div
-class="home-product-card"
+class="home-product-card reveal reveal-scale"
 data-double-price="395"
 data-triple-price="470"
 >
@@ -2238,7 +1986,7 @@ View Size
 </div>
 
 <div
-class="home-product-card"
+class="home-product-card reveal reveal-scale reveal-delay-1"
 data-double-price="510"
 data-triple-price="615"
 >
@@ -2320,7 +2068,7 @@ View Size
 </div>
 
 <div
-class="home-product-card"
+class="home-product-card reveal reveal-scale reveal-delay-2"
 data-double-price="520"
 data-triple-price="625"
 >
@@ -2402,7 +2150,7 @@ View Size
 </div>
 
 <div
-class="home-product-card"
+class="home-product-card reveal reveal-scale reveal-delay-3"
 data-double-price="880"
 data-triple-price="1075"
 >
@@ -2485,7 +2233,7 @@ View Size
 
 </div>
 
-<div class="home-popular-footer">
+<div class="home-popular-footer reveal">
 
 <a
 href="standard-sizes.html"
@@ -2502,15 +2250,15 @@ View All Standard Sizes
 
 <div class="opening-copy">
 
-<div class="section-label">
+<div class="section-label reveal">
 Frameless design
 </div>
 
-<h2>
+<h2 class="reveal">
 Modernising British Ceilings With Frameless Glass Design
 </h2>
 
-<p>
+<p class="reveal reveal-delay-1">
 The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
 With no visible internal frame, the glass creates the fullest possible sky view and allows
 natural light to become the main architectural feature of the room. It is why our dedicated
@@ -2519,67 +2267,13 @@ team focuses specifically on producing frameless flat roof skylights.
 
 </div>
 
-<div class="interior-slideshow">
-
-<div
-class="slideshow-shell"
-id="interiorSlideshow"
-aria-label="Interior frameless rooflight slideshow"
->
-
-<div class="slideshow-slide active initial-reveal">
-
-<img
-src="images/interior-rooflight-1.png"
-alt="Interior view looking up through a frameless rooflight"
-/>
-
-</div>
-
-<div class="slideshow-slide">
-
-<img
-src="images/interior-rooflight-2.png"
-alt="Alternative interior view of an installed frameless rooflight"
-/>
-
-</div>
-
-<div class="slideshow-slide">
+<div class="interior-static-wrap reveal reveal-scale">
 
 <img
 src="images/interior-rooflight-3.png"
-alt="Finished frameless rooflight viewed from inside a room"
+class="interior-static-image"
+alt="Finished frameless rooflight viewed from inside the room"
 />
-
-</div>
-
-<div class="slideshow-dots">
-
-<button
-type="button"
-class="slideshow-dot active"
-data-slide-index="0"
-aria-label="Show interior image 1"
-></button>
-
-<button
-type="button"
-class="slideshow-dot"
-data-slide-index="1"
-aria-label="Show interior image 2"
-></button>
-
-<button
-type="button"
-class="slideshow-dot"
-data-slide-index="2"
-aria-label="Show interior image 3"
-></button>
-
-</div>
-
-</div>
 
 </div>
 
@@ -2589,32 +2283,23 @@ aria-label="Show interior image 3"
 
 <div class="buy-online-inner">
 
-<div class="section-label">
+<div class="section-label reveal">
 Order online
 </div>
 
-<h2>
+<h2 class="reveal">
 Buy Your Frameless Rooflight Online
 </h2>
 
-<div class="buy-rooflight-slideshow">
-
 <div
-class="slideshow-shell"
-id="exteriorSlideshow"
-aria-label="Frameless rooflight exterior and installation slideshow"
+class="buy-rooflight-slideshow reveal reveal-scale"
+id="rooflightSlideshow"
+aria-label="Frameless rooflight product and installation images"
 >
 
-<div class="slideshow-slide active initial-reveal">
+<div class="rooflight-slideshow-shell">
 
-<img
-src="images/hero-rooflight-1.png"
-alt="Frameless flat rooflight viewed from above"
-/>
-
-</div>
-
-<div class="slideshow-slide">
+<div class="rooflight-slide active">
 
 <img
 src="images/hero-rooflight-2.png"
@@ -2623,16 +2308,7 @@ alt="Frameless rooflight installation image two"
 
 </div>
 
-<div class="slideshow-slide">
-
-<img
-src="images/hero-rooflight-3.png"
-alt="Frameless rooflight installation image three"
-/>
-
-</div>
-
-<div class="slideshow-slide">
+<div class="rooflight-slide">
 
 <img
 src="images/hero-rooflight-4.png"
@@ -2641,7 +2317,7 @@ alt="Frameless rooflight installation image four"
 
 </div>
 
-<div class="slideshow-slide">
+<div class="rooflight-slide">
 
 <img
 src="images/hero-rooflight-5.png"
@@ -2650,7 +2326,7 @@ alt="Frameless rooflight installation image five"
 
 </div>
 
-<div class="slideshow-slide">
+<div class="rooflight-slide">
 
 <img
 src="images/hero-rooflight-6.png"
@@ -2659,30 +2335,22 @@ alt="Frameless rooflight installation image six"
 
 </div>
 
-<div class="slideshow-dots">
-
-<button type="button" class="slideshow-dot active" data-slide-index="0" aria-label="Show rooflight image 1"></button>
-<button type="button" class="slideshow-dot" data-slide-index="1" aria-label="Show rooflight image 2"></button>
-<button type="button" class="slideshow-dot" data-slide-index="2" aria-label="Show rooflight image 3"></button>
-<button type="button" class="slideshow-dot" data-slide-index="3" aria-label="Show rooflight image 4"></button>
-<button type="button" class="slideshow-dot" data-slide-index="4" aria-label="Show rooflight image 5"></button>
-<button type="button" class="slideshow-dot" data-slide-index="5" aria-label="Show rooflight image 6"></button>
-
 </div>
 
 </div>
 
-</div>
-
-<p>
+<p class="reveal">
 Know exactly what you want? Our best prices can be found on the Standard Sizes page,
 where you can shop special deals on popular, best-selling rooflight sizes. Alternatively,
 build a made-to-order rooflight using the calculator below.
 </p>
 
-<div class="hero-actions">
+<div class="hero-actions reveal">
 
-<a href="standard-sizes.html" class="button">
+<a
+href="standard-sizes.html"
+class="button"
+>
 Shop Our Standard Sizes
 </a>
 
@@ -2690,11 +2358,17 @@ Shop Our Standard Sizes
 or
 </span>
 
-<a href="#calculator" class="button">
+<a
+href="#calculator"
+class="button"
+>
 Build Your Rooflight
 </a>
 
-<a href="#oversized" class="button secondary oversized-button">
+<a
+href="#oversized"
+class="button secondary oversized-button"
+>
 
 <span>
 Oversized Rooflights
@@ -2712,83 +2386,59 @@ Oversized Rooflights
 
 </section>
 
-<section class="low-e-section" id="performance">
+<section
+class="comfort-section"
+id="performance"
+>
 
-<div class="low-e-intro">
+<div class="comfort-intro">
 
-<div class="section-label">
-Low-E Softcoat glass
+<div class="section-label reveal">
+Built for changing seasons
 </div>
 
-<h2>
+<h2 class="reveal">
 Designed For Year-Round Comfort
 </h2>
 
-<p>
-Low-E Softcoat glass helps reduce unwanted solar heat during warmer weather while retaining
-more warmth inside during colder periods, without sacrificing natural daylight.
+<p class="reveal reveal-delay-1">
+The glazing specification is designed to help manage unwanted heat during warmer weather
+while retaining more warmth inside during colder periods, without losing the daylight and
+open-sky appearance that make frameless rooflights so effective.
 </p>
 
 </div>
 
-<div class="season-switcher">
-
 <div
-class="season-controls"
-role="tablist"
-aria-label="Choose seasonal rooflight performance"
+class="comfort-visual reveal reveal-scale"
+id="comfortSlideshow"
+aria-label="Summer and winter rooflight performance"
 >
 
-<button
-type="button"
-class="season-button active"
-data-season="summer"
-role="tab"
-aria-selected="true"
-aria-controls="seasonPanel"
->
-Summer
-</button>
-
-<button
-type="button"
-class="season-button"
-data-season="winter"
-role="tab"
-aria-selected="false"
-aria-controls="seasonPanel"
->
-Winter
-</button>
-
-</div>
-
-<div class="season-panel" id="seasonPanel">
+<div class="comfort-frame">
 
 <img
 src="images/low-e-summer-performance.png"
-class="season-image active"
-data-season-image="summer"
-alt="Low-E Softcoat rooflight helping keep a room cooler in summer"
+class="comfort-image active"
+alt="Rooflight glazing helping manage heat during summer"
 />
 
 <img
 src="images/low-e-winter-performance.png"
-class="season-image"
-data-season-image="winter"
-alt="Low-E Softcoat rooflight helping retain warmth in winter"
+class="comfort-image"
+alt="Rooflight glazing helping retain warmth during winter"
 />
 
 </div>
 
-<div class="low-e-uv-wrap">
-
-<p class="low-e-uv-note">
-The coating also helps reduce ultraviolet exposure that can contribute to fading across
-flooring, furniture, fabrics and other interior finishes.
-</p>
-
 </div>
+
+<div class="comfort-uv-wrap">
+
+<p class="comfort-uv-note reveal">
+The coated glazing also helps reduce ultraviolet exposure that can contribute to fading
+across flooring, furniture, fabrics and other interior finishes.
+</p>
 
 </div>
 
@@ -2800,11 +2450,11 @@ flooring, furniture, fabrics and other interior finishes.
 
 <div>
 
-<div class="section-label">
+<div class="section-label reveal">
 Built personally for you by us
 </div>
 
-<h2 class="direct-heading">
+<h2 class="direct-heading reveal">
 A Dedicated Frameless Rooflight Team
 </h2>
 
@@ -2812,24 +2462,24 @@ A Dedicated Frameless Rooflight Team
 
 <div class="direct-copy">
 
-<p>
+<p class="reveal">
 Every order placed through our website enters directly into the production queue
 of our dedicated frameless rooflight team.
 </p>
 
-<p>
+<p class="reveal reveal-delay-1">
 Your order does not need to pass through unrelated product departments or external
 distributors. It moves into a focused production process managed by people who work
 specifically with this style of rooflight.
 </p>
 
-<p>
+<p class="reveal reveal-delay-2">
 That specialist focus helps us maintain consistent quality, dependable lead times
 and clear communication from the specification you approve through to final preparation
 and delivery.
 </p>
 
-<div class="direct-assurance">
+<div class="direct-assurance reveal reveal-delay-3">
 One specialist team from order to production
 </div>
 
@@ -2839,11 +2489,14 @@ One specialist team from order to production
 
 </section>
 
-<section class="trust-zone" id="trustZone">
+<section
+class="trust-zone"
+id="trustZone"
+>
 
 <div class="trust-strip">
 
-<div class="trust-item">
+<div class="trust-item reveal">
 
 <strong>
 Toughened Safety Glass
@@ -2855,7 +2508,7 @@ Built around strong toughened glass suitable for modern flat roof applications.
 
 </div>
 
-<div class="trust-item">
+<div class="trust-item reveal reveal-delay-1">
 
 <strong>
 Fast Lead Times
@@ -2871,7 +2524,7 @@ Manufactured in as quick as four working days.*
 
 </div>
 
-<div class="trust-item">
+<div class="trust-item reveal reveal-delay-2">
 
 <strong>
 Free Mainland UK Delivery
@@ -2887,9 +2540,15 @@ Available on listed sizes, with larger units quoted clearly before order.
 
 </section>
 
-<section id="calculator" class="calculator-wrap">
+<section
+id="calculator"
+class="calculator-wrap"
+>
 
-<div class="calculator" id="homepageCalculator">
+<div
+class="calculator reveal reveal-scale"
+id="homepageCalculator"
+>
 
 <div class="section-label">
 Build online
@@ -2976,7 +2635,10 @@ Glass Finish
 Estimated Online Price
 </div>
 
-<div class="price" id="price">
+<div
+class="price"
+id="price"
+>
 £580
 </div>
 
@@ -2986,7 +2648,10 @@ Includes VAT. Free mainland UK delivery applies on listed sizes.
 
 </div>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Order Online Soon
 </a>
 
@@ -3000,15 +2665,15 @@ Order Online Soon
 
 <div class="engineered-intro">
 
-<div class="section-label">
+<div class="section-label reveal">
 Engineered to last
 </div>
 
-<h2>
+<h2 class="reveal">
 Factory Sealed And Built For Long-Term Performance
 </h2>
 
-<p>
+<p class="reveal reveal-delay-1">
 Every unit is manufactured as a factory insulated glass rooflight, ready for immediate fitting.
 The specification is designed for durability and reliable long-term weather performance.
 </p>
@@ -3017,7 +2682,7 @@ The specification is designed for durability and reliable long-term weather perf
 
 <div class="engineered-grid">
 
-<div class="engineered-card">
+<div class="engineered-card reveal">
 
 <h3>
 Ceramic Fused Border
@@ -3030,7 +2695,7 @@ providing a permanent and durable frameless finish.
 
 </div>
 
-<div class="engineered-card">
+<div class="engineered-card reveal reveal-delay-1">
 
 <h3>
 20 Year Warranty
@@ -3043,7 +2708,7 @@ All units are supplied with a 20 year warranty and are designed for an expected
 
 </div>
 
-<div class="engineered-card">
+<div class="engineered-card reveal reveal-delay-2">
 
 <h3>
 Two-Stage Sealing
@@ -3056,7 +2721,7 @@ for a flush finish and engineered leak-resistant performance when installed corr
 
 </div>
 
-<div class="engineered-card">
+<div class="engineered-card reveal reveal-delay-3">
 
 <h3>
 Glass Finishes
@@ -3073,9 +2738,12 @@ retaining the clean frameless appearance.
 
 </section>
 
-<section id="oversized" class="oversized-section">
+<section
+id="oversized"
+class="oversized-section"
+>
 
-<div class="oversized">
+<div class="oversized reveal reveal-scale">
 
 <div class="section-label">
 Bespoke quotations
@@ -3090,7 +2758,10 @@ Need something larger than the listed range? We can quote oversized custom frame
 rooflights up to approximately 5800mm, including specialist delivery pricing.
 </p>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Request Oversized Quote
 </a>
 
@@ -3144,279 +2815,224 @@ document.body.style.overflow =
 }
 
 /* ===============================
-   REUSABLE SLIDESHOW
+SCROLL REVEALS
 ================================ */
 
-function createSlideshow({
-containerId,
-holdTime,
-transitionTime,
-runOnce,
-initialDelay = 0
-}) {
-const container =
-document.getElementById(containerId);
-
-if (!container) {
-return null;
-}
-
-const slides =
+const revealElements =
 Array.from(
-container.querySelectorAll(".slideshow-slide")
+document.querySelectorAll(".reveal")
 );
 
-const dots =
-Array.from(
-container.querySelectorAll(".slideshow-dot")
+const reducedMotionQuery =
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
 );
 
-if (slides.length === 0) {
-return null;
-}
-
-let currentIndex = 0;
-let transitionBusy = false;
-let timer = null;
-let automaticFinished = false;
-let touchStartX = 0;
-let touchStartY = 0;
-
-function clearSlideClasses(slide) {
-slide.classList.remove(
-"active",
-"previous",
-"initial-reveal",
-"enter-dissolve",
-"exit-dissolve"
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+revealElements.forEach(element => {
+element.classList.add("is-visible");
+});
+} else {
+const revealObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add(
+"is-visible"
 );
 
-slide.style.removeProperty(
-"--transition-duration"
+revealObserver.unobserve(
+entry.target
 );
 }
-
-function updateDots() {
-dots.forEach((dot, index) => {
-dot.classList.toggle(
-"active",
-index === currentIndex
+});
+},
+{
+threshold:.14,
+rootMargin:"0px 0px -7% 0px"
+}
 );
 
-dot.setAttribute(
-"aria-current",
-index === currentIndex
-? "true"
-: "false"
-);
+revealElements.forEach(element => {
+revealObserver.observe(element);
 });
 }
 
-function clearTimer() {
-if (timer !== null) {
-window.clearTimeout(timer);
-timer = null;
-}
-}
+/* ===============================
+ROOFLIGHT SLIDESHOW
+================================ */
 
-function stopAutomatic() {
-automaticFinished = true;
-clearTimer();
-}
+const rooflightSlideshow =
+document.getElementById(
+"rooflightSlideshow"
+);
 
-function showSlide(
+const rooflightSlides =
+rooflightSlideshow
+? Array.from(
+rooflightSlideshow.querySelectorAll(
+".rooflight-slide"
+)
+)
+: [];
+
+let rooflightIndex = 0;
+let rooflightDirection = 1;
+let rooflightTimer = null;
+let rooflightBusy = false;
+let rooflightTouchStartX = 0;
+let rooflightTouchStartY = 0;
+
+function showRooflightSlide(
 nextIndex,
 manualChange = false
 ) {
 if (
-transitionBusy ||
-nextIndex === currentIndex ||
+rooflightBusy ||
+nextIndex === rooflightIndex ||
 nextIndex < 0 ||
-nextIndex >= slides.length
+nextIndex >= rooflightSlides.length
 ) {
-return false;
+return;
 }
+
+rooflightBusy = true;
+
+const outgoing =
+rooflightSlides[rooflightIndex];
+
+const incoming =
+rooflightSlides[nextIndex];
+
+outgoing.classList.remove("active");
+outgoing.classList.add("previous");
+
+incoming.classList.remove("previous");
+incoming.classList.add("active");
+
+rooflightIndex =
+nextIndex;
+
+window.setTimeout(() => {
+outgoing.classList.remove("previous");
+rooflightBusy = false;
+}, 850);
 
 if (manualChange) {
-stopAutomatic();
+restartRooflightTimer();
+}
 }
 
-transitionBusy = true;
-
-const outgoingSlide =
-slides[currentIndex];
-
-const incomingSlide =
-slides[nextIndex];
-
-clearSlideClasses(incomingSlide);
-
-const durationSeconds =
-transitionTime / 1000;
-
-outgoingSlide.style.setProperty(
-"--transition-duration",
-`${durationSeconds}s`
-);
-
-incomingSlide.style.setProperty(
-"--transition-duration",
-`${durationSeconds}s`
-);
-
-outgoingSlide.classList.add(
-"previous",
-"exit-dissolve"
-);
-
-incomingSlide.classList.add(
-"active",
-"enter-dissolve"
-);
-
-currentIndex = nextIndex;
-
-updateDots();
-
-window.setTimeout(() => {
-clearSlideClasses(outgoingSlide);
-
-incomingSlide.classList.remove(
-"enter-dissolve"
-);
-
-incomingSlide.style.removeProperty(
-"--transition-duration"
-);
-
-incomingSlide.classList.add(
-"active"
-);
-
-transitionBusy = false;
-}, transitionTime + 60);
-
-return true;
-}
-
-function scheduleNext() {
-if (automaticFinished) {
-return;
-}
-
-timer =
-window.setTimeout(() => {
-if (automaticFinished) {
-return;
-}
-
-const nextIndex =
-(currentIndex + 1) %
-slides.length;
-
-const returningToFirst =
-nextIndex === 0;
-
-const changed =
-showSlide(
-nextIndex,
-false
-);
-
-if (!changed) {
-return;
-}
+function getNextRooflightIndex() {
+let nextIndex =
+rooflightIndex +
+rooflightDirection;
 
 if (
-runOnce &&
-returningToFirst
+nextIndex >=
+rooflightSlides.length
 ) {
-timer =
-window.setTimeout(() => {
-automaticFinished = true;
-timer = null;
-}, transitionTime + 80);
+rooflightDirection = -1;
+nextIndex =
+rooflightSlides.length - 2;
+}
 
+if (nextIndex < 0) {
+rooflightDirection = 1;
+nextIndex = 1;
+}
+
+return nextIndex;
+}
+
+function advanceRooflightSlides() {
+if (rooflightSlides.length < 2) {
 return;
 }
 
-timer =
-window.setTimeout(
-scheduleNext,
-transitionTime
+showRooflightSlide(
+getNextRooflightIndex(),
+false
 );
-}, holdTime);
 }
 
-function showNextManual() {
-const nextIndex =
-(currentIndex + 1) %
-slides.length;
+function restartRooflightTimer() {
+if (rooflightTimer !== null) {
+window.clearInterval(
+rooflightTimer
+);
+}
 
-showSlide(
+rooflightTimer =
+window.setInterval(
+advanceRooflightSlides,
+5000
+);
+}
+
+function showNextRooflightManual() {
+let nextIndex =
+rooflightIndex + 1;
+
+if (
+nextIndex >=
+rooflightSlides.length
+) {
+nextIndex = 0;
+}
+
+rooflightDirection = 1;
+
+showRooflightSlide(
 nextIndex,
 true
 );
 }
 
-function showPreviousManual() {
-const previousIndex =
-(
-currentIndex -
-1 +
-slides.length
-) %
-slides.length;
+function showPreviousRooflightManual() {
+let previousIndex =
+rooflightIndex - 1;
 
-showSlide(
+if (previousIndex < 0) {
+previousIndex =
+rooflightSlides.length - 1;
+}
+
+rooflightDirection = -1;
+
+showRooflightSlide(
 previousIndex,
 true
 );
 }
 
-dots.forEach(dot => {
-dot.addEventListener(
-"click",
-() => {
-const requestedIndex =
-Number(
-dot.dataset.slideIndex
-);
-
 if (
-Number.isNaN(requestedIndex) ||
-requestedIndex === currentIndex
+rooflightSlideshow &&
+rooflightSlides.length > 1
 ) {
-return;
-}
-
-showSlide(
-requestedIndex,
-true
-);
-}
-);
-});
-
-container.addEventListener(
+rooflightSlideshow.addEventListener(
 "touchstart",
 event => {
 if (!event.touches.length) {
 return;
 }
 
-touchStartX =
+rooflightTouchStartX =
 event.touches[0].clientX;
 
-touchStartY =
+rooflightTouchStartY =
 event.touches[0].clientY;
 },
 {
-passive: true
+passive:true
 }
 );
 
-container.addEventListener(
+rooflightSlideshow.addEventListener(
 "touchend",
 event => {
 if (!event.changedTouches.length) {
@@ -3430,10 +3046,12 @@ const touchEndY =
 event.changedTouches[0].clientY;
 
 const horizontalDistance =
-touchEndX - touchStartX;
+touchEndX -
+rooflightTouchStartX;
 
 const verticalDistance =
-touchEndY - touchStartY;
+touchEndY -
+rooflightTouchStartY;
 
 if (
 Math.abs(horizontalDistance) < 45 ||
@@ -3444,141 +3062,192 @@ return;
 }
 
 if (horizontalDistance < 0) {
-showNextManual();
+showNextRooflightManual();
 } else {
-showPreviousManual();
+showPreviousRooflightManual();
 }
 },
 {
-passive: true
+passive:true
 }
 );
 
-updateDots();
-
-timer =
-window.setTimeout(
-scheduleNext,
-initialDelay
-);
-
-return {
-stopAutomatic,
-showSlide
-};
+restartRooflightTimer();
 }
-
-createSlideshow({
-containerId: "interiorSlideshow",
-holdTime: 7000,
-transitionTime: 1300,
-runOnce: false,
-initialDelay: 7000
-});
-
-createSlideshow({
-containerId: "exteriorSlideshow",
-holdTime: 3800,
-transitionTime: 750,
-runOnce: true,
-initialDelay: 3800
-});
 
 /* ===============================
-   SEASON PERFORMANCE PANEL
+COMFORT SLIDESHOW
 ================================ */
 
-const seasonButtons =
-Array.from(
-document.querySelectorAll(
-".season-button"
-)
+const comfortSlideshow =
+document.getElementById(
+"comfortSlideshow"
 );
 
-const seasonImages =
-Array.from(
-document.querySelectorAll(
-".season-image"
+const comfortImages =
+comfortSlideshow
+? Array.from(
+comfortSlideshow.querySelectorAll(
+".comfort-image"
 )
-);
+)
+: [];
 
-let seasonAutomaticTimer = null;
-let seasonAutomaticFinished = false;
+let comfortIndex = 0;
+let comfortTimer = null;
+let comfortTouchStartX = 0;
+let comfortTouchStartY = 0;
 
-function showSeason(
-season,
+function showComfortImage(
+nextIndex,
 manualChange = false
 ) {
-if (manualChange) {
-seasonAutomaticFinished = true;
-
 if (
-seasonAutomaticTimer !== null
+nextIndex === comfortIndex ||
+nextIndex < 0 ||
+nextIndex >= comfortImages.length
 ) {
-window.clearTimeout(
-seasonAutomaticTimer
-);
-
-seasonAutomaticTimer = null;
-}
-}
-
-seasonButtons.forEach(button => {
-const isSelected =
-button.dataset.season ===
-season;
-
-button.classList.toggle(
-"active",
-isSelected
-);
-
-button.setAttribute(
-"aria-selected",
-isSelected
-? "true"
-: "false"
-);
-});
-
-seasonImages.forEach(image => {
-image.classList.toggle(
-"active",
-image.dataset.seasonImage ===
-season
-);
-});
-}
-
-seasonButtons.forEach(button => {
-button.addEventListener(
-"click",
-() => {
-showSeason(
-button.dataset.season,
-true
-);
-}
-);
-});
-
-seasonAutomaticTimer =
-window.setTimeout(() => {
-if (seasonAutomaticFinished) {
 return;
 }
 
-showSeason(
-"winter",
+comfortImages[comfortIndex]
+.classList
+.remove("active");
+
+comfortImages[nextIndex]
+.classList
+.add("active");
+
+comfortIndex =
+nextIndex;
+
+if (manualChange) {
+restartComfortTimer();
+}
+}
+
+function advanceComfortImages() {
+if (comfortImages.length < 2) {
+return;
+}
+
+const nextIndex =
+(comfortIndex + 1) %
+comfortImages.length;
+
+showComfortImage(
+nextIndex,
 false
 );
+}
 
-seasonAutomaticFinished = true;
-seasonAutomaticTimer = null;
-}, 4800);
+function restartComfortTimer() {
+if (comfortTimer !== null) {
+window.clearInterval(
+comfortTimer
+);
+}
+
+comfortTimer =
+window.setInterval(
+advanceComfortImages,
+5000
+);
+}
+
+function showNextComfortManual() {
+const nextIndex =
+(comfortIndex + 1) %
+comfortImages.length;
+
+showComfortImage(
+nextIndex,
+true
+);
+}
+
+function showPreviousComfortManual() {
+const previousIndex =
+(
+comfortIndex -
+1 +
+comfortImages.length
+) %
+comfortImages.length;
+
+showComfortImage(
+previousIndex,
+true
+);
+}
+
+if (
+comfortSlideshow &&
+comfortImages.length > 1
+) {
+comfortSlideshow.addEventListener(
+"touchstart",
+event => {
+if (!event.touches.length) {
+return;
+}
+
+comfortTouchStartX =
+event.touches[0].clientX;
+
+comfortTouchStartY =
+event.touches[0].clientY;
+},
+{
+passive:true
+}
+);
+
+comfortSlideshow.addEventListener(
+"touchend",
+event => {
+if (!event.changedTouches.length) {
+return;
+}
+
+const touchEndX =
+event.changedTouches[0].clientX;
+
+const touchEndY =
+event.changedTouches[0].clientY;
+
+const horizontalDistance =
+touchEndX -
+comfortTouchStartX;
+
+const verticalDistance =
+touchEndY -
+comfortTouchStartY;
+
+if (
+Math.abs(horizontalDistance) < 45 ||
+Math.abs(horizontalDistance) <=
+Math.abs(verticalDistance)
+) {
+return;
+}
+
+if (horizontalDistance < 0) {
+showNextComfortManual();
+} else {
+showPreviousComfortManual();
+}
+},
+{
+passive:true
+}
+);
+
+restartComfortTimer();
+}
 
 /* ===============================
-   POPULAR SIZE CONTROLS
+POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3638,7 +3307,7 @@ glazing === "triple"
 });
 
 /* ===============================
-   TEMPORARY PRICE CALCULATOR
+TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
@@ -3718,561 +3387,6 @@ calculatePrice
 });
 
 calculatePrice();
-
-/* ===============================
-   CALCULATOR SCROLL REVEAL
-================================ */
-
-const homepageCalculator =
-document.getElementById(
-"homepageCalculator"
-);
-
-if (homepageCalculator) {
-const calculatorObserver =
-new IntersectionObserver(
-entries => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add(
-"is-visible"
-);
-
-calculatorObserver.unobserve(
-entry.target
-);
-}
-});
-},
-{
-threshold: .22,
-rootMargin:
-"0px 0px -8% 0px"
-}
-);
-
-calculatorObserver.observe(
-homepageCalculator
-);
-}
-
-/* ===============================
-   MOBILE TRUST-CARD EFFECT
-================================ */
-
-const trustZone =
-document.getElementById(
-"trustZone"
-);
-
-const trustCards =
-Array.from(
-document.querySelectorAll(
-".trust-item"
-)
-);
-
-const mobileMediaQuery =
-window.matchMedia(
-"(max-width: 560px)"
-);
-
-const reducedMotionQuery =
-window.matchMedia(
-"(prefers-reduced-motion: reduce)"
-);
-
-let scrollAnimationFrame = null;
-let previousScrollY = window.scrollY;
-let scrollDirection = "down";
-
-function clamp(
-value,
-minimum,
-maximum
-) {
-return Math.min(
-Math.max(
-value,
-minimum
-),
-maximum
-);
-}
-
-function mix(
-start,
-end,
-amount
-) {
-return start +
-((end - start) *
-amount);
-}
-
-function resetTrustCard(card) {
-card.dataset.passed =
-"false";
-
-card.style.removeProperty(
-"transform"
-);
-
-card.style.removeProperty(
-"border-color"
-);
-
-card.style.removeProperty(
-"box-shadow"
-);
-
-card.style.removeProperty(
-"background"
-);
-
-card.style.removeProperty(
-"z-index"
-);
-
-card.style.setProperty(
-"--gleam-x",
-"-160%"
-);
-
-card.style.setProperty(
-"--gleam-opacity",
-"0"
-);
-
-card.style.setProperty(
-"--glow-opacity",
-"0"
-);
-
-card.style.setProperty(
-"--title-colour",
-"#ffffff"
-);
-
-card.style.setProperty(
-"--text-colour",
-"#d8d8d8"
-);
-
-card.style.setProperty(
-"--title-spacing",
-"2.6px"
-);
-
-card.style.setProperty(
-"--title-scale",
-"1"
-);
-}
-
-function resetAllTrustCards() {
-trustCards.forEach(
-resetTrustCard
-);
-}
-
-function updateMobileTrustCards() {
-scrollAnimationFrame = null;
-
-const currentScrollY =
-window.scrollY;
-
-if (
-currentScrollY >
-previousScrollY + 1
-) {
-scrollDirection =
-"down";
-} else if (
-currentScrollY <
-previousScrollY - 1
-) {
-scrollDirection =
-"up";
-}
-
-previousScrollY =
-currentScrollY;
-
-if (
-!mobileMediaQuery.matches ||
-reducedMotionQuery.matches ||
-!trustZone ||
-trustCards.length === 0
-) {
-resetAllTrustCards();
-return;
-}
-
-const viewportHeight =
-window.innerHeight ||
-document.documentElement
-.clientHeight;
-
-const activePoint =
-viewportHeight * .84;
-
-const influenceDistance =
-viewportHeight * .76;
-
-const completionPoint =
-viewportHeight * .44;
-
-const upwardResetPoint =
-viewportHeight * .72;
-
-const trustBounds =
-trustZone
-.getBoundingClientRect();
-
-const sectionIsNearViewport =
-trustBounds.bottom >
--influenceDistance &&
-trustBounds.top <
-viewportHeight +
-influenceDistance;
-
-if (!sectionIsNearViewport) {
-if (
-trustBounds.top >
-viewportHeight
-) {
-resetAllTrustCards();
-}
-
-return;
-}
-
-trustCards.forEach(card => {
-const cardBounds =
-card.getBoundingClientRect();
-
-const cardCentre =
-cardBounds.top +
-(cardBounds.height / 2);
-
-if (
-scrollDirection === "down" &&
-cardCentre <=
-completionPoint
-) {
-card.dataset.passed =
-"true";
-}
-
-if (
-scrollDirection === "up" &&
-cardCentre >=
-upwardResetPoint
-) {
-card.dataset.passed =
-"false";
-}
-
-const hasPassed =
-card.dataset.passed ===
-"true";
-
-const distanceFromActivePoint =
-Math.abs(
-cardCentre -
-activePoint
-);
-
-let strength =
-1 -
-(
-distanceFromActivePoint /
-influenceDistance
-);
-
-strength =
-clamp(
-strength,
-0,
-1
-);
-
-strength =
-Math.pow(
-strength,
-.72
-);
-
-const lift =
-mix(
-0,
--7,
-strength
-);
-
-const scale =
-mix(
-1,
-1.025,
-strength
-);
-
-const borderAlpha =
-mix(
-.11,
-.76,
-strength
-);
-
-const whiteShadowAlpha =
-mix(
-0,
-.10,
-strength
-);
-
-const orangeShadowAlpha =
-mix(
-0,
-.10,
-strength
-);
-
-const darkShadowAlpha =
-mix(
-.28,
-.44,
-strength
-);
-
-const glowOpacity =
-mix(
-0,
-.78,
-strength
-);
-
-const gleamProgress =
-clamp(
-(
-(activePoint +
-influenceDistance) -
-cardCentre
-) /
-(
-influenceDistance *
-1.55
-),
-0,
-1
-);
-
-const gleamPosition =
-mix(
--160,
-500,
-gleamProgress
-);
-
-const gleamOpacity =
-strength > .03
-? clamp(
-strength * 1.18,
-0,
-1
-)
-: 0;
-
-const titleStrength =
-hasPassed
-? 1
-: strength;
-
-const titleRed =
-Math.round(
-mix(
-255,
-245,
-titleStrength
-)
-);
-
-const titleGreen =
-Math.round(
-mix(
-255,
-124,
-titleStrength
-)
-);
-
-const titleBlue =
-Math.round(
-mix(
-255,
-0,
-titleStrength
-)
-);
-
-const textValue =
-Math.round(
-mix(
-216,
-244,
-strength
-)
-);
-
-const titleSpacing =
-mix(
-2.6,
-3.3,
-titleStrength
-);
-
-const titleScale =
-mix(
-1,
-1.025,
-strength
-);
-
-card.style.transform =
-`translateY(${lift.toFixed(2)}px) scale(${scale.toFixed(4)})`;
-
-card.style.borderColor =
-`rgba(255,154,47,${borderAlpha.toFixed(3)})`;
-
-card.style.boxShadow =
-`0 ${mix(18,24,strength).toFixed(1)}px ${mix(50,62,strength).toFixed(1)}px rgba(255,255,255,${whiteShadowAlpha.toFixed(3)}),
-0 ${mix(18,24,strength).toFixed(1)}px ${mix(50,62,strength).toFixed(1)}px rgba(245,124,0,${orangeShadowAlpha.toFixed(3)}),
-0 ${mix(18,20,strength).toFixed(1)}px ${mix(50,46,strength).toFixed(1)}px rgba(0,0,0,${darkShadowAlpha.toFixed(3)})`;
-
-card.style.background =
-`linear-gradient(
-135deg,
-rgb(
-${Math.round(mix(12,17,strength))},
-${Math.round(mix(12,17,strength))},
-${Math.round(mix(12,17,strength))}
-),
-rgb(
-${Math.round(mix(20,27,strength))},
-${Math.round(mix(20,19,strength))},
-${Math.round(mix(20,13,strength))}
-)
-)`;
-
-card.style.zIndex =
-String(
-Math.round(
-1 +
-(strength * 5)
-)
-);
-
-card.style.setProperty(
-"--gleam-x",
-`${gleamPosition.toFixed(2)}%`
-);
-
-card.style.setProperty(
-"--gleam-opacity",
-gleamOpacity.toFixed(3)
-);
-
-card.style.setProperty(
-"--glow-opacity",
-glowOpacity.toFixed(3)
-);
-
-card.style.setProperty(
-"--title-colour",
-`rgb(${titleRed},${titleGreen},${titleBlue})`
-);
-
-card.style.setProperty(
-"--text-colour",
-`rgb(${textValue},${textValue},${textValue})`
-);
-
-card.style.setProperty(
-"--title-spacing",
-`${titleSpacing.toFixed(2)}px`
-);
-
-card.style.setProperty(
-"--title-scale",
-titleScale.toFixed(4)
-);
-});
-}
-
-function requestTrustCardUpdate() {
-if (
-scrollAnimationFrame !==
-null
-) {
-return;
-}
-
-scrollAnimationFrame =
-window.requestAnimationFrame(
-updateMobileTrustCards
-);
-}
-
-window.addEventListener(
-"scroll",
-requestTrustCardUpdate,
-{
-passive: true
-}
-);
-
-window.addEventListener(
-"resize",
-requestTrustCardUpdate
-);
-
-window.addEventListener(
-"orientationchange",
-requestTrustCardUpdate
-);
-
-if (
-typeof mobileMediaQuery
-.addEventListener ===
-"function"
-) {
-mobileMediaQuery.addEventListener(
-"change",
-requestTrustCardUpdate
-);
-} else {
-mobileMediaQuery.addListener(
-requestTrustCardUpdate
-);
-}
-
-if (
-typeof reducedMotionQuery
-.addEventListener ===
-"function"
-) {
-reducedMotionQuery.addEventListener(
-"change",
-requestTrustCardUpdate
-);
-} else {
-reducedMotionQuery.addListener(
-requestTrustCardUpdate
-);
-}
-
-requestTrustCardUpdate();
 </script>
 
 </body>
