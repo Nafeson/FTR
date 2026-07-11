@@ -14,8 +14,6 @@
 --navy:#102a44;
 --white:#fff;
 --muted:#d8d8d8;
---rooflight-scale:.84;
---rooflight-hover-scale:.88;
 }
 
 * {
@@ -135,6 +133,7 @@ background:rgba(5,5,5,.985);
 z-index:100;
 display:none;
 padding:55px 6%;
+overflow-y:auto;
 }
 
 .menu-overlay.active {
@@ -324,7 +323,7 @@ z-index:1;
 
 .product-grid {
 display:grid;
-grid-template-columns:repeat(2, minmax(0, 1fr));
+grid-template-columns:repeat(2,minmax(0,1fr));
 gap:18px;
 max-width:1180px;
 margin:0 auto;
@@ -383,38 +382,58 @@ z-index:4;
 }
 
 /* =================================
-PRODUCT IMAGE SCALE UPDATE
+PROPORTIONAL PRODUCT IMAGES
 ================================= */
 
 .image-wrap {
 width:100%;
 height:138px;
-background:#f5f5f5;
-border:1px solid rgba(255,255,255,.10);
+background:#ffffff;
+border:1px solid rgba(255,255,255,.18);
 overflow:hidden;
 position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
+isolation:isolate;
+}
+
+.image-wrap::before {
+content:"";
+position:absolute;
+inset:0;
+background:#ffffff;
+z-index:0;
+pointer-events:none;
 }
 
 .image-wrap img {
+position:relative;
+z-index:1;
 width:100%;
 height:100%;
 object-fit:contain;
 object-position:center;
 display:block;
-background:#f5f5f5;
-transform:scale(var(--rooflight-scale));
+background:#ffffff;
+transform:scale(var(--product-scale,.9));
 transform-origin:center;
+filter:
+brightness(1.075)
+contrast(1.035)
+saturate(.98);
 transition:
 transform .32s ease,
 filter .32s ease;
+will-change:transform;
 }
 
 .product-card:hover .image-wrap img {
-transform:scale(var(--rooflight-hover-scale));
-filter:brightness(1.06);
+transform:scale(var(--product-hover-scale,.94));
+filter:
+brightness(1.09)
+contrast(1.04)
+saturate(1);
 }
 
 .card-content {
@@ -655,7 +674,7 @@ grid-template-columns:1fr;
 }
 
 .product-grid {
-grid-template-columns:repeat(2, minmax(0, 1fr));
+grid-template-columns:repeat(2,minmax(0,1fr));
 gap:14px;
 }
 
@@ -706,7 +725,7 @@ padding:28px 6% 46px;
 }
 
 .product-grid {
-grid-template-columns:repeat(2, minmax(0, 1fr));
+grid-template-columns:repeat(2,minmax(0,1fr));
 gap:10px;
 }
 
@@ -764,6 +783,7 @@ font-size:10px;
 
 <div class="top-banner">
 <div class="ticker">
+
 <span>Popular listed rooflight sizes ready to order online</span>
 <span>Switch between double and triple glazing instantly</span>
 <span>Free delivery UK mainland on listed sizes</span>
@@ -775,6 +795,7 @@ font-size:10px;
 <span>Free delivery UK mainland on listed sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
+
 </div>
 </div>
 
@@ -852,12 +873,14 @@ aria-label="Close menu"
 </div>
 
 <div class="menu-links">
+
 <a href="index.html" onclick="closeMenu()">Home</a>
 <a href="#popular" onclick="closeMenu()">Popular</a>
 <a href="#standard" onclick="closeMenu()">Standard Sizes</a>
 <a href="index.html#calculator" onclick="closeMenu()">Build Custom</a>
 <a href="index.html#oversized" onclick="closeMenu()">Oversized</a>
 <a href="#contact" onclick="closeMenu()">Contact</a>
+
 </div>
 
 </div>
@@ -997,121 +1020,86 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 
 <script>
 const prices = {
-"600x600": {
-double: 220,
-triple: 270
-},
+"600x600": { double:220, triple:270 },
+"600x900": { double:250, triple:300 },
+"600x1200": { double:310, triple:370 },
+"600x1500": { double:360, triple:430 },
+"600x2000": { double:455, triple:540 },
 
-"600x900": {
-double: 250,
-triple: 300
-},
+"800x800": { double:290, triple:350 },
+"800x1200": { double:395, triple:470 },
+"800x1500": { double:455, triple:545 },
+"800x2000": { double:560, triple:675 },
 
-"600x1200": {
-double: 310,
-triple: 370
-},
+"1000x1000": { double:420, triple:505 },
+"1000x1500": { double:520, triple:625 },
+"1000x2000": { double:650, triple:780 },
+"1000x2500": { double:785, triple:945 },
 
-"600x1500": {
-double: 360,
-triple: 430
-},
+"1200x1200": { double:510, triple:615 },
 
-"600x2000": {
-double: 455,
-triple: 540
-},
-
-"800x800": {
-double: 290,
-triple: 350
-},
-
-"800x1200": {
-double: 395,
-triple: 470
-},
-
-"800x1500": {
-double: 455,
-triple: 545
-},
-
-"800x2000": {
-double: 560,
-triple: 675
-},
-
-"1000x1000": {
-double: 420,
-triple: 505
-},
-
-"1000x1500": {
-double: 520,
-triple: 625
-},
-
-"1000x2000": {
-double: 650,
-triple: 780
-},
-
-"1000x2500": {
-double: 785,
-triple: 945
-},
-
-"1200x1200": {
-double: 510,
-triple: 615
-},
-
-"1500x1500": {
-double: 760,
-triple: 910
-},
-
-"1500x1800": {
-double: 880,
-triple: 1075
-},
-
-"1500x2000": {
-double: 980,
-triple: 1180
-},
-
-"1500x2500": {
-double: 1225,
-triple: 1475
-}
+"1500x1500": { double:760, triple:910 },
+"1500x1800": { double:880, triple:1075 },
+"1500x2000": { double:980, triple:1180 },
+"1500x2500": { double:1225, triple:1475 }
 };
 
 const productImages = {
-"600x600": "small-square.png",
-"800x800": "medium-square.png",
+"600x600":"small-square.png",
+"800x800":"medium-square.png",
 
-"1000x1000": "large-square.png",
-"1200x1200": "large-square.png",
-"1500x1500": "large-square.png",
+"1000x1000":"large-square.png",
+"1200x1200":"large-square.png",
+"1500x1500":"large-square.png",
 
-"600x900": "small-rectangle.png",
+"600x900":"small-rectangle.png",
 
-"600x1200": "large-rectangle.png",
-"800x1200": "medium-rectangle.png",
+"600x1200":"large-rectangle.png",
+"800x1200":"medium-rectangle.png",
 
-"600x1500": "large-rectangle.png",
-"600x2000": "large-rectangle.png",
-"800x1500": "large-rectangle.png",
-"800x2000": "large-rectangle.png",
-"1000x1500": "large-rectangle.png",
-"1000x2000": "large-rectangle.png",
+"600x1500":"large-rectangle.png",
+"600x2000":"large-rectangle.png",
+"800x1500":"large-rectangle.png",
+"800x2000":"large-rectangle.png",
+"1000x1500":"large-rectangle.png",
+"1000x2000":"large-rectangle.png",
 
-"1000x2500": "jumbo.png",
-"1500x1800": "jumbo.png",
-"1500x2000": "jumbo.png",
-"1500x2500": "jumbo.png"
+"1000x2500":"jumbo.png",
+"1500x1800":"jumbo.png",
+"1500x2000":"jumbo.png",
+"1500x2500":"jumbo.png"
+};
+
+/*
+Each listed size now receives its own display scale.
+
+The values are visual presentation scales rather than
+physical measurements. They let customers immediately
+see that larger rooflights represent larger products.
+*/
+const productScales = {
+"600x600":0.70,
+"600x900":0.74,
+"600x1200":0.78,
+"600x1500":0.82,
+"600x2000":0.86,
+
+"800x800":0.82,
+"800x1200":0.86,
+"800x1500":0.90,
+"800x2000":0.94,
+
+"1000x1000":0.92,
+"1000x1500":0.97,
+"1000x2000":1.02,
+"1000x2500":1.07,
+
+"1200x1200":1.03,
+
+"1500x1500":1.13,
+"1500x1800":1.14,
+"1500x2000":1.16,
+"1500x2500":1.18
 };
 
 const popularSizes = [
@@ -1150,7 +1138,7 @@ return size.replace(
 }
 
 function getTopGlass(size) {
-const [width, length] =
+const [width,length] =
 size
 .split("x")
 .map(Number);
@@ -1185,11 +1173,31 @@ const imagePath =
 "./images/product-cards/" +
 imageFile;
 
+const productScale =
+productScales[size] ||
+0.90;
+
+const productHoverScale =
+Math.min(
+productScale + 0.035,
+1.22
+);
+
 const card =
 document.createElement("div");
 
 card.className =
 "product-card";
+
+card.style.setProperty(
+"--product-scale",
+productScale
+);
+
+card.style.setProperty(
+"--product-hover-scale",
+productHoverScale
+);
 
 card.innerHTML = `
 <div class="image-wrap">
@@ -1218,14 +1226,14 @@ ${formatSize(size)}
 <button
 type="button"
 class="active"
-onclick="setGlazing(this, '${size}', 'double')"
+onclick="setGlazing(this,'${size}','double')"
 >
 Double
 </button>
 
 <button
 type="button"
-onclick="setGlazing(this, '${size}', 'triple')"
+onclick="setGlazing(this,'${size}','triple')"
 >
 Triple
 </button>
@@ -1348,6 +1356,9 @@ document
 )
 .classList
 .add("active");
+
+document.body.style.overflow =
+"hidden";
 }
 
 function closeMenu() {
@@ -1357,6 +1368,9 @@ document
 )
 .classList
 .remove("active");
+
+document.body.style.overflow =
+"";
 }
 
 renderCards();
