@@ -239,7 +239,7 @@ OPENING STATEMENT
 .opening-section {
 position: relative;
 overflow: hidden;
-padding: 92px 6% 88px;
+padding: 92px 0 88px;
 background:
 radial-gradient(
 circle at 86% 22%,
@@ -263,6 +263,20 @@ transform: translateY(22px);
 animation: openingFade 1s ease .25s forwards;
 }
 
+.opening-copy-top,
+.opening-copy-bottom {
+padding-left: 6%;
+padding-right: 6%;
+}
+
+.opening-copy-top {
+padding-bottom: 42px;
+}
+
+.opening-copy-bottom {
+padding-top: 48px;
+}
+
 .opening-category {
 color: var(--orange);
 font-weight: 950;
@@ -276,7 +290,7 @@ margin-bottom: 25px;
 font-size: clamp(48px, 7vw, 94px);
 line-height: .93;
 max-width: 1080px;
-margin: 0 0 34px;
+margin: 0;
 color: var(--white);
 letter-spacing: -3px;
 }
@@ -311,21 +325,6 @@ overflow: hidden;
 background: #070707;
 border-top: 1px solid rgba(255,255,255,.08);
 border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.slideshow-heading-wrap {
-max-width: 1180px;
-margin: 0 auto;
-padding: 76px 6% 38px;
-}
-
-.slideshow-heading-wrap h2 {
-max-width: 960px;
-}
-
-.slideshow-heading-wrap p {
-max-width: 780px;
-margin-bottom: 0;
 }
 
 .slideshow-shell {
@@ -513,6 +512,11 @@ border-radius: 20px;
 background: var(--orange);
 }
 
+.interior-slideshow {
+border-top: 1px solid rgba(255,255,255,.08);
+border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
 .interior-slideshow .slideshow-shell {
 height: clamp(340px, 53vw, 700px);
 }
@@ -639,7 +643,7 @@ align-self: center;
 }
 
 /* ===============================
-LOW-E SOFTCOAT
+LOW-E SOFTCOAT INTERACTIVE PANEL
 ================================ */
 
 .low-e-section {
@@ -668,8 +672,8 @@ border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .low-e-intro {
-max-width: 1050px;
-margin: 0 auto 46px;
+max-width: 1120px;
+margin: 0 auto 34px;
 }
 
 .low-e-intro h2 {
@@ -682,69 +686,104 @@ margin-bottom: 0;
 font-size: 19px;
 }
 
-.low-e-grid {
+.season-switcher {
 max-width: 1120px;
 margin: 0 auto;
-display: grid;
-grid-template-columns: repeat(3, minmax(0, 1fr));
-gap: 20px;
 }
 
-.low-e-card {
+.season-controls {
+display: grid;
+grid-template-columns: 1fr 1fr;
+max-width: 420px;
+margin: 0 auto 18px;
+border: 1px solid rgba(255,255,255,.16);
+background: rgba(5,5,5,.68);
+}
+
+.season-button {
 position: relative;
-overflow: hidden;
-background:
-linear-gradient(
-145deg,
-rgba(255,255,255,.035),
-rgba(255,255,255,.015)
-);
-border: 1px solid rgba(255,255,255,.11);
-padding: 34px;
-min-height: 235px;
+border: 0;
+background: transparent;
+color: rgba(255,255,255,.70);
+padding: 14px 18px;
+font-family: inherit;
+font-size: 12px;
+font-weight: 950;
+letter-spacing: 1.4px;
+text-transform: uppercase;
+cursor: pointer;
 transition:
-transform .28s ease,
-border-color .28s ease,
+background .28s ease,
+color .28s ease,
 box-shadow .28s ease;
 }
 
-.low-e-card::before {
+.season-button + .season-button {
+border-left: 1px solid rgba(255,255,255,.16);
+}
+
+.season-button.active {
+background: var(--orange);
+color: #050505;
+box-shadow: 0 8px 28px rgba(245,124,0,.18);
+}
+
+.season-panel {
+position: relative;
+width: 100%;
+aspect-ratio: 16 / 6;
+min-height: 320px;
+max-height: 520px;
+overflow: hidden;
+background: #0a0a0a;
+border: 1px solid rgba(255,255,255,.11);
+box-shadow: 0 28px 80px rgba(0,0,0,.44);
+}
+
+.season-image {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center;
+opacity: 0;
+visibility: hidden;
+transform: scale(1.008);
+transition:
+opacity .85s ease,
+visibility .85s ease,
+transform .85s ease;
+}
+
+.season-image.active {
+opacity: 1;
+visibility: visible;
+transform: scale(1);
+}
+
+.season-panel::after {
 content: "";
 position: absolute;
-top: 0;
-left: 0;
-width: 72px;
-height: 3px;
-background: var(--orange);
+inset: 0;
+pointer-events: none;
+background:
+linear-gradient(
+180deg,
+rgba(0,0,0,.01) 0%,
+transparent 66%,
+rgba(0,0,0,.10) 100%
+);
 }
 
-.low-e-card:hover {
-transform: translateY(-5px);
-border-color: rgba(245,124,0,.45);
-box-shadow: 0 24px 60px rgba(0,0,0,.35);
-}
-
-.low-e-number {
-font-size: 11px;
-font-weight: 950;
-color: var(--orange);
-letter-spacing: 1.5px;
-text-transform: uppercase;
-margin-bottom: 25px;
-}
-
-.low-e-card h3 {
-font-size: 26px;
-line-height: 1.08;
-margin: 0 0 16px;
-color: var(--white);
-}
-
-.low-e-card p {
-font-size: 16px;
+.low-e-uv-note {
+max-width: 900px;
+margin: 22px auto 0;
+padding-left: 24px;
+border-left: 3px solid var(--orange);
+font-size: 14px;
 line-height: 1.65;
-margin: 0;
-color: var(--muted);
+color: rgba(255,255,255,.66);
 }
 
 /* ===============================
@@ -1625,17 +1664,12 @@ padding-top: 78px;
 padding-bottom: 76px;
 }
 
-.slideshow-heading-wrap {
-padding-top: 68px;
-}
-
 .home-popular-header {
 display: grid;
 gap: 18px;
 align-items: start;
 }
 
-.low-e-grid,
 .engineered-grid {
 grid-template-columns: 1fr;
 }
@@ -1702,7 +1736,15 @@ font-size: 16px;
 }
 
 .opening-section {
-padding: 62px 6% 64px;
+padding: 62px 0 64px;
+}
+
+.opening-copy-top {
+padding-bottom: 28px;
+}
+
+.opening-copy-bottom {
+padding-top: 34px;
 }
 
 .opening-section h1 {
@@ -1711,10 +1753,6 @@ font-size: 45px;
 
 .opening-section p {
 font-size: 18px;
-}
-
-.slideshow-heading-wrap {
-padding: 58px 6% 30px;
 }
 
 .slideshow-shell,
@@ -1760,9 +1798,34 @@ align-self: flex-start;
 padding: 68px 6%;
 }
 
-.low-e-card {
-min-height: auto;
-padding: 30px 24px;
+.low-e-intro p {
+font-size: 17px;
+}
+
+.season-controls {
+max-width: none;
+margin-bottom: 12px;
+}
+
+.season-button {
+padding: 13px 10px;
+font-size: 10px;
+}
+
+.season-panel {
+aspect-ratio: 16 / 8.7;
+min-height: 260px;
+max-height: none;
+}
+
+.season-image {
+object-position: center;
+}
+
+.low-e-uv-note {
+margin-top: 18px;
+font-size: 13px;
+padding-left: 16px;
 }
 
 .home-popular-section {
@@ -1917,6 +1980,10 @@ filter: none;
 transform: none;
 }
 
+.season-image {
+transition: none;
+}
+
 .home-product-card,
 .home-product-card::before,
 .home-product-image img {
@@ -1961,6 +2028,7 @@ transition: none;
 </div>
 
 <header>
+
 <div class="wordmark-wrap">
 
 <div class="wordmark">
@@ -1977,23 +2045,41 @@ Rooflights
 
 <div class="action-icons">
 
-<a href="mailto:" aria-label="Email Factory Toughened Rooflights" title="Email">
+<a
+href="mailto:"
+aria-label="Email Factory Toughened Rooflights"
+title="Email"
+>
 ✉
 </a>
 
-<a href="tel:" aria-label="Call Factory Toughened Rooflights" title="Phone">
+<a
+href="tel:"
+aria-label="Call Factory Toughened Rooflights"
+title="Phone"
+>
 📱
 </a>
 
-<button type="button" aria-label="View basket and checkout" title="Basket and checkout">
+<button
+type="button"
+aria-label="View basket and checkout"
+title="Basket and checkout"
+>
 💳
 </button>
 
-<button type="button" onclick="openMenu()" aria-label="Open menu" title="Menu">
+<button
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+title="Menu"
+>
 ☰
 </button>
 
 </div>
+
 </header>
 
 <div id="menuOverlay" class="menu-overlay">
@@ -2041,6 +2127,8 @@ aria-label="Close menu"
 
 <div class="opening-inner">
 
+<div class="opening-copy-top">
+
 <div class="opening-category">
 Frameless Flat Roof Skylights
 </div>
@@ -2049,36 +2137,11 @@ Frameless Flat Roof Skylights
 Modernising British Ceilings With Frameless Glass Design
 </h1>
 
-<p>
-The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
-With no visible internal frame, the glass creates the fullest possible sky view and allows
-natural light to become the main architectural feature of the room. It is why our dedicated
-team focuses specifically on producing frameless flat roof skylights.
-</p>
-
 </div>
 
-</section>
-
-<section class="slideshow-section interior-slideshow">
-
-<div class="slideshow-heading-wrap">
-
-<div class="section-label">
-The view from inside
-</div>
-
-<h2>
-Designed To Disappear Into The Ceiling
-</h2>
-
-<p>
-See the finished frameless appearance from inside the room. Each view is given time to
-settle before softly dissolving into the next, allowing the uninterrupted glass opening,
-clean ceiling line and fuller sky view to remain the focus.
-</p>
-
-</div>
+<div
+class="interior-slideshow"
+>
 
 <div
 class="slideshow-shell"
@@ -2134,6 +2197,21 @@ aria-label="Show interior image 3"
 
 </div>
 
+</div>
+
+<div class="opening-copy-bottom">
+
+<p>
+The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
+With no visible internal frame, the glass creates the fullest possible sky view and allows
+natural light to become the main architectural feature of the room. It is why our dedicated
+team focuses specifically on producing frameless flat roof skylights.
+</p>
+
+</div>
+
+</div>
+
 </section>
 
 <section class="buy-online-section">
@@ -2156,7 +2234,10 @@ build a made-to-order rooflight using the calculator below.
 
 <div class="hero-actions">
 
-<a href="standard-sizes.html" class="button">
+<a
+href="standard-sizes.html"
+class="button"
+>
 Shop Our Standard Sizes
 </a>
 
@@ -2164,11 +2245,17 @@ Shop Our Standard Sizes
 or
 </span>
 
-<a href="#calculator" class="button">
+<a
+href="#calculator"
+class="button"
+>
 Build Your Rooflight
 </a>
 
-<a href="#oversized" class="button secondary oversized-button">
+<a
+href="#oversized"
+class="button secondary oversized-button"
+>
 <span>Oversized Rooflights</span>
 <span class="button-size-note">+4.5 m²</span>
 </a>
@@ -2180,23 +2267,6 @@ Build Your Rooflight
 </section>
 
 <section class="slideshow-section exterior-slideshow">
-
-<div class="slideshow-heading-wrap">
-
-<div class="section-label">
-Made by specialists
-</div>
-
-<h2>
-Frameless Rooflights Moving Through Our Installation Process
-</h2>
-
-<p>
-A closer view of the rooflights from above, showing the product during preparation,
-handling and installation before it becomes the uninterrupted ceiling feature seen from inside.
-</p>
-
-</div>
 
 <div
 class="slideshow-shell"
@@ -2248,12 +2318,47 @@ alt="Frameless rooflight installation image six"
 
 <div class="slideshow-dots">
 
-<button type="button" class="slideshow-dot active" data-slide-index="0" aria-label="Show exterior image 1"></button>
-<button type="button" class="slideshow-dot" data-slide-index="1" aria-label="Show exterior image 2"></button>
-<button type="button" class="slideshow-dot" data-slide-index="2" aria-label="Show exterior image 3"></button>
-<button type="button" class="slideshow-dot" data-slide-index="3" aria-label="Show exterior image 4"></button>
-<button type="button" class="slideshow-dot" data-slide-index="4" aria-label="Show exterior image 5"></button>
-<button type="button" class="slideshow-dot" data-slide-index="5" aria-label="Show exterior image 6"></button>
+<button
+type="button"
+class="slideshow-dot active"
+data-slide-index="0"
+aria-label="Show exterior image 1"
+></button>
+
+<button
+type="button"
+class="slideshow-dot"
+data-slide-index="1"
+aria-label="Show exterior image 2"
+></button>
+
+<button
+type="button"
+class="slideshow-dot"
+data-slide-index="2"
+aria-label="Show exterior image 3"
+></button>
+
+<button
+type="button"
+class="slideshow-dot"
+data-slide-index="3"
+aria-label="Show exterior image 4"
+></button>
+
+<button
+type="button"
+class="slideshow-dot"
+data-slide-index="4"
+aria-label="Show exterior image 5"
+></button>
+
+<button
+type="button"
+class="slideshow-dot"
+data-slide-index="5"
+aria-label="Show exterior image 6"
+></button>
 
 </div>
 
@@ -2274,71 +2379,78 @@ Designed For Year-Round Comfort
 </h2>
 
 <p>
-The internal pane uses Low-E Softcoat energy-saving glass to improve the performance
-of the rooflight throughout the year, helping manage summer heat, retain warmth during
-winter and reduce damaging ultraviolet exposure inside the room.
+Low-E Softcoat glass helps reduce unwanted solar heat during warmer weather while retaining
+more warmth inside during colder periods, without sacrificing natural daylight.
 </p>
 
 </div>
 
-<div class="low-e-grid">
+<div class="season-switcher">
 
-<div class="low-e-card">
+<div
+class="season-controls"
+role="tablist"
+aria-label="Choose seasonal rooflight performance"
+>
 
-<div class="low-e-number">
-Summer comfort
+<button
+type="button"
+class="season-button active"
+data-season="summer"
+role="tab"
+aria-selected="true"
+aria-controls="seasonPanel"
+>
+Summer
+</button>
+
+<button
+type="button"
+class="season-button"
+data-season="winter"
+role="tab"
+aria-selected="false"
+aria-controls="seasonPanel"
+>
+Winter
+</button>
+
 </div>
 
-<h3>
-Helps Keep Rooms Cooler
-</h3>
+<div
+class="season-panel"
+id="seasonPanel"
+>
 
-<p>
-The energy-saving coating helps reduce unwanted heat transfer compared with basic
-uncoated rooflight glazing, supporting a more comfortable room during warmer weather.
+<img
+src="images/low-e-summer-performance.png"
+class="season-image active"
+data-season-image="summer"
+alt="Low-E Softcoat rooflight helping keep a room cooler in summer"
+/>
+
+<img
+src="images/low-e-winter-performance.png"
+class="season-image"
+data-season-image="winter"
+alt="Low-E Softcoat rooflight helping retain warmth in winter"
+/>
+
+</div>
+
+<p class="low-e-uv-note">
+The coating also helps reduce ultraviolet exposure that can contribute to fading across
+flooring, furniture, fabrics and other interior finishes.
 </p>
-
-</div>
-
-<div class="low-e-card">
-
-<div class="low-e-number">
-Winter efficiency
-</div>
-
-<h3>
-Helps Retain Warmth
-</h3>
-
-<p>
-Low-E Softcoat glass reflects more internal heat back towards the room, helping reduce
-heat loss through the rooflight during colder periods.
-</p>
-
-</div>
-
-<div class="low-e-card">
-
-<div class="low-e-number">
-Interior protection
-</div>
-
-<h3>
-Helps Reduce UV Exposure
-</h3>
-
-<p>
-The glass helps limit ultraviolet transmission, reducing the exposure that can contribute
-to fading across flooring, furnishings and other interior finishes.
-</p>
-
-</div>
 
 </div>
 
 </section>
 
-<section class="home-popular-section" id="homepagePopular">
+<section
+class="home-popular-section"
+id="homepagePopular"
+>
 
 <div class="home-popular-header">
 
@@ -2363,13 +2475,19 @@ Switch between double and triple glazing to see the price instantly.
 
 <div class="home-popular-grid">
 
-<div class="home-product-card" data-double-price="395" data-triple-price="470">
+<div
+class="home-product-card"
+data-double-price="395"
+data-triple-price="470"
+>
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/medium-rectangle.png"
 alt="800mm by 1200mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2387,8 +2505,22 @@ alt="800mm by 1200mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2412,7 +2544,10 @@ Price
 
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2422,13 +2557,19 @@ View Size
 
 </div>
 
-<div class="home-product-card" data-double-price="510" data-triple-price="615">
+<div
+class="home-product-card"
+data-double-price="510"
+data-triple-price="615"
+>
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/large-square.png"
 alt="1200mm by 1200mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2446,8 +2587,22 @@ alt="1200mm by 1200mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2471,7 +2626,10 @@ Price
 
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2481,13 +2639,19 @@ View Size
 
 </div>
 
-<div class="home-product-card" data-double-price="520" data-triple-price="625">
+<div
+class="home-product-card"
+data-double-price="520"
+data-triple-price="625"
+>
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/large-rectangle.png"
 alt="1000mm by 1500mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2505,8 +2669,22 @@ alt="1000mm by 1500mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2530,7 +2708,10 @@ Price
 
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2540,13 +2721,19 @@ View Size
 
 </div>
 
-<div class="home-product-card" data-double-price="880" data-triple-price="1075">
+<div
+class="home-product-card"
+data-double-price="880"
+data-triple-price="1075"
+>
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/jumbo.png"
 alt="1500mm by 1800mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2564,8 +2751,22 @@ alt="1500mm by 1800mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2589,7 +2790,10 @@ Price
 
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2603,7 +2807,10 @@ View Size
 
 <div class="home-popular-footer">
 
-<a href="standard-sizes.html" class="button secondary">
+<a
+href="standard-sizes.html"
+class="button secondary"
+>
 View All Standard Sizes
 </a>
 
@@ -2656,7 +2863,10 @@ One specialist team from order to production
 
 </section>
 
-<section class="trust-zone" id="trustZone">
+<section
+class="trust-zone"
+id="trustZone"
+>
 
 <div class="trust-strip">
 
@@ -2704,9 +2914,15 @@ Available on listed sizes, with larger units quoted clearly before order.
 
 </section>
 
-<section id="calculator" class="calculator-wrap">
+<section
+id="calculator"
+class="calculator-wrap"
+>
 
-<div class="calculator" id="homepageCalculator">
+<div
+class="calculator"
+id="homepageCalculator"
+>
 
 <div class="section-label">
 Build online
@@ -2793,7 +3009,10 @@ Glass Finish
 Estimated Online Price
 </div>
 
-<div class="price" id="price">
+<div
+class="price"
+id="price"
+>
 £580
 </div>
 
@@ -2803,7 +3022,10 @@ Includes VAT. Free mainland UK delivery applies on listed sizes.
 
 </div>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Order Online Soon
 </a>
 
@@ -2890,7 +3112,10 @@ retaining the clean frameless appearance.
 
 </section>
 
-<section id="oversized" class="oversized-section">
+<section
+id="oversized"
+class="oversized-section"
+>
 
 <div class="oversized">
 
@@ -2907,7 +3132,10 @@ Need something larger than the listed range? We can quote oversized custom frame
 rooflights up to approximately 5800mm, including specialist delivery pricing.
 </p>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Request Oversized Quote
 </a>
 
@@ -2946,7 +3174,8 @@ document
 .classList
 .add("active");
 
-document.body.style.overflow = "hidden";
+document.body.style.overflow =
+"hidden";
 }
 
 function closeMenu() {
@@ -2955,7 +3184,8 @@ document
 .classList
 .remove("active");
 
-document.body.style.overflow = "";
+document.body.style.overflow =
+"";
 }
 
 /* ===============================
@@ -2970,7 +3200,9 @@ runOnce,
 initialDelay = 0
 }) {
 const container =
-document.getElementById(containerId);
+document.getElementById(
+containerId
+);
 
 if (!container) {
 return null;
@@ -2978,12 +3210,16 @@ return null;
 
 const slides =
 Array.from(
-container.querySelectorAll(".slideshow-slide")
+container.querySelectorAll(
+".slideshow-slide"
+)
 );
 
 const dots =
 Array.from(
-container.querySelectorAll(".slideshow-dot")
+container.querySelectorAll(
+".slideshow-dot"
+)
 );
 
 if (slides.length === 0) {
@@ -3029,7 +3265,10 @@ index === currentIndex
 
 function clearTimer() {
 if (timer !== null) {
-window.clearTimeout(timer);
+window.clearTimeout(
+timer
+);
+
 timer = null;
 }
 }
@@ -3290,9 +3529,9 @@ showSlide
 
 /*
 Interior slideshow:
-7 seconds to view each image.
-1.3 second soft dissolve.
-Continues cycling gently until manually changed.
+7 seconds per image.
+1.3-second soft dissolve.
+Continues cycling gently.
 */
 createSlideshow({
 containerId: "interiorSlideshow",
@@ -3305,9 +3544,9 @@ initialDelay: 7000
 /*
 Exterior slideshow:
 5.8 seconds per image.
-0.95 second dissolve.
-Runs through six images, returns to image one,
-then remains there unless manually changed.
+0.95-second dissolve.
+Runs through all six images,
+returns to the first and then stops.
 */
 createSlideshow({
 containerId: "exteriorSlideshow",
@@ -3318,12 +3557,114 @@ initialDelay: 5800
 });
 
 /* ===============================
+SEASON PERFORMANCE PANEL
+================================ */
+
+const seasonButtons =
+Array.from(
+document.querySelectorAll(
+".season-button"
+)
+);
+
+const seasonImages =
+Array.from(
+document.querySelectorAll(
+".season-image"
+)
+);
+
+let seasonAutomaticTimer = null;
+let seasonAutomaticFinished = false;
+
+function showSeason(
+season,
+manualChange = false
+) {
+if (manualChange) {
+seasonAutomaticFinished = true;
+
+if (
+seasonAutomaticTimer !== null
+) {
+window.clearTimeout(
+seasonAutomaticTimer
+);
+
+seasonAutomaticTimer = null;
+}
+}
+
+seasonButtons.forEach(button => {
+const isSelected =
+button.dataset.season ===
+season;
+
+button.classList.toggle(
+"active",
+isSelected
+);
+
+button.setAttribute(
+"aria-selected",
+isSelected
+? "true"
+: "false"
+);
+});
+
+seasonImages.forEach(image => {
+image.classList.toggle(
+"active",
+image.dataset.seasonImage ===
+season
+);
+});
+}
+
+seasonButtons.forEach(button => {
+button.addEventListener(
+"click",
+() => {
+showSeason(
+button.dataset.season,
+true
+);
+}
+);
+});
+
+/*
+Summer appears first.
+
+After 4.8 seconds it dissolves to Winter once.
+Winter then remains until the visitor chooses
+Summer or Winter manually.
+*/
+seasonAutomaticTimer =
+window.setTimeout(() => {
+if (seasonAutomaticFinished) {
+return;
+}
+
+showSeason(
+"winter",
+false
+);
+
+seasonAutomaticFinished = true;
+seasonAutomaticTimer = null;
+}, 4800);
+
+/* ===============================
 POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
 Array.from(
-document.querySelectorAll(".home-product-card")
+document.querySelectorAll(
+".home-product-card"
+)
 );
 
 homepageProductCards.forEach(card => {
@@ -3382,22 +3723,31 @@ TEMPORARY PRICE CALCULATOR
 function calculatePrice() {
 const width =
 Number(
-document.getElementById("width").value
+document
+.getElementById("width")
+.value
 );
 
 const length =
 Number(
-document.getElementById("length").value
+document
+.getElementById("length")
+.value
 );
 
 const glazing =
-document.getElementById("glazing").value;
+document
+.getElementById("glazing")
+.value;
 
 const finish =
-document.getElementById("finish").value;
+document
+.getElementById("finish")
+.value;
 
 const area =
-(width * length) / 1000000;
+(width * length) /
+1000000;
 
 let baseRate =
 glazing === "double"
@@ -3408,7 +3758,8 @@ let price =
 area * baseRate;
 
 if (finish !== "Clear") {
-price += area * 45;
+price +=
+area * 45;
 }
 
 price += 90;
@@ -3430,11 +3781,14 @@ price = 300;
 document
 .getElementById("price")
 .innerText =
-"£" + Math.round(price);
+"£" +
+Math.round(price);
 }
 
 document
-.querySelectorAll("input, select")
+.querySelectorAll(
+"input, select"
+)
 .forEach(element => {
 element.addEventListener(
 "input",
@@ -3449,7 +3803,9 @@ CALCULATOR SCROLL REVEAL
 ================================ */
 
 const homepageCalculator =
-document.getElementById("homepageCalculator");
+document.getElementById(
+"homepageCalculator"
+);
 
 if (homepageCalculator) {
 const calculatorObserver =
@@ -3469,7 +3825,8 @@ entry.target
 },
 {
 threshold: .22,
-rootMargin: "0px 0px -8% 0px"
+rootMargin:
+"0px 0px -8% 0px"
 }
 );
 
@@ -3483,24 +3840,35 @@ MOBILE TRUST-CARD EFFECT
 ================================ */
 
 const trustZone =
-document.getElementById("trustZone");
+document.getElementById(
+"trustZone"
+);
 
 const trustCards =
 Array.from(
-document.querySelectorAll(".trust-item")
+document.querySelectorAll(
+".trust-item"
+)
 );
 
 const mobileMediaQuery =
-window.matchMedia("(max-width: 560px)");
+window.matchMedia(
+"(max-width: 560px)"
+);
 
 const reducedMotionQuery =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
 );
 
-let scrollAnimationFrame = null;
-let previousScrollY = window.scrollY;
-let scrollDirection = "down";
+let scrollAnimationFrame =
+null;
+
+let previousScrollY =
+window.scrollY;
+
+let scrollDirection =
+"down";
 
 function clamp(
 value,
@@ -3508,7 +3876,10 @@ minimum,
 maximum
 ) {
 return Math.min(
-Math.max(value, minimum),
+Math.max(
+value,
+minimum
+),
 maximum
 );
 }
@@ -3519,17 +3890,33 @@ end,
 amount
 ) {
 return start +
-((end - start) * amount);
+((end - start) *
+amount);
 }
 
 function resetTrustCard(card) {
-card.dataset.passed = "false";
+card.dataset.passed =
+"false";
 
-card.style.removeProperty("transform");
-card.style.removeProperty("border-color");
-card.style.removeProperty("box-shadow");
-card.style.removeProperty("background");
-card.style.removeProperty("z-index");
+card.style.removeProperty(
+"transform"
+);
+
+card.style.removeProperty(
+"border-color"
+);
+
+card.style.removeProperty(
+"box-shadow"
+);
+
+card.style.removeProperty(
+"background"
+);
+
+card.style.removeProperty(
+"z-index"
+);
 
 card.style.setProperty(
 "--gleam-x",
@@ -3574,7 +3961,8 @@ resetTrustCard
 }
 
 function updateMobileTrustCards() {
-scrollAnimationFrame = null;
+scrollAnimationFrame =
+null;
 
 const currentScrollY =
 window.scrollY;
@@ -3583,12 +3971,14 @@ if (
 currentScrollY >
 previousScrollY + 1
 ) {
-scrollDirection = "down";
+scrollDirection =
+"down";
 } else if (
 currentScrollY <
 previousScrollY - 1
 ) {
-scrollDirection = "up";
+scrollDirection =
+"up";
 }
 
 previousScrollY =
@@ -3606,22 +3996,24 @@ return;
 
 const viewportHeight =
 window.innerHeight ||
-document.documentElement.clientHeight;
+document.documentElement
+.clientHeight;
 
 const activePoint =
-viewportHeight * 0.84;
+viewportHeight * .84;
 
 const influenceDistance =
-viewportHeight * 0.76;
+viewportHeight * .76;
 
 const completionPoint =
-viewportHeight * 0.44;
+viewportHeight * .44;
 
 const upwardResetPoint =
-viewportHeight * 0.72;
+viewportHeight * .72;
 
 const trustBounds =
-trustZone.getBoundingClientRect();
+trustZone
+.getBoundingClientRect();
 
 const sectionIsNearViewport =
 trustBounds.bottom >
@@ -3651,24 +4043,30 @@ cardBounds.top +
 
 if (
 scrollDirection === "down" &&
-cardCentre <= completionPoint
+cardCentre <=
+completionPoint
 ) {
-card.dataset.passed = "true";
+card.dataset.passed =
+"true";
 }
 
 if (
 scrollDirection === "up" &&
-cardCentre >= upwardResetPoint
+cardCentre >=
+upwardResetPoint
 ) {
-card.dataset.passed = "false";
+card.dataset.passed =
+"false";
 }
 
 const hasPassed =
-card.dataset.passed === "true";
+card.dataset.passed ===
+"true";
 
 const distanceFromActivePoint =
 Math.abs(
-cardCentre - activePoint
+cardCentre -
+activePoint
 );
 
 let strength =
@@ -3692,25 +4090,53 @@ strength,
 );
 
 const lift =
-mix(0, -7, strength);
+mix(
+0,
+-7,
+strength
+);
 
 const scale =
-mix(1, 1.025, strength);
+mix(
+1,
+1.025,
+strength
+);
 
 const borderAlpha =
-mix(.11, .76, strength);
+mix(
+.11,
+.76,
+strength
+);
 
 const whiteShadowAlpha =
-mix(0, .10, strength);
+mix(
+0,
+.10,
+strength
+);
 
 const orangeShadowAlpha =
-mix(0, .10, strength);
+mix(
+0,
+.10,
+strength
+);
 
 const darkShadowAlpha =
-mix(.28, .44, strength);
+mix(
+.28,
+.44,
+strength
+);
 
 const glowOpacity =
-mix(0, .78, strength);
+mix(
+0,
+.78,
+strength
+);
 
 const gleamProgress =
 clamp(
@@ -3871,7 +4297,8 @@ titleScale.toFixed(4)
 
 function requestTrustCardUpdate() {
 if (
-scrollAnimationFrame !== null
+scrollAnimationFrame !==
+null
 ) {
 return;
 }
