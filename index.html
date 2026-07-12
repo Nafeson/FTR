@@ -45,6 +45,10 @@ img {
 max-width:100%;
 }
 
+/* ===============================
+TOP MOVING BANNER
+================================ */
+
 .top-banner {
 background:var(--orange);
 color:#050505;
@@ -76,6 +80,10 @@ to {
 transform:translateX(-50%);
 }
 }
+
+/* ===============================
+HEADER
+================================ */
 
 header {
 background:rgba(5,5,5,.96);
@@ -178,7 +186,7 @@ transform:translateY(-2px);
 }
 
 /* ===============================
-   STATIC LEAD-TIME BANNER
+STATIC LEAD-TIME BANNER
 ================================ */
 
 .lead-time-banner {
@@ -347,6 +355,10 @@ opacity:0;
 }
 }
 
+/* ===============================
+MENU
+================================ */
+
 .menu-overlay {
 position:fixed;
 inset:0;
@@ -403,7 +415,7 @@ padding-left:12px;
 }
 
 /* ===============================
-   SHARED TEXT
+SHARED TEXT
 ================================ */
 
 .section-label {
@@ -438,7 +450,7 @@ font-size:17px;
 }
 
 /* ===============================
-   SCROLL REVEALS
+SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -484,7 +496,7 @@ transition-delay:.32s;
 }
 
 /* ===============================
-   POPULAR SIZES
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -848,13 +860,13 @@ justify-content:center;
 }
 
 /* ===============================
-   DESIGN SECTION
+DESIGN SECTION
 ================================ */
 
 .opening-section {
 position:relative;
 overflow:hidden;
-padding:92px 0 94px;
+padding:92px 0 78px;
 background:
 radial-gradient(
 circle at 86% 22%,
@@ -904,13 +916,13 @@ background:#050505;
 display:block;
 width:100%;
 height:auto;
-aspect-ratio:1 / 1;
+aspect-ratio:16 / 10;
 object-fit:cover;
 object-position:center;
 }
 
 /* ===============================
-   DEDICATED TEAM
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1000,7 +1012,7 @@ background:var(--orange);
 }
 
 /* ===============================
-   TRUST CARDS
+TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1023,7 +1035,7 @@ linear-gradient(
 #0b0b0b 45%,
 #101010 100%
 );
-padding:76px 6% 82px;
+padding:72px 6% 86px;
 border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
@@ -1048,6 +1060,23 @@ transform:skewY(-6deg) scale(1.2);
 pointer-events:none;
 }
 
+.trust-heading {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto 34px;
+}
+
+.trust-heading .section-label {
+margin-bottom:13px;
+}
+
+.trust-heading h2 {
+max-width:940px;
+font-size:clamp(35px,5vw,64px);
+margin:0;
+}
+
 .trust-strip {
 max-width:1120px;
 margin:auto;
@@ -1065,11 +1094,51 @@ padding:34px 38px;
 background:linear-gradient(135deg,#0c0c0c,#141414);
 border:1px solid rgba(255,255,255,.11);
 box-shadow:0 18px 50px rgba(0,0,0,.28);
+opacity:0;
+transform:translateY(76px) scale(.965);
 transition:
-transform .28s ease,
+opacity .8s ease,
+transform .95s cubic-bezier(.18,.72,.28,1),
 border-color .28s ease,
 box-shadow .28s ease,
 background .28s ease;
+will-change:opacity,transform;
+}
+
+.trust-item:nth-child(2) {
+transition-delay:.07s;
+}
+
+.trust-item:nth-child(3) {
+transition-delay:.14s;
+}
+
+.trust-item.is-in-view {
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+.trust-item::before {
+content:"";
+position:absolute;
+inset:0;
+z-index:0;
+background:
+linear-gradient(
+118deg,
+transparent 0%,
+transparent 38%,
+rgba(245,124,0,.11) 48%,
+transparent 60%,
+transparent 100%
+);
+transform:translateX(-115%);
+transition:transform .9s ease .2s;
+pointer-events:none;
+}
+
+.trust-item.is-in-view::before {
+transform:translateX(115%);
 }
 
 .trust-item strong {
@@ -1094,41 +1163,258 @@ max-width:860px;
 display:block;
 }
 
-.trust-item .fast-number-4 {
+/* ===============================
+FIRE NUMBER FOUR
+================================ */
+
+.fast-number-wrap {
+position:relative;
+display:inline-flex;
+align-items:flex-end;
+justify-content:center;
+width:.88em;
+height:1.15em;
+margin:0 .12em;
+vertical-align:-.13em;
+overflow:visible;
+isolation:isolate;
+}
+
+.fast-number-4 {
+position:relative;
+z-index:4;
 display:inline-block;
-vertical-align:-.07em;
-margin:0 .10em;
 font-family:
 "Arial Black",
 "Impact",
 "Arial Narrow",
-"Space Grotesk",
 sans-serif;
-font-size:1.55em;
+font-size:1.45em;
 font-weight:950;
 font-style:italic;
-line-height:.72;
-letter-spacing:-.08em;
-color:transparent;
+line-height:.85;
+letter-spacing:-.12em;
+color:#ff3918;
+text-shadow:
+0 1px 0 #ffb07b,
+0 2px 0 #d82c0b,
+0 3px 0 #941b06,
+0 5px 8px rgba(0,0,0,.75);
+animation:numberHeat 9s ease-in-out infinite;
+}
+
+.fast-number-wrap::before {
+content:"";
+position:absolute;
+z-index:2;
+left:50%;
+bottom:38%;
+width:120%;
+height:125%;
+transform:translateX(-50%) scale(.1);
+transform-origin:center bottom;
+opacity:0;
 background:
-linear-gradient(
-145deg,
-#fff1dd 0%,
-#ffbf72 14%,
-#ff681d 38%,
-#ff2e10 57%,
-#9e1205 78%,
-#ff7c22 100%
+radial-gradient(
+ellipse at 50% 90%,
+#fff7a8 0%,
+#ffd746 16%,
+#ff7a16 38%,
+#ff2c09 58%,
+rgba(150,12,0,.65) 72%,
+transparent 74%
 );
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
 filter:
-drop-shadow(0 1px 0 #ff9b42)
-drop-shadow(0 2px 0 #b62b08)
-drop-shadow(0 4px 0 #611003)
-drop-shadow(0 8px 10px rgba(0,0,0,.70));
-transform:skewX(-5deg);
+blur(.4px)
+drop-shadow(0 -3px 8px rgba(255,70,12,.75));
+clip-path:polygon(
+50% 0%,
+62% 22%,
+74% 10%,
+78% 42%,
+96% 34%,
+85% 70%,
+100% 83%,
+65% 92%,
+50% 100%,
+35% 91%,
+3% 82%,
+17% 65%,
+3% 43%,
+27% 44%,
+31% 13%
+);
+animation:numberFlame 9s ease-in-out infinite;
+pointer-events:none;
+}
+
+.fast-number-wrap::after {
+content:"";
+position:absolute;
+z-index:1;
+left:50%;
+top:-22%;
+width:145%;
+height:105%;
+transform:translateX(-50%) translateY(15px) scale(.5);
+opacity:0;
+background:
+radial-gradient(
+ellipse at 32% 62%,
+rgba(210,210,210,.70) 0%,
+rgba(110,110,110,.35) 35%,
+transparent 68%
+),
+radial-gradient(
+ellipse at 70% 34%,
+rgba(180,180,180,.58) 0%,
+rgba(90,90,90,.28) 38%,
+transparent 70%
+);
+filter:blur(4px);
+animation:numberSmoke 9s ease-out infinite;
+pointer-events:none;
+}
+
+@keyframes numberHeat {
+0%,
+37%,
+100% {
+color:#ff3918;
+filter:none;
+transform:skewX(-4deg) scale(1);
+}
+
+43% {
+color:#ff5a17;
+filter:
+brightness(1.2)
+drop-shadow(0 0 4px rgba(255,80,0,.60));
+transform:skewX(-4deg) scale(1.04);
+}
+
+51% {
+color:#ff8a20;
+filter:
+brightness(1.45)
+drop-shadow(0 0 9px rgba(255,80,0,.95));
+transform:skewX(-5deg) scale(1.10);
+}
+
+58% {
+color:#ff4b11;
+filter:
+brightness(1.15)
+drop-shadow(0 0 4px rgba(255,50,0,.50));
+transform:skewX(-4deg) scale(1.02);
+}
+
+67% {
+color:#ba2410;
+filter:saturate(.75);
+transform:skewX(-4deg) scale(.99);
+}
+
+77% {
+color:#ff3918;
+filter:none;
+transform:skewX(-4deg) scale(1);
+}
+}
+
+@keyframes numberFlame {
+0%,
+38%,
+68%,
+100% {
+opacity:0;
+transform:
+translateX(-50%)
+scale(.12,.08);
+}
+
+43% {
+opacity:.35;
+transform:
+translateX(-50%)
+scale(.55,.60)
+rotate(-2deg);
+}
+
+49% {
+opacity:.98;
+transform:
+translateX(-50%)
+scale(.95,1.12)
+rotate(2deg);
+}
+
+54% {
+opacity:.90;
+transform:
+translateX(-50%)
+scale(1.14,.96)
+rotate(-3deg);
+}
+
+59% {
+opacity:.58;
+transform:
+translateX(-50%)
+scale(.82,.68)
+rotate(2deg);
+}
+
+65% {
+opacity:0;
+transform:
+translateX(-50%)
+scale(.36,.26);
+}
+}
+
+@keyframes numberSmoke {
+0%,
+53%,
+100% {
+opacity:0;
+transform:
+translateX(-50%)
+translateY(16px)
+scale(.3);
+}
+
+59% {
+opacity:.15;
+transform:
+translateX(-50%)
+translateY(5px)
+scale(.55);
+}
+
+66% {
+opacity:.58;
+transform:
+translateX(-50%)
+translateY(-8px)
+scale(.90);
+}
+
+74% {
+opacity:.32;
+transform:
+translateX(-46%)
+translateY(-25px)
+scale(1.15);
+}
+
+83% {
+opacity:0;
+transform:
+translateX(-42%)
+translateY(-42px)
+scale(1.35);
+}
 }
 
 .trust-item .lead-time-note {
@@ -1140,12 +1426,15 @@ letter-spacing:.35px;
 }
 
 .trust-item:hover {
-transform:translateY(-7px) scale(1.025);
 border-color:rgba(255,154,47,.75);
 background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
 0 24px 62px rgba(245,124,0,.17),
 0 20px 46px rgba(0,0,0,.42);
+}
+
+.trust-item.is-in-view:hover {
+transform:translateY(-7px) scale(1.018);
 }
 
 .trust-item:hover strong {
@@ -1154,7 +1443,68 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-   BUY ONLINE
+ORDER TRANSITION
+================================ */
+
+.order-transition {
+position:relative;
+overflow:hidden;
+padding:72px 6% 66px;
+text-align:center;
+background:
+radial-gradient(
+circle at 50% 100%,
+rgba(245,124,0,.16),
+transparent 40%
+),
+linear-gradient(
+180deg,
+#070707 0%,
+#0d0d0d 100%
+);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.order-transition::before {
+content:"";
+position:absolute;
+top:0;
+left:50%;
+width:min(1120px,88%);
+height:1px;
+transform:translateX(-50%);
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(245,124,0,.78),
+transparent
+);
+}
+
+.order-transition-inner {
+max-width:980px;
+margin:0 auto;
+}
+
+.order-transition .section-label {
+margin-bottom:14px;
+}
+
+.order-transition h2 {
+margin:0;
+font-size:clamp(38px,6vw,76px);
+letter-spacing:-2px;
+}
+
+.order-transition p {
+max-width:720px;
+margin:20px auto 0;
+font-size:18px;
+}
+
+/* ===============================
+BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -1318,7 +1668,7 @@ align-self:center;
 }
 
 /* ===============================
-   YEAR-ROUND COMFORT
+YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -1421,7 +1771,7 @@ color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-   CALCULATOR
+CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -1560,7 +1910,7 @@ color:var(--muted);
 }
 
 /* ===============================
-   LOWER SECTIONS
+LOWER SECTIONS
 ================================ */
 
 .engineered {
@@ -1620,6 +1970,10 @@ max-width:1080px;
 margin:auto;
 }
 
+/* ===============================
+FOOTER
+================================ */
+
 footer {
 background:#050505;
 border-top:1px solid rgba(255,255,255,.10);
@@ -1650,7 +2004,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-   TABLET
+TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -1688,7 +2042,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-   MOBILE
+MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -1823,7 +2177,7 @@ font-size:9px;
 }
 
 .opening-section {
-padding:64px 0 68px;
+padding:64px 0 58px;
 }
 
 .opening-section h2 {
@@ -1836,7 +2190,7 @@ margin-bottom:34px;
 }
 
 .interior-static-image {
-aspect-ratio:1 / 1;
+aspect-ratio:4 / 3;
 object-fit:cover;
 object-position:center;
 }
@@ -1859,15 +2213,40 @@ font-size:17px;
 }
 
 .trust-zone {
-padding:58px 6% 64px;
+padding:56px 6% 64px;
+}
+
+.trust-heading {
+margin-bottom:26px;
+}
+
+.trust-heading h2 {
+font-size:38px;
 }
 
 .trust-item {
 padding:30px 24px;
+transform:translateY(58px) scale(.975);
 }
 
-.trust-item .fast-number-4 {
-font-size:1.45em;
+.fast-number-wrap {
+width:.84em;
+}
+
+.fast-number-4 {
+font-size:1.35em;
+}
+
+.order-transition {
+padding:56px 6% 52px;
+}
+
+.order-transition h2 {
+font-size:42px;
+}
+
+.order-transition p {
+font-size:16px;
 }
 
 .buy-online-section {
@@ -1996,14 +2375,18 @@ scroll-behavior:auto;
 
 .ticker,
 .home-popular-section::before,
-.lead-time-message::after {
+.lead-time-message::after,
+.fast-number-4,
+.fast-number-wrap::before,
+.fast-number-wrap::after {
 animation:none;
 }
 
 .reveal,
 .reveal.reveal-left,
 .reveal.reveal-right,
-.reveal.reveal-scale {
+.reveal.reveal-scale,
+.trust-item {
 opacity:1;
 transform:none;
 transition:none;
@@ -2096,7 +2479,10 @@ title="Menu"
 
 </header>
 
-<section class="lead-time-banner" aria-label="Current manufacturing lead time">
+<section
+class="lead-time-banner"
+aria-label="Current manufacturing lead time"
+>
 
 <div class="lead-time-inner">
 
@@ -2164,7 +2550,10 @@ stroke="currentColor"
 <span class="lead-time-red">Lead Time</span>
 </span>
 
-<span class="lead-time-divider" aria-hidden="true">
+<span
+class="lead-time-divider"
+aria-hidden="true"
+>
 —
 </span>
 
@@ -2181,7 +2570,10 @@ From 4 Working Days
 
 </section>
 
-<div id="menuOverlay" class="menu-overlay">
+<div
+id="menuOverlay"
+class="menu-overlay"
+>
 
 <div class="menu-top">
 
@@ -2638,18 +3030,12 @@ of our dedicated frameless rooflight team.
 </p>
 
 <p class="reveal reveal-delay-1">
-Your order does not need to pass through unrelated product departments or external
-distributors. It moves into a focused production process managed by people who work
-specifically with this style of rooflight.
-</p>
-
-<p class="reveal reveal-delay-2">
 That specialist focus helps us maintain consistent quality, dependable lead times
 and clear communication from the specification you approve through to final preparation
 and delivery.
 </p>
 
-<div class="direct-assurance reveal reveal-delay-3">
+<div class="direct-assurance reveal reveal-delay-2">
 One specialist team from order to production
 </div>
 
@@ -2664,21 +3050,34 @@ class="trust-zone"
 id="trustZone"
 >
 
+<div class="trust-heading reveal">
+
+<div class="section-label">
+Included as standard
+</div>
+
+<h2>
+As Standard With All Our Frameless Units
+</h2>
+
+</div>
+
 <div class="trust-strip">
 
-<div class="trust-item reveal">
+<div class="trust-item">
 
 <strong>
-Toughened Safety Glass
+6mm–10mm Toughened Safety Glass
 </strong>
 
 <span>
-Built around strong toughened glass suitable for modern flat roof applications.
+Specified according to the selected rooflight size for dependable strength,
+safety and long-term performance.
 </span>
 
 </div>
 
-<div class="trust-item reveal reveal-delay-1">
+<div class="trust-item">
 
 <strong>
 Fast Lead Times
@@ -2686,7 +3085,12 @@ Fast Lead Times
 
 <span>
 Manufactured in as quick as
+<span
+class="fast-number-wrap"
+aria-label="4"
+>
 <span class="fast-number-4">4</span>
+</span>
 working days.*
 </span>
 
@@ -2696,17 +3100,39 @@ working days.*
 
 </div>
 
-<div class="trust-item reveal reveal-delay-2">
+<div class="trust-item">
 
 <strong>
 Free Mainland UK Delivery
 </strong>
 
 <span>
-Available on listed sizes, with larger units quoted clearly before order.
+Included on our listed standard sizes, with specialist delivery clearly quoted
+for oversized and bespoke units.
 </span>
 
 </div>
+
+</div>
+
+</section>
+
+<section class="order-transition">
+
+<div class="order-transition-inner">
+
+<div class="section-label reveal">
+Choose your next step
+</div>
+
+<h2 class="reveal">
+Ready To Choose Your Rooflight?
+</h2>
+
+<p class="reveal reveal-delay-1">
+Shop one of our listed standard sizes or configure a made-to-order frameless
+rooflight around your required opening.
+</p>
 
 </div>
 
@@ -3152,7 +3578,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-   SCROLL REVEALS
+STANDARD SCROLL REVEALS
 ================================ */
 
 const revealElements =
@@ -3200,7 +3626,49 @@ revealObserver.observe(element);
 }
 
 /* ===============================
-   ROOFLIGHT SLIDESHOW
+REVERSIBLE TRUST CARD REVEALS
+================================ */
+
+const trustItems =
+Array.from(
+document.querySelectorAll(
+".trust-item"
+)
+);
+
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+trustItems.forEach(item => {
+item.classList.add(
+"is-in-view"
+);
+});
+} else {
+const trustObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(entry => {
+entry.target.classList.toggle(
+"is-in-view",
+entry.isIntersecting
+);
+});
+},
+{
+threshold:.42,
+rootMargin:"-8% 0px -12% 0px"
+}
+);
+
+trustItems.forEach(item => {
+trustObserver.observe(item);
+});
+}
+
+/* ===============================
+ROOFLIGHT SLIDESHOW
 ================================ */
 
 const rooflightSlideshow =
@@ -3257,7 +3725,7 @@ nextIndex;
 window.setTimeout(() => {
 outgoing.classList.remove("previous");
 rooflightBusy = false;
-}, 850);
+},850);
 
 if (manualChange) {
 restartRooflightTimer();
@@ -3413,7 +3881,7 @@ restartRooflightTimer();
 }
 
 /* ===============================
-   COMFORT SLIDESHOW
+COMFORT SLIDESHOW
 ================================ */
 
 const comfortSlideshow =
@@ -3584,7 +4052,7 @@ restartComfortTimer();
 }
 
 /* ===============================
-   POPULAR SIZE CONTROLS
+POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3644,7 +4112,7 @@ glazing === "triple"
 });
 
 /* ===============================
-   TEMPORARY CALCULATOR
+TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
