@@ -687,13 +687,19 @@ filter .32s ease;
 filter:brightness(1.035);
 }
 
-/* Only these two sizes use the fuller homepage-style image treatment */
+/* 400 × 800 and 600 × 900 use the fuller image treatment */
 
-.product-card.image-size-800x1200 .image-wrap img,
+.product-card.image-size-400x800 .image-wrap img,
 .product-card.image-size-600x900 .image-wrap img {
 object-fit:cover;
 object-position:center center;
 transform:none;
+}
+
+/* 800 × 1200 — rotated horizontally and enlarged */
+
+.product-card.image-size-800x1200 {
+--image-transform:rotate(90deg) scale(1.18);
 }
 
 /* Narrow long sizes — horizontal orientation and enlargement */
@@ -1098,8 +1104,6 @@ height:110px;
 margin-bottom:10px;
 }
 
-/* Restored larger and clearer mobile product size names */
-
 .catalogue-grid .size-title,
 .popular-grid .size-title {
 font-size:19px;
@@ -1172,7 +1176,11 @@ padding:60px 6%;
 font-size:21px;
 }
 
-/* Maintain the rotated narrow-long treatment on mobile */
+/* Mobile image treatments */
+
+.product-card.image-size-800x1200 {
+--image-transform:rotate(90deg) scale(1.24);
+}
 
 .product-card.image-size-300x1500,
 .product-card.image-size-400x1500,
@@ -1463,7 +1471,7 @@ Larger architectural rooflights for expansive rooms, major extensions and premiu
 
 <section class="bottom-cta">
 
-<h2>Need a different size?</h2>
+<h2>Can’t find your size?</h2>
 
 <p>
 If your required size is not listed, return to the calculator and build a
