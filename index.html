@@ -8,7 +8,7 @@
 
 <meta
 name="description"
-content="Modern frameless flat roof skylights made to order in as little as four working days. Energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
+content="Modern frameless flat roof skylights made to order in 4–5 working days. Energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
 />
 
 <style>
@@ -59,7 +59,7 @@ text-transform:uppercase;
 .ticker {
 display:inline-block;
 padding:8px 0;
-animation:ticker 52s linear infinite;
+animation:ticker 48s linear infinite;
 }
 
 .ticker span {
@@ -93,12 +93,10 @@ backdrop-filter:blur(10px);
 .wordmark-wrap {
 display:grid;
 gap:10px;
-width:max-content;
 }
 
 .wordmark {
 line-height:.94;
-font-family:"Manrope","Aptos","Inter","Segoe UI",Arial,sans-serif;
 font-weight:950;
 letter-spacing:2.4px;
 color:var(--white);
@@ -107,13 +105,13 @@ text-transform:uppercase;
 width:max-content;
 }
 
-.wordmark-accent {
+.wordmark span {
 color:var(--orange);
 display:block;
 }
 
-.wordmark-final-line {
-display:inline-flex;
+.wordmark-bottom {
+display:flex;
 align-items:flex-end;
 gap:0;
 white-space:nowrap;
@@ -121,17 +119,14 @@ width:max-content;
 }
 
 .wordmark-domain {
-display:inline-block;
+color:var(--white);
+font-size:.44em;
+font-weight:900;
+letter-spacing:.08px;
+line-height:1;
 margin-left:0;
 padding-bottom:1px;
-font-family:inherit;
-font-size:.41em;
-font-weight:950;
-line-height:1;
-letter-spacing:.05px;
-color:var(--white);
 text-transform:lowercase;
-transform:translateY(1px);
 }
 
 .address-line {
@@ -199,7 +194,7 @@ display:block;
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
-margin-bottom:64px;
+margin-bottom:70px;
 }
 
 .close-menu {
@@ -210,46 +205,6 @@ width:46px;
 height:46px;
 font-size:28px;
 cursor:pointer;
-}
-
-.menu-lead-time {
-margin-top:4px;
-padding-top:12px;
-border-top:1px solid rgba(255,255,255,.10);
-max-width:330px;
-}
-
-.menu-lead-label {
-display:block;
-font-size:9px;
-font-weight:750;
-letter-spacing:2px;
-line-height:1.2;
-text-transform:uppercase;
-color:rgba(255,255,255,.52);
-margin-bottom:5px;
-}
-
-.menu-lead-main {
-display:block;
-font-size:13px;
-font-weight:800;
-letter-spacing:.25px;
-line-height:1.35;
-color:rgba(255,255,255,.90);
-}
-
-.menu-lead-note {
-display:block;
-margin-top:5px;
-font-size:9px;
-font-weight:650;
-letter-spacing:.25px;
-line-height:1.35;
-color:#ff9a2f;
-text-shadow:
-0 0 5px rgba(245,124,0,.38),
-0 0 10px rgba(245,124,0,.16);
 }
 
 .menu-links {
@@ -275,6 +230,10 @@ transition:.25s ease;
 color:var(--orange);
 padding-left:12px;
 }
+
+/* ===============================
+SHARED TEXT
+================================ */
 
 .section-label {
 color:var(--orange);
@@ -354,74 +313,7 @@ transition-delay:.32s;
 }
 
 /* ===============================
-SOFT BOX GLEAM
-================================ */
-
-.home-product-card,
-.trust-item,
-.engineered-card,
-.calculator,
-.oversized {
-isolation:isolate;
-}
-
-.home-product-card::after,
-.trust-item::before,
-.engineered-card::before,
-.calculator::before,
-.oversized::before {
-content:"";
-position:absolute;
-top:-20%;
-bottom:-20%;
-left:-35%;
-width:16%;
-z-index:5;
-pointer-events:none;
-opacity:0;
-background:
-linear-gradient(
-90deg,
-transparent 0%,
-rgba(255,255,255,.02) 18%,
-rgba(255,255,255,.15) 48%,
-rgba(255,255,255,.025) 78%,
-transparent 100%
-);
-filter:blur(5px);
-transform:translateX(-260%) skewX(-16deg);
-}
-
-.home-product-card.soft-gleam::after,
-.trust-item.soft-gleam::before,
-.engineered-card.soft-gleam::before,
-.calculator.soft-gleam::before,
-.oversized.soft-gleam::before {
-animation:softBoxGleam 1.05s cubic-bezier(.18,.72,.28,1) both;
-}
-
-@keyframes softBoxGleam {
-0% {
-opacity:0;
-transform:translateX(-260%) skewX(-16deg);
-}
-
-20% {
-opacity:.48;
-}
-
-72% {
-opacity:.30;
-}
-
-100% {
-opacity:0;
-transform:translateX(920%) skewX(-16deg);
-}
-}
-
-/* ===============================
-POPULAR SECTION
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -446,6 +338,7 @@ linear-gradient(
 #241406 68%,
 #050505 100%
 );
+border-top:0;
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -549,11 +442,34 @@ padding:14px;
 min-height:178px;
 position:relative;
 overflow:hidden;
+isolation:isolate;
 transition:
 transform .28s ease,
 border-color .28s ease,
 box-shadow .28s ease,
 background .28s ease;
+}
+
+.home-product-card::before {
+content:"";
+position:absolute;
+inset:0;
+z-index:0;
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(245,124,0,.12) 45%,
+transparent 75%
+);
+transform:translateX(-120%);
+transition:transform .55s ease;
+pointer-events:none;
+}
+
+.home-product-card:hover::before,
+.home-product-card:active::before {
+transform:translateX(120%);
 }
 
 .home-product-card:hover,
@@ -741,6 +657,16 @@ text-decoration:none;
 padding-bottom:2px;
 border-bottom:1px solid rgba(245,124,0,.45);
 white-space:nowrap;
+transition:
+color .25s ease,
+border-color .25s ease,
+transform .25s ease;
+}
+
+.home-product-link:hover {
+color:var(--white);
+border-color:var(--white);
+transform:translateX(3px);
 }
 
 .home-popular-footer {
@@ -841,6 +767,10 @@ max-width:1180px;
 margin:0 auto;
 border-left:4px solid var(--orange);
 padding-left:32px;
+}
+
+.buy-online-inner h2 {
+max-width:860px;
 }
 
 .buy-rooflight-slideshow {
@@ -1037,14 +967,16 @@ background:#050505;
 
 .comfort-image {
 position:absolute;
-inset:0;
-width:100%;
-height:100%;
+top:-4px;
+left:-4px;
+width:calc(100% + 8px);
+height:calc(100% + 8px);
 object-fit:contain;
 object-position:center;
 background:#050505;
 opacity:0;
 visibility:hidden;
+transform:scale(1);
 transition:
 opacity 1.25s ease,
 visibility 1.25s ease;
@@ -1074,7 +1006,7 @@ color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-DIRECT SECTION
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1139,6 +1071,10 @@ line-height:1.7;
 color:var(--muted);
 }
 
+.direct-copy p:last-of-type {
+margin-bottom:0;
+}
+
 .direct-assurance {
 display:inline-flex;
 align-items:center;
@@ -1148,7 +1084,15 @@ color:var(--orange);
 font-size:12px;
 font-weight:950;
 letter-spacing:1.4px;
+line-height:1.35;
 text-transform:uppercase;
+}
+
+.direct-assurance::before {
+content:"";
+width:26px;
+height:1px;
+background:var(--orange);
 }
 
 /* ===============================
@@ -1180,6 +1124,26 @@ border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
+.trust-zone::after {
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.026) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.022) 1px,
+transparent 1px
+);
+background-size:44px 44px;
+opacity:.15;
+transform:skewY(-6deg) scale(1.2);
+pointer-events:none;
+}
+
 .trust-strip {
 max-width:1120px;
 margin:auto;
@@ -1192,6 +1156,7 @@ z-index:1;
 .trust-item {
 position:relative;
 overflow:hidden;
+isolation:isolate;
 padding:34px 38px;
 background:linear-gradient(135deg,#0c0c0c,#141414);
 border:1px solid rgba(255,255,255,.11);
@@ -1212,6 +1177,7 @@ color:var(--white);
 text-transform:uppercase;
 letter-spacing:2.6px;
 margin-bottom:12px;
+transition:.25s ease;
 }
 
 .trust-item span {
@@ -1220,21 +1186,30 @@ z-index:2;
 color:var(--muted);
 font-size:clamp(17px,2vw,24px);
 line-height:1.45;
+max-width:860px;
 display:block;
 }
 
 .trust-item .lead-time-note {
 margin-top:12px;
 font-size:11px;
+line-height:1.45;
 color:rgba(255,255,255,.52);
+letter-spacing:.35px;
 }
 
 .trust-item:hover {
-transform:translateY(-6px) scale(1.018);
-border-color:rgba(255,154,47,.58);
+transform:translateY(-7px) scale(1.025);
+border-color:rgba(255,154,47,.75);
+background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
-0 20px 52px rgba(245,124,0,.10),
-0 18px 42px rgba(0,0,0,.40);
+0 24px 62px rgba(245,124,0,.17),
+0 20px 46px rgba(0,0,0,.42);
+}
+
+.trust-item:hover strong {
+color:var(--orange);
+letter-spacing:3.3px;
 }
 
 /* ===============================
@@ -1259,9 +1234,39 @@ padding:108px 6% 95px;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
+.calculator-wrap::before {
+content:"";
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:min(88%,1120px);
+height:1px;
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(245,124,0,.80),
+transparent
+);
+}
+
+.calculator-wrap::after {
+content:"Configure • Price • Continue";
+position:absolute;
+top:25px;
+left:50%;
+transform:translateX(-50%);
+color:rgba(255,255,255,.28);
+font-size:9px;
+font-weight:950;
+letter-spacing:2.2px;
+text-transform:uppercase;
+white-space:nowrap;
+}
+
 .calculator {
 position:relative;
-overflow:hidden;
 background:#101010;
 border:1px solid rgba(255,255,255,.09);
 max-width:1180px;
@@ -1296,6 +1301,23 @@ font-size:16px;
 background:#050505;
 color:white;
 border-radius:0;
+transition:
+border-color .25s ease,
+box-shadow .25s ease,
+background .25s ease;
+}
+
+input:hover,
+select:hover {
+border-color:rgba(245,124,0,.42);
+}
+
+input:focus,
+select:focus {
+outline:none;
+border-color:var(--orange);
+background:#080808;
+box-shadow:0 0 0 3px rgba(245,124,0,.12);
 }
 
 .price-box {
@@ -1352,8 +1374,6 @@ gap:24px;
 }
 
 .engineered-card {
-position:relative;
-overflow:hidden;
 background:#111;
 border:1px solid rgba(255,255,255,.10);
 padding:34px;
@@ -1369,11 +1389,14 @@ border-color:rgba(245,124,0,.32);
 margin:0 0 16px;
 color:var(--white);
 font-size:23px;
+line-height:1.15;
 }
 
 .engineered-card p {
 margin:0;
+color:var(--muted);
 font-size:16px;
+line-height:1.65;
 }
 
 .oversized-section {
@@ -1381,8 +1404,6 @@ padding:95px 6%;
 }
 
 .oversized {
-position:relative;
-overflow:hidden;
 background:#0d0d0d;
 border:1px solid rgba(255,255,255,.10);
 border-left:6px solid var(--orange);
@@ -1391,43 +1412,41 @@ max-width:1080px;
 margin:auto;
 }
 
-/* ===============================
-FOOTER
-================================ */
-
 footer {
 background:#050505;
 border-top:1px solid rgba(255,255,255,.10);
 color:var(--muted);
-padding:48px 6%;
+padding:46px 6%;
 font-size:15px;
 }
 
-.footer-inner {
-max-width:1180px;
-margin:0 auto;
-display:grid;
-grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
-gap:54px;
-align-items:start;
-}
-
 .footer-wordmark {
-font-size:24px;
+margin-bottom:24px;
 }
 
-.footer-copy p {
+.footer-wordmark span,
+.footer-wordmark .wordmark-domain {
+color:var(--white);
+}
+
+.footer-wordmark .wordmark-domain {
+font-size:.44em;
+}
+
+footer p {
 margin:0 0 12px;
-line-height:1.55;
 }
 
-.footer-copy p:last-child {
+footer p:last-child {
 margin-bottom:0;
 }
 
+/* ===============================
+TABLET
+================================ */
+
 @media(max-width:950px) {
-.direct-inner,
-.footer-inner {
+.direct-inner {
 grid-template-columns:1fr;
 gap:32px;
 }
@@ -1460,9 +1479,17 @@ grid-template-columns:135px minmax(0,1fr);
 }
 }
 
+/* ===============================
+MOBILE
+================================ */
+
 @media(max-width:560px) {
 .top-banner {
 font-size:7.5px;
+}
+
+.ticker {
+padding:7px 0;
 }
 
 header {
@@ -1482,24 +1509,16 @@ font-size:16px;
 }
 
 .wordmark-domain {
-font-size:.42em;
-transform:translateY(1px);
-}
-
-.menu-lead-time {
-max-width:245px;
-}
-
-.menu-lead-main {
-font-size:11px;
-}
-
-.menu-lead-note {
-font-size:8px;
+font-size:.44em;
+padding-bottom:1px;
 }
 
 .home-popular-section {
 padding:22px 6% 66px;
+}
+
+.home-popular-title-wrap {
+margin-bottom:22px;
 }
 
 .home-opening-title {
@@ -1509,6 +1528,7 @@ letter-spacing:2.6px;
 
 .home-opening-title span {
 font-size:36px;
+margin-top:3px;
 }
 
 .home-popular-grid {
@@ -1521,6 +1541,11 @@ grid-template-columns:1fr;
 min-height:auto;
 padding:10px;
 gap:10px;
+}
+
+.home-product-card:hover,
+.home-product-card:active {
+transform:translateY(-5px) scale(1.025);
 }
 
 .home-product-image {
@@ -1539,6 +1564,11 @@ font-size:10px;
 .home-glazing-toggle,
 .home-glazed-label {
 max-width:none;
+}
+
+.home-product-price-row {
+align-items:flex-end;
+gap:8px;
 }
 
 .home-product-price {
@@ -1566,6 +1596,13 @@ font-size:45px;
 
 .opening-section p {
 font-size:18px;
+margin-bottom:34px;
+}
+
+.interior-static-image {
+aspect-ratio:1 / 1;
+object-fit:cover;
+object-position:center;
 }
 
 .buy-online-section {
@@ -1574,6 +1611,14 @@ padding:68px 6%;
 
 .buy-online-inner {
 padding-left:20px;
+}
+
+.buy-online-inner p {
+font-size:18px;
+}
+
+.buy-rooflight-slideshow {
+margin:28px 0 32px;
 }
 
 .rooflight-slideshow-shell {
@@ -1587,6 +1632,10 @@ align-items:flex-start;
 
 .button {
 width:100%;
+}
+
+.button.oversized-button {
+justify-content:space-between;
 }
 
 .or-divider {
@@ -1606,12 +1655,20 @@ font-size:17px;
 }
 
 .comfort-frame {
+width:100%;
 aspect-ratio:3 / 2;
+min-height:0;
+background:#050505;
 }
 
 .comfort-image {
+top:-4px;
+left:-4px;
+width:calc(100% + 8px);
+height:calc(100% + 8px);
 object-fit:contain;
 object-position:center;
+background:#050505;
 }
 
 .comfort-uv-wrap {
@@ -1624,10 +1681,21 @@ font-size:13px;
 padding-left:16px;
 }
 
-.direct-section,
-.engineered,
-.oversized-section {
+.direct-section {
 padding:68px 6%;
+}
+
+.direct-section::before {
+left:6%;
+width:110px;
+}
+
+.direct-heading {
+font-size:45px;
+}
+
+.direct-copy p {
+font-size:17px;
 }
 
 .trust-zone {
@@ -1642,12 +1710,19 @@ padding:30px 24px;
 padding:98px 6% 68px;
 }
 
+.calculator-wrap::after {
+top:23px;
+font-size:8px;
+letter-spacing:1.7px;
+}
+
 .calculator {
 padding:30px 24px;
 }
 
-.footer-inner {
-gap:26px;
+.engineered,
+.oversized-section {
+padding:68px 6%;
 }
 
 .footer-wordmark {
@@ -1680,11 +1755,6 @@ transform:none;
 transition:none;
 }
 
-.soft-gleam::before,
-.soft-gleam::after {
-animation:none !important;
-}
-
 .rooflight-slide,
 .comfort-image {
 transition:none;
@@ -1698,23 +1768,19 @@ transition:none;
 <div class="top-banner">
 <div class="ticker">
 
-<span>Manufactured in as little as 4 working days*</span>
 <span>Energy-saving glass for year-round comfort</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>Factory insulated and ready for fitting</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
-<span>*Subject to size, specification and delivery location</span>
 
-<span>Manufactured in as little as 4 working days*</span>
 <span>Energy-saving glass for year-round comfort</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>Factory insulated and ready for fitting</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
-<span>*Subject to size, specification and delivery location</span>
 
 </div>
 </div>
@@ -1724,11 +1790,9 @@ transition:none;
 <div class="wordmark-wrap">
 
 <div class="wordmark">
-<div>Factory</div>
-<div class="wordmark-accent">Toughened</div>
-<div class="wordmark-final-line">
-<span>Rooflights</span><span class="wordmark-domain">.co.uk</span>
-</div>
+Factory
+<span>Toughened</span>
+<div class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></div>
 </div>
 
 <div class="address-line">
@@ -1783,29 +1847,13 @@ title="Menu"
 <div class="wordmark-wrap">
 
 <div class="wordmark">
-<div>Factory</div>
-<div class="wordmark-accent">Toughened</div>
-<div class="wordmark-final-line">
-<span>Rooflights</span><span class="wordmark-domain">.co.uk</span>
-</div>
+Factory
+<span>Toughened</span>
+<div class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></div>
 </div>
 
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
-</div>
-
-<div class="menu-lead-time">
-<span class="menu-lead-label">
-Fast Lead Times
-</span>
-
-<span class="menu-lead-main">
-Manufactured in as little as 4 working days*
-</span>
-
-<span class="menu-lead-note">
-*Subject to size, specification and delivery location.
-</span>
 </div>
 
 </div>
@@ -1850,16 +1898,18 @@ Frameless Flat Roof Skylights
 <div class="home-popular-grid">
 
 <div
-class="home-product-card reveal reveal-scale gleam-target"
+class="home-product-card reveal reveal-scale"
 data-double-price="395"
 data-triple-price="470"
 >
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/medium-rectangle.png"
 alt="800mm by 1200mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -1877,6 +1927,7 @@ alt="800mm by 1200mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
+
 <button
 type="button"
 class="active"
@@ -1891,6 +1942,7 @@ data-glazing="triple"
 >
 Triple
 </button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -1902,15 +1954,22 @@ Triple
 <div class="home-product-price-row">
 
 <div>
-<div class="home-product-price-label">Price</div>
+
+<div class="home-product-price-label">
+Price
+</div>
 
 <div class="home-product-price">
 £395
 <span class="home-vat-note">inc. vat</span>
 </div>
+
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -1921,16 +1980,18 @@ View Size
 </div>
 
 <div
-class="home-product-card reveal reveal-scale reveal-delay-1 gleam-target"
+class="home-product-card reveal reveal-scale reveal-delay-1"
 data-double-price="510"
 data-triple-price="615"
 >
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/large-square.png"
 alt="1200mm by 1200mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -1948,6 +2009,7 @@ alt="1200mm by 1200mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
+
 <button
 type="button"
 class="active"
@@ -1962,6 +2024,7 @@ data-glazing="triple"
 >
 Triple
 </button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -1973,15 +2036,22 @@ Triple
 <div class="home-product-price-row">
 
 <div>
-<div class="home-product-price-label">Price</div>
+
+<div class="home-product-price-label">
+Price
+</div>
 
 <div class="home-product-price">
 £510
 <span class="home-vat-note">inc. vat</span>
 </div>
+
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -1992,16 +2062,18 @@ View Size
 </div>
 
 <div
-class="home-product-card reveal reveal-scale reveal-delay-2 gleam-target"
+class="home-product-card reveal reveal-scale reveal-delay-2"
 data-double-price="520"
 data-triple-price="625"
 >
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/large-rectangle.png"
 alt="1000mm by 1500mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2019,6 +2091,7 @@ alt="1000mm by 1500mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
+
 <button
 type="button"
 class="active"
@@ -2033,6 +2106,7 @@ data-glazing="triple"
 >
 Triple
 </button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2044,15 +2118,22 @@ Triple
 <div class="home-product-price-row">
 
 <div>
-<div class="home-product-price-label">Price</div>
+
+<div class="home-product-price-label">
+Price
+</div>
 
 <div class="home-product-price">
 £520
 <span class="home-vat-note">inc. vat</span>
 </div>
+
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2063,16 +2144,18 @@ View Size
 </div>
 
 <div
-class="home-product-card reveal reveal-scale reveal-delay-3 gleam-target"
+class="home-product-card reveal reveal-scale reveal-delay-3"
 data-double-price="880"
 data-triple-price="1075"
 >
 
 <div class="home-product-image">
+
 <img
 src="images/product-cards/jumbo.png"
 alt="1500mm by 1800mm frameless flat roof skylight"
 />
+
 </div>
 
 <div class="home-product-content">
@@ -2090,6 +2173,7 @@ alt="1500mm by 1800mm frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
+
 <button
 type="button"
 class="active"
@@ -2104,6 +2188,7 @@ data-glazing="triple"
 >
 Triple
 </button>
+
 </div>
 
 <div class="home-glazed-label">
@@ -2115,15 +2200,22 @@ Triple
 <div class="home-product-price-row">
 
 <div>
-<div class="home-product-price-label">Price</div>
+
+<div class="home-product-price-label">
+Price
+</div>
 
 <div class="home-product-price">
 £880
 <span class="home-vat-note">inc. vat</span>
 </div>
+
 </div>
 
-<a href="standard-sizes.html" class="home-product-link">
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
 View Size
 </a>
 
@@ -2136,9 +2228,14 @@ View Size
 </div>
 
 <div class="home-popular-footer reveal">
-<a href="standard-sizes.html" class="button secondary">
+
+<a
+href="standard-sizes.html"
+class="button secondary"
+>
 View All Standard Sizes
 </a>
+
 </div>
 
 </section>
@@ -2197,19 +2294,39 @@ aria-label="Frameless rooflight product and installation images"
 <div class="rooflight-slideshow-shell">
 
 <div class="rooflight-slide active">
-<img src="images/hero-rooflight-2.png" alt="Frameless rooflight installation image two" />
+
+<img
+src="images/hero-rooflight-2.png"
+alt="Frameless rooflight installation image two"
+/>
+
 </div>
 
 <div class="rooflight-slide">
-<img src="images/hero-rooflight-4.png" alt="Frameless rooflight installation image four" />
+
+<img
+src="images/hero-rooflight-4.png"
+alt="Frameless rooflight installation image four"
+/>
+
 </div>
 
 <div class="rooflight-slide">
-<img src="images/hero-rooflight-5.png" alt="Frameless rooflight installation image five" />
+
+<img
+src="images/hero-rooflight-5.png"
+alt="Frameless rooflight installation image five"
+/>
+
 </div>
 
 <div class="rooflight-slide">
-<img src="images/hero-rooflight-6.png" alt="Frameless rooflight installation image six" />
+
+<img
+src="images/hero-rooflight-6.png"
+alt="Frameless rooflight installation image six"
+/>
+
 </div>
 
 </div>
@@ -2224,19 +2341,37 @@ build a made-to-order rooflight using the calculator below.
 
 <div class="hero-actions reveal">
 
-<a href="standard-sizes.html" class="button">
+<a
+href="standard-sizes.html"
+class="button"
+>
 Shop Our Standard Sizes
 </a>
 
-<span class="or-divider">or</span>
+<span class="or-divider">
+or
+</span>
 
-<a href="#calculator" class="button">
+<a
+href="#calculator"
+class="button"
+>
 Build Your Rooflight
 </a>
 
-<a href="#oversized" class="button secondary oversized-button">
-<span>Oversized Rooflights</span>
-<span class="button-size-note">+4.5 m²</span>
+<a
+href="#oversized"
+class="button secondary oversized-button"
+>
+
+<span>
+Oversized Rooflights
+</span>
+
+<span class="button-size-note">
++4.5 m²
+</span>
+
 </a>
 
 </div>
@@ -2348,35 +2483,66 @@ One specialist team from order to production
 
 </section>
 
-<section class="trust-zone">
+<section
+class="trust-zone"
+id="trustZone"
+>
 
 <div class="trust-strip">
 
-<div class="trust-item reveal gleam-target">
-<strong>Toughened Safety Glass</strong>
-<span>Built around strong toughened glass suitable for modern flat roof applications.</span>
-</div>
+<div class="trust-item reveal">
 
-<div class="trust-item reveal reveal-delay-1 gleam-target">
-<strong>Fast Lead Times</strong>
-<span>Manufactured in as little as four working days.*</span>
-<span class="lead-time-note">
-*Subject to size, specification and delivery location.
+<strong>
+Toughened Safety Glass
+</strong>
+
+<span>
+Built around strong toughened glass suitable for modern flat roof applications.
 </span>
+
 </div>
 
-<div class="trust-item reveal reveal-delay-2 gleam-target">
-<strong>Free Mainland UK Delivery</strong>
-<span>Available on listed sizes, with larger units quoted clearly before order.</span>
+<div class="trust-item reveal reveal-delay-1">
+
+<strong>
+Fast Lead Times
+</strong>
+
+<span>
+Manufactured in as quick as four working days.*
+</span>
+
+<span class="lead-time-note">
+*Lead time depends on the selected size, specification and delivery location.
+</span>
+
+</div>
+
+<div class="trust-item reveal reveal-delay-2">
+
+<strong>
+Free Mainland UK Delivery
+</strong>
+
+<span>
+Available on listed sizes, with larger units quoted clearly before order.
+</span>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="calculator" class="calculator-wrap">
+<section
+id="calculator"
+class="calculator-wrap"
+>
 
-<div class="calculator reveal reveal-scale gleam-target">
+<div
+class="calculator reveal reveal-scale"
+id="homepageCalculator"
+>
 
 <div class="section-label">
 Build online
@@ -2394,31 +2560,63 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 <div class="calc-grid">
 
 <div>
-<label for="width">Width / Short Side</label>
-<input id="width" type="number" value="1000" min="300" max="1500" />
+
+<label for="width">
+Width / Short Side
+</label>
+
+<input
+id="width"
+type="number"
+value="1000"
+min="300"
+max="1500"
+/>
+
 </div>
 
 <div>
-<label for="length">Length / Long Side</label>
-<input id="length" type="number" value="2000" min="400" max="3000" />
+
+<label for="length">
+Length / Long Side
+</label>
+
+<input
+id="length"
+type="number"
+value="2000"
+min="400"
+max="3000"
+/>
+
 </div>
 
 <div>
-<label for="glazing">Glazing</label>
+
+<label for="glazing">
+Glazing
+</label>
+
 <select id="glazing">
 <option value="double">Double Glazed</option>
 <option value="triple">Triple Glazed</option>
 </select>
+
 </div>
 
 <div>
-<label for="finish">Glass Finish</label>
+
+<label for="finish">
+Glass Finish
+</label>
+
 <select id="finish">
 <option>Clear</option>
 <option>Satin Privacy</option>
 <option>Solar Grey</option>
 <option>Solar Blue</option>
 </select>
+
 </div>
 
 </div>
@@ -2431,7 +2629,10 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 Estimated Online Price
 </div>
 
-<div class="price" id="price">
+<div
+class="price"
+id="price"
+>
 £580
 </div>
 
@@ -2441,7 +2642,10 @@ Includes VAT. Free mainland UK delivery applies on listed sizes.
 
 </div>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Order Online Soon
 </a>
 
@@ -2472,45 +2676,68 @@ The specification is designed for durability and reliable long-term weather perf
 
 <div class="engineered-grid">
 
-<div class="engineered-card reveal gleam-target">
-<h3>Ceramic Fused Border</h3>
+<div class="engineered-card reveal">
+
+<h3>
+Ceramic Fused Border
+</h3>
+
 <p>
 The black border is ceramic infused and fused into the glass during manufacture,
 providing a permanent and durable frameless finish.
 </p>
+
 </div>
 
-<div class="engineered-card reveal reveal-delay-1 gleam-target">
-<h3>20 Year Warranty</h3>
+<div class="engineered-card reveal reveal-delay-1">
+
+<h3>
+20 Year Warranty
+</h3>
+
 <p>
 All units are supplied with a 20 year warranty and are designed for an expected
 30+ year service life when correctly specified and installed.
 </p>
+
 </div>
 
-<div class="engineered-card reveal reveal-delay-2 gleam-target">
-<h3>Two-Stage Sealing</h3>
+<div class="engineered-card reveal reveal-delay-2">
+
+<h3>
+Two-Stage Sealing
+</h3>
+
 <p>
 Factory insulated units use an internal and external two-stage sealing process
 for a flush finish and engineered leak-resistant performance when installed correctly.
 </p>
+
 </div>
 
-<div class="engineered-card reveal reveal-delay-3 gleam-target">
-<h3>Glass Finishes</h3>
+<div class="engineered-card reveal reveal-delay-3">
+
+<h3>
+Glass Finishes
+</h3>
+
 <p>
 Clear, Satin Privacy, Solar Grey and Solar Blue options are available while
 retaining the clean frameless appearance.
 </p>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="oversized" class="oversized-section">
+<section
+id="oversized"
+class="oversized-section"
+>
 
-<div class="oversized reveal reveal-scale gleam-target">
+<div class="oversized reveal reveal-scale">
 
 <div class="section-label">
 Bespoke quotations
@@ -2525,7 +2752,10 @@ Need something larger than the listed range? We can quote oversized custom frame
 rooflights up to approximately 5800mm, including specialist delivery pricing.
 </p>
 
-<a href="#" class="button">
+<a
+href="#"
+class="button"
+>
 Request Oversized Quote
 </a>
 
@@ -2537,21 +2767,11 @@ Request Oversized Quote
 
 <footer id="contact">
 
-<div class="footer-inner">
-
-<div>
-
 <div class="wordmark footer-wordmark">
-<div>Factory</div>
-<div class="wordmark-accent">Toughened</div>
-<div class="wordmark-final-line">
-<span>Rooflights</span><span class="wordmark-domain">.co.uk</span>
+Factory
+<span>Toughened</span>
+<div class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></div>
 </div>
-</div>
-
-</div>
-
-<div class="footer-copy">
 
 <p>
 Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
@@ -2564,10 +2784,6 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 <p>
 5-9 Willen Field Road, London, NW10 7BQ
 </p>
-
-</div>
-
-</div>
 
 </footer>
 
@@ -2593,7 +2809,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-REVEALS + GLEAM
+SCROLL REVEALS
 ================================ */
 
 const revealElements =
@@ -2618,29 +2834,15 @@ const revealObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(entry => {
-if (!entry.isIntersecting) {
-return;
-}
-
+if (entry.isIntersecting) {
 entry.target.classList.add(
 "is-visible"
 );
 
-if (
-entry.target.classList.contains(
-"gleam-target"
-)
-) {
-window.setTimeout(() => {
-entry.target.classList.add(
-"soft-gleam"
-);
-},220);
-}
-
 revealObserver.unobserve(
 entry.target
 );
+}
 });
 },
 {
@@ -2712,7 +2914,7 @@ nextIndex;
 window.setTimeout(() => {
 outgoing.classList.remove("previous");
 rooflightBusy = false;
-},850);
+}, 850);
 
 if (manualChange) {
 restartRooflightTimer();
@@ -2724,9 +2926,13 @@ let nextIndex =
 rooflightIndex +
 rooflightDirection;
 
-if (nextIndex >= rooflightSlides.length) {
+if (
+nextIndex >=
+rooflightSlides.length
+) {
 rooflightDirection = -1;
-nextIndex = rooflightSlides.length - 2;
+nextIndex =
+rooflightSlides.length - 2;
 }
 
 if (nextIndex < 0) {
@@ -2766,7 +2972,10 @@ function showNextRooflightManual() {
 let nextIndex =
 rooflightIndex + 1;
 
-if (nextIndex >= rooflightSlides.length) {
+if (
+nextIndex >=
+rooflightSlides.length
+) {
 nextIndex = 0;
 }
 
@@ -3032,7 +3241,7 @@ restartComfortTimer();
 }
 
 /* ===============================
-PRODUCT CARD CONTROLS
+POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3133,7 +3342,8 @@ let price =
 area * baseRate;
 
 if (finish !== "Clear") {
-price += area * 45;
+price +=
+area * 45;
 }
 
 price += 90;
