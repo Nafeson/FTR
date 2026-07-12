@@ -45,7 +45,7 @@ max-width:100%;
 }
 
 /* ===============================
-MOVING TOP BANNER
+   MOVING TOP BANNER
 ================================ */
 
 .top-banner {
@@ -80,7 +80,7 @@ transform:translateX(-50%);
 }
 
 /* ===============================
-HEADER
+   HEADER
 ================================ */
 
 header {
@@ -172,7 +172,7 @@ transform:translateY(-2px);
 }
 
 /* ===============================
-MENU
+   MENU
 ================================ */
 
 .menu-overlay {
@@ -231,7 +231,7 @@ padding-left:12px;
 }
 
 /* ===============================
-NEW OPENING SECTION
+   OPENING SECTION
 ================================ */
 
 .intro {
@@ -257,7 +257,7 @@ linear-gradient(
 max-width:1180px;
 margin:0 auto;
 display:grid;
-grid-template-columns:1.05fr .95fr;
+grid-template-columns:1.08fr .92fr;
 gap:34px;
 align-items:stretch;
 }
@@ -291,7 +291,7 @@ line-height:1.65;
 
 .intro-features {
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr;
 gap:14px;
 }
 
@@ -346,17 +346,8 @@ font-size:12px;
 line-height:1.5;
 }
 
-.intro-feature-note {
-display:block;
-margin-top:8px;
-font-size:8px;
-line-height:1.4;
-letter-spacing:.2px;
-color:rgba(255,255,255,.42);
-}
-
 /* ===============================
-SECTION HEADINGS
+   SECTION HEADINGS
 ================================ */
 
 .product-section {
@@ -400,7 +391,7 @@ color:var(--muted);
 }
 
 /* ===============================
-SECTION BACKGROUNDS
+   SECTION BACKGROUNDS
 ================================ */
 
 .popular-section {
@@ -548,7 +539,7 @@ z-index:1;
 }
 
 /* ===============================
-PRODUCT GRIDS
+   PRODUCT GRIDS
 ================================ */
 
 .product-grid {
@@ -570,7 +561,7 @@ grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
 /* ===============================
-PRODUCT CARDS
+   PRODUCT CARDS
 ================================ */
 
 .product-card {
@@ -643,16 +634,19 @@ box-shadow:
 }
 
 /* ===============================
-PRODUCT IMAGES
+   PRODUCT IMAGES
 ================================ */
 
 .image-wrap {
 width:100%;
-background:#f5f5f5;
+background:#ffffff;
 border:1px solid rgba(255,255,255,.10);
 overflow:hidden;
 position:relative;
 z-index:1;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .popular-grid .image-wrap {
@@ -665,22 +659,22 @@ margin-bottom:15px;
 }
 
 .image-wrap img {
+display:block;
 width:100%;
 height:100%;
-object-fit:cover;
-display:block;
-transition:
-transform .32s ease,
-filter .32s ease;
+object-fit:contain;
+object-position:center center;
+background:#ffffff;
+transition:filter .32s ease;
 }
 
 .product-card:hover .image-wrap img {
-transform:scale(1.035);
-filter:brightness(1.06);
+transform:none;
+filter:brightness(1.035);
 }
 
 /* ===============================
-CARD CONTENT
+   CARD CONTENT
 ================================ */
 
 .card-content {
@@ -844,7 +838,7 @@ color:var(--orange);
 }
 
 /* ===============================
-BOTTOM CTA
+   BOTTOM CTA
 ================================ */
 
 .bottom-cta {
@@ -918,7 +912,7 @@ border-color:var(--orange);
 }
 
 /* ===============================
-FOOTER
+   FOOTER
 ================================ */
 
 footer {
@@ -947,7 +941,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-TABLET
+   TABLET
 ================================ */
 
 @media(max-width:1000px) {
@@ -956,7 +950,7 @@ grid-template-columns:1fr;
 }
 
 .intro-features {
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr;
 }
 
 .catalogue-grid {
@@ -986,7 +980,7 @@ margin-bottom:12px;
 }
 
 /* ===============================
-MOBILE
+   MOBILE
 ================================ */
 
 @media(max-width:620px) {
@@ -1297,23 +1291,6 @@ mainland UK delivery.
 </div>
 
 <div class="intro-features">
-
-<div class="intro-feature">
-
-<span class="intro-feature-label">
-Current Production
-</span>
-
-<strong>
-Fast <span>Lead Time</span><br>
-From 4 Working Days*
-</strong>
-
-<span class="intro-feature-note">
-*Subject to size, specification and delivery location.
-</span>
-
-</div>
 
 <div class="intro-feature">
 
@@ -1803,7 +1780,7 @@ loading="lazy"
 <div class="card-content">
 
 <div class="size-title">
-${formatSize(size)}mm
+${formatSize(size)}
 </div>
 
 <div class="spec-line">
@@ -1853,7 +1830,7 @@ From
 <a
 href="#"
 class="view-link"
-aria-label="View ${formatSize(size)}mm rooflight"
+aria-label="View ${formatSize(size)} rooflight"
 >
 View →
 </a>
