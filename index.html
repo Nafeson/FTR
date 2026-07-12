@@ -15,6 +15,7 @@ content="Modern frameless flat roof skylights made to order in 4–5 working day
 :root {
 --orange:#f57c00;
 --sunset:#ff9a2f;
+--fast-red:#ff3b16;
 --black:#050505;
 --dark:#0b0b0b;
 --panel:#141414;
@@ -186,7 +187,7 @@ overflow:hidden;
 background:
 radial-gradient(
 circle at 50% 0%,
-rgba(245,124,0,.13),
+rgba(245,124,0,.12),
 transparent 52%
 ),
 linear-gradient(
@@ -194,39 +195,14 @@ linear-gradient(
 #101010 0%,
 #080808 100%
 );
-border-top:1px solid rgba(245,124,0,.28);
+border-top:1px solid rgba(245,124,0,.24);
 border-bottom:1px solid rgba(245,124,0,.52);
 padding:13px 6% 11px;
 text-align:center;
-isolation:isolate;
-}
-
-.lead-time-banner::before {
-content:"";
-position:absolute;
-top:0;
-bottom:0;
-left:-36%;
-width:18%;
-background:
-linear-gradient(
-110deg,
-transparent 0%,
-rgba(255,255,255,.02) 24%,
-rgba(255,190,111,.28) 48%,
-rgba(255,255,255,.05) 68%,
-transparent 100%
-);
-filter:blur(5px);
-transform:skewX(-18deg);
-animation:leadTimeWhoosh 7s ease-in-out infinite;
-pointer-events:none;
-z-index:0;
 }
 
 .lead-time-inner {
 position:relative;
-z-index:1;
 max-width:1180px;
 margin:0 auto;
 display:grid;
@@ -237,16 +213,27 @@ gap:5px;
 .lead-time-main {
 display:flex;
 justify-content:center;
-align-items:baseline;
-gap:9px;
+align-items:center;
+gap:10px;
 flex-wrap:wrap;
 line-height:1;
 }
 
+.lead-time-van {
+width:55px;
+height:27px;
+display:block;
+flex:0 0 auto;
+color:var(--white);
+filter:
+drop-shadow(0 2px 3px rgba(0,0,0,.65))
+drop-shadow(0 0 5px rgba(255,255,255,.10));
+}
+
 .lead-time-feature {
-position:relative;
-display:inline-block;
-overflow:hidden;
+display:inline-flex;
+align-items:baseline;
+gap:6px;
 font-family:
 "Arial Narrow",
 "Roboto Condensed",
@@ -260,42 +247,36 @@ font-stretch:condensed;
 letter-spacing:1.7px;
 line-height:1;
 text-transform:uppercase;
-color:var(--orange);
-text-shadow:
-0 1px 0 #b84e00,
-0 2px 0 #713000,
-0 3px 8px rgba(0,0,0,.72),
-0 0 12px rgba(245,124,0,.18);
 padding:3px 1px 5px;
 }
 
-.lead-time-feature::after {
-content:"";
-position:absolute;
-top:-35%;
-bottom:-35%;
-left:-55%;
-width:30%;
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.58),
-transparent
-);
-filter:blur(2px);
-transform:skewX(-20deg);
-animation:leadTitleGleam 7s ease-in-out infinite;
-pointer-events:none;
+.lead-time-fast {
+color:var(--white);
+text-shadow:
+0 1px 0 rgba(255,255,255,.20),
+0 2px 0 rgba(0,0,0,.72),
+0 3px 8px rgba(0,0,0,.62);
+}
+
+.lead-time-red {
+color:var(--fast-red);
+text-shadow:
+0 1px 0 #c92a0c,
+0 2px 0 #7f1606,
+0 3px 8px rgba(0,0,0,.75),
+0 0 11px rgba(255,59,22,.22);
 }
 
 .lead-time-divider {
-color:rgba(255,255,255,.32);
+color:rgba(255,255,255,.34);
 font-size:17px;
 font-weight:400;
 }
 
 .lead-time-message {
+position:relative;
+display:inline-block;
+overflow:hidden;
 font-family:
 "Manrope",
 "Aptos",
@@ -304,11 +285,40 @@ font-family:
 Arial,
 sans-serif;
 font-size:clamp(13px,1.6vw,18px);
-font-weight:900;
+font-weight:950;
 letter-spacing:.9px;
 line-height:1.15;
 text-transform:uppercase;
 color:var(--white);
+white-space:nowrap;
+text-shadow:
+0 1px 0 rgba(255,255,255,.13),
+0 2px 5px rgba(0,0,0,.62);
+}
+
+.lead-time-message::after {
+content:attr(data-text);
+position:absolute;
+inset:0;
+color:transparent;
+background:
+linear-gradient(
+105deg,
+transparent 0%,
+transparent 36%,
+rgba(255,255,255,.20) 43%,
+rgba(255,255,255,1) 50%,
+rgba(255,222,176,.82) 56%,
+transparent 64%,
+transparent 100%
+);
+background-size:220% 100%;
+background-position:170% 0;
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:leadLetterGleam 7s ease-in-out infinite;
+pointer-events:none;
 }
 
 .lead-time-note {
@@ -320,54 +330,29 @@ letter-spacing:.35px;
 color:rgba(255,255,255,.52);
 }
 
-@keyframes leadTimeWhoosh {
+@keyframes leadLetterGleam {
 0%,
-68% {
-left:-36%;
+66% {
+background-position:170% 0;
 opacity:0;
 }
 
-72% {
-opacity:.16;
+70% {
+opacity:.15;
 }
 
-82% {
-opacity:.55;
+78% {
+opacity:1;
 }
 
-94% {
-left:118%;
-opacity:.12;
+90% {
+background-position:-80% 0;
+opacity:.85;
 }
 
+96%,
 100% {
-left:118%;
-opacity:0;
-}
-}
-
-@keyframes leadTitleGleam {
-0%,
-68% {
-left:-55%;
-opacity:0;
-}
-
-72% {
-opacity:.12;
-}
-
-82% {
-opacity:.72;
-}
-
-94% {
-left:125%;
-opacity:.08;
-}
-
-100% {
-left:125%;
+background-position:-80% 0;
 opacity:0;
 }
 }
@@ -1710,25 +1695,31 @@ padding-bottom:1px;
 }
 
 .lead-time-banner {
-padding:11px 5% 10px;
+padding:10px 4% 9px;
 }
 
 .lead-time-main {
 gap:5px;
 }
 
+.lead-time-van {
+width:42px;
+height:22px;
+}
+
 .lead-time-feature {
-font-size:15px;
-letter-spacing:1.15px;
+font-size:14px;
+letter-spacing:.9px;
+gap:4px;
 }
 
 .lead-time-divider {
-font-size:12px;
+font-size:11px;
 }
 
 .lead-time-message {
-font-size:11px;
-letter-spacing:.45px;
+font-size:10.5px;
+letter-spacing:.35px;
 }
 
 .lead-time-note {
@@ -1957,6 +1948,19 @@ font-size:21px;
 .home-popular-grid {
 grid-template-columns:1fr;
 }
+
+.lead-time-main {
+max-width:330px;
+}
+
+.lead-time-divider {
+display:none;
+}
+
+.lead-time-message {
+width:100%;
+margin-top:2px;
+}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -1966,8 +1970,7 @@ scroll-behavior:auto;
 
 .ticker,
 .home-popular-section::before,
-.lead-time-banner::before,
-.lead-time-feature::after {
+.lead-time-message::after {
 animation:none;
 }
 
@@ -2071,15 +2074,76 @@ title="Menu"
 
 <div class="lead-time-main">
 
+<svg
+class="lead-time-van"
+viewBox="0 0 76 36"
+aria-hidden="true"
+focusable="false"
+>
+<g
+fill="none"
+stroke="currentColor"
+stroke-width="2.8"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M3 11h15" />
+<path d="M7 17h11" />
+<path d="M11 23h7" />
+
+<path
+d="M24 7h27v20H24z"
+fill="currentColor"
+stroke="currentColor"
+/>
+
+<path
+d="M51 13h10l10 9v5H51z"
+fill="currentColor"
+stroke="currentColor"
+/>
+
+<path
+d="M56 16h4l6 6H56z"
+fill="#080808"
+stroke="#080808"
+/>
+
+<circle
+cx="34"
+cy="28"
+r="5"
+fill="#080808"
+stroke="currentColor"
+/>
+
+<circle
+cx="62"
+cy="28"
+r="5"
+fill="#080808"
+stroke="currentColor"
+/>
+
+<path d="M23 27h6" />
+<path d="M39 27h18" />
+<path d="M67 27h6" />
+</g>
+</svg>
+
 <span class="lead-time-feature">
-Fast Lead Time
+<span class="lead-time-fast">Fast</span>
+<span class="lead-time-red">Lead Time</span>
 </span>
 
 <span class="lead-time-divider" aria-hidden="true">
 —
 </span>
 
-<span class="lead-time-message">
+<span
+class="lead-time-message"
+data-text="From 4 Working Days*"
+>
 From 4 Working Days*
 </span>
 
