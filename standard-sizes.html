@@ -687,10 +687,13 @@ filter .32s ease;
 filter:brightness(1.035);
 }
 
-/* 800 × 1200 — enlarge without rotating */
+/* Only these two sizes use the fuller homepage-style image treatment */
 
-.product-card.image-size-800x1200 {
---image-transform:scale(1.18);
+.product-card.image-size-800x1200 .image-wrap img,
+.product-card.image-size-600x900 .image-wrap img {
+object-fit:cover;
+object-position:center center;
+transform:none;
 }
 
 /* Narrow long sizes — horizontal orientation and enlargement */
@@ -1095,10 +1098,14 @@ height:110px;
 margin-bottom:10px;
 }
 
+/* Restored larger and clearer mobile product size names */
+
 .catalogue-grid .size-title,
 .popular-grid .size-title {
-font-size:17px;
-letter-spacing:-.5px;
+font-size:19px;
+line-height:1;
+letter-spacing:-.7px;
+font-weight:950;
 }
 
 .spec-line {
@@ -1165,11 +1172,7 @@ padding:60px 6%;
 font-size:21px;
 }
 
-/* Slightly stronger mobile enlargement */
-
-.product-card.image-size-800x1200 {
---image-transform:scale(1.23);
-}
+/* Maintain the rotated narrow-long treatment on mobile */
 
 .product-card.image-size-300x1500,
 .product-card.image-size-400x1500,
@@ -1201,7 +1204,7 @@ height:100px;
 
 .catalogue-grid .size-title,
 .popular-grid .size-title {
-font-size:15px;
+font-size:18px;
 }
 }
 
