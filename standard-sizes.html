@@ -45,7 +45,7 @@ max-width:100%;
 }
 
 /* ===============================
-   MOVING TOP BANNER
+MOVING TOP BANNER
 ================================ */
 
 .top-banner {
@@ -80,7 +80,7 @@ transform:translateX(-50%);
 }
 
 /* ===============================
-   HEADER
+HEADER
 ================================ */
 
 header {
@@ -89,7 +89,7 @@ border-bottom:1px solid rgba(255,255,255,.08);
 padding:28px 6% 22px;
 display:grid;
 grid-template-columns:1fr auto;
-align-items:center;
+align-items:start;
 gap:32px;
 position:sticky;
 top:0;
@@ -144,13 +144,15 @@ text-transform:uppercase;
 
 .action-icons {
 display:flex;
-gap:12px;
+gap:10px;
+align-self:end;
+padding-bottom:1px;
 }
 
 .action-icons button,
 .action-icons a {
-width:46px;
-height:46px;
+width:44px;
+height:44px;
 border:1px solid rgba(255,255,255,.18);
 background:transparent;
 color:var(--white);
@@ -158,21 +160,30 @@ text-decoration:none;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:21px;
+font-size:19px;
 font-weight:900;
 cursor:pointer;
-transition:.25s ease;
+line-height:1;
+padding:0;
+transition:
+transform .25s ease,
+border-color .25s ease,
+color .25s ease,
+background .25s ease,
+box-shadow .25s ease;
 }
 
 .action-icons button:hover,
 .action-icons a:hover {
 border-color:var(--orange);
 color:var(--orange);
+background:rgba(245,124,0,.06);
+box-shadow:0 8px 24px rgba(245,124,0,.10);
 transform:translateY(-2px);
 }
 
 /* ===============================
-   MENU
+MENU
 ================================ */
 
 .menu-overlay {
@@ -231,7 +242,7 @@ padding-left:12px;
 }
 
 /* ===============================
-   OPENING SECTION
+OPENING SECTION
 ================================ */
 
 .intro {
@@ -347,7 +358,7 @@ line-height:1.5;
 }
 
 /* ===============================
-   SECTION HEADINGS
+SECTION HEADINGS
 ================================ */
 
 .product-section {
@@ -391,7 +402,7 @@ color:var(--muted);
 }
 
 /* ===============================
-   SECTION BACKGROUNDS
+SECTION BACKGROUNDS
 ================================ */
 
 .popular-section {
@@ -539,7 +550,7 @@ z-index:1;
 }
 
 /* ===============================
-   PRODUCT GRIDS
+PRODUCT GRIDS
 ================================ */
 
 .product-grid {
@@ -561,7 +572,7 @@ grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
 /* ===============================
-   PRODUCT CARDS
+PRODUCT CARDS
 ================================ */
 
 .product-card {
@@ -634,7 +645,7 @@ box-shadow:
 }
 
 /* ===============================
-   PRODUCT IMAGES
+PRODUCT IMAGES
 ================================ */
 
 .image-wrap {
@@ -665,16 +676,33 @@ height:100%;
 object-fit:contain;
 object-position:center center;
 background:#ffffff;
-transition:filter .32s ease;
+transform:var(--image-transform,none);
+transform-origin:center center;
+transition:
+transform .32s ease,
+filter .32s ease;
 }
 
 .product-card:hover .image-wrap img {
-transform:none;
 filter:brightness(1.035);
 }
 
+/* 800 × 1200 — enlarge without rotating */
+
+.product-card.image-size-800x1200 {
+--image-transform:scale(1.18);
+}
+
+/* Narrow long sizes — horizontal orientation and enlargement */
+
+.product-card.image-size-300x1500,
+.product-card.image-size-400x1500,
+.product-card.image-size-400x1800 {
+--image-transform:rotate(90deg) scale(1.30);
+}
+
 /* ===============================
-   CARD CONTENT
+CARD CONTENT
 ================================ */
 
 .card-content {
@@ -838,7 +866,7 @@ color:var(--orange);
 }
 
 /* ===============================
-   BOTTOM CTA
+BOTTOM CTA
 ================================ */
 
 .bottom-cta {
@@ -912,7 +940,7 @@ border-color:var(--orange);
 }
 
 /* ===============================
-   FOOTER
+FOOTER
 ================================ */
 
 footer {
@@ -941,7 +969,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-   TABLET
+TABLET
 ================================ */
 
 @media(max-width:1000px) {
@@ -980,12 +1008,13 @@ margin-bottom:12px;
 }
 
 /* ===============================
-   MOBILE
+MOBILE
 ================================ */
 
 @media(max-width:620px) {
 header {
 padding:22px 6%;
+gap:16px;
 }
 
 .wordmark {
@@ -1002,9 +1031,9 @@ gap:6px;
 
 .action-icons button,
 .action-icons a {
-width:36px;
-height:36px;
-font-size:17px;
+width:34px;
+height:34px;
+font-size:16px;
 }
 
 .intro {
@@ -1135,6 +1164,18 @@ padding:60px 6%;
 .footer-wordmark {
 font-size:21px;
 }
+
+/* Slightly stronger mobile enlargement */
+
+.product-card.image-size-800x1200 {
+--image-transform:scale(1.23);
+}
+
+.product-card.image-size-300x1500,
+.product-card.image-size-400x1500,
+.product-card.image-size-400x1800 {
+--image-transform:rotate(90deg) scale(1.38);
+}
 }
 
 @media(max-width:390px) {
@@ -1218,9 +1259,40 @@ Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
 
 <div class="action-icons">
-<button type="button" onclick="openMenu()" aria-label="Open menu">☰</button>
-<a href="tel:" aria-label="Phone">⌕</a>
-<a href="mailto:" aria-label="Email">✉</a>
+
+<a
+href="mailto:"
+aria-label="Email Factory Toughened Rooflights"
+title="Email"
+>
+✉
+</a>
+
+<a
+href="tel:"
+aria-label="Call Factory Toughened Rooflights"
+title="Phone"
+>
+📱
+</a>
+
+<button
+type="button"
+aria-label="View basket and checkout"
+title="Basket and checkout"
+>
+💳
+</button>
+
+<button
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+title="Menu"
+>
+☰
+</button>
+
 </div>
 
 </header>
@@ -1764,14 +1836,15 @@ const card =
 document.createElement("article");
 
 card.className =
-"product-card";
+"product-card image-size-" +
+size;
 
 card.innerHTML = `
 <div class="image-wrap">
 
 <img
 src="${imagePath}"
-alt="${formatSize(size)}mm frameless flat roof skylight"
+alt="${formatSize(size)} frameless flat roof skylight"
 loading="lazy"
 >
 
