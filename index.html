@@ -176,6 +176,202 @@ box-shadow:0 8px 24px rgba(245,124,0,.10);
 transform:translateY(-2px);
 }
 
+/* ===============================
+   STATIC LEAD-TIME BANNER
+================================ */
+
+.lead-time-banner {
+position:relative;
+overflow:hidden;
+background:
+radial-gradient(
+circle at 50% 0%,
+rgba(245,124,0,.13),
+transparent 52%
+),
+linear-gradient(
+180deg,
+#101010 0%,
+#080808 100%
+);
+border-top:1px solid rgba(245,124,0,.28);
+border-bottom:1px solid rgba(245,124,0,.52);
+padding:13px 6% 11px;
+text-align:center;
+isolation:isolate;
+}
+
+.lead-time-banner::before {
+content:"";
+position:absolute;
+top:0;
+bottom:0;
+left:-36%;
+width:18%;
+background:
+linear-gradient(
+110deg,
+transparent 0%,
+rgba(255,255,255,.02) 24%,
+rgba(255,190,111,.28) 48%,
+rgba(255,255,255,.05) 68%,
+transparent 100%
+);
+filter:blur(5px);
+transform:skewX(-18deg);
+animation:leadTimeWhoosh 7s ease-in-out infinite;
+pointer-events:none;
+z-index:0;
+}
+
+.lead-time-inner {
+position:relative;
+z-index:1;
+max-width:1180px;
+margin:0 auto;
+display:grid;
+justify-items:center;
+gap:5px;
+}
+
+.lead-time-main {
+display:flex;
+justify-content:center;
+align-items:baseline;
+gap:9px;
+flex-wrap:wrap;
+line-height:1;
+}
+
+.lead-time-feature {
+position:relative;
+display:inline-block;
+overflow:hidden;
+font-family:
+"Arial Narrow",
+"Roboto Condensed",
+"Bahnschrift Condensed",
+"Space Grotesk",
+"Manrope",
+sans-serif;
+font-size:clamp(16px,2vw,24px);
+font-weight:950;
+font-stretch:condensed;
+letter-spacing:1.7px;
+line-height:1;
+text-transform:uppercase;
+color:var(--orange);
+text-shadow:
+0 1px 0 #b84e00,
+0 2px 0 #713000,
+0 3px 8px rgba(0,0,0,.72),
+0 0 12px rgba(245,124,0,.18);
+padding:3px 1px 5px;
+}
+
+.lead-time-feature::after {
+content:"";
+position:absolute;
+top:-35%;
+bottom:-35%;
+left:-55%;
+width:30%;
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.58),
+transparent
+);
+filter:blur(2px);
+transform:skewX(-20deg);
+animation:leadTitleGleam 7s ease-in-out infinite;
+pointer-events:none;
+}
+
+.lead-time-divider {
+color:rgba(255,255,255,.32);
+font-size:17px;
+font-weight:400;
+}
+
+.lead-time-message {
+font-family:
+"Manrope",
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:clamp(13px,1.6vw,18px);
+font-weight:900;
+letter-spacing:.9px;
+line-height:1.15;
+text-transform:uppercase;
+color:var(--white);
+}
+
+.lead-time-note {
+margin:0;
+font-size:9px;
+font-weight:650;
+line-height:1.35;
+letter-spacing:.35px;
+color:rgba(255,255,255,.52);
+}
+
+@keyframes leadTimeWhoosh {
+0%,
+68% {
+left:-36%;
+opacity:0;
+}
+
+72% {
+opacity:.16;
+}
+
+82% {
+opacity:.55;
+}
+
+94% {
+left:118%;
+opacity:.12;
+}
+
+100% {
+left:118%;
+opacity:0;
+}
+}
+
+@keyframes leadTitleGleam {
+0%,
+68% {
+left:-55%;
+opacity:0;
+}
+
+72% {
+opacity:.12;
+}
+
+82% {
+opacity:.72;
+}
+
+94% {
+left:125%;
+opacity:.08;
+}
+
+100% {
+left:125%;
+opacity:0;
+}
+}
+
 .menu-overlay {
 position:fixed;
 inset:0;
@@ -232,7 +428,7 @@ padding-left:12px;
 }
 
 /* ===============================
-SHARED TEXT
+   SHARED TEXT
 ================================ */
 
 .section-label {
@@ -267,7 +463,7 @@ font-size:17px;
 }
 
 /* ===============================
-SCROLL REVEALS
+   SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -313,7 +509,7 @@ transition-delay:.32s;
 }
 
 /* ===============================
-POPULAR SIZES
+   POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -677,7 +873,7 @@ justify-content:center;
 }
 
 /* ===============================
-DESIGN SECTION
+   DESIGN SECTION
 ================================ */
 
 .opening-section {
@@ -739,7 +935,7 @@ object-position:center;
 }
 
 /* ===============================
-BUY ONLINE
+   BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -903,7 +1099,7 @@ align-self:center;
 }
 
 /* ===============================
-YEAR-ROUND COMFORT
+   YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -1006,7 +1202,7 @@ color:rgba(255,255,255,.66);
 }
 
 /* ===============================
-DEDICATED TEAM
+   DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1096,7 +1292,7 @@ background:var(--orange);
 }
 
 /* ===============================
-TRUST CARDS
+   TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1213,7 +1409,7 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-CALCULATOR
+   CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -1352,7 +1548,7 @@ color:var(--muted);
 }
 
 /* ===============================
-LOWER SECTIONS
+   LOWER SECTIONS
 ================================ */
 
 .engineered {
@@ -1442,7 +1638,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-TABLET
+   TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -1480,7 +1676,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-MOBILE
+   MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -1511,6 +1707,33 @@ font-size:16px;
 .wordmark-domain {
 font-size:.44em;
 padding-bottom:1px;
+}
+
+.lead-time-banner {
+padding:11px 5% 10px;
+}
+
+.lead-time-main {
+gap:5px;
+}
+
+.lead-time-feature {
+font-size:15px;
+letter-spacing:1.15px;
+}
+
+.lead-time-divider {
+font-size:12px;
+}
+
+.lead-time-message {
+font-size:11px;
+letter-spacing:.45px;
+}
+
+.lead-time-note {
+font-size:7.5px;
+letter-spacing:.15px;
 }
 
 .home-popular-section {
@@ -1742,7 +1965,9 @@ scroll-behavior:auto;
 }
 
 .ticker,
-.home-popular-section::before {
+.home-popular-section::before,
+.lead-time-banner::before,
+.lead-time-feature::after {
 animation:none;
 }
 
@@ -1839,6 +2064,34 @@ title="Menu"
 </div>
 
 </header>
+
+<section class="lead-time-banner" aria-label="Current manufacturing lead time">
+
+<div class="lead-time-inner">
+
+<div class="lead-time-main">
+
+<span class="lead-time-feature">
+Fast Lead Time
+</span>
+
+<span class="lead-time-divider" aria-hidden="true">
+—
+</span>
+
+<span class="lead-time-message">
+From 4 Working Days*
+</span>
+
+</div>
+
+<p class="lead-time-note">
+*Subject to size, specification and delivery location.
+</p>
+
+</div>
+
+</section>
 
 <div id="menuOverlay" class="menu-overlay">
 
@@ -2809,7 +3062,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-SCROLL REVEALS
+   SCROLL REVEALS
 ================================ */
 
 const revealElements =
@@ -2857,7 +3110,7 @@ revealObserver.observe(element);
 }
 
 /* ===============================
-ROOFLIGHT SLIDESHOW
+   ROOFLIGHT SLIDESHOW
 ================================ */
 
 const rooflightSlideshow =
@@ -3070,7 +3323,7 @@ restartRooflightTimer();
 }
 
 /* ===============================
-COMFORT SLIDESHOW
+   COMFORT SLIDESHOW
 ================================ */
 
 const comfortSlideshow =
@@ -3241,7 +3494,7 @@ restartComfortTimer();
 }
 
 /* ===============================
-POPULAR SIZE CONTROLS
+   POPULAR SIZE CONTROLS
 ================================ */
 
 const homepageProductCards =
@@ -3301,7 +3554,7 @@ glazing === "triple"
 });
 
 /* ===============================
-TEMPORARY CALCULATOR
+   TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
