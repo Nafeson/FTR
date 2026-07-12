@@ -6,24 +6,47 @@
 
 <title>Standard Frameless Rooflight Sizes | Factory Toughened Rooflights</title>
 
+<meta
+name="description"
+content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times and free mainland UK delivery."
+/>
+
 <style>
 :root {
 --orange:#f57c00;
 --sunset:#ff9a2f;
 --black:#050505;
 --navy:#102a44;
---white:#fff;
+--purple:#1b1028;
+--purple-dark:#100918;
+--white:#ffffff;
 --muted:#d8d8d8;
+--red-orange:#ff431c;
 }
 
-* { box-sizing:border-box; }
+* {
+box-sizing:border-box;
+}
+
+html {
+scroll-behavior:smooth;
+}
 
 body {
 margin:0;
 font-family:"Manrope","Aptos","Inter","Segoe UI",Arial,sans-serif;
 background:var(--black);
 color:var(--white);
+overflow-x:hidden;
 }
+
+img {
+max-width:100%;
+}
+
+/* ===============================
+MOVING TOP BANNER
+================================ */
 
 .top-banner {
 background:var(--orange);
@@ -42,12 +65,23 @@ padding:7px 0;
 animation:ticker 50s linear infinite;
 }
 
-.ticker span { margin-right:85px; }
+.ticker span {
+margin-right:85px;
+}
 
 @keyframes ticker {
-from { transform:translateX(0); }
-to { transform:translateX(-50%); }
+from {
+transform:translateX(0);
 }
+
+to {
+transform:translateX(-50%);
+}
+}
+
+/* ===============================
+HEADER
+================================ */
 
 header {
 background:rgba(5,5,5,.96);
@@ -63,7 +97,10 @@ z-index:20;
 backdrop-filter:blur(10px);
 }
 
-.wordmark-wrap { display:grid; gap:10px; }
+.wordmark-wrap {
+display:grid;
+gap:10px;
+}
 
 .wordmark {
 line-height:.94;
@@ -71,11 +108,31 @@ font-weight:950;
 letter-spacing:2.4px;
 font-size:25px;
 text-transform:uppercase;
+width:max-content;
 }
 
 .wordmark span {
 color:var(--orange);
 display:block;
+}
+
+.wordmark-bottom {
+display:flex;
+align-items:flex-end;
+gap:0;
+white-space:nowrap;
+width:max-content;
+}
+
+.wordmark-domain {
+display:inline-block;
+color:var(--white);
+font-size:.44em;
+font-weight:900;
+letter-spacing:.08px;
+line-height:1;
+padding-bottom:1px;
+text-transform:lowercase;
 }
 
 .address-line {
@@ -114,6 +171,10 @@ color:var(--orange);
 transform:translateY(-2px);
 }
 
+/* ===============================
+MENU
+================================ */
+
 .menu-overlay {
 position:fixed;
 inset:0;
@@ -121,9 +182,12 @@ background:rgba(5,5,5,.985);
 z-index:100;
 display:none;
 padding:55px 6%;
+overflow-y:auto;
 }
 
-.menu-overlay.active { display:block; }
+.menu-overlay.active {
+display:block;
+}
 
 .menu-top {
 display:flex;
@@ -151,7 +215,7 @@ max-width:680px;
 .menu-links a {
 color:var(--white);
 text-decoration:none;
-font-size:clamp(36px,6vw,76px);
+font-size:clamp(34px,6vw,72px);
 font-weight:950;
 line-height:.94;
 letter-spacing:-2px;
@@ -166,26 +230,49 @@ color:var(--orange);
 padding-left:12px;
 }
 
+/* ===============================
+NEW OPENING SECTION
+================================ */
+
 .intro {
-padding:34px 6% 30px;
+position:relative;
+overflow:hidden;
+padding:42px 6% 38px;
 border-bottom:1px solid rgba(255,255,255,.08);
-background:#080808;
+background:
+radial-gradient(
+circle at 86% 24%,
+rgba(245,124,0,.12),
+transparent 34%
+),
+linear-gradient(
+135deg,
+#080808 0%,
+#0d0d0d 58%,
+#111111 100%
+);
 }
 
 .intro-grid {
 max-width:1180px;
 margin:0 auto;
 display:grid;
-grid-template-columns:1.2fr .8fr .8fr;
-gap:24px;
-align-items:start;
+grid-template-columns:1.05fr .95fr;
+gap:34px;
+align-items:stretch;
+}
+
+.intro-title-wrap {
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .intro-title {
 margin:0;
-font-size:clamp(30px,4vw,48px);
+font-size:clamp(31px,4vw,52px);
 line-height:.98;
-letter-spacing:-1.4px;
+letter-spacing:-1.5px;
 font-weight:950;
 }
 
@@ -194,56 +281,160 @@ color:var(--orange);
 display:block;
 }
 
-.intro-block {
-border-left:2px solid rgba(245,124,0,.7);
-padding-left:18px;
-}
-
-.intro-block strong {
-display:block;
-font-size:13px;
-text-transform:uppercase;
-letter-spacing:1.2px;
-margin-bottom:8px;
-color:var(--white);
-}
-
-.intro-block p {
-margin:0;
+.intro-summary {
+margin:18px 0 0;
+max-width:660px;
 color:var(--muted);
-font-size:14px;
-line-height:1.55;
+font-size:15px;
+line-height:1.65;
 }
+
+.intro-features {
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.intro-feature {
+position:relative;
+overflow:hidden;
+min-height:150px;
+padding:22px;
+background:linear-gradient(135deg,#111,#171717);
+border:1px solid rgba(255,255,255,.11);
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.intro-feature::before {
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:54px;
+height:2px;
+background:var(--orange);
+}
+
+.intro-feature-label {
+font-size:9px;
+font-weight:950;
+letter-spacing:1.7px;
+text-transform:uppercase;
+color:rgba(255,255,255,.48);
+margin-bottom:10px;
+}
+
+.intro-feature strong {
+display:block;
+font-size:18px;
+line-height:1.15;
+letter-spacing:.3px;
+color:var(--white);
+text-transform:uppercase;
+}
+
+.intro-feature strong span {
+color:var(--red-orange);
+}
+
+.intro-feature p {
+margin:10px 0 0;
+color:var(--muted);
+font-size:12px;
+line-height:1.5;
+}
+
+.intro-feature-note {
+display:block;
+margin-top:8px;
+font-size:8px;
+line-height:1.4;
+letter-spacing:.2px;
+color:rgba(255,255,255,.42);
+}
+
+/* ===============================
+SECTION HEADINGS
+================================ */
 
 .product-section {
-padding:28px 6% 54px;
+position:relative;
+overflow:hidden;
+padding:42px 6% 64px;
+}
+
+.section-heading-wrap {
+position:relative;
+z-index:2;
+max-width:1180px;
+margin:0 auto 25px;
+}
+
+.section-number {
+display:block;
+margin-bottom:7px;
+font-size:9px;
+font-weight:950;
+letter-spacing:2px;
+text-transform:uppercase;
+color:rgba(255,255,255,.38);
 }
 
 .section-title {
-font-size:18px;
+margin:0;
+font-size:clamp(24px,3vw,36px);
 font-weight:950;
 text-transform:uppercase;
-letter-spacing:1.6px;
+letter-spacing:1.2px;
 color:var(--orange);
-margin:0 auto 20px;
-padding-top:8px;
-max-width:1180px;
 }
 
+.section-subtitle {
+margin:8px 0 0;
+max-width:720px;
+font-size:14px;
+line-height:1.55;
+color:var(--muted);
+}
+
+/* ===============================
+SECTION BACKGROUNDS
+================================ */
+
 .popular-section {
-position:relative;
-overflow:hidden;
 background:
-radial-gradient(circle at 16% 18%, rgba(255,154,47,.32), transparent 26%),
-radial-gradient(circle at 86% 70%, rgba(245,124,0,.25), transparent 28%),
-linear-gradient(135deg, #050505 0%, #17100a 36%, #241406 68%, #050505 100%);
+radial-gradient(
+circle at 16% 18%,
+rgba(255,154,47,.32),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(245,124,0,.25),
+transparent 28%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#17100a 36%,
+#241406 68%,
+#050505 100%
+);
 }
 
 .popular-section::before {
 content:"";
 position:absolute;
 inset:-40%;
-background:linear-gradient(120deg, transparent 0%, rgba(255,154,47,.13) 45%, transparent 75%);
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,154,47,.13) 45%,
+transparent 75%
+);
 animation:popularGlow 13s ease-in-out infinite alternate;
 pointer-events:none;
 }
@@ -253,8 +444,15 @@ content:"";
 position:absolute;
 inset:0;
 background-image:
-linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+linear-gradient(
+rgba(255,255,255,.035) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.035) 1px,
+transparent 1px
+);
 background-size:44px 44px;
 opacity:.25;
 transform:skewY(-6deg) scale(1.2);
@@ -262,45 +460,160 @@ pointer-events:none;
 }
 
 @keyframes popularGlow {
-from { transform:translateX(-10%) rotate(0deg); opacity:.55; }
-to { transform:translateX(10%) rotate(4deg); opacity:.95; }
+from {
+transform:translateX(-10%) rotate(0deg);
+opacity:.55;
 }
 
-.popular-section .section-title,
+to {
+transform:translateX(10%) rotate(4deg);
+opacity:.95;
+}
+}
+
+.small-section {
+background:
+radial-gradient(
+circle at 82% 18%,
+rgba(16,42,68,.28),
+transparent 34%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#0a1016 55%,
+#050505 100%
+);
+border-top:1px solid rgba(255,255,255,.07);
+}
+
+.medium-section {
+background:
+radial-gradient(
+circle at 16% 22%,
+rgba(96,47,140,.25),
+transparent 32%
+),
+linear-gradient(
+135deg,
+#09050d 0%,
+#1b1028 54%,
+#08050c 100%
+);
+border-top:1px solid rgba(173,105,224,.14);
+}
+
+.large-section {
+background:
+radial-gradient(
+circle at 86% 72%,
+rgba(24,75,120,.34),
+transparent 34%
+),
+linear-gradient(
+135deg,
+#071019 0%,
+#102a44 52%,
+#050505 100%
+);
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.extra-large-section {
+background:
+radial-gradient(
+circle at 18% 68%,
+rgba(126,57,173,.24),
+transparent 32%
+),
+radial-gradient(
+circle at 88% 18%,
+rgba(245,124,0,.11),
+transparent 27%
+),
+linear-gradient(
+135deg,
+#08050c 0%,
+#170b21 54%,
+#050505 100%
+);
+border-top:1px solid rgba(173,105,224,.15);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.popular-section .section-heading-wrap,
 .popular-section .product-grid {
 position:relative;
 z-index:1;
 }
 
+/* ===============================
+PRODUCT GRIDS
+================================ */
+
 .product-grid {
 display:grid;
-grid-template-columns:repeat(2, minmax(0, 1fr));
 gap:18px;
 max-width:1180px;
 margin:0 auto;
 width:100%;
+position:relative;
+z-index:2;
 }
 
+.popular-grid {
+grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.catalogue-grid {
+grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+/* ===============================
+PRODUCT CARDS
+================================ */
+
 .product-card {
-display:grid;
-grid-template-columns:145px 1fr;
-gap:16px;
 background:linear-gradient(135deg,#0c0c0c,#141414);
 border:1px solid rgba(255,255,255,.11);
 padding:14px;
-min-height:168px;
 position:relative;
 overflow:hidden;
-transition:.28s ease;
+isolation:isolate;
+transition:
+transform .28s ease,
+border-color .28s ease,
+box-shadow .28s ease,
+background .28s ease;
+}
+
+.popular-grid .product-card {
+display:grid;
+grid-template-columns:145px minmax(0,1fr);
+gap:16px;
+min-height:168px;
+}
+
+.catalogue-grid .product-card {
+display:flex;
+flex-direction:column;
+min-height:430px;
 }
 
 .product-card::before {
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(120deg,transparent 0%,rgba(245,124,0,.12) 45%,transparent 75%);
+z-index:0;
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(245,124,0,.10) 45%,
+transparent 75%
+);
 transform:translateX(-120%);
-transition:.55s ease;
+transition:transform .55s ease;
 pointer-events:none;
 }
 
@@ -311,40 +624,64 @@ transform:translateX(120%);
 
 .product-card:hover,
 .product-card:active {
-transform:translateY(-4px);
-border-color:rgba(245,124,0,.45);
-box-shadow:0 18px 46px rgba(0,0,0,.35);
+transform:translateY(-5px);
+border-color:rgba(245,124,0,.50);
+background:linear-gradient(135deg,#111,#18130f);
+box-shadow:
+0 18px 46px rgba(0,0,0,.38),
+0 12px 32px rgba(245,124,0,.08);
+z-index:4;
 }
 
 .popular-section .product-card:hover,
 .popular-section .product-card:active {
-transform:translateY(-8px) scale(1.055);
+transform:translateY(-8px) scale(1.035);
 border-color:rgba(255,154,47,.75);
-box-shadow:0 26px 68px rgba(245,124,0,.18), 0 22px 48px rgba(0,0,0,.42);
-z-index:4;
+box-shadow:
+0 26px 68px rgba(245,124,0,.18),
+0 22px 48px rgba(0,0,0,.42);
 }
+
+/* ===============================
+PRODUCT IMAGES
+================================ */
 
 .image-wrap {
 width:100%;
-height:138px;
 background:#f5f5f5;
 border:1px solid rgba(255,255,255,.10);
 overflow:hidden;
 position:relative;
+z-index:1;
+}
+
+.popular-grid .image-wrap {
+height:138px;
+}
+
+.catalogue-grid .image-wrap {
+height:175px;
+margin-bottom:15px;
 }
 
 .image-wrap img {
 width:100%;
-height:138px;
+height:100%;
 object-fit:cover;
 display:block;
-transition:.32s ease;
+transition:
+transform .32s ease,
+filter .32s ease;
 }
 
 .product-card:hover .image-wrap img {
-transform:scale(1.04);
-filter:brightness(1.08);
+transform:scale(1.035);
+filter:brightness(1.06);
 }
+
+/* ===============================
+CARD CONTENT
+================================ */
 
 .card-content {
 position:relative;
@@ -352,6 +689,7 @@ z-index:1;
 display:flex;
 flex-direction:column;
 min-width:0;
+flex:1;
 }
 
 .size-title {
@@ -363,9 +701,13 @@ margin-bottom:8px;
 transition:.25s ease;
 }
 
+.catalogue-grid .size-title {
+font-size:23px;
+}
+
 .product-card:hover .size-title {
 color:var(--orange);
-transform:scale(1.025);
+transform:scale(1.018);
 transform-origin:left;
 }
 
@@ -375,7 +717,7 @@ gap:4px;
 color:var(--muted);
 font-size:12px;
 line-height:1.3;
-margin-bottom:10px;
+margin-bottom:13px;
 }
 
 .toggle {
@@ -385,6 +727,11 @@ border:1px solid rgba(255,255,255,.15);
 max-width:210px;
 margin-top:auto;
 margin-bottom:0;
+}
+
+.catalogue-grid .toggle {
+max-width:none;
+width:100%;
 }
 
 .toggle button {
@@ -399,6 +746,10 @@ text-transform:uppercase;
 cursor:pointer;
 }
 
+.toggle button + button {
+border-left:1px solid rgba(255,255,255,.15);
+}
+
 .toggle button.active {
 background:var(--orange);
 color:#050505;
@@ -411,8 +762,13 @@ border:1px solid rgba(255,255,255,.15);
 border-top:none;
 position:relative;
 overflow:hidden;
-margin-bottom:10px;
+margin-bottom:12px;
 background:rgba(255,255,255,.025);
+}
+
+.catalogue-grid .glazed-label {
+max-width:none;
+width:100%;
 }
 
 .glazed-label span {
@@ -439,6 +795,7 @@ display:flex;
 justify-content:space-between;
 align-items:flex-end;
 gap:14px;
+margin-top:auto;
 }
 
 .price-label {
@@ -472,7 +829,7 @@ top:-1px;
 .view-link {
 color:var(--white);
 text-decoration:none;
-font-size:12px;
+font-size:11px;
 font-weight:950;
 text-transform:uppercase;
 letter-spacing:.8px;
@@ -482,24 +839,23 @@ transition:.25s ease;
 white-space:nowrap;
 }
 
-.view-link:hover { color:var(--orange); }
-
-.standard-section {
-background:linear-gradient(135deg,#102a44,#050505);
-border-top:1px solid rgba(255,255,255,.08);
-border-bottom:1px solid rgba(255,255,255,.08);
+.view-link:hover {
+color:var(--orange);
 }
 
-.standard-section .product-card:hover,
-.standard-section .product-card:active {
-transform:none;
-border-color:rgba(245,124,0,.45);
-box-shadow:0 14px 36px rgba(0,0,0,.28);
-}
+/* ===============================
+BOTTOM CTA
+================================ */
 
 .bottom-cta {
-padding:68px 6%;
-background:#080808;
+padding:72px 6%;
+background:
+radial-gradient(
+circle at 50% 0%,
+rgba(245,124,0,.10),
+transparent 38%
+),
+#080808;
 text-align:center;
 }
 
@@ -561,6 +917,10 @@ color:var(--orange);
 border-color:var(--orange);
 }
 
+/* ===============================
+FOOTER
+================================ */
+
 footer {
 background:#050505;
 border-top:1px solid rgba(255,255,255,.10);
@@ -569,80 +929,256 @@ padding:46px 6%;
 font-size:15px;
 }
 
-footer strong {
+.footer-wordmark {
+margin-bottom:24px;
+}
+
+.footer-wordmark span,
+.footer-wordmark .wordmark-domain {
 color:var(--white);
-font-size:18px;
-text-transform:uppercase;
-letter-spacing:.8px;
 }
 
-@media(max-width:900px) {
-.intro-grid { grid-template-columns:1fr; }
-
-.product-grid {
-grid-template-columns:repeat(2, minmax(0, 1fr));
-gap:14px;
+footer p {
+margin:0 0 12px;
 }
 
-.product-card {
-grid-template-columns:115px 1fr;
+footer p:last-child {
+margin-bottom:0;
+}
+
+/* ===============================
+TABLET
+================================ */
+
+@media(max-width:1000px) {
+.intro-grid {
+grid-template-columns:1fr;
+}
+
+.intro-features {
+grid-template-columns:1fr 1fr;
+}
+
+.catalogue-grid {
+grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.catalogue-grid .product-card {
+min-height:420px;
+}
+}
+
+@media(max-width:760px) {
+.popular-grid {
+grid-template-columns:repeat(2,minmax(0,1fr));
 gap:12px;
-padding:12px;
 }
 
-.image-wrap,
-.image-wrap img {
-height:122px;
+.popular-grid .product-card {
+grid-template-columns:1fr;
+min-height:auto;
 }
 
-.size-title { font-size:21px; }
-.spec-line { font-size:11px; }
+.popular-grid .image-wrap {
+height:130px;
+margin-bottom:12px;
 }
+}
+
+/* ===============================
+MOBILE
+================================ */
 
 @media(max-width:620px) {
-header { padding:22px 6%; }
+header {
+padding:22px 6%;
+}
 
-.wordmark { font-size:20px; }
-.address-line { font-size:10px; }
+.wordmark {
+font-size:20px;
+}
+
+.address-line {
+font-size:10px;
+}
+
+.action-icons {
+gap:6px;
+}
 
 .action-icons button,
 .action-icons a {
-width:38px;
-height:38px;
+width:36px;
+height:36px;
+font-size:17px;
 }
 
-.intro { padding:30px 6% 24px; }
+.intro {
+padding:30px 6% 28px;
+}
 
-.product-section { padding:28px 6% 46px; }
+.intro-title {
+font-size:34px;
+}
 
-.product-grid {
-grid-template-columns:repeat(2, minmax(0, 1fr));
+.intro-summary {
+font-size:13px;
+}
+
+.intro-features {
+grid-template-columns:1fr;
 gap:10px;
 }
 
-.product-card {
-grid-template-columns:1fr;
-min-height:auto;
-padding:10px;
+.intro-feature {
+min-height:125px;
+padding:18px;
 }
 
-.popular-section .product-card:hover,
-.popular-section .product-card:active {
-transform:translateY(-5px) scale(1.025);
+.product-section {
+padding:34px 4% 50px;
 }
 
-.image-wrap,
-.image-wrap img {
+.section-heading-wrap {
+margin-bottom:18px;
+padding:0 2%;
+}
+
+.section-title {
+font-size:24px;
+}
+
+.section-subtitle {
+font-size:12px;
+}
+
+.popular-grid,
+.catalogue-grid {
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px;
+}
+
+.catalogue-grid .product-card,
+.popular-grid .product-card {
+display:flex;
+flex-direction:column;
+min-height:0;
+padding:9px;
+}
+
+.catalogue-grid .image-wrap,
+.popular-grid .image-wrap {
 height:110px;
+margin-bottom:10px;
 }
 
-.size-title { font-size:19px; }
-.spec-line { font-size:10px; }
-.toggle { max-width:none; }
-.glazed-label { max-width:none; }
-.price { font-size:23px; }
-.vat-note { font-size:8px; font-weight:400; display:block; margin-left:0; margin-top:3px; }
-.view-link { font-size:10px; }
+.catalogue-grid .size-title,
+.popular-grid .size-title {
+font-size:17px;
+letter-spacing:-.5px;
+}
+
+.spec-line {
+font-size:9px;
+line-height:1.3;
+gap:3px;
+min-height:48px;
+margin-bottom:9px;
+}
+
+.toggle {
+max-width:none;
+width:100%;
+}
+
+.toggle button {
+font-size:8px;
+padding:7px 3px;
+letter-spacing:.4px;
+}
+
+.glazed-label {
+max-width:none;
+width:100%;
+height:17px;
+margin-bottom:9px;
+}
+
+.glazed-label span {
+top:4px;
+font-size:7px;
+letter-spacing:.8px;
+}
+
+.price-row {
+gap:6px;
+}
+
+.price-label {
+font-size:8px;
+}
+
+.price {
+font-size:20px;
+}
+
+.vat-note {
+font-size:7px;
+display:block;
+margin-left:0;
+margin-top:3px;
+}
+
+.view-link {
+font-size:8px;
+letter-spacing:.35px;
+}
+
+.bottom-cta {
+padding:60px 6%;
+}
+
+.footer-wordmark {
+font-size:21px;
+}
+}
+
+@media(max-width:390px) {
+.product-section {
+padding-left:3%;
+padding-right:3%;
+}
+
+.popular-grid,
+.catalogue-grid {
+gap:7px;
+}
+
+.catalogue-grid .product-card,
+.popular-grid .product-card {
+padding:7px;
+}
+
+.catalogue-grid .image-wrap,
+.popular-grid .image-wrap {
+height:100px;
+}
+
+.catalogue-grid .size-title,
+.popular-grid .size-title {
+font-size:15px;
+}
+}
+
+@media(prefers-reduced-motion:reduce) {
+html {
+scroll-behavior:auto;
+}
+
+.ticker,
+.popular-section::before {
+animation:none;
+}
 }
 </style>
 </head>
@@ -651,99 +1187,235 @@ height:110px;
 
 <div class="top-banner">
 <div class="ticker">
-<span>Popular listed rooflight sizes ready to order online</span>
+
+<span>Fast lead times from 4 working days</span>
+<span>6mm+ toughened safety glass</span>
 <span>Switch between double and triple glazing instantly</span>
-<span>Free delivery UK mainland on listed sizes</span>
+<span>Free mainland UK delivery on listed sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
-<span>Popular listed rooflight sizes ready to order online</span>
+
+<span>Fast lead times from 4 working days</span>
+<span>6mm+ toughened safety glass</span>
 <span>Switch between double and triple glazing instantly</span>
-<span>Free delivery UK mainland on listed sizes</span>
+<span>Free mainland UK delivery on listed sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
+
 </div>
 </div>
 
 <header>
+
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
-Rooflights
+<div class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
+</div>
+
 <div class="address-line">
 5-9 Willen Field Road, London, NW10 7BQ
 </div>
+
 </div>
 
 <div class="action-icons">
-<button onclick="openMenu()" aria-label="Open menu">☰</button>
+<button type="button" onclick="openMenu()" aria-label="Open menu">☰</button>
 <a href="tel:" aria-label="Phone">⌕</a>
 <a href="mailto:" aria-label="Email">✉</a>
 </div>
+
 </header>
 
 <div id="menuOverlay" class="menu-overlay">
+
 <div class="menu-top">
+
 <div class="wordmark-wrap">
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
-Rooflights
-</div>
-<div class="address-line">
-5-9 Willen Field Road, London, NW10 7BQ
+<div class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
 </div>
 
-<button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
+<div class="address-line">
+5-9 Willen Field Road, London, NW10 7BQ
+</div>
+
+</div>
+
+<button
+type="button"
+class="close-menu"
+onclick="closeMenu()"
+aria-label="Close menu"
+>
+×
+</button>
+
 </div>
 
 <div class="menu-links">
 <a href="index.html" onclick="closeMenu()">Home</a>
-<a href="#popular" onclick="closeMenu()">Popular</a>
-<a href="#standard" onclick="closeMenu()">Standard Sizes</a>
+<a href="#popular" onclick="closeMenu()">Popular Sizes</a>
+<a href="#small" onclick="closeMenu()">Small Sizes</a>
+<a href="#medium" onclick="closeMenu()">Medium Sizes</a>
+<a href="#large" onclick="closeMenu()">Large Sizes</a>
+<a href="#extra-large" onclick="closeMenu()">Extra Large</a>
 <a href="index.html#calculator" onclick="closeMenu()">Build Custom</a>
-<a href="index.html#oversized" onclick="closeMenu()">Oversized</a>
 <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
+
 </div>
 
 <main>
 
 <section class="intro">
+
 <div class="intro-grid">
+
+<div class="intro-title-wrap">
+
 <h1 class="intro-title">
 Frameless Flat Roof Skylights
 <span>Standard Sizes</span>
 </h1>
 
-<div class="intro-block">
-<strong>Fast Manufacture</strong>
-<p>Manufactured to order with an estimated 4 working day lead time, then delivered across mainland UK.</p>
+<p class="intro-summary">
+Browse our listed frameless rooflight sizes, switch instantly between double and
+triple glazing, and see your price including VAT. Every listed unit includes free
+mainland UK delivery.
+</p>
+
 </div>
 
-<div class="intro-block">
-<strong>Premium Specification</strong>
-<p>Choose between double and triple glazed Low-E Softcoat frameless flat roof skylights with instant price updates.</p>
+<div class="intro-features">
+
+<div class="intro-feature">
+
+<span class="intro-feature-label">
+Current Production
+</span>
+
+<strong>
+Fast <span>Lead Time</span><br>
+From 4 Working Days*
+</strong>
+
+<span class="intro-feature-note">
+*Subject to size, specification and delivery location.
+</span>
+
 </div>
+
+<div class="intro-feature">
+
+<span class="intro-feature-label">
+Premium Specification
+</span>
+
+<strong>
+6mm+ Toughened<br>
+Safety Glass
+</strong>
+
+<p>
+Strong, high-quality glazing combined with Low-E Softcoat performance and a
+clean frameless finish.
+</p>
+
 </div>
+
+</div>
+
+</div>
+
 </section>
 
 <section id="popular" class="product-section popular-section">
-<h2 class="section-title">Popular</h2>
-<div class="product-grid" id="popularGrid"></div>
+
+<div class="section-heading-wrap">
+<span class="section-number">01 — Best Sellers</span>
+<h2 class="section-title">Popular Sizes</h2>
+<p class="section-subtitle">
+Frequently selected frameless rooflight sizes for kitchens, extensions and modern residential projects.
+</p>
+</div>
+
+<div class="product-grid popular-grid" id="popularGrid"></div>
+
 </section>
 
-<section id="standard" class="product-section standard-section">
-<h2 class="section-title">Standard Sizes</h2>
-<div class="product-grid" id="standardGrid"></div>
+<section id="small" class="product-section small-section">
+
+<div class="section-heading-wrap">
+<span class="section-number">02 — Compact Range</span>
+<h2 class="section-title">Small Sizes</h2>
+<p class="section-subtitle">
+Ideal for bathrooms, hallways, stairwells, utility rooms and more compact ceiling openings.
+</p>
+</div>
+
+<div class="product-grid catalogue-grid" id="smallGrid"></div>
+
+</section>
+
+<section id="medium" class="product-section medium-section">
+
+<div class="section-heading-wrap">
+<span class="section-number">03 — Residential Range</span>
+<h2 class="section-title">Medium Sizes</h2>
+<p class="section-subtitle">
+Versatile rooflight sizes suited to kitchens, home offices, extensions and everyday living spaces.
+</p>
+</div>
+
+<div class="product-grid catalogue-grid" id="mediumGrid"></div>
+
+</section>
+
+<section id="large" class="product-section large-section">
+
+<div class="section-heading-wrap">
+<span class="section-number">04 — Larger Openings</span>
+<h2 class="section-title">Large Sizes</h2>
+<p class="section-subtitle">
+Designed to maximise natural light across larger kitchens, extensions and open-plan rooms.
+</p>
+</div>
+
+<div class="product-grid catalogue-grid" id="largeGrid"></div>
+
+</section>
+
+<section id="extra-large" class="product-section extra-large-section">
+
+<div class="section-heading-wrap">
+<span class="section-number">05 — Maximum Daylight</span>
+<h2 class="section-title">Extra Large Sizes</h2>
+<p class="section-subtitle">
+Larger architectural rooflights for expansive rooms, major extensions and premium projects.
+</p>
+</div>
+
+<div class="product-grid catalogue-grid" id="extraLargeGrid"></div>
+
 </section>
 
 <section class="bottom-cta">
+
 <h2>Need a different size?</h2>
+
 <p>
-If your size is not listed, return to the calculator and build a made-to-order frameless rooflight online.
+If your required size is not listed, return to the calculator and build a
+made-to-order frameless rooflight online.
 </p>
 
 <div class="cta-actions">
@@ -751,73 +1423,271 @@ If your size is not listed, return to the calculator and build a made-to-order f
 </div>
 
 <h2 class="larger-title">Need Something Larger?</h2>
+
 <p>
-Looking for a frameless rooflight larger than our listed range? Contact us for an oversized quote and bespoke pricing.
+Looking for a frameless rooflight beyond our listed range? Contact us for an
+oversized quotation and specialist delivery pricing.
 </p>
 
 <div class="cta-actions">
 <a href="index.html#oversized" class="button secondary">Oversized Quote</a>
 </div>
+
 </section>
 
 </main>
 
 <footer id="contact">
-<p><strong>Factory Toughened Rooflights</strong></p>
-<p>Frameless flat roof skylights, made to order and delivered across mainland UK.</p>
-<p>5-9 Willen Field Road, London, NW10 7BQ</p>
+
+<div class="wordmark footer-wordmark">
+Factory
+<span>Toughened</span>
+<div class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
+</div>
+</div>
+
+<p>
+Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
+</p>
+
+<p>
+Frameless flat roof skylights, made to order and delivered across mainland UK.
+</p>
+
+<p>
+5-9 Willen Field Road, London, NW10 7BQ
+</p>
+
 </footer>
 
 <script>
 const prices = {
-"600x600": { double: 220, triple: 270 },
-"600x900": { double: 250, triple: 300 },
-"600x1200": { double: 310, triple: 370 },
-"600x1500": { double: 360, triple: 430 },
-"600x2000": { double: 455, triple: 540 },
 
-"800x800": { double: 290, triple: 350 },
-"800x1200": { double: 395, triple: 470 },
-"800x1500": { double: 455, triple: 545 },
-"800x2000": { double: 560, triple: 675 },
+/* SMALL SIZES */
 
-"1000x1000": { double: 420, triple: 505 },
-"1000x1500": { double: 520, triple: 625 },
-"1000x2000": { double: 650, triple: 780 },
-"1000x2500": { double: 785, triple: 945 },
+"300x800": {
+double:195,
+triple:230
+},
 
-"1200x1200": { double: 510, triple: 615 },
+"300x1000": {
+double:220,
+triple:255
+},
 
-"1500x1500": { double: 760, triple: 910 },
-"1500x1800": { double: 880, triple: 1075 },
-"1500x2000": { double: 980, triple: 1180 },
-"1500x2500": { double: 1225, triple: 1475 }
+"300x1200": {
+double:245,
+triple:290
+},
+
+"400x800": {
+double:215,
+triple:255
+},
+
+"400x1000": {
+double:235,
+triple:280
+},
+
+"400x1200": {
+double:260,
+triple:310
+},
+
+"600x600": {
+double:220,
+triple:270
+},
+
+"600x900": {
+double:250,
+triple:300
+},
+
+/* MEDIUM SIZES */
+
+"300x1500": {
+double:280,
+triple:335
+},
+
+"400x1500": {
+double:310,
+triple:370
+},
+
+"400x1800": {
+double:345,
+triple:410
+},
+
+"600x1200": {
+double:310,
+triple:370
+},
+
+"600x1500": {
+double:360,
+triple:430
+},
+
+"800x800": {
+double:290,
+triple:350
+},
+
+"800x1000": {
+double:335,
+triple:400
+},
+
+"800x1200": {
+double:395,
+triple:470
+},
+
+"800x1500": {
+double:455,
+triple:545
+},
+
+"1000x1000": {
+double:420,
+triple:505
+},
+
+/* LARGE SIZES */
+
+"600x1800": {
+double:420,
+triple:500
+},
+
+"600x2000": {
+double:455,
+triple:540
+},
+
+"800x1800": {
+double:520,
+triple:625
+},
+
+"800x2000": {
+double:560,
+triple:675
+},
+
+"1000x1200": {
+double:465,
+triple:560
+},
+
+"1000x1500": {
+double:520,
+triple:625
+},
+
+"1000x1800": {
+double:590,
+triple:710
+},
+
+"1000x2000": {
+double:650,
+triple:780
+},
+
+/* EXTRA LARGE SIZES */
+
+"600x2500": {
+double:560,
+triple:675
+},
+
+"800x2500": {
+double:650,
+triple:780
+},
+
+"1000x2500": {
+double:785,
+triple:945
+},
+
+"1500x1500": {
+double:760,
+triple:910
+},
+
+"1500x1800": {
+double:880,
+triple:1075
+},
+
+"1500x2500": {
+double:1225,
+triple:1475
+}
+
 };
 
 const productImages = {
-"600x600": "small-square.png",
-"800x800": "medium-square.png",
 
-"1000x1000": "large-square.png",
-"1200x1200": "large-square.png",
-"1500x1500": "large-square.png",
+/* SMALL */
 
-"600x900": "small-rectangle.png",
+"300x800":"ultra-narrow-rectangle.png",
+"300x1000":"ultra-narrow-rectangle.png",
+"300x1200":"narrow-tall-rectangle.png",
 
-"600x1200": "large-rectangle.png",
-"800x1200": "medium-rectangle.png",
+"400x800":"small-rectangle.png",
+"400x1000":"narrow-tall-rectangle.png",
+"400x1200":"narrow-tall-rectangle.png",
 
-"600x1500": "large-rectangle.png",
-"600x2000": "large-rectangle.png",
-"800x1500": "large-rectangle.png",
-"800x2000": "large-rectangle.png",
-"1000x1500": "large-rectangle.png",
-"1000x2000": "large-rectangle.png",
+"600x600":"small-square.png",
+"600x900":"small-rectangle.png",
 
-"1000x2500": "jumbo.png",
-"1500x1800": "jumbo.png",
-"1500x2000": "jumbo.png",
-"1500x2500": "jumbo.png"
+/* MEDIUM */
+
+"300x1500":"narrow-long-rectangle.png",
+"400x1500":"narrow-long-rectangle.png",
+"400x1800":"narrow-long-rectangle.png",
+
+"600x1200":"large-rectangle.png",
+"600x1500":"large-rectangle.png",
+
+"800x800":"medium-square.png",
+"800x1000":"large-square.png",
+"800x1200":"medium-rectangle.png",
+"800x1500":"large-rectangle.png",
+
+"1000x1000":"large-square.png",
+
+/* LARGE */
+
+"600x1800":"long-rectangle-xl.png",
+"600x2000":"long-rectangle-xl.png",
+
+"800x1800":"large-xl-rectangle.png",
+"800x2000":"large-xl-rectangle.png",
+
+"1000x1200":"large-square.png",
+"1000x1500":"large-rectangle.png",
+"1000x1800":"large-rectangle.png",
+"1000x2000":"large-rectangle.png",
+
+/* EXTRA LARGE */
+
+"600x2500":"long-rectangle-xl.png",
+"800x2500":"large-xl-rectangle.png",
+"1000x2500":"large-xl-rectangle.png",
+
+"1500x1500":"large-square.png",
+"1500x1800":"jumbo.png",
+"1500x2500":"jumbo.png"
+
 };
 
 const popularSizes = [
@@ -825,116 +1695,297 @@ const popularSizes = [
 "800x800",
 "800x1200",
 "1000x1500",
-"1200x1200",
-"1500x1800"
+"1500x1800",
+"1500x2500"
 ];
 
-const standardSizes = [
-"1500x2500",
-"1500x2000",
-"1500x1500",
-"1000x2500",
-"1000x2000",
-"1000x1500",
-"1000x1000",
-"800x2000",
-"800x1500",
-"800x1200",
-"800x800",
-"600x2000",
-"600x1500",
+const smallSizes = [
+"300x800",
+"300x1000",
+"300x1200",
+"400x800",
+"400x1000",
+"400x1200",
+"600x600",
+"600x900"
+];
+
+const mediumSizes = [
+"300x1500",
+"400x1500",
+"400x1800",
 "600x1200",
-"600x900",
-"600x600"
+"600x1500",
+"800x800",
+"800x1000",
+"800x1200",
+"800x1500",
+"1000x1000"
+];
+
+const largeSizes = [
+"600x1800",
+"600x2000",
+"800x1800",
+"800x2000",
+"1000x1200",
+"1000x1500",
+"1000x1800",
+"1000x2000"
+];
+
+const extraLargeSizes = [
+"600x2500",
+"800x2500",
+"1000x2500",
+"1500x1500",
+"1500x1800",
+"1500x2500"
 ];
 
 function formatSize(size) {
-return size.replace("x", " × ");
+return size.replace("x"," × ");
 }
 
 function getTopGlass(size) {
-const [w, l] = size.split("x").map(Number);
-const area = (w * l) / 1000000;
+const [width,length] =
+size
+.split("x")
+.map(Number);
 
-if (area > 3.4) return "10mm Toughened Safety Glass";
-if (area > 2.0) return "8mm Toughened Safety Glass";
+const area =
+(width * length) /
+1000000;
+
+if (area > 3.4) {
+return "10mm Toughened Safety Glass";
+}
+
+if (area > 2.0) {
+return "8mm Toughened Safety Glass";
+}
+
 return "6mm Toughened Safety Glass";
 }
 
 function createCard(size) {
-const data = prices[size];
-const topGlass = getTopGlass(size);
-const imageFile = productImages[size] || "medium-rectangle.png";
-const imagePath = "./images/product-cards/" + imageFile;
+const data =
+prices[size];
 
-const card = document.createElement("div");
-card.className = "product-card";
+const topGlass =
+getTopGlass(size);
+
+const imageFile =
+productImages[size] ||
+"medium-rectangle.png";
+
+const imagePath =
+"./images/product-cards/" +
+imageFile;
+
+const card =
+document.createElement("article");
+
+card.className =
+"product-card";
 
 card.innerHTML = `
 <div class="image-wrap">
-<img src="${imagePath}" alt="${formatSize(size)} frameless rooflight">
+
+<img
+src="${imagePath}"
+alt="${formatSize(size)}mm frameless flat roof skylight"
+loading="lazy"
+>
+
 </div>
 
 <div class="card-content">
-<div class="size-title">${formatSize(size)}</div>
+
+<div class="size-title">
+${formatSize(size)}mm
+</div>
 
 <div class="spec-line">
+<span>Internal Visible Glass Size</span>
 <span>${topGlass}</span>
 <span>Low-E Softcoat Glass</span>
-<span>Free Delivery UK Mainland</span>
+<span>Free Mainland UK Delivery</span>
 </div>
 
 <div class="toggle">
-<button class="active" onclick="setGlazing(this, '${size}', 'double')">Double</button>
-<button onclick="setGlazing(this, '${size}', 'triple')">Triple</button>
+
+<button
+type="button"
+class="active"
+onclick="setGlazing(this,'${size}','double')"
+>
+Double
+</button>
+
+<button
+type="button"
+onclick="setGlazing(this,'${size}','triple')"
+>
+Triple
+</button>
+
 </div>
-<div class="glazed-label double"><span>Glazed</span></div>
+
+<div class="glazed-label double">
+<span>Glazed</span>
+</div>
 
 <div class="price-row">
+
 <div>
-<div class="price-label">From</div>
-<div class="price">£${data.double}<span class="vat-note">inc. vat</span></div>
+
+<div class="price-label">
+From
 </div>
 
-<a href="#" class="view-link">View →</a>
+<div class="price">
+£${data.double}<span class="vat-note">inc. vat</span>
 </div>
+
+</div>
+
+<a
+href="#"
+class="view-link"
+aria-label="View ${formatSize(size)}mm rooflight"
+>
+View →
+</a>
+
+</div>
+
 </div>
 `;
 
 return card;
 }
 
-function setGlazing(button, size, glazing) {
-const card = button.closest(".product-card");
-const price = prices[size][glazing];
-const glazedLabel = card.querySelector(".glazed-label");
+function setGlazing(
+button,
+size,
+glazing
+) {
+const card =
+button.closest(
+".product-card"
+);
 
-card.querySelectorAll(".toggle button").forEach(btn => {
-btn.classList.remove("active");
+const price =
+prices[size][glazing];
+
+const glazedLabel =
+card.querySelector(
+".glazed-label"
+);
+
+card
+.querySelectorAll(
+".toggle button"
+)
+.forEach(item => {
+item.classList.remove(
+"active"
+);
 });
 
-button.classList.add("active");
+button.classList.add(
+"active"
+);
 
-glazedLabel.classList.remove("double", "triple");
-glazedLabel.classList.add(glazing);
+glazedLabel.classList.remove(
+"double",
+"triple"
+);
 
-card.querySelector(".price").innerHTML = "£" + price + '<span class="vat-note">inc. vat</span>';
+glazedLabel.classList.add(
+glazing
+);
+
+card
+.querySelector(
+".price"
+)
+.innerHTML =
+"£" +
+price +
+'<span class="vat-note">inc. vat</span>';
+}
+
+function appendCards(
+gridId,
+sizes
+) {
+const grid =
+document.getElementById(
+gridId
+);
+
+sizes.forEach(size => {
+grid.appendChild(
+createCard(size)
+);
+});
 }
 
 function renderCards() {
-const popularGrid = document.getElementById("popularGrid");
-const standardGrid = document.getElementById("standardGrid");
+appendCards(
+"popularGrid",
+popularSizes
+);
 
-popularSizes.forEach(size => popularGrid.appendChild(createCard(size)));
-standardSizes.forEach(size => standardGrid.appendChild(createCard(size)));
+appendCards(
+"smallGrid",
+smallSizes
+);
+
+appendCards(
+"mediumGrid",
+mediumSizes
+);
+
+appendCards(
+"largeGrid",
+largeSizes
+);
+
+appendCards(
+"extraLargeGrid",
+extraLargeSizes
+);
 }
 
 function openMenu() {
-document.getElementById("menuOverlay").classList.add("active");
+document
+.getElementById(
+"menuOverlay"
+)
+.classList
+.add(
+"active"
+);
+
+document.body.style.overflow =
+"hidden";
 }
 
 function closeMenu() {
-document.getElementById("menuOverlay").classList.remove("active");
+document
+.getElementById(
+"menuOverlay"
+)
+.classList
+.remove(
+"active"
+);
+
+document.body.style.overflow =
+"";
 }
 
 renderCards();
