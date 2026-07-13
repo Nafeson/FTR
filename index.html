@@ -23,6 +23,7 @@ content="Modern frameless flat roof skylights made to order in 4–5 working day
 --white:#ffffff;
 --muted:#d8d8d8;
 --line:rgba(245,124,0,.32);
+--whatsapp:#25d366;
 }
 
 * {
@@ -152,8 +153,15 @@ align-self:end;
 padding-bottom:1px;
 }
 
+.header-action-wrap {
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
 .action-icons button,
-.action-icons a {
+.action-icons a.header-icon-button {
 width:44px;
 height:44px;
 border:1px solid rgba(255,255,255,.18);
@@ -177,12 +185,117 @@ padding:0;
 }
 
 .action-icons button:hover,
-.action-icons a:hover {
+.action-icons a.header-icon-button:hover {
 border-color:var(--orange);
 color:var(--orange);
 background:rgba(245,124,0,.06);
 box-shadow:0 8px 24px rgba(245,124,0,.10);
 transform:translateY(-2px);
+}
+
+.action-popup {
+position:absolute;
+right:0;
+bottom:calc(100% + 12px);
+z-index:70;
+min-width:max-content;
+padding:0;
+opacity:0;
+visibility:hidden;
+transform:translateY(7px) scale(.97);
+transform-origin:bottom right;
+transition:
+opacity .22s ease,
+visibility .22s ease,
+transform .22s ease;
+pointer-events:none;
+}
+
+.action-popup::after {
+content:"";
+position:absolute;
+right:17px;
+bottom:-6px;
+width:12px;
+height:12px;
+background:#111111;
+border-right:1px solid rgba(255,255,255,.14);
+border-bottom:1px solid rgba(255,255,255,.14);
+transform:rotate(45deg);
+}
+
+.action-popup.is-open {
+opacity:1;
+visibility:visible;
+transform:translateY(0) scale(1);
+pointer-events:auto;
+}
+
+.action-popup a {
+position:relative;
+z-index:2;
+display:flex;
+align-items:center;
+gap:9px;
+padding:12px 15px;
+background:#111111;
+border:1px solid rgba(255,255,255,.14);
+box-shadow:
+0 16px 38px rgba(0,0,0,.55),
+0 0 0 1px rgba(245,124,0,.05);
+color:var(--white);
+text-decoration:none;
+font-size:11px;
+font-weight:950;
+letter-spacing:.7px;
+line-height:1.2;
+text-transform:uppercase;
+white-space:nowrap;
+transition:
+border-color .2s ease,
+color .2s ease,
+background .2s ease;
+}
+
+.action-popup a:hover {
+border-color:var(--orange);
+color:var(--orange);
+background:#15110e;
+}
+
+.whatsapp-popup a::before {
+content:"●";
+color:var(--whatsapp);
+font-size:13px;
+filter:drop-shadow(0 0 5px rgba(37,211,102,.35));
+}
+
+.email-popup a::before {
+content:"✉";
+color:var(--orange);
+font-size:14px;
+}
+
+.basket-total-bubble {
+position:absolute;
+top:-9px;
+right:-10px;
+z-index:3;
+min-width:45px;
+padding:4px 6px;
+border:1px solid rgba(245,124,0,.82);
+background:#050505;
+color:var(--white);
+box-shadow:
+0 4px 13px rgba(0,0,0,.55),
+0 0 8px rgba(245,124,0,.16);
+font-size:8px;
+font-weight:950;
+line-height:1;
+letter-spacing:.2px;
+text-align:center;
+white-space:nowrap;
+pointer-events:none;
 }
 
 /* ===============================
@@ -282,8 +395,8 @@ font-weight:400;
 
 .lead-time-message {
 position:relative;
-display:inline-block;
-overflow:hidden;
+display:inline-flex;
+align-items:flex-start;
 font-family:
 "Manrope",
 "Aptos",
@@ -303,55 +416,148 @@ text-shadow:
 0 2px 5px rgba(0,0,0,.62);
 }
 
-.lead-time-message::after {
+.lead-time-message-text {
+position:relative;
+display:inline-block;
+overflow:hidden;
+}
+
+.lead-time-message-text::after {
 content:attr(data-text);
 position:absolute;
 inset:0;
+z-index:2;
 color:transparent;
 background:
 linear-gradient(
-105deg,
+112deg,
 transparent 0%,
-transparent 36%,
-rgba(255,255,255,.20) 43%,
-rgba(255,255,255,1) 50%,
-rgba(255,222,176,.82) 56%,
-transparent 64%,
+transparent 40%,
+rgba(255,255,255,.10) 44%,
+rgba(255,255,255,.96) 49%,
+rgba(255,243,222,.88) 51%,
+rgba(255,255,255,.12) 56%,
+transparent 61%,
 transparent 100%
 );
-background-size:220% 100%;
-background-position:170% 0;
+background-size:245% 100%;
+background-position:165% 0;
 -webkit-background-clip:text;
 background-clip:text;
 -webkit-text-fill-color:transparent;
-animation:leadLetterGleam 7s ease-in-out infinite;
+animation:
+glassTextReflection 8s ease-in-out 3s infinite;
 pointer-events:none;
 }
 
-@keyframes leadLetterGleam {
+.lead-time-star {
+position:relative;
+display:inline-block;
+margin-left:1px;
+font-size:.92em;
+line-height:.8;
+transform-origin:center;
+animation:
+leadStarGlint 8s ease-in-out 3s infinite;
+}
+
+.lead-time-star::before,
+.lead-time-star::after {
+content:"";
+position:absolute;
+left:50%;
+top:43%;
+z-index:-1;
+width:19px;
+height:1px;
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.98),
+transparent
+);
+opacity:0;
+transform:translate(-50%,-50%);
+animation:
+leadStarRays 8s ease-in-out 3s infinite;
+pointer-events:none;
+}
+
+.lead-time-star::after {
+transform:
+translate(-50%,-50%)
+rotate(90deg);
+}
+
+@keyframes glassTextReflection {
 0%,
-66% {
-background-position:170% 0;
+2% {
+background-position:165% 0;
 opacity:0;
 }
 
-70% {
-opacity:.15;
+3% {
+opacity:.25;
 }
 
-78% {
+11% {
+background-position:-75% 0;
 opacity:1;
 }
 
-90% {
-background-position:-80% 0;
-opacity:.85;
+14%,
+100% {
+background-position:-75% 0;
+opacity:0;
+}
 }
 
-96%,
+@keyframes leadStarGlint {
+0%,
+9%,
+16%,
 100% {
-background-position:-80% 0;
+color:var(--white);
+text-shadow:none;
+transform:scale(1);
+}
+
+11% {
+color:#fff8de;
+text-shadow:
+0 0 3px rgba(255,255,255,1),
+0 0 8px rgba(255,242,194,.95),
+0 0 14px rgba(255,183,84,.72);
+transform:scale(1.22);
+}
+
+13% {
+color:#ffffff;
+text-shadow:
+0 0 2px rgba(255,255,255,.80),
+0 0 7px rgba(255,218,150,.62);
+transform:scale(1.08);
+}
+}
+
+@keyframes leadStarRays {
+0%,
+9%,
+16%,
+100% {
 opacity:0;
+width:5px;
+}
+
+11% {
+opacity:1;
+width:20px;
+}
+
+13% {
+opacity:.35;
+width:15px;
 }
 }
 
@@ -574,7 +780,8 @@ opacity:.95;
 
 .home-popular-title-wrap,
 .home-popular-grid,
-.home-popular-footer {
+.home-popular-footer,
+.mobile-feature-icons {
 position:relative;
 z-index:2;
 }
@@ -857,6 +1064,12 @@ max-width:1180px;
 margin:32px auto 0;
 display:flex;
 justify-content:center;
+}
+
+/* Mobile only. Hidden on desktop for now. */
+
+.mobile-feature-icons {
+display:none;
 }
 
 /* ===============================
@@ -1162,10 +1375,6 @@ line-height:1.45;
 max-width:860px;
 display:block;
 }
-
-/* ===============================
-FIRE NUMBER FOUR
-================================ */
 
 .fast-number-wrap {
 position:relative;
@@ -2064,10 +2273,28 @@ gap:6px;
 }
 
 .action-icons button,
-.action-icons a {
+.action-icons a.header-icon-button {
 width:34px;
 height:34px;
 font-size:16px;
+}
+
+.basket-total-bubble {
+top:-8px;
+right:-8px;
+min-width:40px;
+padding:3px 5px;
+font-size:7px;
+}
+
+.action-popup {
+bottom:calc(100% + 10px);
+}
+
+.action-popup a {
+padding:11px 12px;
+font-size:9px;
+letter-spacing:.45px;
 }
 
 .wordmark-domain {
@@ -2104,7 +2331,7 @@ letter-spacing:.35px;
 }
 
 .home-popular-section {
-padding:22px 6% 66px;
+padding:22px 6% 48px;
 }
 
 .home-popular-title-wrap {
@@ -2174,6 +2401,79 @@ margin-top:3px;
 
 .home-product-link {
 font-size:9px;
+}
+
+.home-popular-footer {
+margin-top:28px;
+}
+
+/* FEATURE ICONS INSIDE POPULAR SECTION */
+
+.mobile-feature-icons {
+display:grid;
+grid-template-columns:repeat(6,minmax(0,1fr));
+gap:0;
+max-width:390px;
+margin:36px auto 0;
+padding-top:25px;
+border-top:1px solid rgba(5,5,5,.28);
+}
+
+.mobile-feature-item {
+grid-column:span 2;
+min-height:96px;
+padding:9px 7px 5px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+gap:8px;
+text-align:center;
+color:#090909;
+position:relative;
+}
+
+.mobile-feature-item:nth-child(4),
+.mobile-feature-item:nth-child(5) {
+grid-column:span 3;
+margin-top:5px;
+}
+
+.mobile-feature-item:nth-child(2),
+.mobile-feature-item:nth-child(3),
+.mobile-feature-item:nth-child(5) {
+border-left:1px solid rgba(5,5,5,.22);
+}
+
+.mobile-feature-item svg {
+width:38px;
+height:38px;
+display:block;
+fill:none;
+stroke:#090909;
+stroke-width:1.8;
+stroke-linecap:round;
+stroke-linejoin:round;
+filter:
+drop-shadow(0 1px 0 rgba(255,255,255,.16))
+drop-shadow(0 2px 2px rgba(0,0,0,.18));
+}
+
+.mobile-feature-item span {
+display:block;
+max-width:92px;
+font-family:
+"Arial Narrow",
+"Roboto Condensed",
+"Bahnschrift Condensed",
+"Space Grotesk",
+"Manrope",
+sans-serif;
+font-size:8px;
+font-weight:950;
+line-height:1.25;
+letter-spacing:.55px;
+text-transform:uppercase;
 }
 
 .opening-section {
@@ -2364,7 +2664,21 @@ display:none;
 
 .lead-time-message {
 width:100%;
+justify-content:center;
 margin-top:2px;
+}
+
+.mobile-feature-icons {
+max-width:340px;
+}
+
+.mobile-feature-item svg {
+width:35px;
+height:35px;
+}
+
+.mobile-feature-item span {
+font-size:7.5px;
 }
 }
 
@@ -2375,7 +2689,10 @@ scroll-behavior:auto;
 
 .ticker,
 .home-popular-section::before,
-.lead-time-message::after,
+.lead-time-message-text::after,
+.lead-time-star,
+.lead-time-star::before,
+.lead-time-star::after,
 .fast-number-4,
 .fast-number-wrap::before,
 .fast-number-wrap::after {
@@ -2442,29 +2759,88 @@ Factory
 
 <div class="action-icons">
 
-<a
-href="mailto:"
-aria-label="Email Factory Toughened Rooflights"
-title="Email"
->
-✉
-</a>
-
-<a
-href="tel:"
-aria-label="Call Factory Toughened Rooflights"
-title="Phone"
->
-📱
-</a>
+<div class="header-action-wrap">
 
 <button
 type="button"
+id="emailButton"
+aria-label="Email Factory Toughened Rooflights"
+title="Email"
+aria-expanded="false"
+>
+✉
+</button>
+
+<div
+id="emailPopup"
+class="action-popup email-popup"
+>
+
+<!-- Replace this email address when ready. -->
+<a
+href="mailto:enquiries@factorytoughenedrooflights.co.uk"
+>
+Email us
+</a>
+
+</div>
+
+</div>
+
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="whatsappButton"
+aria-label="WhatsApp Factory Toughened Rooflights"
+title="WhatsApp"
+aria-expanded="false"
+>
+📱
+</button>
+
+<div
+id="whatsappPopup"
+class="action-popup whatsapp-popup"
+>
+
+<!--
+Replace 447000000000 with the WhatsApp Business number.
+Use the UK country code without the leading zero.
+-->
+
+<a
+href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
+target="_blank"
+rel="noopener"
+>
+WhatsApp our Rooflight Team
+</a>
+
+</div>
+
+</div>
+
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="basketButton"
 aria-label="View basket and checkout"
 title="Basket and checkout"
 >
 💳
 </button>
+
+<span
+class="basket-total-bubble"
+id="basketTotalBubble"
+aria-label="Basket total £0.00"
+>
+£0.00
+</span>
+
+</div>
 
 <button
 type="button"
@@ -2557,11 +2933,17 @@ aria-hidden="true"
 —
 </span>
 
+<span class="lead-time-message">
+
 <span
-class="lead-time-message"
+class="lead-time-message-text"
 data-text="From 4 Working Days"
 >
 From 4 Working Days
+</span>
+
+<span class="lead-time-star">*</span>
+
 </span>
 
 </div>
@@ -2968,6 +3350,110 @@ class="button secondary"
 >
 View All Standard Sizes
 </a>
+
+</div>
+
+<div
+class="mobile-feature-icons"
+aria-label="Rooflight features"
+>
+
+<div class="mobile-feature-item">
+
+<svg
+viewBox="0 0 48 48"
+aria-hidden="true"
+>
+<rect x="7" y="10" width="28" height="26" rx="2"></rect>
+<rect x="13" y="5" width="28" height="26" rx="2"></rect>
+<path d="M20 18h14"></path>
+<path d="M27 11v14"></path>
+</svg>
+
+<span>
+Double &amp;<br>
+Triple Glazed
+</span>
+
+</div>
+
+<div class="mobile-feature-item">
+
+<svg
+viewBox="0 0 48 48"
+aria-hidden="true"
+>
+<circle cx="24" cy="24" r="7"></circle>
+<path d="M24 5v7"></path>
+<path d="M24 36v7"></path>
+<path d="M5 24h7"></path>
+<path d="M36 24h7"></path>
+<path d="M10.5 10.5l5 5"></path>
+<path d="M32.5 32.5l5 5"></path>
+<path d="M37.5 10.5l-5 5"></path>
+<path d="M15.5 32.5l-5 5"></path>
+<path d="M17 24l4 4 10-10"></path>
+</svg>
+
+<span>
+UV<br>
+Protection
+</span>
+
+</div>
+
+<div class="mobile-feature-item">
+
+<svg
+viewBox="0 0 48 48"
+aria-hidden="true"
+>
+<path d="M24 5l14 6v10c0 10-5.8 17.2-14 22-8.2-4.8-14-12-14-22V11z"></path>
+<path d="M18 24l4 4 8-9"></path>
+</svg>
+
+<span>
+Toughened<br>
+Safety Glass
+</span>
+
+</div>
+
+<div class="mobile-feature-item">
+
+<svg
+viewBox="0 0 48 48"
+aria-hidden="true"
+>
+<path d="M31 7c-11 2-19 10-19 20 0 7 5 12 12 12 10 0 17-9 17-22 0-4-.5-7-1-10-3 7-8 12-15 16"></path>
+<path d="M12 42c5-10 12-17 23-23"></path>
+</svg>
+
+<span>
+Energy<br>
+Efficient
+</span>
+
+</div>
+
+<div class="mobile-feature-item">
+
+<svg
+viewBox="0 0 48 48"
+aria-hidden="true"
+>
+<path d="M7 27h8l10 8V13l-10 8H7z"></path>
+<path d="M31 20c3 2 3 6 0 8"></path>
+<path d="M35 15c7 5 7 13 0 18"></path>
+<path d="M39 10l-4 28"></path>
+</svg>
+
+<span>
+Noise<br>
+Reduction
+</span>
+
+</div>
 
 </div>
 
@@ -3558,6 +4044,8 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 
 <script>
 function openMenu() {
+closeHeaderPopups();
+
 document
 .getElementById("menuOverlay")
 .classList
@@ -3576,6 +4064,189 @@ document
 document.body.style.overflow =
 "";
 }
+
+/* ===============================
+HEADER CONTACT POPUPS
+================================ */
+
+const emailButton =
+document.getElementById(
+"emailButton"
+);
+
+const emailPopup =
+document.getElementById(
+"emailPopup"
+);
+
+const whatsappButton =
+document.getElementById(
+"whatsappButton"
+);
+
+const whatsappPopup =
+document.getElementById(
+"whatsappPopup"
+);
+
+function setPopupState(
+button,
+popup,
+shouldOpen
+) {
+if (!button || !popup) {
+return;
+}
+
+popup.classList.toggle(
+"is-open",
+shouldOpen
+);
+
+button.setAttribute(
+"aria-expanded",
+String(shouldOpen)
+);
+}
+
+function closeHeaderPopups() {
+setPopupState(
+emailButton,
+emailPopup,
+false
+);
+
+setPopupState(
+whatsappButton,
+whatsappPopup,
+false
+);
+}
+
+function toggleHeaderPopup(
+button,
+popup
+) {
+const isCurrentlyOpen =
+popup.classList.contains(
+"is-open"
+);
+
+closeHeaderPopups();
+
+setPopupState(
+button,
+popup,
+!isCurrentlyOpen
+);
+}
+
+if (
+emailButton &&
+emailPopup
+) {
+emailButton.addEventListener(
+"click",
+event => {
+event.stopPropagation();
+
+toggleHeaderPopup(
+emailButton,
+emailPopup
+);
+}
+);
+
+emailPopup.addEventListener(
+"click",
+event => {
+event.stopPropagation();
+}
+);
+}
+
+if (
+whatsappButton &&
+whatsappPopup
+) {
+whatsappButton.addEventListener(
+"click",
+event => {
+event.stopPropagation();
+
+toggleHeaderPopup(
+whatsappButton,
+whatsappPopup
+);
+}
+);
+
+whatsappPopup.addEventListener(
+"click",
+event => {
+event.stopPropagation();
+}
+);
+}
+
+document.addEventListener(
+"click",
+closeHeaderPopups
+);
+
+document.addEventListener(
+"keydown",
+event => {
+if (event.key === "Escape") {
+closeHeaderPopups();
+closeMenu();
+}
+}
+);
+
+/* ===============================
+BASKET TOTAL DISPLAY
+================================ */
+
+const basketTotalBubble =
+document.getElementById(
+"basketTotalBubble"
+);
+
+function updateBasketTotal(total) {
+const safeTotal =
+Number.isFinite(Number(total))
+? Number(total)
+: 0;
+
+const formattedTotal =
+new Intl.NumberFormat(
+"en-GB",
+{
+style:"currency",
+currency:"GBP"
+}
+).format(safeTotal);
+
+if (basketTotalBubble) {
+basketTotalBubble.textContent =
+formattedTotal;
+
+basketTotalBubble.setAttribute(
+"aria-label",
+"Basket total " +
+formattedTotal
+);
+}
+}
+
+/*
+The basket currently begins at £0.00.
+Later, call updateBasketTotal(newTotal)
+whenever a confirmed unit is added or removed.
+*/
+
+updateBasketTotal(0);
 
 /* ===============================
 STANDARD SCROLL REVEALS
