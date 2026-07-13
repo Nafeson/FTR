@@ -206,206 +206,185 @@ box-shadow:
 }
 
 /* ===============================
-HEADER SPEECH BUBBLES
+WHATSAPP EXPANDING ACTION
 ================================ */
 
-.action-popup {
+.whatsapp-action {
 position:absolute;
-bottom:calc(100% + 11px);
-right:0;
-z-index:80;
-opacity:0;
-visibility:hidden;
-transform:translateY(7px) scale(.82);
-transform-origin:bottom right;
-pointer-events:none;
-transition:
-opacity .2s ease,
-visibility .2s ease,
-transform .24s cubic-bezier(.18,.78,.28,1.25);
-}
-
-.action-popup::after {
-content:"";
-position:absolute;
-right:14px;
-bottom:-5px;
-width:10px;
-height:10px;
-background:#111111;
-border-right:1px solid rgba(245,124,0,.46);
-border-bottom:1px solid rgba(245,124,0,.46);
-transform:rotate(45deg);
-}
-
-.action-popup.is-open {
-opacity:1;
-visibility:visible;
-transform:translateY(0) scale(1);
-pointer-events:auto;
-}
-
-.action-popup-link {
-position:relative;
-z-index:2;
+left:50%;
+bottom:calc(100% + 7px);
+z-index:85;
+width:72px;
+height:72px;
 display:flex;
 align-items:center;
 justify-content:center;
-min-height:40px;
-padding:10px 14px;
-border:1px solid rgba(245,124,0,.52);
 border-radius:18px;
 background:
 linear-gradient(
 145deg,
-#171717 0%,
-#0d0d0d 100%
+#36e676 0%,
+#25d366 52%,
+#179b46 100%
 );
+border:1px solid rgba(255,255,255,.32);
 box-shadow:
-0 15px 38px rgba(0,0,0,.62),
-0 0 12px rgba(245,124,0,.08);
-color:var(--white);
-text-decoration:none;
-font-size:10px;
-font-weight:950;
-letter-spacing:.55px;
-line-height:1;
-text-transform:uppercase;
-white-space:nowrap;
+0 18px 36px rgba(0,0,0,.58),
+0 0 18px rgba(37,211,102,.22),
+inset 0 1px 0 rgba(255,255,255,.34);
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:
+translate(-50%,22px)
+scale(.58);
+transform-origin:center bottom;
 transition:
-border-color .2s ease,
-color .2s ease,
-background .2s ease,
-transform .2s ease;
+opacity .2s ease,
+visibility .2s ease,
+transform .38s cubic-bezier(.18,.82,.28,1.35);
 }
 
-.action-popup-link:hover,
-.action-popup-link:active {
-border-color:var(--orange);
-color:var(--orange);
-background:
-linear-gradient(
-145deg,
-#1a130e 0%,
-#0d0d0d 100%
-);
-transform:translateY(-1px);
+.whatsapp-action.is-open {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:
+translate(-50%,0)
+scale(1);
+animation:whatsappAttention 4s ease-in-out .9s infinite;
 }
 
-.email-popup {
-right:0;
-}
-
-.email-popup .action-popup-link {
-min-width:126px;
-}
-
-/* WhatsApp logo-only bubble */
-
-.whatsapp-popup {
-right:0;
-}
-
-.whatsapp-popup .action-popup-link {
+.whatsapp-action svg {
 width:45px;
 height:45px;
-min-height:45px;
-padding:0;
-border-radius:50%;
+display:block;
+fill:#ffffff;
+filter:
+drop-shadow(0 2px 2px rgba(0,0,0,.22));
 }
 
-.whatsapp-logo {
-width:25px;
-height:25px;
-display:block;
-fill:var(--whatsapp);
-filter:
-drop-shadow(0 0 5px rgba(37,211,102,.24));
+.whatsapp-action:hover,
+.whatsapp-action:active {
+transform:
+translate(-50%,-2px)
+scale(1.05);
+box-shadow:
+0 20px 42px rgba(0,0,0,.62),
+0 0 25px rgba(37,211,102,.45),
+inset 0 1px 0 rgba(255,255,255,.42);
+}
+
+@keyframes whatsappAttention {
+0%,
+72%,
+100% {
+box-shadow:
+0 18px 36px rgba(0,0,0,.58),
+0 0 18px rgba(37,211,102,.22),
+inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+78% {
+box-shadow:
+0 20px 40px rgba(0,0,0,.60),
+0 0 30px rgba(37,211,102,.62),
+0 0 0 5px rgba(37,211,102,.10),
+inset 0 1px 0 rgba(255,255,255,.40);
+}
+
+83% {
+box-shadow:
+0 18px 36px rgba(0,0,0,.58),
+0 0 19px rgba(37,211,102,.28),
+inset 0 1px 0 rgba(255,255,255,.34);
+}
 }
 
 /* ===============================
-BASKET TOTAL BUBBLE
+MINIMAL BASKET TOTAL
 ================================ */
 
-.basket-total-bubble {
+.basket-total-text {
 position:absolute;
-top:-8px;
-right:-8px;
-z-index:4;
-min-width:43px;
-height:25px;
-padding:0 8px;
-display:flex;
-align-items:center;
-justify-content:center;
-border:1px solid rgba(245,124,0,.86);
-border-radius:999px;
-background:
-linear-gradient(
-145deg,
-#171717 0%,
-#050505 100%
-);
-color:var(--white);
-box-shadow:
-0 6px 17px rgba(0,0,0,.62),
-0 0 10px rgba(245,124,0,.12);
-font-size:8px;
+top:-16px;
+right:-9px;
+z-index:5;
+font-family:
+"Bahnschrift Condensed",
+"Roboto Condensed",
+"Arial Narrow",
+"Space Grotesk",
+"Manrope",
+sans-serif;
+font-size:10px;
 font-weight:950;
 line-height:1;
-letter-spacing:.2px;
+letter-spacing:.25px;
+color:var(--white);
+text-align:right;
 white-space:nowrap;
-pointer-events:none;
+text-shadow:
+0 2px 5px rgba(0,0,0,.92);
 opacity:0;
-transform:scale(.62) translateY(5px);
-transform-origin:bottom center;
+transform:
+translateY(7px)
+scale(.78);
+transform-origin:right bottom;
+pointer-events:none;
 }
 
-.basket-total-bubble::after {
-content:"";
-position:absolute;
-right:7px;
-bottom:-4px;
-width:8px;
-height:8px;
-background:#080808;
-border-right:1px solid rgba(245,124,0,.72);
-border-bottom:1px solid rgba(245,124,0,.72);
-transform:rotate(45deg);
-}
-
-.basket-total-bubble.is-visible {
+.basket-total-text.is-visible {
 opacity:1;
-transform:scale(1) translateY(0);
+transform:
+translateY(0)
+scale(1);
 transition:
-opacity .2s ease,
-transform .4s cubic-bezier(.18,.78,.28,1.35);
+opacity .22s ease,
+transform .42s cubic-bezier(.18,.78,.28,1.35);
 }
 
-.basket-total-bubble.is-popping {
-animation:basketBubblePop .55s cubic-bezier(.18,.78,.28,1.35);
+.basket-total-text.is-updating {
+animation:basketTotalUpdate .52s cubic-bezier(.18,.78,.28,1.28);
 }
 
-@keyframes basketBubblePop {
+@keyframes basketTotalUpdate {
 0% {
 opacity:1;
-transform:scale(.72) translateY(4px);
+transform:
+translateY(0)
+scale(1);
+color:var(--white);
+text-shadow:
+0 2px 5px rgba(0,0,0,.92);
 }
 
-48% {
-transform:scale(1.14) translateY(-2px);
-box-shadow:
-0 8px 20px rgba(0,0,0,.65),
-0 0 17px rgba(245,124,0,.42);
+42% {
+transform:
+translateY(-5px)
+scale(1.16);
+color:#fff2df;
+text-shadow:
+0 0 5px rgba(255,255,255,.45),
+0 0 12px rgba(245,124,0,.72),
+0 2px 5px rgba(0,0,0,.88);
 }
 
 72% {
-transform:scale(.96) translateY(0);
+transform:
+translateY(1px)
+scale(.97);
+color:var(--white);
 }
 
 100% {
 opacity:1;
-transform:scale(1) translateY(0);
+transform:
+translateY(0)
+scale(1);
+color:var(--white);
+text-shadow:
+0 2px 5px rgba(0,0,0,.92);
 }
 }
 
@@ -2388,39 +2367,22 @@ height:34px;
 font-size:16px;
 }
 
-.action-popup {
-bottom:calc(100% + 9px);
+.whatsapp-action {
+width:61px;
+height:61px;
+border-radius:15px;
+bottom:calc(100% + 6px);
 }
 
-.action-popup-link {
-min-height:35px;
-padding:9px 11px;
-font-size:8.5px;
-border-radius:16px;
-}
-
-.email-popup .action-popup-link {
-min-width:112px;
-}
-
-.whatsapp-popup .action-popup-link {
+.whatsapp-action svg {
 width:39px;
 height:39px;
-min-height:39px;
 }
 
-.whatsapp-logo {
-width:22px;
-height:22px;
-}
-
-.basket-total-bubble {
-top:-7px;
+.basket-total-text {
+top:-15px;
 right:-7px;
-min-width:39px;
-height:22px;
-padding:0 6px;
-font-size:7px;
+font-size:8px;
 }
 
 .wordmark-domain {
@@ -2886,7 +2848,8 @@ scroll-behavior:auto;
 .fast-number-wrap::before,
 .fast-number-wrap::after,
 .mobile-feature-icons::before,
-.basket-total-bubble {
+.whatsapp-action,
+.basket-total-text {
 animation:none;
 }
 
@@ -2950,61 +2913,37 @@ Factory
 
 <div class="action-icons">
 
-<div class="header-action-wrap">
-
-<button
-type="button"
-id="emailButton"
-aria-label="Email Factory Toughened Rooflights"
-title="Email"
-aria-expanded="false"
+<a
+href="contact.html"
+class="header-icon-button"
+aria-label="Contact Factory Toughened Rooflights"
+title="Contact us"
 >
 ✉
-</button>
-
-<div
-id="emailPopup"
-class="action-popup email-popup"
->
-
-<a
-class="action-popup-link"
-href="mailto:enquiries@factorytoughenedrooflights.co.uk"
->
-Contact our team
 </a>
-
-</div>
-
-</div>
 
 <div class="header-action-wrap">
 
 <button
 type="button"
 id="whatsappButton"
-aria-label="WhatsApp Factory Toughened Rooflights"
+aria-label="Show WhatsApp contact button"
 title="WhatsApp"
 aria-expanded="false"
 >
 📱
 </button>
 
-<div
-id="whatsappPopup"
-class="action-popup whatsapp-popup"
->
-
 <a
-class="action-popup-link"
+id="whatsappAction"
+class="whatsapp-action"
 href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
 target="_blank"
 rel="noopener"
-aria-label="Open WhatsApp"
+aria-label="Open WhatsApp Business chat"
 >
 
 <svg
-class="whatsapp-logo"
 viewBox="0 0 32 32"
 aria-hidden="true"
 focusable="false"
@@ -3016,22 +2955,21 @@ focusable="false"
 
 </div>
 
-</div>
-
 <div class="header-action-wrap">
 
-<button
-type="button"
+<a
+href="basket.html"
+class="header-icon-button"
 id="basketButton"
 aria-label="View basket and checkout"
 title="Basket and checkout"
 >
 💳
-</button>
+</a>
 
 <span
-class="basket-total-bubble"
-id="basketTotalBubble"
+class="basket-total-text"
+id="basketTotalText"
 aria-label="Basket total £0.00"
 >
 £0.00
@@ -3186,7 +3124,7 @@ aria-label="Close menu"
 <a href="#calculator" onclick="closeMenu()">Build</a>
 <a href="#performance" onclick="closeMenu()">Performance</a>
 <a href="#oversized" onclick="closeMenu()">Oversized</a>
-<a href="#contact" onclick="closeMenu()">Contact</a>
+<a href="contact.html" onclick="closeMenu()">Contact</a>
 </div>
 
 </div>
@@ -4241,7 +4179,7 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 
 <script>
 function openMenu() {
-closeHeaderPopups();
+closeWhatsAppAction();
 
 document
 .getElementById("menuOverlay")
@@ -4263,131 +4201,79 @@ document.body.style.overflow =
 }
 
 /* ===============================
-HEADER CONTACT POPUPS
+WHATSAPP EXPANDING ACTION
 ================================ */
-
-const emailButton =
-document.getElementById(
-"emailButton"
-);
-
-const emailPopup =
-document.getElementById(
-"emailPopup"
-);
 
 const whatsappButton =
 document.getElementById(
 "whatsappButton"
 );
 
-const whatsappPopup =
+const whatsappAction =
 document.getElementById(
-"whatsappPopup"
+"whatsappAction"
 );
 
-function setPopupState(
-button,
-popup,
+function setWhatsAppState(
 shouldOpen
 ) {
-if (!button || !popup) {
+if (
+!whatsappButton ||
+!whatsappAction
+) {
 return;
 }
 
-popup.classList.toggle(
-"is-open",
-shouldOpen
-);
-
-button.classList.toggle(
+whatsappButton.classList.toggle(
 "is-selected",
 shouldOpen
 );
 
-button.setAttribute(
+whatsappAction.classList.toggle(
+"is-open",
+shouldOpen
+);
+
+whatsappButton.setAttribute(
 "aria-expanded",
 String(shouldOpen)
 );
 }
 
-function closeHeaderPopups() {
-setPopupState(
-emailButton,
-emailPopup,
-false
-);
-
-setPopupState(
-whatsappButton,
-whatsappPopup,
-false
-);
+function closeWhatsAppAction() {
+setWhatsAppState(false);
 }
 
-function toggleHeaderPopup(
-button,
-popup
+function toggleWhatsAppAction() {
+if (
+!whatsappAction
 ) {
-if (!button || !popup) {
 return;
 }
 
-const isCurrentlyOpen =
-popup.classList.contains(
+const isOpen =
+whatsappAction.classList.contains(
 "is-open"
 );
 
-closeHeaderPopups();
-
-setPopupState(
-button,
-popup,
-!isCurrentlyOpen
-);
-}
-
-if (
-emailButton &&
-emailPopup
-) {
-emailButton.addEventListener(
-"click",
-event => {
-event.stopPropagation();
-
-toggleHeaderPopup(
-emailButton,
-emailPopup
-);
-}
-);
-
-emailPopup.addEventListener(
-"click",
-event => {
-event.stopPropagation();
-}
+setWhatsAppState(
+!isOpen
 );
 }
 
 if (
 whatsappButton &&
-whatsappPopup
+whatsappAction
 ) {
 whatsappButton.addEventListener(
 "click",
 event => {
 event.stopPropagation();
-
-toggleHeaderPopup(
-whatsappButton,
-whatsappPopup
-);
+toggleWhatsAppAction();
 }
 );
 
-whatsappPopup.addEventListener(
+whatsappAction.addEventListener(
 "click",
 event => {
 event.stopPropagation();
@@ -4397,14 +4283,14 @@ event.stopPropagation();
 
 document.addEventListener(
 "click",
-closeHeaderPopups
+closeWhatsAppAction
 );
 
 document.addEventListener(
 "keydown",
 event => {
 if (event.key === "Escape") {
-closeHeaderPopups();
+closeWhatsAppAction();
 closeMenu();
 }
 }
@@ -4414,46 +4300,46 @@ closeMenu();
 BASKET TOTAL DISPLAY
 ================================ */
 
-const basketTotalBubble =
+const basketTotalText =
 document.getElementById(
-"basketTotalBubble"
+"basketTotalText"
 );
 
-let basketBubbleAnimationTimer = null;
+let basketAnimationTimer = null;
 
-function animateBasketBubble() {
-if (!basketTotalBubble) {
+function animateBasketTotal() {
+if (!basketTotalText) {
 return;
 }
 
-basketTotalBubble.classList.add(
+basketTotalText.classList.add(
 "is-visible"
 );
 
-basketTotalBubble.classList.remove(
-"is-popping"
+basketTotalText.classList.remove(
+"is-updating"
 );
 
-void basketTotalBubble.offsetWidth;
+void basketTotalText.offsetWidth;
 
-basketTotalBubble.classList.add(
-"is-popping"
+basketTotalText.classList.add(
+"is-updating"
 );
 
-if (basketBubbleAnimationTimer !== null) {
+if (basketAnimationTimer !== null) {
 window.clearTimeout(
-basketBubbleAnimationTimer
+basketAnimationTimer
 );
 }
 
-basketBubbleAnimationTimer =
+basketAnimationTimer =
 window.setTimeout(
 () => {
-basketTotalBubble.classList.remove(
-"is-popping"
+basketTotalText.classList.remove(
+"is-updating"
 );
 },
-600
+560
 );
 }
 
@@ -4472,39 +4358,36 @@ currency:"GBP"
 }
 ).format(safeTotal);
 
-if (basketTotalBubble) {
-basketTotalBubble.textContent =
+if (basketTotalText) {
+basketTotalText.textContent =
 formattedTotal;
 
-basketTotalBubble.setAttribute(
+basketTotalText.setAttribute(
 "aria-label",
 "Basket total " +
 formattedTotal
 );
 
-animateBasketBubble();
+animateBasketTotal();
 }
 }
 
 /*
-Initial basket appearance:
-1.5 seconds after the homepage loads.
+Initial basket total appears exactly
+two seconds after the page loads.
 */
 
 window.setTimeout(
 () => {
 updateBasketTotal(0);
 },
-1500
+2000
 );
 
 /*
-Later, call:
+Later, whenever the basket changes, call:
 
 updateBasketTotal(newTotal);
-
-whenever a confirmed unit is added,
-removed or its quantity changes.
 */
 
 /* ===============================
