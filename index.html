@@ -212,14 +212,14 @@ WHATSAPP EXPANDING ACTION
 .whatsapp-action {
 position:absolute;
 left:50%;
-bottom:calc(100% + 7px);
+bottom:calc(100% + 15px);
 z-index:85;
-width:72px;
-height:72px;
+width:44px;
+height:44px;
 display:flex;
 align-items:center;
 justify-content:center;
-border-radius:18px;
+border-radius:11px;
 background:
 linear-gradient(
 145deg,
@@ -229,14 +229,14 @@ linear-gradient(
 );
 border:1px solid rgba(255,255,255,.32);
 box-shadow:
-0 18px 36px rgba(0,0,0,.58),
-0 0 18px rgba(37,211,102,.22),
+0 15px 30px rgba(0,0,0,.58),
+0 0 16px rgba(37,211,102,.22),
 inset 0 1px 0 rgba(255,255,255,.34);
 opacity:0;
 visibility:hidden;
 pointer-events:none;
 transform:
-translate(-50%,22px)
+translate(-50%,20px)
 scale(.58);
 transform-origin:center bottom;
 transition:
@@ -256,8 +256,8 @@ animation:whatsappAttention 4s ease-in-out .9s infinite;
 }
 
 .whatsapp-action svg {
-width:45px;
-height:45px;
+width:28px;
+height:28px;
 display:block;
 fill:#ffffff;
 filter:
@@ -270,8 +270,8 @@ transform:
 translate(-50%,-2px)
 scale(1.05);
 box-shadow:
-0 20px 42px rgba(0,0,0,.62),
-0 0 25px rgba(37,211,102,.45),
+0 18px 35px rgba(0,0,0,.62),
+0 0 24px rgba(37,211,102,.45),
 inset 0 1px 0 rgba(255,255,255,.42);
 }
 
@@ -279,25 +279,43 @@ inset 0 1px 0 rgba(255,255,255,.42);
 0%,
 72%,
 100% {
+transform:
+translate(-50%,0)
+scale(1);
+
 box-shadow:
-0 18px 36px rgba(0,0,0,.58),
-0 0 18px rgba(37,211,102,.22),
+0 15px 30px rgba(0,0,0,.58),
+0 0 16px rgba(37,211,102,.22),
 inset 0 1px 0 rgba(255,255,255,.34);
 }
 
 78% {
+transform:
+translate(-50%,-2px)
+scale(1.055);
+
 box-shadow:
-0 20px 40px rgba(0,0,0,.60),
-0 0 30px rgba(37,211,102,.62),
-0 0 0 5px rgba(37,211,102,.10),
+0 18px 36px rgba(0,0,0,.60),
+0 0 27px rgba(37,211,102,.62),
+0 0 0 4px rgba(37,211,102,.10),
 inset 0 1px 0 rgba(255,255,255,.40);
 }
 
 83% {
+transform:
+translate(-50%,0)
+scale(.985);
+
 box-shadow:
-0 18px 36px rgba(0,0,0,.58),
-0 0 19px rgba(37,211,102,.28),
+0 15px 30px rgba(0,0,0,.58),
+0 0 18px rgba(37,211,102,.28),
 inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+88% {
+transform:
+translate(-50%,0)
+scale(1);
 }
 }
 
@@ -307,8 +325,8 @@ MINIMAL BASKET TOTAL
 
 .basket-total-text {
 position:absolute;
-top:-16px;
-right:-9px;
+top:0;
+left:50%;
 z-index:5;
 font-family:
 "Bahnschrift Condensed",
@@ -322,22 +340,22 @@ font-weight:950;
 line-height:1;
 letter-spacing:.25px;
 color:var(--white);
-text-align:right;
+text-align:center;
 white-space:nowrap;
 text-shadow:
 0 2px 5px rgba(0,0,0,.92);
 opacity:0;
 transform:
-translateY(7px)
+translate(-50%,7px)
 scale(.78);
-transform-origin:right bottom;
+transform-origin:center bottom;
 pointer-events:none;
 }
 
 .basket-total-text.is-visible {
 opacity:1;
 transform:
-translateY(0)
+translate(-50%,0)
 scale(1);
 transition:
 opacity .22s ease,
@@ -352,7 +370,7 @@ animation:basketTotalUpdate .52s cubic-bezier(.18,.78,.28,1.28);
 0% {
 opacity:1;
 transform:
-translateY(0)
+translate(-50%,0)
 scale(1);
 color:var(--white);
 text-shadow:
@@ -361,7 +379,7 @@ text-shadow:
 
 42% {
 transform:
-translateY(-5px)
+translate(-50%,-4px)
 scale(1.16);
 color:#fff2df;
 text-shadow:
@@ -372,7 +390,7 @@ text-shadow:
 
 72% {
 transform:
-translateY(1px)
+translate(-50%,1px)
 scale(.97);
 color:var(--white);
 }
@@ -380,7 +398,7 @@ color:var(--white);
 100% {
 opacity:1;
 transform:
-translateY(0)
+translate(-50%,0)
 scale(1);
 color:var(--white);
 text-shadow:
@@ -789,6 +807,21 @@ transition-delay:.24s;
 
 .reveal-delay-4 {
 transition-delay:.32s;
+}
+
+/* Elements deliberately kept static */
+
+.trust-heading.reveal,
+.buy-online-inner > .section-label.reveal,
+.buy-online-inner > h2.reveal,
+.buy-online-inner > p.reveal,
+.buy-online-inner > .hero-actions.reveal,
+.comfort-uv-note.reveal,
+.calculator.reveal {
+opacity:1;
+transform:none;
+transition:none;
+will-change:auto;
 }
 
 /* ===============================
@@ -1222,6 +1255,10 @@ object-fit:cover;
 object-position:center;
 }
 
+.opening-mobile-copy {
+display:none;
+}
+
 /* ===============================
 DEDICATED TEAM
 ================================ */
@@ -1366,6 +1403,8 @@ position:relative;
 z-index:2;
 max-width:1120px;
 margin:0 auto 34px;
+opacity:1;
+transform:none;
 }
 
 .trust-heading .section-label {
@@ -1464,17 +1503,26 @@ max-width:860px;
 display:block;
 }
 
+.fast-lead-time-line {
+display:inline;
+}
+
+.fast-days-group {
+display:inline-flex;
+align-items:baseline;
+white-space:nowrap;
+}
+
 .fast-number-wrap {
 position:relative;
 display:inline-flex;
-align-items:flex-end;
+align-items:baseline;
 justify-content:center;
-width:.88em;
-height:1.15em;
-margin:0 .12em;
-vertical-align:-.13em;
+width:auto;
+height:auto;
+margin:0 .10em;
+vertical-align:baseline;
 overflow:visible;
-isolation:isolate;
 }
 
 .fast-number-4 {
@@ -1483,235 +1531,34 @@ z-index:4;
 display:inline-block;
 font-family:
 "Arial Black",
+"Franklin Gothic Heavy",
 "Impact",
 "Arial Narrow",
 sans-serif;
-font-size:1.45em;
+font-size:1.62em;
 font-weight:950;
-font-style:italic;
-line-height:.85;
-letter-spacing:-.12em;
-color:#ff3918;
-text-shadow:
-0 1px 0 #ffb07b,
-0 2px 0 #d82c0b,
-0 3px 0 #941b06,
-0 5px 8px rgba(0,0,0,.75);
-animation:numberHeat 9s ease-in-out infinite;
-}
-
-.fast-number-wrap::before {
-content:"";
-position:absolute;
-z-index:2;
-left:50%;
-bottom:38%;
-width:120%;
-height:125%;
-transform:translateX(-50%) scale(.1);
+font-style:normal;
+font-stretch:expanded;
+line-height:.72;
+letter-spacing:-.035em;
+color:#ff3b16;
+transform:scaleX(1.08);
 transform-origin:center bottom;
-opacity:0;
-background:
-radial-gradient(
-ellipse at 50% 90%,
-#fff7a8 0%,
-#ffd746 16%,
-#ff7a16 38%,
-#ff2c09 58%,
-rgba(150,12,0,.65) 72%,
-transparent 74%
-);
-filter:
-blur(.4px)
-drop-shadow(0 -3px 8px rgba(255,70,12,.75));
-clip-path:polygon(
-50% 0%,
-62% 22%,
-74% 10%,
-78% 42%,
-96% 34%,
-85% 70%,
-100% 83%,
-65% 92%,
-50% 100%,
-35% 91%,
-3% 82%,
-17% 65%,
-3% 43%,
-27% 44%,
-31% 13%
-);
-animation:numberFlame 9s ease-in-out infinite;
-pointer-events:none;
+text-shadow:
+0 1px 0 #ffbd91,
+0 2px 0 #e43711,
+0 3px 0 #aa2108,
+0 4px 0 #6f1104,
+0 6px 8px rgba(0,0,0,.74),
+0 0 7px rgba(255,59,22,.20);
+animation:none;
 }
 
+.fast-number-wrap::before,
 .fast-number-wrap::after {
-content:"";
-position:absolute;
-z-index:1;
-left:50%;
-top:-22%;
-width:145%;
-height:105%;
-transform:translateX(-50%) translateY(15px) scale(.5);
-opacity:0;
-background:
-radial-gradient(
-ellipse at 32% 62%,
-rgba(210,210,210,.70) 0%,
-rgba(110,110,110,.35) 35%,
-transparent 68%
-),
-radial-gradient(
-ellipse at 70% 34%,
-rgba(180,180,180,.58) 0%,
-rgba(90,90,90,.28) 38%,
-transparent 70%
-);
-filter:blur(4px);
-animation:numberSmoke 9s ease-out infinite;
-pointer-events:none;
-}
-
-@keyframes numberHeat {
-0%,
-37%,
-100% {
-color:#ff3918;
-filter:none;
-transform:skewX(-4deg) scale(1);
-}
-
-43% {
-color:#ff5a17;
-filter:
-brightness(1.2)
-drop-shadow(0 0 4px rgba(255,80,0,.60));
-transform:skewX(-4deg) scale(1.04);
-}
-
-51% {
-color:#ff8a20;
-filter:
-brightness(1.45)
-drop-shadow(0 0 9px rgba(255,80,0,.95));
-transform:skewX(-5deg) scale(1.10);
-}
-
-58% {
-color:#ff4b11;
-filter:
-brightness(1.15)
-drop-shadow(0 0 4px rgba(255,50,0,.50));
-transform:skewX(-4deg) scale(1.02);
-}
-
-67% {
-color:#ba2410;
-filter:saturate(.75);
-transform:skewX(-4deg) scale(.99);
-}
-
-77% {
-color:#ff3918;
-filter:none;
-transform:skewX(-4deg) scale(1);
-}
-}
-
-@keyframes numberFlame {
-0%,
-38%,
-68%,
-100% {
-opacity:0;
-transform:
-translateX(-50%)
-scale(.12,.08);
-}
-
-43% {
-opacity:.35;
-transform:
-translateX(-50%)
-scale(.55,.60)
-rotate(-2deg);
-}
-
-49% {
-opacity:.98;
-transform:
-translateX(-50%)
-scale(.95,1.12)
-rotate(2deg);
-}
-
-54% {
-opacity:.90;
-transform:
-translateX(-50%)
-scale(1.14,.96)
-rotate(-3deg);
-}
-
-59% {
-opacity:.58;
-transform:
-translateX(-50%)
-scale(.82,.68)
-rotate(2deg);
-}
-
-65% {
-opacity:0;
-transform:
-translateX(-50%)
-scale(.36,.26);
-}
-}
-
-@keyframes numberSmoke {
-0%,
-53%,
-100% {
-opacity:0;
-transform:
-translateX(-50%)
-translateY(16px)
-scale(.3);
-}
-
-59% {
-opacity:.15;
-transform:
-translateX(-50%)
-translateY(5px)
-scale(.55);
-}
-
-66% {
-opacity:.58;
-transform:
-translateX(-50%)
-translateY(-8px)
-scale(.90);
-}
-
-74% {
-opacity:.32;
-transform:
-translateX(-46%)
-translateY(-25px)
-scale(1.15);
-}
-
-83% {
-opacity:0;
-transform:
-translateX(-42%)
-translateY(-42px)
-scale(1.35);
-}
+content:none;
+display:none;
+animation:none;
 }
 
 .trust-item .lead-time-note {
@@ -1740,10 +1587,11 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-ORDER TRANSITION
+ORDER TRANSITIONS
 ================================ */
 
-.order-transition {
+.order-transition,
+.section-transition {
 position:relative;
 overflow:hidden;
 padding:72px 6% 66px;
@@ -1762,7 +1610,8 @@ linear-gradient(
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.order-transition::before {
+.order-transition::before,
+.section-transition::before {
 content:"";
 position:absolute;
 top:0;
@@ -1779,22 +1628,26 @@ transparent
 );
 }
 
-.order-transition-inner {
+.order-transition-inner,
+.section-transition-inner {
 max-width:980px;
 margin:0 auto;
 }
 
-.order-transition .section-label {
+.order-transition .section-label,
+.section-transition .section-label {
 margin-bottom:14px;
 }
 
-.order-transition h2 {
+.order-transition h2,
+.section-transition h2 {
 margin:0;
 font-size:clamp(38px,6vw,76px);
 letter-spacing:-2px;
 }
 
-.order-transition p {
+.order-transition p,
+.section-transition p {
 max-width:720px;
 margin:20px auto 0;
 font-size:18px;
@@ -2065,6 +1918,8 @@ border-left:3px solid var(--orange);
 font-size:14px;
 line-height:1.65;
 color:rgba(255,255,255,.66);
+opacity:1;
+transform:none;
 }
 
 /* ===============================
@@ -2128,6 +1983,8 @@ max-width:1180px;
 margin:0 auto;
 padding:50px;
 box-shadow:0 28px 85px rgba(0,0,0,.65);
+opacity:1;
+transform:none;
 }
 
 .calc-grid {
@@ -2207,8 +2064,20 @@ color:var(--muted);
 }
 
 /* ===============================
-LOWER SECTIONS
+ENGINEERED SECTION
 ================================ */
+
+.engineered-visual-intro {
+position:relative;
+overflow:hidden;
+background:#050505;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.engineered-visual-intro .buy-rooflight-slideshow {
+margin:0;
+box-shadow:none;
+}
 
 .engineered {
 padding:95px 6%;
@@ -2253,6 +2122,10 @@ color:var(--muted);
 font-size:16px;
 line-height:1.65;
 }
+
+/* ===============================
+OVERSIZED
+================================ */
 
 .oversized-section {
 padding:95px 6%;
@@ -2368,21 +2241,30 @@ font-size:16px;
 }
 
 .whatsapp-action {
-width:61px;
-height:61px;
-border-radius:15px;
-bottom:calc(100% + 6px);
+width:34px;
+height:34px;
+border-radius:9px;
+bottom:calc(100% + 14px);
 }
 
 .whatsapp-action svg {
-width:39px;
-height:39px;
+width:22px;
+height:22px;
 }
 
 .basket-total-text {
-top:-15px;
-right:-7px;
+top:0;
+left:50%;
 font-size:8px;
+transform:
+translate(-50%,6px)
+scale(.78);
+}
+
+.basket-total-text.is-visible {
+transform:
+translate(-50%,0)
+scale(1);
 }
 
 .wordmark-domain {
@@ -2627,15 +2509,29 @@ padding:64px 0 58px;
 font-size:45px;
 }
 
+.opening-section .opening-desktop-copy {
+display:none;
+}
+
 .opening-section p {
 font-size:18px;
-margin-bottom:34px;
+margin-bottom:0;
 }
 
 .interior-static-image {
 aspect-ratio:4 / 3;
 object-fit:cover;
 object-position:center;
+}
+
+.opening-mobile-copy {
+display:block;
+padding:32px 6% 0;
+font-size:18px;
+line-height:1.7;
+color:var(--muted);
+opacity:1;
+transform:none;
 }
 
 .direct-section {
@@ -2673,22 +2569,31 @@ transform:translateY(58px) scale(.975);
 }
 
 .fast-number-wrap {
-width:.84em;
+margin:0 .08em;
 }
 
 .fast-number-4 {
-font-size:1.35em;
+font-size:1.58em;
+line-height:.74;
+transform:scaleX(1.10);
 }
 
-.order-transition {
+.fast-days-group {
+white-space:nowrap;
+}
+
+.order-transition,
+.section-transition {
 padding:56px 6% 52px;
 }
 
-.order-transition h2 {
+.order-transition h2,
+.section-transition h2 {
 font-size:42px;
 }
 
-.order-transition p {
+.order-transition p,
+.section-transition p {
 font-size:16px;
 }
 
@@ -2766,6 +2671,8 @@ padding:24px 6% 2px;
 .comfort-uv-note {
 font-size:13px;
 padding-left:16px;
+opacity:1;
+transform:none;
 }
 
 .calculator-wrap {
@@ -2780,6 +2687,12 @@ letter-spacing:1.7px;
 
 .calculator {
 padding:30px 24px;
+opacity:1;
+transform:none;
+}
+
+.engineered-visual-intro .rooflight-slideshow-shell {
+height:250px;
 }
 
 .engineered,
@@ -2844,9 +2757,6 @@ scroll-behavior:auto;
 .lead-time-star,
 .lead-time-star::before,
 .lead-time-star::after,
-.fast-number-4,
-.fast-number-wrap::before,
-.fast-number-wrap::after,
 .mobile-feature-icons::before,
 .whatsapp-action,
 .basket-total-text {
@@ -2870,7 +2780,6 @@ transition:none;
 }
 </style>
 </head>
-
 <body>
 
 <div class="top-banner">
@@ -2913,26 +2822,50 @@ Factory
 
 <div class="action-icons">
 
-<a
-href="contact.html"
-class="header-icon-button"
-aria-label="Contact Factory Toughened Rooflights"
-title="Contact us"
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="emailButton"
+aria-label="Email Factory Toughened Rooflights"
+title="Email"
+aria-expanded="false"
 >
 ✉
+</button>
+
+<div
+id="emailPopup"
+class="action-popup email-popup"
+>
+
+<a
+class="action-popup-link"
+href="mailto:enquiries@factorytoughenedrooflights.co.uk"
+>
+Contact our team
 </a>
+
+</div>
+
+</div>
 
 <div class="header-action-wrap">
 
 <button
 type="button"
 id="whatsappButton"
-aria-label="Show WhatsApp contact button"
+aria-label="Show WhatsApp Business button"
 title="WhatsApp"
 aria-expanded="false"
 >
 📱
 </button>
+
+<!--
+REPLACE 447000000000 WITH THE WHATSAPP BUSINESS NUMBER.
+Use the UK country code without the leading zero.
+-->
 
 <a
 id="whatsappAction"
@@ -2957,19 +2890,18 @@ focusable="false"
 
 <div class="header-action-wrap">
 
-<a
-href="basket.html"
-class="header-icon-button"
+<button
+type="button"
 id="basketButton"
 aria-label="View basket and checkout"
 title="Basket and checkout"
 >
 💳
-</a>
+</button>
 
 <span
-class="basket-total-text"
-id="basketTotalText"
+class="basket-total-bubble"
+id="basketTotalBubble"
 aria-label="Basket total £0.00"
 >
 £0.00
@@ -3124,11 +3056,10 @@ aria-label="Close menu"
 <a href="#calculator" onclick="closeMenu()">Build</a>
 <a href="#performance" onclick="closeMenu()">Performance</a>
 <a href="#oversized" onclick="closeMenu()">Oversized</a>
-<a href="contact.html" onclick="closeMenu()">Contact</a>
+<a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
 </div>
-
 <main>
 
 <section
@@ -3606,7 +3537,7 @@ Frameless design
 Modernising British Ceilings With Frameless Glass Design
 </h2>
 
-<p class="reveal reveal-delay-1">
+<p class="opening-desktop-copy reveal reveal-delay-1">
 The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
 With no visible internal frame, the glass creates the fullest possible sky view and allows
 natural light to become the main architectural feature of the room. It is why our dedicated
@@ -3624,6 +3555,13 @@ alt="Finished frameless rooflight viewed from inside the room"
 />
 
 </div>
+
+<p class="opening-mobile-copy">
+The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
+With no visible internal frame, the glass creates the fullest possible sky view and allows
+natural light to become the main architectural feature of the room. It is why our dedicated
+team focuses specifically on producing frameless flat roof skylights.
+</p>
 
 </section>
 
@@ -3671,7 +3609,7 @@ class="trust-zone"
 id="trustZone"
 >
 
-<div class="trust-heading reveal">
+<div class="trust-heading">
 
 <div class="section-label">
 Included as standard
@@ -3704,8 +3642,9 @@ safety and long-term performance.
 Fast Lead Times
 </strong>
 
-<span>
+<span class="fast-lead-time-line">
 Manufactured in as quick as
+<span class="fast-days-group">
 <span
 class="fast-number-wrap"
 aria-label="4"
@@ -3713,6 +3652,7 @@ aria-label="4"
 <span class="fast-number-4">4</span>
 </span>
 working days.*
+</span>
 </span>
 
 <span class="lead-time-note">
@@ -3763,69 +3703,21 @@ rooflight around your required opening.
 
 <div class="buy-online-inner">
 
-<div class="section-label reveal">
+<div class="section-label">
 Order online
 </div>
 
-<h2 class="reveal">
+<h2>
 Buy Your Frameless Rooflight Online
 </h2>
 
-<div
-class="buy-rooflight-slideshow reveal reveal-scale"
-id="rooflightSlideshow"
-aria-label="Frameless rooflight product and installation images"
->
-
-<div class="rooflight-slideshow-shell">
-
-<div class="rooflight-slide active">
-
-<img
-src="images/hero-rooflight-2.png"
-alt="Frameless rooflight installation image two"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-4.png"
-alt="Frameless rooflight installation image four"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-5.png"
-alt="Frameless rooflight installation image five"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-6.png"
-alt="Frameless rooflight installation image six"
-/>
-
-</div>
-
-</div>
-
-</div>
-
-<p class="reveal">
-Know exactly what you want? Our best prices can be found on the Standard Sizes page,
+<p>
+Our best prices can be found on the Standard Sizes page,
 where you can shop special deals on popular, best-selling rooflight sizes. Alternatively,
 build a made-to-order rooflight using the calculator below.
 </p>
 
-<div class="hero-actions reveal">
+<div class="hero-actions">
 
 <a
 href="standard-sizes.html"
@@ -3915,9 +3807,30 @@ alt="Rooflight glazing helping retain warmth during winter"
 
 <div class="comfort-uv-wrap">
 
-<p class="comfort-uv-note reveal">
+<p class="comfort-uv-note">
 The coated glazing also helps reduce ultraviolet exposure that can contribute to fading
 across flooring, furniture, fabrics and other interior finishes.
+</p>
+
+</div>
+
+</section>
+
+<section class="section-transition">
+
+<div class="section-transition-inner">
+
+<div class="section-label reveal">
+Need a bespoke size?
+</div>
+
+<h2 class="reveal">
+Need A Rooflight For An Existing Opening?
+</h2>
+
+<p class="reveal reveal-delay-1">
+Enter your required internal visible glass dimensions below and configure a
+made-to-order frameless rooflight around the opening you already have.
 </p>
 
 </div>
@@ -3930,7 +3843,7 @@ class="calculator-wrap"
 >
 
 <div
-class="calculator reveal reveal-scale"
+class="calculator"
 id="homepageCalculator"
 >
 
@@ -4045,6 +3958,60 @@ Order Online Soon
 
 </section>
 
+<section
+class="engineered-visual-intro"
+aria-label="Frameless rooflight product and installation images"
+>
+
+<div
+class="buy-rooflight-slideshow reveal reveal-scale"
+id="rooflightSlideshow"
+>
+
+<div class="rooflight-slideshow-shell">
+
+<div class="rooflight-slide active">
+
+<img
+src="images/hero-rooflight-2.png"
+alt="Frameless rooflight installation image two"
+/>
+
+</div>
+
+<div class="rooflight-slide">
+
+<img
+src="images/hero-rooflight-4.png"
+alt="Frameless rooflight installation image four"
+/>
+
+</div>
+
+<div class="rooflight-slide">
+
+<img
+src="images/hero-rooflight-5.png"
+alt="Frameless rooflight installation image five"
+/>
+
+</div>
+
+<div class="rooflight-slide">
+
+<img
+src="images/hero-rooflight-6.png"
+alt="Frameless rooflight installation image six"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <section class="engineered">
 
 <div class="engineered-intro">
@@ -4122,6 +4089,27 @@ retaining the clean frameless appearance.
 
 </section>
 
+<section class="section-transition">
+
+<div class="section-transition-inner">
+
+<div class="section-label reveal">
+Planning something bigger?
+</div>
+
+<h2 class="reveal">
+Going For Something Supersized?
+</h2>
+
+<p class="reveal reveal-delay-1">
+For larger architectural openings, we can manufacture bespoke oversized frameless
+rooflights beyond the dimensions available through our standard online range.
+</p>
+
+</div>
+
+</section>
+
 <section
 id="oversized"
 class="oversized-section"
@@ -4176,7 +4164,6 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 </p>
 
 </footer>
-
 <script>
 function openMenu() {
 closeWhatsAppAction();
@@ -4245,9 +4232,7 @@ setWhatsAppState(false);
 }
 
 function toggleWhatsAppAction() {
-if (
-!whatsappAction
-) {
+if (!whatsappAction) {
 return;
 }
 
@@ -4269,6 +4254,7 @@ whatsappButton.addEventListener(
 "click",
 event => {
 event.stopPropagation();
+
 toggleWhatsAppAction();
 }
 );
@@ -4303,6 +4289,9 @@ BASKET TOTAL DISPLAY
 const basketTotalText =
 document.getElementById(
 "basketTotalText"
+) ||
+document.getElementById(
+"basketTotalBubble"
 );
 
 let basketAnimationTimer = null;
@@ -4320,11 +4309,25 @@ basketTotalText.classList.remove(
 "is-updating"
 );
 
+basketTotalText.classList.remove(
+"is-popping"
+);
+
 void basketTotalText.offsetWidth;
 
+if (
+basketTotalText.classList.contains(
+"basket-total-text"
+)
+) {
 basketTotalText.classList.add(
 "is-updating"
 );
+} else {
+basketTotalText.classList.add(
+"is-popping"
+);
+}
 
 if (basketAnimationTimer !== null) {
 window.clearTimeout(
@@ -4338,8 +4341,12 @@ window.setTimeout(
 basketTotalText.classList.remove(
 "is-updating"
 );
+
+basketTotalText.classList.remove(
+"is-popping"
+);
 },
-560
+600
 );
 }
 
@@ -4358,7 +4365,10 @@ currency:"GBP"
 }
 ).format(safeTotal);
 
-if (basketTotalText) {
+if (!basketTotalText) {
+return;
+}
+
 basketTotalText.textContent =
 formattedTotal;
 
@@ -4370,11 +4380,10 @@ formattedTotal
 
 animateBasketTotal();
 }
-}
 
 /*
-Initial basket total appears exactly
-two seconds after the page loads.
+The initial basket total appears
+two seconds after the homepage loads.
 */
 
 window.setTimeout(
@@ -4385,7 +4394,7 @@ updateBasketTotal(0);
 );
 
 /*
-Later, whenever the basket changes, call:
+Whenever the basket changes, call:
 
 updateBasketTotal(newTotal);
 */
@@ -4396,7 +4405,9 @@ STANDARD SCROLL REVEALS
 
 const revealElements =
 Array.from(
-document.querySelectorAll(".reveal")
+document.querySelectorAll(
+".reveal"
+)
 );
 
 const reducedMotionQuery =
@@ -4409,14 +4420,19 @@ reducedMotionQuery.matches ||
 !("IntersectionObserver" in window)
 ) {
 revealElements.forEach(element => {
-element.classList.add("is-visible");
+element.classList.add(
+"is-visible"
+);
 });
 } else {
 const revealObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(entry => {
-if (entry.isIntersecting) {
+if (!entry.isIntersecting) {
+return;
+}
+
 entry.target.classList.add(
 "is-visible"
 );
@@ -4424,7 +4440,6 @@ entry.target.classList.add(
 revealObserver.unobserve(
 entry.target
 );
-}
 });
 },
 {
@@ -4434,7 +4449,9 @@ rootMargin:"0px 0px -7% 0px"
 );
 
 revealElements.forEach(element => {
-revealObserver.observe(element);
+revealObserver.observe(
+element
+);
 });
 }
 
@@ -4476,7 +4493,9 @@ rootMargin:"-8% 0px -12% 0px"
 );
 
 trustItems.forEach(item => {
-trustObserver.observe(item);
+trustObserver.observe(
+item
+);
 });
 }
 
@@ -4521,24 +4540,44 @@ return;
 rooflightBusy = true;
 
 const outgoing =
-rooflightSlides[rooflightIndex];
+rooflightSlides[
+rooflightIndex
+];
 
 const incoming =
-rooflightSlides[nextIndex];
+rooflightSlides[
+nextIndex
+];
 
-outgoing.classList.remove("active");
-outgoing.classList.add("previous");
+outgoing.classList.remove(
+"active"
+);
 
-incoming.classList.remove("previous");
-incoming.classList.add("active");
+outgoing.classList.add(
+"previous"
+);
+
+incoming.classList.remove(
+"previous"
+);
+
+incoming.classList.add(
+"active"
+);
 
 rooflightIndex =
 nextIndex;
 
-window.setTimeout(() => {
-outgoing.classList.remove("previous");
+window.setTimeout(
+() => {
+outgoing.classList.remove(
+"previous"
+);
+
 rooflightBusy = false;
-},850);
+},
+850
+);
 
 if (manualChange) {
 restartRooflightTimer();
@@ -4555,6 +4594,7 @@ nextIndex >=
 rooflightSlides.length
 ) {
 rooflightDirection = -1;
+
 nextIndex =
 rooflightSlides.length - 2;
 }
@@ -4568,7 +4608,9 @@ return nextIndex;
 }
 
 function advanceRooflightSlides() {
-if (rooflightSlides.length < 2) {
+if (
+rooflightSlides.length < 2
+) {
 return;
 }
 
@@ -4583,6 +4625,10 @@ if (rooflightTimer !== null) {
 window.clearInterval(
 rooflightTimer
 );
+}
+
+if (reducedMotionQuery.matches) {
+return;
 }
 
 rooflightTimer =
@@ -4695,6 +4741,7 @@ restartRooflightTimer();
 
 /* ===============================
 COMFORT SLIDESHOW
+STARTS ONLY WHEN SCROLLED INTO VIEW
 ================================ */
 
 const comfortSlideshow =
@@ -4713,8 +4760,26 @@ comfortSlideshow.querySelectorAll(
 
 let comfortIndex = 0;
 let comfortTimer = null;
+let comfortHasStarted = false;
 let comfortTouchStartX = 0;
 let comfortTouchStartY = 0;
+
+function resetComfortSlideshow() {
+if (!comfortImages.length) {
+return;
+}
+
+comfortImages.forEach(
+(image,index) => {
+image.classList.toggle(
+"active",
+index === 0
+);
+}
+);
+
+comfortIndex = 0;
+}
 
 function showComfortImage(
 nextIndex,
@@ -4728,13 +4793,21 @@ nextIndex >= comfortImages.length
 return;
 }
 
-comfortImages[comfortIndex]
+comfortImages[
+comfortIndex
+]
 .classList
-.remove("active");
+.remove(
+"active"
+);
 
-comfortImages[nextIndex]
+comfortImages[
+nextIndex
+]
 .classList
-.add("active");
+.add(
+"active"
+);
 
 comfortIndex =
 nextIndex;
@@ -4745,12 +4818,16 @@ restartComfortTimer();
 }
 
 function advanceComfortImages() {
-if (comfortImages.length < 2) {
+if (
+comfortImages.length < 2
+) {
 return;
 }
 
 const nextIndex =
-(comfortIndex + 1) %
+(
+comfortIndex + 1
+) %
 comfortImages.length;
 
 showComfortImage(
@@ -4766,6 +4843,33 @@ comfortTimer
 );
 }
 
+comfortHasStarted = true;
+
+if (reducedMotionQuery.matches) {
+return;
+}
+
+comfortTimer =
+window.setInterval(
+advanceComfortImages,
+8000
+);
+}
+
+function startComfortSlideshow() {
+if (
+comfortHasStarted ||
+comfortImages.length < 2
+) {
+return;
+}
+
+comfortHasStarted = true;
+
+if (reducedMotionQuery.matches) {
+return;
+}
+
 comfortTimer =
 window.setInterval(
 advanceComfortImages,
@@ -4775,7 +4879,9 @@ advanceComfortImages,
 
 function showNextComfortManual() {
 const nextIndex =
-(comfortIndex + 1) %
+(
+comfortIndex + 1
+) %
 comfortImages.length;
 
 showComfortImage(
@@ -4798,6 +4904,8 @@ previousIndex,
 true
 );
 }
+
+resetComfortSlideshow();
 
 if (
 comfortSlideshow &&
@@ -4861,7 +4969,36 @@ passive:true
 }
 );
 
-restartComfortTimer();
+if (
+"IntersectionObserver" in window
+) {
+const comfortObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(entry => {
+if (!entry.isIntersecting) {
+return;
+}
+
+startComfortSlideshow();
+
+comfortObserver.unobserve(
+entry.target
+);
+});
+},
+{
+threshold:.35,
+rootMargin:"0px 0px -8% 0px"
+}
+);
+
+comfortObserver.observe(
+comfortSlideshow
+);
+} else {
+startComfortSlideshow();
+}
 }
 
 /* ===============================
@@ -4915,10 +5052,12 @@ glazing === "triple"
 priceElement.innerHTML =
 `£${selectedPrice}<span class="home-vat-note">inc. vat</span>`;
 
+if (glazedLabel) {
 glazedLabel.classList.toggle(
 "triple",
 glazing === "triple"
 );
+}
 }
 );
 });
@@ -4929,29 +5068,56 @@ TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
+const widthElement =
+document.getElementById(
+"width"
+);
+
+const lengthElement =
+document.getElementById(
+"length"
+);
+
+const glazingElement =
+document.getElementById(
+"glazing"
+);
+
+const finishElement =
+document.getElementById(
+"finish"
+);
+
+const priceElement =
+document.getElementById(
+"price"
+);
+
+if (
+!widthElement ||
+!lengthElement ||
+!glazingElement ||
+!finishElement ||
+!priceElement
+) {
+return;
+}
+
 const width =
 Number(
-document
-.getElementById("width")
-.value
+widthElement.value
 );
 
 const length =
 Number(
-document
-.getElementById("length")
-.value
+lengthElement.value
 );
 
 const glazing =
-document
-.getElementById("glazing")
-.value;
+glazingElement.value;
 
 const finish =
-document
-.getElementById("finish")
-.value;
+finishElement.value;
 
 const area =
 (width * length) /
@@ -4965,7 +5131,9 @@ glazing === "double"
 let price =
 area * baseRate;
 
-if (finish !== "Clear") {
+if (
+finish !== "Clear"
+) {
 price +=
 area * 45;
 }
@@ -4986,20 +5154,25 @@ glazing === "triple"
 price = 300;
 }
 
-document
-.getElementById("price")
-.innerText =
+priceElement.innerText =
 "£" +
-Math.round(price);
+Math.round(
+price
+);
 }
 
 document
 .querySelectorAll(
-"input, select"
+"#homepageCalculator input, #homepageCalculator select"
 )
 .forEach(element => {
 element.addEventListener(
 "input",
+calculatePrice
+);
+
+element.addEventListener(
+"change",
 calculatePrice
 );
 });
