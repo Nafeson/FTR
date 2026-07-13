@@ -24,6 +24,9 @@ content="Modern frameless flat roof skylights made to order in 4–5 working day
 --muted:#d8d8d8;
 --line:rgba(245,124,0,.32);
 --whatsapp:#25d366;
+--gold:#d7ac55;
+--gold-light:#ffe3a0;
+--gold-dark:#7a5520;
 }
 
 * {
@@ -193,34 +196,45 @@ box-shadow:0 8px 24px rgba(245,124,0,.10);
 transform:translateY(-2px);
 }
 
+.action-icons button.is-selected {
+border-color:var(--orange);
+color:var(--orange);
+background:rgba(245,124,0,.075);
+box-shadow:
+0 0 0 1px rgba(245,124,0,.16),
+0 8px 24px rgba(245,124,0,.14);
+}
+
+/* ===============================
+HEADER SPEECH BUBBLES
+================================ */
+
 .action-popup {
 position:absolute;
+bottom:calc(100% + 11px);
 right:0;
-bottom:calc(100% + 12px);
-z-index:70;
-min-width:max-content;
-padding:0;
+z-index:80;
 opacity:0;
 visibility:hidden;
-transform:translateY(7px) scale(.97);
+transform:translateY(7px) scale(.82);
 transform-origin:bottom right;
-transition:
-opacity .22s ease,
-visibility .22s ease,
-transform .22s ease;
 pointer-events:none;
+transition:
+opacity .2s ease,
+visibility .2s ease,
+transform .24s cubic-bezier(.18,.78,.28,1.25);
 }
 
 .action-popup::after {
 content:"";
 position:absolute;
-right:17px;
-bottom:-6px;
-width:12px;
-height:12px;
+right:14px;
+bottom:-5px;
+width:10px;
+height:10px;
 background:#111111;
-border-right:1px solid rgba(255,255,255,.14);
-border-bottom:1px solid rgba(255,255,255,.14);
+border-right:1px solid rgba(245,124,0,.46);
+border-bottom:1px solid rgba(245,124,0,.46);
 transform:rotate(45deg);
 }
 
@@ -231,71 +245,168 @@ transform:translateY(0) scale(1);
 pointer-events:auto;
 }
 
-.action-popup a {
+.action-popup-link {
 position:relative;
 z-index:2;
 display:flex;
 align-items:center;
-gap:9px;
-padding:12px 15px;
-background:#111111;
-border:1px solid rgba(255,255,255,.14);
+justify-content:center;
+min-height:40px;
+padding:10px 14px;
+border:1px solid rgba(245,124,0,.52);
+border-radius:18px;
+background:
+linear-gradient(
+145deg,
+#171717 0%,
+#0d0d0d 100%
+);
 box-shadow:
-0 16px 38px rgba(0,0,0,.55),
-0 0 0 1px rgba(245,124,0,.05);
+0 15px 38px rgba(0,0,0,.62),
+0 0 12px rgba(245,124,0,.08);
 color:var(--white);
 text-decoration:none;
-font-size:11px;
+font-size:10px;
 font-weight:950;
-letter-spacing:.7px;
-line-height:1.2;
+letter-spacing:.55px;
+line-height:1;
 text-transform:uppercase;
 white-space:nowrap;
 transition:
 border-color .2s ease,
 color .2s ease,
-background .2s ease;
+background .2s ease,
+transform .2s ease;
 }
 
-.action-popup a:hover {
+.action-popup-link:hover,
+.action-popup-link:active {
 border-color:var(--orange);
 color:var(--orange);
-background:#15110e;
+background:
+linear-gradient(
+145deg,
+#1a130e 0%,
+#0d0d0d 100%
+);
+transform:translateY(-1px);
 }
 
-.whatsapp-popup a::before {
-content:"●";
-color:var(--whatsapp);
-font-size:13px;
-filter:drop-shadow(0 0 5px rgba(37,211,102,.35));
+.email-popup {
+right:0;
 }
 
-.email-popup a::before {
-content:"✉";
-color:var(--orange);
-font-size:14px;
+.email-popup .action-popup-link {
+min-width:126px;
 }
+
+/* WhatsApp logo-only bubble */
+
+.whatsapp-popup {
+right:0;
+}
+
+.whatsapp-popup .action-popup-link {
+width:45px;
+height:45px;
+min-height:45px;
+padding:0;
+border-radius:50%;
+}
+
+.whatsapp-logo {
+width:25px;
+height:25px;
+display:block;
+fill:var(--whatsapp);
+filter:
+drop-shadow(0 0 5px rgba(37,211,102,.24));
+}
+
+/* ===============================
+BASKET TOTAL BUBBLE
+================================ */
 
 .basket-total-bubble {
 position:absolute;
-top:-9px;
-right:-10px;
-z-index:3;
-min-width:45px;
-padding:4px 6px;
-border:1px solid rgba(245,124,0,.82);
-background:#050505;
+top:-8px;
+right:-8px;
+z-index:4;
+min-width:43px;
+height:25px;
+padding:0 8px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(245,124,0,.86);
+border-radius:999px;
+background:
+linear-gradient(
+145deg,
+#171717 0%,
+#050505 100%
+);
 color:var(--white);
 box-shadow:
-0 4px 13px rgba(0,0,0,.55),
-0 0 8px rgba(245,124,0,.16);
+0 6px 17px rgba(0,0,0,.62),
+0 0 10px rgba(245,124,0,.12);
 font-size:8px;
 font-weight:950;
 line-height:1;
 letter-spacing:.2px;
-text-align:center;
 white-space:nowrap;
 pointer-events:none;
+opacity:0;
+transform:scale(.62) translateY(5px);
+transform-origin:bottom center;
+}
+
+.basket-total-bubble::after {
+content:"";
+position:absolute;
+right:7px;
+bottom:-4px;
+width:8px;
+height:8px;
+background:#080808;
+border-right:1px solid rgba(245,124,0,.72);
+border-bottom:1px solid rgba(245,124,0,.72);
+transform:rotate(45deg);
+}
+
+.basket-total-bubble.is-visible {
+opacity:1;
+transform:scale(1) translateY(0);
+transition:
+opacity .2s ease,
+transform .4s cubic-bezier(.18,.78,.28,1.35);
+}
+
+.basket-total-bubble.is-popping {
+animation:basketBubblePop .55s cubic-bezier(.18,.78,.28,1.35);
+}
+
+@keyframes basketBubblePop {
+0% {
+opacity:1;
+transform:scale(.72) translateY(4px);
+}
+
+48% {
+transform:scale(1.14) translateY(-2px);
+box-shadow:
+0 8px 20px rgba(0,0,0,.65),
+0 0 17px rgba(245,124,0,.42);
+}
+
+72% {
+transform:scale(.96) translateY(0);
+}
+
+100% {
+opacity:1;
+transform:scale(1) translateY(0);
+}
 }
 
 /* ===============================
@@ -1065,8 +1176,6 @@ margin:32px auto 0;
 display:flex;
 justify-content:center;
 }
-
-/* Mobile only. Hidden on desktop for now. */
 
 .mobile-feature-icons {
 display:none;
@@ -2279,22 +2388,39 @@ height:34px;
 font-size:16px;
 }
 
-.basket-total-bubble {
-top:-8px;
-right:-8px;
-min-width:40px;
-padding:3px 5px;
-font-size:7px;
-}
-
 .action-popup {
-bottom:calc(100% + 10px);
+bottom:calc(100% + 9px);
 }
 
-.action-popup a {
-padding:11px 12px;
-font-size:9px;
-letter-spacing:.45px;
+.action-popup-link {
+min-height:35px;
+padding:9px 11px;
+font-size:8.5px;
+border-radius:16px;
+}
+
+.email-popup .action-popup-link {
+min-width:112px;
+}
+
+.whatsapp-popup .action-popup-link {
+width:39px;
+height:39px;
+min-height:39px;
+}
+
+.whatsapp-logo {
+width:22px;
+height:22px;
+}
+
+.basket-total-bubble {
+top:-7px;
+right:-7px;
+min-width:39px;
+height:22px;
+padding:0 6px;
+font-size:7px;
 }
 
 .wordmark-domain {
@@ -2331,11 +2457,12 @@ letter-spacing:.35px;
 }
 
 .home-popular-section {
-padding:22px 6% 48px;
+padding:22px 3.5% 42px;
 }
 
 .home-popular-title-wrap {
 margin-bottom:22px;
+padding:0 2.5%;
 }
 
 .home-opening-title {
@@ -2351,6 +2478,7 @@ margin-top:3px;
 .home-popular-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
 gap:10px;
+padding:0 2.5%;
 }
 
 .home-product-card {
@@ -2405,63 +2533,111 @@ font-size:9px;
 
 .home-popular-footer {
 margin-top:28px;
+padding:0 2.5%;
 }
 
-/* FEATURE ICONS INSIDE POPULAR SECTION */
+/* ===============================
+SINGLE-ROW GOLD FEATURE STRIP
+================================ */
 
 .mobile-feature-icons {
 display:grid;
-grid-template-columns:repeat(6,minmax(0,1fr));
+grid-template-columns:repeat(5,minmax(0,1fr));
 gap:0;
-max-width:390px;
-margin:36px auto 0;
-padding-top:25px;
-border-top:1px solid rgba(5,5,5,.28);
+width:100%;
+max-width:430px;
+margin:30px auto 0;
+padding:20px 0 2px;
+border-top:1px solid rgba(255,223,155,.22);
+overflow:hidden;
+position:relative;
+isolation:isolate;
+}
+
+.mobile-feature-icons::before {
+content:"";
+position:absolute;
+z-index:5;
+top:12px;
+bottom:0;
+left:-40%;
+width:30%;
+background:
+linear-gradient(
+112deg,
+transparent 0%,
+rgba(255,255,255,.03) 28%,
+rgba(255,239,190,.24) 45%,
+rgba(255,255,255,.78) 50%,
+rgba(255,225,150,.26) 57%,
+transparent 72%
+);
+transform:skewX(-18deg);
+animation:goldFeatureShimmer 9s ease-in-out 2.5s infinite;
+pointer-events:none;
+mix-blend-mode:screen;
+}
+
+@keyframes goldFeatureShimmer {
+0%,
+55% {
+left:-40%;
+opacity:0;
+}
+
+59% {
+opacity:.25;
+}
+
+68% {
+left:112%;
+opacity:.9;
+}
+
+72%,
+100% {
+left:112%;
+opacity:0;
+}
 }
 
 .mobile-feature-item {
-grid-column:span 2;
-min-height:96px;
-padding:9px 7px 5px;
+min-width:0;
+min-height:75px;
+padding:4px 2px 2px;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:flex-start;
-gap:8px;
+gap:7px;
 text-align:center;
-color:#090909;
 position:relative;
+color:var(--gold);
 }
 
-.mobile-feature-item:nth-child(4),
-.mobile-feature-item:nth-child(5) {
-grid-column:span 3;
-margin-top:5px;
-}
-
-.mobile-feature-item:nth-child(2),
-.mobile-feature-item:nth-child(3),
-.mobile-feature-item:nth-child(5) {
-border-left:1px solid rgba(5,5,5,.22);
+.mobile-feature-item + .mobile-feature-item {
+border-left:1px solid rgba(215,172,85,.17);
 }
 
 .mobile-feature-item svg {
-width:38px;
-height:38px;
+width:29px;
+height:29px;
 display:block;
 fill:none;
-stroke:#090909;
-stroke-width:1.8;
+stroke:var(--gold);
+stroke-width:1.55;
 stroke-linecap:round;
 stroke-linejoin:round;
 filter:
-drop-shadow(0 1px 0 rgba(255,255,255,.16))
-drop-shadow(0 2px 2px rgba(0,0,0,.18));
+drop-shadow(0 1px 0 rgba(255,235,178,.17))
+drop-shadow(0 2px 2px rgba(0,0,0,.34))
+drop-shadow(0 0 4px rgba(215,172,85,.10));
 }
 
 .mobile-feature-item span {
 display:block;
-max-width:92px;
+width:100%;
+max-width:67px;
 font-family:
 "Arial Narrow",
 "Roboto Condensed",
@@ -2469,11 +2645,16 @@ font-family:
 "Space Grotesk",
 "Manrope",
 sans-serif;
-font-size:8px;
+font-size:6.7px;
 font-weight:950;
-line-height:1.25;
-letter-spacing:.55px;
+line-height:1.18;
+letter-spacing:.18px;
 text-transform:uppercase;
+color:var(--gold);
+text-shadow:
+0 1px 0 rgba(255,236,185,.08),
+0 1px 2px rgba(0,0,0,.60);
+overflow-wrap:anywhere;
 }
 
 .opening-section {
@@ -2669,16 +2850,24 @@ margin-top:2px;
 }
 
 .mobile-feature-icons {
-max-width:340px;
+max-width:360px;
+}
+
+.mobile-feature-item {
+min-height:72px;
+padding-left:1px;
+padding-right:1px;
 }
 
 .mobile-feature-item svg {
-width:35px;
-height:35px;
+width:27px;
+height:27px;
 }
 
 .mobile-feature-item span {
-font-size:7.5px;
+font-size:6.2px;
+letter-spacing:.08px;
+max-width:62px;
 }
 }
 
@@ -2695,7 +2884,9 @@ scroll-behavior:auto;
 .lead-time-star::after,
 .fast-number-4,
 .fast-number-wrap::before,
-.fast-number-wrap::after {
+.fast-number-wrap::after,
+.mobile-feature-icons::before,
+.basket-total-bubble {
 animation:none;
 }
 
@@ -2776,11 +2967,11 @@ id="emailPopup"
 class="action-popup email-popup"
 >
 
-<!-- Replace this email address when ready. -->
 <a
+class="action-popup-link"
 href="mailto:enquiries@factorytoughenedrooflights.co.uk"
 >
-Email us
+Contact our team
 </a>
 
 </div>
@@ -2804,17 +2995,23 @@ id="whatsappPopup"
 class="action-popup whatsapp-popup"
 >
 
-<!--
-Replace 447000000000 with the WhatsApp Business number.
-Use the UK country code without the leading zero.
--->
-
 <a
+class="action-popup-link"
 href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
 target="_blank"
 rel="noopener"
+aria-label="Open WhatsApp"
 >
-WhatsApp our Rooflight Team
+
+<svg
+class="whatsapp-logo"
+viewBox="0 0 32 32"
+aria-hidden="true"
+focusable="false"
+>
+<path d="M16 3.2A12.5 12.5 0 0 0 5.2 22l-1.8 6.8 7-1.8A12.5 12.5 0 1 0 16 3.2zm0 22.7c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.2 10.2 0 1 1 9.2 5.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.9-.9-3.2-1.7-4.5-3.9-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+</svg>
+
 </a>
 
 </div>
@@ -3372,7 +3569,7 @@ aria-hidden="true"
 
 <span>
 Double &amp;<br>
-Triple Glazed
+Triple
 </span>
 
 </div>
@@ -3413,8 +3610,8 @@ aria-hidden="true"
 </svg>
 
 <span>
-Toughened<br>
-Safety Glass
+Safety<br>
+Glass
 </span>
 
 </div>
@@ -4103,6 +4300,11 @@ popup.classList.toggle(
 shouldOpen
 );
 
+button.classList.toggle(
+"is-selected",
+shouldOpen
+);
+
 button.setAttribute(
 "aria-expanded",
 String(shouldOpen)
@@ -4127,6 +4329,10 @@ function toggleHeaderPopup(
 button,
 popup
 ) {
+if (!button || !popup) {
+return;
+}
+
 const isCurrentlyOpen =
 popup.classList.contains(
 "is-open"
@@ -4213,6 +4419,44 @@ document.getElementById(
 "basketTotalBubble"
 );
 
+let basketBubbleAnimationTimer = null;
+
+function animateBasketBubble() {
+if (!basketTotalBubble) {
+return;
+}
+
+basketTotalBubble.classList.add(
+"is-visible"
+);
+
+basketTotalBubble.classList.remove(
+"is-popping"
+);
+
+void basketTotalBubble.offsetWidth;
+
+basketTotalBubble.classList.add(
+"is-popping"
+);
+
+if (basketBubbleAnimationTimer !== null) {
+window.clearTimeout(
+basketBubbleAnimationTimer
+);
+}
+
+basketBubbleAnimationTimer =
+window.setTimeout(
+() => {
+basketTotalBubble.classList.remove(
+"is-popping"
+);
+},
+600
+);
+}
+
 function updateBasketTotal(total) {
 const safeTotal =
 Number.isFinite(Number(total))
@@ -4237,16 +4481,31 @@ basketTotalBubble.setAttribute(
 "Basket total " +
 formattedTotal
 );
+
+animateBasketBubble();
 }
 }
 
 /*
-The basket currently begins at £0.00.
-Later, call updateBasketTotal(newTotal)
-whenever a confirmed unit is added or removed.
+Initial basket appearance:
+1.5 seconds after the homepage loads.
 */
 
+window.setTimeout(
+() => {
 updateBasketTotal(0);
+},
+1500
+);
+
+/*
+Later, call:
+
+updateBasketTotal(newTotal);
+
+whenever a confirmed unit is added,
+removed or its quantity changes.
+*/
 
 /* ===============================
 STANDARD SCROLL REVEALS
