@@ -3285,7 +3285,7 @@ aria-label="Close menu"
 </div>
 
 </div>
-<main>
+   <main>
 
 <section
 class="home-popular-section"
@@ -3471,16 +3471,16 @@ View Size
 
 <div
 class="home-product-card reveal reveal-scale reveal-delay-2"
-data-double-price="220"
-data-triple-price="270"
+data-double-price="455"
+data-triple-price="545"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/jumbo.png"
-alt="300mm by 1000mm frameless flat roof skylight"
+src="images/product-cards/medium-square.png"
+alt="1000mm by 1200mm frameless flat roof skylight"
 />
 
 </div>
@@ -3488,7 +3488,7 @@ alt="300mm by 1000mm frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-300 × 1000mm
+1000 × 1200mm
 </div>
 
 <div class="home-product-spec">
@@ -3533,7 +3533,7 @@ Price
 </div>
 
 <div class="home-product-price">
-£220
+£455
 <span class="home-vat-note">inc. vat</span>
 </div>
 
@@ -3562,7 +3562,7 @@ tabindex="0"
 <div class="home-product-image">
 
 <img
-src="images/product-cards/jumbo.png"
+src="images/product-cards/narrow-long-rectangle.png"
 alt="400mm by 1500mm frameless flat roof skylight"
 />
 
@@ -3884,6 +3884,52 @@ rooflight around your required opening.
 
 </section>
 
+<section
+class="engineered-visual-intro"
+aria-label="Frameless rooflight product and installation images"
+>
+
+<div
+class="buy-rooflight-slideshow reveal reveal-scale rooflight-slideshow"
+id="rooflightSlideshowSecondary"
+data-start-delay="2500"
+>
+
+<div class="rooflight-slideshow-shell">
+
+<div class="rooflight-slide active">
+
+<img
+src="images/hero-rooflight-4.png"
+alt="Frameless rooflight installation image four"
+/>
+
+</div>
+
+<div class="rooflight-slide">
+
+<img
+src="images/hero-rooflight-5.png"
+alt="Frameless rooflight installation image five"
+/>
+
+</div>
+
+<div class="rooflight-slide">
+
+<img
+src="images/hero-rooflight-6.png"
+alt="Frameless rooflight installation image six"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <section class="buy-online-section">
 
 <div class="buy-online-inner">
@@ -4001,52 +4047,6 @@ Free Mainland UK Delivery
 Included on our listed standard sizes, with specialist delivery clearly quoted
 for oversized and bespoke units.
 </span>
-
-</div>
-
-</div>
-
-</section>
-
-<section
-class="trust-comfort-slideshow-section"
-aria-label="Frameless rooflight product and installation images"
->
-
-<div
-class="buy-rooflight-slideshow reveal reveal-scale rooflight-slideshow"
-id="rooflightSlideshowSecondary"
-data-start-delay="2500"
->
-
-<div class="rooflight-slideshow-shell">
-
-<div class="rooflight-slide active">
-
-<img
-src="images/hero-rooflight-5.png"
-alt="Installed frameless rooflight bringing natural light into a finished room"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-6.png"
-alt="Modern frameless rooflight installed into a completed flat roof"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-4.png"
-alt="Frameless rooflight installation and finished glazing appearance"
-/>
-
-</div>
 
 </div>
 
@@ -4456,10 +4456,16 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 function openMenu() {
 closeWhatsAppAction();
 
-document
-.getElementById("menuOverlay")
-.classList
-.add("active");
+const menuOverlay =
+document.getElementById(
+"menuOverlay"
+);
+
+if (menuOverlay) {
+menuOverlay.classList.add(
+"active"
+);
+}
 
 document.body.style.overflow =
 "hidden";
@@ -4482,7 +4488,7 @@ document.body.style.overflow =
 }
 
 /* ===============================
-   WHATSAPP EXPANDING ACTION
+WHATSAPP EXPANDING ACTION
 ================================ */
 
 const whatsappButton =
@@ -4578,7 +4584,7 @@ closeMenu();
 );
 
 /* ===============================
-   BASKET TOTAL DISPLAY
+BASKET TOTAL DISPLAY
 ================================ */
 
 const basketTotalText =
@@ -4663,7 +4669,7 @@ updateBasketTotal(0);
 );
 
 /* ===============================
-   MOTION PREFERENCE
+MOTION PREFERENCE
 ================================ */
 
 const reducedMotionQuery =
@@ -4672,13 +4678,13 @@ window.matchMedia(
 );
 
 /* ===============================
-   STANDARD SCROLL REVEALS
+STANDARD SCROLL REVEALS
 ================================ */
 
 const revealElements =
 Array.from(
 document.querySelectorAll(
-".reveal, .direct-image-reveal, .calculator-reveal-target"
+".reveal, .direct-image-reveal"
 )
 );
 
@@ -4729,7 +4735,7 @@ element
 }
 
 /* ===============================
-   PRODUCT CARD SELECTION
+POPULAR CARD VIEW-SIZE ATTENTION
 ================================ */
 
 const homepageProductCards =
@@ -4739,84 +4745,13 @@ document.querySelectorAll(
 )
 );
 
-let activeHomepageCard = null;
+let activeHomepageProductCard = null;
 
-function clearHomepageCardSelection() {
+function stopHomepageProductAttention() {
 homepageProductCards.forEach(
 card => {
 card.classList.remove(
 "is-selected"
-);
-
-const link =
-card.querySelector(
-".home-product-link"
-);
-
-if (link) {
-link.classList.remove(
-"is-encouraged"
-);
-}
-}
-);
-
-activeHomepageCard = null;
-}
-
-function selectHomepageCard(card) {
-if (!card) {
-return;
-}
-
-if (
-activeHomepageCard &&
-activeHomepageCard !== card
-) {
-clearHomepageCardSelection();
-}
-
-activeHomepageCard = card;
-
-card.classList.add(
-"is-selected"
-);
-
-const link =
-card.querySelector(
-".home-product-link"
-);
-
-if (link) {
-link.classList.remove(
-"is-encouraged"
-);
-
-void link.offsetWidth;
-
-link.classList.add(
-"is-encouraged"
-);
-}
-}
-
-homepageProductCards.forEach(
-card => {
-const glazingButtons =
-Array.from(
-card.querySelectorAll(
-".home-glazing-toggle button"
-)
-);
-
-const priceElement =
-card.querySelector(
-".home-product-price"
-);
-
-const glazedLabel =
-card.querySelector(
-".home-glazed-label"
 );
 
 const productLink =
@@ -4824,19 +4759,70 @@ card.querySelector(
 ".home-product-link"
 );
 
-card.addEventListener(
-"click",
-event => {
-if (
-productLink &&
-event.target.closest(
-".home-product-link"
-)
-) {
+if (productLink) {
+productLink.classList.remove(
+"is-encouraged"
+);
+}
+}
+);
+
+activeHomepageProductCard = null;
+}
+
+function activateHomepageProductCard(card) {
+if (!card) {
 return;
 }
 
-selectHomepageCard(
+if (
+activeHomepageProductCard &&
+activeHomepageProductCard !== card
+) {
+stopHomepageProductAttention();
+}
+
+activeHomepageProductCard = card;
+
+card.classList.add(
+"is-selected"
+);
+
+const productLink =
+card.querySelector(
+".home-product-link"
+);
+
+if (productLink) {
+productLink.classList.remove(
+"is-encouraged"
+);
+
+void productLink.offsetWidth;
+
+productLink.classList.add(
+"is-encouraged"
+);
+}
+}
+
+homepageProductCards.forEach(
+card => {
+card.addEventListener(
+"click",
+event => {
+const clickedLink =
+event.target.closest(
+".home-product-link"
+);
+
+if (clickedLink) {
+return;
+}
+
+event.stopPropagation();
+
+activateHomepageProductCard(
 card
 );
 }
@@ -4846,9 +4832,12 @@ card.addEventListener(
 "keydown",
 event => {
 if (
-event.key === "Enter" ||
-event.key === " "
+event.key !== "Enter" &&
+event.key !== " "
 ) {
+return;
+}
+
 if (
 event.target.closest(
 "button, a, input, select"
@@ -4858,66 +4847,13 @@ return;
 }
 
 event.preventDefault();
+event.stopPropagation();
 
-selectHomepageCard(
+activateHomepageProductCard(
 card
 );
 }
-}
 );
-
-glazingButtons.forEach(
-button => {
-button.addEventListener(
-"click",
-event => {
-event.stopPropagation();
-
-selectHomepageCard(
-card
-);
-
-const glazing =
-button.dataset.glazing;
-
-glazingButtons.forEach(
-item => {
-item.classList.toggle(
-"active",
-item === button
-);
-}
-);
-
-const selectedPrice =
-glazing === "triple"
-? card.dataset.triplePrice
-: card.dataset.doublePrice;
-
-if (priceElement) {
-priceElement.innerHTML =
-`£${selectedPrice}<span class="home-vat-note">inc. vat</span>`;
-}
-
-if (glazedLabel) {
-glazedLabel.classList.toggle(
-"triple",
-glazing === "triple"
-);
-}
-}
-);
-}
-);
-
-if (productLink) {
-productLink.addEventListener(
-"click",
-event => {
-event.stopPropagation();
-}
-);
-}
 }
 );
 
@@ -4932,12 +4868,12 @@ event.target.closest(
 return;
 }
 
-clearHomepageCardSelection();
+stopHomepageProductAttention();
 }
 );
 
 /* ===============================
-   GOLD ICON STRIP SHIMMER
+GOLD ICON SHIMMER ON FIRST VIEW
 ================================ */
 
 const mobileFeatureIcons =
@@ -4954,7 +4890,7 @@ mobileFeatureIcons.classList.add(
 "icon-shimmer-active"
 );
 } else {
-const featureIconObserver =
+const mobileFeatureObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(
@@ -4967,26 +4903,26 @@ entry.target.classList.add(
 "icon-shimmer-active"
 );
 
-featureIconObserver.unobserve(
+mobileFeatureObserver.unobserve(
 entry.target
 );
 }
 );
 },
 {
-threshold:.35,
+threshold:.45,
 rootMargin:"0px 0px -6% 0px"
 }
 );
 
-featureIconObserver.observe(
+mobileFeatureObserver.observe(
 mobileFeatureIcons
 );
 }
 }
 
 /* ===============================
-   TRUST CARD FULL-VIEW SHIMMERS
+TRUST CARD FULL-VIEW SHIMMERS
 ================================ */
 
 const trustItems =
@@ -4996,43 +4932,41 @@ document.querySelectorAll(
 )
 );
 
-function isElementFullyVisible(
-element
-) {
-const rect =
-element.getBoundingClientRect();
+let trustShimmerFrame = null;
 
-const header =
-document.querySelector("header");
+function getVisiblePageTop() {
+const pageHeader =
+document.querySelector(
+"header"
+);
 
-const visibleTop =
-header
-? Math.max(
+if (!pageHeader) {
+return 0;
+}
+
+return Math.max(
 0,
-header.getBoundingClientRect().bottom
-)
-: 0;
-
-const visibleBottom =
-window.innerHeight ||
-document.documentElement.clientHeight;
-
-return (
-rect.top >= visibleTop &&
-rect.bottom <= visibleBottom
+pageHeader
+.getBoundingClientRect()
+.bottom
 );
 }
 
-let trustCheckFrame = null;
-
 function checkTrustCardShimmers() {
-trustCheckFrame = null;
+trustShimmerFrame = null;
 
 if (
-reducedMotionQuery.matches
+reducedMotionQuery.matches ||
+trustItems.length === 0
 ) {
 return;
 }
+
+const visibleTop =
+getVisiblePageTop();
+
+const visibleBottom =
+window.innerHeight - 8;
 
 trustItems.forEach(
 item => {
@@ -5043,17 +4977,17 @@ item.dataset.shimmerPlayed ===
 return;
 }
 
-if (
-!item.classList.contains(
-"is-visible"
-)
-) {
+const itemRect =
+item.getBoundingClientRect();
+
+const isFullyVisible =
+itemRect.top >= visibleTop &&
+itemRect.bottom <= visibleBottom;
+
+if (!isFullyVisible) {
 return;
 }
 
-if (
-isElementFullyVisible(item)
-) {
 item.dataset.shimmerPlayed =
 "true";
 
@@ -5061,30 +4995,35 @@ item.classList.add(
 "shimmer-play"
 );
 }
-}
 );
 }
 
-function requestTrustCardCheck() {
+function requestTrustShimmerCheck() {
 if (
-trustCheckFrame !== null
+trustShimmerFrame !== null
 ) {
 return;
 }
 
-trustCheckFrame =
+trustShimmerFrame =
 window.requestAnimationFrame(
 checkTrustCardShimmers
 );
 }
 
 if (
-trustItems.length > 0 &&
-!reducedMotionQuery.matches
+reducedMotionQuery.matches
 ) {
+trustItems.forEach(
+item => {
+item.dataset.shimmerPlayed =
+"true";
+}
+);
+} else {
 window.addEventListener(
 "scroll",
-requestTrustCardCheck,
+requestTrustShimmerCheck,
 {
 passive:true
 }
@@ -5092,24 +5031,24 @@ passive:true
 
 window.addEventListener(
 "resize",
-requestTrustCardCheck
+requestTrustShimmerCheck
 );
 
 window.addEventListener(
 "load",
-requestTrustCardCheck
+requestTrustShimmerCheck
 );
 
-requestTrustCardCheck();
+requestTrustShimmerCheck();
 }
 
 /* ===============================
-   CALCULATOR LABEL REVEAL
+CALCULATOR SECTION REVEAL
 ================================ */
 
 const calculatorWrap =
-document.querySelector(
-".calculator-wrap"
+document.getElementById(
+"calculator"
 );
 
 const homepageCalculator =
@@ -5117,16 +5056,46 @@ document.getElementById(
 "homepageCalculator"
 );
 
+function revealHomepageCalculator() {
 if (calculatorWrap) {
+calculatorWrap.classList.add(
+"configure-label-visible"
+);
+}
+
+if (homepageCalculator) {
+homepageCalculator.classList.add(
+"is-visible"
+);
+
+const calculatorRevealElements =
+Array.from(
+homepageCalculator.querySelectorAll(
+".reveal"
+)
+);
+
+calculatorRevealElements.forEach(
+element => {
+element.classList.add(
+"is-visible"
+);
+}
+);
+}
+}
+
+if (
+calculatorWrap &&
+homepageCalculator
+) {
 if (
 reducedMotionQuery.matches ||
 !("IntersectionObserver" in window)
 ) {
-calculatorWrap.classList.add(
-"configure-label-visible"
-);
+revealHomepageCalculator();
 } else {
-const calculatorLabelObserver =
+const calculatorObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(
@@ -5135,42 +5104,28 @@ if (!entry.isIntersecting) {
 return;
 }
 
-calculatorWrap.classList.add(
-"configure-label-visible"
-);
+revealHomepageCalculator();
 
-calculatorLabelObserver.unobserve(
+calculatorObserver.unobserve(
 entry.target
 );
 }
 );
 },
 {
-threshold:.08,
+threshold:.16,
 rootMargin:"0px 0px -8% 0px"
 }
 );
 
-calculatorLabelObserver.observe(
+calculatorObserver.observe(
 calculatorWrap
 );
 }
 }
 
-if (
-homepageCalculator &&
-(
-reducedMotionQuery.matches ||
-!("IntersectionObserver" in window)
-)
-) {
-homepageCalculator.classList.add(
-"is-visible"
-);
-}
-
 /* ===============================
-   MULTIPLE HERO SLIDESHOWS
+MULTIPLE ROOFLIGHT SLIDESHOWS
 ================================ */
 
 const rooflightSlideshows =
@@ -5180,9 +5135,9 @@ document.querySelectorAll(
 )
 );
 
-function createRooflightSlideshow(
+function initialiseRooflightSlideshow(
 slideshow,
-slideshowNumber
+slideshowIndex
 ) {
 const slides =
 Array.from(
@@ -5220,19 +5175,22 @@ let touchStartY = 0;
 const intervalDuration =
 5000;
 
-const htmlDelay =
+const suppliedDelay =
 Number(
 slideshow.dataset.startDelay
 );
 
 const defaultDelay =
-slideshowNumber === 0
+slideshowIndex === 0
 ? 0
 : 2500;
 
 const startDelay =
-Number.isFinite(htmlDelay)
-? Math.max(0,htmlDelay)
+Number.isFinite(suppliedDelay)
+? Math.max(
+0,
+suppliedDelay
+)
 : defaultDelay;
 
 function showSlide(
@@ -5291,7 +5249,7 @@ restartTimer();
 }
 }
 
-function getNextPingPongIndex() {
+function getNextSlideIndex() {
 let nextIndex =
 currentIndex +
 direction;
@@ -5316,7 +5274,7 @@ return nextIndex;
 
 function advanceSlides() {
 showSlide(
-getNextPingPongIndex(),
+getNextSlideIndex(),
 false
 );
 }
@@ -5459,7 +5417,7 @@ startDelay
 
 rooflightSlideshows.forEach(
 (slideshow,index) => {
-createRooflightSlideshow(
+initialiseRooflightSlideshow(
 slideshow,
 index
 );
@@ -5467,7 +5425,7 @@ index
 );
 
 /* ===============================
-   COMFORT SLIDESHOW
+COMFORT SLIDESHOW
 ================================ */
 
 const comfortSlideshow =
@@ -5488,6 +5446,7 @@ let comfortIndex = 0;
 let comfortTimer = null;
 let comfortTouchStartX = 0;
 let comfortTouchStartY = 0;
+let comfortHasStarted = false;
 
 function showComfortImage(
 nextIndex,
@@ -5503,11 +5462,15 @@ return;
 
 comfortImages[comfortIndex]
 .classList
-.remove("active");
+.remove(
+"active"
+);
 
 comfortImages[nextIndex]
 .classList
-.add("active");
+.add(
+"active"
+);
 
 comfortIndex =
 nextIndex;
@@ -5534,13 +5497,13 @@ false
 );
 }
 
-function startComfortTimer() {
+function restartComfortTimer() {
 if (
-comfortTimer !== null ||
-comfortImages.length < 2 ||
-reducedMotionQuery.matches
+comfortTimer !== null
 ) {
-return;
+window.clearInterval(
+comfortTimer
+);
 }
 
 comfortTimer =
@@ -5550,18 +5513,17 @@ advanceComfortImages,
 );
 }
 
-function restartComfortTimer() {
+function startComfortSlideshow() {
 if (
-comfortTimer !== null
+comfortHasStarted ||
+comfortImages.length < 2 ||
+reducedMotionQuery.matches
 ) {
-window.clearInterval(
-comfortTimer
-);
-
-comfortTimer = null;
+return;
 }
 
-startComfortTimer();
+comfortHasStarted = true;
+restartComfortTimer();
 }
 
 function showNextComfortManual() {
@@ -5642,6 +5604,8 @@ Math.abs(verticalDistance)
 return;
 }
 
+startComfortSlideshow();
+
 if (
 horizontalDistance < 0
 ) {
@@ -5655,14 +5619,114 @@ passive:true
 }
 );
 
-window.setTimeout(
-startComfortTimer,
-1250
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+if (!reducedMotionQuery.matches) {
+startComfortSlideshow();
+}
+} else {
+const comfortStartObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(
+entry => {
+if (!entry.isIntersecting) {
+return;
+}
+
+startComfortSlideshow();
+
+comfortStartObserver.unobserve(
+entry.target
 );
+}
+);
+},
+{
+threshold:.28,
+rootMargin:"0px 0px -8% 0px"
+}
+);
+
+comfortStartObserver.observe(
+comfortSlideshow
+);
+}
 }
 
 /* ===============================
-   TEMPORARY CALCULATOR
+POPULAR SIZE CONTROLS
+================================ */
+
+homepageProductCards.forEach(
+card => {
+const glazingButtons =
+Array.from(
+card.querySelectorAll(
+".home-glazing-toggle button"
+)
+);
+
+const priceElement =
+card.querySelector(
+".home-product-price"
+);
+
+const glazedLabel =
+card.querySelector(
+".home-glazed-label"
+);
+
+glazingButtons.forEach(
+button => {
+button.addEventListener(
+"click",
+event => {
+event.stopPropagation();
+
+activateHomepageProductCard(
+card
+);
+
+const glazing =
+button.dataset.glazing;
+
+glazingButtons.forEach(
+item => {
+item.classList.toggle(
+"active",
+item === button
+);
+}
+);
+
+const selectedPrice =
+glazing === "triple"
+? card.dataset.triplePrice
+: card.dataset.doublePrice;
+
+if (priceElement) {
+priceElement.innerHTML =
+`£${selectedPrice}<span class="home-vat-note">inc. vat</span>`;
+}
+
+if (glazedLabel) {
+glazedLabel.classList.toggle(
+"triple",
+glazing === "triple"
+);
+}
+}
+);
+}
+);
+}
+);
+
+/* ===============================
+TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
