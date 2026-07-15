@@ -50,7 +50,7 @@ max-width:100%;
 }
 
 /* ===============================
-   TOP MOVING BANNER
+TOP MOVING BANNER
 ================================ */
 
 .top-banner {
@@ -86,7 +86,7 @@ transform:translateX(-50%);
 }
 
 /* ===============================
-   HEADER
+HEADER
 ================================ */
 
 header {
@@ -206,7 +206,7 @@ box-shadow:
 }
 
 /* ===============================
-   WHATSAPP EXPANDING ACTION
+WHATSAPP EXPANDING ACTION
 ================================ */
 
 .whatsapp-action {
@@ -320,7 +320,7 @@ scale(1);
 }
 
 /* ===============================
-   MINIMAL BASKET TOTAL
+MINIMAL BASKET TOTAL
 ================================ */
 
 .basket-total-text {
@@ -407,7 +407,7 @@ text-shadow:
 }
 
 /* ===============================
-   STATIC LEAD-TIME BANNER
+STATIC LEAD-TIME BANNER
 ================================ */
 
 .lead-time-banner {
@@ -670,7 +670,7 @@ width:15px;
 }
 
 /* ===============================
-   MENU
+MENU
 ================================ */
 
 .menu-overlay {
@@ -729,7 +729,7 @@ padding-left:12px;
 }
 
 /* ===============================
-   SHARED TEXT
+SHARED TEXT
 ================================ */
 
 .section-label {
@@ -764,7 +764,7 @@ font-size:17px;
 }
 
 /* ===============================
-   SCROLL REVEALS
+SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -817,7 +817,9 @@ transition-delay:.32s;
 .buy-online-inner > p.reveal,
 .buy-online-inner > .hero-actions.reveal,
 .comfort-uv-note.reveal,
-.calculator.reveal {
+.calculator.reveal,
+.direct-copy > p.reveal,
+.direct-copy > .direct-assurance.reveal {
 opacity:1;
 transform:none;
 transition:none;
@@ -825,7 +827,7 @@ will-change:auto;
 }
 
 /* ===============================
-   POPULAR SIZES
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -1194,7 +1196,7 @@ display:none;
 }
 
 /* ===============================
-   DESIGN SECTION
+DESIGN SECTION
 ================================ */
 
 .opening-section {
@@ -1260,7 +1262,7 @@ display:none;
 }
 
 /* ===============================
-   DEDICATED TEAM
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1319,6 +1321,43 @@ linear-gradient(
 transparent 62%,
 rgba(5,5,5,.34) 100%
 );
+}
+
+/* New premium entrance animation.
+The image remains completely static after revealing. */
+
+.direct-image-reveal {
+opacity:0;
+clip-path:inset(10% 0 10% 0);
+filter:
+blur(7px)
+brightness(.72)
+saturate(.82);
+transform:
+translateY(34px)
+scale(1.045);
+transition:
+opacity 1.05s ease,
+clip-path 1.15s cubic-bezier(.18,.72,.28,1),
+filter 1.05s ease,
+transform 1.15s cubic-bezier(.18,.72,.28,1);
+will-change:
+opacity,
+clip-path,
+filter,
+transform;
+}
+
+.direct-image-reveal.is-visible {
+opacity:1;
+clip-path:inset(0 0 0 0);
+filter:
+blur(0)
+brightness(1)
+saturate(1);
+transform:
+translateY(0)
+scale(1);
 }
 
 .direct-visual-image {
@@ -1387,7 +1426,7 @@ background:var(--orange);
 }
 
 /* ===============================
-   TRUST CARDS
+TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1463,6 +1502,8 @@ position:relative;
 z-index:1;
 }
 
+/* Trust cards remain completely static */
+
 .trust-item {
 position:relative;
 overflow:hidden;
@@ -1471,51 +1512,85 @@ padding:34px 38px;
 background:linear-gradient(135deg,#0c0c0c,#141414);
 border:1px solid rgba(255,255,255,.11);
 box-shadow:0 18px 50px rgba(0,0,0,.28);
-opacity:0;
-transform:translateY(76px) scale(.965);
+opacity:1;
+transform:none;
 transition:
-opacity .8s ease,
-transform .95s cubic-bezier(.18,.72,.28,1),
 border-color .28s ease,
 box-shadow .28s ease,
 background .28s ease;
-will-change:opacity,transform;
+will-change:auto;
 }
 
-.trust-item:nth-child(2) {
-transition-delay:.07s;
-}
-
+.trust-item:nth-child(2),
 .trust-item:nth-child(3) {
-transition-delay:.14s;
+transition-delay:0s;
 }
 
 .trust-item.is-in-view {
 opacity:1;
-transform:translateY(0) scale(1);
+transform:none;
 }
+
+/* Bottom-left to top-right glass shimmer */
 
 .trust-item::before {
 content:"";
 position:absolute;
-inset:0;
-z-index:0;
+z-index:1;
+left:-58%;
+bottom:-95%;
+width:70%;
+height:205%;
 background:
 linear-gradient(
-118deg,
+58deg,
 transparent 0%,
-transparent 38%,
-rgba(245,124,0,.11) 48%,
-transparent 60%,
-transparent 100%
+rgba(255,255,255,.02) 31%,
+rgba(255,231,185,.13) 40%,
+rgba(255,255,255,.88) 49%,
+rgba(255,231,185,.18) 57%,
+transparent 70%
 );
-transform:translateX(-115%);
-transition:transform .9s ease .2s;
+filter:blur(.35px);
+opacity:0;
+transform:
+translate(0,0)
+skewX(-14deg);
 pointer-events:none;
 }
 
-.trust-item.is-in-view::before {
-transform:translateX(115%);
+.trust-item.shimmer-play::before {
+animation:
+trustDiagonalShimmer
+1.15s
+cubic-bezier(.18,.72,.28,1)
+both;
+}
+
+@keyframes trustDiagonalShimmer {
+0% {
+left:-58%;
+bottom:-95%;
+opacity:0;
+}
+
+12% {
+opacity:.25;
+}
+
+48% {
+opacity:.92;
+}
+
+78% {
+opacity:.34;
+}
+
+100% {
+left:108%;
+bottom:82%;
+opacity:0;
+}
 }
 
 .trust-item strong {
@@ -1527,7 +1602,9 @@ color:var(--white);
 text-transform:uppercase;
 letter-spacing:2.6px;
 margin-bottom:12px;
-transition:.25s ease;
+transition:
+color .25s ease,
+letter-spacing .25s ease;
 }
 
 .trust-item span {
@@ -1540,54 +1617,57 @@ max-width:860px;
 display:block;
 }
 
+/* New single-sentence lead-time treatment */
+
 .fast-lead-time-line {
-display:inline;
+display:block;
 }
 
-.fast-days-group {
-display:inline-flex;
-align-items:baseline;
-white-space:nowrap;
-}
-
-.fast-number-wrap {
-position:relative;
-display:inline-flex;
-align-items:baseline;
-justify-content:center;
-width:auto;
-height:auto;
-margin:0 .10em;
-vertical-align:baseline;
-overflow:visible;
-}
-
-.fast-number-4 {
-position:relative;
-z-index:4;
+.metallic-4 {
 display:inline-block;
+position:relative;
+margin:0 .08em;
 font-family:
 "Arial Black",
 "Franklin Gothic Heavy",
 "Impact",
 "Arial Narrow",
 sans-serif;
-font-size:1.62em;
+font-size:1.48em;
 font-weight:950;
-font-style:normal;
-font-stretch:expanded;
-line-height:.72;
+line-height:.75;
+vertical-align:-.08em;
 letter-spacing:-.035em;
-color:#ff3b16;
-transform:scaleX(1.08);
-transform-origin:center bottom;
+color:#d9d9d9;
+background:
+linear-gradient(
+180deg,
+#ffffff 0%,
+#dedede 24%,
+#8f8f8f 47%,
+#f5f5f5 65%,
+#a5a5a5 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
 text-shadow:
-0 1px 0 #ffbd91,
-0 2px 0 #e43711,
-0 3px 0 #aa2108,
-0 4px 0 #6f1104,
-0 6px 8px rgba(0,0,0,.74),
-0 0 7px rgba(255,59,22,.20);
+0 1px 0 rgba(255,255,255,.52),
+0 2px 0 rgba(80,80,80,.78),
+0 3px 0 rgba(35,35,35,.78),
+0 5px 8px rgba(0,0,0,.72);
+white-space:nowrap;
+}
+
+/* Prevent any legacy number animation from running */
+
+.fast-days-group {
+display:inline;
+white-space:normal;
+}
+
+.fast-number-wrap,
+.fast-number-4 {
 animation:none;
 }
 
@@ -1607,6 +1687,7 @@ letter-spacing:.35px;
 }
 
 .trust-item:hover {
+transform:none;
 border-color:rgba(255,154,47,.75);
 background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
@@ -1615,7 +1696,7 @@ box-shadow:
 }
 
 .trust-item.is-in-view:hover {
-transform:translateY(-7px) scale(1.018);
+transform:none;
 }
 
 .trust-item:hover strong {
@@ -1624,7 +1705,7 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-   ORDER TRANSITIONS
+ORDER TRANSITIONS
 ================================ */
 
 .order-transition,
@@ -1691,7 +1772,7 @@ font-size:18px;
 }
 
 /* ===============================
-   BUY ONLINE
+BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -1855,7 +1936,7 @@ align-self:center;
 }
 
 /* ===============================
-   YEAR-ROUND COMFORT
+YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -1960,7 +2041,7 @@ transform:none;
 }
 
 /* ===============================
-   CALCULATOR
+CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -2101,7 +2182,7 @@ color:var(--muted);
 }
 
 /* ===============================
-   ENGINEERED SECTION
+ENGINEERED SECTION
 ================================ */
 
 .engineered-visual-intro {
@@ -2161,7 +2242,7 @@ line-height:1.65;
 }
 
 /* ===============================
-   OVERSIZED
+OVERSIZED
 ================================ */
 
 .oversized-section {
@@ -2178,7 +2259,7 @@ margin:auto;
 }
 
 /* ===============================
-   FOOTER
+FOOTER
 ================================ */
 
 footer {
@@ -2211,7 +2292,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-   TABLET
+TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -2249,7 +2330,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-   MOBILE
+MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -2418,7 +2499,7 @@ padding:0 2.5%;
 }
 
 /* ===============================
-   SINGLE-ROW GOLD FEATURE STRIP
+SINGLE-ROW GOLD FEATURE STRIP
 ================================ */
 
 .mobile-feature-icons {
@@ -2616,21 +2697,13 @@ font-size:38px;
 
 .trust-item {
 padding:30px 24px;
-transform:translateY(58px) scale(.975);
+opacity:1;
+transform:none;
 }
 
-.fast-number-wrap {
-margin:0 .08em;
-}
-
-.fast-number-4 {
-font-size:1.58em;
-line-height:.74;
-transform:scaleX(1.10);
-}
-
-.fast-days-group {
-white-space:nowrap;
+.metallic-4 {
+font-size:1.42em;
+vertical-align:-.07em;
 }
 
 .order-transition,
@@ -2810,7 +2883,8 @@ scroll-behavior:auto;
 .lead-time-star::after,
 .mobile-feature-icons::before,
 .whatsapp-action,
-.basket-total-text {
+.basket-total-text,
+.trust-item.shimmer-play::before {
 animation:none;
 }
 
@@ -2818,8 +2892,11 @@ animation:none;
 .reveal.reveal-left,
 .reveal.reveal-right,
 .reveal.reveal-scale,
+.direct-image-reveal,
 .trust-item {
 opacity:1;
+clip-path:none;
+filter:none;
 transform:none;
 transition:none;
 }
@@ -3600,7 +3677,7 @@ team focuses specifically on producing frameless flat roof skylights.
 
 <section class="direct-section">
 
-<div class="direct-visual-intro reveal reveal-scale">
+<div class="direct-visual-intro direct-image-reveal">
 
 <img
 src="images/hero-rooflight-1.png"
@@ -3626,18 +3703,18 @@ A Dedicated Frameless Rooflight Team
 
 <div class="direct-copy">
 
-<p class="reveal">
+<p>
 Every order placed through our website enters directly into the production queue
 of our dedicated frameless rooflight team.
 </p>
 
-<p class="reveal reveal-delay-1">
+<p>
 That specialist focus helps us maintain consistent quality, dependable lead times
 and clear communication from the specification you approve through to final preparation
 and delivery.
 </p>
 
-<div class="direct-assurance reveal reveal-delay-2">
+<div class="direct-assurance">
 One specialist team from order to production
 </div>
 
@@ -3686,23 +3763,7 @@ Fast Lead Times
 </strong>
 
 <span class="fast-lead-time-line">
-Manufactured in as quick as
-<span class="fast-days-group">
-
-<span
-class="fast-number-wrap"
-aria-label="4"
->
-
-<span class="fast-number-4">
-4
-</span>
-
-</span>
-
-working days.*
-
-</span>
+Manufactured in as quick as <span class="metallic-4">4</span> working days.*
 </span>
 
 <span class="lead-time-note">
@@ -4282,7 +4343,9 @@ setWhatsAppState(false);
 }
 
 function toggleWhatsAppAction() {
-if (!whatsappAction) {
+if (
+!whatsappAction
+) {
 return;
 }
 
@@ -4304,7 +4367,6 @@ whatsappButton.addEventListener(
 "click",
 event => {
 event.stopPropagation();
-
 toggleWhatsAppAction();
 }
 );
@@ -4339,9 +4401,6 @@ BASKET TOTAL DISPLAY
 const basketTotalText =
 document.getElementById(
 "basketTotalText"
-) ||
-document.getElementById(
-"basketTotalBubble"
 );
 
 let basketAnimationTimer = null;
@@ -4359,25 +4418,11 @@ basketTotalText.classList.remove(
 "is-updating"
 );
 
-basketTotalText.classList.remove(
-"is-popping"
-);
-
 void basketTotalText.offsetWidth;
 
-if (
-basketTotalText.classList.contains(
-"basket-total-text"
-)
-) {
 basketTotalText.classList.add(
 "is-updating"
 );
-} else {
-basketTotalText.classList.add(
-"is-popping"
-);
-}
 
 if (basketAnimationTimer !== null) {
 window.clearTimeout(
@@ -4391,12 +4436,8 @@ window.setTimeout(
 basketTotalText.classList.remove(
 "is-updating"
 );
-
-basketTotalText.classList.remove(
-"is-popping"
-);
 },
-600
+560
 );
 }
 
@@ -4415,10 +4456,7 @@ currency:"GBP"
 }
 ).format(safeTotal);
 
-if (!basketTotalText) {
-return;
-}
-
+if (basketTotalText) {
 basketTotalText.textContent =
 formattedTotal;
 
@@ -4430,11 +4468,7 @@ formattedTotal
 
 animateBasketTotal();
 }
-
-/*
-The initial basket total appears
-two seconds after the homepage loads.
-*/
+}
 
 window.setTimeout(
 () => {
@@ -4443,12 +4477,6 @@ updateBasketTotal(0);
 2000
 );
 
-/*
-Whenever the basket changes, call:
-
-updateBasketTotal(newTotal);
-*/
-
 /* ===============================
 STANDARD SCROLL REVEALS
 ================================ */
@@ -4456,7 +4484,7 @@ STANDARD SCROLL REVEALS
 const revealElements =
 Array.from(
 document.querySelectorAll(
-".reveal"
+".reveal, .direct-image-reveal"
 )
 );
 
@@ -4479,10 +4507,7 @@ const revealObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(entry => {
-if (!entry.isIntersecting) {
-return;
-}
-
+if (entry.isIntersecting) {
 entry.target.classList.add(
 "is-visible"
 );
@@ -4490,6 +4515,7 @@ entry.target.classList.add(
 revealObserver.unobserve(
 entry.target
 );
+}
 });
 },
 {
@@ -4499,14 +4525,12 @@ rootMargin:"0px 0px -7% 0px"
 );
 
 revealElements.forEach(element => {
-revealObserver.observe(
-element
-);
+revealObserver.observe(element);
 });
 }
 
 /* ===============================
-REVERSIBLE TRUST CARD REVEALS
+STATIC TRUST CARD SHIMMERS
 ================================ */
 
 const trustItems =
@@ -4516,37 +4540,108 @@ document.querySelectorAll(
 )
 );
 
+let trustShimmerFrame = null;
+
+function getTrustTriggerPosition() {
+const pageHeader =
+document.querySelector("header");
+
+if (!pageHeader) {
+return 0;
+}
+
+return Math.max(
+0,
+pageHeader.getBoundingClientRect().bottom
+);
+}
+
+function checkTrustCardShimmers() {
+trustShimmerFrame = null;
+
 if (
 reducedMotionQuery.matches ||
-!("IntersectionObserver" in window)
+trustItems.length === 0
+) {
+return;
+}
+
+const triggerPosition =
+getTrustTriggerPosition();
+
+trustItems.forEach(item => {
+if (
+item.dataset.shimmerPlayed ===
+"true"
+) {
+return;
+}
+
+const itemRect =
+item.getBoundingClientRect();
+
+const hasReachedTrigger =
+itemRect.top <=
+triggerPosition + 4;
+
+const isStillOnScreen =
+itemRect.bottom >
+triggerPosition;
+
+if (
+hasReachedTrigger &&
+isStillOnScreen
+) {
+item.dataset.shimmerPlayed =
+"true";
+
+item.classList.add(
+"shimmer-play"
+);
+}
+});
+}
+
+function requestTrustShimmerCheck() {
+if (
+trustShimmerFrame !== null
+) {
+return;
+}
+
+trustShimmerFrame =
+window.requestAnimationFrame(
+checkTrustCardShimmers
+);
+}
+
+if (
+reducedMotionQuery.matches
 ) {
 trustItems.forEach(item => {
-item.classList.add(
-"is-in-view"
-);
+item.dataset.shimmerPlayed =
+"true";
 });
 } else {
-const trustObserver =
-new IntersectionObserver(
-entries => {
-entries.forEach(entry => {
-entry.target.classList.toggle(
-"is-in-view",
-entry.isIntersecting
-);
-});
-},
+window.addEventListener(
+"scroll",
+requestTrustShimmerCheck,
 {
-threshold:.42,
-rootMargin:"-8% 0px -12% 0px"
+passive:true
 }
 );
 
-trustItems.forEach(item => {
-trustObserver.observe(
-item
+window.addEventListener(
+"resize",
+requestTrustShimmerCheck
 );
-});
+
+window.addEventListener(
+"load",
+requestTrustShimmerCheck
+);
+
+requestTrustShimmerCheck();
 }
 
 /* ===============================
@@ -4573,6 +4668,7 @@ let rooflightTimer = null;
 let rooflightBusy = false;
 let rooflightTouchStartX = 0;
 let rooflightTouchStartY = 0;
+let rooflightHasStarted = false;
 
 function showRooflightSlide(
 nextIndex,
@@ -4590,14 +4686,10 @@ return;
 rooflightBusy = true;
 
 const outgoing =
-rooflightSlides[
-rooflightIndex
-];
+rooflightSlides[rooflightIndex];
 
 const incoming =
-rooflightSlides[
-nextIndex
-];
+rooflightSlides[nextIndex];
 
 outgoing.classList.remove(
 "active"
@@ -4671,14 +4763,12 @@ false
 }
 
 function restartRooflightTimer() {
-if (rooflightTimer !== null) {
+if (
+rooflightTimer !== null
+) {
 window.clearInterval(
 rooflightTimer
 );
-}
-
-if (reducedMotionQuery.matches) {
-return;
 }
 
 rooflightTimer =
@@ -4686,6 +4776,18 @@ window.setInterval(
 advanceRooflightSlides,
 5000
 );
+}
+
+function startRooflightSlideshow() {
+if (
+rooflightHasStarted ||
+rooflightSlides.length < 2
+) {
+return;
+}
+
+rooflightHasStarted = true;
+restartRooflightTimer();
 }
 
 function showNextRooflightManual() {
@@ -4711,7 +4813,9 @@ function showPreviousRooflightManual() {
 let previousIndex =
 rooflightIndex - 1;
 
-if (previousIndex < 0) {
+if (
+previousIndex < 0
+) {
 previousIndex =
 rooflightSlides.length - 1;
 }
@@ -4768,14 +4872,19 @@ touchEndY -
 rooflightTouchStartY;
 
 if (
-Math.abs(horizontalDistance) < 45 ||
+Math.abs(horizontalDistance) <
+45 ||
 Math.abs(horizontalDistance) <=
 Math.abs(verticalDistance)
 ) {
 return;
 }
 
-if (horizontalDistance < 0) {
+startRooflightSlideshow();
+
+if (
+horizontalDistance < 0
+) {
 showNextRooflightManual();
 } else {
 showPreviousRooflightManual();
@@ -4786,12 +4895,39 @@ passive:true
 }
 );
 
-restartRooflightTimer();
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+startRooflightSlideshow();
+} else {
+const rooflightStartObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+startRooflightSlideshow();
+
+rooflightStartObserver.unobserve(
+entry.target
+);
+}
+});
+},
+{
+threshold:.28,
+rootMargin:"0px 0px -8% 0px"
+}
+);
+
+rooflightStartObserver.observe(
+rooflightSlideshow
+);
+}
 }
 
 /* ===============================
 COMFORT SLIDESHOW
-STARTS ONLY WHEN SCROLLED INTO VIEW
 ================================ */
 
 const comfortSlideshow =
@@ -4810,26 +4946,9 @@ comfortSlideshow.querySelectorAll(
 
 let comfortIndex = 0;
 let comfortTimer = null;
-let comfortHasStarted = false;
 let comfortTouchStartX = 0;
 let comfortTouchStartY = 0;
-
-function resetComfortSlideshow() {
-if (!comfortImages.length) {
-return;
-}
-
-comfortImages.forEach(
-(image,index) => {
-image.classList.toggle(
-"active",
-index === 0
-);
-}
-);
-
-comfortIndex = 0;
-}
+let comfortHasStarted = false;
 
 function showComfortImage(
 nextIndex,
@@ -4843,21 +4962,13 @@ nextIndex >= comfortImages.length
 return;
 }
 
-comfortImages[
-comfortIndex
-]
+comfortImages[comfortIndex]
 .classList
-.remove(
-"active"
-);
+.remove("active");
 
-comfortImages[
-nextIndex
-]
+comfortImages[nextIndex]
 .classList
-.add(
-"active"
-);
+.add("active");
 
 comfortIndex =
 nextIndex;
@@ -4875,9 +4986,7 @@ return;
 }
 
 const nextIndex =
-(
-comfortIndex + 1
-) %
+(comfortIndex + 1) %
 comfortImages.length;
 
 showComfortImage(
@@ -4887,16 +4996,12 @@ false
 }
 
 function restartComfortTimer() {
-if (comfortTimer !== null) {
+if (
+comfortTimer !== null
+) {
 window.clearInterval(
 comfortTimer
 );
-}
-
-comfortHasStarted = true;
-
-if (reducedMotionQuery.matches) {
-return;
 }
 
 comfortTimer =
@@ -4915,23 +5020,12 @@ return;
 }
 
 comfortHasStarted = true;
-
-if (reducedMotionQuery.matches) {
-return;
-}
-
-comfortTimer =
-window.setInterval(
-advanceComfortImages,
-8000
-);
+restartComfortTimer();
 }
 
 function showNextComfortManual() {
 const nextIndex =
-(
-comfortIndex + 1
-) %
+(comfortIndex + 1) %
 comfortImages.length;
 
 showComfortImage(
@@ -4954,8 +5048,6 @@ previousIndex,
 true
 );
 }
-
-resetComfortSlideshow();
 
 if (
 comfortSlideshow &&
@@ -5001,14 +5093,19 @@ touchEndY -
 comfortTouchStartY;
 
 if (
-Math.abs(horizontalDistance) < 45 ||
+Math.abs(horizontalDistance) <
+45 ||
 Math.abs(horizontalDistance) <=
 Math.abs(verticalDistance)
 ) {
 return;
 }
 
-if (horizontalDistance < 0) {
+startComfortSlideshow();
+
+if (
+horizontalDistance < 0
+) {
 showNextComfortManual();
 } else {
 showPreviousComfortManual();
@@ -5020,34 +5117,33 @@ passive:true
 );
 
 if (
-"IntersectionObserver" in window
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
 ) {
-const comfortObserver =
+startComfortSlideshow();
+} else {
+const comfortStartObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(entry => {
-if (!entry.isIntersecting) {
-return;
-}
-
+if (entry.isIntersecting) {
 startComfortSlideshow();
 
-comfortObserver.unobserve(
+comfortStartObserver.unobserve(
 entry.target
 );
+}
 });
 },
 {
-threshold:.35,
+threshold:.28,
 rootMargin:"0px 0px -8% 0px"
 }
 );
 
-comfortObserver.observe(
+comfortStartObserver.observe(
 comfortSlideshow
 );
-} else {
-startComfortSlideshow();
 }
 }
 
@@ -5062,7 +5158,8 @@ document.querySelectorAll(
 )
 );
 
-homepageProductCards.forEach(card => {
+homepageProductCards.forEach(
+card => {
 const glazingButtons =
 Array.from(
 card.querySelectorAll(
@@ -5080,19 +5177,22 @@ card.querySelector(
 ".home-glazed-label"
 );
 
-glazingButtons.forEach(button => {
+glazingButtons.forEach(
+button => {
 button.addEventListener(
 "click",
 () => {
 const glazing =
 button.dataset.glazing;
 
-glazingButtons.forEach(item => {
+glazingButtons.forEach(
+item => {
 item.classList.toggle(
 "active",
 item === button
 );
-});
+}
+);
 
 const selectedPrice =
 glazing === "triple"
@@ -5102,72 +5202,45 @@ glazing === "triple"
 priceElement.innerHTML =
 `£${selectedPrice}<span class="home-vat-note">inc. vat</span>`;
 
-if (glazedLabel) {
 glazedLabel.classList.toggle(
 "triple",
 glazing === "triple"
 );
 }
+);
 }
 );
-});
-});
+}
+);
 
 /* ===============================
 TEMPORARY CALCULATOR
 ================================ */
 
 function calculatePrice() {
-const widthElement =
-document.getElementById(
-"width"
-);
-
-const lengthElement =
-document.getElementById(
-"length"
-);
-
-const glazingElement =
-document.getElementById(
-"glazing"
-);
-
-const finishElement =
-document.getElementById(
-"finish"
-);
-
-const priceElement =
-document.getElementById(
-"price"
-);
-
-if (
-!widthElement ||
-!lengthElement ||
-!glazingElement ||
-!finishElement ||
-!priceElement
-) {
-return;
-}
-
 const width =
 Number(
-widthElement.value
+document
+.getElementById("width")
+.value
 );
 
 const length =
 Number(
-lengthElement.value
+document
+.getElementById("length")
+.value
 );
 
 const glazing =
-glazingElement.value;
+document
+.getElementById("glazing")
+.value;
 
 const finish =
-finishElement.value;
+document
+.getElementById("finish")
+.value;
 
 const area =
 (width * length) /
@@ -5204,28 +5277,25 @@ glazing === "triple"
 price = 300;
 }
 
-priceElement.innerText =
+document
+.getElementById("price")
+.innerText =
 "£" +
-Math.round(
-price
-);
+Math.round(price);
 }
 
 document
 .querySelectorAll(
-"#homepageCalculator input, #homepageCalculator select"
+"input, select"
 )
-.forEach(element => {
+.forEach(
+element => {
 element.addEventListener(
 "input",
 calculatePrice
 );
-
-element.addEventListener(
-"change",
-calculatePrice
+}
 );
-});
 
 calculatePrice();
 </script>
