@@ -50,7 +50,7 @@ max-width:100%;
 }
 
 /* ===============================
-   TOP MOVING BANNER
+TOP MOVING BANNER
 ================================ */
 
 .top-banner {
@@ -86,7 +86,7 @@ transform:translateX(-50%);
 }
 
 /* ===============================
-   HEADER
+HEADER
 ================================ */
 
 header {
@@ -206,7 +206,7 @@ box-shadow:
 }
 
 /* ===============================
-   WHATSAPP EXPANDING ACTION
+WHATSAPP EXPANDING ACTION
 ================================ */
 
 .whatsapp-action {
@@ -320,7 +320,7 @@ scale(1);
 }
 
 /* ===============================
-   MINIMAL BASKET TOTAL
+MINIMAL BASKET TOTAL
 ================================ */
 
 .basket-total-text {
@@ -407,7 +407,7 @@ text-shadow:
 }
 
 /* ===============================
-   STATIC LEAD-TIME BANNER
+STATIC LEAD-TIME BANNER
 ================================ */
 
 .lead-time-banner {
@@ -670,7 +670,7 @@ width:15px;
 }
 
 /* ===============================
-   MENU
+MENU
 ================================ */
 
 .menu-overlay {
@@ -729,7 +729,7 @@ padding-left:12px;
 }
 
 /* ===============================
-   SHARED TEXT
+SHARED TEXT
 ================================ */
 
 .section-label {
@@ -764,7 +764,7 @@ font-size:17px;
 }
 
 /* ===============================
-   SCROLL REVEALS
+SCROLL REVEALS
 ================================ */
 
 .reveal {
@@ -820,7 +820,7 @@ will-change:auto;
 }
 
 /* ===============================
-   POPULAR SIZES
+POPULAR SIZES
 ================================ */
 
 .home-popular-section {
@@ -951,6 +951,8 @@ min-height:178px;
 position:relative;
 overflow:hidden;
 isolation:isolate;
+--home-image-transform:none;
+--home-image-hover-transform:scale(1.04);
 transition:
 transform .28s ease,
 border-color .28s ease,
@@ -996,25 +998,52 @@ position:relative;
 z-index:1;
 width:100%;
 height:148px;
-background:#f5f5f5;
+background:#ffffff;
 border:1px solid rgba(255,255,255,.10);
 overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .home-product-image img {
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:contain;
+object-position:center center;
 display:block;
+background:#ffffff;
+transform:var(--home-image-transform);
+transform-origin:center center;
 transition:
 transform .32s ease,
 filter .32s ease;
 }
 
-.home-product-card:hover .home-product-image img {
-transform:scale(1.04);
-filter:brightness(1.08);
+.home-product-card:hover .home-product-image img,
+.home-product-card:active .home-product-image img {
+transform:var(--home-image-hover-transform);
+filter:brightness(1.035);
 }
+
+/* Fuller image treatment */
+
+.home-product-card.image-size-400x800 .home-product-image img,
+.home-product-card.image-size-600x900 .home-product-image img {
+object-fit:cover;
+object-position:center center;
+}
+
+/* Narrow long sizes use the same treatment as Standard Sizes */
+
+.home-product-card.image-size-300x1500,
+.home-product-card.image-size-400x1500,
+.home-product-card.image-size-400x1800 {
+--home-image-transform:rotate(90deg) scale(1.30);
+--home-image-hover-transform:rotate(90deg) scale(1.34);
+}
+
+/* 800 × 1200 intentionally has no rotation rule */
 
 .home-product-content {
 position:relative;
@@ -1243,7 +1272,7 @@ display:none;
 }
 
 /* ===============================
-   DESIGN SECTION
+DESIGN SECTION
 ================================ */
 
 .opening-section {
@@ -1309,7 +1338,7 @@ display:none;
 }
 
 /* ===============================
-   DEDICATED TEAM
+DEDICATED TEAM
 ================================ */
 
 .direct-section {
@@ -1480,7 +1509,7 @@ line-height:1;
 }
 
 /* ===============================
-   TRUST CARDS
+TRUST CARDS
 ================================ */
 
 .trust-zone {
@@ -1737,7 +1766,7 @@ letter-spacing:3.3px;
 }
 
 /* ===============================
-   ORDER TRANSITIONS
+ORDER TRANSITIONS
 ================================ */
 
 .order-transition,
@@ -1804,7 +1833,7 @@ font-size:18px;
 }
 
 /* ===============================
-   BUY ONLINE
+BUY ONLINE
 ================================ */
 
 .buy-online-section {
@@ -1968,7 +1997,7 @@ align-self:center;
 }
 
 /* ===============================
-   TRUST TO COMFORT SLIDESHOW
+TRUST TO COMFORT SLIDESHOW
 ================================ */
 
 .trust-comfort-slideshow-section {
@@ -1989,7 +2018,7 @@ height:clamp(250px,36vw,470px);
 }
 
 /* ===============================
-   YEAR-ROUND COMFORT
+YEAR-ROUND COMFORT
 ================================ */
 
 .comfort-section {
@@ -2094,7 +2123,7 @@ transform:none;
 }
 
 /* ===============================
-   CALCULATOR
+CALCULATOR
 ================================ */
 
 .calculator-wrap {
@@ -2266,7 +2295,7 @@ color:var(--muted);
 }
 
 /* ===============================
-   ENGINEERED SECTION
+ENGINEERED SECTION
 ================================ */
 
 .engineered-visual-intro {
@@ -2326,7 +2355,7 @@ line-height:1.65;
 }
 
 /* ===============================
-   OVERSIZED
+OVERSIZED
 ================================ */
 
 .oversized-section {
@@ -2343,7 +2372,7 @@ margin:auto;
 }
 
 /* ===============================
-   FOOTER
+FOOTER
 ================================ */
 
 footer {
@@ -2376,7 +2405,7 @@ margin-bottom:0;
 }
 
 /* ===============================
-   TABLET
+TABLET
 ================================ */
 
 @media(max-width:950px) {
@@ -2414,7 +2443,7 @@ grid-template-columns:135px minmax(0,1fr);
 }
 
 /* ===============================
-   MOBILE
+MOBILE
 ================================ */
 
 @media(max-width:560px) {
@@ -2543,6 +2572,13 @@ transform:translateY(-5px) scale(1.025);
 height:110px;
 }
 
+.home-product-card.image-size-300x1500,
+.home-product-card.image-size-400x1500,
+.home-product-card.image-size-400x1800 {
+--home-image-transform:rotate(90deg) scale(1.38);
+--home-image-hover-transform:rotate(90deg) scale(1.42);
+}
+
 .home-product-size {
 font-size:19px;
 }
@@ -2583,7 +2619,7 @@ padding:0 2.5%;
 }
 
 /* ===============================
-   SINGLE-ROW GOLD FEATURE STRIP
+SINGLE-ROW GOLD FEATURE STRIP
 ================================ */
 
 .mobile-feature-icons {
@@ -2747,7 +2783,7 @@ transform:none;
 }
 
 .direct-section {
-padding:68px 6%;
+padding:68px 6% 27px;
 }
 
 .direct-section::before {
@@ -3285,7 +3321,7 @@ aria-label="Close menu"
 </div>
 
 </div>
-   <main>
+<main>
 
 <section
 class="home-popular-section"
@@ -3304,90 +3340,7 @@ Frameless Flat Roof Skylights
 <div class="home-popular-grid">
 
 <div
-class="home-product-card reveal reveal-scale"
-data-double-price="880"
-data-triple-price="1075"
-tabindex="0"
->
-
-<div class="home-product-image">
-
-<img
-src="images/product-cards/jumbo.png"
-alt="1500mm by 1800mm frameless flat roof skylight"
-/>
-
-</div>
-
-<div class="home-product-content">
-
-<div class="home-product-size">
-1500 × 1800mm
-</div>
-
-<div class="home-product-spec">
-<span>Internal visible glass size</span>
-<span>8mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
-</div>
-
-<div class="home-glazing-wrap">
-
-<div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
-</div>
-
-<div class="home-glazed-label">
-<span>Glazed</span>
-</div>
-
-</div>
-
-<div class="home-product-price-row">
-
-<div>
-
-<div class="home-product-price-label">
-Price
-</div>
-
-<div class="home-product-price">
-£880
-<span class="home-vat-note">inc. vat</span>
-</div>
-
-</div>
-
-<a
-href="standard-sizes.html"
-class="home-product-link"
->
-View Size
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="home-product-card reveal reveal-scale reveal-delay-1"
+class="home-product-card image-size-600x900 reveal reveal-scale"
 data-double-price="250"
 data-triple-price="300"
 tabindex="0"
@@ -3470,92 +3423,9 @@ View Size
 </div>
 
 <div
-class="home-product-card reveal reveal-scale reveal-delay-2"
-data-double-price="455"
-data-triple-price="545"
-tabindex="0"
->
-
-<div class="home-product-image">
-
-<img
-src="images/product-cards/medium-square.png"
-alt="1000mm by 1200mm frameless flat roof skylight"
-/>
-
-</div>
-
-<div class="home-product-content">
-
-<div class="home-product-size">
-1000 × 1200mm
-</div>
-
-<div class="home-product-spec">
-<span>Internal visible glass size</span>
-<span>6mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
-</div>
-
-<div class="home-glazing-wrap">
-
-<div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
-</div>
-
-<div class="home-glazed-label">
-<span>Glazed</span>
-</div>
-
-</div>
-
-<div class="home-product-price-row">
-
-<div>
-
-<div class="home-product-price-label">
-Price
-</div>
-
-<div class="home-product-price">
-£455
-<span class="home-vat-note">inc. vat</span>
-</div>
-
-</div>
-
-<a
-href="standard-sizes.html"
-class="home-product-link"
->
-View Size
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="home-product-card reveal reveal-scale reveal-delay-3"
-data-double-price="250"
-data-triple-price="300"
+class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
+data-double-price="310"
+data-triple-price="370"
 tabindex="0"
 >
 
@@ -3616,7 +3486,173 @@ Price
 </div>
 
 <div class="home-product-price">
-£250
+£310
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card image-size-1000x1200 reveal reveal-scale reveal-delay-2"
+data-double-price="465"
+data-triple-price="560"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/medium-square.png"
+alt="1000mm by 1200mm frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+1000 × 1200mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>6mm Toughened Safety Glass</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£465
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
+data-double-price="880"
+data-triple-price="1075"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/jumbo.png"
+alt="1500mm by 1800mm frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+1500 × 1800mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>8mm Toughened Safety Glass</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£880
 <span class="home-vat-note">inc. vat</span>
 </div>
 
