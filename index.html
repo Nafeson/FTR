@@ -1026,15 +1026,11 @@ transform:var(--home-image-hover-transform);
 filter:brightness(1.035);
 }
 
-/* Fuller image treatment */
-
 .home-product-card.image-size-400x800 .home-product-image img,
 .home-product-card.image-size-600x900 .home-product-image img {
 object-fit:cover;
 object-position:center center;
 }
-
-/* Narrow long sizes use the same treatment as Standard Sizes */
 
 .home-product-card.image-size-300x1500,
 .home-product-card.image-size-400x1500,
@@ -1042,8 +1038,6 @@ object-position:center center;
 --home-image-transform:rotate(90deg) scale(1.30);
 --home-image-hover-transform:rotate(90deg) scale(1.34);
 }
-
-/* 800 × 1200 intentionally has no rotation rule */
 
 .home-product-content {
 position:relative;
@@ -1832,6 +1826,22 @@ margin:20px auto 0;
 font-size:18px;
 }
 
+/* Coordinated Choose Your Next Step reveal */
+
+.order-transition-heading-group {
+opacity:0;
+transform:translateY(34px);
+transition:
+opacity .85s ease,
+transform .85s cubic-bezier(.18,.72,.28,1);
+will-change:opacity,transform;
+}
+
+.order-transition-heading-group.is-visible {
+opacity:1;
+transform:translateY(0);
+}
+
 /* ===============================
 BUY ONLINE
 ================================ */
@@ -1839,7 +1849,7 @@ BUY ONLINE
 .buy-online-section {
 position:relative;
 overflow:hidden;
-padding:92px 6% 100px;
+padding:28px 6% 100px;
 background:
 radial-gradient(
 circle at 88% 25%,
@@ -2312,7 +2322,23 @@ box-shadow:none;
 
 .engineered {
 padding:95px 6%;
-background:#080808;
+background:
+radial-gradient(
+circle at 16% 18%,
+rgba(255,154,47,.10),
+transparent 26%
+),
+radial-gradient(
+circle at 86% 70%,
+rgba(16,42,68,.24),
+transparent 32%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#0b0b0b 45%,
+#101010 100%
+);
 border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
@@ -2329,29 +2355,91 @@ gap:24px;
 }
 
 .engineered-card {
-background:#111;
-border:1px solid rgba(255,255,255,.10);
+position:relative;
+overflow:hidden;
+isolation:isolate;
+background:linear-gradient(135deg,#0c0c0c,#141414);
+border:1px solid rgba(255,255,255,.11);
 padding:34px;
-transition:.25s ease;
+box-shadow:0 18px 50px rgba(0,0,0,.28);
+transition:
+opacity .85s ease,
+transform .85s cubic-bezier(.18,.72,.28,1),
+border-color .28s ease,
+box-shadow .28s ease,
+background .28s ease;
 }
 
-.engineered-card:hover {
-transform:translateY(-4px);
-border-color:rgba(245,124,0,.32);
+.engineered-card::before {
+content:"";
+position:absolute;
+z-index:1;
+left:-58%;
+bottom:-95%;
+width:70%;
+height:205%;
+background:
+linear-gradient(
+58deg,
+transparent 0%,
+rgba(255,255,255,.02) 31%,
+rgba(255,231,185,.13) 40%,
+rgba(255,255,255,.88) 49%,
+rgba(255,231,185,.18) 57%,
+transparent 70%
+);
+filter:blur(.35px);
+opacity:0;
+transform:
+translate(0,0)
+skewX(-14deg);
+pointer-events:none;
+}
+
+.engineered-card.shimmer-play::before {
+animation:
+trustDiagonalShimmer
+1.15s
+cubic-bezier(.18,.72,.28,1)
+both;
 }
 
 .engineered-card h3 {
+position:relative;
+z-index:2;
 margin:0 0 16px;
 color:var(--white);
 font-size:23px;
 line-height:1.15;
+transition:
+color .25s ease,
+letter-spacing .25s ease;
 }
 
 .engineered-card p {
+position:relative;
+z-index:2;
 margin:0;
 color:var(--muted);
 font-size:16px;
 line-height:1.65;
+}
+
+.engineered-card:hover {
+border-color:rgba(255,154,47,.75);
+background:linear-gradient(135deg,#111111,#1b130d);
+box-shadow:
+0 24px 62px rgba(245,124,0,.17),
+0 20px 46px rgba(0,0,0,.42);
+}
+
+.engineered-card.is-visible:hover {
+transform:translateY(-7px) scale(1.018);
+}
+
+.engineered-card:hover h3 {
+color:var(--orange);
+letter-spacing:.4px;
 }
 
 /* ===============================
@@ -2618,10 +2706,6 @@ margin-top:28px;
 padding:0 2.5%;
 }
 
-/* ===============================
-SINGLE-ROW GOLD FEATURE STRIP
-================================ */
-
 .mobile-feature-icons {
 display:grid;
 grid-template-columns:repeat(5,minmax(0,1fr));
@@ -2859,7 +2943,7 @@ font-size:16px;
 }
 
 .buy-online-section {
-padding:68px 6%;
+padding:20px 6% 68px;
 }
 
 .buy-online-inner {
@@ -2967,6 +3051,10 @@ height:250px;
 padding:68px 6%;
 }
 
+.engineered-card {
+padding:30px 24px;
+}
+
 .footer-wordmark {
 font-size:21px;
 }
@@ -3028,6 +3116,7 @@ scroll-behavior:auto;
 .whatsapp-action,
 .basket-total-text,
 .trust-item.shimmer-play::before,
+.engineered-card.shimmer-play::before,
 .home-product-link.is-encouraged {
 animation:none;
 }
@@ -3038,6 +3127,8 @@ animation:none;
 .reveal.reveal-scale,
 .direct-image-reveal,
 .trust-item,
+.engineered-card,
+.order-transition-heading-group,
 .calculator.calculator-reveal-target {
 opacity:1;
 clip-path:none;
@@ -3335,13 +3426,6 @@ padding-bottom:clamp(28px, 3.5vw, 55px) !important;
 
 /* Change 2 — Order Online section */
 .buy-online-section {
-padding-bottom:clamp(28px, 3.5vw, 55px) !important;
-}
-
-/* Change 2 — Included As Standard top spacing
-Change 3 — Included As Standard bottom spacing */
-.trust-zone {
-padding-top:clamp(28px, 3.5vw, 55px) !important;
 padding-bottom:clamp(28px, 3.5vw, 55px) !important;
 }
 
@@ -4050,73 +4134,6 @@ Oversized Rooflights
 </section>
 
 <section
-class="trust-zone"
-id="trustZone"
->
-
-<div class="trust-heading reveal">
-
-<div class="section-label">
-Included as standard
-</div>
-
-<h2>
-As Standard With All Our Frameless Units
-</h2>
-
-</div>
-
-<div class="trust-strip">
-
-<div class="trust-item reveal reveal-scale">
-
-<strong>
-6mm - 12mm
-</strong>
-
-<span>
-Toughened / Laminated Safety Glass
-</span>
-
-</div>
-
-<div class="trust-item reveal reveal-scale reveal-delay-1">
-
-<strong>
-Fast Lead Times
-</strong>
-
-<span class="fast-lead-time-line">
-Manufactured in as quick as
-<span class="standard-lead-time-number">4</span>
-working days.*
-</span>
-
-<span class="lead-time-note">
-*Lead time are estimates and may vary with demand, dependant on the selected size,
-specification and delivery location.
-</span>
-
-</div>
-
-<div class="trust-item reveal reveal-scale reveal-delay-2">
-
-<strong>
-Free Mainland UK Delivery
-</strong>
-
-<span>
-Included on our listed standard sizes, with specialist delivery clearly quoted
-for oversized and bespoke units.
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-<section
 class="comfort-section"
 id="performance"
 >
@@ -4361,9 +4378,12 @@ The specification is designed for durability and reliable long-term weather perf
 
 </div>
 
-<div class="engineered-grid">
+<div
+class="engineered-grid"
+id="engineeredGrid"
+>
 
-<div class="engineered-card reveal">
+<div class="engineered-card reveal reveal-scale">
 
 <h3>
 Ceramic Fused Border
@@ -4376,7 +4396,7 @@ providing a permanent and durable frameless finish.
 
 </div>
 
-<div class="engineered-card reveal reveal-delay-1">
+<div class="engineered-card reveal reveal-scale reveal-delay-1">
 
 <h3>
 20 Year Warranty
@@ -4389,7 +4409,7 @@ All units are supplied with a 20 year warranty and are designed for an expected
 
 </div>
 
-<div class="engineered-card reveal reveal-delay-2">
+<div class="engineered-card reveal reveal-scale reveal-delay-2">
 
 <h3>
 Two-Stage Sealing
@@ -4402,7 +4422,7 @@ for a flush finish and engineered leak-resistant performance when installed corr
 
 </div>
 
-<div class="engineered-card reveal reveal-delay-3">
+<div class="engineered-card reveal reveal-scale reveal-delay-3">
 
 <h3>
 Glass Finishes
@@ -4723,6 +4743,24 @@ window.matchMedia(
 );
 
 /* ===============================
+CHOOSE YOUR NEXT STEP TARGET
+================================ */
+
+const nextStepSection =
+document.querySelector(
+".order-transition"
+);
+
+const nextStepRevealElements =
+nextStepSection
+? Array.from(
+nextStepSection.querySelectorAll(
+".reveal"
+)
+)
+: [];
+
+/* ===============================
 STANDARD SCROLL REVEALS
 ================================ */
 
@@ -4731,6 +4769,12 @@ Array.from(
 document.querySelectorAll(
 ".reveal, .direct-image-reveal"
 )
+).filter(
+element => {
+return !element.closest(
+".order-transition"
+);
+}
 );
 
 if (
@@ -4777,6 +4821,67 @@ element
 );
 }
 );
+}
+
+/* ===============================
+CHOOSE YOUR NEXT STEP REVEAL
+================================ */
+
+function revealNextStepSection() {
+nextStepRevealElements.forEach(
+element => {
+element.classList.add(
+"is-visible"
+);
+}
+);
+}
+
+if (
+nextStepSection &&
+nextStepRevealElements.length
+) {
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+revealNextStepSection();
+} else {
+const nextStepParagraph =
+nextStepSection.querySelector(
+"p"
+);
+
+if (nextStepParagraph) {
+const nextStepObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(
+entry => {
+if (!entry.isIntersecting) {
+return;
+}
+
+revealNextStepSection();
+
+nextStepObserver.unobserve(
+entry.target
+);
+}
+);
+},
+{
+threshold:0,
+rootMargin:"0px 0px -2% 0px"
+}
+);
+
+nextStepObserver.observe(
+nextStepParagraph
+);
+} else {
+revealNextStepSection();
+}
 }
 
 /* ===============================
@@ -4967,17 +5072,17 @@ mobileFeatureIcons
 }
 
 /* ===============================
-TRUST CARD FULL-VIEW SHIMMERS
+ENGINEERED CARD FULL-VIEW SHIMMERS
 ================================ */
 
-const trustItems =
+const engineeredItems =
 Array.from(
 document.querySelectorAll(
-".trust-item"
+".engineered-card"
 )
 );
 
-let trustShimmerFrame = null;
+let engineeredShimmerFrame = null;
 
 function getVisiblePageTop() {
 const pageHeader =
@@ -4997,12 +5102,12 @@ pageHeader
 );
 }
 
-function checkTrustCardShimmers() {
-trustShimmerFrame = null;
+function checkEngineeredCardShimmers() {
+engineeredShimmerFrame = null;
 
 if (
 reducedMotionQuery.matches ||
-trustItems.length === 0
+engineeredItems.length === 0
 ) {
 return;
 }
@@ -5013,7 +5118,7 @@ getVisiblePageTop();
 const visibleBottom =
 window.innerHeight - 8;
 
-trustItems.forEach(
+engineeredItems.forEach(
 item => {
 if (
 item.dataset.shimmerPlayed ===
@@ -5043,23 +5148,23 @@ item.classList.add(
 );
 }
 
-function requestTrustShimmerCheck() {
+function requestEngineeredShimmerCheck() {
 if (
-trustShimmerFrame !== null
+engineeredShimmerFrame !== null
 ) {
 return;
 }
 
-trustShimmerFrame =
+engineeredShimmerFrame =
 window.requestAnimationFrame(
-checkTrustCardShimmers
+checkEngineeredCardShimmers
 );
 }
 
 if (
 reducedMotionQuery.matches
 ) {
-trustItems.forEach(
+engineeredItems.forEach(
 item => {
 item.dataset.shimmerPlayed =
 "true";
@@ -5068,7 +5173,7 @@ item.dataset.shimmerPlayed =
 } else {
 window.addEventListener(
 "scroll",
-requestTrustShimmerCheck,
+requestEngineeredShimmerCheck,
 {
 passive:true
 }
@@ -5076,15 +5181,15 @@ passive:true
 
 window.addEventListener(
 "resize",
-requestTrustShimmerCheck
+requestEngineeredShimmerCheck
 );
 
 window.addEventListener(
 "load",
-requestTrustShimmerCheck
+requestEngineeredShimmerCheck
 );
 
-requestTrustShimmerCheck();
+requestEngineeredShimmerCheck();
 }
 
 /* ===============================
