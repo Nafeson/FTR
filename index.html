@@ -3323,6 +3323,50 @@ aria-label="Close menu"
 </div>
 <main>
 
+<style>
+/* =========================================
+HOMEPAGE SECTION SPACING — JULY UPDATE
+========================================= */
+
+/* Change 1 — first hero image section */
+.first-rooflight-visual-section {
+padding-bottom:clamp(28px, 3.5vw, 55px) !important;
+}
+
+/* Change 2 — Order Online section */
+.buy-online-section {
+padding-bottom:clamp(28px, 3.5vw, 55px) !important;
+}
+
+/* Change 2 — Included As Standard top spacing
+Change 3 — Included As Standard bottom spacing */
+.trust-zone {
+padding-top:clamp(28px, 3.5vw, 55px) !important;
+padding-bottom:clamp(28px, 3.5vw, 55px) !important;
+}
+
+/* Normal bold italic number 4 */
+.standard-lead-time-number {
+font-weight:800;
+font-style:italic;
+}
+
+/* Static hero images retain the existing reveal behaviour */
+.static-rooflight-visual {
+width:100%;
+}
+
+.static-rooflight-visual .rooflight-slideshow-shell {
+width:100%;
+}
+
+.static-rooflight-visual img {
+display:block;
+width:100%;
+height:auto;
+}
+</style>
+
 <section
 class="home-popular-section"
 id="homepagePopular"
@@ -3921,14 +3965,12 @@ rooflight around your required opening.
 </section>
 
 <section
-class="engineered-visual-intro"
-aria-label="Frameless rooflight product and installation images"
+class="engineered-visual-intro first-rooflight-visual-section"
+aria-label="Frameless rooflight product image"
 >
 
 <div
-class="buy-rooflight-slideshow reveal reveal-scale rooflight-slideshow"
-id="rooflightSlideshowSecondary"
-data-start-delay="2500"
+class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 >
 
 <div class="rooflight-slideshow-shell">
@@ -3936,26 +3978,8 @@ data-start-delay="2500"
 <div class="rooflight-slide active">
 
 <img
-src="images/hero-rooflight-4.png"
-alt="Frameless rooflight installation image four"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
 src="images/hero-rooflight-5.png"
-alt="Frameless rooflight installation image five"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-6.png"
-alt="Frameless rooflight installation image six"
+alt="Frameless rooflight product and installation image"
 />
 
 </div>
@@ -4047,12 +4071,11 @@ As Standard With All Our Frameless Units
 <div class="trust-item reveal reveal-scale">
 
 <strong>
-6mm–10mm Toughened Safety Glass
+6mm - 12mm
 </strong>
 
 <span>
-Specified according to the selected rooflight size for dependable strength,
-safety and long-term performance.
+Toughened / Laminated Safety Glass
 </span>
 
 </div>
@@ -4064,11 +4087,14 @@ Fast Lead Times
 </strong>
 
 <span class="fast-lead-time-line">
-Manufactured in as quick as <span class="metallic-4">4</span> working days.*
+Manufactured in as quick as
+<span class="standard-lead-time-number">4</span>
+working days.*
 </span>
 
 <span class="lead-time-note">
-*Lead time depends on the selected size, specification and delivery location.
+*Lead time are estimates and may vary with demand, dependant on the selected size,
+specification and delivery location.
 </span>
 
 </div>
@@ -4292,13 +4318,11 @@ Order Online Soon
 
 <section
 class="engineered-visual-intro"
-aria-label="Frameless rooflight product and installation images"
+aria-label="Frameless rooflight product image"
 >
 
 <div
-class="buy-rooflight-slideshow reveal reveal-scale rooflight-slideshow"
-id="rooflightSlideshowPrimary"
-data-start-delay="0"
+class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 >
 
 <div class="rooflight-slideshow-shell">
@@ -4307,25 +4331,7 @@ data-start-delay="0"
 
 <img
 src="images/hero-rooflight-4.png"
-alt="Frameless rooflight installation image four"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-5.png"
-alt="Frameless rooflight installation image five"
-/>
-
-</div>
-
-<div class="rooflight-slide">
-
-<img
-src="images/hero-rooflight-6.png"
-alt="Frameless rooflight installation image six"
+alt="Frameless rooflight product and installation image"
 />
 
 </div>
@@ -4472,7 +4478,10 @@ Request Oversized Quote
 <div class="wordmark footer-wordmark">
 Factory
 <span>Toughened</span>
-<div class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></div>
+<div class="wordmark-bottom">
+Rooflights
+<small class="wordmark-domain">.co.uk</small>
+</div>
 </div>
 
 <p>
@@ -5159,306 +5168,6 @@ calculatorWrap
 );
 }
 }
-
-/* ===============================
-MULTIPLE ROOFLIGHT SLIDESHOWS
-================================ */
-
-const rooflightSlideshows =
-Array.from(
-document.querySelectorAll(
-".rooflight-slideshow"
-)
-);
-
-function initialiseRooflightSlideshow(
-slideshow,
-slideshowIndex
-) {
-const slides =
-Array.from(
-slideshow.querySelectorAll(
-".rooflight-slide"
-)
-);
-
-if (slides.length < 2) {
-return;
-}
-
-let currentIndex =
-slides.findIndex(
-slide =>
-slide.classList.contains(
-"active"
-)
-);
-
-if (currentIndex < 0) {
-currentIndex = 0;
-
-slides[0].classList.add(
-"active"
-);
-}
-
-let direction = 1;
-let timer = null;
-let busy = false;
-let touchStartX = 0;
-let touchStartY = 0;
-
-const intervalDuration =
-5000;
-
-const suppliedDelay =
-Number(
-slideshow.dataset.startDelay
-);
-
-const defaultDelay =
-slideshowIndex === 0
-? 0
-: 2500;
-
-const startDelay =
-Number.isFinite(suppliedDelay)
-? Math.max(
-0,
-suppliedDelay
-)
-: defaultDelay;
-
-function showSlide(
-nextIndex,
-manualChange = false
-) {
-if (
-busy ||
-nextIndex === currentIndex ||
-nextIndex < 0 ||
-nextIndex >= slides.length
-) {
-return;
-}
-
-busy = true;
-
-const outgoing =
-slides[currentIndex];
-
-const incoming =
-slides[nextIndex];
-
-outgoing.classList.remove(
-"active"
-);
-
-outgoing.classList.add(
-"previous"
-);
-
-incoming.classList.remove(
-"previous"
-);
-
-incoming.classList.add(
-"active"
-);
-
-currentIndex =
-nextIndex;
-
-window.setTimeout(
-() => {
-outgoing.classList.remove(
-"previous"
-);
-
-busy = false;
-},
-850
-);
-
-if (manualChange) {
-restartTimer();
-}
-}
-
-function getNextSlideIndex() {
-let nextIndex =
-currentIndex +
-direction;
-
-if (
-nextIndex >=
-slides.length
-) {
-direction = -1;
-
-nextIndex =
-slides.length - 2;
-}
-
-if (nextIndex < 0) {
-direction = 1;
-nextIndex = 1;
-}
-
-return nextIndex;
-}
-
-function advanceSlides() {
-showSlide(
-getNextSlideIndex(),
-false
-);
-}
-
-function startTimer() {
-if (
-timer !== null ||
-reducedMotionQuery.matches
-) {
-return;
-}
-
-timer =
-window.setInterval(
-advanceSlides,
-intervalDuration
-);
-}
-
-function restartTimer() {
-if (
-timer !== null
-) {
-window.clearInterval(
-timer
-);
-
-timer = null;
-}
-
-startTimer();
-}
-
-function showNextManual() {
-let nextIndex =
-currentIndex + 1;
-
-if (
-nextIndex >=
-slides.length
-) {
-nextIndex = 0;
-}
-
-direction = 1;
-
-showSlide(
-nextIndex,
-true
-);
-}
-
-function showPreviousManual() {
-let previousIndex =
-currentIndex - 1;
-
-if (
-previousIndex < 0
-) {
-previousIndex =
-slides.length - 1;
-}
-
-direction = -1;
-
-showSlide(
-previousIndex,
-true
-);
-}
-
-slideshow.addEventListener(
-"touchstart",
-event => {
-if (!event.touches.length) {
-return;
-}
-
-touchStartX =
-event.touches[0].clientX;
-
-touchStartY =
-event.touches[0].clientY;
-},
-{
-passive:true
-}
-);
-
-slideshow.addEventListener(
-"touchend",
-event => {
-if (!event.changedTouches.length) {
-return;
-}
-
-const touchEndX =
-event.changedTouches[0].clientX;
-
-const touchEndY =
-event.changedTouches[0].clientY;
-
-const horizontalDistance =
-touchEndX -
-touchStartX;
-
-const verticalDistance =
-touchEndY -
-touchStartY;
-
-if (
-Math.abs(horizontalDistance) <
-45 ||
-Math.abs(horizontalDistance) <=
-Math.abs(verticalDistance)
-) {
-return;
-}
-
-if (
-horizontalDistance < 0
-) {
-showNextManual();
-} else {
-showPreviousManual();
-}
-},
-{
-passive:true
-}
-);
-
-if (!reducedMotionQuery.matches) {
-window.setTimeout(
-startTimer,
-startDelay
-);
-}
-}
-
-rooflightSlideshows.forEach(
-(slideshow,index) => {
-initialiseRooflightSlideshow(
-slideshow,
-index
-);
-}
-);
 
 /* ===============================
 COMFORT SLIDESHOW
