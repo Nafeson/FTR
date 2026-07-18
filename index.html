@@ -6115,6 +6115,19 @@ element.setAttribute(
 "aria-hidden",
 String(shouldHide)
 );
+
+element.classList.toggle(
+"is-visible",
+!shouldHide
+);
+
+if (shouldHide) {
+element.style.display =
+"none";
+} else {
+element.style.display =
+"block";
+}
 }
 
 function resetExternalRecommendation() {
