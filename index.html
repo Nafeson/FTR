@@ -11,6 +11,1037 @@ name="description"
 content="Modern frameless flat roof skylights made to order in 4–5 working days. Energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
 />
 
+/* ==========================================================
+EXISTING OPENING SIZE ASSISTANT
+Added for:
+1. Internal opening measurement
+2. Recommended manufactured unit size
+3. External upstand measurement
+4. Recommended border selection
+========================================================== */
+
+.existing-opening-assistant {
+position:relative;
+overflow:hidden;
+padding:76px 6% 82px;
+background:
+radial-gradient(
+circle at 12% 18%,
+rgba(245,124,0,.17),
+transparent 31%
+),
+radial-gradient(
+circle at 89% 76%,
+rgba(16,42,68,.48),
+transparent 34%
+),
+linear-gradient(
+135deg,
+#050505 0%,
+#0b0b0b 48%,
+#101820 100%
+);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.existing-opening-assistant::before {
+content:"";
+position:absolute;
+top:0;
+left:50%;
+width:min(1120px,88%);
+height:1px;
+transform:translateX(-50%);
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(245,124,0,.82),
+transparent
+);
+}
+
+.existing-opening-assistant::after {
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.022) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.018) 1px,
+transparent 1px
+);
+background-size:46px 46px;
+opacity:.16;
+pointer-events:none;
+transform:skewY(-5deg) scale(1.18);
+}
+
+.existing-opening-inner {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto;
+}
+
+.existing-opening-heading {
+max-width:920px;
+margin:0 0 34px;
+opacity:0;
+transform:translateY(32px);
+transition:
+opacity 1.55s ease,
+transform 1.55s cubic-bezier(.18,.72,.28,1);
+will-change:opacity,transform;
+}
+
+.existing-opening-heading.is-visible {
+opacity:1;
+transform:translateY(0);
+}
+
+.existing-opening-heading .section-label {
+margin-bottom:14px;
+}
+
+.existing-opening-heading h2 {
+max-width:900px;
+margin-bottom:20px;
+font-size:clamp(38px,5.8vw,72px);
+}
+
+.existing-opening-heading p {
+max-width:790px;
+margin:0;
+font-size:18px;
+line-height:1.7;
+color:var(--muted);
+}
+
+.existing-opening-card {
+position:relative;
+overflow:hidden;
+isolation:isolate;
+padding:42px;
+background:
+linear-gradient(
+135deg,
+rgba(13,13,13,.98),
+rgba(20,20,20,.98)
+);
+border:1px solid rgba(255,255,255,.11);
+box-shadow:
+0 30px 85px rgba(0,0,0,.52);
+opacity:0;
+transform:
+translateY(34px)
+scale(.982);
+transition:
+opacity 1.55s ease,
+transform 1.55s cubic-bezier(.18,.72,.28,1),
+border-color .35s ease,
+box-shadow .35s ease;
+will-change:opacity,transform;
+}
+
+.existing-opening-card.is-visible {
+opacity:1;
+transform:
+translateY(0)
+scale(1);
+}
+
+.existing-opening-card:hover {
+border-color:rgba(245,124,0,.30);
+box-shadow:
+0 34px 95px rgba(0,0,0,.58),
+0 18px 50px rgba(245,124,0,.08);
+}
+
+.existing-opening-card::before {
+content:"";
+position:absolute;
+z-index:0;
+left:-70%;
+bottom:-115%;
+width:75%;
+height:220%;
+background:
+linear-gradient(
+58deg,
+transparent 0%,
+rgba(255,255,255,.02) 31%,
+rgba(255,231,185,.10) 41%,
+rgba(255,255,255,.50) 49%,
+rgba(255,231,185,.13) 57%,
+transparent 70%
+);
+opacity:0;
+transform:skewX(-14deg);
+pointer-events:none;
+}
+
+.existing-opening-card.assistant-shimmer-play::before {
+animation:
+assistantCardShimmer
+2.05s
+cubic-bezier(.18,.72,.28,1)
+both;
+}
+
+@keyframes assistantCardShimmer {
+0% {
+left:-70%;
+bottom:-115%;
+opacity:0;
+}
+
+14% {
+opacity:.16;
+}
+
+50% {
+opacity:.62;
+}
+
+78% {
+opacity:.20;
+}
+
+100% {
+left:112%;
+bottom:84%;
+opacity:0;
+}
+}
+
+.opening-assistant-step {
+position:relative;
+z-index:2;
+}
+
+.opening-assistant-step + .opening-assistant-step {
+margin-top:36px;
+padding-top:36px;
+border-top:1px solid rgba(255,255,255,.09);
+}
+
+.opening-assistant-step-heading {
+display:flex;
+align-items:flex-start;
+gap:16px;
+margin-bottom:26px;
+}
+
+.opening-assistant-number {
+flex:0 0 auto;
+width:36px;
+height:36px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(245,124,0,.60);
+background:rgba(245,124,0,.10);
+color:var(--orange);
+font-size:14px;
+font-weight:950;
+line-height:1;
+}
+
+.opening-assistant-step-copy {
+min-width:0;
+}
+
+.opening-assistant-step-copy h3 {
+margin:0 0 7px;
+font-size:clamp(21px,2.6vw,30px);
+line-height:1.12;
+color:var(--white);
+}
+
+.opening-assistant-step-copy p {
+margin:0;
+max-width:760px;
+font-size:14px;
+line-height:1.65;
+color:rgba(255,255,255,.62);
+}
+
+.opening-assistant-grid {
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:20px;
+}
+
+.opening-assistant-field {
+position:relative;
+min-width:0;
+}
+
+.opening-assistant-field label {
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+
+.opening-assistant-unit {
+color:rgba(255,255,255,.42);
+font-size:10px;
+font-weight:900;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.opening-assistant-field input {
+padding-right:56px;
+font-size:17px;
+font-weight:800;
+}
+
+.opening-assistant-input-wrap {
+position:relative;
+}
+
+.opening-assistant-input-suffix {
+position:absolute;
+top:50%;
+right:17px;
+transform:translateY(-50%);
+color:rgba(255,255,255,.42);
+font-size:11px;
+font-weight:950;
+letter-spacing:.7px;
+text-transform:uppercase;
+pointer-events:none;
+}
+
+.opening-assistant-field.is-valid input {
+border-color:rgba(245,124,0,.72);
+box-shadow:
+0 0 0 2px rgba(245,124,0,.08);
+}
+
+.opening-assistant-field.is-invalid input {
+border-color:rgba(255,74,51,.72);
+box-shadow:
+0 0 0 2px rgba(255,74,51,.08);
+}
+
+.opening-assistant-message {
+min-height:18px;
+margin-top:8px;
+color:rgba(255,255,255,.48);
+font-size:11px;
+line-height:1.45;
+}
+
+.opening-assistant-message.is-error {
+color:#ff8e7e;
+}
+
+/* Internal recommended unit result */
+
+.opening-unit-result {
+position:relative;
+overflow:hidden;
+max-height:0;
+margin-top:0;
+padding:0 28px;
+opacity:0;
+visibility:hidden;
+transform:
+translateY(24px)
+scale(.985);
+background:
+radial-gradient(
+circle at 88% 12%,
+rgba(245,124,0,.15),
+transparent 38%
+),
+linear-gradient(
+135deg,
+#102a44,
+#0c2034
+);
+border:1px solid transparent;
+transition:
+max-height 1.55s cubic-bezier(.18,.72,.28,1),
+margin-top 1.55s cubic-bezier(.18,.72,.28,1),
+padding 1.55s cubic-bezier(.18,.72,.28,1),
+opacity 1.55s ease,
+visibility 1.55s ease,
+transform 1.55s cubic-bezier(.18,.72,.28,1),
+border-color 1.55s ease;
+}
+
+.opening-unit-result.is-visible {
+max-height:260px;
+margin-top:26px;
+padding:28px;
+opacity:1;
+visibility:visible;
+transform:
+translateY(0)
+scale(1);
+border-color:rgba(255,255,255,.12);
+}
+
+.opening-unit-result-label {
+margin-bottom:8px;
+color:rgba(255,255,255,.64);
+font-size:11px;
+font-weight:950;
+letter-spacing:1.4px;
+text-transform:uppercase;
+}
+
+.opening-unit-result-value {
+font-size:clamp(30px,5vw,54px);
+font-weight:950;
+line-height:1;
+letter-spacing:-1.8px;
+color:var(--white);
+}
+
+.opening-unit-result-value span {
+color:var(--orange);
+}
+
+.opening-unit-result-note {
+margin-top:13px;
+font-size:13px;
+line-height:1.55;
+color:rgba(255,255,255,.66);
+}
+
+/* External dimension stage */
+
+.opening-external-stage {
+overflow:hidden;
+max-height:0;
+margin-top:0;
+padding-top:0;
+opacity:0;
+visibility:hidden;
+transform:translateY(26px);
+border-top:1px solid transparent;
+transition:
+max-height 1.55s cubic-bezier(.18,.72,.28,1),
+margin-top 1.55s cubic-bezier(.18,.72,.28,1),
+padding-top 1.55s cubic-bezier(.18,.72,.28,1),
+opacity 1.55s ease,
+visibility 1.55s ease,
+transform 1.55s cubic-bezier(.18,.72,.28,1),
+border-color 1.55s ease;
+}
+
+.opening-external-stage.is-visible {
+max-height:950px;
+margin-top:38px;
+padding-top:38px;
+opacity:1;
+visibility:visible;
+transform:translateY(0);
+border-top-color:rgba(255,255,255,.09);
+}
+
+/* Border recommendation result */
+
+.opening-border-result {
+position:relative;
+overflow:hidden;
+max-height:0;
+margin-top:0;
+padding:0 30px;
+opacity:0;
+visibility:hidden;
+transform:
+translateY(24px)
+scale(.985);
+border:1px solid transparent;
+background:#0b0b0b;
+transition:
+max-height 1.55s cubic-bezier(.18,.72,.28,1),
+margin-top 1.55s cubic-bezier(.18,.72,.28,1),
+padding 1.55s cubic-bezier(.18,.72,.28,1),
+opacity 1.55s ease,
+visibility 1.55s ease,
+transform 1.55s cubic-bezier(.18,.72,.28,1),
+border-color 1.55s ease,
+background 1.55s ease;
+}
+
+.opening-border-result.is-visible {
+max-height:410px;
+margin-top:26px;
+padding:30px;
+opacity:1;
+visibility:visible;
+transform:
+translateY(0)
+scale(1);
+}
+
+.opening-border-result.is-compatible {
+background:
+radial-gradient(
+circle at 90% 10%,
+rgba(245,124,0,.19),
+transparent 40%
+),
+linear-gradient(
+135deg,
+#17110c,
+#101010
+);
+border-color:rgba(245,124,0,.48);
+}
+
+.opening-border-result.is-incompatible {
+background:
+radial-gradient(
+circle at 90% 10%,
+rgba(255,59,22,.14),
+transparent 40%
+),
+linear-gradient(
+135deg,
+#1a0d0b,
+#101010
+);
+border-color:rgba(255,74,51,.48);
+}
+
+.opening-border-result-top {
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:22px;
+}
+
+.opening-border-result-copy {
+min-width:0;
+}
+
+.opening-border-result-label {
+margin-bottom:9px;
+color:rgba(255,255,255,.60);
+font-size:11px;
+font-weight:950;
+letter-spacing:1.4px;
+text-transform:uppercase;
+}
+
+.opening-border-result-value {
+font-size:clamp(30px,5vw,52px);
+font-weight:950;
+line-height:1;
+letter-spacing:-1.5px;
+color:var(--white);
+}
+
+.opening-border-result.is-compatible
+.opening-border-result-value {
+color:var(--orange);
+}
+
+.opening-border-result.is-incompatible
+.opening-border-result-value {
+color:#ff735f;
+}
+
+.opening-border-result-icon {
+flex:0 0 auto;
+width:50px;
+height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(255,255,255,.14);
+font-size:23px;
+font-weight:950;
+line-height:1;
+}
+
+.opening-border-result.is-compatible
+.opening-border-result-icon {
+border-color:rgba(245,124,0,.52);
+background:rgba(245,124,0,.10);
+color:var(--orange);
+}
+
+.opening-border-result.is-incompatible
+.opening-border-result-icon {
+border-color:rgba(255,74,51,.52);
+background:rgba(255,74,51,.08);
+color:#ff735f;
+}
+
+.opening-border-result-description {
+max-width:780px;
+margin:17px 0 0;
+font-size:14px;
+line-height:1.65;
+color:rgba(255,255,255,.66);
+}
+
+.opening-border-result-details {
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+margin-top:22px;
+}
+
+.opening-border-detail {
+padding:15px 17px;
+background:rgba(255,255,255,.035);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.opening-border-detail-label {
+display:block;
+margin-bottom:6px;
+color:rgba(255,255,255,.45);
+font-size:9px;
+font-weight:950;
+letter-spacing:1.1px;
+text-transform:uppercase;
+}
+
+.opening-border-detail-value {
+display:block;
+color:var(--white);
+font-size:17px;
+font-weight:950;
+}
+
+.opening-border-guidance {
+margin-top:24px;
+padding:18px 20px;
+border-left:3px solid var(--orange);
+background:rgba(245,124,0,.055);
+color:rgba(255,255,255,.68);
+font-size:13px;
+line-height:1.6;
+}
+
+.opening-border-result.is-incompatible
+.opening-border-guidance {
+border-left-color:#ff735f;
+background:rgba(255,74,51,.045);
+}
+
+/* Optional reset/edit control */
+
+.opening-assistant-actions {
+display:flex;
+align-items:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:26px;
+}
+
+.opening-assistant-button {
+appearance:none;
+border:1px solid var(--orange);
+background:var(--orange);
+color:#050505;
+padding:15px 24px;
+font-family:inherit;
+font-size:12px;
+font-weight:950;
+letter-spacing:.9px;
+text-transform:uppercase;
+cursor:pointer;
+transition:
+transform .25s ease,
+filter .25s ease,
+background .25s ease,
+border-color .25s ease,
+color .25s ease;
+}
+
+.opening-assistant-button:hover {
+transform:translateY(-2px);
+filter:brightness(1.08);
+}
+
+.opening-assistant-button.secondary {
+background:transparent;
+border-color:rgba(255,255,255,.22);
+color:var(--white);
+}
+
+.opening-assistant-button.secondary:hover {
+border-color:var(--orange);
+color:var(--orange);
+filter:none;
+}
+
+/* ==========================================================
+BUILD YOUR ROOFLIGHT BORDER SELECTOR
+========================================================== */
+
+.calc-border-field {
+position:relative;
+}
+
+.calc-border-field select {
+font-weight:800;
+cursor:pointer;
+}
+
+.calc-border-field select:disabled {
+cursor:not-allowed;
+opacity:.46;
+}
+
+.calc-border-help {
+margin-top:9px;
+font-size:11px;
+line-height:1.45;
+color:rgba(255,255,255,.48);
+}
+
+.calc-border-help strong {
+color:var(--orange);
+}
+
+.calc-border-recommendation {
+display:none;
+margin-top:10px;
+padding:10px 12px;
+border-left:2px solid var(--orange);
+background:rgba(245,124,0,.06);
+color:rgba(255,255,255,.68);
+font-size:11px;
+line-height:1.5;
+}
+
+.calc-border-recommendation.is-visible {
+display:block;
+}
+
+.calc-external-result {
+overflow:hidden;
+max-height:0;
+margin-top:0;
+padding:0 28px;
+opacity:0;
+visibility:hidden;
+transform:
+translateY(20px)
+scale(.987);
+background:
+radial-gradient(
+circle at 88% 12%,
+rgba(245,124,0,.13),
+transparent 38%
+),
+linear-gradient(
+135deg,
+#0c2034,
+#102a44
+);
+border:1px solid transparent;
+transition:
+max-height 1.1s cubic-bezier(.18,.72,.28,1),
+margin-top 1.1s cubic-bezier(.18,.72,.28,1),
+padding 1.1s cubic-bezier(.18,.72,.28,1),
+opacity 1.1s ease,
+visibility 1.1s ease,
+transform 1.1s cubic-bezier(.18,.72,.28,1),
+border-color 1.1s ease;
+}
+
+.calc-external-result.is-visible {
+max-height:360px;
+margin-top:28px;
+padding:28px;
+opacity:1;
+visibility:visible;
+transform:
+translateY(0)
+scale(1);
+border-color:rgba(255,255,255,.12);
+}
+
+.calc-external-result-heading {
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:20px;
+}
+
+.calc-external-result-label {
+margin-bottom:8px;
+color:rgba(255,255,255,.60);
+font-size:10px;
+font-weight:950;
+letter-spacing:1.3px;
+text-transform:uppercase;
+}
+
+.calc-external-result-value {
+font-size:clamp(28px,4.5vw,48px);
+font-weight:950;
+line-height:1;
+letter-spacing:-1.4px;
+color:var(--white);
+}
+
+.calc-external-result-value span {
+color:var(--orange);
+}
+
+.calc-external-border-badge {
+flex:0 0 auto;
+padding:9px 12px;
+border:1px solid rgba(245,124,0,.48);
+background:rgba(245,124,0,.09);
+color:var(--orange);
+font-size:10px;
+font-weight:950;
+letter-spacing:.9px;
+text-transform:uppercase;
+white-space:nowrap;
+}
+
+.calc-external-result-note {
+margin-top:13px;
+font-size:12px;
+line-height:1.6;
+color:rgba(255,255,255,.62);
+}
+
+/* Ensure the Build Your Rooflight grid can hold the new border field */
+
+.calc-grid.calc-grid-with-border {
+grid-template-columns:repeat(5,minmax(0,1fr));
+}
+
+/* Reduce the previous oversized blank space above calculator */
+
+.existing-opening-assistant + .calculator-wrap {
+padding-top:72px;
+}
+
+.existing-opening-assistant +
+.calculator-wrap::after {
+top:0;
+}
+
+/* ==========================================================
+ASSISTANT TABLET
+========================================================== */
+
+@media(max-width:1100px) {
+.calc-grid.calc-grid-with-border {
+grid-template-columns:repeat(3,minmax(0,1fr));
+}
+}
+
+@media(max-width:950px) {
+.existing-opening-assistant {
+padding:68px 6% 74px;
+}
+
+.existing-opening-card {
+padding:34px;
+}
+
+.opening-assistant-grid {
+grid-template-columns:1fr 1fr;
+}
+
+.calc-grid.calc-grid-with-border {
+grid-template-columns:1fr;
+}
+}
+
+/* ==========================================================
+ASSISTANT MOBILE
+========================================================== */
+
+@media(max-width:560px) {
+.existing-opening-assistant {
+padding:54px 6% 60px;
+}
+
+.existing-opening-heading {
+margin-bottom:26px;
+}
+
+.existing-opening-heading h2 {
+font-size:40px;
+letter-spacing:-1.5px;
+}
+
+.existing-opening-heading p {
+font-size:16px;
+}
+
+.existing-opening-card {
+padding:27px 22px;
+}
+
+.opening-assistant-step + .opening-assistant-step {
+margin-top:30px;
+padding-top:30px;
+}
+
+.opening-assistant-step-heading {
+gap:12px;
+margin-bottom:22px;
+}
+
+.opening-assistant-number {
+width:32px;
+height:32px;
+font-size:12px;
+}
+
+.opening-assistant-step-copy h3 {
+font-size:21px;
+}
+
+.opening-assistant-step-copy p {
+font-size:13px;
+}
+
+.opening-assistant-grid {
+grid-template-columns:1fr;
+gap:17px;
+}
+
+.opening-unit-result.is-visible {
+padding:24px 20px;
+}
+
+.opening-unit-result-value {
+font-size:34px;
+letter-spacing:-1px;
+}
+
+.opening-external-stage.is-visible {
+margin-top:31px;
+padding-top:31px;
+}
+
+.opening-border-result.is-visible {
+padding:24px 20px;
+}
+
+.opening-border-result-top {
+gap:14px;
+}
+
+.opening-border-result-value {
+font-size:33px;
+letter-spacing:-1px;
+}
+
+.opening-border-result-icon {
+width:42px;
+height:42px;
+font-size:19px;
+}
+
+.opening-border-result-details {
+grid-template-columns:1fr;
+}
+
+.opening-assistant-actions {
+display:grid;
+grid-template-columns:1fr;
+}
+
+.opening-assistant-button {
+width:100%;
+}
+
+.calc-external-result.is-visible {
+padding:24px 20px;
+}
+
+.calc-external-result-heading {
+display:block;
+}
+
+.calc-external-border-badge {
+display:inline-flex;
+margin-top:17px;
+}
+
+.calc-external-result-value {
+font-size:32px;
+}
+
+.existing-opening-assistant + .calculator-wrap {
+padding-top:62px;
+}
+}
+
+/* ==========================================================
+ASSISTANT VERY SMALL MOBILE
+========================================================== */
+
+@media(max-width:390px) {
+.existing-opening-card {
+padding:24px 18px;
+}
+
+.existing-opening-heading h2 {
+font-size:36px;
+}
+
+.opening-unit-result-value,
+.opening-border-result-value,
+.calc-external-result-value {
+font-size:30px;
+}
+}
+
+/* ==========================================================
+ASSISTANT REDUCED MOTION
+========================================================== */
+
+@media(prefers-reduced-motion:reduce) {
+.existing-opening-card.assistant-shimmer-play::before {
+animation:none;
+}
+
+.existing-opening-heading,
+.existing-opening-card,
+.opening-unit-result,
+.opening-external-stage,
+.opening-border-result,
+.calc-external-result {
+transition:none;
+}
+
+.existing-opening-heading,
+.existing-opening-card {
+opacity:1;
+transform:none;
+}
+
+.existing-opening-heading.is-visible,
+.existing-opening-card.is-visible,
+.opening-unit-result.is-visible,
+.opening-external-stage.is-visible,
+.opening-border-result.is-visible,
+.calc-external-result.is-visible {
+transform:none;
+}
+}
+
 <style>
 :root {
 --orange:#f57c00;
@@ -4204,9 +5235,458 @@ Need A Rooflight For An Existing Opening?
 </h2>
 
 <p class="reveal reveal-delay-1">
-Enter your required internal visible glass dimensions below and configure a
-made-to-order frameless rooflight around the opening you already have.
+Measure the maximum internal and external dimensions of your existing upstand.
+We will recommend the correct internal rooflight size and the most suitable border option.
 </p>
+
+</div>
+
+</section>
+
+<section
+class="existing-opening-assistant"
+id="existingOpeningAssistant"
+aria-labelledby="existingOpeningHeading"
+>
+
+<div class="existing-opening-inner">
+
+<div
+class="existing-opening-heading"
+id="existingOpeningHeadingGroup"
+>
+
+<div class="section-label">
+Existing opening size assistant
+</div>
+
+<h2 id="existingOpeningHeading">
+Find The Correct Rooflight Size
+</h2>
+
+<p>
+Enter the maximum internal dimensions of your existing upstand first.
+We will deduct 10mm overall to provide the internal rooflight size you should order.
+</p>
+
+</div>
+
+<div
+class="existing-opening-card"
+id="existingOpeningCard"
+>
+
+<div
+class="opening-assistant-step"
+id="openingInternalStep"
+>
+
+<div class="opening-assistant-step-heading">
+
+<div
+class="opening-assistant-number"
+aria-hidden="true"
+>
+1
+</div>
+
+<div class="opening-assistant-step-copy">
+
+<h3>
+Measure Inside Your Upstand
+</h3>
+
+<p>
+Enter the maximum clear internal opening width and length.
+Measure between the inside faces of the upstand at the narrowest points.
+</p>
+
+</div>
+
+</div>
+
+<div class="opening-assistant-grid">
+
+<div
+class="opening-assistant-field"
+id="openingInternalWidthField"
+>
+
+<label for="openingInternalWidth">
+
+<span>
+Maximum Internal Width
+</span>
+
+<span class="opening-assistant-unit">
+Millimetres
+</span>
+
+</label>
+
+<div class="opening-assistant-input-wrap">
+
+<input
+id="openingInternalWidth"
+type="number"
+inputmode="numeric"
+min="310"
+max="2210"
+step="1"
+placeholder="For example: 1000"
+autocomplete="off"
+aria-describedby="openingInternalWidthMessage"
+/>
+
+<span
+class="opening-assistant-input-suffix"
+aria-hidden="true"
+>
+mm
+</span>
+
+</div>
+
+<div
+class="opening-assistant-message"
+id="openingInternalWidthMessage"
+aria-live="polite"
+>
+Enter the maximum clear width inside the upstand.
+</div>
+
+</div>
+
+<div
+class="opening-assistant-field"
+id="openingInternalLengthField"
+>
+
+<label for="openingInternalLength">
+
+<span>
+Maximum Internal Length
+</span>
+
+<span class="opening-assistant-unit">
+Millimetres
+</span>
+
+</label>
+
+<div class="opening-assistant-input-wrap">
+
+<input
+id="openingInternalLength"
+type="number"
+inputmode="numeric"
+min="410"
+max="5810"
+step="1"
+placeholder="For example: 1500"
+autocomplete="off"
+aria-describedby="openingInternalLengthMessage"
+/>
+
+<span
+class="opening-assistant-input-suffix"
+aria-hidden="true"
+>
+mm
+</span>
+
+</div>
+
+<div
+class="opening-assistant-message"
+id="openingInternalLengthMessage"
+aria-live="polite"
+>
+Enter the maximum clear length inside the upstand.
+</div>
+
+</div>
+
+</div>
+
+<div
+class="opening-unit-result"
+id="openingUnitResult"
+aria-live="polite"
+aria-hidden="true"
+>
+
+<div class="opening-unit-result-label">
+Recommended Internal Rooflight Size
+</div>
+
+<div
+class="opening-unit-result-value"
+id="openingUnitResultValue"
+>
+<span>—</span> × <span>—</span>mm
+</div>
+
+<div
+class="opening-unit-result-note"
+id="openingUnitResultNote"
+>
+This is the manufactured internal visible glass size to enter in the Build Your Rooflight section below.
+</div>
+
+</div>
+
+</div>
+
+<div
+class="opening-external-stage"
+id="openingExternalStage"
+aria-hidden="true"
+>
+
+<div
+class="opening-assistant-step"
+id="openingExternalStep"
+>
+
+<div class="opening-assistant-step-heading">
+
+<div
+class="opening-assistant-number"
+aria-hidden="true"
+>
+2
+</div>
+
+<div class="opening-assistant-step-copy">
+
+<h3>
+Measure Outside Your Upstand
+</h3>
+
+<p>
+Now enter the maximum external width and length of the upstand.
+These measurements allow us to calculate the upstand thickness and recommend a compatible border.
+</p>
+
+</div>
+
+</div>
+
+<div class="opening-assistant-grid">
+
+<div
+class="opening-assistant-field"
+id="openingExternalWidthField"
+>
+
+<label for="openingExternalWidth">
+
+<span>
+Maximum External Width
+</span>
+
+<span class="opening-assistant-unit">
+Millimetres
+</span>
+
+</label>
+
+<div class="opening-assistant-input-wrap">
+
+<input
+id="openingExternalWidth"
+type="number"
+inputmode="numeric"
+min="1"
+step="1"
+placeholder="For example: 1150"
+autocomplete="off"
+aria-describedby="openingExternalWidthMessage"
+/>
+
+<span
+class="opening-assistant-input-suffix"
+aria-hidden="true"
+>
+mm
+</span>
+
+</div>
+
+<div
+class="opening-assistant-message"
+id="openingExternalWidthMessage"
+aria-live="polite"
+>
+Measure across the outside faces of the upstand.
+</div>
+
+</div>
+
+<div
+class="opening-assistant-field"
+id="openingExternalLengthField"
+>
+
+<label for="openingExternalLength">
+
+<span>
+Maximum External Length
+</span>
+
+<span class="opening-assistant-unit">
+Millimetres
+</span>
+
+</label>
+
+<div class="opening-assistant-input-wrap">
+
+<input
+id="openingExternalLength"
+type="number"
+inputmode="numeric"
+min="1"
+step="1"
+placeholder="For example: 1650"
+autocomplete="off"
+aria-describedby="openingExternalLengthMessage"
+/>
+
+<span
+class="opening-assistant-input-suffix"
+aria-hidden="true"
+>
+mm
+</span>
+
+</div>
+
+<div
+class="opening-assistant-message"
+id="openingExternalLengthMessage"
+aria-live="polite"
+>
+Measure across the outside faces of the upstand.
+</div>
+
+</div>
+
+</div>
+
+<div
+class="opening-border-result"
+id="openingBorderResult"
+aria-live="polite"
+aria-hidden="true"
+>
+
+<div class="opening-border-result-top">
+
+<div class="opening-border-result-copy">
+
+<div class="opening-border-result-label">
+Recommended Border
+</div>
+
+<div
+class="opening-border-result-value"
+id="openingBorderResultValue"
+>
+—
+</div>
+
+</div>
+
+<div
+class="opening-border-result-icon"
+id="openingBorderResultIcon"
+aria-hidden="true"
+>
+✓
+</div>
+
+</div>
+
+<p
+class="opening-border-result-description"
+id="openingBorderResultDescription"
+>
+Enter valid external measurements to receive a border recommendation.
+</p>
+
+<div
+class="opening-border-result-details"
+id="openingBorderResultDetails"
+>
+
+<div class="opening-border-detail">
+
+<span class="opening-border-detail-label">
+Width-Side Upstand
+</span>
+
+<span
+class="opening-border-detail-value"
+id="openingWidthUpstandValue"
+>
+—
+</span>
+
+</div>
+
+<div class="opening-border-detail">
+
+<span class="opening-border-detail-label">
+Length-Side Upstand
+</span>
+
+<span
+class="opening-border-detail-value"
+id="openingLengthUpstandValue"
+>
+—
+</span>
+
+</div>
+
+</div>
+
+<div
+class="opening-border-guidance"
+id="openingBorderGuidance"
+>
+Use the recommended internal rooflight size and border option when completing the Build Your Rooflight section below.
+</div>
+
+</div>
+
+<div class="opening-assistant-actions">
+
+<button
+type="button"
+class="opening-assistant-button"
+id="useRecommendedSizeButton"
+>
+Use Recommended Size Below
+</button>
+
+<button
+type="button"
+class="opening-assistant-button secondary"
+id="resetOpeningAssistantButton"
+>
+Reset Measurements
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -4231,11 +5711,12 @@ Build Your Rooflight
 </h2>
 
 <p class="reveal reveal-delay-1">
-Enter your internal visible glass size below. Listed qualifying sizes include
-free mainland UK delivery within the online price. Larger units can be quoted manually.
+Enter the internal visible glass size you require, select your glazing,
+glass finish and border. Once valid dimensions and a border have been selected,
+the finished external unit size will be shown below.
 </p>
 
-<div class="calc-grid reveal reveal-delay-2">
+<div class="calc-grid calc-grid-with-border reveal reveal-delay-2">
 
 <div>
 
@@ -4249,6 +5730,7 @@ type="number"
 value="1000"
 min="300"
 max="1500"
+step="1"
 />
 
 </div>
@@ -4265,6 +5747,7 @@ type="number"
 value="2000"
 min="400"
 max="3000"
+step="1"
 />
 
 </div>
@@ -4276,8 +5759,15 @@ Glazing
 </label>
 
 <select id="glazing">
-<option value="double">Double Glazed</option>
-<option value="triple">Triple Glazed</option>
+
+<option value="double">
+Double Glazed
+</option>
+
+<option value="triple">
+Triple Glazed
+</option>
+
 </select>
 
 </div>
@@ -4289,12 +5779,104 @@ Glass Finish
 </label>
 
 <select id="finish">
-<option>Clear</option>
-<option>Satin Privacy</option>
-<option>Solar Grey</option>
-<option>Solar Blue</option>
+
+<option value="clear">
+Clear
+</option>
+
+<option value="satin">
+Satin Privacy
+</option>
+
+<option value="solar-grey">
+Solar Grey
+</option>
+
+<option value="solar-blue">
+Solar Blue
+</option>
+
 </select>
 
+</div>
+
+<div class="calc-border-field">
+
+<label for="border">
+Border
+</label>
+
+<select id="border">
+
+<option value="100">
+100mm Border
+</option>
+
+<option value="125">
+125mm Border
+</option>
+
+<option value="150">
+150mm Border
+</option>
+
+</select>
+
+<div class="calc-border-help">
+Select the border recommended by the existing opening assistant above.
+</div>
+
+<div
+class="calc-border-recommendation"
+id="calcBorderRecommendation"
+aria-live="polite"
+>
+Recommended border:
+<strong id="calcBorderRecommendationValue">—</strong>
+</div>
+
+</div>
+
+</div>
+
+<div
+class="calc-external-result"
+id="calcExternalResult"
+aria-live="polite"
+aria-hidden="true"
+>
+
+<div class="calc-external-result-heading">
+
+<div>
+
+<div class="calc-external-result-label">
+Finished External Unit Size
+</div>
+
+<div
+class="calc-external-result-value"
+id="calcExternalResultValue"
+>
+<span>—</span> × <span>—</span>mm
+</div>
+
+</div>
+
+<div
+class="calc-external-border-badge"
+id="calcExternalBorderBadge"
+>
+100mm Border
+</div>
+
+</div>
+
+<div
+class="calc-external-result-note"
+id="calcExternalResultNote"
+>
+The external unit size is calculated by adding the selected border to both sides of the internal rooflight dimensions.
 </div>
 
 </div>
@@ -4498,10 +6080,12 @@ Request Oversized Quote
 <div class="wordmark footer-wordmark">
 Factory
 <span>Toughened</span>
+
 <div class="wordmark-bottom">
 Rooflights
 <small class="wordmark-domain">.co.uk</small>
 </div>
+
 </div>
 
 <p>
@@ -5577,60 +7161,1112 @@ glazing === "triple"
 );
 
 /* ===============================
-TEMPORARY CALCULATOR
+EXISTING OPENING ASSISTANT
 ================================ */
 
-function calculatePrice() {
-const widthInput =
+const existingOpeningAssistant =
+document.getElementById(
+"existingOpeningAssistant"
+);
+
+const existingOpeningHeadingGroup =
+document.getElementById(
+"existingOpeningHeadingGroup"
+);
+
+const existingOpeningCard =
+document.getElementById(
+"existingOpeningCard"
+);
+
+const openingInternalWidth =
+document.getElementById(
+"openingInternalWidth"
+);
+
+const openingInternalLength =
+document.getElementById(
+"openingInternalLength"
+);
+
+const openingInternalWidthField =
+document.getElementById(
+"openingInternalWidthField"
+);
+
+const openingInternalLengthField =
+document.getElementById(
+"openingInternalLengthField"
+);
+
+const openingInternalWidthMessage =
+document.getElementById(
+"openingInternalWidthMessage"
+);
+
+const openingInternalLengthMessage =
+document.getElementById(
+"openingInternalLengthMessage"
+);
+
+const openingUnitResult =
+document.getElementById(
+"openingUnitResult"
+);
+
+const openingUnitResultValue =
+document.getElementById(
+"openingUnitResultValue"
+);
+
+const openingExternalStage =
+document.getElementById(
+"openingExternalStage"
+);
+
+const openingExternalWidth =
+document.getElementById(
+"openingExternalWidth"
+);
+
+const openingExternalLength =
+document.getElementById(
+"openingExternalLength"
+);
+
+const openingExternalWidthField =
+document.getElementById(
+"openingExternalWidthField"
+);
+
+const openingExternalLengthField =
+document.getElementById(
+"openingExternalLengthField"
+);
+
+const openingExternalWidthMessage =
+document.getElementById(
+"openingExternalWidthMessage"
+);
+
+const openingExternalLengthMessage =
+document.getElementById(
+"openingExternalLengthMessage"
+);
+
+const openingBorderResult =
+document.getElementById(
+"openingBorderResult"
+);
+
+const openingBorderResultValue =
+document.getElementById(
+"openingBorderResultValue"
+);
+
+const openingBorderResultIcon =
+document.getElementById(
+"openingBorderResultIcon"
+);
+
+const openingBorderResultDescription =
+document.getElementById(
+"openingBorderResultDescription"
+);
+
+const openingWidthUpstandValue =
+document.getElementById(
+"openingWidthUpstandValue"
+);
+
+const openingLengthUpstandValue =
+document.getElementById(
+"openingLengthUpstandValue"
+);
+
+const openingBorderGuidance =
+document.getElementById(
+"openingBorderGuidance"
+);
+
+const useRecommendedSizeButton =
+document.getElementById(
+"useRecommendedSizeButton"
+);
+
+const resetOpeningAssistantButton =
+document.getElementById(
+"resetOpeningAssistantButton"
+);
+
+let recommendedInternalWidth = null;
+let recommendedInternalLength = null;
+let recommendedBorder = null;
+
+/* ===============================
+ASSISTANT SCROLL REVEAL
+================================ */
+
+function revealExistingOpeningAssistant() {
+if (existingOpeningHeadingGroup) {
+existingOpeningHeadingGroup.classList.add(
+"is-visible"
+);
+}
+
+if (existingOpeningCard) {
+window.setTimeout(
+() => {
+existingOpeningCard.classList.add(
+"is-visible"
+);
+
+if (
+!reducedMotionQuery.matches
+) {
+existingOpeningCard.classList.add(
+"assistant-shimmer-play"
+);
+}
+},
+reducedMotionQuery.matches
+? 0
+: 260
+);
+}
+}
+
+if (
+existingOpeningAssistant
+) {
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+revealExistingOpeningAssistant();
+} else {
+const existingOpeningObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(
+entry => {
+if (!entry.isIntersecting) {
+return;
+}
+
+revealExistingOpeningAssistant();
+
+existingOpeningObserver.unobserve(
+entry.target
+);
+}
+);
+},
+{
+threshold:.14,
+rootMargin:"0px 0px -7% 0px"
+}
+);
+
+existingOpeningObserver.observe(
+existingOpeningAssistant
+);
+}
+}
+
+/* ===============================
+ASSISTANT HELPERS
+================================ */
+
+function readPositiveNumber(input) {
+if (!input) {
+return null;
+}
+
+const value =
+Number(input.value);
+
+if (
+!Number.isFinite(value) ||
+value <= 0
+) {
+return null;
+}
+
+return value;
+}
+
+function setFieldState(
+field,
+messageElement,
+state,
+message
+) {
+if (!field) {
+return;
+}
+
+field.classList.remove(
+"is-valid",
+"is-invalid"
+);
+
+if (state === "valid") {
+field.classList.add(
+"is-valid"
+);
+}
+
+if (state === "invalid") {
+field.classList.add(
+"is-invalid"
+);
+}
+
+if (messageElement) {
+messageElement.textContent =
+message || "";
+
+messageElement.classList.toggle(
+"is-error",
+state === "invalid"
+);
+}
+}
+
+function showExpandableElement(
+element
+) {
+if (!element) {
+return;
+}
+
+element.classList.add(
+"is-visible"
+);
+
+element.setAttribute(
+"aria-hidden",
+"false"
+);
+}
+
+function hideExpandableElement(
+element
+) {
+if (!element) {
+return;
+}
+
+element.classList.remove(
+"is-visible"
+);
+
+element.setAttribute(
+"aria-hidden",
+"true"
+);
+}
+
+function formatMillimetres(value) {
+if (!Number.isFinite(value)) {
+return "—";
+}
+
+const roundedValue =
+Math.round(value * 10) / 10;
+
+return Number.isInteger(
+roundedValue
+)
+? `${roundedValue}mm`
+: `${roundedValue.toFixed(1)}mm`;
+}
+
+function clearBorderRecommendation() {
+recommendedBorder = null;
+
+if (openingBorderResult) {
+openingBorderResult.classList.remove(
+"is-compatible",
+"is-incompatible"
+);
+}
+
+hideExpandableElement(
+openingBorderResult
+);
+
+updateCalculatorRecommendationDisplay();
+}
+
+/* ===============================
+INTERNAL OPENING CALCULATION
+================================ */
+
+function calculateRecommendedInternalSize() {
+const internalWidth =
+readPositiveNumber(
+openingInternalWidth
+);
+
+const internalLength =
+readPositiveNumber(
+openingInternalLength
+);
+
+let widthIsValid = false;
+let lengthIsValid = false;
+
+if (internalWidth === null) {
+setFieldState(
+openingInternalWidthField,
+openingInternalWidthMessage,
+"",
+"Enter the maximum clear width inside the upstand."
+);
+} else if (
+internalWidth < 310
+) {
+setFieldState(
+openingInternalWidthField,
+openingInternalWidthMessage,
+"invalid",
+"The opening width must be at least 310mm."
+);
+} else {
+widthIsValid = true;
+
+setFieldState(
+openingInternalWidthField,
+openingInternalWidthMessage,
+"valid",
+"Valid internal opening width."
+);
+}
+
+if (internalLength === null) {
+setFieldState(
+openingInternalLengthField,
+openingInternalLengthMessage,
+"",
+"Enter the maximum clear length inside the upstand."
+);
+} else if (
+internalLength < 410
+) {
+setFieldState(
+openingInternalLengthField,
+openingInternalLengthMessage,
+"invalid",
+"The opening length must be at least 410mm."
+);
+} else {
+lengthIsValid = true;
+
+setFieldState(
+openingInternalLengthField,
+openingInternalLengthMessage,
+"valid",
+"Valid internal opening length."
+);
+}
+
+if (
+!widthIsValid ||
+!lengthIsValid
+) {
+recommendedInternalWidth = null;
+recommendedInternalLength = null;
+
+hideExpandableElement(
+openingUnitResult
+);
+
+hideExpandableElement(
+openingExternalStage
+);
+
+clearBorderRecommendation();
+
+return;
+}
+
+recommendedInternalWidth =
+internalWidth - 10;
+
+recommendedInternalLength =
+internalLength - 10;
+
+if (openingUnitResultValue) {
+openingUnitResultValue.innerHTML =
+`<span>${Math.round(recommendedInternalWidth)}</span> × <span>${Math.round(recommendedInternalLength)}</span>mm`;
+}
+
+showExpandableElement(
+openingUnitResult
+);
+
+window.setTimeout(
+() => {
+showExpandableElement(
+openingExternalStage
+);
+},
+reducedMotionQuery.matches
+? 0
+: 280
+);
+
+calculateBorderRecommendation();
+}
+
+/* ===============================
+EXTERNAL OPENING + BORDER LOGIC
+================================ */
+
+function calculateBorderRecommendation() {
+if (
+recommendedInternalWidth === null ||
+recommendedInternalLength === null
+) {
+clearBorderRecommendation();
+return;
+}
+
+const internalOpeningWidth =
+readPositiveNumber(
+openingInternalWidth
+);
+
+const internalOpeningLength =
+readPositiveNumber(
+openingInternalLength
+);
+
+const externalWidth =
+readPositiveNumber(
+openingExternalWidth
+);
+
+const externalLength =
+readPositiveNumber(
+openingExternalLength
+);
+
+let externalWidthIsValid = false;
+let externalLengthIsValid = false;
+
+if (externalWidth === null) {
+setFieldState(
+openingExternalWidthField,
+openingExternalWidthMessage,
+"",
+"Measure across the outside faces of the upstand."
+);
+} else if (
+internalOpeningWidth !== null &&
+externalWidth <= internalOpeningWidth
+) {
+setFieldState(
+openingExternalWidthField,
+openingExternalWidthMessage,
+"invalid",
+"The external width must be greater than the internal width."
+);
+} else {
+externalWidthIsValid = true;
+
+setFieldState(
+openingExternalWidthField,
+openingExternalWidthMessage,
+"valid",
+"Valid external upstand width."
+);
+}
+
+if (externalLength === null) {
+setFieldState(
+openingExternalLengthField,
+openingExternalLengthMessage,
+"",
+"Measure across the outside faces of the upstand."
+);
+} else if (
+internalOpeningLength !== null &&
+externalLength <= internalOpeningLength
+) {
+setFieldState(
+openingExternalLengthField,
+openingExternalLengthMessage,
+"invalid",
+"The external length must be greater than the internal length."
+);
+} else {
+externalLengthIsValid = true;
+
+setFieldState(
+openingExternalLengthField,
+openingExternalLengthMessage,
+"valid",
+"Valid external upstand length."
+);
+}
+
+if (
+!externalWidthIsValid ||
+!externalLengthIsValid ||
+internalOpeningWidth === null ||
+internalOpeningLength === null
+) {
+clearBorderRecommendation();
+return;
+}
+
+const widthUpstand =
+(
+externalWidth -
+internalOpeningWidth
+) / 2;
+
+const lengthUpstand =
+(
+externalLength -
+internalOpeningLength
+) / 2;
+
+const governingUpstand =
+Math.max(
+widthUpstand,
+lengthUpstand
+);
+
+if (openingWidthUpstandValue) {
+openingWidthUpstandValue.textContent =
+formatMillimetres(
+widthUpstand
+);
+}
+
+if (openingLengthUpstandValue) {
+openingLengthUpstandValue.textContent =
+formatMillimetres(
+lengthUpstand
+);
+}
+
+let compatibilityState =
+"compatible";
+
+let borderValue = null;
+
+let recommendationText = "";
+
+let guidanceText = "";
+
+if (
+governingUpstand < 60
+) {
+compatibilityState =
+"incompatible";
+
+recommendationText =
+"Incompatible";
+
+guidanceText =
+"The upstand is too narrow for the available border options while maintaining the required minimum glass overhang.";
+} else if (
+governingUpstand <= 75
+) {
+borderValue = 100;
+
+recommendationText =
+"100mm Border";
+
+guidanceText =
+"Use a 100mm border when entering the recommended internal size in the Build Your Rooflight section below.";
+} else if (
+governingUpstand <= 100
+) {
+borderValue = 125;
+
+recommendationText =
+"125mm Border";
+
+guidanceText =
+"Use a 125mm border when entering the recommended internal size in the Build Your Rooflight section below.";
+} else if (
+governingUpstand <= 125
+) {
+borderValue = 150;
+
+recommendationText =
+"150mm Border";
+
+guidanceText =
+"Use a 150mm border when entering the recommended internal size in the Build Your Rooflight section below.";
+} else {
+compatibilityState =
+"incompatible";
+
+recommendationText =
+"Incompatible";
+
+guidanceText =
+"The upstand is wider than the maximum compatible width for the available 150mm border. Please contact us for a manual review.";
+}
+
+recommendedBorder =
+borderValue;
+
+if (openingBorderResult) {
+openingBorderResult.classList.remove(
+"is-compatible",
+"is-incompatible"
+);
+
+openingBorderResult.classList.add(
+compatibilityState ===
+"compatible"
+? "is-compatible"
+: "is-incompatible"
+);
+}
+
+if (openingBorderResultValue) {
+openingBorderResultValue.textContent =
+recommendationText;
+}
+
+if (openingBorderResultIcon) {
+openingBorderResultIcon.textContent =
+compatibilityState ===
+"compatible"
+? "✓"
+: "!";
+}
+
+if (openingBorderResultDescription) {
+if (
+compatibilityState ===
+"compatible"
+) {
+openingBorderResultDescription.textContent =
+`The widest calculated upstand side is ${formatMillimetres(governingUpstand)}. This border provides at least 20mm of rooflight overhang beyond the upstand.`;
+} else {
+openingBorderResultDescription.textContent =
+`The widest calculated upstand side is ${formatMillimetres(governingUpstand)} and does not fit the available 100mm, 125mm or 150mm border range.`;
+}
+}
+
+if (openingBorderGuidance) {
+openingBorderGuidance.textContent =
+guidanceText;
+}
+
+showExpandableElement(
+openingBorderResult
+);
+
+updateCalculatorRecommendationDisplay();
+}
+
+/* ===============================
+ASSISTANT EVENT LISTENERS
+================================ */
+
+[
+openingInternalWidth,
+openingInternalLength
+].forEach(
+input => {
+if (!input) {
+return;
+}
+
+input.addEventListener(
+"input",
+calculateRecommendedInternalSize
+);
+
+input.addEventListener(
+"change",
+calculateRecommendedInternalSize
+);
+}
+);
+
+[
+openingExternalWidth,
+openingExternalLength
+].forEach(
+input => {
+if (!input) {
+return;
+}
+
+input.addEventListener(
+"input",
+calculateBorderRecommendation
+);
+
+input.addEventListener(
+"change",
+calculateBorderRecommendation
+);
+}
+);
+
+/* ===============================
+CALCULATOR ELEMENTS
+================================ */
+
+const calculatorWidthInput =
 document.getElementById(
 "width"
 );
 
-const lengthInput =
+const calculatorLengthInput =
 document.getElementById(
 "length"
 );
 
-const glazingInput =
+const calculatorGlazingInput =
 document.getElementById(
 "glazing"
 );
 
-const finishInput =
+const calculatorFinishInput =
 document.getElementById(
 "finish"
 );
 
-const priceOutput =
+const calculatorBorderInput =
+document.getElementById(
+"border"
+);
+
+const calculatorPriceOutput =
 document.getElementById(
 "price"
 );
 
+const calcExternalResult =
+document.getElementById(
+"calcExternalResult"
+);
+
+const calcExternalResultValue =
+document.getElementById(
+"calcExternalResultValue"
+);
+
+const calcExternalBorderBadge =
+document.getElementById(
+"calcExternalBorderBadge"
+);
+
+const calcBorderRecommendation =
+document.getElementById(
+"calcBorderRecommendation"
+);
+
+const calcBorderRecommendationValue =
+document.getElementById(
+"calcBorderRecommendationValue"
+);
+
+/* ===============================
+COPY ASSISTANT RESULT TO CALCULATOR
+================================ */
+
+function scrollToCalculator() {
+if (!calculatorWrap) {
+return;
+}
+
+calculatorWrap.scrollIntoView(
+{
+behavior:
+reducedMotionQuery.matches
+? "auto"
+: "smooth",
+block:"start"
+}
+);
+}
+
+function useRecommendedSizeInCalculator() {
 if (
-!widthInput ||
-!lengthInput ||
-!glazingInput ||
-!finishInput ||
-!priceOutput
+recommendedInternalWidth === null ||
+recommendedInternalLength === null
+) {
+return;
+}
+
+if (calculatorWidthInput) {
+calculatorWidthInput.value =
+Math.round(
+recommendedInternalWidth
+);
+}
+
+if (calculatorLengthInput) {
+calculatorLengthInput.value =
+Math.round(
+recommendedInternalLength
+);
+}
+
+if (
+calculatorBorderInput &&
+recommendedBorder !== null
+) {
+calculatorBorderInput.value =
+String(
+recommendedBorder
+);
+}
+
+calculatePrice();
+updateExternalUnitSize();
+updateCalculatorRecommendationDisplay();
+scrollToCalculator();
+}
+
+if (useRecommendedSizeButton) {
+useRecommendedSizeButton.addEventListener(
+"click",
+useRecommendedSizeInCalculator
+);
+}
+
+/* ===============================
+RESET ASSISTANT
+================================ */
+
+function resetOpeningAssistant() {
+recommendedInternalWidth = null;
+recommendedInternalLength = null;
+recommendedBorder = null;
+
+[
+openingInternalWidth,
+openingInternalLength,
+openingExternalWidth,
+openingExternalLength
+].forEach(
+input => {
+if (input) {
+input.value = "";
+}
+}
+);
+
+setFieldState(
+openingInternalWidthField,
+openingInternalWidthMessage,
+"",
+"Enter the maximum clear width inside the upstand."
+);
+
+setFieldState(
+openingInternalLengthField,
+openingInternalLengthMessage,
+"",
+"Enter the maximum clear length inside the upstand."
+);
+
+setFieldState(
+openingExternalWidthField,
+openingExternalWidthMessage,
+"",
+"Measure across the outside faces of the upstand."
+);
+
+setFieldState(
+openingExternalLengthField,
+openingExternalLengthMessage,
+"",
+"Measure across the outside faces of the upstand."
+);
+
+hideExpandableElement(
+openingUnitResult
+);
+
+hideExpandableElement(
+openingExternalStage
+);
+
+hideExpandableElement(
+openingBorderResult
+);
+
+if (openingBorderResult) {
+openingBorderResult.classList.remove(
+"is-compatible",
+"is-incompatible"
+);
+}
+
+if (openingWidthUpstandValue) {
+openingWidthUpstandValue.textContent =
+"—";
+}
+
+if (openingLengthUpstandValue) {
+openingLengthUpstandValue.textContent =
+"—";
+}
+
+updateCalculatorRecommendationDisplay();
+
+if (openingInternalWidth) {
+openingInternalWidth.focus();
+}
+}
+
+if (resetOpeningAssistantButton) {
+resetOpeningAssistantButton.addEventListener(
+"click",
+resetOpeningAssistant
+);
+}
+
+/* ===============================
+CALCULATOR BORDER RECOMMENDATION
+================================ */
+
+function updateCalculatorRecommendationDisplay() {
+if (
+!calcBorderRecommendation ||
+!calcBorderRecommendationValue
+) {
+return;
+}
+
+if (recommendedBorder === null) {
+calcBorderRecommendation.classList.remove(
+"is-visible"
+);
+
+calcBorderRecommendationValue.textContent =
+"—";
+
+return;
+}
+
+calcBorderRecommendationValue.textContent =
+`${recommendedBorder}mm`;
+
+calcBorderRecommendation.classList.add(
+"is-visible"
+);
+}
+
+/* ===============================
+FINISHED EXTERNAL UNIT SIZE
+================================ */
+
+function updateExternalUnitSize() {
+if (
+!calculatorWidthInput ||
+!calculatorLengthInput ||
+!calculatorBorderInput ||
+!calcExternalResult ||
+!calcExternalResultValue ||
+!calcExternalBorderBadge
 ) {
 return;
 }
 
 const width =
 Number(
-widthInput.value
+calculatorWidthInput.value
 );
 
 const length =
 Number(
-lengthInput.value
+calculatorLengthInput.value
+);
+
+const border =
+Number(
+calculatorBorderInput.value
+);
+
+const dimensionsAreValid =
+Number.isFinite(width) &&
+width > 0 &&
+Number.isFinite(length) &&
+length > 0 &&
+Number.isFinite(border) &&
+border > 0;
+
+if (!dimensionsAreValid) {
+hideExpandableElement(
+calcExternalResult
+);
+
+return;
+}
+
+const externalWidth =
+width + (
+border * 2
+);
+
+const externalLength =
+length + (
+border * 2
+);
+
+calcExternalResultValue.innerHTML =
+`<span>${Math.round(externalWidth)}</span> × <span>${Math.round(externalLength)}</span>mm`;
+
+calcExternalBorderBadge.textContent =
+`${Math.round(border)}mm Border`;
+
+showExpandableElement(
+calcExternalResult
+);
+}
+
+/* ===============================
+TEMPORARY CALCULATOR
+================================ */
+
+function calculatePrice() {
+if (
+!calculatorWidthInput ||
+!calculatorLengthInput ||
+!calculatorGlazingInput ||
+!calculatorFinishInput ||
+!calculatorPriceOutput
+) {
+return;
+}
+
+const width =
+Number(
+calculatorWidthInput.value
+);
+
+const length =
+Number(
+calculatorLengthInput.value
 );
 
 const glazing =
-glazingInput.value;
+String(
+calculatorGlazingInput.value
+).toLowerCase();
 
 const finish =
-finishInput.value;
+String(
+calculatorFinishInput.value
+).toLowerCase();
 
 const safeWidth =
 Number.isFinite(width)
@@ -5656,7 +8292,7 @@ area *
 baseRate;
 
 if (
-finish !== "Clear"
+finish !== "clear"
 ) {
 price +=
 area * 45;
@@ -5678,10 +8314,16 @@ glazing === "triple"
 price = 300;
 }
 
-priceOutput.innerText =
+calculatorPriceOutput.innerText =
 "£" +
 Math.round(price);
+
+updateExternalUnitSize();
 }
+
+/* ===============================
+CALCULATOR INPUT EVENTS
+================================ */
 
 document
 .querySelectorAll(
@@ -5701,7 +8343,47 @@ calculatePrice
 }
 );
 
+/* ===============================
+SATIN PRIVACY GLAZING RULE
+================================ */
+
+function applyFinishGlazingRule() {
+if (
+!calculatorFinishInput ||
+!calculatorGlazingInput
+) {
+return;
+}
+
+const finish =
+String(
+calculatorFinishInput.value
+).toLowerCase();
+
+if (finish === "satin") {
+calculatorGlazingInput.value =
+"triple";
+}
+}
+
+if (calculatorFinishInput) {
+calculatorFinishInput.addEventListener(
+"change",
+() => {
+applyFinishGlazingRule();
 calculatePrice();
+}
+);
+}
+
+/* ===============================
+INITIALISE ASSISTANT + CALCULATOR
+================================ */
+
+updateCalculatorRecommendationDisplay();
+applyFinishGlazingRule();
+calculatePrice();
+updateExternalUnitSize();
 </script>
 
 </body>
