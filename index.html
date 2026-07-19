@@ -5891,19 +5891,6 @@ document.getElementById(
 "recommendedInternalSize"
 );
 
-const calculatorWidthInput =
-document.getElementById(
-"width"
-);
-
-const calculatorLengthInput =
-document.getElementById(
-"length"
-);
-
-let currentRecommendedWidth = null;
-let currentRecommendedLength = null;
-
 function getNumericInputValue(input) {
 if (!input) {
 return null;
@@ -5928,63 +5915,80 @@ return null;
 return numericValue;
 }
 
-function setElementHidden(
-element,
-shouldHide
-) {
-if (!element) {
+function hideOpeningError() {
+if (!openingInternalError) {
 return;
 }
 
-element.hidden =
-shouldHide;
+openingInternalError.textContent =
+"";
 
-element.setAttribute(
+openingInternalError.hidden =
+true;
+
+openingInternalError.setAttribute(
 "aria-hidden",
-String(shouldHide)
+"true"
 );
 }
 
-function updateCalculatorFromRecommendation() {
+function showOpeningError(message) {
+if (!openingInternalError) {
+return;
+}
+
+openingInternalError.textContent =
+message;
+
+openingInternalError.hidden =
+false;
+
+openingInternalError.removeAttribute(
+"aria-hidden"
+);
+}
+
+function hideOpeningRecommendation() {
+if (recommendedInternalSize) {
+recommendedInternalSize.textContent =
+"";
+}
+
 if (
-!calculatorWidthInput ||
-!calculatorLengthInput ||
-!Number.isFinite(
-currentRecommendedWidth
-) ||
-!Number.isFinite(
-currentRecommendedLength
-)
+!openingInternalRecommendation
 ) {
 return;
 }
 
-calculatorWidthInput.value =
-String(
-currentRecommendedWidth
-);
+openingInternalRecommendation.hidden =
+true;
 
-calculatorLengthInput.value =
-String(
-currentRecommendedLength
+openingInternalRecommendation.setAttribute(
+"aria-hidden",
+"true"
 );
-
-calculatorWidthInput.dispatchEvent(
-new Event(
-"input",
-{
-bubbles:true
 }
-)
-);
 
-calculatorLengthInput.dispatchEvent(
-new Event(
-"input",
-{
-bubbles:true
+function showOpeningRecommendation(
+recommendedWidth,
+recommendedLength
+) {
+if (recommendedInternalSize) {
+recommendedInternalSize.textContent =
+`${recommendedWidth}mm × ${recommendedLength}mm`;
 }
-)
+
+if (
+!openingInternalRecommendation
+) {
+return;
+}
+
+openingInternalRecommendation.hidden =
+false;
+
+openingInternalRecommendation.removeAttribute(
+"aria-hidden"
 );
 }
 
@@ -6006,23 +6010,15 @@ getNumericInputValue(
 openingInternalLength
 );
 
-currentRecommendedWidth = null;
-currentRecommendedLength = null;
+hideOpeningError();
+hideOpeningRecommendation();
 
-if (openingInternalError) {
-openingInternalError.textContent =
-"";
+if (
+internalWidth === null &&
+internalLength === null
+) {
+return false;
 }
-
-if (recommendedInternalSize) {
-recommendedInternalSize.textContent =
-"";
-}
-
-setElementHidden(
-openingInternalRecommendation,
-true
-);
 
 if (
 internalWidth === null ||
@@ -6035,10 +6031,9 @@ if (
 internalWidth < 310 ||
 internalWidth > 1510
 ) {
-if (openingInternalError) {
-openingInternalError.textContent =
-"Please enter an internal width between 310mm and 1510mm.";
-}
+showOpeningError(
+"Please enter an internal width between 310mm and 1510mm."
+);
 
 return false;
 }
@@ -6047,10 +6042,9 @@ if (
 internalLength < 310 ||
 internalLength > 3010
 ) {
-if (openingInternalError) {
-openingInternalError.textContent =
-"Please enter an internal length between 310mm and 3010mm.";
-}
+showOpeningError(
+"Please enter an internal length between 310mm and 3010mm."
+);
 
 return false;
 }
@@ -6071,31 +6065,17 @@ recommendedWidth > 1500 ||
 recommendedLength < 300 ||
 recommendedLength > 3000
 ) {
-if (openingInternalError) {
-openingInternalError.textContent =
-"These measurements fall outside the available online rooflight size range.";
-}
+showOpeningError(
+"These measurements are incompatible with the available online rooflight size range."
+);
 
 return false;
 }
 
-currentRecommendedWidth =
-recommendedWidth;
-
-currentRecommendedLength =
-recommendedLength;
-
-if (recommendedInternalSize) {
-recommendedInternalSize.textContent =
-`${recommendedWidth}mm × ${recommendedLength}mm`;
-}
-
-setElementHidden(
-openingInternalRecommendation,
-false
+showOpeningRecommendation(
+recommendedWidth,
+recommendedLength
 );
-
-updateCalculatorFromRecommendation();
 
 return true;
 }
@@ -6125,10 +6105,8 @@ openingInternalLength.addEventListener(
 validateInternalOpening
 );
 
-setElementHidden(
-openingInternalRecommendation,
-true
-);
+hideOpeningError();
+hideOpeningRecommendation();
 }
 
 /* ===============================
