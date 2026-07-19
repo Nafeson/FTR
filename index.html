@@ -1826,6 +1826,12 @@ margin:20px auto 0;
 font-size:18px;
 }
 
+/* Tighter transition after year-round comfort */
+
+.comfort-section + .section-transition {
+padding-top:46px;
+}
+
 /* Coordinated Choose Your Next Step reveal */
 
 .order-transition-heading-group {
@@ -1857,6 +1863,16 @@ text-align:center;
 .existing-opening-step {
 position:relative;
 width:100%;
+}
+
+.existing-opening-heading {
+margin:0 0 20px;
+color:var(--white);
+font-size:13px;
+font-weight:950;
+line-height:1.45;
+letter-spacing:1.25px;
+text-transform:uppercase;
 }
 
 .existing-opening-prompt {
@@ -1971,44 +1987,6 @@ transform:translateY(0);
 font-weight:950;
 }
 
-.existing-opening-external-step {
-max-height:0;
-margin:0;
-overflow:hidden;
-opacity:0;
-visibility:hidden;
-transform:translateY(16px);
-transition:
-max-height .9s cubic-bezier(.18,.72,.28,1),
-margin .9s cubic-bezier(.18,.72,.28,1),
-opacity .6s ease,
-visibility .6s ease,
-transform .9s cubic-bezier(.18,.72,.28,1);
-}
-
-.existing-opening-external-step.is-visible {
-max-height:420px;
-margin-top:38px;
-opacity:1;
-visibility:visible;
-transform:translateY(0);
-}
-
-.existing-opening-external-step::before {
-content:"";
-display:block;
-width:min(170px,42%);
-height:1px;
-margin:0 auto 34px;
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.25),
-transparent
-);
-}
-
 .existing-opening-error {
 display:block;
 max-height:0;
@@ -2016,9 +1994,9 @@ margin:0;
 overflow:hidden;
 opacity:0;
 visibility:hidden;
-color:#ffb7a9;
+color:var(--fast-red);
 font-size:12px;
-font-weight:800;
+font-weight:850;
 line-height:1.55;
 text-align:center;
 transform:translateY(8px);
@@ -2230,7 +2208,7 @@ YEAR-ROUND COMFORT
 .comfort-section {
 position:relative;
 overflow:hidden;
-padding:52px 0 76px;
+padding:52px 0 36px;
 background:
 radial-gradient(
 circle at 16% 22%,
@@ -2309,11 +2287,11 @@ visibility:visible;
 }
 
 .comfort-uv-wrap {
-min-height:132px;
+min-height:auto;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:26px 6% 0;
+padding:22px 6% 0;
 }
 
 .comfort-uv-note {
@@ -2365,33 +2343,6 @@ transparent,
 rgba(245,124,0,.80),
 transparent
 );
-}
-
-.calculator-wrap::after {
-content:"Configure • Price • Continue";
-position:absolute;
-top:0;
-left:50%;
-transform:
-translate(-50%,-50%)
-translateY(20px);
-color:rgba(255,255,255,.28);
-font-size:9px;
-font-weight:950;
-letter-spacing:2.2px;
-text-transform:uppercase;
-white-space:nowrap;
-opacity:0;
-transition:
-opacity .85s ease,
-transform .85s cubic-bezier(.18,.72,.28,1);
-}
-
-.calculator-wrap.configure-label-visible::after {
-opacity:1;
-transform:
-translate(-50%,-50%)
-translateY(0);
 }
 
 .calculator {
@@ -3128,6 +3079,10 @@ vertical-align:-.07em;
 padding:56px 6% 52px;
 }
 
+.comfort-section + .section-transition {
+padding-top:38px;
+}
+
 .order-transition h2,
 .section-transition h2 {
 font-size:42px;
@@ -3142,6 +3097,7 @@ font-size:16px;
 margin-top:32px;
 }
 
+.existing-opening-heading,
 .existing-opening-prompt {
 margin-bottom:17px;
 font-size:11px;
@@ -3170,14 +3126,6 @@ font-size:13px;
 
 .existing-opening-recommendation.is-visible {
 margin-top:17px;
-}
-
-.existing-opening-external-step.is-visible {
-margin-top:32px;
-}
-
-.existing-opening-external-step::before {
-margin-bottom:29px;
 }
 
 .buy-online-section {
@@ -3226,7 +3174,7 @@ align-self:flex-start;
 }
 
 .comfort-section {
-padding:28px 0 48px;
+padding:28px 0 24px;
 }
 
 .comfort-intro {
@@ -3255,8 +3203,8 @@ background:#050505;
 }
 
 .comfort-uv-wrap {
-min-height:126px;
-padding:24px 6% 2px;
+min-height:auto;
+padding:20px 6% 0;
 }
 
 .comfort-uv-note {
@@ -3268,12 +3216,6 @@ transform:none;
 
 .calculator-wrap {
 padding:98px 6% 68px;
-}
-
-.calculator-wrap::after {
-top:0;
-font-size:8px;
-letter-spacing:1.7px;
 }
 
 .calculator {
@@ -3386,7 +3328,6 @@ animation:none;
 .order-transition-heading-group,
 .calculator.calculator-reveal-target,
 .existing-opening-recommendation,
-.existing-opening-external-step,
 .existing-opening-error {
 opacity:1;
 clip-path:none;
@@ -3396,16 +3337,9 @@ transition:none;
 }
 
 .existing-opening-recommendation.is-visible,
-.existing-opening-external-step.is-visible,
 .existing-opening-error.is-visible {
 visibility:visible;
 max-height:none;
-}
-
-.calculator-wrap::after {
-opacity:1;
-transform:translate(-50%,-50%);
-transition:none;
 }
 
 .rooflight-slide,
@@ -4469,8 +4403,8 @@ Need A Rooflight For An Existing Opening?
 </h2>
 
 <p class="reveal reveal-delay-1">
-Enter your required internal visible glass dimensions below and configure a
-made-to-order frameless rooflight around the opening you already have.
+Configure and order a custom unit to suit your existing opening. Enter the maximum internal
+dimensions of your opening and we'll let you know what size to order for the perfect fit.
 </p>
 
 <div
@@ -4521,7 +4455,7 @@ id="openingInternalLength"
 name="openingInternalLength"
 type="number"
 inputmode="numeric"
-min="410"
+min="310"
 max="3010"
 step="1"
 placeholder="e.g. 1000"
@@ -4546,84 +4480,9 @@ id="openingInternalRecommendation"
 aria-live="polite"
 hidden
 >
-Recommended unit size –
+Recommended unit to suit –
 <span id="recommendedInternalSize"></span>
 (internal)
-</p>
-
-</div>
-
-<div
-class="existing-opening-step existing-opening-external-step"
-id="openingExternalStep"
-hidden
->
-
-<h3 class="existing-opening-heading">
-Enter your roof opening's external dimensions
-</h3>
-
-<div class="existing-opening-dimensions">
-
-<div class="existing-opening-field">
-
-<label for="openingExternalWidth">
-Max Width
-</label>
-
-<input
-id="openingExternalWidth"
-name="openingExternalWidth"
-type="number"
-inputmode="numeric"
-min="510"
-max="1810"
-step="1"
-placeholder="e.g. 1200"
-autocomplete="off"
-aria-describedby="openingExternalError"
-/>
-
-</div>
-
-<div class="existing-opening-field">
-
-<label for="openingExternalLength">
-Max Length
-</label>
-
-<input
-id="openingExternalLength"
-name="openingExternalLength"
-type="number"
-inputmode="numeric"
-min="610"
-max="3310"
-step="1"
-placeholder="e.g. 1200"
-autocomplete="off"
-aria-describedby="openingExternalError"
-/>
-
-</div>
-
-</div>
-
-<p
-class="existing-opening-error"
-id="openingExternalError"
-role="alert"
-aria-live="polite"
-></p>
-
-<p
-class="existing-opening-recommendation"
-id="openingBorderRecommendation"
-aria-live="polite"
-hidden
->
-Recommended border –
-<span id="recommendedBorderSize"></span>
 </p>
 
 </div>
@@ -6032,36 +5891,6 @@ document.getElementById(
 "recommendedInternalSize"
 );
 
-const openingExternalStep =
-document.getElementById(
-"openingExternalStep"
-);
-
-const openingExternalWidth =
-document.getElementById(
-"openingExternalWidth"
-);
-
-const openingExternalLength =
-document.getElementById(
-"openingExternalLength"
-);
-
-const openingExternalError =
-document.getElementById(
-"openingExternalError"
-);
-
-const openingBorderRecommendation =
-document.getElementById(
-"openingBorderRecommendation"
-);
-
-const recommendedBorderSize =
-document.getElementById(
-"recommendedBorderSize"
-);
-
 const calculatorWidthInput =
 document.getElementById(
 "width"
@@ -6074,7 +5903,6 @@ document.getElementById(
 
 let currentRecommendedWidth = null;
 let currentRecommendedLength = null;
-let currentRecommendedBorder = null;
 
 function getNumericInputValue(input) {
 if (!input) {
@@ -6114,57 +5942,6 @@ shouldHide;
 element.setAttribute(
 "aria-hidden",
 String(shouldHide)
-);
-
-element.classList.toggle(
-"is-visible",
-!shouldHide
-);
-
-if (shouldHide) {
-element.style.display =
-"none";
-} else {
-element.style.display =
-"block";
-}
-}
-
-function resetExternalRecommendation() {
-currentRecommendedBorder = null;
-
-if (openingExternalError) {
-openingExternalError.textContent =
-"";
-}
-
-if (recommendedBorderSize) {
-recommendedBorderSize.textContent =
-"";
-}
-
-setElementHidden(
-openingBorderRecommendation,
-true
-);
-}
-
-function hideExternalStep() {
-resetExternalRecommendation();
-
-if (openingExternalWidth) {
-openingExternalWidth.value =
-"";
-}
-
-if (openingExternalLength) {
-openingExternalLength.value =
-"";
-}
-
-setElementHidden(
-openingExternalStep,
-true
 );
 }
 
@@ -6251,7 +6028,6 @@ if (
 internalWidth === null ||
 internalLength === null
 ) {
-hideExternalStep();
 return false;
 }
 
@@ -6264,20 +6040,18 @@ openingInternalError.textContent =
 "Please enter an internal width between 310mm and 1510mm.";
 }
 
-hideExternalStep();
 return false;
 }
 
 if (
-internalLength < 410 ||
+internalLength < 310 ||
 internalLength > 3010
 ) {
 if (openingInternalError) {
 openingInternalError.textContent =
-"Please enter an internal length between 410mm and 3010mm.";
+"Please enter an internal length between 310mm and 3010mm.";
 }
 
-hideExternalStep();
 return false;
 }
 
@@ -6294,7 +6068,7 @@ internalLength - 10
 if (
 recommendedWidth < 300 ||
 recommendedWidth > 1500 ||
-recommendedLength < 400 ||
+recommendedLength < 300 ||
 recommendedLength > 3000
 ) {
 if (openingInternalError) {
@@ -6302,7 +6076,6 @@ openingInternalError.textContent =
 "These measurements fall outside the available online rooflight size range.";
 }
 
-hideExternalStep();
 return false;
 }
 
@@ -6322,158 +6095,7 @@ openingInternalRecommendation,
 false
 );
 
-setElementHidden(
-openingExternalStep,
-false
-);
-
 updateCalculatorFromRecommendation();
-validateExternalOpening();
-
-return true;
-}
-
-function chooseRecommendedBorder(
-requiredBorder
-) {
-if (requiredBorder <= 100) {
-return 100;
-}
-
-if (requiredBorder <= 125) {
-return 125;
-}
-
-if (requiredBorder <= 150) {
-return 150;
-}
-
-return null;
-}
-
-function validateExternalOpening() {
-if (
-!openingExternalWidth ||
-!openingExternalLength ||
-!Number.isFinite(
-currentRecommendedWidth
-) ||
-!Number.isFinite(
-currentRecommendedLength
-)
-) {
-resetExternalRecommendation();
-return false;
-}
-
-const externalWidth =
-getNumericInputValue(
-openingExternalWidth
-);
-
-const externalLength =
-getNumericInputValue(
-openingExternalLength
-);
-
-resetExternalRecommendation();
-
-if (
-externalWidth === null ||
-externalLength === null
-) {
-return false;
-}
-
-const internalOpeningWidth =
-getNumericInputValue(
-openingInternalWidth
-);
-
-const internalOpeningLength =
-getNumericInputValue(
-openingInternalLength
-);
-
-if (
-internalOpeningWidth === null ||
-internalOpeningLength === null
-) {
-return false;
-}
-
-if (
-externalWidth <=
-internalOpeningWidth
-) {
-if (openingExternalError) {
-openingExternalError.textContent =
-"The external width must be greater than the internal width.";
-}
-
-return false;
-}
-
-if (
-externalLength <=
-internalOpeningLength
-) {
-if (openingExternalError) {
-openingExternalError.textContent =
-"The external length must be greater than the internal length.";
-}
-
-return false;
-}
-
-const widthSideRequiredBorder =
-(
-externalWidth -
-currentRecommendedWidth
-) / 2 +
-25;
-
-const lengthSideRequiredBorder =
-(
-externalLength -
-currentRecommendedLength
-) / 2 +
-25;
-
-const requiredBorder =
-Math.max(
-widthSideRequiredBorder,
-lengthSideRequiredBorder
-);
-
-const borderRecommendation =
-chooseRecommendedBorder(
-requiredBorder
-);
-
-if (
-borderRecommendation === null
-) {
-if (openingExternalError) {
-openingExternalError.textContent =
-"The opening requires a border larger than 150mm. Please contact us for a bespoke quotation.";
-}
-
-return false;
-}
-
-currentRecommendedBorder =
-borderRecommendation;
-
-if (recommendedBorderSize) {
-recommendedBorderSize.textContent =
-`${borderRecommendation}mm border`;
-}
-
-setElementHidden(
-openingBorderRecommendation,
-false
-);
 
 return true;
 }
@@ -6503,43 +6125,8 @@ openingInternalLength.addEventListener(
 validateInternalOpening
 );
 
-if (
-openingExternalWidth &&
-openingExternalLength
-) {
-openingExternalWidth.addEventListener(
-"input",
-validateExternalOpening
-);
-
-openingExternalLength.addEventListener(
-"input",
-validateExternalOpening
-);
-
-openingExternalWidth.addEventListener(
-"change",
-validateExternalOpening
-);
-
-openingExternalLength.addEventListener(
-"change",
-validateExternalOpening
-);
-}
-
 setElementHidden(
 openingInternalRecommendation,
-true
-);
-
-setElementHidden(
-openingExternalStep,
-true
-);
-
-setElementHidden(
-openingBorderRecommendation,
 true
 );
 }
