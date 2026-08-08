@@ -1976,11 +1976,27 @@ transform .7s cubic-bezier(.18,.72,.28,1);
 }
 
 .existing-opening-recommendation.is-visible {
-max-height:90px;
+max-height:100px;
 margin:20px 0 0;
 opacity:1;
 visibility:visible;
 transform:translateY(0);
+}
+
+/* Recommendation label on first line */
+
+.existing-opening-recommendation-label {
+display:block;
+color:var(--fast-red);
+}
+
+/* Recommended unit size and "(internal)" on second line */
+
+.existing-opening-recommendation-size {
+display:block;
+margin-top:2px;
+color:var(--white);
+font-weight:950;
 }
 
 .existing-opening-recommendation strong {
@@ -2465,6 +2481,45 @@ border-top:1px solid rgba(255,255,255,.08);
 .engineered-visual-intro .buy-rooflight-slideshow {
 margin:0;
 box-shadow:none;
+}
+
+/* ===============================
+EXISTING OPENING CUSTOM ROOFLIGHT
+================================ */
+
+/*
+Continues the warm orange glow from the existing-opening section
+behind the transparent custom rooflight image.
+*/
+
+.existing-opening-visual-section {
+background:
+radial-gradient(
+ellipse at 50% 0%,
+rgba(245,124,0,.38) 0%,
+rgba(245,124,0,.24) 22%,
+rgba(245,124,0,.10) 48%,
+transparent 72%
+),
+linear-gradient(
+180deg,
+#211307 0%,
+#171008 40%,
+#0d0b09 72%,
+#050505 100%
+);
+border-top:0;
+}
+
+/*
+Remove the normal dark slideshow background specifically from
+the custom existing-opening image so the orange gradient is visible.
+*/
+
+.existing-opening-visual-section .buy-rooflight-slideshow,
+.existing-opening-visual-section .rooflight-slideshow-shell,
+.existing-opening-visual-section .rooflight-slide {
+background:transparent;
 }
 
 .engineered {
@@ -3126,6 +3181,10 @@ font-size:13px;
 
 .existing-opening-recommendation.is-visible {
 margin-top:17px;
+}
+
+.existing-opening-recommendation-size {
+margin-top:2px;
 }
 
 .buy-online-section {
@@ -4391,9 +4450,13 @@ id="openingInternalRecommendation"
 aria-live="polite"
 hidden
 >
-Recommended unit to suit –
-<span id="recommendedInternalSize"></span>
-(internal)
+<span class="existing-opening-recommendation-label">
+Recommended unit to suit:
+</span>
+
+<span class="existing-opening-recommendation-size">
+<span id="recommendedInternalSize"></span> (internal)
+</span>
 </p>
 
 </div>
@@ -4405,7 +4468,7 @@ Recommended unit to suit –
 </section>
 
 <section
-class="engineered-visual-intro"
+class="engineered-visual-intro existing-opening-visual-section"
 aria-label="Custom frameless rooflight image"
 >
 
