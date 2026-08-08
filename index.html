@@ -2101,9 +2101,7 @@ object-position:center center;
 background:transparent;
 }
 
-/* Separate custom rooflight image section.
-The orange becomes visible here rather than around the input fields,
-then fades back into black beneath the rooflight. */
+/* Compatibility with previous separate structure */
 
 .existing-opening-visual-section {
 position:relative;
@@ -3228,26 +3226,38 @@ font-size:16px;
 MOBILE EXISTING OPENING
 ================================ */
 
+/*
+Mobile target:
+- predominantly black around the opening inputs
+- orange begins softly beneath the inputs
+- strongest warm glow runs behind the recommendation
+and rooflight
+- glow remains controlled rather than solid orange
+*/
+
 .existing-opening-section {
 padding-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 100%,
-rgba(245,124,0,.20) 0%,
-rgba(203,81,0,.13) 21%,
-rgba(128,44,0,.065) 42%,
-rgba(56,20,0,.025) 58%,
-transparent 70%
+ellipse at 50% 76%,
+rgba(245,124,0,.62) 0%,
+rgba(229,100,0,.48) 20%,
+rgba(184,69,0,.31) 39%,
+rgba(118,39,0,.16) 56%,
+rgba(56,19,0,.06) 68%,
+transparent 78%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#070707 42%,
-#080807 57%,
-#0a0907 69%,
-#100a06 80%,
-#180c05 90%,
-#211004 100%
+#070707 28%,
+#090807 40%,
+#100a06 50%,
+#211005 61%,
+#3c1704 72%,
+#5a2102 82%,
+#6b2702 90%,
+#582001 100%
 );
 }
 
@@ -3255,17 +3265,17 @@ linear-gradient(
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.38) 0%,
-rgba(0,0,0,.13) 13%,
-transparent 31%,
-transparent 69%,
-rgba(0,0,0,.13) 87%,
-rgba(0,0,0,.38) 100%
+rgba(0,0,0,.44) 0%,
+rgba(0,0,0,.20) 12%,
+transparent 29%,
+transparent 71%,
+rgba(0,0,0,.20) 88%,
+rgba(0,0,0,.44) 100%
 );
 }
 
 .existing-opening-assistant {
-margin-top:32px;
+margin-top:30px;
 }
 
 .existing-opening-heading,
@@ -3293,11 +3303,11 @@ font-size:16px;
 
 .existing-opening-recommendation {
 display:block;
-min-height:46px;
+min-height:49px;
 max-height:none;
-margin:14px 0 0;
+margin:17px 0 0;
 font-size:13px;
-line-height:1.36;
+line-height:1.38;
 transform:none;
 }
 
@@ -3307,45 +3317,91 @@ display:block;
 
 .existing-opening-recommendation.is-visible {
 display:block;
-min-height:46px;
+min-height:49px;
 max-height:none;
-margin:14px 0 0;
+margin:17px 0 0;
 }
 
 .existing-opening-recommendation-size {
 margin-top:2px;
 }
 
+/*
+The image now belongs to the same mobile composition as
+the recommendation rather than behaving like a separate
+generic slideshow.
+*/
+
+.existing-opening-rooflight-visual {
+width:100vw;
+margin:
+3px
+0
+0
+calc(50% - 50vw);
+overflow:hidden;
+background:transparent;
+}
+
+.existing-opening-rooflight-visual .buy-rooflight-slideshow {
+margin:0;
+background:transparent;
+box-shadow:none;
+}
+
+.existing-opening-rooflight-visual .rooflight-slideshow-shell {
+width:100%;
+height:340px;
+background:transparent;
+overflow:hidden;
+}
+
+.existing-opening-rooflight-visual .rooflight-slide {
+background:transparent;
+}
+
+.existing-opening-rooflight-visual .rooflight-slide img {
+display:block;
+width:100%;
+height:100%;
+object-fit:contain;
+object-position:center 46%;
+background:transparent;
+transform:scale(1.07);
+transform-origin:center center;
+}
+
+/* Compatibility only if the old separate section is still present */
+
 .existing-opening-visual-section {
 background:
 radial-gradient(
-ellipse at 50% 39%,
-rgba(245,124,0,.34) 0%,
-rgba(221,91,0,.25) 21%,
-rgba(165,58,0,.15) 41%,
-rgba(91,31,0,.07) 58%,
-rgba(42,15,0,.025) 70%,
-transparent 81%
+ellipse at 50% 36%,
+rgba(245,124,0,.40) 0%,
+rgba(215,88,0,.27) 23%,
+rgba(150,51,0,.14) 44%,
+rgba(72,24,0,.055) 62%,
+transparent 78%
 ),
 linear-gradient(
 180deg,
-#211004 0%,
-#271204 13%,
-#2d1405 29%,
-#251105 47%,
-#170d06 64%,
-#0d0907 82%,
+#321504 0%,
+#281104 28%,
+#180c05 51%,
+#0c0907 76%,
 #050505 100%
 );
 }
 
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:250px;
+height:340px;
 }
 
 .existing-opening-visual-section .rooflight-slide img {
 object-fit:contain;
 object-position:center;
+transform:scale(1.07);
+transform-origin:center center;
 }
 
 .buy-online-section {
@@ -3514,18 +3570,34 @@ font-size:15px;
 }
 
 .existing-opening-recommendation {
-min-height:44px;
-margin-top:13px;
+min-height:47px;
+margin-top:16px;
 font-size:12px;
 }
 
 .existing-opening-recommendation.is-visible {
-min-height:44px;
-margin-top:13px;
+min-height:47px;
+margin-top:16px;
+}
+
+.existing-opening-rooflight-visual {
+margin-top:2px;
+}
+
+.existing-opening-rooflight-visual .rooflight-slideshow-shell {
+height:315px;
+}
+
+.existing-opening-rooflight-visual .rooflight-slide img {
+transform:scale(1.07);
 }
 
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:240px;
+height:315px;
+}
+
+.existing-opening-visual-section .rooflight-slide img {
+transform:scale(1.07);
 }
 }
 
