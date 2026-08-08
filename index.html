@@ -1853,22 +1853,25 @@ padding-bottom:0;
 border-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 100%,
-rgba(245,124,0,.22) 0%,
-rgba(209,85,0,.15) 20%,
-rgba(139,50,0,.08) 40%,
-rgba(67,23,0,.035) 58%,
-transparent 73%
+ellipse at 50% 73%,
+rgba(245,124,0,.50) 0%,
+rgba(226,93,0,.36) 20%,
+rgba(174,61,0,.22) 39%,
+rgba(99,32,0,.10) 57%,
+rgba(43,14,0,.035) 69%,
+transparent 80%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#070707 38%,
-#080807 55%,
-#0b0907 69%,
-#120b06 82%,
-#1d0e05 92%,
-#261104 100%
+#070707 27%,
+#090807 38%,
+#100a06 49%,
+#231005 61%,
+#411804 72%,
+#632202 82%,
+#722700 90%,
+#4b1900 100%
 );
 }
 
@@ -1886,12 +1889,14 @@ pointer-events:none;
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.38) 0%,
-rgba(0,0,0,.14) 14%,
-transparent 31%,
-transparent 69%,
-rgba(0,0,0,.14) 86%,
-rgba(0,0,0,.38) 100%
+rgba(0,0,0,.48) 0%,
+rgba(0,0,0,.24) 11%,
+rgba(0,0,0,.08) 23%,
+transparent 36%,
+transparent 64%,
+rgba(0,0,0,.08) 77%,
+rgba(0,0,0,.24) 89%,
+rgba(0,0,0,.48) 100%
 );
 }
 
@@ -1959,13 +1964,13 @@ text-transform:uppercase;
 
 .existing-opening-field input {
 width:100%;
-height:56px;
+height:64px;
 padding:13px 15px;
-border:1px solid rgba(255,255,255,.20);
+border:1px solid rgba(255,255,255,.28);
 background:#050505;
 color:var(--white);
 font-family:inherit;
-font-size:18px;
+font-size:20px;
 font-weight:850;
 line-height:1;
 text-align:center;
@@ -2000,23 +2005,28 @@ color:rgba(255,255,255,.30);
 font-weight:700;
 }
 
-/* Reserved space remains while hidden so the rooflight does not jump. */
+/* Reserved recommendation zone stays in document flow.
+This prevents the rooflight moving when the calculated text appears. */
 
 .existing-opening-recommendation {
-display:block;
+display:flex;
 width:100%;
-min-height:50px;
+min-height:118px;
 max-height:none;
-margin:16px 0 0;
+margin:0;
+padding:14px 0 4px;
 overflow:visible;
 opacity:0;
 visibility:hidden;
 color:var(--white);
-font-size:15px;
+font-size:16px;
 font-weight:950;
 line-height:1.38;
 letter-spacing:.2px;
 text-align:center;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 transform:none;
 transition:
 opacity .38s ease,
@@ -2024,14 +2034,14 @@ visibility .38s ease;
 }
 
 .existing-opening-recommendation[hidden] {
-display:block;
+display:flex;
 }
 
 .existing-opening-recommendation.is-visible {
-display:block;
-min-height:50px;
+display:flex;
+min-height:118px;
 max-height:none;
-margin:16px 0 0;
+margin:0;
 opacity:1;
 visibility:visible;
 transform:none;
@@ -2045,8 +2055,9 @@ font-weight:950;
 
 .existing-opening-recommendation-size {
 display:block;
-margin-top:2px;
+margin-top:4px;
 color:var(--white);
+font-size:1.08em;
 font-weight:950;
 }
 
@@ -2067,7 +2078,7 @@ position:relative;
 z-index:2;
 width:100vw;
 margin:
-0
+-4px
 0
 0
 calc(50% - 50vw);
@@ -2083,7 +2094,7 @@ box-shadow:none;
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
 width:100%;
-height:clamp(300px,43vw,560px);
+height:clamp(290px,40vw,500px);
 background:transparent;
 overflow:hidden;
 }
@@ -2109,22 +2120,19 @@ overflow:hidden;
 border-top:0;
 background:
 radial-gradient(
-ellipse at 50% 44%,
-rgba(245,124,0,.38) 0%,
-rgba(225,96,0,.29) 20%,
-rgba(176,67,0,.18) 39%,
-rgba(103,36,0,.09) 57%,
-rgba(49,17,0,.035) 70%,
-transparent 82%
+ellipse at 50% 36%,
+rgba(245,124,0,.42) 0%,
+rgba(216,87,0,.30) 22%,
+rgba(158,54,0,.16) 43%,
+rgba(79,25,0,.065) 61%,
+transparent 78%
 ),
 linear-gradient(
 180deg,
-#261104 0%,
-#2c1305 10%,
-#321505 22%,
-#2a1205 42%,
-#1b0e06 62%,
-#0d0907 82%,
+#351504 0%,
+#2a1104 29%,
+#190c05 52%,
+#0c0907 77%,
 #050505 100%
 );
 }
@@ -3226,39 +3234,32 @@ font-size:16px;
 MOBILE EXISTING OPENING
 ================================ */
 
-/*
-Mobile target:
-- dark around the dimension inputs
-- recommendation centred in the vertical space
-between the inputs and rooflight
-- controlled orange glow around the result/image
-- rooflight composition ends much sooner below
-the glass before the calculator begins
-*/
-
 .existing-opening-section {
 padding-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 76%,
-rgba(245,124,0,.62) 0%,
-rgba(229,100,0,.48) 20%,
-rgba(184,69,0,.31) 39%,
-rgba(118,39,0,.16) 56%,
-rgba(56,19,0,.06) 68%,
-transparent 78%
+ellipse at 50% 69%,
+rgba(245,124,0,.82) 0%,
+rgba(230,98,0,.63) 18%,
+rgba(192,70,0,.43) 35%,
+rgba(135,43,0,.24) 50%,
+rgba(77,24,0,.11) 62%,
+rgba(35,12,0,.04) 71%,
+transparent 79%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#070707 28%,
-#090807 40%,
-#100a06 50%,
-#211005 61%,
-#3c1704 72%,
-#5a2102 82%,
-#6b2702 90%,
-#582001 100%
+#070707 24%,
+#080807 32%,
+#0d0906 39%,
+#1c0e05 47%,
+#341404 56%,
+#541d02 66%,
+#752700 76%,
+#8a2d00 84%,
+#762400 92%,
+#4d1700 100%
 );
 }
 
@@ -3266,22 +3267,24 @@ linear-gradient(
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.44) 0%,
-rgba(0,0,0,.20) 12%,
-transparent 29%,
-transparent 71%,
-rgba(0,0,0,.20) 88%,
-rgba(0,0,0,.44) 100%
+rgba(0,0,0,.52) 0%,
+rgba(0,0,0,.30) 10%,
+rgba(0,0,0,.12) 22%,
+transparent 36%,
+transparent 64%,
+rgba(0,0,0,.12) 78%,
+rgba(0,0,0,.30) 90%,
+rgba(0,0,0,.52) 100%
 );
 }
 
 .existing-opening-assistant {
-margin-top:30px;
+margin-top:28px;
 }
 
 .existing-opening-heading,
 .existing-opening-prompt {
-margin-bottom:17px;
+margin-bottom:18px;
 font-size:11px;
 letter-spacing:.8px;
 }
@@ -3289,38 +3292,41 @@ letter-spacing:.8px;
 .existing-opening-dimensions {
 grid-template-columns:repeat(2,minmax(0,1fr));
 gap:10px;
+width:100%;
 }
 
 .existing-opening-field label {
+margin-bottom:10px;
 font-size:10px;
 letter-spacing:.45px;
 }
 
 .existing-opening-field input {
-height:52px;
+height:58px;
 padding:12px 8px;
-font-size:16px;
+font-size:18px;
+border-color:rgba(255,255,255,.28);
+background:#050505;
 }
 
 /*
-This is deliberately taller than the text itself.
-The recommendation is flex-centred inside the reserved
-space so it sits halfway between the input boxes and
-the top of the custom rooflight.
+The recommendation occupies one fixed-height band between
+the input boxes and rooflight. This centres it vertically
+and stops the rooflight jumping when the result appears.
 */
 
 .existing-opening-recommendation {
 display:flex;
+width:100%;
+min-height:128px;
+max-height:none;
+margin:0;
+padding:8px 0 4px;
+font-size:14px;
+line-height:1.38;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-width:100%;
-min-height:92px;
-max-height:none;
-margin:8px 0 0;
-padding:0;
-font-size:13px;
-line-height:1.38;
 transform:none;
 }
 
@@ -3330,28 +3336,33 @@ display:flex;
 
 .existing-opening-recommendation.is-visible {
 display:flex;
-min-height:92px;
+min-height:128px;
 max-height:none;
-margin:8px 0 0;
-padding:0;
+margin:0;
+}
+
+.existing-opening-recommendation-label {
+font-size:1em;
 }
 
 .existing-opening-recommendation-size {
-margin-top:2px;
+margin-top:4px;
+font-size:1.08em;
 }
 
 /*
-Keep the rooflight visually large, but shorten its
-reserved mobile canvas. This removes roughly 60% of
-the excessive empty area beneath the image.
+The custom rooflight is kept large and close to the
+recommendation. The shorter shell removes the excessive
+empty space beneath the image by roughly 60% compared
+with the previous 340px mobile shell.
 */
 
 .existing-opening-rooflight-visual {
 width:100vw;
 margin:
+-8px
 0
-0
-0
+-3px
 calc(50% - 50vw);
 overflow:hidden;
 background:transparent;
@@ -3365,7 +3376,7 @@ box-shadow:none;
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
 width:100%;
-height:290px;
+height:255px;
 background:transparent;
 overflow:hidden;
 }
@@ -3379,46 +3390,44 @@ display:block;
 width:100%;
 height:100%;
 object-fit:contain;
-object-position:center 48%;
+object-position:center center;
 background:transparent;
-transform:scale(1.14);
+transform:scale(1.075);
 transform-origin:center center;
 }
 
-/* Compatibility only if the old separate section is still present */
+/* Compatibility only if the old separate section remains */
 
 .existing-opening-visual-section {
 background:
 radial-gradient(
-ellipse at 50% 36%,
-rgba(245,124,0,.40) 0%,
-rgba(215,88,0,.27) 23%,
-rgba(150,51,0,.14) 44%,
-rgba(72,24,0,.055) 62%,
-transparent 78%
+ellipse at 50% 31%,
+rgba(245,124,0,.68) 0%,
+rgba(216,83,0,.46) 22%,
+rgba(157,51,0,.26) 42%,
+rgba(87,27,0,.11) 59%,
+rgba(39,13,0,.04) 70%,
+transparent 80%
 ),
 linear-gradient(
 180deg,
-#321504 0%,
-#281104 28%,
-#180c05 51%,
-#0c0907 76%,
+#4a1902 0%,
+#3c1503 25%,
+#281004 47%,
+#160c06 66%,
+#0c0907 82%,
 #050505 100%
 );
 }
 
-.existing-opening-visual-section .buy-rooflight-slideshow {
-margin:0;
-}
-
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:290px;
+height:255px;
 }
 
 .existing-opening-visual-section .rooflight-slide img {
 object-fit:contain;
-object-position:center 48%;
-transform:scale(1.14);
+object-position:center;
+transform:scale(1.075);
 transform-origin:center center;
 }
 
@@ -3583,43 +3592,44 @@ font-size:9px;
 }
 
 .existing-opening-field input {
-height:50px;
-font-size:15px;
+height:54px;
+font-size:17px;
 }
 
 .existing-opening-recommendation {
-display:flex;
-min-height:86px;
-margin-top:7px;
-font-size:12px;
+min-height:118px;
+margin:0;
+padding:7px 0 3px;
+font-size:13px;
 }
 
 .existing-opening-recommendation.is-visible {
-display:flex;
-min-height:86px;
-margin-top:7px;
+min-height:118px;
+margin:0;
 }
 
 .existing-opening-rooflight-visual {
-margin-top:0;
+margin:
+-7px
+0
+-3px
+calc(50% - 50vw);
 }
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
-height:270px;
+height:235px;
 }
 
 .existing-opening-rooflight-visual .rooflight-slide img {
-object-position:center 48%;
-transform:scale(1.14);
+transform:scale(1.07);
 }
 
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:270px;
+height:235px;
 }
 
 .existing-opening-visual-section .rooflight-slide img {
-object-position:center 48%;
-transform:scale(1.14);
+transform:scale(1.07);
 }
 }
 
