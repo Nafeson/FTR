@@ -2053,67 +2053,211 @@ display:none !important;
 }
 
 /* ===============================
-EXISTING OPENING ROOFLIGHT IMAGE
+EXISTING OPENING GRADIENT
 ================================ */
 
-.existing-opening-rooflight-visual {
+/*
+Targets only the transition section containing the
+existing-opening assistant.
+
+The background remains nearly black around the inputs,
+then develops into a soft burnt-red glow behind the
+recommendation and toward the rooflight.
+*/
+
+.section-transition:has(.existing-opening-assistant) {
+background:
+radial-gradient(
+ellipse 92% 66% at 50% 108%,
+rgba(178,48,7,.78) 0%,
+rgba(142,35,5,.61) 26%,
+rgba(91,21,4,.38) 48%,
+rgba(42,10,3,.18) 68%,
+transparent 86%
+),
+linear-gradient(
+180deg,
+#070707 0%,
+#090605 40%,
+#120705 68%,
+#290b04 100%
+);
+border-bottom:0;
+}
+
+/*
+Preserves the existing orange line at the top of the
+section without affecting any other transition section.
+*/
+
+.section-transition:has(.existing-opening-assistant)::before {
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(245,124,0,.78),
+transparent
+);
+}
+
+/* Keep the assistant content above the gradient. */
+
+.section-transition:has(.existing-opening-assistant)
+.section-transition-inner {
 position:relative;
 z-index:2;
-width:100vw;
-margin:
-34px
-0
-0
-calc(50% - 50vw);
-overflow:hidden;
-background:transparent;
 }
 
-.existing-opening-rooflight-visual .buy-rooflight-slideshow {
-margin:0;
-background:transparent;
-box-shadow:none;
-}
+/* ===============================
+EXISTING OPENING CUSTOM ROOFLIGHT
+================================ */
 
-.existing-opening-rooflight-visual .rooflight-slideshow-shell {
-background:transparent;
-height:clamp(250px,36vw,470px);
-}
+/*
+Continues the same softened burnt-red glow behind the
+transparent rooflight image.
 
-.existing-opening-rooflight-visual .rooflight-slide {
-background:transparent;
-}
-
-.existing-opening-rooflight-visual .rooflight-slide img {
-background:transparent;
-}
-
-/* Compatibility with the previous separate image class */
+The colour is strongest around the rooflight so its
+black border remains visible. It softens toward both
+outer edges and fades fully back into black at the
+bottom before the rest of the homepage continues.
+*/
 
 .existing-opening-visual-section {
 position:relative;
 overflow:hidden;
 background:
 radial-gradient(
-ellipse at 50% 0%,
-rgba(245,124,0,.30) 0%,
-rgba(245,124,0,.19) 30%,
-rgba(245,124,0,.08) 52%,
-transparent 76%
+ellipse 88% 76% at 50% 8%,
+rgba(190,53,7,.88) 0%,
+rgba(158,39,5,.72) 25%,
+rgba(111,26,4,.52) 45%,
+rgba(67,15,3,.31) 62%,
+rgba(28,7,2,.13) 76%,
+transparent 90%
 ),
 linear-gradient(
 180deg,
-#171008 0%,
-#0d0b09 56%,
+#290b04 0%,
+#3b0e04 16%,
+#290a03 43%,
+#150603 68%,
+#090504 84%,
 #050505 100%
 );
 border-top:0;
+border-bottom:0;
 }
+
+/*
+Adds the soft black falloff at the left and right edges
+without changing the image, its scale or its position.
+*/
+
+.existing-opening-visual-section::after {
+content:"";
+position:absolute;
+inset:0;
+z-index:4;
+pointer-events:none;
+background:
+linear-gradient(
+90deg,
+rgba(5,5,5,.52) 0%,
+rgba(5,5,5,.24) 9%,
+transparent 25%,
+transparent 75%,
+rgba(5,5,5,.24) 91%,
+rgba(5,5,5,.52) 100%
+);
+}
+
+/*
+Remove the normal dark slideshow backgrounds specifically
+from the custom existing-opening image so the gradient
+remains visible through its transparent areas.
+*/
 
 .existing-opening-visual-section .buy-rooflight-slideshow,
 .existing-opening-visual-section .rooflight-slideshow-shell,
 .existing-opening-visual-section .rooflight-slide {
 background:transparent;
+}
+
+/*
+Keep the rooflight visible beneath the subtle edge
+softening layer.
+*/
+
+.existing-opening-visual-section .buy-rooflight-slideshow {
+position:relative;
+z-index:2;
+}
+
+/* ===============================
+EXISTING OPENING — MOBILE
+================================ */
+
+@media(max-width:560px) {
+
+/*
+A slightly wider glow is used on mobile so the colour
+softens naturally near both narrow screen edges.
+*/
+
+.section-transition:has(.existing-opening-assistant) {
+background:
+radial-gradient(
+ellipse 116% 66% at 50% 108%,
+rgba(178,48,7,.78) 0%,
+rgba(137,33,5,.59) 28%,
+rgba(83,19,4,.35) 50%,
+rgba(37,9,3,.16) 69%,
+transparent 87%
+),
+linear-gradient(
+180deg,
+#070707 0%,
+#090605 40%,
+#120705 69%,
+#290b04 100%
+);
+}
+
+.existing-opening-visual-section {
+background:
+radial-gradient(
+ellipse 116% 75% at 50% 8%,
+rgba(190,53,7,.86) 0%,
+rgba(153,37,5,.69) 27%,
+rgba(103,24,4,.48) 47%,
+rgba(59,14,3,.28) 64%,
+rgba(25,6,2,.12) 78%,
+transparent 91%
+),
+linear-gradient(
+180deg,
+#290b04 0%,
+#390d04 17%,
+#270903 44%,
+#140603 69%,
+#090504 84%,
+#050505 100%
+);
+}
+
+.existing-opening-visual-section::after {
+background:
+linear-gradient(
+90deg,
+rgba(5,5,5,.39) 0%,
+rgba(5,5,5,.15) 8%,
+transparent 22%,
+transparent 78%,
+rgba(5,5,5,.15) 92%,
+rgba(5,5,5,.39) 100%
+);
+}
+
 }
 
 /* ===============================
