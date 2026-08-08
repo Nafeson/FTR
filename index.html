@@ -1850,29 +1850,30 @@ EXISTING OPENING SECTION
 position:relative;
 overflow:hidden;
 padding-bottom:0;
-border-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 73%,
-rgba(245,124,0,.50) 0%,
-rgba(226,93,0,.36) 20%,
-rgba(174,61,0,.22) 39%,
-rgba(99,32,0,.10) 57%,
-rgba(43,14,0,.035) 69%,
-transparent 80%
+ellipse at 50% 54%,
+rgba(245,124,0,.38) 0%,
+rgba(245,124,0,.25) 20%,
+rgba(245,124,0,.13) 39%,
+rgba(245,124,0,.055) 57%,
+transparent 76%
+),
+radial-gradient(
+ellipse at 50% 100%,
+rgba(255,154,47,.22) 0%,
+rgba(245,124,0,.10) 38%,
+transparent 68%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#070707 27%,
-#090807 38%,
-#100a06 49%,
-#231005 61%,
-#411804 72%,
-#632202 82%,
-#722700 90%,
-#4b1900 100%
+#100c08 32%,
+#1d1107 57%,
+#171008 75%,
+#080706 100%
 );
+border-bottom:0;
 }
 
 .existing-opening-section .section-transition-inner {
@@ -1884,20 +1885,16 @@ z-index:2;
 content:"";
 position:absolute;
 inset:0;
-z-index:0;
 pointer-events:none;
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.48) 0%,
-rgba(0,0,0,.24) 11%,
-rgba(0,0,0,.08) 23%,
-transparent 36%,
-transparent 64%,
-rgba(0,0,0,.08) 77%,
-rgba(0,0,0,.24) 89%,
-rgba(0,0,0,.48) 100%
+rgba(0,0,0,.35) 0%,
+transparent 18%,
+transparent 82%,
+rgba(0,0,0,.35) 100%
 );
+z-index:0;
 }
 
 /* ===============================
@@ -1964,13 +1961,13 @@ text-transform:uppercase;
 
 .existing-opening-field input {
 width:100%;
-height:64px;
+height:56px;
 padding:13px 15px;
-border:1px solid rgba(255,255,255,.28);
+border:1px solid rgba(255,255,255,.20);
 background:#050505;
 color:var(--white);
 font-family:inherit;
-font-size:20px;
+font-size:18px;
 font-weight:850;
 line-height:1;
 text-align:center;
@@ -2005,46 +2002,33 @@ color:rgba(255,255,255,.30);
 font-weight:700;
 }
 
-/* Reserved recommendation zone stays in document flow.
-This prevents the rooflight moving when the calculated text appears. */
-
 .existing-opening-recommendation {
-display:flex;
-width:100%;
-min-height:118px;
-max-height:none;
+display:block;
+max-height:0;
 margin:0;
-padding:14px 0 4px;
-overflow:visible;
+overflow:hidden;
 opacity:0;
 visibility:hidden;
-color:var(--white);
-font-size:16px;
+font-size:15px;
 font-weight:950;
-line-height:1.38;
+line-height:1.48;
 letter-spacing:.2px;
 text-align:center;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-transform:none;
+transform:translateY(10px);
 transition:
-opacity .38s ease,
-visibility .38s ease;
-}
-
-.existing-opening-recommendation[hidden] {
-display:flex;
+max-height .7s cubic-bezier(.18,.72,.28,1),
+margin .7s cubic-bezier(.18,.72,.28,1),
+opacity .5s ease,
+visibility .5s ease,
+transform .7s cubic-bezier(.18,.72,.28,1);
 }
 
 .existing-opening-recommendation.is-visible {
-display:flex;
-min-height:118px;
-max-height:none;
-margin:0;
+max-height:100px;
+margin:22px 0 0;
 opacity:1;
 visibility:visible;
-transform:none;
+transform:translateY(0);
 }
 
 .existing-opening-recommendation-label {
@@ -2055,9 +2039,8 @@ font-weight:950;
 
 .existing-opening-recommendation-size {
 display:block;
-margin-top:4px;
+margin-top:2px;
 color:var(--white);
-font-size:1.08em;
 font-weight:950;
 }
 
@@ -2078,7 +2061,7 @@ position:relative;
 z-index:2;
 width:100vw;
 margin:
--4px
+34px
 0
 0
 calc(50% - 50vw);
@@ -2093,10 +2076,8 @@ box-shadow:none;
 }
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
-width:100%;
-height:clamp(290px,40vw,500px);
 background:transparent;
-overflow:hidden;
+height:clamp(250px,36vw,470px);
 }
 
 .existing-opening-rooflight-visual .rooflight-slide {
@@ -2104,53 +2085,35 @@ background:transparent;
 }
 
 .existing-opening-rooflight-visual .rooflight-slide img {
-display:block;
-width:100%;
-height:100%;
-object-fit:contain;
-object-position:center center;
 background:transparent;
 }
 
-/* Compatibility with previous separate structure */
+/* Compatibility with the previous separate image class */
 
 .existing-opening-visual-section {
 position:relative;
 overflow:hidden;
-border-top:0;
 background:
 radial-gradient(
-ellipse at 50% 36%,
-rgba(245,124,0,.42) 0%,
-rgba(216,87,0,.30) 22%,
-rgba(158,54,0,.16) 43%,
-rgba(79,25,0,.065) 61%,
-transparent 78%
+ellipse at 50% 0%,
+rgba(245,124,0,.30) 0%,
+rgba(245,124,0,.19) 30%,
+rgba(245,124,0,.08) 52%,
+transparent 76%
 ),
 linear-gradient(
 180deg,
-#351504 0%,
-#2a1104 29%,
-#190c05 52%,
-#0c0907 77%,
+#171008 0%,
+#0d0b09 56%,
 #050505 100%
 );
+border-top:0;
 }
 
 .existing-opening-visual-section .buy-rooflight-slideshow,
 .existing-opening-visual-section .rooflight-slideshow-shell,
 .existing-opening-visual-section .rooflight-slide {
 background:transparent;
-}
-
-.existing-opening-visual-section .buy-rooflight-slideshow {
-margin:0;
-}
-
-.existing-opening-visual-section .rooflight-slide img {
-background:transparent;
-object-fit:contain;
-object-position:center;
 }
 
 /* ===============================
@@ -3230,61 +3193,40 @@ font-size:42px;
 font-size:16px;
 }
 
-/* ===============================
-MOBILE EXISTING OPENING
-================================ */
-
 .existing-opening-section {
 padding-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 69%,
-rgba(245,124,0,.82) 0%,
-rgba(230,98,0,.63) 18%,
-rgba(192,70,0,.43) 35%,
-rgba(135,43,0,.24) 50%,
-rgba(77,24,0,.11) 62%,
-rgba(35,12,0,.04) 71%,
-transparent 79%
+ellipse at 50% 58%,
+rgba(245,124,0,.42) 0%,
+rgba(245,124,0,.27) 22%,
+rgba(245,124,0,.13) 43%,
+rgba(245,124,0,.055) 60%,
+transparent 78%
+),
+radial-gradient(
+ellipse at 50% 100%,
+rgba(255,154,47,.20) 0%,
+rgba(245,124,0,.09) 38%,
+transparent 68%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#070707 24%,
-#080807 32%,
-#0d0906 39%,
-#1c0e05 47%,
-#341404 56%,
-#541d02 66%,
-#752700 76%,
-#8a2d00 84%,
-#762400 92%,
-#4d1700 100%
-);
-}
-
-.existing-opening-section::after {
-background:
-linear-gradient(
-90deg,
-rgba(0,0,0,.52) 0%,
-rgba(0,0,0,.30) 10%,
-rgba(0,0,0,.12) 22%,
-transparent 36%,
-transparent 64%,
-rgba(0,0,0,.12) 78%,
-rgba(0,0,0,.30) 90%,
-rgba(0,0,0,.52) 100%
+#110c08 32%,
+#211307 58%,
+#171008 76%,
+#080706 100%
 );
 }
 
 .existing-opening-assistant {
-margin-top:28px;
+margin-top:32px;
 }
 
 .existing-opening-heading,
 .existing-opening-prompt {
-margin-bottom:18px;
+margin-bottom:17px;
 font-size:11px;
 letter-spacing:.8px;
 }
@@ -3292,143 +3234,37 @@ letter-spacing:.8px;
 .existing-opening-dimensions {
 grid-template-columns:repeat(2,minmax(0,1fr));
 gap:10px;
-width:100%;
 }
 
 .existing-opening-field label {
-margin-bottom:10px;
 font-size:10px;
 letter-spacing:.45px;
 }
 
 .existing-opening-field input {
-height:58px;
+height:52px;
 padding:12px 8px;
-font-size:18px;
-border-color:rgba(255,255,255,.28);
-background:#050505;
+font-size:16px;
 }
-
-/*
-The recommendation occupies one fixed-height band between
-the input boxes and rooflight. This centres it vertically
-and stops the rooflight jumping when the result appears.
-*/
 
 .existing-opening-recommendation {
-display:flex;
-width:100%;
-min-height:128px;
-max-height:none;
-margin:0;
-padding:8px 0 4px;
-font-size:14px;
-line-height:1.38;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-transform:none;
-}
-
-.existing-opening-recommendation[hidden] {
-display:flex;
+font-size:13px;
 }
 
 .existing-opening-recommendation.is-visible {
-display:flex;
-min-height:128px;
-max-height:none;
-margin:0;
-}
-
-.existing-opening-recommendation-label {
-font-size:1em;
+margin-top:17px;
 }
 
 .existing-opening-recommendation-size {
-margin-top:4px;
-font-size:1.08em;
+margin-top:2px;
 }
-
-/*
-The custom rooflight is kept large and close to the
-recommendation. The shorter shell removes the excessive
-empty space beneath the image by roughly 60% compared
-with the previous 340px mobile shell.
-*/
 
 .existing-opening-rooflight-visual {
-width:100vw;
-margin:
--8px
-0
--3px
-calc(50% - 50vw);
-overflow:hidden;
-background:transparent;
-}
-
-.existing-opening-rooflight-visual .buy-rooflight-slideshow {
-margin:0;
-background:transparent;
-box-shadow:none;
+margin-top:24px;
 }
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
-width:100%;
-height:255px;
-background:transparent;
-overflow:hidden;
-}
-
-.existing-opening-rooflight-visual .rooflight-slide {
-background:transparent;
-}
-
-.existing-opening-rooflight-visual .rooflight-slide img {
-display:block;
-width:100%;
-height:100%;
-object-fit:contain;
-object-position:center center;
-background:transparent;
-transform:scale(1.075);
-transform-origin:center center;
-}
-
-/* Compatibility only if the old separate section remains */
-
-.existing-opening-visual-section {
-background:
-radial-gradient(
-ellipse at 50% 31%,
-rgba(245,124,0,.68) 0%,
-rgba(216,83,0,.46) 22%,
-rgba(157,51,0,.26) 42%,
-rgba(87,27,0,.11) 59%,
-rgba(39,13,0,.04) 70%,
-transparent 80%
-),
-linear-gradient(
-180deg,
-#4a1902 0%,
-#3c1503 25%,
-#281004 47%,
-#160c06 66%,
-#0c0907 82%,
-#050505 100%
-);
-}
-
-.existing-opening-visual-section .rooflight-slideshow-shell {
-height:255px;
-}
-
-.existing-opening-visual-section .rooflight-slide img {
-object-fit:contain;
-object-position:center;
-transform:scale(1.075);
-transform-origin:center center;
+height:250px;
 }
 
 .buy-online-section {
@@ -3592,44 +3428,16 @@ font-size:9px;
 }
 
 .existing-opening-field input {
-height:54px;
-font-size:17px;
+height:50px;
+font-size:15px;
 }
 
 .existing-opening-recommendation {
-min-height:118px;
-margin:0;
-padding:7px 0 3px;
-font-size:13px;
-}
-
-.existing-opening-recommendation.is-visible {
-min-height:118px;
-margin:0;
+font-size:12px;
 }
 
 .existing-opening-rooflight-visual {
-margin:
--7px
-0
--3px
-calc(50% - 50vw);
-}
-
-.existing-opening-rooflight-visual .rooflight-slideshow-shell {
-height:235px;
-}
-
-.existing-opening-rooflight-visual .rooflight-slide img {
-transform:scale(1.07);
-}
-
-.existing-opening-visual-section .rooflight-slideshow-shell {
-height:235px;
-}
-
-.existing-opening-visual-section .rooflight-slide img {
-transform:scale(1.07);
+margin-top:20px;
 }
 }
 
@@ -3661,7 +3469,8 @@ animation:none;
 .trust-item,
 .engineered-card,
 .order-transition-heading-group,
-.calculator.calculator-reveal-target {
+.calculator.calculator-reveal-target,
+.existing-opening-recommendation {
 opacity:1;
 clip-path:none;
 filter:none;
@@ -3669,14 +3478,8 @@ transform:none;
 transition:none;
 }
 
-.existing-opening-recommendation {
-transform:none;
-transition:none;
-}
-
 .existing-opening-recommendation.is-visible {
 visibility:visible;
-opacity:1;
 max-height:none;
 }
 
@@ -4542,6 +4345,64 @@ Oversized Rooflights
 
 </section>
 
+<section
+class="comfort-section"
+id="performance"
+>
+
+<div class="comfort-intro">
+
+<div class="section-label reveal">
+Built for changing seasons
+</div>
+
+<h2 class="reveal">
+Designed For Year-Round Comfort
+</h2>
+
+<p class="reveal reveal-delay-1">
+The glazing specification is designed to help manage unwanted heat during warmer weather
+while retaining more warmth inside during colder periods, without losing the daylight and
+open-sky appearance that make frameless rooflights so effective.
+</p>
+
+</div>
+
+<div
+class="comfort-visual reveal reveal-scale"
+id="comfortSlideshow"
+aria-label="Summer and winter rooflight performance"
+>
+
+<div class="comfort-frame">
+
+<img
+src="images/low-e-summer-performance.png"
+class="comfort-image active"
+alt="Rooflight glazing helping manage heat during summer"
+/>
+
+<img
+src="images/low-e-winter-performance.png"
+class="comfort-image"
+alt="Rooflight glazing helping retain warmth during winter"
+/>
+
+</div>
+
+</div>
+
+<div class="comfort-uv-wrap">
+
+<p class="comfort-uv-note">
+The coated glazing also helps reduce ultraviolet exposure that can contribute to fading
+across flooring, furniture, fabrics and other interior finishes.
+</p>
+
+</div>
+
+</section>
+
 <section class="opening-section">
 
 <div class="opening-copy">
@@ -4582,7 +4443,7 @@ team focuses specifically on producing frameless flat roof skylights.
 
 </section>
 
-<section class="section-transition existing-opening-section">
+<section class="section-transition">
 
 <div class="section-transition-inner">
 
@@ -4631,6 +4492,7 @@ max="1510"
 step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
+aria-describedby="openingInternalError"
 />
 
 </div>
@@ -4651,6 +4513,7 @@ max="3010"
 step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
+aria-describedby="openingInternalError"
 />
 
 </div>
@@ -4658,10 +4521,16 @@ autocomplete="off"
 </div>
 
 <p
+class="existing-opening-error"
+id="openingInternalError"
+role="alert"
+aria-live="polite"
+></p>
+
+<p
 class="existing-opening-recommendation"
 id="openingInternalRecommendation"
 aria-live="polite"
-aria-hidden="true"
 hidden
 >
 <span class="existing-opening-recommendation-label">
@@ -4677,8 +4546,12 @@ Recommended unit to suit:
 
 </div>
 
-<div
-class="existing-opening-rooflight-visual"
+</div>
+
+</section>
+
+<section
+class="engineered-visual-intro existing-opening-visual-section"
 aria-label="Custom frameless rooflight image"
 >
 
@@ -4694,10 +4567,6 @@ class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 src="images/custom-rooflight-1.png"
 alt="Custom made frameless rooflight"
 />
-
-</div>
-
-</div>
 
 </div>
 
@@ -4735,15 +4604,15 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 <div>
 
 <label for="width">
-Internal Width
+Width / Short Side
 </label>
 
 <input
 id="width"
 type="number"
 value="1000"
-min="290"
-max="1010"
+min="300"
+max="1500"
 />
 
 </div>
@@ -4751,15 +4620,15 @@ max="1010"
 <div>
 
 <label for="length">
-Internal Length
+Length / Long Side
 </label>
 
 <input
 id="length"
 type="number"
 value="2000"
-min="290"
-max="2510"
+min="400"
+max="3000"
 />
 
 </div>
@@ -4785,9 +4654,9 @@ Glass Finish
 
 <select id="finish">
 <option>Clear</option>
-<option>Blue Tinted</option>
-<option>Grey Tinted</option>
-<option>Satin Tinted</option>
+<option>Satin Privacy</option>
+<option>Solar Grey</option>
+<option>Solar Blue</option>
 </select>
 
 </div>
@@ -4819,7 +4688,7 @@ Includes VAT. Free mainland UK delivery applies on listed sizes.
 href="#"
 class="button"
 >
-Add to Order
+Order Online Soon
 </a>
 
 </div>
@@ -4924,7 +4793,7 @@ Glass Finishes
 </h3>
 
 <p>
-Clear, Blue Tinted, Grey Tinted and Satin Tinted options are available while
+Clear, Satin Privacy, Solar Grey and Solar Blue options are available while
 retaining the clean frameless appearance.
 </p>
 
@@ -5075,64 +4944,6 @@ class="button"
 >
 Request Oversized Quote
 </a>
-
-</div>
-
-</section>
-
-<section
-class="comfort-section"
-id="performance"
->
-
-<div class="comfort-intro">
-
-<div class="section-label reveal">
-Built for changing seasons
-</div>
-
-<h2 class="reveal">
-Designed For Year-Round Comfort
-</h2>
-
-<p class="reveal reveal-delay-1">
-The glazing specification is designed to help manage unwanted heat during warmer weather
-while retaining more warmth inside during colder periods, without losing the daylight and
-open-sky appearance that make frameless rooflights so effective.
-</p>
-
-</div>
-
-<div
-class="comfort-visual reveal reveal-scale"
-id="comfortSlideshow"
-aria-label="Summer and winter rooflight performance"
->
-
-<div class="comfort-frame">
-
-<img
-src="images/low-e-summer-performance.png"
-class="comfort-image active"
-alt="Rooflight glazing helping manage heat during summer"
-/>
-
-<img
-src="images/low-e-winter-performance.png"
-class="comfort-image"
-alt="Rooflight glazing helping retain warmth during winter"
-/>
-
-</div>
-
-</div>
-
-<div class="comfort-uv-wrap">
-
-<p class="comfort-uv-note">
-The coated glazing also helps reduce ultraviolet exposure that can contribute to fading
-across flooring, furniture, fabrics and other interior finishes.
-</p>
 
 </div>
 
@@ -5307,6 +5118,7 @@ document.getElementById(
 );
 
 let basketAnimationTimer = null;
+let basketTotal = 0;
 
 function animateBasketTotal() {
 if (!basketTotalText) {
@@ -5352,6 +5164,9 @@ Number.isFinite(Number(total))
 ? Number(total)
 : 0;
 
+basketTotal =
+safeTotal;
+
 const formattedTotal =
 new Intl.NumberFormat(
 "en-GB",
@@ -5377,7 +5192,9 @@ animateBasketTotal();
 
 window.setTimeout(
 () => {
-updateBasketTotal(0);
+updateBasketTotal(
+basketTotal
+);
 },
 2000
 );
@@ -6152,11 +5969,6 @@ document.getElementById(
 "openingInternalLength"
 );
 
-const openingInternalError =
-document.getElementById(
-"openingInternalError"
-);
-
 const openingInternalRecommendation =
 document.getElementById(
 "openingInternalRecommendation"
@@ -6189,48 +6001,6 @@ return null;
 }
 
 return numericValue;
-}
-
-function hideOpeningError() {
-if (!openingInternalError) {
-return;
-}
-
-openingInternalError.textContent =
-"";
-
-openingInternalError.hidden =
-true;
-
-openingInternalError.classList.remove(
-"is-visible"
-);
-
-openingInternalError.setAttribute(
-"aria-hidden",
-"true"
-);
-}
-
-function showOpeningError(message) {
-if (!openingInternalError) {
-return;
-}
-
-openingInternalError.textContent =
-message;
-
-openingInternalError.hidden =
-false;
-
-openingInternalError.classList.add(
-"is-visible"
-);
-
-openingInternalError.setAttribute(
-"aria-hidden",
-"false"
-);
 }
 
 function hideOpeningRecommendation() {
@@ -6304,15 +6074,7 @@ getNumericInputValue(
 openingInternalLength
 );
 
-hideOpeningError();
 hideOpeningRecommendation();
-
-if (
-internalWidth === null &&
-internalLength === null
-) {
-return false;
-}
 
 if (
 internalWidth === null ||
@@ -6325,10 +6087,6 @@ if (
 internalWidth < 310 ||
 internalWidth > 1510
 ) {
-showOpeningError(
-"Please enter a maximum opening width between 310mm and 1510mm."
-);
-
 return false;
 }
 
@@ -6336,10 +6094,6 @@ if (
 internalLength < 310 ||
 internalLength > 3010
 ) {
-showOpeningError(
-"Please enter a maximum opening length between 310mm and 3010mm."
-);
-
 return false;
 }
 
@@ -6359,10 +6113,6 @@ recommendedWidth > 1500 ||
 recommendedLength < 300 ||
 recommendedLength > 3000
 ) {
-showOpeningError(
-"These measurements are incompatible with the available online rooflight size range."
-);
-
 return false;
 }
 
@@ -6399,78 +6149,134 @@ openingInternalLength.addEventListener(
 validateInternalOpening
 );
 
-hideOpeningError();
 hideOpeningRecommendation();
 }
 
 /* ===============================
-TEMPORARY CALCULATOR
+HOMEPAGE ROOFLIGHT CALCULATOR
 ================================ */
 
-function calculatePrice() {
-const widthInput =
+const CALCULATOR_MIN_WIDTH = 290;
+const CALCULATOR_MAX_WIDTH = 1010;
+const CALCULATOR_MIN_LENGTH = 290;
+const CALCULATOR_MAX_LENGTH = 2510;
+
+const calculatorWidthInput =
 document.getElementById(
 "width"
 );
 
-const lengthInput =
+const calculatorLengthInput =
 document.getElementById(
 "length"
 );
 
-const glazingInput =
+const calculatorGlazingInput =
 document.getElementById(
 "glazing"
 );
 
-const finishInput =
+const calculatorFinishInput =
 document.getElementById(
 "finish"
 );
 
-const priceOutput =
+const calculatorPriceOutput =
 document.getElementById(
 "price"
 );
 
-if (
-!widthInput ||
-!lengthInput ||
-!glazingInput ||
-!finishInput ||
-!priceOutput
+const calculatorAddButton =
+document.querySelector(
+"#calculator .price-box .button"
+);
+
+let currentCalculatorPrice = null;
+
+function applyCalculatorInputLimits() {
+if (calculatorWidthInput) {
+calculatorWidthInput.min =
+String(
+CALCULATOR_MIN_WIDTH
+);
+
+calculatorWidthInput.max =
+String(
+CALCULATOR_MAX_WIDTH
+);
+}
+
+if (calculatorLengthInput) {
+calculatorLengthInput.min =
+String(
+CALCULATOR_MIN_LENGTH
+);
+
+calculatorLengthInput.max =
+String(
+CALCULATOR_MAX_LENGTH
+);
+}
+}
+
+function calculatorValuesAreValid(
+width,
+length
 ) {
-return;
+return (
+Number.isFinite(width) &&
+Number.isFinite(length) &&
+width >= CALCULATOR_MIN_WIDTH &&
+width <= CALCULATOR_MAX_WIDTH &&
+length >= CALCULATOR_MIN_LENGTH &&
+length <= CALCULATOR_MAX_LENGTH
+);
+}
+
+function calculatePrice() {
+if (
+!calculatorWidthInput ||
+!calculatorLengthInput ||
+!calculatorGlazingInput ||
+!calculatorFinishInput ||
+!calculatorPriceOutput
+) {
+currentCalculatorPrice = null;
+return null;
 }
 
 const width =
 Number(
-widthInput.value
+calculatorWidthInput.value
 );
 
 const length =
 Number(
-lengthInput.value
+calculatorLengthInput.value
 );
 
+if (
+!calculatorValuesAreValid(
+width,
+length
+)
+) {
+currentCalculatorPrice = null;
+
+calculatorPriceOutput.innerText =
+"—";
+
+return null;
+}
+
 const glazing =
-glazingInput.value;
+calculatorGlazingInput.value;
 
 const finish =
-finishInput.value;
-
-const safeWidth =
-Number.isFinite(width)
-? width
-: 0;
-
-const safeLength =
-Number.isFinite(length)
-? length
-: 0;
+calculatorFinishInput.value;
 
 const area =
-(safeWidth * safeLength) /
+(width * length) /
 1000000;
 
 const baseRate =
@@ -6487,8 +6293,40 @@ String(finish)
 .trim()
 .toLowerCase();
 
+const isClearFinish =
+normalizedFinish ===
+"clear";
+
+const isBlueTinted =
+normalizedFinish ===
+"blue tinted" ||
+normalizedFinish ===
+"solar blue";
+
+const isGreyTinted =
+normalizedFinish ===
+"grey tinted" ||
+normalizedFinish ===
+"solar grey";
+
+const isSatinTinted =
+normalizedFinish ===
+"satin tinted" ||
+normalizedFinish ===
+"satin privacy";
+
 if (
-normalizedFinish !== "clear"
+!isClearFinish &&
+(
+isBlueTinted ||
+isGreyTinted ||
+isSatinTinted
+)
+) {
+price +=
+area * 45;
+} else if (
+!isClearFinish
 ) {
 price +=
 area * 45;
@@ -6510,10 +6348,19 @@ glazing === "triple"
 price = 300;
 }
 
-priceOutput.innerText =
+currentCalculatorPrice =
+Math.round(
+price
+);
+
+calculatorPriceOutput.innerText =
 "£" +
-Math.round(price);
+currentCalculatorPrice;
+
+return currentCalculatorPrice;
 }
+
+applyCalculatorInputLimits();
 
 document
 .querySelectorAll(
@@ -6532,6 +6379,29 @@ calculatePrice
 );
 }
 );
+
+if (calculatorAddButton) {
+calculatorAddButton.addEventListener(
+"click",
+event => {
+event.preventDefault();
+
+const calculatedPrice =
+calculatePrice();
+
+if (
+calculatedPrice === null
+) {
+return;
+}
+
+updateBasketTotal(
+basketTotal +
+calculatedPrice
+);
+}
+);
+}
 
 calculatePrice();
 </script>
