@@ -809,8 +809,6 @@ transition-delay:.24s;
 transition-delay:.32s;
 }
 
-/* Elements deliberately kept static */
-
 .comfort-uv-note.reveal,
 .direct-copy > p.reveal {
 opacity:1;
@@ -1826,13 +1824,9 @@ margin:20px auto 0;
 font-size:18px;
 }
 
-/* Tighter transition after year-round comfort */
-
 .comfort-section + .section-transition {
 padding-top:46px;
 }
-
-/* Coordinated Choose Your Next Step reveal */
 
 .order-transition-heading-group {
 opacity:0;
@@ -1846,6 +1840,61 @@ will-change:opacity,transform;
 .order-transition-heading-group.is-visible {
 opacity:1;
 transform:translateY(0);
+}
+
+/* ===============================
+EXISTING OPENING SECTION
+================================ */
+
+.existing-opening-section {
+position:relative;
+overflow:hidden;
+padding-bottom:0;
+background:
+radial-gradient(
+ellipse at 50% 54%,
+rgba(245,124,0,.38) 0%,
+rgba(245,124,0,.25) 20%,
+rgba(245,124,0,.13) 39%,
+rgba(245,124,0,.055) 57%,
+transparent 76%
+),
+radial-gradient(
+ellipse at 50% 100%,
+rgba(255,154,47,.22) 0%,
+rgba(245,124,0,.10) 38%,
+transparent 68%
+),
+linear-gradient(
+180deg,
+#070707 0%,
+#100c08 32%,
+#1d1107 57%,
+#171008 75%,
+#080706 100%
+);
+border-bottom:0;
+}
+
+.existing-opening-section .section-transition-inner {
+position:relative;
+z-index:2;
+}
+
+.existing-opening-section::after {
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.35) 0%,
+transparent 18%,
+transparent 82%,
+rgba(0,0,0,.35) 100%
+);
+z-index:0;
 }
 
 /* ===============================
@@ -1960,10 +2009,9 @@ margin:0;
 overflow:hidden;
 opacity:0;
 visibility:hidden;
-color:var(--fast-red);
 font-size:15px;
 font-weight:950;
-line-height:1.5;
+line-height:1.48;
 letter-spacing:.2px;
 text-align:center;
 transform:translateY(10px);
@@ -1977,20 +2025,17 @@ transform .7s cubic-bezier(.18,.72,.28,1);
 
 .existing-opening-recommendation.is-visible {
 max-height:100px;
-margin:20px 0 0;
+margin:22px 0 0;
 opacity:1;
 visibility:visible;
 transform:translateY(0);
 }
 
-/* Recommendation label on first line */
-
 .existing-opening-recommendation-label {
 display:block;
 color:var(--fast-red);
+font-weight:950;
 }
-
-/* Recommended unit size and "(internal)" on second line */
 
 .existing-opening-recommendation-size {
 display:block;
@@ -2004,32 +2049,71 @@ font-weight:950;
 }
 
 .existing-opening-error {
-display:block;
-max-height:0;
-margin:0;
-overflow:hidden;
-opacity:0;
-visibility:hidden;
-color:var(--fast-red);
-font-size:12px;
-font-weight:850;
-line-height:1.55;
-text-align:center;
-transform:translateY(8px);
-transition:
-max-height .5s ease,
-margin .5s ease,
-opacity .35s ease,
-visibility .35s ease,
-transform .5s ease;
+display:none !important;
 }
 
-.existing-opening-error.is-visible {
-max-height:80px;
-margin-top:15px;
-opacity:1;
-visibility:visible;
-transform:translateY(0);
+/* ===============================
+EXISTING OPENING ROOFLIGHT IMAGE
+================================ */
+
+.existing-opening-rooflight-visual {
+position:relative;
+z-index:2;
+width:100vw;
+margin:
+34px
+0
+0
+calc(50% - 50vw);
+overflow:hidden;
+background:transparent;
+}
+
+.existing-opening-rooflight-visual .buy-rooflight-slideshow {
+margin:0;
+background:transparent;
+box-shadow:none;
+}
+
+.existing-opening-rooflight-visual .rooflight-slideshow-shell {
+background:transparent;
+height:clamp(250px,36vw,470px);
+}
+
+.existing-opening-rooflight-visual .rooflight-slide {
+background:transparent;
+}
+
+.existing-opening-rooflight-visual .rooflight-slide img {
+background:transparent;
+}
+
+/* Compatibility with the previous separate image class */
+
+.existing-opening-visual-section {
+position:relative;
+overflow:hidden;
+background:
+radial-gradient(
+ellipse at 50% 0%,
+rgba(245,124,0,.30) 0%,
+rgba(245,124,0,.19) 30%,
+rgba(245,124,0,.08) 52%,
+transparent 76%
+),
+linear-gradient(
+180deg,
+#171008 0%,
+#0d0b09 56%,
+#050505 100%
+);
+border-top:0;
+}
+
+.existing-opening-visual-section .buy-rooflight-slideshow,
+.existing-opening-visual-section .rooflight-slideshow-shell,
+.existing-opening-visual-section .rooflight-slide {
+background:transparent;
 }
 
 /* ===============================
@@ -2340,7 +2424,7 @@ linear-gradient(
 #050505 0%,
 #080808 100%
 );
-padding:108px 6% 95px;
+padding:42px 6% 95px;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
@@ -2481,45 +2565,6 @@ border-top:1px solid rgba(255,255,255,.08);
 .engineered-visual-intro .buy-rooflight-slideshow {
 margin:0;
 box-shadow:none;
-}
-
-/* ===============================
-EXISTING OPENING CUSTOM ROOFLIGHT
-================================ */
-
-/*
-Continues the warm orange glow from the existing-opening section
-behind the transparent custom rooflight image.
-*/
-
-.existing-opening-visual-section {
-background:
-radial-gradient(
-ellipse at 50% 0%,
-rgba(245,124,0,.38) 0%,
-rgba(245,124,0,.24) 22%,
-rgba(245,124,0,.10) 48%,
-transparent 72%
-),
-linear-gradient(
-180deg,
-#211307 0%,
-#171008 40%,
-#0d0b09 72%,
-#050505 100%
-);
-border-top:0;
-}
-
-/*
-Remove the normal dark slideshow background specifically from
-the custom existing-opening image so the orange gradient is visible.
-*/
-
-.existing-opening-visual-section .buy-rooflight-slideshow,
-.existing-opening-visual-section .rooflight-slideshow-shell,
-.existing-opening-visual-section .rooflight-slide {
-background:transparent;
 }
 
 .engineered {
@@ -3148,6 +3193,33 @@ font-size:42px;
 font-size:16px;
 }
 
+.existing-opening-section {
+padding-bottom:0;
+background:
+radial-gradient(
+ellipse at 50% 58%,
+rgba(245,124,0,.42) 0%,
+rgba(245,124,0,.27) 22%,
+rgba(245,124,0,.13) 43%,
+rgba(245,124,0,.055) 60%,
+transparent 78%
+),
+radial-gradient(
+ellipse at 50% 100%,
+rgba(255,154,47,.20) 0%,
+rgba(245,124,0,.09) 38%,
+transparent 68%
+),
+linear-gradient(
+180deg,
+#070707 0%,
+#110c08 32%,
+#211307 58%,
+#171008 76%,
+#080706 100%
+);
+}
+
 .existing-opening-assistant {
 margin-top:32px;
 }
@@ -3185,6 +3257,14 @@ margin-top:17px;
 
 .existing-opening-recommendation-size {
 margin-top:2px;
+}
+
+.existing-opening-rooflight-visual {
+margin-top:24px;
+}
+
+.existing-opening-rooflight-visual .rooflight-slideshow-shell {
+height:250px;
 }
 
 .buy-online-section {
@@ -3274,7 +3354,7 @@ transform:none;
 }
 
 .calculator-wrap {
-padding:98px 6% 68px;
+padding:34px 6% 68px;
 }
 
 .calculator {
@@ -3355,6 +3435,10 @@ font-size:15px;
 .existing-opening-recommendation {
 font-size:12px;
 }
+
+.existing-opening-rooflight-visual {
+margin-top:20px;
+}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -3386,8 +3470,7 @@ animation:none;
 .engineered-card,
 .order-transition-heading-group,
 .calculator.calculator-reveal-target,
-.existing-opening-recommendation,
-.existing-opening-error {
+.existing-opening-recommendation {
 opacity:1;
 clip-path:none;
 filter:none;
@@ -3395,8 +3478,7 @@ transform:none;
 transition:none;
 }
 
-.existing-opening-recommendation.is-visible,
-.existing-opening-error.is-visible {
+.existing-opening-recommendation.is-visible {
 visibility:visible;
 max-height:none;
 }
@@ -3684,6 +3766,7 @@ padding-bottom:clamp(28px, 3.5vw, 55px) !important;
 
 /* Order Online section */
 .buy-online-section {
+padding-top:clamp(6px, .8vw, 9px) !important;
 padding-bottom:clamp(28px, 3.5vw, 55px) !important;
 }
 
@@ -5035,6 +5118,7 @@ document.getElementById(
 );
 
 let basketAnimationTimer = null;
+let basketTotal = 0;
 
 function animateBasketTotal() {
 if (!basketTotalText) {
@@ -5080,6 +5164,9 @@ Number.isFinite(Number(total))
 ? Number(total)
 : 0;
 
+basketTotal =
+safeTotal;
+
 const formattedTotal =
 new Intl.NumberFormat(
 "en-GB",
@@ -5105,7 +5192,9 @@ animateBasketTotal();
 
 window.setTimeout(
 () => {
-updateBasketTotal(0);
+updateBasketTotal(
+basketTotal
+);
 },
 2000
 );
@@ -5880,11 +5969,6 @@ document.getElementById(
 "openingInternalLength"
 );
 
-const openingInternalError =
-document.getElementById(
-"openingInternalError"
-);
-
 const openingInternalRecommendation =
 document.getElementById(
 "openingInternalRecommendation"
@@ -5917,48 +6001,6 @@ return null;
 }
 
 return numericValue;
-}
-
-function hideOpeningError() {
-if (!openingInternalError) {
-return;
-}
-
-openingInternalError.textContent =
-"";
-
-openingInternalError.hidden =
-true;
-
-openingInternalError.classList.remove(
-"is-visible"
-);
-
-openingInternalError.setAttribute(
-"aria-hidden",
-"true"
-);
-}
-
-function showOpeningError(message) {
-if (!openingInternalError) {
-return;
-}
-
-openingInternalError.textContent =
-message;
-
-openingInternalError.hidden =
-false;
-
-openingInternalError.classList.add(
-"is-visible"
-);
-
-openingInternalError.setAttribute(
-"aria-hidden",
-"false"
-);
 }
 
 function hideOpeningRecommendation() {
@@ -6032,15 +6074,7 @@ getNumericInputValue(
 openingInternalLength
 );
 
-hideOpeningError();
 hideOpeningRecommendation();
-
-if (
-internalWidth === null &&
-internalLength === null
-) {
-return false;
-}
 
 if (
 internalWidth === null ||
@@ -6053,10 +6087,6 @@ if (
 internalWidth < 310 ||
 internalWidth > 1510
 ) {
-showOpeningError(
-"Please enter a maximum opening width between 310mm and 1510mm."
-);
-
 return false;
 }
 
@@ -6064,10 +6094,6 @@ if (
 internalLength < 310 ||
 internalLength > 3010
 ) {
-showOpeningError(
-"Please enter a maximum opening length between 310mm and 3010mm."
-);
-
 return false;
 }
 
@@ -6087,10 +6113,6 @@ recommendedWidth > 1500 ||
 recommendedLength < 300 ||
 recommendedLength > 3000
 ) {
-showOpeningError(
-"These measurements are incompatible with the available online rooflight size range."
-);
-
 return false;
 }
 
@@ -6127,78 +6149,134 @@ openingInternalLength.addEventListener(
 validateInternalOpening
 );
 
-hideOpeningError();
 hideOpeningRecommendation();
 }
 
 /* ===============================
-TEMPORARY CALCULATOR
+HOMEPAGE ROOFLIGHT CALCULATOR
 ================================ */
 
-function calculatePrice() {
-const widthInput =
+const CALCULATOR_MIN_WIDTH = 290;
+const CALCULATOR_MAX_WIDTH = 1010;
+const CALCULATOR_MIN_LENGTH = 290;
+const CALCULATOR_MAX_LENGTH = 2510;
+
+const calculatorWidthInput =
 document.getElementById(
 "width"
 );
 
-const lengthInput =
+const calculatorLengthInput =
 document.getElementById(
 "length"
 );
 
-const glazingInput =
+const calculatorGlazingInput =
 document.getElementById(
 "glazing"
 );
 
-const finishInput =
+const calculatorFinishInput =
 document.getElementById(
 "finish"
 );
 
-const priceOutput =
+const calculatorPriceOutput =
 document.getElementById(
 "price"
 );
 
-if (
-!widthInput ||
-!lengthInput ||
-!glazingInput ||
-!finishInput ||
-!priceOutput
+const calculatorAddButton =
+document.querySelector(
+"#calculator .price-box .button"
+);
+
+let currentCalculatorPrice = null;
+
+function applyCalculatorInputLimits() {
+if (calculatorWidthInput) {
+calculatorWidthInput.min =
+String(
+CALCULATOR_MIN_WIDTH
+);
+
+calculatorWidthInput.max =
+String(
+CALCULATOR_MAX_WIDTH
+);
+}
+
+if (calculatorLengthInput) {
+calculatorLengthInput.min =
+String(
+CALCULATOR_MIN_LENGTH
+);
+
+calculatorLengthInput.max =
+String(
+CALCULATOR_MAX_LENGTH
+);
+}
+}
+
+function calculatorValuesAreValid(
+width,
+length
 ) {
-return;
+return (
+Number.isFinite(width) &&
+Number.isFinite(length) &&
+width >= CALCULATOR_MIN_WIDTH &&
+width <= CALCULATOR_MAX_WIDTH &&
+length >= CALCULATOR_MIN_LENGTH &&
+length <= CALCULATOR_MAX_LENGTH
+);
+}
+
+function calculatePrice() {
+if (
+!calculatorWidthInput ||
+!calculatorLengthInput ||
+!calculatorGlazingInput ||
+!calculatorFinishInput ||
+!calculatorPriceOutput
+) {
+currentCalculatorPrice = null;
+return null;
 }
 
 const width =
 Number(
-widthInput.value
+calculatorWidthInput.value
 );
 
 const length =
 Number(
-lengthInput.value
+calculatorLengthInput.value
 );
 
+if (
+!calculatorValuesAreValid(
+width,
+length
+)
+) {
+currentCalculatorPrice = null;
+
+calculatorPriceOutput.innerText =
+"—";
+
+return null;
+}
+
 const glazing =
-glazingInput.value;
+calculatorGlazingInput.value;
 
 const finish =
-finishInput.value;
-
-const safeWidth =
-Number.isFinite(width)
-? width
-: 0;
-
-const safeLength =
-Number.isFinite(length)
-? length
-: 0;
+calculatorFinishInput.value;
 
 const area =
-(safeWidth * safeLength) /
+(width * length) /
 1000000;
 
 const baseRate =
@@ -6215,8 +6293,40 @@ String(finish)
 .trim()
 .toLowerCase();
 
+const isClearFinish =
+normalizedFinish ===
+"clear";
+
+const isBlueTinted =
+normalizedFinish ===
+"blue tinted" ||
+normalizedFinish ===
+"solar blue";
+
+const isGreyTinted =
+normalizedFinish ===
+"grey tinted" ||
+normalizedFinish ===
+"solar grey";
+
+const isSatinTinted =
+normalizedFinish ===
+"satin tinted" ||
+normalizedFinish ===
+"satin privacy";
+
 if (
-normalizedFinish !== "clear"
+!isClearFinish &&
+(
+isBlueTinted ||
+isGreyTinted ||
+isSatinTinted
+)
+) {
+price +=
+area * 45;
+} else if (
+!isClearFinish
 ) {
 price +=
 area * 45;
@@ -6238,10 +6348,19 @@ glazing === "triple"
 price = 300;
 }
 
-priceOutput.innerText =
+currentCalculatorPrice =
+Math.round(
+price
+);
+
+calculatorPriceOutput.innerText =
 "£" +
-Math.round(price);
+currentCalculatorPrice;
+
+return currentCalculatorPrice;
 }
+
+applyCalculatorInputLimits();
 
 document
 .querySelectorAll(
@@ -6260,6 +6379,29 @@ calculatePrice
 );
 }
 );
+
+if (calculatorAddButton) {
+calculatorAddButton.addEventListener(
+"click",
+event => {
+event.preventDefault();
+
+const calculatedPrice =
+calculatePrice();
+
+if (
+calculatedPrice === null
+) {
+return;
+}
+
+updateBasketTotal(
+basketTotal +
+calculatedPrice
+);
+}
+);
+}
 
 calculatePrice();
 </script>
