@@ -1853,30 +1853,22 @@ padding-bottom:0;
 border-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 92%,
-rgba(255,111,0,.96) 0%,
-rgba(245,103,0,.88) 18%,
-rgba(221,78,0,.68) 36%,
-rgba(140,43,0,.42) 54%,
-rgba(73,25,4,.20) 70%,
-transparent 84%
-),
-radial-gradient(
-ellipse at 50% 58%,
-rgba(245,124,0,.34) 0%,
-rgba(245,124,0,.20) 27%,
-rgba(245,124,0,.08) 50%,
+ellipse at 50% 87%,
+rgba(245,124,0,.30) 0%,
+rgba(225,99,0,.23) 19%,
+rgba(164,65,0,.14) 38%,
+rgba(85,31,0,.065) 56%,
 transparent 72%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#0a0908 20%,
-#110a05 38%,
-#291005 57%,
-#652000 76%,
-#c74400 91%,
-#f16b00 100%
+#080808 28%,
+#0a0908 46%,
+#100b07 61%,
+#1d1007 73%,
+#301506 84%,
+#3a1906 100%
 );
 }
 
@@ -1884,8 +1876,6 @@ linear-gradient(
 position:relative;
 z-index:2;
 }
-
-/* Soft side vignette without breaking the continuous orange background */
 
 .existing-opening-section::after {
 content:"";
@@ -1897,10 +1887,10 @@ background:
 linear-gradient(
 90deg,
 rgba(0,0,0,.42) 0%,
-rgba(0,0,0,.15) 12%,
-transparent 27%,
-transparent 73%,
-rgba(0,0,0,.15) 88%,
+rgba(0,0,0,.18) 14%,
+transparent 30%,
+transparent 70%,
+rgba(0,0,0,.18) 86%,
 rgba(0,0,0,.42) 100%
 );
 }
@@ -2010,23 +2000,22 @@ color:rgba(255,255,255,.30);
 font-weight:700;
 }
 
-/* Fixed recommendation area.
-The space remains even while the text is hidden,
-so the rooflight image never jumps when a valid result appears. */
+/* Reserved recommendation space remains in place,
+but is kept compact so the rooflight does not jump. */
 
 .existing-opening-recommendation {
 display:block;
 width:100%;
-min-height:82px;
+min-height:58px;
 max-height:none;
-margin:25px 0 0;
+margin:19px 0 0;
 overflow:visible;
 opacity:0;
 visibility:hidden;
 color:var(--white);
 font-size:15px;
 font-weight:950;
-line-height:1.48;
+line-height:1.42;
 letter-spacing:.2px;
 text-align:center;
 transform:none;
@@ -2041,9 +2030,9 @@ display:block;
 
 .existing-opening-recommendation.is-visible {
 display:block;
-min-height:82px;
+min-height:58px;
 max-height:none;
-margin:25px 0 0;
+margin:19px 0 0;
 opacity:1;
 visibility:visible;
 transform:none;
@@ -2057,7 +2046,7 @@ font-weight:950;
 
 .existing-opening-recommendation-size {
 display:block;
-margin-top:4px;
+margin-top:2px;
 color:var(--white);
 font-weight:950;
 }
@@ -2079,7 +2068,7 @@ position:relative;
 z-index:2;
 width:100vw;
 margin:
-2px
+0
 0
 0
 calc(50% - 50vw);
@@ -2121,19 +2110,18 @@ overflow:hidden;
 border-top:0;
 background:
 radial-gradient(
-ellipse at 50% 35%,
-rgba(255,111,0,.94) 0%,
-rgba(245,103,0,.80) 22%,
-rgba(199,64,0,.55) 44%,
-rgba(80,27,3,.20) 68%,
-transparent 84%
+ellipse at 50% 18%,
+rgba(245,124,0,.22) 0%,
+rgba(187,72,0,.13) 28%,
+rgba(91,32,0,.055) 52%,
+transparent 70%
 ),
 linear-gradient(
 180deg,
-#8e2c00 0%,
-#c84500 35%,
-#f16b00 68%,
-#b63a00 100%
+#211006 0%,
+#170d07 28%,
+#0d0a08 58%,
+#050505 100%
 );
 }
 
@@ -3226,36 +3214,43 @@ font-size:42px;
 font-size:16px;
 }
 
-/* Mobile existing-opening composition */
+/* ===============================
+MOBILE EXISTING OPENING
+================================ */
 
 .existing-opening-section {
 padding-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 91%,
-rgba(255,111,0,.98) 0%,
-rgba(245,103,0,.91) 19%,
-rgba(220,76,0,.72) 37%,
-rgba(137,42,0,.43) 55%,
-rgba(66,22,4,.18) 71%,
-transparent 84%
-),
-radial-gradient(
-ellipse at 50% 56%,
-rgba(245,124,0,.35) 0%,
-rgba(245,124,0,.21) 28%,
-rgba(245,124,0,.08) 51%,
-transparent 73%
+ellipse at 50% 86%,
+rgba(245,124,0,.28) 0%,
+rgba(210,88,0,.20) 19%,
+rgba(145,54,0,.12) 38%,
+rgba(70,25,0,.055) 55%,
+transparent 70%
 ),
 linear-gradient(
 180deg,
 #070707 0%,
-#090807 18%,
-#100a06 36%,
-#2a1004 56%,
-#672000 75%,
-#c64200 90%,
-#f16b00 100%
+#080808 31%,
+#090908 49%,
+#0e0a07 63%,
+#170e07 74%,
+#261306 85%,
+#321706 100%
+);
+}
+
+.existing-opening-section::after {
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.42) 0%,
+rgba(0,0,0,.17) 13%,
+transparent 30%,
+transparent 70%,
+rgba(0,0,0,.17) 87%,
+rgba(0,0,0,.42) 100%
 );
 }
 
@@ -3288,10 +3283,11 @@ font-size:16px;
 
 .existing-opening-recommendation {
 display:block;
-min-height:74px;
+min-height:52px;
 max-height:none;
-margin:22px 0 0;
+margin:16px 0 0;
 font-size:13px;
+line-height:1.4;
 transform:none;
 }
 
@@ -3301,13 +3297,13 @@ display:block;
 
 .existing-opening-recommendation.is-visible {
 display:block;
-min-height:74px;
+min-height:52px;
 max-height:none;
-margin:22px 0 0;
+margin:16px 0 0;
 }
 
 .existing-opening-recommendation-size {
-margin-top:3px;
+margin-top:2px;
 }
 
 .existing-opening-rooflight-visual {
@@ -3489,14 +3485,14 @@ font-size:15px;
 }
 
 .existing-opening-recommendation {
-min-height:70px;
-margin-top:20px;
+min-height:50px;
+margin-top:15px;
 font-size:12px;
 }
 
 .existing-opening-recommendation.is-visible {
-min-height:70px;
-margin-top:20px;
+min-height:50px;
+margin-top:15px;
 }
 
 .existing-opening-rooflight-visual {
