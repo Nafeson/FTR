@@ -3228,11 +3228,12 @@ MOBILE EXISTING OPENING
 
 /*
 Mobile target:
-- predominantly black around the opening inputs
-- orange begins softly beneath the inputs
-- strongest warm glow runs behind the recommendation
-and rooflight
-- glow remains controlled rather than solid orange
+- dark around the dimension inputs
+- recommendation centred in the vertical space
+between the inputs and rooflight
+- controlled orange glow around the result/image
+- rooflight composition ends much sooner below
+the glass before the calculator begins
 */
 
 .existing-opening-section {
@@ -3301,25 +3302,38 @@ padding:12px 8px;
 font-size:16px;
 }
 
+/*
+This is deliberately taller than the text itself.
+The recommendation is flex-centred inside the reserved
+space so it sits halfway between the input boxes and
+the top of the custom rooflight.
+*/
+
 .existing-opening-recommendation {
-display:block;
-min-height:49px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+width:100%;
+min-height:92px;
 max-height:none;
-margin:17px 0 0;
+margin:8px 0 0;
+padding:0;
 font-size:13px;
 line-height:1.38;
 transform:none;
 }
 
 .existing-opening-recommendation[hidden] {
-display:block;
+display:flex;
 }
 
 .existing-opening-recommendation.is-visible {
-display:block;
-min-height:49px;
+display:flex;
+min-height:92px;
 max-height:none;
-margin:17px 0 0;
+margin:8px 0 0;
+padding:0;
 }
 
 .existing-opening-recommendation-size {
@@ -3327,15 +3341,15 @@ margin-top:2px;
 }
 
 /*
-The image now belongs to the same mobile composition as
-the recommendation rather than behaving like a separate
-generic slideshow.
+Keep the rooflight visually large, but shorten its
+reserved mobile canvas. This removes roughly 60% of
+the excessive empty area beneath the image.
 */
 
 .existing-opening-rooflight-visual {
 width:100vw;
 margin:
-3px
+0
 0
 0
 calc(50% - 50vw);
@@ -3351,7 +3365,7 @@ box-shadow:none;
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
 width:100%;
-height:340px;
+height:290px;
 background:transparent;
 overflow:hidden;
 }
@@ -3365,9 +3379,9 @@ display:block;
 width:100%;
 height:100%;
 object-fit:contain;
-object-position:center 46%;
+object-position:center 48%;
 background:transparent;
-transform:scale(1.07);
+transform:scale(1.14);
 transform-origin:center center;
 }
 
@@ -3393,14 +3407,18 @@ linear-gradient(
 );
 }
 
+.existing-opening-visual-section .buy-rooflight-slideshow {
+margin:0;
+}
+
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:340px;
+height:290px;
 }
 
 .existing-opening-visual-section .rooflight-slide img {
 object-fit:contain;
-object-position:center;
-transform:scale(1.07);
+object-position:center 48%;
+transform:scale(1.14);
 transform-origin:center center;
 }
 
@@ -3570,34 +3588,38 @@ font-size:15px;
 }
 
 .existing-opening-recommendation {
-min-height:47px;
-margin-top:16px;
+display:flex;
+min-height:86px;
+margin-top:7px;
 font-size:12px;
 }
 
 .existing-opening-recommendation.is-visible {
-min-height:47px;
-margin-top:16px;
+display:flex;
+min-height:86px;
+margin-top:7px;
 }
 
 .existing-opening-rooflight-visual {
-margin-top:2px;
+margin-top:0;
 }
 
 .existing-opening-rooflight-visual .rooflight-slideshow-shell {
-height:315px;
+height:270px;
 }
 
 .existing-opening-rooflight-visual .rooflight-slide img {
-transform:scale(1.07);
+object-position:center 48%;
+transform:scale(1.14);
 }
 
 .existing-opening-visual-section .rooflight-slideshow-shell {
-height:315px;
+height:270px;
 }
 
 .existing-opening-visual-section .rooflight-slide img {
-transform:scale(1.07);
+object-position:center 48%;
+transform:scale(1.14);
 }
 }
 
