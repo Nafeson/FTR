@@ -2720,7 +2720,7 @@ linear-gradient(
 #0c0c0c 55%,
 #101820 100%
 );
-border-top:1px solid rgba(255,255,255,.08);
+border-top:0;
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -3284,6 +3284,14 @@ OVERSIZED
 
 .oversized-section {
 padding:95px 6%;
+background:
+linear-gradient(
+180deg,
+#050505 0%,
+#060606 70%,
+#070707 100%
+);
+border-bottom:0;
 }
 
 .oversized {
@@ -4663,6 +4671,12 @@ display:block;
 width:100%;
 height:auto;
 }
+
+/* Join oversized section directly into changing seasons section */
+.oversized-section + .comfort-section {
+border-top:0 !important;
+}
+
 </style>
 
 <section
@@ -5718,7 +5732,7 @@ id="tintedOptions"
 <div class="home-popular-title-wrap reveal">
 
 <h2 class="home-opening-title">
-Tinted Frameless Rooflights
+Factory Applied Glass Tint
 <span>Tinted Options</span>
 </h2>
 
@@ -5727,7 +5741,7 @@ Tinted Frameless Rooflights
 <div class="home-popular-grid">
 
 <div
-class="home-product-card tinted-product-card image-size-800x800 reveal reveal-scale"
+class="home-product-card tinted-product-card image-size-800x1000 reveal reveal-scale"
 data-double-price="TBC"
 data-triple-price="TBC"
 data-finish="blue"
@@ -5737,8 +5751,8 @@ tabindex="0"
 <div class="home-product-image">
 
 <img
-src="images/product-cards/blue-medium-square.png"
-alt="800mm by 800mm blue tinted frameless flat roof skylight"
+src="images/product-cards/blue-large-square.png"
+alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5746,12 +5760,12 @@ alt="800mm by 800mm blue tinted frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-800 × 800mm
+800 × 1000mm
 </div>
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Blue Tinted Glass</span>
+<span>Factory Applied Blue Tint</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5811,7 +5825,7 @@ View Size
 </div>
 
 <div
-class="home-product-card tinted-product-card image-size-800x1800 reveal reveal-scale reveal-delay-1"
+class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-double-price="TBC"
 data-triple-price="TBC"
 data-finish="blue"
@@ -5821,8 +5835,8 @@ tabindex="0"
 <div class="home-product-image">
 
 <img
-src="images/product-cards/blue-large-xl-rectangle.png"
-alt="800mm by 1800mm blue tinted frameless flat roof skylight"
+src="images/product-cards/blue-large-rectangle.png"
+alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5830,12 +5844,12 @@ alt="800mm by 1800mm blue tinted frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-800 × 1800mm
+600 × 1500mm
 </div>
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Blue Tinted Glass</span>
+<span>Factory Applied Blue Tint</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5895,7 +5909,7 @@ View Size
 </div>
 
 <div
-class="home-product-card tinted-product-card image-size-400x1200 reveal reveal-scale reveal-delay-2"
+class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-double-price="TBC"
 data-triple-price="TBC"
 data-finish="satin"
@@ -5905,8 +5919,8 @@ tabindex="0"
 <div class="home-product-image">
 
 <img
-src="images/product-cards/satin-narrow-tall-rectangle.png"
-alt="400mm by 1200mm satin tinted frameless flat roof skylight"
+src="images/product-cards/satin-small-rectangle.png"
+alt="600mm by 900mm satin privacy frameless flat roof skylight"
 />
 
 </div>
@@ -5914,12 +5928,12 @@ alt="400mm by 1200mm satin tinted frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-400 × 1200mm
+600 × 900mm
 </div>
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Satin Privacy Glass</span>
+<span>Factory Applied Satin Finish</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5990,7 +6004,7 @@ tabindex="0"
 
 <img
 src="images/product-cards/satin-large-rectangle.png"
-alt="800mm by 1500mm satin tinted frameless flat roof skylight"
+alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 />
 
 </div>
@@ -6003,7 +6017,7 @@ alt="800mm by 1500mm satin tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Satin Privacy Glass</span>
+<span>Factory Applied Satin Finish</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
