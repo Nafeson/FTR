@@ -1262,6 +1262,141 @@ display:flex;
 justify-content:center;
 }
 
+/* Full-range CTA attention */
+
+.range-cta-button {
+position:relative;
+overflow:hidden;
+isolation:isolate;
+gap:10px;
+transform-origin:center;
+animation:
+rangeCtaGuide
+5.8s
+ease-in-out
+infinite;
+}
+
+.range-cta-button::before {
+content:"";
+position:absolute;
+z-index:-1;
+top:-30%;
+bottom:-30%;
+left:-42%;
+width:25%;
+background:
+linear-gradient(
+112deg,
+transparent 0%,
+rgba(255,255,255,.05) 24%,
+rgba(255,255,255,.45) 50%,
+rgba(255,255,255,.08) 66%,
+transparent 100%
+);
+transform:skewX(-18deg);
+animation:
+rangeCtaSweep
+5.8s
+ease-in-out
+infinite;
+pointer-events:none;
+}
+
+.range-cta-button::after {
+content:"→";
+display:inline-block;
+font-size:1.15em;
+line-height:1;
+font-weight:950;
+transform:translateX(0);
+animation:
+rangeCtaArrow
+5.8s
+ease-in-out
+infinite;
+}
+
+@keyframes rangeCtaGuide {
+0%,
+67%,
+100% {
+letter-spacing:.8px;
+box-shadow:none;
+text-shadow:none;
+}
+
+74% {
+letter-spacing:1.05px;
+box-shadow:
+0 0 0 1px rgba(245,124,0,.18),
+0 0 23px rgba(245,124,0,.17);
+text-shadow:
+0 0 8px rgba(255,255,255,.18);
+}
+
+82% {
+letter-spacing:.9px;
+box-shadow:
+0 0 0 1px rgba(245,124,0,.10),
+0 0 12px rgba(245,124,0,.10);
+}
+
+90% {
+letter-spacing:1px;
+box-shadow:
+0 0 0 1px rgba(245,124,0,.14),
+0 0 18px rgba(245,124,0,.13);
+}
+}
+
+@keyframes rangeCtaSweep {
+0%,
+66% {
+left:-42%;
+opacity:0;
+}
+
+70% {
+opacity:.15;
+}
+
+82% {
+left:120%;
+opacity:.8;
+}
+
+86%,
+100% {
+left:120%;
+opacity:0;
+}
+}
+
+@keyframes rangeCtaArrow {
+0%,
+68%,
+100% {
+transform:translateX(0);
+}
+
+74% {
+transform:translateX(5px);
+}
+
+79% {
+transform:translateX(1px);
+}
+
+85% {
+transform:translateX(6px);
+}
+
+91% {
+transform:translateX(0);
+}
+}
+
 .mobile-feature-icons {
 display:none;
 }
@@ -1399,6 +1534,28 @@ tintedViewSizeEncouragement
 5.5s
 ease-in-out
 infinite;
+}
+
+.tinted-options-section .range-cta-button {
+border-color:rgba(123,196,243,.48);
+color:var(--white);
+}
+
+.tinted-options-section .range-cta-button:hover {
+border-color:var(--tint-blue-bright);
+color:var(--tint-blue-bright);
+}
+
+.tinted-options-section .range-cta-button::before {
+background:
+linear-gradient(
+112deg,
+transparent 0%,
+rgba(255,255,255,.04) 24%,
+rgba(123,196,243,.50) 50%,
+rgba(255,255,255,.07) 67%,
+transparent 100%
+);
 }
 
 @keyframes tintedViewSizeEncouragement {
@@ -2293,7 +2450,7 @@ background:transparent;
 }
 
 /* ===============================
-COMBINED BUILD CALCULATOR
+COMBINED CUSTOM CALCULATOR
 ================================ */
 
 .bespoke-build-section .combined-calculator-wrap {
@@ -2381,6 +2538,11 @@ padding-left:32px;
 
 .buy-online-inner h2 {
 max-width:860px;
+}
+
+.buy-online-choice-group {
+position:relative;
+z-index:1;
 }
 
 .buy-rooflight-slideshow {
@@ -2618,6 +2780,53 @@ opacity:1;
 visibility:visible;
 }
 
+/* New help / shop CTA area */
+
+.comfort-help-wrap {
+max-width:1120px;
+margin:0 auto;
+padding:24px 6% 2px;
+}
+
+.comfort-help-panel {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:center;
+gap:42px;
+padding:19px 0 19px 24px;
+border-left:3px solid var(--orange);
+}
+
+.comfort-help-copy {
+max-width:680px;
+margin:0;
+font-size:14px;
+line-height:1.65;
+color:rgba(255,255,255,.70);
+text-align:left;
+}
+
+.comfort-help-actions {
+display:grid;
+gap:9px;
+width:220px;
+justify-self:end;
+}
+
+.comfort-help-actions .button {
+width:100%;
+min-width:0;
+padding:14px 18px;
+font-size:11px;
+letter-spacing:.9px;
+}
+
+.comfort-help-actions .button.secondary {
+background:transparent;
+}
+
+/* Legacy UV wrapper retained safely */
+
 .comfort-uv-wrap {
 min-height:auto;
 display:flex;
@@ -2709,9 +2918,14 @@ scale(1);
 
 .calc-grid {
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
+grid-template-columns:repeat(5,minmax(0,1fr));
+gap:18px;
 margin-top:34px;
+align-items:start;
+}
+
+.calc-field {
+min-width:0;
 }
 
 label {
@@ -2752,31 +2966,174 @@ background:#080808;
 box-shadow:0 0 0 3px rgba(245,124,0,.12);
 }
 
+/* Oversized calculator message */
+
+.calculator-size-alert {
+display:flex;
+align-items:center;
+flex-wrap:wrap;
+gap:5px 7px;
+margin:0 0 10px;
+padding:7px 8px;
+background:rgba(245,124,0,.075);
+border-left:2px solid var(--orange);
+color:rgba(255,255,255,.72);
+font-size:10px;
+font-weight:750;
+line-height:1.35;
+letter-spacing:.15px;
+}
+
+.calculator-size-alert[hidden] {
+display:none !important;
+}
+
+.calculator-size-alert a {
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:4px 7px;
+background:var(--orange);
+border:1px solid var(--orange);
+color:#050505;
+font-size:9px;
+font-weight:950;
+line-height:1;
+letter-spacing:.6px;
+text-decoration:none;
+text-transform:uppercase;
+white-space:nowrap;
+transition:
+transform .2s ease,
+filter .2s ease,
+box-shadow .2s ease;
+}
+
+.calculator-size-alert a:hover,
+.calculator-size-alert a:focus {
+transform:translateY(-1px);
+filter:brightness(1.08);
+box-shadow:0 5px 13px rgba(245,124,0,.18);
+outline:none;
+}
+
+/* Custom price result */
+
 .price-box {
 margin-top:36px;
-padding:34px;
-background:var(--navy);
+padding:30px 32px;
+background:
+linear-gradient(
+135deg,
+#0d2236 0%,
+var(--navy) 58%,
+#0a1d30 100%
+);
 border:1px solid rgba(255,255,255,.10);
 display:flex;
 justify-content:space-between;
-align-items:center;
-gap:24px;
+align-items:flex-end;
+gap:28px;
 flex-wrap:wrap;
 }
 
+.price-box[hidden] {
+display:none !important;
+}
+
+.custom-price-summary {
+display:grid;
+align-content:start;
+min-width:0;
+}
+
 .price-label {
-color:var(--muted);
-font-size:14px;
+color:rgba(255,255,255,.67);
+font-size:11px;
+line-height:1;
 text-transform:uppercase;
-letter-spacing:.8px;
-font-weight:900;
+letter-spacing:1.6px;
+font-weight:950;
 }
 
 .price {
-font-size:54px;
+font-size:52px;
+line-height:.98;
 font-weight:950;
+letter-spacing:-1.8px;
 color:var(--white);
-margin-top:6px;
+margin-top:8px;
+}
+
+.custom-price-dimensions {
+display:grid;
+gap:5px;
+margin-top:17px;
+}
+
+.custom-price-dimension {
+display:flex;
+align-items:baseline;
+flex-wrap:wrap;
+gap:7px;
+font-size:14px;
+line-height:1.35;
+letter-spacing:.1px;
+}
+
+.custom-price-dimension-label {
+color:var(--orange);
+font-size:11px;
+font-weight:950;
+letter-spacing:.8px;
+text-transform:uppercase;
+}
+
+.custom-price-dimension-value {
+color:var(--white);
+font-size:14px;
+font-weight:850;
+}
+
+.custom-price-meta {
+display:grid;
+gap:4px;
+margin-top:15px;
+color:rgba(255,255,255,.66);
+font-size:10px;
+font-weight:650;
+line-height:1.45;
+letter-spacing:.2px;
+}
+
+.custom-price-vat {
+color:rgba(255,255,255,.76);
+font-weight:850;
+text-transform:uppercase;
+letter-spacing:.65px;
+}
+
+.custom-price-delivery {
+display:flex;
+align-items:baseline;
+flex-wrap:wrap;
+gap:5px;
+}
+
+.custom-price-delivery-label {
+color:rgba(255,255,255,.56);
+}
+
+.custom-price-delivery-date {
+color:var(--white);
+font-weight:850;
+}
+
+.price-box .button {
+flex:0 0 auto;
+min-width:185px;
+padding:16px 24px;
+font-size:12px;
 }
 
 small {
@@ -2997,6 +3354,11 @@ font-size:20px;
 .address-line {
 font-size:10px;
 }
+
+.comfort-help-panel {
+grid-template-columns:minmax(0,1fr) 210px;
+gap:28px;
+}
 }
 
 @media(max-width:760px) {
@@ -3183,6 +3545,10 @@ font-size:9px;
 .home-popular-footer {
 margin-top:28px;
 padding:0 2.5%;
+}
+
+.range-cta-button {
+width:100%;
 }
 
 .tinted-options-section {
@@ -3595,7 +3961,7 @@ transform:scale(1.08);
 transform-origin:center center;
 }
 
-/* Combined Build Your Rooflight area shares the same full-width gradient */
+/* Combined custom calculator shares the full-width gradient */
 
 .bespoke-build-section .combined-calculator-wrap {
 width:100vw;
@@ -3639,6 +4005,40 @@ max-width:none;
 margin:0;
 font-size:16px;
 line-height:1.7;
+}
+
+.calc-grid {
+grid-template-columns:1fr;
+gap:18px;
+}
+
+.calculator-size-alert {
+font-size:10px;
+margin-bottom:9px;
+padding:7px 8px;
+}
+
+.price-box {
+padding:25px 22px;
+gap:24px;
+align-items:flex-start;
+}
+
+.price {
+font-size:46px;
+}
+
+.custom-price-dimension {
+font-size:13px;
+}
+
+.custom-price-dimension-value {
+font-size:13px;
+}
+
+.price-box .button {
+width:100%;
+min-width:0;
 }
 
 .buy-online-section {
@@ -3713,6 +4113,33 @@ height:calc(100% + 8px);
 object-fit:contain;
 object-position:center;
 background:#050505;
+}
+
+.comfort-help-wrap {
+padding:20px 6% 0;
+}
+
+.comfort-help-panel {
+grid-template-columns:1fr;
+gap:18px;
+padding:5px 0 3px 16px;
+}
+
+.comfort-help-copy {
+font-size:13px;
+line-height:1.6;
+}
+
+.comfort-help-actions {
+width:100%;
+justify-self:stretch;
+gap:8px;
+}
+
+.comfort-help-actions .button {
+width:100%;
+padding:14px 16px;
+font-size:11px;
 }
 
 .comfort-uv-wrap {
@@ -3846,6 +4273,26 @@ font-size:34px;
 padding-top:27px;
 padding-bottom:22px;
 }
+
+.price {
+font-size:42px;
+}
+
+.custom-price-dimension {
+gap:5px;
+}
+
+.custom-price-dimension-label {
+font-size:10px;
+}
+
+.custom-price-dimension-value {
+font-size:12px;
+}
+
+.custom-price-meta {
+font-size:9.5px;
+}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -3865,7 +4312,10 @@ scroll-behavior:auto;
 .basket-total-text,
 .trust-item.shimmer-play::before,
 .engineered-card.shimmer-play::before,
-.home-product-link.is-encouraged {
+.home-product-link.is-encouraged,
+.range-cta-button,
+.range-cta-button::before,
+.range-cta-button::after {
 animation:none;
 }
 
@@ -4569,7 +5019,7 @@ View Size
 
 <a
 href="standard-sizes.html"
-class="button secondary"
+class="button secondary range-cta-button"
 >
 View All Standard Sizes
 </a>
@@ -4721,13 +5171,15 @@ Order online
 Buy Your Frameless Rooflight Online
 </h2>
 
-<p class="reveal reveal-delay-1">
+<div class="buy-online-choice-group reveal reveal-delay-1">
+
+<p>
 Our best prices can be found on the Standard Sizes page,
 where you can shop special deals on popular, best-selling rooflight sizes. Alternatively,
 build a made-to-order rooflight using the calculator below.
 </p>
 
-<div class="hero-actions reveal reveal-delay-2">
+<div class="hero-actions">
 
 <a
 href="standard-sizes.html"
@@ -4744,7 +5196,7 @@ or
 href="#calculator"
 class="button"
 >
-Build Your Rooflight
+Build A Custom Rooflight
 </a>
 
 <a
@@ -4761,6 +5213,8 @@ Oversized Rooflights
 </span>
 
 </a>
+
+</div>
 
 </div>
 
@@ -4948,7 +5402,7 @@ Build online
 </div>
 
 <h2 class="reveal">
-Build Your Rooflight
+Build A Custom Rooflight
 </h2>
 
 <p class="reveal reveal-delay-1">
@@ -4958,7 +5412,7 @@ free mainland UK delivery within the online price. Larger units can be quoted ma
 
 <div class="calc-grid reveal reveal-delay-2">
 
-<div>
+<div class="calc-field">
 
 <label for="width">
 Internal Width
@@ -4967,14 +5421,17 @@ Internal Width
 <input
 id="width"
 type="number"
-value="1000"
-min="290"
-max="1010"
+inputmode="numeric"
+min="300"
+max="1500"
+step="1"
+placeholder="e.g. 1000"
+autocomplete="off"
 />
 
 </div>
 
-<div>
+<div class="calc-field">
 
 <label for="length">
 Internal Length
@@ -4983,14 +5440,48 @@ Internal Length
 <input
 id="length"
 type="number"
-value="2000"
-min="290"
-max="2510"
+inputmode="numeric"
+min="300"
+max="2500"
+step="1"
+placeholder="e.g. 1000"
+autocomplete="off"
 />
 
 </div>
 
-<div>
+<div class="calc-field">
+
+<label for="border">
+Border
+</label>
+
+<select id="border">
+<option value="100" selected>100mm Standard</option>
+<option value="125">125mm</option>
+<option value="150">150mm</option>
+</select>
+
+</div>
+
+<div class="calc-field">
+
+<div
+class="calculator-size-alert"
+id="calculatorSizeAlert"
+aria-live="polite"
+hidden
+>
+
+<a href="#contact">
+Contact us
+</a>
+
+<span>
+to discuss this size
+</span>
+
+</div>
 
 <label for="glazing">
 Glazing
@@ -5003,7 +5494,7 @@ Glazing
 
 </div>
 
-<div>
+<div class="calc-field">
 
 <label for="finish">
 Glass Finish
@@ -5020,32 +5511,89 @@ Glass Finish
 
 </div>
 
-<div class="price-box reveal reveal-delay-3">
+<div
+class="price-box"
+id="customPriceBox"
+aria-live="polite"
+hidden
+>
 
-<div>
+<div class="custom-price-summary">
 
 <div class="price-label">
-Estimated Online Price
+Custom Price
 </div>
 
 <div
 class="price"
 id="price"
 >
-£580
+£0
 </div>
 
-<small>
-Includes VAT. Free mainland UK delivery applies on listed sizes.
-</small>
+<div class="custom-price-dimensions">
+
+<div class="custom-price-dimension">
+
+<span class="custom-price-dimension-label">
+Internal
+</span>
+
+<span
+class="custom-price-dimension-value"
+id="customPriceInternal"
+>
+</span>
+
+</div>
+
+<div class="custom-price-dimension">
+
+<span class="custom-price-dimension-label">
+External
+</span>
+
+<span
+class="custom-price-dimension-value"
+id="customPriceExternal"
+>
+</span>
+
+</div>
+
+</div>
+
+<div class="custom-price-meta">
+
+<div class="custom-price-vat">
+Inc. VAT
+</div>
+
+<div class="custom-price-delivery">
+
+<span class="custom-price-delivery-label">
+Estimated delivery
+</span>
+
+<span
+class="custom-price-delivery-date"
+id="estimatedDeliveryDate"
+>
+Tuesday 18 August 2026
+</span>
+
+</div>
+
+</div>
 
 </div>
 
 <a
 href="#"
 class="button"
+id="addCustomRooflightToOrder"
 >
-Add to Order
+Add To Order
 </a>
 
 </div>
@@ -5182,14 +5730,15 @@ Tinted Frameless Rooflights
 class="home-product-card tinted-product-card image-size-800x800 reveal reveal-scale"
 data-double-price="TBC"
 data-triple-price="TBC"
+data-finish="blue"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/tinted-800x800.png"
-alt="800mm by 800mm tinted frameless flat roof skylight"
+src="images/product-cards/blue-medium-square.png"
+alt="800mm by 800mm blue tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5202,7 +5751,7 @@ alt="800mm by 800mm tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Tinted Glass Options</span>
+<span>Blue Tinted Glass</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5265,14 +5814,15 @@ View Size
 class="home-product-card tinted-product-card image-size-800x1800 reveal reveal-scale reveal-delay-1"
 data-double-price="TBC"
 data-triple-price="TBC"
+data-finish="blue"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/tinted-800x1800.png"
-alt="800mm by 1800mm tinted frameless flat roof skylight"
+src="images/product-cards/blue-large-xl-rectangle.png"
+alt="800mm by 1800mm blue tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5285,7 +5835,7 @@ alt="800mm by 1800mm tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Tinted Glass Options</span>
+<span>Blue Tinted Glass</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5345,17 +5895,18 @@ View Size
 </div>
 
 <div
-class="home-product-card tinted-product-card image-size-400x800 reveal reveal-scale reveal-delay-2"
+class="home-product-card tinted-product-card image-size-400x1200 reveal reveal-scale reveal-delay-2"
 data-double-price="TBC"
 data-triple-price="TBC"
+data-finish="satin"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/tinted-400x800.png"
-alt="400mm by 800mm tinted frameless flat roof skylight"
+src="images/product-cards/satin-narrow-tall-rectangle.png"
+alt="400mm by 1200mm satin tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5363,12 +5914,12 @@ alt="400mm by 800mm tinted frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-400 × 800mm
+400 × 1200mm
 </div>
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Tinted Glass Options</span>
+<span>Satin Privacy Glass</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5431,14 +5982,15 @@ View Size
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
 data-double-price="TBC"
 data-triple-price="TBC"
+data-finish="satin"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/tinted-800x1500.png"
-alt="800mm by 1500mm tinted frameless flat roof skylight"
+src="images/product-cards/satin-large-rectangle.png"
+alt="800mm by 1500mm satin tinted frameless flat roof skylight"
 />
 
 </div>
@@ -5451,7 +6003,7 @@ alt="800mm by 1500mm tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Tinted Glass Options</span>
+<span>Satin Privacy Glass</span>
 <span>Low-E Softcoat Glass</span>
 </div>
 
@@ -5516,9 +6068,9 @@ View Size
 
 <a
 href="standard-sizes.html"
-class="button secondary"
+class="button secondary range-cta-button"
 >
-View Tinted Rooflights
+View All Sizes
 </a>
 
 </div>
@@ -5718,12 +6270,35 @@ alt="Rooflight glazing helping retain warmth during winter"
 
 </div>
 
-<div class="comfort-uv-wrap">
+<div class="comfort-help-wrap">
 
-<p class="comfort-uv-note">
-The coated glazing also helps reduce ultraviolet exposure that can contribute to fading
-across flooring, furniture, fabrics and other interior finishes.
+<div class="comfort-help-panel">
+
+<p class="comfort-help-copy">
+Need help choosing the right rooflight for your project? Our team can help you compare
+sizes, glazing and finishes so you can choose the specification that best suits your
+opening and requirements.
 </p>
+
+<div class="comfort-help-actions">
+
+<a
+href="standard-sizes.html"
+class="button"
+>
+Shop Now
+</a>
+
+<a
+href="#contact"
+class="button secondary"
+>
+Contact Our Team
+</a>
+
+</div>
+
+</div>
 
 </div>
 
@@ -7171,73 +7746,277 @@ requestSecondaryRooflightCheck();
 }
 
 /* ===============================
-TEMPORARY CALCULATOR
+CUSTOM ROOFLIGHT CALCULATOR
 ================================ */
 
-function calculatePrice() {
-const widthInput =
+const customWidthInput =
 document.getElementById(
 "width"
 );
 
-const lengthInput =
+const customLengthInput =
 document.getElementById(
 "length"
 );
 
-const glazingInput =
+const customBorderInput =
+document.getElementById(
+"border"
+);
+
+const customGlazingInput =
 document.getElementById(
 "glazing"
 );
 
-const finishInput =
+const customFinishInput =
 document.getElementById(
 "finish"
 );
 
-const priceOutput =
+const customPriceOutput =
 document.getElementById(
 "price"
 );
 
+const customPriceBox =
+document.getElementById(
+"customPriceBox"
+);
+
+const customPriceInternal =
+document.getElementById(
+"customPriceInternal"
+);
+
+const customPriceExternal =
+document.getElementById(
+"customPriceExternal"
+);
+
+const calculatorSizeAlert =
+document.getElementById(
+"calculatorSizeAlert"
+);
+
+const estimatedDeliveryDate =
+document.getElementById(
+"estimatedDeliveryDate"
+);
+
+const addCustomRooflightToOrder =
+document.getElementById(
+"addCustomRooflightToOrder"
+);
+
+function setCalculatorSizeAlert(
+shouldShow
+) {
+if (!calculatorSizeAlert) {
+return;
+}
+
+calculatorSizeAlert.hidden =
+!shouldShow;
+}
+
+function hideCustomPriceBox() {
+if (!customPriceBox) {
+return;
+}
+
+customPriceBox.hidden =
+true;
+}
+
+function showCustomPriceBox() {
+if (!customPriceBox) {
+return;
+}
+
+customPriceBox.hidden =
+false;
+}
+
+function getCustomBorderSize() {
+if (!customBorderInput) {
+return 100;
+}
+
+const selectedBorder =
+Number(
+customBorderInput.value
+);
+
 if (
-!widthInput ||
-!lengthInput ||
-!glazingInput ||
-!finishInput ||
-!priceOutput
+selectedBorder === 125 ||
+selectedBorder === 150
+) {
+return selectedBorder;
+}
+
+return 100;
+}
+
+function formatRooflightDimension(
+value
+) {
+const numericValue =
+Number(value);
+
+if (
+!Number.isFinite(
+numericValue
+)
+) {
+return "";
+}
+
+return new Intl.NumberFormat(
+"en-GB",
+{
+maximumFractionDigits:1
+}
+).format(
+numericValue
+);
+}
+
+function getEstimatedDeliveryDate() {
+const deliveryDate =
+new Date();
+
+deliveryDate.setHours(
+12,
+0,
+0,
+0
+);
+
+let workingDaysRemaining =
+7;
+
+while (
+workingDaysRemaining > 0
+) {
+deliveryDate.setDate(
+deliveryDate.getDate() + 1
+);
+
+const dayOfWeek =
+deliveryDate.getDay();
+
+if (
+dayOfWeek !== 0 &&
+dayOfWeek !== 6
+) {
+workingDaysRemaining -=
+1;
+}
+}
+
+return new Intl.DateTimeFormat(
+"en-GB",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+).format(
+deliveryDate
+);
+}
+
+function updateEstimatedDeliveryDate() {
+if (
+!estimatedDeliveryDate
+) {
+return;
+}
+
+estimatedDeliveryDate.textContent =
+getEstimatedDeliveryDate();
+}
+
+function calculatePrice() {
+if (
+!customWidthInput ||
+!customLengthInput ||
+!customBorderInput ||
+!customGlazingInput ||
+!customFinishInput ||
+!customPriceOutput ||
+!customPriceBox ||
+!customPriceInternal ||
+!customPriceExternal
 ) {
 return;
 }
 
 const width =
-Number(
-widthInput.value
+getNumericInputValue(
+customWidthInput
 );
 
 const length =
-Number(
-lengthInput.value
+getNumericInputValue(
+customLengthInput
 );
 
+const widthAboveMaximum =
+width !== null &&
+width > 1500;
+
+const lengthAboveMaximum =
+length !== null &&
+length > 2500;
+
+const exceedsOnlineMaximum =
+widthAboveMaximum ||
+lengthAboveMaximum;
+
+setCalculatorSizeAlert(
+exceedsOnlineMaximum
+);
+
+const dimensionsComplete =
+width !== null &&
+length !== null;
+
+const dimensionsValid =
+dimensionsComplete &&
+width >= 300 &&
+width <= 1500 &&
+length >= 300 &&
+length <= 2500;
+
+if (
+!dimensionsValid
+) {
+hideCustomPriceBox();
+return;
+}
+
 const glazing =
-glazingInput.value;
+customGlazingInput.value;
 
 const finish =
-finishInput.value;
+customFinishInput.value;
 
-const safeWidth =
-Number.isFinite(width)
-? width
-: 0;
+const border =
+getCustomBorderSize();
 
-const safeLength =
-Number.isFinite(length)
-? length
-: 0;
+const externalWidth =
+width +
+(border * 2);
+
+const externalLength =
+length +
+(border * 2);
 
 const area =
-(safeWidth * safeLength) /
+(width * length) /
 1000000;
 
 const baseRate =
@@ -7250,7 +8029,9 @@ area *
 baseRate;
 
 const normalizedFinish =
-String(finish)
+String(
+finish
+)
 .trim()
 .toLowerCase();
 
@@ -7277,17 +8058,77 @@ glazing === "triple"
 price = 300;
 }
 
-priceOutput.innerText =
+const roundedPrice =
+Math.round(
+price
+);
+
+customPriceOutput.textContent =
 "£" +
-Math.round(price);
+roundedPrice;
+
+customPriceInternal.textContent =
+`${formatRooflightDimension(width)}mm × ${formatRooflightDimension(length)}mm`;
+
+customPriceExternal.textContent =
+`${formatRooflightDimension(externalWidth)}mm × ${formatRooflightDimension(externalLength)}mm`;
+
+if (
+addCustomRooflightToOrder
+) {
+addCustomRooflightToOrder.dataset.price =
+String(
+roundedPrice
+);
+
+addCustomRooflightToOrder.dataset.internalWidth =
+String(
+width
+);
+
+addCustomRooflightToOrder.dataset.internalLength =
+String(
+length
+);
+
+addCustomRooflightToOrder.dataset.externalWidth =
+String(
+externalWidth
+);
+
+addCustomRooflightToOrder.dataset.externalLength =
+String(
+externalLength
+);
+
+addCustomRooflightToOrder.dataset.border =
+String(
+border
+);
+
+addCustomRooflightToOrder.dataset.glazing =
+glazing;
+
+addCustomRooflightToOrder.dataset.finish =
+finish;
 }
 
-document
-.querySelectorAll(
-"#calculator input, #calculator select"
-)
+showCustomPriceBox();
+}
+
+[
+customWidthInput,
+customLengthInput,
+customBorderInput,
+customGlazingInput,
+customFinishInput
+]
 .forEach(
 element => {
+if (!element) {
+return;
+}
+
 element.addEventListener(
 "input",
 calculatePrice
@@ -7300,6 +8141,20 @@ calculatePrice
 }
 );
 
+if (
+addCustomRooflightToOrder
+) {
+addCustomRooflightToOrder.addEventListener(
+"click",
+event => {
+event.preventDefault();
+}
+);
+}
+
+updateEstimatedDeliveryDate();
+setCalculatorSizeAlert(false);
+hideCustomPriceBox();
 calculatePrice();
 </script>
 
