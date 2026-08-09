@@ -27,6 +27,9 @@ content="Modern frameless flat roof skylights made to order in 4–5 working day
 --gold:#d7ac55;
 --gold-light:#ffe3a0;
 --gold-dark:#7a5520;
+--tint-blue:#5ca8df;
+--tint-blue-bright:#7bc4f3;
+--tint-navy:#0d2033;
 }
 
 * {
@@ -469,10 +472,10 @@ font-family:
 "Space Grotesk",
 "Manrope",
 sans-serif;
-font-size:clamp(16px,2vw,24px);
+font-size:clamp(14px,1.7vw,20px);
 font-weight:950;
 font-stretch:condensed;
-letter-spacing:1.7px;
+letter-spacing:1.5px;
 line-height:1;
 text-transform:uppercase;
 padding:3px 1px 5px;
@@ -1264,6 +1267,185 @@ display:none;
 }
 
 /* ===============================
+TINTED OPTIONS PRODUCT CARDS
+================================ */
+
+.tinted-options-section {
+position:relative;
+overflow:hidden;
+padding:42px 6% 52px;
+background:
+radial-gradient(
+circle at 14% 18%,
+rgba(67,132,187,.28),
+transparent 29%
+),
+radial-gradient(
+circle at 88% 72%,
+rgba(31,79,122,.34),
+transparent 31%
+),
+linear-gradient(
+135deg,
+#050708 0%,
+#08121c 34%,
+#0b2032 67%,
+#050708 100%
+);
+border-top:1px solid rgba(101,177,231,.16);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.tinted-options-section::before {
+content:"";
+position:absolute;
+inset:-40%;
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(92,168,223,.12) 44%,
+rgba(123,196,243,.08) 51%,
+transparent 74%
+);
+animation:popularGlow 13s ease-in-out infinite alternate;
+pointer-events:none;
+}
+
+.tinted-options-section::after {
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.03) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.03) 1px,
+transparent 1px
+);
+background-size:44px 44px;
+opacity:.22;
+transform:skewY(-6deg) scale(1.2);
+pointer-events:none;
+}
+
+.tinted-options-section .home-popular-title-wrap,
+.tinted-options-section .home-popular-grid,
+.tinted-options-section .home-popular-footer {
+position:relative;
+z-index:2;
+}
+
+.tinted-options-section .home-opening-title {
+color:rgba(255,255,255,.72);
+}
+
+.tinted-options-section .home-opening-title span {
+color:var(--tint-blue-bright);
+text-shadow:
+0 0 20px rgba(92,168,223,.08);
+}
+
+.tinted-options-section .home-product-card::before {
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(92,168,223,.13) 45%,
+transparent 75%
+);
+}
+
+.tinted-options-section .home-product-card:hover,
+.tinted-options-section .home-product-card:active {
+border-color:rgba(123,196,243,.72);
+background:
+linear-gradient(
+135deg,
+#0d1115,
+#101b25
+);
+box-shadow:
+0 26px 68px rgba(49,120,177,.18),
+0 22px 48px rgba(0,0,0,.42);
+}
+
+.tinted-options-section .home-product-card:hover .home-product-size,
+.tinted-options-section .home-product-card:active .home-product-size {
+color:var(--tint-blue-bright);
+}
+
+.tinted-options-section .home-glazing-toggle button.active {
+background:var(--tint-blue);
+color:#050505;
+}
+
+.tinted-options-section .home-product-link {
+color:var(--tint-blue-bright);
+border-bottom-color:rgba(123,196,243,.46);
+}
+
+.tinted-options-section .home-product-link:hover {
+color:var(--white);
+border-color:var(--white);
+}
+
+.tinted-options-section .home-product-link.is-encouraged {
+animation:
+tintedViewSizeEncouragement
+5.5s
+ease-in-out
+infinite;
+}
+
+@keyframes tintedViewSizeEncouragement {
+0%,
+70%,
+100% {
+transform:scale(1);
+color:var(--tint-blue-bright);
+border-color:rgba(123,196,243,.46);
+text-shadow:none;
+}
+
+76% {
+transform:scale(1.18);
+color:var(--white);
+border-color:var(--white);
+text-shadow:
+0 0 6px rgba(255,255,255,.46),
+0 0 16px rgba(92,168,223,.72);
+}
+
+82% {
+transform:scale(1.05);
+color:var(--tint-blue-bright);
+border-color:var(--tint-blue-bright);
+text-shadow:
+0 0 9px rgba(92,168,223,.46);
+}
+
+88% {
+transform:scale(1.14);
+color:var(--white);
+border-color:var(--white);
+text-shadow:
+0 0 6px rgba(255,255,255,.38),
+0 0 14px rgba(92,168,223,.64);
+}
+
+95% {
+transform:scale(1);
+color:var(--tint-blue-bright);
+border-color:rgba(123,196,243,.46);
+text-shadow:none;
+}
+}
+
+/* ===============================
 DESIGN SECTION
 ================================ */
 
@@ -1853,29 +2035,24 @@ overflow:hidden;
 padding-bottom:0;
 border-bottom:0;
 background:
-radial-gradient(
-ellipse at 50% 49%,
-rgba(139,28,10,.72) 0%,
-rgba(125,24,8,.58) 14%,
-rgba(105,19,7,.43) 27%,
-rgba(77,14,6,.25) 39%,
-rgba(42,10,5,.10) 50%,
-transparent 61%
-),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 27%,
-#080606 31%,
-#170907 35%,
-#35100a 40%,
-#5b160d 46%,
-#791d10 52%,
-#6b190e 58%,
-#49110a 64%,
-#250b07 70%,
-#100706 76%,
-#070707 82%,
+#060606 25%,
+#090606 28%,
+#170807 31%,
+#300c09 35%,
+#51110d 39%,
+#711710 44%,
+#8a1c13 48%,
+#951f15 51%,
+#861a12 55%,
+#69140f 59%,
+#49100c 63%,
+#2c0c09 67%,
+#170806 70%,
+#0c0606 73%,
+#060606 77%,
 #060606 100%
 );
 }
@@ -1888,23 +2065,7 @@ z-index:2;
 
 .existing-opening-section::after,
 .bespoke-build-section::after {
-content:"";
-position:absolute;
-inset:0;
-z-index:0;
-pointer-events:none;
-background:
-linear-gradient(
-90deg,
-rgba(0,0,0,.54) 0%,
-rgba(0,0,0,.31) 11%,
-rgba(0,0,0,.13) 23%,
-transparent 37%,
-transparent 63%,
-rgba(0,0,0,.13) 77%,
-rgba(0,0,0,.31) 89%,
-rgba(0,0,0,.54) 100%
-);
+display:none;
 }
 
 /* ===============================
@@ -2158,7 +2319,7 @@ display:none;
 .bespoke-build-section .combined-calculator-wrap .calculator {
 position:relative;
 z-index:2;
-background:rgba(16,16,16,.90);
+background:rgba(13,11,11,.74);
 border:1px solid rgba(255,255,255,.10);
 box-shadow:
 0 28px 85px rgba(0,0,0,.58),
@@ -2174,7 +2335,7 @@ margin-bottom:20px;
 
 .bespoke-build-section .combined-calculator-wrap h2 {
 margin:0 0 26px;
-font-size:clamp(38px,5vw,66px);
+font-size:clamp(34px,4.4vw,56px);
 line-height:.98;
 letter-spacing:-1.7px;
 }
@@ -2923,8 +3084,8 @@ height:22px;
 }
 
 .lead-time-feature {
-font-size:14px;
-letter-spacing:.9px;
+font-size:12.5px;
+letter-spacing:.75px;
 gap:4px;
 }
 
@@ -3021,6 +3182,18 @@ font-size:9px;
 
 .home-popular-footer {
 margin-top:28px;
+padding:0 2.5%;
+}
+
+.tinted-options-section {
+padding:30px 3.5% 24px;
+}
+
+.tinted-options-section .home-popular-title-wrap {
+padding:0 2.5%;
+}
+
+.tinted-options-section .home-popular-grid {
 padding:0 2.5%;
 }
 
@@ -3272,47 +3445,31 @@ MOBILE BESPOKE + BUILD
 .bespoke-build-section {
 padding-bottom:0;
 background:
-radial-gradient(
-ellipse at 50% 48%,
-rgba(144,29,10,.76) 0%,
-rgba(128,24,8,.61) 14%,
-rgba(108,19,7,.46) 27%,
-rgba(78,14,6,.28) 40%,
-rgba(43,10,5,.12) 51%,
-transparent 62%
-),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 26%,
-#070606 30%,
-#140806 34%,
-#30100a 39%,
-#55160d 45%,
-#741c10 51%,
-#68180e 57%,
-#47110a 63%,
-#250b07 69%,
-#110706 75%,
-#080707 81%,
+#060606 25%,
+#090606 28%,
+#180807 31%,
+#330d09 35%,
+#57120d 40%,
+#781810 45%,
+#921e14 49%,
+#9b2116 51%,
+#8d1c13 55%,
+#6d150f 59%,
+#4b100c 63%,
+#2d0c09 67%,
+#180806 70%,
+#0d0606 73%,
+#070606 76%,
 #060606 100%
 );
 }
 
 .existing-opening-section::after,
 .bespoke-build-section::after {
-background:
-linear-gradient(
-90deg,
-rgba(0,0,0,.59) 0%,
-rgba(0,0,0,.35) 10%,
-rgba(0,0,0,.16) 22%,
-transparent 36%,
-transparent 64%,
-rgba(0,0,0,.16) 78%,
-rgba(0,0,0,.35) 90%,
-rgba(0,0,0,.59) 100%
-);
+display:none;
 }
 
 .existing-opening-assistant {
@@ -3438,7 +3595,7 @@ transform:scale(1.08);
 transform-origin:center center;
 }
 
-/* Combined Build Your Rooflight area shares the same gradient */
+/* Combined Build Your Rooflight area shares the same full-width gradient */
 
 .bespoke-build-section .combined-calculator-wrap {
 width:100vw;
@@ -3459,7 +3616,7 @@ display:none;
 
 .bespoke-build-section .combined-calculator-wrap .calculator {
 padding:30px 24px;
-background:rgba(14,14,14,.88);
+background:rgba(13,11,11,.72);
 border-color:rgba(255,255,255,.10);
 box-shadow:
 0 24px 65px rgba(0,0,0,.52),
@@ -3471,10 +3628,10 @@ margin-bottom:14px;
 }
 
 .bespoke-build-section .combined-calculator-wrap h2 {
-margin:0 0 22px;
-font-size:42px;
-line-height:.98;
-letter-spacing:-2px;
+margin:0 0 20px;
+font-size:36px;
+line-height:1;
+letter-spacing:-1.5px;
 }
 
 .bespoke-build-section .combined-calculator-wrap .calculator > p {
@@ -3682,7 +3839,12 @@ padding-top:24px;
 }
 
 .bespoke-build-section .combined-calculator-wrap h2 {
-font-size:39px;
+font-size:34px;
+}
+
+.tinted-options-section {
+padding-top:27px;
+padding-bottom:22px;
 }
 }
 
@@ -3693,6 +3855,7 @@ scroll-behavior:auto;
 
 .ticker,
 .home-popular-section::before,
+.tinted-options-section::before,
 .lead-time-message-text::after,
 .lead-time-star,
 .lead-time-star::before,
@@ -4999,6 +5162,369 @@ retaining the clean frameless appearance.
 
 </section>
 
+<section
+class="tinted-options-section"
+id="tintedOptions"
+>
+
+<div class="home-popular-title-wrap reveal">
+
+<h2 class="home-opening-title">
+Tinted Frameless Rooflights
+<span>Tinted Options</span>
+</h2>
+
+</div>
+
+<div class="home-popular-grid">
+
+<div
+class="home-product-card tinted-product-card image-size-800x800 reveal reveal-scale"
+data-double-price="TBC"
+data-triple-price="TBC"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/tinted-800x800.png"
+alt="800mm by 800mm tinted frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+800 × 800mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>Tinted Glass Options</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£TBC
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card tinted-product-card image-size-800x1800 reveal reveal-scale reveal-delay-1"
+data-double-price="TBC"
+data-triple-price="TBC"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/tinted-800x1800.png"
+alt="800mm by 1800mm tinted frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+800 × 1800mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>Tinted Glass Options</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£TBC
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card tinted-product-card image-size-400x800 reveal reveal-scale reveal-delay-2"
+data-double-price="TBC"
+data-triple-price="TBC"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/tinted-400x800.png"
+alt="400mm by 800mm tinted frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+400 × 800mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>Tinted Glass Options</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£TBC
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
+data-double-price="TBC"
+data-triple-price="TBC"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/tinted-800x1500.png"
+alt="800mm by 1500mm tinted frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+800 × 1500mm
+</div>
+
+<div class="home-product-spec">
+<span>Internal visible glass size</span>
+<span>Tinted Glass Options</span>
+<span>Low-E Softcoat Glass</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+Price
+</div>
+
+<div class="home-product-price">
+£TBC
+<span class="home-vat-note">inc. vat</span>
+</div>
+
+</div>
+
+<a
+href="standard-sizes.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="home-popular-footer reveal">
+
+<a
+href="standard-sizes.html"
+class="button secondary"
+>
+View Tinted Rooflights
+</a>
+
+</div>
+
+</section>
+
 <section class="direct-section">
 
 <div class="direct-visual-intro direct-image-reveal">
@@ -5514,7 +6040,7 @@ element
 }
 
 /* ===============================
-POPULAR CARD VIEW-SIZE ATTENTION
+STANDARD + TINTED PRODUCT CARDS
 ================================ */
 
 const homepageProductCards =
@@ -6130,8 +6656,34 @@ comfortSlideshow
 }
 
 /* ===============================
-POPULAR SIZE CONTROLS
+STANDARD + TINTED GLAZING CONTROLS
 ================================ */
+
+function formatProductPrice(
+selectedPrice
+) {
+const normalizedPrice =
+String(
+selectedPrice ?? ""
+)
+.trim();
+
+if (
+normalizedPrice === "" ||
+normalizedPrice.toUpperCase() ===
+"TBC"
+) {
+return "£TBC";
+}
+
+if (
+normalizedPrice.startsWith("£")
+) {
+return normalizedPrice;
+}
+
+return "£" + normalizedPrice;
+}
 
 homepageProductCards.forEach(
 card => {
@@ -6182,7 +6734,7 @@ glazing === "triple"
 
 if (priceElement) {
 priceElement.innerHTML =
-`£${selectedPrice}<span class="home-vat-note">inc. vat</span>`;
+`${formatProductPrice(selectedPrice)}<span class="home-vat-note">inc. vat</span>`;
 }
 
 if (glazedLabel) {
