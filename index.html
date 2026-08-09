@@ -2192,24 +2192,36 @@ overflow:hidden;
 padding-bottom:0;
 border-bottom:0;
 background:
+radial-gradient(
+ellipse 76% 44% at 50% 54%,
+rgba(255,79,13,.96) 0%,
+rgba(239,62,8,.90) 16%,
+rgba(207,45,6,.78) 31%,
+rgba(160,31,5,.61) 47%,
+rgba(101,19,5,.38) 63%,
+rgba(48,11,5,.18) 77%,
+transparent 92%
+),
+radial-gradient(
+ellipse 118% 72% at 50% 55%,
+rgba(175,37,7,.46) 0%,
+rgba(93,18,5,.29) 48%,
+transparent 78%
+),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 25%,
-#090606 28%,
-#170807 31%,
-#300c09 35%,
-#51110d 39%,
-#711710 44%,
-#8a1c13 48%,
-#951f15 51%,
-#861a12 55%,
-#69140f 59%,
-#49100c 63%,
-#2c0c09 67%,
-#170806 70%,
-#0c0606 73%,
-#060606 77%,
+#060606 24%,
+#0b0605 28%,
+#1c0805 33%,
+#421006 39%,
+#761906 46%,
+#a62607 52%,
+#8f2006 58%,
+#611506 65%,
+#351006 71%,
+#160806 77%,
+#080606 82%,
 #060606 100%
 );
 }
@@ -2330,6 +2342,8 @@ color:rgba(255,255,255,.30);
 font-weight:700;
 }
 
+/* Recommendation styled to match cleaner reference typography */
+
 .existing-opening-recommendation {
 display:flex;
 width:100%;
@@ -2340,10 +2354,15 @@ padding:10px 0 2px;
 overflow:visible;
 opacity:0;
 visibility:hidden;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
 font-size:15px;
-font-weight:950;
-line-height:1.42;
-letter-spacing:.2px;
+font-weight:700;
+line-height:1.38;
+letter-spacing:0;
 text-align:center;
 flex-direction:column;
 align-items:center;
@@ -2371,19 +2390,32 @@ transform:none;
 .existing-opening-recommendation-label {
 display:block;
 color:var(--fast-red);
-font-weight:950;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
+font-size:1.03em;
+font-weight:800;
+letter-spacing:0;
 }
 
 .existing-opening-recommendation-size {
 display:block;
-margin-top:3px;
+margin-top:5px;
 color:var(--white);
-font-size:1.08em;
-font-weight:950;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
+font-size:1.12em;
+font-weight:700;
+letter-spacing:-.1px;
 }
 
 .existing-opening-recommendation strong {
-font-weight:950;
+font-weight:800;
 }
 
 .existing-opening-error {
@@ -2462,7 +2494,7 @@ margin:
 0
 0
 calc(50% - 50vw);
-padding:42px 6% 95px;
+padding:17px 6% 95px;
 overflow:visible;
 background:transparent;
 border-top:0;
@@ -3819,24 +3851,36 @@ MOBILE BESPOKE + BUILD
 .bespoke-build-section {
 padding-bottom:0;
 background:
+radial-gradient(
+ellipse 92% 43% at 50% 54%,
+rgba(255,78,12,.98) 0%,
+rgba(241,62,8,.92) 17%,
+rgba(210,46,6,.80) 32%,
+rgba(164,32,5,.63) 48%,
+rgba(105,20,5,.40) 64%,
+rgba(52,12,5,.20) 78%,
+transparent 92%
+),
+radial-gradient(
+ellipse 136% 74% at 50% 54%,
+rgba(182,39,7,.47) 0%,
+rgba(94,18,5,.29) 49%,
+transparent 79%
+),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 25%,
-#090606 28%,
-#180807 31%,
-#330d09 35%,
-#57120d 40%,
-#781810 45%,
-#921e14 49%,
-#9b2116 51%,
-#8d1c13 55%,
-#6d150f 59%,
-#4b100c 63%,
-#2d0c09 67%,
-#180806 70%,
-#0d0606 73%,
-#070606 76%,
+#060606 24%,
+#0b0605 28%,
+#1d0805 33%,
+#451006 39%,
+#7d1a06 46%,
+#aa2707 52%,
+#932106 58%,
+#651606 65%,
+#371006 71%,
+#170806 77%,
+#080606 82%,
 #060606 100%
 );
 }
@@ -3884,8 +3928,15 @@ min-height:96px;
 max-height:none;
 margin:0;
 padding:6px 0 1px;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
 font-size:13px;
-line-height:1.38;
+font-weight:700;
+line-height:1.34;
+letter-spacing:0;
 flex-direction:column;
 align-items:center;
 justify-content:center;
@@ -3904,12 +3955,26 @@ margin:0;
 }
 
 .existing-opening-recommendation-label {
-font-size:1em;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
+font-size:1.03em;
+font-weight:800;
+letter-spacing:0;
 }
 
 .existing-opening-recommendation-size {
-margin-top:3px;
-font-size:1.08em;
+margin-top:4px;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
+font-size:1.12em;
+font-weight:700;
+letter-spacing:-.1px;
 }
 
 /* Image remains hidden until Index-4 reveals it */
@@ -3970,6 +4035,7 @@ transform-origin:center center;
 }
 
 /* Combined custom calculator shares the full-width gradient */
+/* Top gap reduced by approximately 60% */
 
 .bespoke-build-section .combined-calculator-wrap {
 width:100vw;
@@ -3978,7 +4044,7 @@ margin:
 0
 0
 calc(50% - 50vw);
-padding:28px 6% 68px;
+padding:11px 6% 68px;
 background:transparent;
 border-top:0;
 text-align:left;
@@ -4245,12 +4311,29 @@ font-size:16px;
 min-height:90px;
 margin:0;
 padding:5px 0 1px;
+font-family:
+Arial,
+"Helvetica Neue",
+"Segoe UI",
+sans-serif;
 font-size:12px;
+font-weight:700;
 }
 
 .existing-opening-recommendation.is-visible {
 min-height:90px;
 margin:0;
+}
+
+.existing-opening-recommendation-label {
+font-size:1.03em;
+font-weight:800;
+}
+
+.existing-opening-recommendation-size {
+margin-top:4px;
+font-size:1.12em;
+font-weight:700;
 }
 
 .existing-opening-rooflight-visual {
@@ -4270,7 +4353,7 @@ transform:scale(1.07);
 }
 
 .bespoke-build-section .combined-calculator-wrap {
-padding-top:24px;
+padding-top:10px;
 }
 
 .bespoke-build-section .combined-calculator-wrap h2 {
