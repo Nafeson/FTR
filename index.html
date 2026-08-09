@@ -1843,45 +1843,51 @@ transform:translateY(0);
 }
 
 /* ===============================
-EXISTING OPENING SECTION
+BESPOKE + BUILD UNIFIED SECTION
 ================================ */
 
-.existing-opening-section {
+.existing-opening-section,
+.bespoke-build-section {
 position:relative;
 overflow:hidden;
 padding-bottom:0;
 border-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 78%,
-rgba(220,106,0,.60) 0%,
-rgba(205,84,0,.43) 19%,
-rgba(163,55,0,.26) 37%,
-rgba(99,32,0,.13) 53%,
-rgba(49,16,0,.05) 65%,
-transparent 76%
+ellipse at 50% 49%,
+rgba(139,28,10,.72) 0%,
+rgba(125,24,8,.58) 14%,
+rgba(105,19,7,.43) 27%,
+rgba(77,14,6,.25) 39%,
+rgba(42,10,5,.10) 50%,
+transparent 61%
 ),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 37%,
-#070706 46%,
-#0b0805 54%,
-#170b04 62%,
-#2c1103 70%,
-#481902 79%,
-#632100 88%,
-#752500 94%,
-#501900 100%
+#060606 27%,
+#080606 31%,
+#170907 35%,
+#35100a 40%,
+#5b160d 46%,
+#791d10 52%,
+#6b190e 58%,
+#49110a 64%,
+#250b07 70%,
+#100706 76%,
+#070707 82%,
+#060606 100%
 );
 }
 
-.existing-opening-section .section-transition-inner {
+.existing-opening-section .section-transition-inner,
+.bespoke-build-section .section-transition-inner {
 position:relative;
 z-index:2;
 }
 
-.existing-opening-section::after {
+.existing-opening-section::after,
+.bespoke-build-section::after {
 content:"";
 position:absolute;
 inset:0;
@@ -1890,14 +1896,14 @@ pointer-events:none;
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.50) 0%,
-rgba(0,0,0,.27) 11%,
-rgba(0,0,0,.10) 23%,
-transparent 36%,
-transparent 64%,
-rgba(0,0,0,.10) 77%,
-rgba(0,0,0,.27) 89%,
-rgba(0,0,0,.50) 100%
+rgba(0,0,0,.54) 0%,
+rgba(0,0,0,.31) 11%,
+rgba(0,0,0,.13) 23%,
+transparent 37%,
+transparent 63%,
+rgba(0,0,0,.13) 77%,
+rgba(0,0,0,.31) 89%,
+rgba(0,0,0,.54) 100%
 );
 }
 
@@ -2005,8 +2011,6 @@ box-shadow:0 0 0 3px rgba(255,59,22,.11);
 color:rgba(255,255,255,.30);
 font-weight:700;
 }
-
-/* Fixed recommendation zone prevents image movement */
 
 .existing-opening-recommendation {
 display:flex;
@@ -2125,6 +2129,62 @@ height:100%;
 object-fit:contain;
 object-position:center center;
 background:transparent;
+}
+
+/* ===============================
+COMBINED BUILD CALCULATOR
+================================ */
+
+.bespoke-build-section .combined-calculator-wrap {
+position:relative;
+z-index:2;
+width:100vw;
+margin:
+0
+0
+0
+calc(50% - 50vw);
+padding:42px 6% 95px;
+overflow:visible;
+background:transparent;
+border-top:0;
+text-align:left;
+}
+
+.bespoke-build-section .combined-calculator-wrap::before {
+display:none;
+}
+
+.bespoke-build-section .combined-calculator-wrap .calculator {
+position:relative;
+z-index:2;
+background:rgba(16,16,16,.90);
+border:1px solid rgba(255,255,255,.10);
+box-shadow:
+0 28px 85px rgba(0,0,0,.58),
+inset 0 1px 0 rgba(255,255,255,.025);
+backdrop-filter:blur(3px);
+-webkit-backdrop-filter:blur(3px);
+text-align:left;
+}
+
+.bespoke-build-section .combined-calculator-wrap .section-label {
+margin-bottom:20px;
+}
+
+.bespoke-build-section .combined-calculator-wrap h2 {
+margin:0 0 26px;
+font-size:clamp(38px,5vw,66px);
+line-height:.98;
+letter-spacing:-1.7px;
+}
+
+.bespoke-build-section .combined-calculator-wrap .calculator > p {
+max-width:860px;
+margin:0;
+font-size:17px;
+line-height:1.7;
+color:var(--muted);
 }
 
 /* ===============================
@@ -3205,49 +3265,53 @@ font-size:16px;
 }
 
 /* ===============================
-MOBILE EXISTING OPENING
+MOBILE BESPOKE + BUILD
 ================================ */
 
-.existing-opening-section {
+.existing-opening-section,
+.bespoke-build-section {
 padding-bottom:0;
 background:
 radial-gradient(
-ellipse at 50% 82%,
-rgba(220,106,0,.75) 0%,
-rgba(207,85,0,.56) 17%,
-rgba(174,60,0,.38) 33%,
-rgba(124,39,0,.22) 47%,
-rgba(73,22,0,.105) 59%,
-rgba(35,12,0,.04) 68%,
-transparent 77%
+ellipse at 50% 48%,
+rgba(144,29,10,.76) 0%,
+rgba(128,24,8,.61) 14%,
+rgba(108,19,7,.46) 27%,
+rgba(78,14,6,.28) 40%,
+rgba(43,10,5,.12) 51%,
+transparent 62%
 ),
 linear-gradient(
 180deg,
 #060606 0%,
-#060606 43%,
-#070706 50%,
-#0b0805 57%,
-#180c04 64%,
-#2f1203 71%,
-#4e1b01 79%,
-#6b2300 87%,
-#7c2800 93%,
-#521900 100%
+#060606 26%,
+#070606 30%,
+#140806 34%,
+#30100a 39%,
+#55160d 45%,
+#741c10 51%,
+#68180e 57%,
+#47110a 63%,
+#250b07 69%,
+#110706 75%,
+#080707 81%,
+#060606 100%
 );
 }
 
-.existing-opening-section::after {
+.existing-opening-section::after,
+.bespoke-build-section::after {
 background:
 linear-gradient(
 90deg,
-rgba(0,0,0,.57) 0%,
-rgba(0,0,0,.33) 10%,
-rgba(0,0,0,.15) 22%,
+rgba(0,0,0,.59) 0%,
+rgba(0,0,0,.35) 10%,
+rgba(0,0,0,.16) 22%,
 transparent 36%,
 transparent 64%,
-rgba(0,0,0,.15) 78%,
-rgba(0,0,0,.33) 90%,
-rgba(0,0,0,.57) 100%
+rgba(0,0,0,.16) 78%,
+rgba(0,0,0,.35) 90%,
+rgba(0,0,0,.59) 100%
 );
 }
 
@@ -3281,8 +3345,6 @@ font-size:17px;
 border-color:rgba(255,255,255,.27);
 background:#050505;
 }
-
-/* Fixed result band centres recommendation between inputs and image */
 
 .existing-opening-recommendation {
 display:flex;
@@ -3319,10 +3381,7 @@ margin-top:3px;
 font-size:1.08em;
 }
 
-/* Image is the bottom part of this same bespoke section.
-It stays in layout but remains visually hidden until
-Index-4 applies .is-revealed after a valid input or
-the calculator becomes the secondary appearance trigger. */
+/* Image remains hidden until Index-4 reveals it */
 
 .existing-opening-rooflight-visual {
 width:100vw;
@@ -3377,6 +3436,52 @@ object-position:center center;
 background:transparent;
 transform:scale(1.08);
 transform-origin:center center;
+}
+
+/* Combined Build Your Rooflight area shares the same gradient */
+
+.bespoke-build-section .combined-calculator-wrap {
+width:100vw;
+margin:
+0
+0
+0
+calc(50% - 50vw);
+padding:28px 6% 68px;
+background:transparent;
+border-top:0;
+text-align:left;
+}
+
+.bespoke-build-section .combined-calculator-wrap::before {
+display:none;
+}
+
+.bespoke-build-section .combined-calculator-wrap .calculator {
+padding:30px 24px;
+background:rgba(14,14,14,.88);
+border-color:rgba(255,255,255,.10);
+box-shadow:
+0 24px 65px rgba(0,0,0,.52),
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.bespoke-build-section .combined-calculator-wrap .section-label {
+margin-bottom:14px;
+}
+
+.bespoke-build-section .combined-calculator-wrap h2 {
+margin:0 0 22px;
+font-size:42px;
+line-height:.98;
+letter-spacing:-2px;
+}
+
+.bespoke-build-section .combined-calculator-wrap .calculator > p {
+max-width:none;
+margin:0;
+font-size:16px;
+line-height:1.7;
 }
 
 .buy-online-section {
@@ -3570,6 +3675,14 @@ height:230px;
 
 .existing-opening-rooflight-visual .rooflight-slide img {
 transform:scale(1.07);
+}
+
+.bespoke-build-section .combined-calculator-wrap {
+padding-top:24px;
+}
+
+.bespoke-build-section .combined-calculator-wrap h2 {
+font-size:39px;
 }
 }
 
@@ -4532,7 +4645,9 @@ team focuses specifically on producing frameless flat roof skylights.
 
 </section>
 
-<section class="section-transition existing-opening-section">
+<section
+class="section-transition existing-opening-section bespoke-build-section"
+>
 
 <div class="section-transition-inner">
 
@@ -4655,11 +4770,9 @@ alt="Custom made frameless rooflight"
 
 </div>
 
-</section>
-
-<section
+<div
 id="calculator"
-class="calculator-wrap"
+class="calculator-wrap combined-calculator-wrap"
 >
 
 <div
@@ -4771,6 +4884,8 @@ class="button"
 >
 Add to Order
 </a>
+
+</div>
 
 </div>
 
