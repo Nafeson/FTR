@@ -8,7 +8,7 @@
 
 <meta
 name="description"
-content="Modern frameless flat roof skylights made to order in 4–5 working days. Energy-saving glass, ceramic fused borders, 20 year warranty and free mainland UK delivery on listed sizes."
+content="British manufactured frameless flat roof skylights made to order with estimated lead times from 4–6 working days. Toughened safety glass, 20 year warranty and mainland UK delivery on listed sizes."
 />
 
 <style>
@@ -838,7 +838,6 @@ transition-delay:.21s;
 transition-delay:.28s;
 }
 
-.comfort-uv-note.reveal,
 .direct-copy > p.reveal {
 opacity:1;
 transform:none;
@@ -898,18 +897,6 @@ transparent 1px
 background-size:48px 48px;
 opacity:.45;
 pointer-events:none;
-}
-
-@keyframes popularGlow {
-from {
-transform:translateX(-5%);
-opacity:.25;
-}
-
-to {
-transform:translateX(5%);
-opacity:.40;
-}
 }
 
 .home-popular-title-wrap,
@@ -975,7 +962,7 @@ gap:17px;
 background:#151717;
 border:1px solid rgba(233,236,233,.11);
 padding:12px;
-min-height:178px;
+min-height:185px;
 position:relative;
 overflow:hidden;
 isolation:isolate;
@@ -1106,18 +1093,79 @@ color:var(--orange-bright);
 transform:none;
 }
 
+/* ===============================
+PRODUCT SPECIFICATION LINES
+================================ */
+
 .home-product-spec {
 display:grid;
-gap:4px;
+gap:5px;
 color:var(--muted-soft);
 font-size:11px;
 line-height:1.35;
 margin-bottom:11px;
 }
 
-.home-product-spec span:first-child {
-color:rgba(247,247,243,.70);
+.home-product-spec span {
+display:block;
 }
+
+.home-product-spec span:first-child,
+.home-product-spec .product-internal-size {
+color:rgba(247,247,243,.72);
+}
+
+.home-product-spec .product-lead-time,
+.product-lead-time {
+position:relative;
+display:flex;
+align-items:center;
+gap:7px;
+color:rgba(247,247,243,.82);
+font-weight:650;
+}
+
+.home-product-spec .product-lead-time::before,
+.product-lead-time::before {
+content:"";
+width:5px;
+height:5px;
+border-radius:50%;
+background:var(--workshop-green-bright);
+box-shadow:0 0 0 2px rgba(40,100,73,.14);
+flex:0 0 auto;
+}
+
+.home-product-spec .product-glass-spec,
+.product-glass-spec {
+color:var(--muted);
+}
+
+/* Optional label/value structure */
+
+.product-spec-row {
+display:flex;
+align-items:baseline;
+flex-wrap:wrap;
+gap:5px;
+}
+
+.product-spec-label {
+color:rgba(255,255,255,.40);
+font-size:.88em;
+font-weight:700;
+letter-spacing:.7px;
+text-transform:uppercase;
+}
+
+.product-spec-value {
+color:rgba(247,247,243,.76);
+font-weight:650;
+}
+
+/* ===============================
+GLAZING SELECTOR
+================================ */
 
 .home-glazing-wrap {
 max-width:210px;
@@ -1400,7 +1448,6 @@ display:none;
 
 /* ===============================
 TINTED OPTIONS
-SAME FACTORY PRODUCT LANGUAGE
 ================================ */
 
 .tinted-options-section {
@@ -1550,7 +1597,7 @@ transform:translateX(4px);
 }
 
 /* ===============================
-DESIGN SECTION
+PRODUCT / ARCHITECTURAL SECTION
 ================================ */
 
 .opening-section {
@@ -1594,7 +1641,7 @@ font-weight:750;
 
 .opening-section p {
 font-size:20px;
-max-width:820px;
+max-width:860px;
 line-height:1.62;
 color:var(--muted);
 margin:0 0 48px;
@@ -1623,7 +1670,7 @@ display:none;
 }
 
 /* ===============================
-DEDICATED TEAM
+DEDICATED WORKSHOP TEAM
 ================================ */
 
 .direct-section {
@@ -1797,6 +1844,144 @@ color:var(--orange);
 font-size:14px;
 font-weight:800;
 line-height:1;
+}
+
+/* ===============================
+BRITISH WORKSHOP TRUST STRIP
+================================ */
+
+.workshop-trust-section {
+position:relative;
+overflow:hidden;
+padding:62px 6%;
+background:
+linear-gradient(
+180deg,
+#111414 0%,
+#0e1110 100%
+);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.workshop-trust-section::before {
+content:"";
+position:absolute;
+top:0;
+left:6%;
+width:88px;
+height:2px;
+background:var(--orange);
+}
+
+.workshop-trust-inner {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto;
+}
+
+.workshop-trust-heading {
+max-width:820px;
+margin-bottom:30px;
+}
+
+.workshop-trust-heading h2 {
+margin:0;
+font-size:clamp(34px,4.8vw,58px);
+font-weight:750;
+letter-spacing:-1.5px;
+}
+
+.workshop-trust-heading p {
+max-width:720px;
+margin:18px 0 0;
+font-size:16px;
+}
+
+.workshop-trust-grid {
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+border-top:1px solid rgba(255,255,255,.10);
+border-left:1px solid rgba(255,255,255,.10);
+}
+
+.workshop-trust-card {
+position:relative;
+min-height:150px;
+padding:25px 24px;
+background:rgba(21,24,24,.78);
+border-right:1px solid rgba(255,255,255,.10);
+border-bottom:1px solid rgba(255,255,255,.10);
+transition:
+background .22s ease,
+border-color .22s ease,
+transform .22s ease;
+}
+
+.workshop-trust-card:hover {
+background:#191c1b;
+border-color:rgba(232,120,23,.22);
+transform:translateY(-2px);
+}
+
+.workshop-trust-kicker {
+display:block;
+margin-bottom:10px;
+color:var(--orange);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8px;
+font-weight:750;
+letter-spacing:1.5px;
+text-transform:uppercase;
+}
+
+.workshop-trust-card strong {
+display:block;
+margin-bottom:10px;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+sans-serif;
+font-size:21px;
+font-weight:750;
+line-height:1.12;
+}
+
+.workshop-trust-card p {
+margin:0;
+color:var(--muted-soft);
+font-size:13px;
+line-height:1.55;
+}
+
+.workshop-collection-note {
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:22px;
+color:rgba(247,247,243,.50);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:650;
+letter-spacing:.9px;
+text-transform:uppercase;
+}
+
+.workshop-collection-note::before {
+content:"";
+width:6px;
+height:6px;
+border:1px solid var(--steel);
+transform:rotate(45deg);
+opacity:.75;
 }
 
 /* ===============================
@@ -2077,10 +2262,6 @@ letter-spacing:-1.8px;
 max-width:720px;
 margin:22px 0 0;
 font-size:17px;
-}
-
-.comfort-section + .section-transition {
-padding-top:50px;
 }
 
 .order-transition-heading-group {
@@ -2643,175 +2824,6 @@ align-self:center;
 }
 
 /* ===============================
-TRUST TO COMFORT SLIDESHOW
-================================ */
-
-.trust-comfort-slideshow-section {
-position:relative;
-overflow:hidden;
-background:#090a0a;
-border-top:1px solid rgba(255,255,255,.08);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.trust-comfort-slideshow-section .buy-rooflight-slideshow {
-margin:0;
-box-shadow:none;
-}
-
-.trust-comfort-slideshow-section .rooflight-slideshow-shell {
-height:clamp(250px,36vw,470px);
-}
-
-/* ===============================
-YEAR-ROUND COMFORT
-================================ */
-
-.comfort-section {
-position:relative;
-overflow:hidden;
-padding:72px 0 44px;
-background:
-linear-gradient(
-135deg,
-#0d0f0f 0%,
-#131717 54%,
-#151a1b 100%
-);
-border-top:0;
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.comfort-intro {
-max-width:1120px;
-margin:0 auto 40px;
-padding:0 6%;
-}
-
-.comfort-intro h2 {
-max-width:880px;
-font-size:clamp(38px,5.1vw,63px);
-font-weight:750;
-}
-
-.comfort-intro p {
-max-width:820px;
-margin-bottom:0;
-font-size:18px;
-}
-
-.comfort-visual {
-position:relative;
-width:100%;
-overflow:hidden;
-background:#090a0a;
-touch-action:pan-y;
-user-select:none;
-border-top:1px solid rgba(255,255,255,.06);
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.comfort-frame {
-position:relative;
-width:100%;
-aspect-ratio:3 / 2;
-min-height:0;
-overflow:hidden;
-background:#090a0a;
-}
-
-.comfort-image {
-position:absolute;
-top:-4px;
-left:-4px;
-width:calc(100% + 8px);
-height:calc(100% + 8px);
-object-fit:contain;
-object-position:center;
-background:#090a0a;
-opacity:0;
-visibility:hidden;
-transform:scale(1);
-transition:
-opacity 1.15s ease,
-visibility 1.15s ease;
-}
-
-.comfort-image.active {
-opacity:1;
-visibility:visible;
-}
-
-/* ===============================
-HELP / SHOP CTA AREA
-================================ */
-
-.comfort-help-wrap {
-max-width:1120px;
-margin:0 auto;
-padding:30px 6% 2px;
-}
-
-.comfort-help-panel {
-display:grid;
-grid-template-columns:minmax(0,1fr) auto;
-align-items:center;
-gap:40px;
-padding:20px 0 20px 24px;
-border-left:2px solid var(--orange);
-}
-
-.comfort-help-copy {
-max-width:650px;
-margin:0;
-font-size:13px;
-line-height:1.65;
-color:rgba(247,247,243,.58);
-text-align:left;
-}
-
-.comfort-help-actions {
-display:grid;
-gap:7px;
-width:210px;
-justify-self:end;
-}
-
-.comfort-help-actions .button {
-width:100%;
-min-width:0;
-padding:13px 16px;
-font-size:9px;
-letter-spacing:1px;
-}
-
-.comfort-help-actions .button.secondary {
-background:#121414;
-}
-
-/* Legacy UV wrapper retained */
-
-.comfort-uv-wrap {
-min-height:auto;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:22px 6% 0;
-}
-
-.comfort-uv-note {
-width:min(900px,100%);
-margin:0;
-padding:4px 0 4px 20px;
-border-left:2px solid var(--orange);
-font-size:13px;
-line-height:1.65;
-color:rgba(255,255,255,.52);
-opacity:1;
-transform:none;
-}
-
-/* ===============================
 CALCULATOR
 ================================ */
 
@@ -3259,6 +3271,148 @@ max-width:740px;
 }
 
 /* ===============================
+FINAL SPECIFICATION ADVICE
+HOMEPAGE CLOSING SECTION
+================================ */
+
+.spec-advice-section {
+position:relative;
+overflow:hidden;
+padding:72px 6% 76px;
+background:
+linear-gradient(
+180deg,
+#111414 0%,
+#0b0d0d 100%
+);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.spec-advice-section::before {
+content:"";
+position:absolute;
+top:0;
+left:6%;
+width:90px;
+height:2px;
+background:var(--orange);
+}
+
+.spec-advice-inner {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto;
+}
+
+.spec-advice-panel {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:center;
+gap:58px;
+padding:36px 0;
+border-top:1px solid rgba(255,255,255,.10);
+border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.spec-advice-copy-wrap {
+max-width:720px;
+}
+
+.spec-advice-copy-wrap .section-label {
+margin-bottom:15px;
+}
+
+.spec-advice-heading {
+margin:0 0 18px;
+max-width:720px;
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+sans-serif;
+font-size:clamp(30px,4vw,49px);
+font-weight:750;
+line-height:1;
+letter-spacing:-1.2px;
+color:var(--cream);
+}
+
+.spec-advice-copy {
+margin:0;
+max-width:700px;
+font-size:15px;
+line-height:1.68;
+color:rgba(247,247,243,.60);
+}
+
+.spec-advice-actions {
+display:grid;
+gap:8px;
+width:225px;
+justify-self:end;
+}
+
+.spec-advice-actions .button {
+width:100%;
+min-width:0;
+padding:14px 17px;
+font-size:9px;
+}
+
+.spec-advice-actions .button.secondary {
+background:#121414;
+}
+
+/* Backwards-compatible support if Index-3
+temporarily retains the old help classes */
+
+.comfort-help-wrap {
+max-width:1120px;
+margin:0 auto;
+padding:0;
+}
+
+.comfort-help-panel {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:center;
+gap:58px;
+padding:36px 0;
+border-left:0;
+border-top:1px solid rgba(255,255,255,.10);
+border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.comfort-help-copy {
+max-width:700px;
+margin:0;
+font-size:15px;
+line-height:1.68;
+color:rgba(247,247,243,.60);
+text-align:left;
+}
+
+.comfort-help-actions {
+display:grid;
+gap:8px;
+width:225px;
+justify-self:end;
+}
+
+.comfort-help-actions .button {
+width:100%;
+min-width:0;
+padding:14px 17px;
+font-size:9px;
+letter-spacing:1px;
+}
+
+.comfort-help-actions .button.secondary {
+background:#121414;
+}
+
+/* ===============================
 FOOTER
 ================================ */
 
@@ -3307,6 +3461,10 @@ gap:32px;
 grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
+.workshop-trust-grid {
+grid-template-columns:1fr 1fr;
+}
+
 .calc-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
 }
@@ -3327,9 +3485,10 @@ font-size:20px;
 font-size:9px;
 }
 
+.spec-advice-panel,
 .comfort-help-panel {
 grid-template-columns:minmax(0,1fr) 200px;
-gap:28px;
+gap:32px;
 }
 }
 
@@ -3444,6 +3603,10 @@ gap:8px;
 width:20px;
 }
 
+/* ===============================
+MOBILE PRODUCT CARDS
+================================ */
+
 .home-popular-section {
 padding:28px 3.5% 22px;
 }
@@ -3499,8 +3662,21 @@ margin-bottom:7px;
 }
 
 .home-product-spec {
-font-size:9px;
-gap:3px;
+font-size:8.8px;
+gap:4px;
+line-height:1.35;
+}
+
+.home-product-spec .product-lead-time,
+.product-lead-time {
+gap:5px;
+}
+
+.home-product-spec .product-lead-time::before,
+.product-lead-time::before {
+width:4px;
+height:4px;
+box-shadow:none;
 }
 
 .home-glazing-wrap,
@@ -3551,6 +3727,10 @@ padding-right:2.5%;
 .tinted-options-section .home-popular-grid {
 padding:0 2.5%;
 }
+
+/* ===============================
+MOBILE FEATURE ICONS
+================================ */
 
 .mobile-feature-icons {
 display:grid;
@@ -3672,6 +3852,10 @@ text-shadow:none;
 overflow-wrap:anywhere;
 }
 
+/* ===============================
+MOBILE PRODUCT SECTION
+================================ */
+
 .opening-section {
 padding:48px 0 58px;
 }
@@ -3705,6 +3889,10 @@ color:var(--muted);
 opacity:1;
 transform:none;
 }
+
+/* ===============================
+MOBILE DEDICATED TEAM
+================================ */
 
 .direct-section {
 padding:56px 6% 32px;
@@ -3748,6 +3936,57 @@ font-size:8.5px;
 min-height:46px;
 }
 
+/* ===============================
+MOBILE WORKSHOP TRUST
+================================ */
+
+.workshop-trust-section {
+padding:50px 6% 54px;
+}
+
+.workshop-trust-section::before {
+width:65px;
+}
+
+.workshop-trust-heading {
+margin-bottom:24px;
+}
+
+.workshop-trust-heading h2 {
+font-size:36px;
+}
+
+.workshop-trust-heading p {
+font-size:15px;
+}
+
+.workshop-trust-grid {
+grid-template-columns:1fr;
+}
+
+.workshop-trust-card {
+min-height:auto;
+padding:22px 19px;
+}
+
+.workshop-trust-card strong {
+font-size:20px;
+}
+
+.workshop-trust-card p {
+font-size:12px;
+}
+
+.workshop-collection-note {
+margin-top:18px;
+font-size:8px;
+line-height:1.45;
+}
+
+/* ===============================
+MOBILE TRUST
+================================ */
+
 .trust-zone {
 padding:50px 6% 58px;
 }
@@ -3769,6 +4008,10 @@ font-size:1.22em;
 vertical-align:-.03em;
 }
 
+/* ===============================
+MOBILE TRANSITIONS
+================================ */
+
 .order-transition,
 .section-transition {
 padding:50px 6% 48px;
@@ -3778,10 +4021,6 @@ padding:50px 6% 48px;
 .section-transition::before {
 left:6%;
 width:65px;
-}
-
-.comfort-section + .section-transition {
-padding-top:40px;
 }
 
 .order-transition h2,
@@ -4032,6 +4271,10 @@ width:100%;
 min-width:0;
 }
 
+/* ===============================
+MOBILE ORDER ONLINE
+================================ */
+
 .buy-online-section {
 padding:27px 6% 58px;
 }
@@ -4056,14 +4299,6 @@ margin:27px 0 30px;
 height:250px;
 }
 
-.trust-comfort-slideshow-section .buy-rooflight-slideshow {
-margin:0;
-}
-
-.trust-comfort-slideshow-section .rooflight-slideshow-shell {
-height:250px;
-}
-
 .hero-actions {
 flex-direction:column;
 align-items:flex-start;
@@ -4083,77 +4318,9 @@ align-self:flex-start;
 padding-left:2px;
 }
 
-.comfort-section {
-padding:48px 0 28px;
-}
-
-.comfort-intro {
-padding:0 6%;
-}
-
-.comfort-intro h2 {
-font-size:38px;
-}
-
-.comfort-intro p {
-font-size:16px;
-}
-
-.comfort-frame {
-width:100%;
-aspect-ratio:3 / 2;
-min-height:0;
-background:#090a0a;
-}
-
-.comfort-image {
-top:-4px;
-left:-4px;
-width:calc(100% + 8px);
-height:calc(100% + 8px);
-object-fit:contain;
-object-position:center;
-background:#090a0a;
-}
-
-.comfort-help-wrap {
-padding:22px 6% 0;
-}
-
-.comfort-help-panel {
-grid-template-columns:1fr;
-gap:16px;
-padding:4px 0 3px 14px;
-}
-
-.comfort-help-copy {
-font-size:12px;
-line-height:1.6;
-}
-
-.comfort-help-actions {
-width:100%;
-justify-self:stretch;
-gap:7px;
-}
-
-.comfort-help-actions .button {
-width:100%;
-padding:13px 15px;
-font-size:9px;
-}
-
-.comfort-uv-wrap {
-min-height:auto;
-padding:20px 6% 0;
-}
-
-.comfort-uv-note {
-font-size:12px;
-padding-left:14px;
-opacity:1;
-transform:none;
-}
+/* ===============================
+MOBILE CALCULATOR / ENGINEERED
+================================ */
 
 .calculator-wrap {
 padding:30px 6% 60px;
@@ -4182,6 +4349,49 @@ padding:24px 20px;
 
 .oversized {
 padding:30px 23px;
+}
+
+/* ===============================
+MOBILE FINAL SPEC ADVICE
+================================ */
+
+.spec-advice-section {
+padding:52px 6% 58px;
+}
+
+.spec-advice-section::before {
+width:65px;
+}
+
+.spec-advice-panel,
+.comfort-help-panel {
+grid-template-columns:1fr;
+gap:22px;
+padding:28px 0;
+}
+
+.spec-advice-heading {
+font-size:34px;
+}
+
+.spec-advice-copy,
+.comfort-help-copy {
+font-size:13px;
+line-height:1.62;
+}
+
+.spec-advice-actions,
+.comfort-help-actions {
+width:100%;
+justify-self:stretch;
+gap:7px;
+}
+
+.spec-advice-actions .button,
+.comfort-help-actions .button {
+width:100%;
+padding:13px 15px;
+font-size:9px;
 }
 
 .footer-wordmark {
@@ -4312,6 +4522,14 @@ font-size:11px;
 .custom-price-meta {
 font-size:8.5px;
 }
+
+.workshop-trust-heading h2 {
+font-size:33px;
+}
+
+.spec-advice-heading {
+font-size:31px;
+}
 }
 
 /* ===============================
@@ -4325,8 +4543,6 @@ scroll-behavior:auto;
 }
 
 .ticker,
-.home-popular-section::before,
-.tinted-options-section::before,
 .lead-time-message-text::after,
 .lead-time-star,
 .lead-time-star::before,
@@ -4380,8 +4596,7 @@ visibility:visible;
 transform:none;
 }
 
-.rooflight-slide,
-.comfort-image {
+.rooflight-slide {
 transition:none;
 }
 }
@@ -4393,27 +4608,27 @@ transition:none;
 <div class="top-banner">
 <div class="ticker">
 
-<span>Specialist workshop for frameless rooflights</span>
-<span>Made to order by our dedicated rooflight team</span>
-<span>Fast production from 4 working days</span>
+<span>Specialist British workshop for frameless rooflights</span>
+<span>Brand new rooflights made to order</span>
+<span>British glass • British manufacturing</span>
+<span>Estimated production from 4 working days</span>
 <span>Factory insulated and ready for fitting</span>
-<span>Energy-efficient glazing for year-round performance</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
-<span>Collection available by arrangement</span>
+<span>Collection available with prior booking</span>
 
-<span>Specialist workshop for frameless rooflights</span>
-<span>Made to order by our dedicated rooflight team</span>
-<span>Fast production from 4 working days</span>
+<span>Specialist British workshop for frameless rooflights</span>
+<span>Brand new rooflights made to order</span>
+<span>British glass • British manufacturing</span>
+<span>Estimated production from 4 working days</span>
 <span>Factory insulated and ready for fitting</span>
-<span>Energy-efficient glazing for year-round performance</span>
 <span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
 <span>Free mainland UK delivery on listed sizes</span>
-<span>Collection available by arrangement</span>
+<span>Collection available with prior booking</span>
 
 </div>
 </div>
@@ -4527,7 +4742,7 @@ title="Menu"
 
 <section
 class="lead-time-banner"
-aria-label="Current rooflight manufacturing lead time"
+aria-label="Current estimated rooflight manufacturing lead time"
 >
 
 <div class="lead-time-inner">
@@ -4618,9 +4833,9 @@ aria-hidden="true"
 
 <span
 class="lead-time-message-text"
-data-text="From 4 Working Days"
+data-text="Estimated From 4 Working Days"
 >
-From 4 Working Days
+Estimated From 4 Working Days
 </span>
 
 <span class="lead-time-star">*</span>
@@ -4687,13 +4902,6 @@ Build A Rooflight
 </a>
 
 <a
-href="#performance"
-onclick="closeMenu()"
->
-Glazing &amp; Performance
-</a>
-
-<a
 href="#oversized"
 onclick="closeMenu()"
 >
@@ -4701,10 +4909,17 @@ Oversized Rooflights
 </a>
 
 <a
+href="#specification-advice"
+onclick="closeMenu()"
+>
+Specification Advice
+</a>
+
+<a
 href="contact.html"
 onclick="closeMenu()"
 >
-Contact The Workshop
+Contact Our Rooflight Team
 </a>
 
 </div>
@@ -4788,7 +5003,7 @@ flex:0 0 auto;
 }
 
 .home-workshop-copy {
-max-width:700px;
+max-width:760px;
 margin:0;
 font-size:14px;
 line-height:1.65;
@@ -4828,7 +5043,7 @@ id="homepagePopular"
 <div class="home-popular-title-wrap reveal">
 
 <div class="home-workshop-kicker">
-Specialist Frameless Rooflight Workshop
+Specialist British Frameless Rooflight Workshop
 </div>
 
 <h1 class="home-opening-title">
@@ -4841,8 +5056,9 @@ Frameless Flat Rooflights
 <div class="home-workshop-intro reveal reveal-delay-1">
 
 <p class="home-workshop-copy">
-Made to order by our dedicated rooflight team. Choose one of our established
-standard sizes below or configure a custom unit further down the page.
+Brand new frameless rooflights made to order in Britain by our dedicated rooflight team.
+Choose one of our established standard sizes below or configure a custom unit further
+down the page.
 </p>
 
 </div>
@@ -4874,8 +5090,8 @@ alt="600mm by 900mm frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
+<span>Estimated 4–6 working days</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -4958,8 +5174,8 @@ alt="400mm by 1500mm frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
+<span>Estimated 4–6 working days</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -5042,8 +5258,8 @@ alt="1000mm by 1200mm frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
+<span>Estimated 4–6 working days</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -5126,8 +5342,8 @@ alt="1500mm by 1800mm frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
+<span>Estimated 6–8 working days</span>
 <span>8mm Toughened Safety Glass</span>
-<span>Low-E Softcoat Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -5331,7 +5547,7 @@ class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 
 <img
 src="images/hero-rooflight-5.png"
-alt="Frameless rooflight manufactured ready for installation"
+alt="Brand new frameless rooflight manufactured ready for installation"
 />
 
 </div>
@@ -5352,7 +5568,7 @@ ORDER ROUTES
 <div class="buy-online-inner">
 
 <div class="section-label reveal">
-Order From The Workshop
+Order Direct
 </div>
 
 <h2 class="reveal">
@@ -5362,9 +5578,9 @@ Choose How You Want Your Rooflight Made
 <div class="buy-online-choice-group reveal reveal-delay-1">
 
 <p>
-Choose from our established standard sizes for our best online pricing,
-or configure a made-to-order frameless rooflight to your own dimensions.
-For larger architectural units, our team can provide a specialist quotation.
+Every rooflight is supplied brand new and made to order. Choose from our established
+standard sizes for our best online pricing, or configure a frameless rooflight to your
+own dimensions. For larger architectural units, our team can provide a specialist quotation.
 </p>
 
 <div class="hero-actions">
@@ -5615,8 +5831,9 @@ Build A Custom Rooflight
 
 <p class="reveal reveal-delay-1">
 Specify the internal visible glass size, border, glazing and finish required.
-Qualifying online sizes include free mainland UK delivery within the displayed price.
-Larger units can be quoted directly by our rooflight team.
+Every unit is manufactured brand new to the selected specification. Qualifying
+online sizes include free mainland UK delivery within the displayed price, while
+larger units can be quoted directly by our rooflight team.
 </p>
 
 
@@ -5864,16 +6081,17 @@ MANUFACTURING / PRODUCT SPECIFICATION
 <div class="engineered-intro">
 
 <div class="section-label reveal">
-Workshop Specification
+British Manufacturing
 </div>
 
 <h2 class="reveal">
-Built, Insulated And Sealed As A Complete Rooflight Unit
+British Glass. Manufactured Into Complete Rooflight Units.
 </h2>
 
 <p class="reveal reveal-delay-1">
-Each rooflight is produced as a complete insulated glass unit ready for fitting.
-The glass, ceramic border, insulation and sealing specification are combined during
+Our rooflights are manufactured in Britain using British glass and supplied as
+brand new, complete insulated glass units ready for fitting. The toughened glass,
+ceramic border, insulation and sealing specification are brought together during
 production to create a durable frameless rooflight designed for long-term performance.
 </p>
 
@@ -5888,12 +6106,12 @@ id="engineeredGrid"
 <div class="engineered-card reveal reveal-scale">
 
 <h3>
-Ceramic Fused Border
+British Glass
 </h3>
 
 <p>
-The black perimeter is ceramic infused and fused into the glass during manufacture,
-creating the permanent dark border that gives the rooflight its clean frameless finish.
+Our rooflights are produced using British glass, with the individual panes processed
+to the specification required before being assembled into the finished rooflight unit.
 </p>
 
 </div>
@@ -5931,12 +6149,12 @@ when correctly installed.
 <div class="engineered-card reveal reveal-scale reveal-delay-3">
 
 <h3>
-Glass Finishes
+Ceramic Fused Border
 </h3>
 
 <p>
-Choose Clear, Blue Tinted, Grey Tinted or Satin Tinted glazing while retaining
-the same minimal frameless rooflight design.
+The black perimeter is ceramic infused and fused into the glass during manufacture,
+creating the permanent dark border that gives the rooflight its clean frameless finish.
 </p>
 
 </div>
@@ -5996,8 +6214,8 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Factory Applied Blue Tint</span>
-<span>Low-E Softcoat Glass</span>
+<span>Estimated 6–8 working days</span>
+<span>8mm Toughened Safety Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6081,8 +6299,8 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Factory Applied Blue Tint</span>
-<span>Low-E Softcoat Glass</span>
+<span>Estimated 6–8 working days</span>
+<span>8mm Toughened Safety Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6166,8 +6384,8 @@ alt="600mm by 900mm satin privacy frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Factory Applied Satin Finish</span>
-<span>Low-E Softcoat Glass</span>
+<span>Estimated 6–8 working days</span>
+<span>6mm Toughened Safety Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6251,8 +6469,8 @@ alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 
 <div class="home-product-spec">
 <span>Internal visible glass size</span>
-<span>Factory Applied Satin Finish</span>
-<span>Low-E Softcoat Glass</span>
+<span>Estimated 6–8 working days</span>
+<span>6mm Toughened Safety Glass</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6331,14 +6549,17 @@ View All Sizes
 SPECIALIST WORKSHOP
 ========================================= -->
 
-<section class="direct-section">
+<section
+class="direct-section"
+id="specification-advice"
+>
 
 <div class="direct-visual-intro direct-image-reveal">
 
 <img
 src="images/hero-rooflight-1.png"
 class="direct-visual-image"
-alt="Frameless rooflight produced by Factory Toughened Rooflights"
+alt="British manufactured frameless rooflight produced by Factory Toughened Rooflights"
 />
 
 </div>
@@ -6349,11 +6570,11 @@ alt="Frameless rooflight produced by Factory Toughened Rooflights"
 <div>
 
 <div class="section-label reveal">
-Specialist Production
+British Rooflight Manufacturing
 </div>
 
 <h2 class="direct-heading reveal">
-A Workshop Focused On Frameless Rooflights
+A Specialist Workshop Focused On Frameless Rooflights
 </h2>
 
 </div>
@@ -6362,14 +6583,15 @@ A Workshop Focused On Frameless Rooflights
 <div class="direct-copy">
 
 <p>
-Frameless rooflights are the product we specialise in. Orders placed through
-the website move directly into the production workflow of our dedicated rooflight team.
+Frameless rooflights are the product we specialise in. We manufacture brand new
+rooflight units in Britain using British glass, with orders placed through the website
+moving directly into the production workflow of our dedicated rooflight team.
 </p>
 
 <p>
-By keeping the process focused around one specialist product range, we can maintain
-consistent specifications, efficient production and dependable lead times from the
-order you approve through to final preparation and dispatch.
+By keeping production focused around one specialist product range, we can maintain
+consistent specifications while offering quick estimated turnaround times across our
+standard, tinted and bespoke rooflight ranges.
 </p>
 
 
@@ -6379,19 +6601,19 @@ id="directAssuranceList"
 >
 
 <div class="direct-assurance reveal">
-Thick Toughened Safety Glass
+British Glass
 </div>
 
 <div class="direct-assurance reveal reveal-delay-1">
-Factory Sealed &amp; Insulated
-</div>
-
-<div class="direct-assurance reveal reveal-delay-2">
 Manufactured In Britain
 </div>
 
+<div class="direct-assurance reveal reveal-delay-2">
+Brand New &amp; Made To Order
+</div>
+
 <div class="direct-assurance reveal reveal-delay-3">
-One Specialist Team From Order To Production
+Collection Available With Prior Booking
 </div>
 
 </div>
@@ -6422,6 +6644,8 @@ Oversized Frameless Rooflights
 <p class="reveal reveal-delay-1">
 For larger architectural openings, our workshop can manufacture bespoke frameless
 rooflights beyond the dimensions available through the standard online ordering range.
+Larger clear units are typically produced within an estimated 6–8 working days,
+subject to specification.
 </p>
 
 </div>
@@ -6473,8 +6697,10 @@ Oversized Rooflights Up To 5800mm
 
 <p>
 Need something beyond the listed online range? We can quote oversized custom
-frameless rooflights up to approximately 5800mm, with the glass specification
-and specialist delivery requirements considered individually.
+frameless rooflights up to approximately 5800mm, with the glass specification,
+estimated production lead time and specialist delivery requirements considered
+individually. Larger blue, grey and satin specifications are typically estimated
+at 8–10 working days.
 </p>
 
 <a
@@ -6606,7 +6832,12 @@ Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
 </p>
 
 <p>
-Specialist frameless flat rooflights, made to order and delivered across mainland UK.
+British manufactured frameless flat rooflights, made to order using British glass
+and delivered across mainland UK.
+</p>
+
+<p>
+Collection available with prior booking.
 </p>
 
 <p>
@@ -6672,6 +6903,7 @@ document.getElementById(
 function setWhatsAppState(
 shouldOpen
 ) {
+
 if (
 !whatsappButton ||
 !whatsappAction
@@ -6693,13 +6925,17 @@ whatsappButton.setAttribute(
 "aria-expanded",
 String(shouldOpen)
 );
+
 }
 
 function closeWhatsAppAction() {
-setWhatsAppState(false);
+setWhatsAppState(
+false
+);
 }
 
 function toggleWhatsAppAction() {
+
 if (
 !whatsappAction
 ) {
@@ -6714,26 +6950,34 @@ whatsappAction.classList.contains(
 setWhatsAppState(
 !isOpen
 );
+
 }
 
 if (
 whatsappButton &&
 whatsappAction
 ) {
+
 whatsappButton.addEventListener(
 "click",
 event => {
+
 event.stopPropagation();
+
 toggleWhatsAppAction();
+
 }
 );
 
 whatsappAction.addEventListener(
 "click",
 event => {
+
 event.stopPropagation();
+
 }
 );
+
 }
 
 document.addEventListener(
@@ -6744,10 +6988,17 @@ closeWhatsAppAction
 document.addEventListener(
 "keydown",
 event => {
-if (event.key === "Escape") {
+
+if (
+event.key === "Escape"
+) {
+
 closeWhatsAppAction();
+
 closeMenu();
+
 }
+
 }
 );
 
@@ -6765,7 +7016,10 @@ let basketAnimationTimer =
 null;
 
 function animateBasketTotal() {
-if (!basketTotalText) {
+
+if (
+!basketTotalText
+) {
 return;
 }
 
@@ -6786,28 +7040,40 @@ basketTotalText.classList.add(
 if (
 basketAnimationTimer !== null
 ) {
+
 window.clearTimeout(
 basketAnimationTimer
 );
+
 }
 
 basketAnimationTimer =
 window.setTimeout(
 () => {
+
 basketTotalText.classList.remove(
 "is-updating"
 );
+
 },
 560
 );
+
 }
 
-function updateBasketTotal(total) {
+function updateBasketTotal(
+total
+) {
+
 const safeTotal =
 Number.isFinite(
-Number(total)
+Number(
+total
 )
-? Number(total)
+)
+? Number(
+total
+)
 : 0;
 
 const formattedTotal =
@@ -6821,7 +7087,10 @@ currency:"GBP"
 safeTotal
 );
 
-if (basketTotalText) {
+if (
+basketTotalText
+) {
+
 basketTotalText.textContent =
 formattedTotal;
 
@@ -6832,12 +7101,18 @@ formattedTotal
 );
 
 animateBasketTotal();
+
 }
+
 }
 
 window.setTimeout(
 () => {
-updateBasketTotal(0);
+
+updateBasketTotal(
+0
+);
+
 },
 2000
 );
@@ -6868,13 +7143,17 @@ if (
 reducedMotionQuery.matches ||
 !("IntersectionObserver" in window)
 ) {
+
 revealElements.forEach(
 element => {
+
 element.classList.add(
 "is-visible"
 );
+
 }
 );
+
 } else {
 
 const revealObserver =
@@ -6884,7 +7163,9 @@ entries => {
 entries.forEach(
 entry => {
 
-if (!entry.isIntersecting) {
+if (
+!entry.isIntersecting
+) {
 return;
 }
 
@@ -6908,9 +7189,11 @@ rootMargin:"0px 0px -7% 0px"
 
 revealElements.forEach(
 element => {
+
 revealObserver.observe(
 element
 );
+
 }
 );
 
@@ -6945,10 +7228,14 @@ card.querySelector(
 ".home-product-link"
 );
 
-if (productLink) {
+if (
+productLink
+) {
+
 productLink.classList.remove(
 "is-encouraged"
 );
+
 }
 
 }
@@ -6956,13 +7243,16 @@ productLink.classList.remove(
 
 activeHomepageProductCard =
 null;
+
 }
 
 function activateHomepageProductCard(
 card
 ) {
 
-if (!card) {
+if (
+!card
+) {
 return;
 }
 
@@ -6970,7 +7260,9 @@ if (
 activeHomepageProductCard &&
 activeHomepageProductCard !== card
 ) {
+
 stopHomepageProductAttention();
+
 }
 
 activeHomepageProductCard =
@@ -6985,7 +7277,9 @@ card.querySelector(
 ".home-product-link"
 );
 
-if (productLink) {
+if (
+productLink
+) {
 
 productLink.classList.remove(
 "is-encouraged"
@@ -6998,6 +7292,7 @@ productLink.classList.add(
 );
 
 }
+
 }
 
 homepageProductCards.forEach(
@@ -7012,7 +7307,9 @@ event.target.closest(
 ".home-product-link"
 );
 
-if (clickedLink) {
+if (
+clickedLink
+) {
 return;
 }
 
@@ -7045,6 +7342,7 @@ return;
 }
 
 event.preventDefault();
+
 event.stopPropagation();
 
 activateHomepageProductCard(
@@ -7084,7 +7382,9 @@ document.getElementById(
 "mobileFeatureIcons"
 );
 
-if (mobileFeatureIcons) {
+if (
+mobileFeatureIcons
+) {
 
 if (
 reducedMotionQuery.matches ||
@@ -7104,7 +7404,9 @@ entries => {
 entries.forEach(
 entry => {
 
-if (!entry.isIntersecting) {
+if (
+!entry.isIntersecting
+) {
 return;
 }
 
@@ -7131,6 +7433,7 @@ mobileFeatureIcons
 );
 
 }
+
 }
 
 
@@ -7155,7 +7458,9 @@ document.querySelector(
 "header"
 );
 
-if (!pageHeader) {
+if (
+!pageHeader
+) {
 return 0;
 }
 
@@ -7165,6 +7470,7 @@ pageHeader
 .getBoundingClientRect()
 .bottom
 );
+
 }
 
 function checkEngineeredCardShimmers() {
@@ -7202,7 +7508,9 @@ const isFullyVisible =
 itemRect.top >= visibleTop &&
 itemRect.bottom <= visibleBottom;
 
-if (!isFullyVisible) {
+if (
+!isFullyVisible
+) {
 return;
 }
 
@@ -7215,6 +7523,7 @@ item.classList.add(
 
 }
 );
+
 }
 
 function requestEngineeredShimmerCheck() {
@@ -7300,9 +7609,9 @@ false;
 SYNCHRONISED CUSTOM ROOFLIGHT +
 BUILDER REVEAL
 
-The product visual and Build A Custom
-Rooflight interface intentionally reveal
-together as one order-stage transition.
+The custom product visual and the
+Build A Custom Rooflight interface
+appear together as one order stage.
 ================================ */
 
 function revealExistingOpeningRooflight() {
@@ -7342,7 +7651,9 @@ element.classList.add(
 
 function revealHomepageCalculator() {
 
-if (!homepageCalculator) {
+if (
+!homepageCalculator
+) {
 return;
 }
 
@@ -7371,7 +7682,9 @@ element.classList.add(
 
 function revealCustomBuildPair() {
 
-if (customBuildPairRevealed) {
+if (
+customBuildPairRevealed
+) {
 return;
 }
 
@@ -7406,7 +7719,9 @@ entries => {
 entries.forEach(
 entry => {
 
-if (!entry.isIntersecting) {
+if (
+!entry.isIntersecting
+) {
 return;
 }
 
@@ -7449,309 +7764,6 @@ revealExistingOpeningRooflight();
 
 
 /* ===============================
-COMFORT / PERFORMANCE SLIDESHOW
-================================ */
-
-const comfortSlideshow =
-document.getElementById(
-"comfortSlideshow"
-);
-
-const comfortImages =
-comfortSlideshow
-? Array.from(
-comfortSlideshow.querySelectorAll(
-".comfort-image"
-)
-)
-: [];
-
-let comfortIndex =
-0;
-
-let comfortTimer =
-null;
-
-let comfortTouchStartX =
-0;
-
-let comfortTouchStartY =
-0;
-
-let comfortHasStarted =
-false;
-
-function showComfortImage(
-nextIndex,
-manualChange = false
-) {
-
-if (
-nextIndex === comfortIndex ||
-nextIndex < 0 ||
-nextIndex >= comfortImages.length
-) {
-return;
-}
-
-comfortImages[
-comfortIndex
-]
-.classList
-.remove(
-"active"
-);
-
-comfortImages[
-nextIndex
-]
-.classList
-.add(
-"active"
-);
-
-comfortIndex =
-nextIndex;
-
-if (manualChange) {
-restartComfortTimer();
-}
-
-}
-
-function advanceComfortImages() {
-
-if (
-comfortImages.length < 2
-) {
-return;
-}
-
-const nextIndex =
-(
-comfortIndex + 1
-) %
-comfortImages.length;
-
-showComfortImage(
-nextIndex,
-false
-);
-
-}
-
-function restartComfortTimer() {
-
-if (
-comfortTimer !== null
-) {
-
-window.clearInterval(
-comfortTimer
-);
-
-}
-
-comfortTimer =
-window.setInterval(
-advanceComfortImages,
-8000
-);
-
-}
-
-function startComfortSlideshow() {
-
-if (
-comfortHasStarted ||
-comfortImages.length < 2 ||
-reducedMotionQuery.matches
-) {
-return;
-}
-
-comfortHasStarted =
-true;
-
-restartComfortTimer();
-
-}
-
-function showNextComfortManual() {
-
-if (
-comfortImages.length < 2
-) {
-return;
-}
-
-const nextIndex =
-(
-comfortIndex + 1
-) %
-comfortImages.length;
-
-showComfortImage(
-nextIndex,
-true
-);
-
-}
-
-function showPreviousComfortManual() {
-
-if (
-comfortImages.length < 2
-) {
-return;
-}
-
-const previousIndex =
-(
-comfortIndex -
-1 +
-comfortImages.length
-) %
-comfortImages.length;
-
-showComfortImage(
-previousIndex,
-true
-);
-
-}
-
-if (
-comfortSlideshow &&
-comfortImages.length > 1
-) {
-
-comfortSlideshow.addEventListener(
-"touchstart",
-event => {
-
-if (!event.touches.length) {
-return;
-}
-
-comfortTouchStartX =
-event.touches[0].clientX;
-
-comfortTouchStartY =
-event.touches[0].clientY;
-
-},
-{
-passive:true
-}
-);
-
-comfortSlideshow.addEventListener(
-"touchend",
-event => {
-
-if (!event.changedTouches.length) {
-return;
-}
-
-const touchEndX =
-event.changedTouches[0].clientX;
-
-const touchEndY =
-event.changedTouches[0].clientY;
-
-const horizontalDistance =
-touchEndX -
-comfortTouchStartX;
-
-const verticalDistance =
-touchEndY -
-comfortTouchStartY;
-
-if (
-Math.abs(
-horizontalDistance
-) < 45 ||
-Math.abs(
-horizontalDistance
-) <=
-Math.abs(
-verticalDistance
-)
-) {
-return;
-}
-
-startComfortSlideshow();
-
-if (
-horizontalDistance < 0
-) {
-
-showNextComfortManual();
-
-} else {
-
-showPreviousComfortManual();
-
-}
-
-},
-{
-passive:true
-}
-);
-
-if (
-reducedMotionQuery.matches ||
-!("IntersectionObserver" in window)
-) {
-
-if (
-!reducedMotionQuery.matches
-) {
-startComfortSlideshow();
-}
-
-} else {
-
-const comfortStartObserver =
-new IntersectionObserver(
-entries => {
-
-entries.forEach(
-entry => {
-
-if (!entry.isIntersecting) {
-return;
-}
-
-startComfortSlideshow();
-
-comfortStartObserver.unobserve(
-entry.target
-);
-
-}
-);
-
-},
-{
-threshold:.28,
-rootMargin:"0px 0px -8% 0px"
-}
-);
-
-comfortStartObserver.observe(
-comfortSlideshow
-);
-
-}
-
-}
-
-
-/* ===============================
 STANDARD + TINTED GLAZING CONTROLS
 ================================ */
 
@@ -7770,7 +7782,9 @@ normalizedPrice === "" ||
 normalizedPrice.toUpperCase() ===
 "TBC"
 ) {
+
 return "£TBC";
+
 }
 
 if (
@@ -7778,7 +7792,9 @@ normalizedPrice.startsWith(
 "£"
 )
 ) {
+
 return normalizedPrice;
+
 }
 
 return "£" +
@@ -7838,14 +7854,18 @@ glazing === "triple"
 ? card.dataset.triplePrice
 : card.dataset.doublePrice;
 
-if (priceElement) {
+if (
+priceElement
+) {
 
 priceElement.innerHTML =
 `${formatProductPrice(selectedPrice)}<span class="home-vat-note">inc. vat</span>`;
 
 }
 
-if (glazedLabel) {
+if (
+glazedLabel
+) {
 
 glazedLabel.classList.toggle(
 "triple",
@@ -7907,7 +7927,9 @@ function getNumericInputValue(
 input
 ) {
 
-if (!input) {
+if (
+!input
+) {
 return null;
 }
 
@@ -7947,7 +7969,9 @@ OPENING ASSISTANT ERROR STATE
 
 function hideOpeningError() {
 
-if (!openingInternalError) {
+if (
+!openingInternalError
+) {
 return;
 }
 
@@ -7972,7 +7996,9 @@ function showOpeningError(
 message
 ) {
 
-if (!openingInternalError) {
+if (
+!openingInternalError
+) {
 return;
 }
 
@@ -8000,7 +8026,9 @@ OPENING ASSISTANT RECOMMENDATION
 
 function hideOpeningRecommendation() {
 
-if (recommendedInternalSize) {
+if (
+recommendedInternalSize
+) {
 
 recommendedInternalSize.textContent =
 "";
@@ -8032,7 +8060,9 @@ recommendedWidth,
 recommendedLength
 ) {
 
-if (recommendedInternalSize) {
+if (
+recommendedInternalSize
+) {
 
 recommendedInternalSize.textContent =
 `${recommendedWidth}mm × ${recommendedLength}mm`;
@@ -8058,12 +8088,12 @@ openingInternalRecommendation.setAttribute(
 }
 
 /*
-The opening assistant only provides the
+The opening assistant only calculates the
 recommended internal rooflight size.
 
-The custom product image and order builder
-remain controlled by the shared scroll
-reveal above so that they appear together.
+The custom rooflight visual and builder
+continue to be controlled by the shared
+scroll reveal above.
 */
 
 }
@@ -8276,7 +8306,9 @@ function setCalculatorSizeAlert(
 shouldShow
 ) {
 
-if (!calculatorSizeAlert) {
+if (
+!calculatorSizeAlert
+) {
 return;
 }
 
@@ -8292,7 +8324,9 @@ CUSTOM PRICE VISIBILITY
 
 function hideCustomPriceBox() {
 
-if (!customPriceBox) {
+if (
+!customPriceBox
+) {
 return;
 }
 
@@ -8303,7 +8337,9 @@ true;
 
 function showCustomPriceBox() {
 
-if (!customPriceBox) {
+if (
+!customPriceBox
+) {
 return;
 }
 
@@ -8319,7 +8355,9 @@ CUSTOM BORDER
 
 function getCustomBorderSize() {
 
-if (!customBorderInput) {
+if (
+!customBorderInput
+) {
 return 100;
 }
 
@@ -8332,7 +8370,9 @@ if (
 selectedBorder === 125 ||
 selectedBorder === 150
 ) {
+
 return selectedBorder;
+
 }
 
 return 100;
@@ -8374,10 +8414,12 @@ numericValue
 
 
 /* ===============================
-ESTIMATED DELIVERY DATE
+WORKING-DAY DATE HELPER
 ================================ */
 
-function getEstimatedDeliveryDate() {
+function addWorkingDays(
+numberOfWorkingDays
+) {
 
 const deliveryDate =
 new Date();
@@ -8390,7 +8432,9 @@ deliveryDate.setHours(
 );
 
 let workingDaysRemaining =
-7;
+Number(
+numberOfWorkingDays
+);
 
 while (
 workingDaysRemaining > 0
@@ -8415,6 +8459,113 @@ workingDaysRemaining -=
 
 }
 
+return deliveryDate;
+
+}
+
+
+/* ===============================
+ESTIMATED PRODUCTION LEAD TIME
+
+CLEAR
+Up to 1000 × 2500:
+4–6 working days
+
+Larger:
+6–8 working days
+
+BLUE / GREY / SATIN
+Up to 1000 × 2500:
+6–8 working days
+
+Larger:
+8–10 working days
+================================ */
+
+function getCustomLeadTime(
+width,
+length,
+finish
+) {
+
+const normalizedFinish =
+String(
+finish ?? ""
+)
+.trim()
+.toLowerCase();
+
+const isClear =
+normalizedFinish === "clear";
+
+const isStandardLeadTimeSize =
+width <= 1000 &&
+length <= 2500;
+
+if (
+isClear &&
+isStandardLeadTimeSize
+) {
+
+return {
+minimum:4,
+maximum:6,
+label:"Estimated 4–6 working days"
+};
+
+}
+
+if (
+isClear &&
+!isStandardLeadTimeSize
+) {
+
+return {
+minimum:6,
+maximum:8,
+label:"Estimated 6–8 working days"
+};
+
+}
+
+if (
+!isClear &&
+isStandardLeadTimeSize
+) {
+
+return {
+minimum:6,
+maximum:8,
+label:"Estimated 6–8 working days"
+};
+
+}
+
+return {
+minimum:8,
+maximum:10,
+label:"Estimated 8–10 working days"
+};
+
+}
+
+
+/* ===============================
+ESTIMATED DELIVERY DATE
+
+The upper end of the estimated production
+range is used for the displayed date.
+================================ */
+
+function getEstimatedDeliveryDate(
+workingDays
+) {
+
+const deliveryDate =
+addWorkingDays(
+workingDays
+);
+
 return new Intl.DateTimeFormat(
 "en-GB",
 {
@@ -8429,7 +8580,9 @@ deliveryDate
 
 }
 
-function updateEstimatedDeliveryDate() {
+function updateEstimatedDeliveryDate(
+workingDays = 6
+) {
 
 if (
 !estimatedDeliveryDate
@@ -8438,7 +8591,9 @@ return;
 }
 
 estimatedDeliveryDate.textContent =
-getEstimatedDeliveryDate();
+getEstimatedDeliveryDate(
+workingDays
+);
 
 }
 
@@ -8625,6 +8780,22 @@ price
 
 
 /* ===============================
+LEAD TIME + DELIVERY ESTIMATE
+================================ */
+
+const leadTime =
+getCustomLeadTime(
+width,
+length,
+finish
+);
+
+updateEstimatedDeliveryDate(
+leadTime.maximum
+);
+
+
+/* ===============================
 DISPLAY PRICE
 ================================ */
 
@@ -8683,6 +8854,19 @@ glazing;
 addCustomRooflightToOrder.dataset.finish =
 finish;
 
+addCustomRooflightToOrder.dataset.leadTimeMinimum =
+String(
+leadTime.minimum
+);
+
+addCustomRooflightToOrder.dataset.leadTimeMaximum =
+String(
+leadTime.maximum
+);
+
+addCustomRooflightToOrder.dataset.leadTimeLabel =
+leadTime.label;
+
 }
 
 showCustomPriceBox();
@@ -8704,7 +8888,9 @@ customFinishInput
 .forEach(
 element => {
 
-if (!element) {
+if (
+!element
+) {
 return;
 }
 
@@ -8749,7 +8935,9 @@ event.preventDefault();
 INITIAL HOMEPAGE STATE
 ================================ */
 
-updateEstimatedDeliveryDate();
+updateEstimatedDeliveryDate(
+6
+);
 
 setCalculatorSizeAlert(
 false
