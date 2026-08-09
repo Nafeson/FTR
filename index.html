@@ -2194,34 +2194,34 @@ border-bottom:0;
 background:
 radial-gradient(
 ellipse 76% 44% at 50% 54%,
-rgba(171,8,24,.88) 0%,
-rgba(151,7,20,.82) 16%,
-rgba(125,6,18,.70) 31%,
-rgba(91,5,15,.55) 47%,
-rgba(57,4,12,.35) 63%,
-rgba(29,3,8,.18) 77%,
+rgba(16,111,67,.88) 0%,
+rgba(13,94,57,.82) 16%,
+rgba(10,76,47,.70) 31%,
+rgba(8,57,37,.55) 47%,
+rgba(6,38,27,.35) 63%,
+rgba(4,22,17,.18) 77%,
 transparent 92%
 ),
 radial-gradient(
 ellipse 118% 72% at 50% 55%,
-rgba(116,5,17,.42) 0%,
-rgba(61,4,12,.26) 48%,
+rgba(9,78,48,.42) 0%,
+rgba(5,42,29,.26) 48%,
 transparent 78%
 ),
 linear-gradient(
 180deg,
 #060606 0%,
 #060606 24%,
-#090506 28%,
-#130507 33%,
-#26060a 39%,
-#430810 46%,
-#650b16 52%,
-#550913 58%,
-#39070e 65%,
-#21060a 71%,
-#110507 77%,
-#080506 82%,
+#050907 28%,
+#05120c 33%,
+#062218 39%,
+#073b28 46%,
+#09573a 52%,
+#08492f 58%,
+#073323 65%,
+#061f17 71%,
+#05110d 77%,
+#050906 82%,
 #060606 100%
 );
 }
@@ -3853,34 +3853,34 @@ padding-bottom:0;
 background:
 radial-gradient(
 ellipse 92% 43% at 50% 54%,
-rgba(176,8,25,.90) 0%,
-rgba(154,7,21,.84) 17%,
-rgba(127,6,18,.72) 32%,
-rgba(93,5,15,.57) 48%,
-rgba(59,4,12,.37) 64%,
-rgba(30,3,8,.19) 78%,
+rgba(18,118,72,.90) 0%,
+rgba(14,100,61,.84) 17%,
+rgba(11,82,50,.72) 32%,
+rgba(8,61,39,.57) 48%,
+rgba(6,41,29,.37) 64%,
+rgba(4,23,18,.19) 78%,
 transparent 92%
 ),
 radial-gradient(
 ellipse 136% 74% at 50% 54%,
-rgba(120,5,18,.43) 0%,
-rgba(62,4,12,.27) 49%,
+rgba(10,82,51,.43) 0%,
+rgba(5,44,30,.27) 49%,
 transparent 79%
 ),
 linear-gradient(
 180deg,
 #060606 0%,
 #060606 24%,
-#090506 28%,
-#140507 33%,
-#28060a 39%,
-#470811 46%,
-#690b17 52%,
-#580914 58%,
-#3b070f 65%,
-#22060a 71%,
-#120507 77%,
-#080506 82%,
+#050907 28%,
+#05130d 33%,
+#06251a 39%,
+#07402b 46%,
+#095d3e 52%,
+#084e34 58%,
+#073625 65%,
+#062117 71%,
+#05120e 77%,
+#050906 82%,
 #060606 100%
 );
 }
@@ -4691,6 +4691,7 @@ Factory
 </div>
 
 <div class="address-line">
+5-9 Willen Field Road, London, NW10 7BQ
 </div>
 
 </div>
@@ -6424,7 +6425,7 @@ Frameless flat roof skylights, made to order and delivered across mainland UK.
 </p>
 
 <p>
-Anamax Group Estate, Oxford Road, Denham, SL9 7BB
+Anamax Group Estate, Oxford Road, Denham, Buckinghamshire, SL9 7BB
 </p>
 
 </footer>
@@ -7019,7 +7020,7 @@ requestEngineeredShimmerCheck();
 }
 
 /* ===============================
-CUSTOM BUILD ELEMENT REFERENCES
+CALCULATOR SECTION REVEAL
 ================================ */
 
 const calculatorWrap =
@@ -7032,58 +7033,8 @@ document.getElementById(
 "homepageCalculator"
 );
 
-const existingOpeningRooflightVisual =
-document.querySelector(
-".existing-opening-rooflight-visual"
-);
-
-let existingOpeningRooflightRevealed =
-false;
-
-let customBuildPairRevealed =
-false;
-
-/* ===============================
-SYNCHRONISED CUSTOM IMAGE +
-CALCULATOR REVEAL
-================================ */
-
-function revealExistingOpeningRooflight() {
-if (
-!existingOpeningRooflightVisual ||
-existingOpeningRooflightRevealed
-) {
-return;
-}
-
-existingOpeningRooflightRevealed =
-true;
-
-existingOpeningRooflightVisual.classList.add(
-"is-revealed"
-);
-
-const rooflightRevealElements =
-Array.from(
-existingOpeningRooflightVisual.querySelectorAll(
-".reveal"
-)
-);
-
-rooflightRevealElements.forEach(
-element => {
-element.classList.add(
-"is-visible"
-);
-}
-);
-}
-
 function revealHomepageCalculator() {
-if (!homepageCalculator) {
-return;
-}
-
+if (homepageCalculator) {
 homepageCalculator.classList.add(
 "is-visible"
 );
@@ -7103,36 +7054,19 @@ element.classList.add(
 }
 );
 }
-
-function revealCustomBuildPair() {
-if (customBuildPairRevealed) {
-return;
-}
-
-customBuildPairRevealed =
-true;
-
-/*
-The custom rooflight image and calculator
-are deliberately revealed together here.
-*/
-
-revealExistingOpeningRooflight();
-revealHomepageCalculator();
 }
 
 if (
 calculatorWrap &&
-homepageCalculator &&
-existingOpeningRooflightVisual
+homepageCalculator
 ) {
 if (
 reducedMotionQuery.matches ||
 !("IntersectionObserver" in window)
 ) {
-revealCustomBuildPair();
+revealHomepageCalculator();
 } else {
-const customBuildPairObserver =
+const calculatorObserver =
 new IntersectionObserver(
 entries => {
 entries.forEach(
@@ -7141,31 +7075,23 @@ if (!entry.isIntersecting) {
 return;
 }
 
-revealCustomBuildPair();
+revealHomepageCalculator();
 
-customBuildPairObserver.unobserve(
+calculatorObserver.unobserve(
 entry.target
 );
 }
 );
 },
 {
-threshold:.04,
-rootMargin:"0px 0px -2% 0px"
+threshold:.16,
+rootMargin:"0px 0px -8% 0px"
 }
 );
 
-customBuildPairObserver.observe(
+calculatorObserver.observe(
 calculatorWrap
 );
-}
-} else {
-if (
-reducedMotionQuery.matches ||
-!("IntersectionObserver" in window)
-) {
-revealHomepageCalculator();
-revealExistingOpeningRooflight();
 }
 }
 
@@ -7530,6 +7456,45 @@ document.getElementById(
 "recommendedInternalSize"
 );
 
+const existingOpeningRooflightVisual =
+document.querySelector(
+".existing-opening-rooflight-visual"
+);
+
+let existingOpeningRooflightRevealed =
+false;
+
+function revealExistingOpeningRooflight() {
+if (
+!existingOpeningRooflightVisual ||
+existingOpeningRooflightRevealed
+) {
+return;
+}
+
+existingOpeningRooflightRevealed =
+true;
+
+existingOpeningRooflightVisual.classList.add(
+"is-revealed"
+);
+
+const rooflightRevealElements =
+Array.from(
+existingOpeningRooflightVisual.querySelectorAll(
+".reveal"
+)
+);
+
+rooflightRevealElements.forEach(
+element => {
+element.classList.add(
+"is-visible"
+);
+}
+);
+}
+
 function getNumericInputValue(input) {
 if (!input) {
 return null;
@@ -7646,12 +7611,7 @@ openingInternalRecommendation.setAttribute(
 );
 }
 
-/*
-Important:
-The custom rooflight image is NOT revealed here.
-Its appearance is controlled by the shared
-scroll trigger with the calculator.
-*/
+revealExistingOpeningRooflight();
 }
 
 function validateInternalOpening() {
@@ -7769,6 +7729,117 @@ validateInternalOpening
 
 hideOpeningError();
 hideOpeningRecommendation();
+}
+
+/* ===============================
+CUSTOM ROOFLIGHT SECONDARY TRIGGER
+================================ */
+
+if (
+existingOpeningRooflightVisual &&
+calculatorWrap
+) {
+if (
+"IntersectionObserver" in window
+) {
+const existingOpeningRooflightObserver =
+new IntersectionObserver(
+entries => {
+entries.forEach(
+entry => {
+if (!entry.isIntersecting) {
+return;
+}
+
+revealExistingOpeningRooflight();
+
+existingOpeningRooflightObserver.unobserve(
+entry.target
+);
+}
+);
+},
+{
+threshold:.04,
+rootMargin:"0px 0px -2% 0px"
+}
+);
+
+existingOpeningRooflightObserver.observe(
+calculatorWrap
+);
+} else {
+let secondaryRooflightScrollFrame =
+null;
+
+function checkSecondaryRooflightTrigger() {
+secondaryRooflightScrollFrame =
+null;
+
+if (
+existingOpeningRooflightRevealed
+) {
+window.removeEventListener(
+"scroll",
+requestSecondaryRooflightCheck
+);
+
+window.removeEventListener(
+"resize",
+requestSecondaryRooflightCheck
+);
+
+return;
+}
+
+const calculatorRect =
+calculatorWrap.getBoundingClientRect();
+
+const calculatorHasReachedViewport =
+calculatorRect.top <=
+window.innerHeight;
+
+if (
+calculatorHasReachedViewport
+) {
+revealExistingOpeningRooflight();
+}
+}
+
+function requestSecondaryRooflightCheck() {
+if (
+secondaryRooflightScrollFrame !==
+null
+) {
+return;
+}
+
+secondaryRooflightScrollFrame =
+window.requestAnimationFrame(
+checkSecondaryRooflightTrigger
+);
+}
+
+window.addEventListener(
+"scroll",
+requestSecondaryRooflightCheck,
+{
+passive:true
+}
+);
+
+window.addEventListener(
+"resize",
+requestSecondaryRooflightCheck
+);
+
+window.addEventListener(
+"load",
+requestSecondaryRooflightCheck
+);
+
+requestSecondaryRooflightCheck();
+}
 }
 
 /* ===============================
