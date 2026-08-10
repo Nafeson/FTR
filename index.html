@@ -260,11 +260,11 @@ text-transform:lowercase;
 }
 
 .address-line {
-font-size:12px;
+max-width:520px;
+font-size:10px;
 line-height:1.45;
-font-weight:600;
-color:rgba(255,255,255,.72);
-letter-spacing:.6px;
+color:rgba(221,225,221,.53);
+letter-spacing:1.1px;
 text-transform:uppercase;
 }
 
@@ -1013,12 +1013,28 @@ position:relative;
 z-index:1;
 width:100%;
 height:148px;
-background:#ffffff;
+background:#efefeb;
 border:1px solid rgba(255,255,255,.06);
 overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
+}
+
+.home-product-image::after {
+content:"FTR";
+position:absolute;
+left:7px;
+bottom:6px;
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+sans-serif;
+font-size:7px;
+font-weight:800;
+letter-spacing:1.5px;
+color:rgba(0,0,0,.28);
+pointer-events:none;
 }
 
 .home-product-image img {
@@ -1027,7 +1043,7 @@ height:100%;
 object-fit:contain;
 object-position:center center;
 display:block;
-background:#ffffff;
+background:#efefeb;
 transform:var(--home-image-transform);
 transform-origin:center center;
 transition:
@@ -5494,7 +5510,7 @@ class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 <div class="rooflight-slide active">
 
 <img
-src="images/hero-rooflight-5.png"
+src="images/hero-rooflight-1.png"
 alt="Brand new frameless rooflight manufactured ready for installation"
 />
 
@@ -6507,7 +6523,7 @@ id="specification-advice"
 <div class="direct-visual-intro direct-image-reveal">
 
 <img
-src="images/hero-rooflight-1.png"
+src="images/hero-rooflight-5.png"
 class="direct-visual-image"
 alt="British manufactured frameless rooflight produced by Factory Toughened Rooflights"
 />
