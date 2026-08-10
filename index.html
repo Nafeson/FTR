@@ -260,11 +260,11 @@ text-transform:lowercase;
 }
 
 .address-line {
-max-width:520px;
-font-size:10px;
+font-size:12px;
 line-height:1.45;
-color:rgba(221,225,221,.53);
-letter-spacing:1.1px;
+font-weight:600;
+color:rgba(255,255,255,.72);
+letter-spacing:.6px;
 text-transform:uppercase;
 }
 
@@ -4649,7 +4649,7 @@ Rooflights
 </div>
 
 <div class="address-line">
-Anamax Group Estate, Oxford Road, Gerrards Cross, Buckinghamshire, SL9 7BB
+Anamax Group Estate, Oxford Road, Denham, Buckinghamshire, SL9 7BB
 </div>
 
 </div>
@@ -4813,11 +4813,11 @@ stroke="currentColor"
 <span class="lead-time-feature">
 
 <span class="lead-time-fast">
-Workshop
+Fast
 </span>
 
 <span class="lead-time-red">
-Lead Time
+Lead Times
 </span>
 
 </span>
@@ -4826,16 +4826,16 @@ Lead Time
 class="lead-time-divider"
 aria-hidden="true"
 >
-—
+-
 </span>
 
 <span class="lead-time-message">
 
 <span
 class="lead-time-message-text"
-data-text="Estimated From 4 Working Days"
+data-text="From 4 Working Days"
 >
-Estimated From 4 Working Days
+From 4 Working Days
 </span>
 
 <span class="lead-time-star">*</span>
@@ -4869,7 +4869,8 @@ Rooflights
 </div>
 
 <div class="address-line">
-Anamax Group Estate, Oxford Road, Gerrards Cross, Buckinghamshire, SL9 7BB
+Anamax Group Estate, Oxford Road
+Denham, SL9 7BB
 </div>
 
 </div>
@@ -4964,13 +4965,8 @@ width:100%;
 height:auto;
 }
 
-/* Join oversized section directly into changing seasons section */
-.oversized-section + .comfort-section {
-border-top:0 !important;
-}
-
 /* =========================================
-SPECIALIST WORKSHOP INTRODUCTION
+HOMEPAGE PRODUCT INTRODUCTION
 ========================================= */
 
 .home-workshop-intro {
@@ -4979,27 +4975,6 @@ z-index:3;
 max-width:1180px;
 margin:0 auto 28px;
 padding:0;
-}
-
-.home-workshop-kicker {
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:12px;
-font-size:10px;
-font-weight:800;
-letter-spacing:1.8px;
-line-height:1.2;
-text-transform:uppercase;
-color:var(--muted);
-}
-
-.home-workshop-kicker::before {
-content:"";
-width:30px;
-height:1px;
-background:var(--orange);
-flex:0 0 auto;
 }
 
 .home-workshop-copy {
@@ -5015,11 +4990,6 @@ color:var(--muted);
 .home-workshop-intro {
 padding:0 2.5%;
 margin-bottom:22px;
-}
-
-.home-workshop-kicker {
-font-size:9px;
-letter-spacing:1.35px;
 }
 
 .home-workshop-copy {
@@ -5041,10 +5011,6 @@ id="homepagePopular"
 >
 
 <div class="home-popular-title-wrap reveal">
-
-<div class="home-workshop-kicker">
-Specialist British Frameless Rooflight Workshop
-</div>
 
 <h1 class="home-opening-title">
 Frameless Flat Rooflights
@@ -5640,14 +5606,15 @@ The Product
 </div>
 
 <h2 class="reveal">
-Frameless Glass. Nothing To Interrupt The View.
+Modernising British Ceilings With Frameless Glass Design
 </h2>
 
 <p class="opening-desktop-copy reveal reveal-delay-1">
-Designed to sit cleanly above the roof opening with no visible internal frame,
-our frameless rooflights create a simple, uninterrupted ceiling finish and maximise
-the visible area of glass. The result is more natural light, a wider sky view and
-a rooflight that becomes part of the architecture rather than an added frame.
+The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
+Designed to sit cleanly above the roof opening with no visible internal frame, our frameless
+rooflights create a simple, uninterrupted ceiling finish and maximise the visible area of glass.
+The result is more natural light, a wider sky view and a rooflight that becomes part of the
+architecture rather than an added frame.
 </p>
 
 </div>
@@ -5663,10 +5630,11 @@ alt="Finished frameless rooflight viewed from inside the room"
 </div>
 
 <p class="opening-mobile-copy">
-Designed to sit cleanly above the roof opening with no visible internal frame,
-our frameless rooflights create a simple, uninterrupted ceiling finish and maximise
-the visible area of glass. The result is more natural light, a wider sky view and
-a rooflight that becomes part of the architecture rather than an added frame.
+The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish.
+Designed to sit cleanly above the roof opening with no visible internal frame, our frameless
+rooflights create a simple, uninterrupted ceiling finish and maximise the visible area of glass.
+The result is more natural light, a wider sky view and a rooflight that becomes part of the
+architecture rather than an added frame.
 </p>
 
 </section>
@@ -6716,57 +6684,13 @@ Request Oversized Quote
 
 
 <!-- =========================================
-PERFORMANCE
+FINAL SPECIFICATION HELP
 ========================================= -->
 
 <section
 class="comfort-section"
 id="performance"
 >
-
-<div class="comfort-intro">
-
-<div class="section-label reveal">
-Glazing Performance
-</div>
-
-<h2 class="reveal">
-Designed For Year-Round Comfort
-</h2>
-
-<p class="reveal reveal-delay-1">
-The glazing specification is designed to help manage unwanted heat during warmer weather
-while retaining more warmth inside during colder periods, without losing the daylight
-and open-sky appearance that make frameless rooflights so effective.
-</p>
-
-</div>
-
-
-<div
-class="comfort-visual reveal reveal-scale"
-id="comfortSlideshow"
-aria-label="Summer and winter rooflight performance"
->
-
-<div class="comfort-frame">
-
-<img
-src="images/low-e-summer-performance.png"
-class="comfort-image active"
-alt="Rooflight glazing helping manage heat during summer"
-/>
-
-<img
-src="images/low-e-winter-performance.png"
-class="comfort-image"
-alt="Rooflight glazing helping retain warmth during winter"
-/>
-
-</div>
-
-</div>
-
 
 <div class="comfort-help-wrap">
 
