@@ -1669,14 +1669,6 @@ TINTED PRODUCT IMAGE RESCALING
 --home-image-hover-transform:scale(.77);
 }
 
-/* Satin 600 × 900 — prevent general 600 × 900 cover rule interfering */
-.tinted-options-section
-.home-product-card.image-size-600x900[data-finish="satin"]
-.home-product-image img {
-object-fit:contain;
-object-position:center center;
-}
-
 /* Satin 800 × 1500 — increase scale by 12% */
 .tinted-options-section
 .home-product-card.image-size-800x1500[data-finish="satin"] {
@@ -2321,7 +2313,7 @@ transform:translateY(-3px);
 
 .trust-item:hover strong {
 color:var(--orange-bright);
-letter-spacing:0;
+letter-spacing:1px;
 }
 
 /* ===============================
@@ -5623,7 +5615,7 @@ class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
 <div class="rooflight-slide active">
 
 <img
-src="images/hero-rooflight-5.png"
+src="images/hero-rooflight-1.png"
 alt="Brand new frameless rooflight manufactured ready for installation"
 />
 
@@ -6439,7 +6431,7 @@ View Size
 
 
 <div
-class="home-product-card tinted-product-card image-size-600x900 satin-size-600x900 reveal reveal-scale reveal-delay-2"
+class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-double-price="TBC"
 data-triple-price="TBC"
 data-finish="satin"
@@ -6636,7 +6628,7 @@ id="specification-advice"
 <div class="direct-visual-intro direct-image-reveal">
 
 <img
-src="images/hero-rooflight-1.png"
+src="images/hero-rooflight-5.png"
 class="direct-visual-image"
 alt="British manufactured frameless rooflight produced by Factory Toughened Rooflights"
 />
@@ -6876,7 +6868,10 @@ Collection available with prior booking.
 </p>
 
 <p>
-Anamax Group Estate, Oxford Road, Denham, Buckinghamshire, SL9 7BB
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
 </p>
 
 </footer>
