@@ -8,7 +8,7 @@
 
 <meta
 name="description"
-content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times and free mainland UK delivery."
+content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times, free mainland UK delivery on eligible sizes and postcode-based delivery pricing on Extra Large units."
 />
 
 <style>
@@ -89,7 +89,7 @@ border-bottom:1px solid rgba(255,255,255,.08);
 padding:28px 6% 22px;
 display:grid;
 grid-template-columns:1fr auto;
-align-items:start;
+align-items:center;
 gap:32px;
 position:sticky;
 top:0;
@@ -135,17 +135,10 @@ padding-bottom:1px;
 text-transform:lowercase;
 }
 
-.address-line {
-font-size:12px;
-color:rgba(255,255,255,.72);
-letter-spacing:.6px;
-text-transform:uppercase;
-}
-
 .action-icons {
 display:flex;
 gap:10px;
-align-self:end;
+align-self:center;
 padding-bottom:1px;
 }
 
@@ -687,17 +680,12 @@ filter .32s ease;
 filter:brightness(1.035);
 }
 
-/* 400 × 800 and 600 × 900 use the fuller image treatment */
-
 .product-card.image-size-400x800 .image-wrap img,
 .product-card.image-size-600x900 .image-wrap img {
 object-fit:cover;
 object-position:center center;
 transform:none;
 }
-
-
-/* Narrow long sizes — horizontal orientation and enlargement */
 
 .product-card.image-size-300x1500,
 .product-card.image-size-400x1500,
@@ -744,6 +732,15 @@ color:var(--muted);
 font-size:12px;
 line-height:1.3;
 margin-bottom:13px;
+}
+
+.spec-line .delivery-chargeable {
+color:var(--sunset);
+font-weight:900;
+}
+
+.spec-line .delivery-free {
+color:rgba(255,255,255,.78);
 }
 
 .toggle {
@@ -870,6 +867,164 @@ color:var(--orange);
 }
 
 /* ===============================
+EXTRA LARGE DELIVERY CHECKER
+================================ */
+
+.delivery-checker {
+position:relative;
+z-index:3;
+max-width:1180px;
+margin:0 auto 30px;
+padding:24px;
+background:
+linear-gradient(
+135deg,
+rgba(18,10,26,.96),
+rgba(13,13,13,.96)
+);
+border:1px solid rgba(245,124,0,.18);
+border-left:3px solid var(--orange);
+}
+
+.delivery-checker-heading {
+margin:0 0 8px;
+font-size:18px;
+font-weight:950;
+line-height:1.1;
+text-transform:uppercase;
+letter-spacing:.5px;
+}
+
+.delivery-checker-copy {
+max-width:760px;
+margin:0;
+color:var(--muted);
+font-size:12px;
+line-height:1.55;
+}
+
+.delivery-checker-grid {
+display:grid;
+grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+gap:10px;
+align-items:end;
+margin-top:18px;
+}
+
+.delivery-field {
+min-width:0;
+}
+
+.delivery-field label {
+display:block;
+margin-bottom:7px;
+font-size:9px;
+font-weight:950;
+letter-spacing:1px;
+text-transform:uppercase;
+color:rgba(255,255,255,.58);
+}
+
+.delivery-field input,
+.delivery-field select {
+width:100%;
+height:47px;
+border:1px solid rgba(255,255,255,.16);
+background:#080808;
+color:var(--white);
+padding:0 13px;
+font:inherit;
+font-size:13px;
+border-radius:0;
+}
+
+.delivery-field input:focus,
+.delivery-field select:focus {
+outline:none;
+border-color:var(--orange);
+box-shadow:0 0 0 2px rgba(245,124,0,.08);
+}
+
+.delivery-check-button {
+height:47px;
+padding:0 22px;
+border:1px solid var(--orange);
+background:var(--orange);
+color:#050505;
+font:inherit;
+font-size:10px;
+font-weight:950;
+letter-spacing:.8px;
+text-transform:uppercase;
+cursor:pointer;
+white-space:nowrap;
+transition:.2s ease;
+}
+
+.delivery-check-button:hover {
+background:var(--sunset);
+border-color:var(--sunset);
+transform:translateY(-1px);
+}
+
+.delivery-result {
+display:none;
+margin-top:16px;
+padding:15px 16px;
+border:1px solid rgba(255,255,255,.11);
+background:rgba(255,255,255,.035);
+}
+
+.delivery-result.is-visible {
+display:block;
+}
+
+.delivery-result.is-success {
+border-left:3px solid var(--orange);
+}
+
+.delivery-result.is-quote {
+border-left:3px solid var(--sunset);
+}
+
+.delivery-result.is-error {
+border-left:3px solid #d75545;
+}
+
+.delivery-result-title {
+display:block;
+font-size:12px;
+font-weight:950;
+text-transform:uppercase;
+letter-spacing:.6px;
+color:var(--white);
+}
+
+.delivery-result-copy {
+display:block;
+margin-top:6px;
+font-size:12px;
+line-height:1.55;
+color:var(--muted);
+}
+
+.delivery-result-price {
+display:block;
+margin-top:7px;
+font-size:24px;
+line-height:1;
+font-weight:950;
+color:var(--orange);
+}
+
+.delivery-note {
+margin-top:11px;
+color:rgba(255,255,255,.43);
+font-size:9px;
+line-height:1.5;
+}
+
+/* ===============================
 BOTTOM CTA
 ================================ */
 
@@ -966,6 +1121,7 @@ color:var(--white);
 
 footer p {
 margin:0 0 12px;
+line-height:1.55;
 }
 
 footer p:last-child {
@@ -977,6 +1133,7 @@ TABLET
 ================================ */
 
 @media(max-width:1000px) {
+
 .intro-grid {
 grid-template-columns:1fr;
 }
@@ -992,9 +1149,19 @@ grid-template-columns:repeat(2,minmax(0,1fr));
 .catalogue-grid .product-card {
 min-height:420px;
 }
+
+.delivery-checker-grid {
+grid-template-columns:1fr 1fr;
+}
+
+.delivery-check-button {
+grid-column:1 / -1;
+width:100%;
+}
 }
 
 @media(max-width:760px) {
+
 .popular-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
 gap:12px;
@@ -1016,6 +1183,7 @@ MOBILE
 ================================ */
 
 @media(max-width:620px) {
+
 header {
 padding:22px 6%;
 gap:16px;
@@ -1023,10 +1191,6 @@ gap:16px;
 
 .wordmark {
 font-size:20px;
-}
-
-.address-line {
-font-size:10px;
 }
 
 .action-icons {
@@ -1163,6 +1327,32 @@ font-size:8px;
 letter-spacing:.35px;
 }
 
+.delivery-checker {
+margin-bottom:22px;
+padding:18px 15px;
+}
+
+.delivery-checker-heading {
+font-size:16px;
+}
+
+.delivery-checker-copy {
+font-size:11px;
+}
+
+.delivery-checker-grid {
+grid-template-columns:1fr;
+gap:9px;
+}
+
+.delivery-check-button {
+grid-column:auto;
+}
+
+.delivery-result-price {
+font-size:22px;
+}
+
 .bottom-cta {
 padding:60px 6%;
 }
@@ -1170,9 +1360,6 @@ padding:60px 6%;
 .footer-wordmark {
 font-size:21px;
 }
-
-/* Mobile image treatments */
-
 
 .product-card.image-size-300x1500,
 .product-card.image-size-400x1500,
@@ -1182,6 +1369,7 @@ font-size:21px;
 }
 
 @media(max-width:390px) {
+
 .product-section {
 padding-left:3%;
 padding-right:3%;
@@ -1209,6 +1397,7 @@ font-size:18px;
 }
 
 @media(prefers-reduced-motion:reduce) {
+
 html {
 scroll-behavior:auto;
 }
@@ -1229,14 +1418,16 @@ animation:none;
 <span>Fast lead times from 4 working days</span>
 <span>6mm+ toughened safety glass</span>
 <span>Switch between double and triple glazing instantly</span>
-<span>Free mainland UK delivery on listed sizes</span>
+<span>Free mainland UK delivery on eligible sizes</span>
+<span>Postcode-based delivery on Extra Large sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
 
 <span>Fast lead times from 4 working days</span>
 <span>6mm+ toughened safety glass</span>
 <span>Switch between double and triple glazing instantly</span>
-<span>Free mainland UK delivery on listed sizes</span>
+<span>Free mainland UK delivery on eligible sizes</span>
+<span>Postcode-based delivery on Extra Large sizes</span>
 <span>Low-E Softcoat glass</span>
 <span>20 year warranty on all units</span>
 
@@ -1253,10 +1444,6 @@ Factory
 <div class="wordmark-bottom">
 Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
-</div>
-
-<div class="address-line">
-5-9 Willen Field Road, London, NW10 7BQ
 </div>
 
 </div>
@@ -1314,10 +1501,6 @@ Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
 </div>
 
-<div class="address-line">
-5-9 Willen Field Road, London, NW10 7BQ
-</div>
-
 </div>
 
 <button
@@ -1359,8 +1542,9 @@ Frameless Flat Roof Skylights
 
 <p class="intro-summary">
 Browse our listed frameless rooflight sizes, switch instantly between double and
-triple glazing, and see your price including VAT. Every listed unit includes free
-mainland UK delivery.
+triple glazing, and see your rooflight price including VAT. Small, Medium and Large
+sizes include free mainland UK delivery, while our Extra Large range uses postcode-based
+delivery pricing.
 </p>
 
 </div>
@@ -1450,20 +1634,108 @@ Designed to maximise natural light across larger kitchens, extensions and open-p
 <section id="extra-large" class="product-section extra-large-section">
 
 <div class="section-heading-wrap">
-<span class="section-number">05 — Maximum Daylight</span>
-<h2 class="section-title">Extra Large Sizes</h2>
+
+<span class="section-number">
+05 — Maximum Daylight
+</span>
+
+<h2 class="section-title">
+Extra Large Sizes
+</h2>
+
 <p class="section-subtitle">
 Larger architectural rooflights for expansive rooms, major extensions and premium projects.
+Extra Large units use postcode-based delivery pricing according to rooflight width and delivery distance.
 </p>
+
 </div>
 
-<div class="product-grid catalogue-grid" id="extraLargeGrid"></div>
+<div
+class="delivery-checker"
+id="extraLargeDeliveryChecker"
+>
+
+<h3 class="delivery-checker-heading">
+Check Extra Large Delivery
+</h3>
+
+<p class="delivery-checker-copy">
+Select your Extra Large rooflight size and enter your postcode to calculate the delivery charge.
+The distance calculation includes an allowance for the difference between straight-line postcode
+distance and typical road mileage.
+</p>
+
+<div class="delivery-checker-grid">
+
+<div class="delivery-field">
+
+<label for="deliverySize">
+Rooflight Size
+</label>
+
+<select id="deliverySize">
+<option value="600x2500">600 × 2500mm</option>
+<option value="800x2500">800 × 2500mm</option>
+<option value="1000x2500">1000 × 2500mm</option>
+<option value="1500x1500">1500 × 1500mm</option>
+<option value="1500x1800">1500 × 1800mm</option>
+<option value="1500x2500">1500 × 2500mm</option>
+</select>
+
+</div>
+
+<div class="delivery-field">
+
+<label for="deliveryPostcode">
+Delivery Postcode
+</label>
+
+<input
+id="deliveryPostcode"
+type="text"
+inputmode="text"
+autocomplete="postal-code"
+placeholder="e.g. B1 1AA"
+/>
+
+</div>
+
+<button
+type="button"
+class="delivery-check-button"
+id="checkDeliveryButton"
+>
+Check Delivery
+</button>
+
+</div>
+
+<div
+class="delivery-result"
+id="deliveryResult"
+aria-live="polite"
+></div>
+
+<div class="delivery-note">
+Extra Large units are automatically priced for eligible English mainland destinations
+up to 200 adjusted miles from our SL9 7BB dispatch postcode. Other destinations require
+a delivery quotation.
+</div>
+
+</div>
+
+<div
+class="product-grid catalogue-grid"
+id="extraLargeGrid"
+></div>
 
 </section>
 
 <section class="bottom-cta">
 
-<h2>Can’t find your size?</h2>
+<h2>
+Can’t find your size?
+</h2>
 
 <p>
 If your required size is not listed, return to the calculator and build a
@@ -1471,10 +1743,19 @@ made-to-order frameless rooflight online.
 </p>
 
 <div class="cta-actions">
-<a href="index.html#calculator" class="button">Build Custom Size</a>
+
+<a
+href="index.html#calculator"
+class="button"
+>
+Build Custom Size
+</a>
+
 </div>
 
-<h2 class="larger-title">Need Something Larger?</h2>
+<h2 class="larger-title">
+Need Something Larger?
+</h2>
 
 <p>
 Looking for a frameless rooflight beyond our listed range? Contact us for an
@@ -1482,7 +1763,14 @@ oversized quotation and specialist delivery pricing.
 </p>
 
 <div class="cta-actions">
-<a href="index.html#oversized" class="button secondary">Oversized Quote</a>
+
+<a
+href="index.html#oversized"
+class="button secondary"
+>
+Oversized Quote
+</a>
+
 </div>
 
 </section>
@@ -1492,11 +1780,17 @@ oversized quotation and specialist delivery pricing.
 <footer id="contact">
 
 <div class="wordmark footer-wordmark">
+
 Factory
-<span>Toughened</span>
+
+<span>
+Toughened
+</span>
+
 <div class="wordmark-bottom">
 Rooflights<small class="wordmark-domain">.co.uk</small>
 </div>
+
 </div>
 
 <p>
@@ -1504,16 +1798,25 @@ Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
 </p>
 
 <p>
-Frameless flat roof skylights, made to order and delivered across mainland UK.
+Frameless flat roof skylights with free mainland UK delivery on eligible sizes
+and postcode-based delivery pricing on Extra Large units.
 </p>
 
 <p>
-5-9 Willen Field Road, London, NW10 7BQ
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
 </p>
 
 </footer>
 
 <script>
+
+/* =========================================
+ROOFLIGHT PRICES
+========================================= */
+
 const prices = {
 
 /* SMALL SIZES */
@@ -1686,6 +1989,10 @@ triple:1475
 
 };
 
+/* =========================================
+PRODUCT IMAGES
+========================================= */
+
 const productImages = {
 
 /* SMALL */
@@ -1742,6 +2049,10 @@ const productImages = {
 
 };
 
+/* =========================================
+SIZE GROUPS
+========================================= */
+
 const popularSizes = [
 "600x900",
 "800x800",
@@ -1795,12 +2106,110 @@ const extraLargeSizes = [
 "1500x2500"
 ];
 
+/* =========================================
+EXTRA LARGE DELIVERY MASTER
+========================================= */
+
+/*
+Postcodes.io provides postcode coordinates.
+
+We calculate the straight-line geographical
+distance and then add 20% to provide an
+allowance for typical road mileage.
+
+Dispatch postcode:
+SL9 7BB
+*/
+
+const DELIVERY_ORIGIN_POSTCODE =
+"SL9 7BB";
+
+const ROAD_DISTANCE_ALLOWANCE =
+1.20;
+
+/*
+Every size in the Extra Large category
+requires postcode-based delivery pricing.
+
+Delivery band is determined by WIDTH only.
+*/
+
+const chargeableExtraLargeSizes =
+new Set([
+"600x2500",
+"800x2500",
+"1000x2500",
+"1500x1500",
+"1500x1800",
+"1500x2500"
+]);
+
+/*
+XL WIDTH BANDS
+
+XL1 = 600–800mm
+XL2 = 801–1199mm
+XL3 = 1200–1500mm
+*/
+
+const deliveryRates = [
+
+{
+maxMiles:30,
+XL1:35,
+XL2:55,
+XL3:110
+},
+
+{
+maxMiles:60,
+XL1:65,
+XL2:105,
+XL3:140
+},
+
+{
+maxMiles:100,
+XL1:105,
+XL2:135,
+XL3:175
+},
+
+{
+maxMiles:150,
+XL1:135,
+XL2:170,
+XL3:220
+},
+
+{
+maxMiles:200,
+XL1:170,
+XL2:215,
+XL3:275
+}
+
+];
+
+/* =========================================
+GENERAL HELPERS
+========================================= */
+
 function formatSize(size) {
-return size.replace("x"," × ");
+
+return size.replace(
+"x",
+" × "
+);
+
 }
 
 function getTopGlass(size) {
-const [width,length] =
+
+const [
+width,
+length
+] =
 size
 .split("x")
 .map(Number);
@@ -1810,17 +2219,404 @@ const area =
 1000000;
 
 if (area > 3.4) {
+
 return "10mm Toughened Safety Glass";
+
 }
 
 if (area > 2.0) {
+
 return "8mm Toughened Safety Glass";
+
 }
 
 return "6mm Toughened Safety Glass";
+
 }
 
+/* =========================================
+DELIVERY HELPERS
+========================================= */
+
+function isChargeableDeliverySize(size) {
+
+return chargeableExtraLargeSizes.has(
+size
+);
+
+}
+
+function getXLDeliveryBand(size) {
+
+if (
+!isChargeableDeliverySize(size)
+) {
+
+return null;
+
+}
+
+const [
+width
+] =
+size
+.split("x")
+.map(Number);
+
+if (
+width >= 600 &&
+width <= 800
+) {
+
+return "XL1";
+
+}
+
+if (
+width >= 801 &&
+width <= 1199
+) {
+
+return "XL2";
+
+}
+
+if (
+width >= 1200 &&
+width <= 1500
+) {
+
+return "XL3";
+
+}
+
+return null;
+
+}
+
+function getDeliveryCardLine(size) {
+
+if (
+isChargeableDeliverySize(size)
+) {
+
+return `
+<span class="delivery-chargeable">
+Delivery Calculated By Postcode
+</span>
+`;
+
+}
+
+return `
+<span class="delivery-free">
+Free Mainland UK Delivery
+</span>
+`;
+
+}
+
+function getDeliveryRate(
+adjustedMiles,
+band
+) {
+
+for (
+const rateBand
+of deliveryRates
+) {
+
+if (
+adjustedMiles <=
+rateBand.maxMiles
+) {
+
+return {
+requiresQuote:false,
+price:rateBand[band],
+maxMiles:rateBand.maxMiles
+};
+
+}
+
+}
+
+return {
+requiresQuote:true,
+price:null,
+maxMiles:null
+};
+
+}
+
+function degreesToRadians(
+degrees
+) {
+
+return degrees *
+(Math.PI / 180);
+
+}
+
+function calculateGeographicalMiles(
+lat1,
+lon1,
+lat2,
+lon2
+) {
+
+const earthRadiusMiles =
+3958.7613;
+
+const latitudeDifference =
+degreesToRadians(
+lat2 - lat1
+);
+
+const longitudeDifference =
+degreesToRadians(
+lon2 - lon1
+);
+
+const firstLatitude =
+degreesToRadians(
+lat1
+);
+
+const secondLatitude =
+degreesToRadians(
+lat2
+);
+
+const a =
+Math.sin(
+latitudeDifference / 2
+) ** 2
++
+Math.cos(
+firstLatitude
+)
+*
+Math.cos(
+secondLatitude
+)
+*
+Math.sin(
+longitudeDifference / 2
+) ** 2;
+
+const c =
+2 *
+Math.atan2(
+Math.sqrt(a),
+Math.sqrt(1 - a)
+);
+
+return earthRadiusMiles * c;
+
+}
+
+async function lookupPostcode(
+postcode
+) {
+
+const cleanedPostcode =
+String(postcode || "")
+.trim()
+.toUpperCase();
+
+if (
+!cleanedPostcode
+) {
+
+throw new Error(
+"Please enter a postcode."
+);
+
+}
+
+const response =
+await fetch(
+"https://api.postcodes.io/postcodes/" +
+encodeURIComponent(
+cleanedPostcode
+)
+);
+
+if (
+!response.ok
+) {
+
+throw new Error(
+"That postcode could not be found."
+);
+
+}
+
+const data =
+await response.json();
+
+if (
+!data ||
+!data.result
+) {
+
+throw new Error(
+"That postcode could not be found."
+);
+
+}
+
+return data.result;
+
+}
+
+async function calculateExtraLargeDelivery(
+size,
+postcode
+) {
+
+if (
+!isChargeableDeliverySize(size)
+) {
+
+return {
+requiresQuote:false,
+freeDelivery:true,
+price:0,
+size:size,
+band:null,
+rawMiles:0,
+adjustedMiles:0,
+reason:
+"Free mainland UK delivery applies to this size."
+};
+
+}
+
+const band =
+getXLDeliveryBand(
+size
+);
+
+if (
+!band
+) {
+
+return {
+requiresQuote:true,
+freeDelivery:false,
+price:null,
+size:size,
+band:null,
+reason:
+"Delivery for this size requires a quotation."
+};
+
+}
+
+const [
+origin,
+destination
+] =
+await Promise.all([
+lookupPostcode(
+DELIVERY_ORIGIN_POSTCODE
+),
+lookupPostcode(
+postcode
+)
+]);
+
+/*
+Extra Large units are not automatically
+priced for Scotland, Wales or Northern
+Ireland.
+
+Those destinations move to quotation.
+*/
+
+const destinationCountry =
+String(
+destination.country || ""
+)
+.trim();
+
+if (
+destinationCountry !==
+"England"
+) {
+
+return {
+requiresQuote:true,
+freeDelivery:false,
+price:null,
+size:size,
+band:band,
+country:destinationCountry,
+reason:
+"Delivery quotation required for this destination."
+};
+
+}
+
+const rawMiles =
+calculateGeographicalMiles(
+origin.latitude,
+origin.longitude,
+destination.latitude,
+destination.longitude
+);
+
+const adjustedMiles =
+rawMiles *
+ROAD_DISTANCE_ALLOWANCE;
+
+const deliveryRate =
+getDeliveryRate(
+adjustedMiles,
+band
+);
+
+if (
+deliveryRate.requiresQuote
+) {
+
+return {
+requiresQuote:true,
+freeDelivery:false,
+price:null,
+size:size,
+band:band,
+country:destinationCountry,
+rawMiles:rawMiles,
+adjustedMiles:adjustedMiles,
+reason:
+"Delivery quotation required for destinations over 200 adjusted miles."
+};
+
+}
+
+return {
+requiresQuote:false,
+freeDelivery:false,
+price:deliveryRate.price,
+size:size,
+band:band,
+country:destinationCountry,
+rawMiles:rawMiles,
+adjustedMiles:adjustedMiles,
+reason:null
+};
+
+}
+
+/* =========================================
+PRODUCT CARD CREATION
+========================================= */
+
 function createCard(size) {
+
 const data =
 prices[size];
 
@@ -1835,12 +2631,29 @@ const imagePath =
 "./images/product-cards/" +
 imageFile;
 
+const deliveryLine =
+getDeliveryCardLine(
+size
+);
+
 const card =
-document.createElement("article");
+document.createElement(
+"article"
+);
 
 card.className =
 "product-card image-size-" +
 size;
+
+card.dataset.size =
+size;
+
+card.dataset.deliveryType =
+isChargeableDeliverySize(size)
+?
+"postcode"
+:
+"free";
 
 card.innerHTML = `
 <div class="image-wrap">
@@ -1860,10 +2673,9 @@ ${formatSize(size)}
 </div>
 
 <div class="spec-line">
-<span>Internal Visible Glass Size</span>
+<span>Inside Visible Glass Size</span>
 <span>${topGlass}</span>
-<span>Low-E Softcoat Glass</span>
-<span>Free Mainland UK Delivery</span>
+${deliveryLine}
 </div>
 
 <div class="toggle">
@@ -1917,13 +2729,19 @@ View →
 `;
 
 return card;
+
 }
+
+/* =========================================
+GLAZING SWITCHER
+========================================= */
 
 function setGlazing(
 button,
 size,
 glazing
 ) {
+
 const card =
 button.closest(
 ".product-card"
@@ -1941,11 +2759,15 @@ card
 .querySelectorAll(
 ".toggle button"
 )
-.forEach(item => {
+.forEach(
+item => {
+
 item.classList.remove(
 "active"
 );
-});
+
+}
+);
 
 button.classList.add(
 "active"
@@ -1968,25 +2790,39 @@ card
 "£" +
 price +
 '<span class="vat-note">inc. vat</span>';
+
 }
+
+/* =========================================
+RENDER PRODUCT GRIDS
+========================================= */
 
 function appendCards(
 gridId,
 sizes
 ) {
+
 const grid =
 document.getElementById(
 gridId
 );
 
-sizes.forEach(size => {
+sizes.forEach(
+size => {
+
 grid.appendChild(
-createCard(size)
+createCard(
+size
+)
 );
-});
+
+}
+);
+
 }
 
 function renderCards() {
+
 appendCards(
 "popularGrid",
 popularSizes
@@ -2011,9 +2847,221 @@ appendCards(
 "extraLargeGrid",
 extraLargeSizes
 );
+
 }
 
+/* =========================================
+EXTRA LARGE DELIVERY CHECKER
+========================================= */
+
+function setDeliveryResult(
+type,
+title,
+copy,
+price
+) {
+
+const result =
+document.getElementById(
+"deliveryResult"
+);
+
+result.className =
+"delivery-result is-visible";
+
+if (
+type
+) {
+
+result.classList.add(
+"is-" + type
+);
+
+}
+
+let priceMarkup =
+"";
+
+if (
+typeof price ===
+"number"
+) {
+
+priceMarkup = `
+<span class="delivery-result-price">
+£${price}
+</span>
+`;
+
+}
+
+result.innerHTML = `
+<span class="delivery-result-title">
+${title}
+</span>
+
+${priceMarkup}
+
+<span class="delivery-result-copy">
+${copy}
+</span>
+`;
+
+}
+
+async function checkExtraLargeDelivery() {
+
+const sizeSelect =
+document.getElementById(
+"deliverySize"
+);
+
+const postcodeInput =
+document.getElementById(
+"deliveryPostcode"
+);
+
+const button =
+document.getElementById(
+"checkDeliveryButton"
+);
+
+const size =
+sizeSelect.value;
+
+const postcode =
+postcodeInput.value.trim();
+
+if (
+!postcode
+) {
+
+setDeliveryResult(
+"error",
+"Enter Your Postcode",
+"Please enter the delivery postcode before checking the delivery charge."
+);
+
+postcodeInput.focus();
+
+return;
+
+}
+
+const originalButtonText =
+button.textContent;
+
+button.disabled =
+true;
+
+button.textContent =
+"Checking...";
+
+try {
+
+const quote =
+await calculateExtraLargeDelivery(
+size,
+postcode
+);
+
+if (
+quote.requiresQuote
+) {
+
+let quoteCopy =
+quote.reason ||
+"Please contact our rooflight team for a delivery quotation.";
+
+if (
+Number.isFinite(
+quote.adjustedMiles
+)
+) {
+
+quoteCopy +=
+" Estimated adjusted distance: " +
+Math.round(
+quote.adjustedMiles
+) +
+" miles.";
+
+}
+
+setDeliveryResult(
+"quote",
+"Delivery Quotation Required",
+quoteCopy
+);
+
+return;
+
+}
+
+if (
+quote.freeDelivery
+) {
+
+setDeliveryResult(
+"success",
+"Free Mainland UK Delivery",
+"Free mainland UK delivery applies to this rooflight size.",
+0
+);
+
+return;
+
+}
+
+const adjustedDistance =
+Math.round(
+quote.adjustedMiles
+);
+
+setDeliveryResult(
+"success",
+formatSize(
+quote.size
+) +
+" — " +
+quote.band,
+"Estimated adjusted delivery distance: " +
+adjustedDistance +
+" miles. This includes the 20% road-distance allowance.",
+quote.price
+);
+
+}
+catch (
+error
+) {
+
+setDeliveryResult(
+"error",
+"Unable To Calculate Delivery",
+error.message ||
+"Please check the postcode and try again."
+);
+
+}
+finally {
+
+button.disabled =
+false;
+
+button.textContent =
+originalButtonText;
+
+}
+
+}
+
+/* =========================================
+MENU
+========================================= */
+
 function openMenu() {
+
 document
 .getElementById(
 "menuOverlay"
@@ -2025,9 +3073,11 @@ document
 
 document.body.style.overflow =
 "hidden";
+
 }
 
 function closeMenu() {
+
 document
 .getElementById(
 "menuOverlay"
@@ -2039,9 +3089,55 @@ document
 
 document.body.style.overflow =
 "";
+
 }
 
+/* =========================================
+INITIALISE
+========================================= */
+
 renderCards();
+
+document
+.getElementById(
+"checkDeliveryButton"
+)
+.addEventListener(
+"click",
+checkExtraLargeDelivery
+);
+
+document
+.getElementById(
+"deliveryPostcode"
+)
+.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"Enter"
+) {
+
+event.preventDefault();
+
+checkExtraLargeDelivery();
+
+}
+
+}
+);
+
+/*
+Expose the delivery calculator so the same
+logic can later be connected to basket /
+checkout behaviour if required.
+*/
+
+window.calculateExtraLargeDelivery =
+calculateExtraLargeDelivery;
+
 </script>
 
 </body>
