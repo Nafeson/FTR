@@ -1136,25 +1136,15 @@ color:rgba(247,247,243,.72);
 color:var(--muted);
 }
 
-/* Eligible sizes — free delivery */
-
 .home-product-spec .delivery-free {
 color:rgba(247,247,243,.76);
 font-weight:650;
 }
 
-/* Extra Large / chargeable delivery */
-
 .home-product-spec .delivery-chargeable {
 color:var(--orange-bright);
 font-weight:750;
 }
-
-/*
-Backwards compatibility for any remaining
-product-lead-time elements until Index 3
-has been fully updated.
-*/
 
 .home-product-spec .product-lead-time,
 .product-lead-time {
@@ -1296,6 +1286,9 @@ PRODUCT CARD PRICE
 ================================ */
 
 .home-product-price {
+display:flex;
+align-items:center;
+gap:5px;
 font-size:29px;
 line-height:1;
 font-weight:800;
@@ -1305,37 +1298,77 @@ white-space:nowrap;
 }
 
 /*
-Raised decimal styling.
+The price number itself is separated from
+the VAT note.
 
-Index 4 will output the price in the form:
+Index 4 outputs:
 
-£400<span class="home-price-decimals">.00</span>
+<span class="home-price-amount">
+<span class="home-price-main">£400</span>
+<span class="home-price-decimals">.00</span>
+</span>
 
-This keeps the pounds at full size while
-the decimal value is smaller and raised.
+The amount uses flex-start alignment so
+the TOP of the small decimals aligns with
+the TOP of the large pound value.
+*/
+
+.home-price-amount {
+display:inline-flex;
+align-items:flex-start;
+justify-content:flex-start;
+line-height:1;
+white-space:nowrap;
+}
+
+.home-price-main {
+display:block;
+position:relative;
+font:inherit;
+font-size:1em;
+font-weight:inherit;
+line-height:1;
+letter-spacing:inherit;
+color:inherit;
+}
+
+/*
+No top / transform / vertical-align offset
+is used here.
+
+The alignment now comes from the flex
+container above rather than manually
+moving the decimals up or down.
 */
 
 .home-price-decimals {
-display:inline-block;
-font-size:.40em;
+display:block;
+position:static;
+margin:0 0 0 1px;
+padding:0;
+font-family:inherit;
+font-size:.43em;
+font-weight:800;
 line-height:1;
-vertical-align:top;
-position:relative;
-top:.35em;
-margin-left:.01em;
+letter-spacing:-.15px;
+color:inherit;
+transform:none;
+vertical-align:initial;
 }
-  
+
 .home-vat-note {
+display:block;
+position:static;
+align-self:center;
+margin:0;
 font-size:8px;
-color:rgba(255,255,255,.46);
 font-weight:500;
-margin-left:5px;
+line-height:1;
+letter-spacing:.1px;
+color:rgba(255,255,255,.46);
 white-space:nowrap;
 text-transform:lowercase;
-letter-spacing:.1px;
-vertical-align:middle;
-position:relative;
-top:-1px;
+vertical-align:initial;
 }
 
 .home-product-link {
@@ -1693,28 +1726,24 @@ transparent 100%
 TINTED PRODUCT IMAGE RESCALING
 ========================================= */
 
-/* Blue 800 × 1000 — increase scale by 10% */
 .tinted-options-section
 .home-product-card.image-size-800x1000[data-finish="blue"] {
 --home-image-transform:scale(1.10);
 --home-image-hover-transform:scale(1.13);
 }
 
-/* Blue 600 × 1500 — increase scale by 12% */
 .tinted-options-section
 .home-product-card.image-size-600x1500[data-finish="blue"] {
 --home-image-transform:scale(1.12);
 --home-image-hover-transform:scale(1.15);
 }
 
-/* Satin 600 × 900 — decrease scale by 25% */
 .tinted-options-section
 .home-product-card.image-size-600x900[data-finish="satin"] {
 --home-image-transform:scale(.75);
 --home-image-hover-transform:scale(.77);
 }
 
-/* Satin 800 × 1500 — increase scale by 12% */
 .tinted-options-section
 .home-product-card.image-size-800x1500[data-finish="satin"] {
 --home-image-transform:scale(1.12);
@@ -3514,9 +3543,6 @@ font-size:9px;
 background:#121414;
 }
 
-/* Backwards-compatible support if Index-3
-temporarily retains the old help classes */
-
 .comfort-help-wrap {
 max-width:1120px;
 margin:0 auto;
@@ -3842,22 +3868,45 @@ gap:7px;
 
 .home-product-price {
 font-size:22px;
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:3px;
 }
 
-/* Raised decimals scaled for mobile */
+/*
+Mobile keeps exactly the same top alignment
+between the large pounds and the small .00.
+Only the decimal scale changes slightly.
+*/
+
+.home-price-amount {
+display:inline-flex;
+align-items:flex-start;
+line-height:1;
+}
+
+.home-price-main {
+line-height:1;
+}
 
 .home-price-decimals {
-top:-.44em;
+position:static;
 margin-left:.5px;
+padding:0;
 font-size:.45em;
+line-height:1;
 letter-spacing:-.1px;
+transform:none;
 }
 
 .home-vat-note {
-font-size:7px;
+position:static;
+align-self:flex-start;
 display:block;
-margin-left:0;
-margin-top:3px;
+margin:0;
+font-size:7px;
+line-height:1;
 }
 
 .home-product-link {
@@ -5251,8 +5300,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
 £250
-<span class="home-vat-note">inc. vat</span>
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -5335,8 +5399,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
 £310
-<span class="home-vat-note">inc. vat</span>
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -5419,8 +5498,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
 £465
-<span class="home-vat-note">inc. vat</span>
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -5503,8 +5597,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
 £880
-<span class="home-vat-note">inc. vat</span>
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -6318,8 +6427,8 @@ Tinted &amp; Privacy Glass
 
 <div
 class="home-product-card tinted-product-card image-size-800x1000 reveal reveal-scale"
-data-double-price="TBC"
-data-triple-price="TBC"
+data-double-price="435"
+data-triple-price="520"
 data-finish="blue"
 tabindex="0"
 >
@@ -6381,8 +6490,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
-£TBC
-<span class="home-vat-note">inc. vat</span>
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£435
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -6403,8 +6527,8 @@ View Size
 
 <div
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
-data-double-price="TBC"
-data-triple-price="TBC"
+data-double-price="470"
+data-triple-price="560"
 data-finish="blue"
 tabindex="0"
 >
@@ -6466,8 +6590,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
-£TBC
-<span class="home-vat-note">inc. vat</span>
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£470
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -6488,8 +6627,8 @@ View Size
 
 <div
 class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
-data-double-price="TBC"
-data-triple-price="TBC"
+data-double-price="325"
+data-triple-price="390"
 data-finish="satin"
 tabindex="0"
 >
@@ -6551,8 +6690,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
-£TBC
-<span class="home-vat-note">inc. vat</span>
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£325
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -6573,8 +6727,8 @@ View Size
 
 <div
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
-data-double-price="TBC"
-data-triple-price="TBC"
+data-double-price="590"
+data-triple-price="710"
 data-finish="satin"
 tabindex="0"
 >
@@ -6636,8 +6790,23 @@ FROM:
 </div>
 
 <div class="home-product-price">
-£TBC
-<span class="home-vat-note">inc. vat</span>
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£590
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
 </div>
 
 </div>
@@ -8502,7 +8671,18 @@ revealExistingOpeningRooflight();
 
 
 /* ===============================
-STANDARD + TINTED GLAZING CONTROLS
+STANDARD + TINTED PRICE FORMATTING
+
+All numeric homepage product prices,
+including tinted temporary prices,
+use the same raised-decimal structure.
+
+Example:
+
+£435.00
+
+The .00 styling itself remains controlled
+by Index 1.
 ================================ */
 
 function formatProductPrice(
@@ -8526,7 +8706,8 @@ return "£TBC";
 }
 
 const cleanedPrice =
-normalizedPrice.replace(
+normalizedPrice
+.replace(
 /£/g,
 ""
 )
@@ -8579,32 +8760,41 @@ wholePounds
 const formattedDecimals =
 String(
 decimalValue
-).padStart(
+)
+.padStart(
 2,
 "0"
 );
 
-return `£${formattedWholePounds}<span class="home-price-decimals">.${formattedDecimals}</span>`;
+return `
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£${formattedWholePounds}
+</span>
+
+<span class="home-price-decimals">
+.${formattedDecimals}
+</span>
+
+</span>
+`;
 
 }
 
 
 /* ===============================
-INITIAL PRODUCT CARD PRICE FORMAT
+INITIAL HOMEPAGE PRODUCT PRICES
 
-This converts the prices already visible
-when the homepage first loads.
+Reads the active Double / Triple value
+directly from each card's data attributes.
 
-Example:
+This applies equally to:
 
-£465
-
-becomes:
-
-£465.00
-
-with the .00 using the raised styling
-from Index 1.
+Clear standard cards
+Blue tinted cards
+Satin privacy cards
+Future grey tinted cards
 ================================ */
 
 function initializeHomepageProductPrices() {
@@ -8648,6 +8838,10 @@ priceElement.innerHTML =
 
 initializeHomepageProductPrices();
 
+
+/* ===============================
+STANDARD + TINTED GLAZING CONTROLS
+================================ */
 
 homepageProductCards.forEach(
 card => {
