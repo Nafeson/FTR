@@ -1066,25 +1066,20 @@ object-position:center center;
 POPULAR SIZE PRODUCT IMAGE RESCALING
 ========================================= */
 
-/* 600 × 900 — reduce image scale by 20% */
 .home-popular-section .home-product-card.image-size-600x900 {
 --home-image-transform:scale(.80);
 --home-image-hover-transform:scale(.82);
 }
 
-/* 400 × 1500 — increase existing rotated scale by 15% */
 .home-popular-section .home-product-card.image-size-400x1500 {
 --home-image-transform:rotate(90deg) scale(1.50);
 --home-image-hover-transform:rotate(90deg) scale(1.53);
 }
 
-/* 1000 × 1200 — increase image scale by 15% */
 .home-popular-section .home-product-card.image-size-1000x1200 {
 --home-image-transform:scale(1.15);
 --home-image-hover-transform:scale(1.18);
 }
-
-/* 1500 × 1800 deliberately remains unchanged */
 
 .home-product-content {
 position:relative;
@@ -1297,22 +1292,6 @@ color:var(--cream);
 white-space:nowrap;
 }
 
-/*
-The price number itself is separated from
-the VAT note.
-
-Index 4 outputs:
-
-<span class="home-price-amount">
-<span class="home-price-main">£400</span>
-<span class="home-price-decimals">.00</span>
-</span>
-
-The amount uses flex-start alignment so
-the TOP of the small decimals aligns with
-the TOP of the large pound value.
-*/
-
 .home-price-amount {
 display:inline-flex;
 align-items:flex-start;
@@ -1333,12 +1312,12 @@ color:inherit;
 }
 
 /*
-No top / transform / vertical-align offset
-is used here.
+The flex container aligns the font boxes.
 
-The alignment now comes from the flex
-container above rather than manually
-moving the decimals up or down.
+A very small downward correction is then
+applied to the decimals because the visible
+glyph top of the smaller Bahnschrift text
+sits slightly higher than the full-size digits.
 */
 
 .home-price-decimals {
@@ -1352,7 +1331,7 @@ font-weight:800;
 line-height:1;
 letter-spacing:-.15px;
 color:inherit;
-transform:none;
+transform:translateY(.10em);
 vertical-align:initial;
 }
 
@@ -3874,12 +3853,6 @@ align-items:flex-start;
 gap:3px;
 }
 
-/*
-Mobile keeps exactly the same top alignment
-between the large pounds and the small .00.
-Only the decimal scale changes slightly.
-*/
-
 .home-price-amount {
 display:inline-flex;
 align-items:flex-start;
@@ -3890,12 +3863,19 @@ line-height:1;
 line-height:1;
 }
 
+/*
+Same small downward optical correction
+is retained on mobile.
+*/
+
 .home-price-decimals {
-top:0;
-transform:translateY(-6px);
+position:static;
 margin-left:.5px;
+padding:0;
 font-size:.45em;
+line-height:1;
 letter-spacing:-.1px;
+transform:translateY(.10em);
 }
 
 .home-vat-note {
