@@ -1291,6 +1291,10 @@ text-transform:uppercase;
 margin-bottom:4px;
 }
 
+/* ===============================
+PRODUCT CARD PRICE
+================================ */
+
 .home-product-price {
 font-size:29px;
 line-height:1;
@@ -1298,6 +1302,30 @@ font-weight:800;
 letter-spacing:-.7px;
 color:var(--cream);
 white-space:nowrap;
+}
+
+/*
+Raised decimal styling.
+
+Index 4 will output the price in the form:
+
+£400<span class="home-price-decimals">.00</span>
+
+This keeps the pounds at full size while
+the decimal value is smaller and raised.
+*/
+
+.home-price-decimals {
+display:inline-block;
+position:relative;
+top:-.46em;
+margin-left:1px;
+font-size:.43em;
+font-weight:800;
+line-height:1;
+letter-spacing:-.15px;
+vertical-align:baseline;
+color:inherit;
 }
 
 .home-vat-note {
@@ -3819,6 +3847,15 @@ gap:7px;
 font-size:22px;
 }
 
+/* Raised decimals scaled for mobile */
+
+.home-price-decimals {
+top:-.44em;
+margin-left:.5px;
+font-size:.45em;
+letter-spacing:-.1px;
+}
+
 .home-vat-note {
 font-size:7px;
 display:block;
@@ -5123,6 +5160,7 @@ line-height:1.6;
 }
 </style>
 
+
 <!-- =========================================
 POPULAR / READY-TO-ORDER ROOFLIGHTS
 ========================================= -->
@@ -5148,6 +5186,7 @@ Discover our range of brand-new frameless rooflights, manufactured here in the U
 </p>
 
 </div>
+
 
 <div class="home-popular-grid">
 
@@ -5234,6 +5273,7 @@ View Size
 
 </div>
 
+
 <div
 class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
 data-double-price="310"
@@ -5317,6 +5357,7 @@ View Size
 
 </div>
 
+
 <div
 class="home-product-card image-size-1000x1200 reveal reveal-scale reveal-delay-2"
 data-double-price="465"
@@ -5399,6 +5440,7 @@ View Size
 </div>
 
 </div>
+
 
 <div
 class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
@@ -5485,6 +5527,7 @@ View Size
 
 </div>
 
+
 <div class="home-popular-footer reveal">
 
 <a
@@ -5495,6 +5538,7 @@ View All Standard Sizes
 </a>
 
 </div>
+
 
 <div
 class="mobile-feature-icons"
@@ -5521,6 +5565,7 @@ Triple Glazed
 
 </div>
 
+
 <div class="mobile-feature-item">
 
 <svg
@@ -5546,6 +5591,7 @@ Protection
 
 </div>
 
+
 <div class="mobile-feature-item">
 
 <svg
@@ -5563,6 +5609,7 @@ Glass
 
 </div>
 
+
 <div class="mobile-feature-item">
 
 <svg
@@ -5579,6 +5626,7 @@ Efficient
 </span>
 
 </div>
+
 
 <div class="mobile-feature-item">
 
@@ -5602,6 +5650,7 @@ Reduction
 </div>
 
 </section>
+
 
 <!-- =========================================
 PRIMARY PRODUCT VISUAL
@@ -5633,6 +5682,7 @@ alt="Brand new frameless rooflight manufactured ready for installation"
 
 </section>
 
+
 <!-- =========================================
 ORDER ROUTES
 ========================================= -->
@@ -5652,9 +5702,10 @@ Choose How You Want Your Rooflight Made
 <div class="buy-online-choice-group reveal reveal-delay-1">
 
 <p>
-Every rooflight is supplied brand new and made to order. Choose from our established
-standard sizes for our best online pricing, or configure a frameless rooflight to your
-own dimensions. For larger architectural units, our team can provide a specialist quotation.
+Choose from our established standard rooflight sizes with toughened or laminated
+glazing options, along with clear, blue tinted, grey tinted or satin privacy glass
+finishes. If you need something more specific, build a custom rooflight to your own
+size and specification, or contact our team for larger architectural units.
 </p>
 
 <div class="hero-actions">
@@ -5699,6 +5750,7 @@ Oversized Rooflights
 </div>
 
 </section>
+
 
 <!-- =========================================
 FRAMELESS DESIGN
@@ -5746,6 +5798,7 @@ architecture rather than an added frame.
 
 </section>
 
+
 <!-- =========================================
 BESPOKE OPENING ASSISTANT
 ========================================= -->
@@ -5766,7 +5819,7 @@ Already Have The Roof Opening?
 
 <p class="reveal reveal-delay-1">
 Enter the maximum internal dimensions of your existing opening and we'll calculate
-the internal rooflight size to order before you move into the custom specification.
+the internal rooflight size to order for the perfect fit.
 </p>
 
 <div
@@ -5805,6 +5858,7 @@ autocomplete="off"
 
 </div>
 
+
 <div class="existing-opening-field">
 
 <label for="openingInternalLength">
@@ -5826,6 +5880,7 @@ autocomplete="off"
 </div>
 
 </div>
+
 
 <p
 class="existing-opening-recommendation"
@@ -5850,6 +5905,7 @@ Recommended unit to suit:
 </div>
 
 </div>
+
 
 <div
 class="existing-opening-rooflight-visual"
@@ -5877,6 +5933,7 @@ alt="Custom made frameless rooflight"
 
 </div>
 
+
 <!-- =========================================
 CUSTOM ROOFLIGHT BUILDER
 ========================================= -->
@@ -5900,12 +5957,13 @@ Build A Custom Rooflight
 </h2>
 
 <p class="reveal reveal-delay-1">
-Specify the internal visible glass size, border, glazing and finish required.
-Every unit is manufactured brand new to the selected specification. Eligible sizes
-include free mainland UK delivery within the displayed price, while selected Extra Large
-units use postcode-based delivery pricing and oversized units can be quoted directly by
-our rooflight team.
+Use our custom rooflight calculator to create a unit around the exact size and
+specification you require. Select your internal visible glass dimensions, border,
+glazing construction and glass finish to configure your rooflight online. Our
+streamlined manufacturing process means custom-made units can be prepared quickly
+without compromising on specification or finish.
 </p>
+
 
 <div class="calc-grid reveal reveal-delay-2">
 
@@ -5928,6 +5986,7 @@ autocomplete="off"
 
 </div>
 
+
 <div class="calc-field">
 
 <label for="length">
@@ -5947,6 +6006,7 @@ autocomplete="off"
 
 </div>
 
+
 <div class="calc-field">
 
 <label for="border">
@@ -5960,6 +6020,7 @@ Border
 </select>
 
 </div>
+
 
 <div class="calc-field">
 
@@ -5985,11 +6046,14 @@ Glazing
 </label>
 
 <select id="glazing">
-<option value="double">Double Glazed</option>
-<option value="triple">Triple Glazed</option>
+<option value="toughened-double" selected>Toughened Double Glazed</option>
+<option value="toughened-triple">Toughened Triple Glazed</option>
+<option value="laminated-double">Laminated Double Glazed</option>
+<option value="laminated-triple">Laminated Triple Glazed</option>
 </select>
 
 </div>
+
 
 <div class="calc-field">
 
@@ -6007,6 +6071,7 @@ Glass Finish
 </div>
 
 </div>
+
 
 <div
 class="price-box"
@@ -6028,6 +6093,7 @@ id="price"
 £0
 </div>
 
+
 <div class="custom-price-dimensions">
 
 <div class="custom-price-dimension">
@@ -6044,6 +6110,7 @@ id="customPriceInternal"
 
 </div>
 
+
 <div class="custom-price-dimension">
 
 <span class="custom-price-dimension-label">
@@ -6059,6 +6126,7 @@ id="customPriceExternal"
 </div>
 
 </div>
+
 
 <div class="custom-price-meta">
 
@@ -6085,6 +6153,7 @@ Tuesday 18 August 2026
 
 </div>
 
+
 <a
 href="#"
 class="button"
@@ -6100,6 +6169,7 @@ Add To Order
 </div>
 
 </section>
+
 
 <!-- =========================================
 PRODUCT CONSTRUCTION VISUAL
@@ -6131,6 +6201,7 @@ alt="Finished frameless rooflight manufactured and prepared for installation"
 
 </section>
 
+
 <!-- =========================================
 MANUFACTURING / PRODUCT SPECIFICATION
 ========================================= -->
@@ -6156,6 +6227,7 @@ production to create a durable frameless rooflight designed for long-term perfor
 
 </div>
 
+
 <div
 class="engineered-grid"
 id="engineeredGrid"
@@ -6174,6 +6246,7 @@ to the specification required before being assembled into the finished rooflight
 
 </div>
 
+
 <div class="engineered-card reveal reveal-scale reveal-delay-1">
 
 <h3>
@@ -6186,6 +6259,7 @@ All units are supplied with a 20 year warranty and are designed for an expected
 </p>
 
 </div>
+
 
 <div class="engineered-card reveal reveal-scale reveal-delay-2">
 
@@ -6200,6 +6274,7 @@ when correctly installed.
 </p>
 
 </div>
+
 
 <div class="engineered-card reveal reveal-scale reveal-delay-3">
 
@@ -6217,6 +6292,7 @@ creating the permanent dark border that gives the rooflight its clean frameless 
 </div>
 
 </section>
+
 
 <!-- =========================================
 TINTED ROOFLIGHTS
@@ -6239,6 +6315,7 @@ Tinted &amp; Privacy Glass
 </h2>
 
 </div>
+
 
 <div class="home-popular-grid">
 
@@ -6326,6 +6403,7 @@ View Size
 
 </div>
 
+
 <div
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-double-price="TBC"
@@ -6410,6 +6488,7 @@ View Size
 
 </div>
 
+
 <div
 class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-double-price="TBC"
@@ -6421,7 +6500,7 @@ tabindex="0"
 <div class="home-product-image">
 
 <img
-src="images/product-cards/satin-small-rectangle.png?v=2"
+src="images/product-cards/satin-small-rectangle.png"
 alt="600mm by 900mm satin privacy frameless flat roof skylight"
 />
 
@@ -6493,6 +6572,7 @@ View Size
 </div>
 
 </div>
+
 
 <div
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
@@ -6580,6 +6660,7 @@ View Size
 
 </div>
 
+
 <div class="home-popular-footer reveal">
 
 <a
@@ -6592,6 +6673,7 @@ View All Sizes
 </div>
 
 </section>
+
 
 <!-- =========================================
 SPECIALIST WORKSHOP
@@ -6612,6 +6694,7 @@ alt="British manufactured frameless rooflight produced by Factory Toughened Roof
 
 </div>
 
+
 <div class="direct-inner">
 
 <div>
@@ -6626,6 +6709,7 @@ A Specialist Workshop Focused On Frameless Rooflights
 
 </div>
 
+
 <div class="direct-copy">
 
 <p>
@@ -6639,6 +6723,7 @@ By keeping production focused around one specialist product range, we can mainta
 consistent specifications while offering quick estimated turnaround times across our
 standard, tinted and bespoke rooflight ranges.
 </p>
+
 
 <div
 class="direct-assurance-list"
@@ -6669,6 +6754,7 @@ Collection Available With Prior Booking
 
 </section>
 
+
 <!-- =========================================
 OVERSIZED INTRO
 ========================================= -->
@@ -6696,6 +6782,7 @@ subject to specification.
 
 </section>
 
+
 <section
 class="engineered-visual-intro"
 aria-label="Oversized custom frameless rooflight image"
@@ -6721,6 +6808,7 @@ alt="Oversized custom made frameless rooflight"
 </div>
 
 </section>
+
 
 <section
 id="oversized"
@@ -6755,6 +6843,7 @@ Request Oversized Quote
 </div>
 
 </section>
+
 
 <!-- =========================================
 FINAL SPECIFICATION HELP
@@ -6801,6 +6890,7 @@ Get Specification Advice
 
 </main>
 
+
 <!-- =========================================
 FOOTER
 ========================================= -->
@@ -6821,6 +6911,7 @@ Rooflights
 </div>
 
 </div>
+
 
 <p>
 Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
@@ -7373,21 +7464,10 @@ stopHomepageProductAttention();
 
 /* ===============================
 HOMEPAGE PRODUCT INTRODUCTION
+
+Copy is controlled directly by Index 3.
+No JavaScript text override is used here.
 ================================ */
-
-const homeWorkshopCopy =
-document.querySelector(
-".home-workshop-copy"
-);
-
-if (
-homeWorkshopCopy
-) {
-
-homeWorkshopCopy.textContent =
-"Discover our range of brand-new frameless rooflights, manufactured here in the UK by our dedicated rooflight teams. Designed to bring more natural light into your space with a clean, contemporary finish, our rooflights are available in a wide choice of sizes, glazing specifications and glass finishes to suit";
-
-}
 
 
 /* ===============================
@@ -7926,7 +8006,7 @@ reason:null
 /* ===============================
 HOMEPAGE PRODUCT SPECIFICATION LINES
 
-Standard/tinted product cards now use:
+Standard/tinted product cards use:
 
 1. Inside Visible Glass Size
 2. Toughened Safety Glass specification
@@ -8448,20 +8528,129 @@ return "£TBC";
 
 }
 
+const cleanedPrice =
+normalizedPrice.replace(
+/£/g,
+""
+)
+.replace(
+/,/g,
+""
+)
+.trim();
+
+const numericPrice =
+Number(
+cleanedPrice
+);
+
 if (
-normalizedPrice.startsWith(
-"£"
+!Number.isFinite(
+numericPrice
 )
 ) {
 
-return normalizedPrice;
-
-}
-
 return "£" +
-normalizedPrice;
+cleanedPrice;
 
 }
+
+const wholePounds =
+Math.trunc(
+numericPrice
+);
+
+const formattedWholePounds =
+new Intl.NumberFormat(
+"en-GB",
+{
+maximumFractionDigits:0
+}
+).format(
+wholePounds
+);
+
+const decimalValue =
+Math.round(
+(
+numericPrice -
+wholePounds
+) *
+100
+);
+
+const formattedDecimals =
+String(
+decimalValue
+).padStart(
+2,
+"0"
+);
+
+return `£${formattedWholePounds}<span class="home-price-decimals">.${formattedDecimals}</span>`;
+
+}
+
+
+/* ===============================
+INITIAL PRODUCT CARD PRICE FORMAT
+
+This converts the prices already visible
+when the homepage first loads.
+
+Example:
+
+£465
+
+becomes:
+
+£465.00
+
+with the .00 using the raised styling
+from Index 1.
+================================ */
+
+function initializeHomepageProductPrices() {
+
+homepageProductCards.forEach(
+card => {
+
+const priceElement =
+card.querySelector(
+".home-product-price"
+);
+
+if (
+!priceElement
+) {
+return;
+}
+
+const activeGlazingButton =
+card.querySelector(
+".home-glazing-toggle button.active"
+);
+
+const glazing =
+activeGlazingButton
+? activeGlazingButton.dataset.glazing
+: "double";
+
+const selectedPrice =
+glazing === "triple"
+? card.dataset.triplePrice
+: card.dataset.doublePrice;
+
+priceElement.innerHTML =
+`${formatProductPrice(selectedPrice)}<span class="home-vat-note">inc. vat</span>`;
+
+}
+);
+
+}
+
+initializeHomepageProductPrices();
+
 
 homepageProductCards.forEach(
 card => {
@@ -9042,6 +9231,63 @@ return 100;
 
 
 /* ===============================
+CUSTOM GLAZING
+
+Supported values from Index 3:
+
+toughened-double
+toughened-triple
+laminated-double
+laminated-triple
+
+Legacy double/triple values remain
+supported for backwards compatibility.
+================================ */
+
+function getCustomGlazingDetails(
+glazing
+) {
+
+const normalizedGlazing =
+String(
+glazing ?? ""
+)
+.trim()
+.toLowerCase();
+
+const isTriple =
+normalizedGlazing === "triple" ||
+normalizedGlazing === "toughened-triple" ||
+normalizedGlazing === "laminated-triple";
+
+const isLaminated =
+normalizedGlazing === "laminated-double" ||
+normalizedGlazing === "laminated-triple";
+
+const construction =
+isLaminated
+? "laminated"
+: "toughened";
+
+const configuration =
+isTriple
+? "triple"
+: "double";
+
+return {
+value:normalizedGlazing,
+construction:construction,
+configuration:configuration,
+isLaminated:isLaminated,
+isToughened:!isLaminated,
+isTriple:isTriple,
+isDouble:!isTriple
+};
+
+}
+
+
+/* ===============================
 DIMENSION FORMATTING
 ================================ */
 
@@ -9433,6 +9679,11 @@ SELECTED SPECIFICATION
 const glazing =
 customGlazingInput.value;
 
+const glazingDetails =
+getCustomGlazingDetails(
+glazing
+);
+
 const finish =
 customFinishInput.value;
 
@@ -9465,12 +9716,25 @@ width * length
 
 /* ===============================
 CURRENT ONLINE PRICING LOGIC
+
+The existing Double / Triple online
+pricing structure is retained.
+
+Laminated Double currently follows the
+Double Glazed rate.
+
+Laminated Triple currently follows the
+Triple Glazed rate.
+
+Dedicated laminated pricing can be
+introduced separately without changing
+the four glazing option values.
 ================================ */
 
 const baseRate =
-glazing === "double"
-? 290
-: 375;
+glazingDetails.isTriple
+? 375
+: 290;
 
 let price =
 area *
@@ -9502,7 +9766,7 @@ MINIMUM ONLINE PRICES
 
 if (
 price < 250 &&
-glazing === "double"
+glazingDetails.isDouble
 ) {
 
 price =
@@ -9512,7 +9776,7 @@ price =
 
 if (
 price < 300 &&
-glazing === "triple"
+glazingDetails.isTriple
 ) {
 
 price =
@@ -9607,7 +9871,13 @@ border
 );
 
 addCustomRooflightToOrder.dataset.glazing =
-glazing;
+glazingDetails.value;
+
+addCustomRooflightToOrder.dataset.glazingConstruction =
+glazingDetails.construction;
+
+addCustomRooflightToOrder.dataset.glazingConfiguration =
+glazingDetails.configuration;
 
 addCustomRooflightToOrder.dataset.finish =
 finish;
