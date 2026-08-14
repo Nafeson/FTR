@@ -1292,6 +1292,24 @@ color:var(--cream);
 white-space:nowrap;
 }
 
+/*
+Index 4 will output:
+
+<span class="home-price-amount">
+<span class="home-price-main">
+£400<span class="home-price-decimal-point">.</span>
+</span>
+<span class="home-price-decimals">00</span>
+</span>
+
+The decimal POINT belongs to the large
+price and therefore sits naturally at the
+bottom of the full-size digits.
+
+Only the two decimal DIGITS are small and
+remain aligned at the top as before.
+*/
+
 .home-price-amount {
 display:inline-flex;
 align-items:flex-start;
@@ -1312,12 +1330,31 @@ color:inherit;
 }
 
 /*
-The flex container aligns the font boxes.
+The full stop is part of the main large
+price. It uses the same font size, weight
+and baseline as £400.
+*/
 
-A very small downward correction is then
-applied to the decimals because the visible
-glyph top of the smaller Bahnschrift text
-sits slightly higher than the full-size digits.
+.home-price-decimal-point {
+display:inline;
+position:static;
+margin:0;
+padding:0;
+font:inherit;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
+color:inherit;
+vertical-align:baseline;
+transform:none;
+}
+
+/*
+Only the two zeros are reduced in size.
+
+Their position is deliberately retained
+at the top of the price amount.
 */
 
 .home-price-decimals {
@@ -1331,7 +1368,7 @@ font-weight:800;
 line-height:1;
 letter-spacing:-.15px;
 color:inherit;
-transform:translateY(.10em);
+transform:none;
 vertical-align:initial;
 }
 
@@ -3853,6 +3890,13 @@ align-items:flex-start;
 gap:3px;
 }
 
+/*
+Mobile retains the same price structure:
+
+£400. = full-size price and full stop
+00 = smaller top-aligned decimal digits
+*/
+
 .home-price-amount {
 display:inline-flex;
 align-items:flex-start;
@@ -3863,19 +3907,28 @@ line-height:1;
 line-height:1;
 }
 
-/*
-Same small downward optical correction
-is retained on mobile.
-*/
+.home-price-decimal-point {
+display:inline;
+position:static;
+margin:0;
+padding:0;
+font:inherit;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
+vertical-align:baseline;
+transform:none;
+}
 
 .home-price-decimals {
 position:static;
 margin-left:.5px;
 padding:0;
-font-size:.38em;
+font-size:.45em;
 line-height:1;
 letter-spacing:-.1px;
-transform:translateY(.28em);
+transform:none;
 }
 
 .home-vat-note {
@@ -8651,16 +8704,16 @@ revealExistingOpeningRooflight();
 /* ===============================
 STANDARD + TINTED PRICE FORMATTING
 
-All numeric homepage product prices,
-including tinted temporary prices,
-use the same raised-decimal structure.
+Numeric homepage product prices are
+structured as:
 
-Example:
+£400. + small 00
 
-£435.00
+The decimal point belongs to the
+full-size main price.
 
-The .00 styling itself remains controlled
-by Index 1.
+Only the two decimal digits use the
+smaller top-aligned styling from Index 1.
 ================================ */
 
 function formatProductPrice(
@@ -8748,11 +8801,11 @@ return `
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£${formattedWholePounds}
+£${formattedWholePounds}<span class="home-price-decimal-point">.</span>
 </span>
 
 <span class="home-price-decimals">
-.${formattedDecimals}
+${formattedDecimals}
 </span>
 
 </span>
