@@ -3513,7 +3513,6 @@ font-size:9px;
 background:#121414;
 }
 
-
 /* =========================================
 HOMEPAGE CLOSING BLOCK
 ========================================= */
@@ -3626,7 +3625,6 @@ border-color:rgba(232,120,23,.58);
 color:var(--orange-bright);
 }
 
-
 /* ===============================
 FOOTER
 ================================ */
@@ -3648,13 +3646,19 @@ color:var(--steel);
 FOOTER WORDMARK
 ========================================= */
 
+/* CHANGE 1:
+Factory = lighter grey
+Toughened = white
+Rooflights = lighter grey
+*/
+
 .footer-wordmark .footer-wordmark-factory {
 display:block;
-color:#777d7b;
+color:#aeb4b1;
 background:none;
 -webkit-background-clip:initial;
 background-clip:initial;
--webkit-text-fill-color:#777d7b;
+-webkit-text-fill-color:#aeb4b1;
 filter:none;
 }
 
@@ -3714,13 +3718,23 @@ font-size:13px;
 line-height:1.6;
 }
 
+/* CHANGE 2:
+Restore spacing between small RG logo
+and Right Glaze Ltd.
+*/
+
 .footer-right-glaze {
 display:flex;
 flex-direction:column;
 align-items:flex-start;
-gap:7px;
+gap:10px;
 margin-top:2px;
 }
+
+/* CHANGE 3:
+Small RG logo restored to its original
+horizontal alignment — no translateX.
+*/
 
 .footer-right-glaze-logo {
 display:block;
@@ -3728,7 +3742,6 @@ width:auto;
 height:28px;
 max-width:110px;
 object-fit:contain;
-transform:translateX(-8px);
 }
 
 .footer-right-glaze-name {
@@ -4762,7 +4775,6 @@ padding:13px 15px;
 font-size:9px;
 }
 
-
 /* =========================================
 MOBILE HOMEPAGE CLOSING BLOCK
 ========================================= */
@@ -4822,14 +4834,21 @@ gap:7px;
 font-size:12px;
 }
 
+/* CHANGE 2 — MOBILE:
+Preserve the restored logo/name spacing.
+*/
+
 .footer-right-glaze {
-gap:7px;
+gap:9px;
 }
+
+/* CHANGE 3 — MOBILE:
+Original horizontal alignment restored.
+*/
 
 .footer-right-glaze-logo {
 height:24px;
 max-width:95px;
-transform:translateX(-7px);
 }
 
 .footer-right-glaze-name {
