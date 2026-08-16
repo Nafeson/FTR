@@ -3644,12 +3644,62 @@ margin-bottom:22px;
 color:var(--steel);
 }
 
-.footer-wordmark span {
-color:var(--cream);
+/* =========================================
+FOOTER WORDMARK GRADIENT
+========================================= */
+
+.footer-wordmark .footer-wordmark-factory {
+display:block;
+color:transparent;
+background:
+linear-gradient(
+180deg,
+#258bd1 0%,
+#349be0 18%,
+#7dbce6 47%,
+#d5e7f2 66%,
+#f7f7f3 72%,
+#f7f7f3 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:
+drop-shadow(
+0 0 3px rgba(37,139,209,.20)
+);
+}
+
+.footer-wordmark .footer-wordmark-toughened {
+display:block;
+color:var(--white);
+background:none;
+-webkit-background-clip:initial;
+background-clip:initial;
+-webkit-text-fill-color:var(--white);
+filter:none;
 }
 
 .footer-wordmark .wordmark-bottom {
 color:var(--steel);
+}
+
+.footer-wordmark .footer-wordmark-rooflights {
+display:block;
+color:transparent;
+background:
+linear-gradient(
+180deg,
+#f7f7f3 0%,
+#f7f7f3 28%,
+#dcecf7 38%,
+#a9d0ea 58%,
+#6fb6e3 78%,
+#52a8df 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .footer-wordmark .wordmark-domain {
@@ -3686,8 +3736,9 @@ line-height:1.6;
 
 .footer-right-glaze {
 display:flex;
-align-items:center;
-gap:10px;
+flex-direction:column;
+align-items:flex-start;
+gap:7px;
 margin-top:2px;
 }
 
@@ -3700,7 +3751,8 @@ object-fit:contain;
 }
 
 .footer-right-glaze-name {
-color:rgba(247,247,243,.78);
+display:block;
+color:var(--white);
 font-size:13px;
 font-weight:700;
 line-height:1.3;
@@ -4790,7 +4842,7 @@ font-size:12px;
 }
 
 .footer-right-glaze {
-gap:8px;
+gap:7px;
 }
 
 .footer-right-glaze-logo {
