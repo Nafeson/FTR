@@ -5169,6 +5169,124 @@ line-height:1.65;
 color:var(--muted);
 }
 
+/* =========================================
+TINTED HEADER IMAGE SPACING
+========================================= */
+
+.tinted-options-section .tinted-header-visual {
+margin-bottom:36px;
+}
+
+/* =========================================
+PROFESSIONAL FITTING MANUAL SLIDESHOW
+========================================= */
+
+/*
+The original direct-section orange marker is
+replaced by the slideshow progress indicator.
+*/
+.direct-section::before {
+display:none !important;
+}
+
+/*
+The slideshow keeps the existing full-width
+direct-image reveal effect.
+*/
+.fitting-slideshow {
+position:relative;
+}
+
+/*
+Viewport maintains the existing fitting image
+proportions while allowing all four slides to
+occupy the same space.
+*/
+.fitting-slideshow-viewport {
+position:relative;
+width:100%;
+aspect-ratio:16 / 9;
+overflow:hidden;
+touch-action:pan-y;
+user-select:none;
+-webkit-user-select:none;
+}
+
+/*
+Slides are layered in the same viewport.
+Index 4 will change the active slide manually
+when the user swipes.
+*/
+.fitting-slide {
+position:absolute;
+inset:0;
+z-index:1;
+opacity:0;
+visibility:hidden;
+transform:translateX(6%);
+transition:
+opacity .52s ease,
+visibility .52s ease,
+transform .58s cubic-bezier(.18,.72,.28,1);
+pointer-events:none;
+}
+
+.fitting-slide.active {
+z-index:2;
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+pointer-events:auto;
+}
+
+.fitting-slide.previous {
+z-index:1;
+opacity:0;
+visibility:visible;
+transform:translateX(-6%);
+}
+
+/*
+All four slideshow images completely fill
+the fitting visual area.
+*/
+.fitting-slide .direct-visual-image {
+display:block;
+width:100%;
+height:100%;
+aspect-ratio:auto;
+object-fit:cover;
+object-position:center;
+}
+
+/* =========================================
+FITTING SLIDESHOW PROGRESS
+========================================= */
+
+.fitting-slideshow-progress {
+position:absolute;
+top:0;
+left:0;
+right:0;
+z-index:8;
+height:3px;
+overflow:hidden;
+background:rgba(232,120,23,.14);
+pointer-events:none;
+}
+
+.fitting-slideshow-progress-fill {
+display:block;
+width:25%;
+height:100%;
+background:var(--orange);
+transform-origin:left center;
+transition:
+width .42s cubic-bezier(.18,.72,.28,1);
+box-shadow:
+0 0 7px rgba(232,120,23,.22);
+}
+
 @media(max-width:560px) {
 
 .home-workshop-intro {
@@ -5179,6 +5297,26 @@ margin-bottom:22px;
 .home-workshop-copy {
 font-size:13px;
 line-height:1.6;
+}
+
+/*
+Give the tinted heading clear breathing room
+beneath hero-rooflight-6 on mobile.
+*/
+.tinted-options-section .tinted-header-visual {
+margin-bottom:28px;
+}
+
+/*
+Retains the same mobile 4:3 fitting image
+proportion previously used by hero-rooflight-1.
+*/
+.fitting-slideshow-viewport {
+aspect-ratio:4 / 3;
+}
+
+.fitting-slideshow-progress {
+height:2px;
 }
 
 }
@@ -6391,11 +6529,10 @@ id="tintedOptions"
 
 <!-- =========================================
 TINTED & PRIVACY GLASS HEADER VISUAL
-NOW INSIDE THE COSMIC BLUE SECTION
 ========================================= -->
 
 <div
-class="engineered-visual-intro"
+class="engineered-visual-intro tinted-header-visual"
 aria-label="Tinted and privacy glass rooflight finishes"
 >
 
@@ -6862,13 +6999,91 @@ class="direct-section"
 id="specification-advice"
 >
 
-<div class="direct-visual-intro direct-image-reveal">
+<div
+class="direct-visual-intro direct-image-reveal fitting-slideshow"
+id="fittingSlideshow"
+aria-label="Professional rooflight fitting gallery"
+aria-roledescription="carousel"
+>
+
+<div
+class="fitting-slideshow-progress"
+aria-hidden="true"
+>
+
+<span
+class="fitting-slideshow-progress-fill"
+id="fittingSlideshowProgress"
+></span>
+
+</div>
+
+
+<div
+class="fitting-slideshow-viewport"
+id="fittingSlideshowViewport"
+>
+
+<div
+class="fitting-slide active"
+data-fitting-slide="0"
+aria-hidden="false"
+>
 
 <img
 src="images/hero-rooflight-1.png"
 class="direct-visual-image"
-alt="Factory Toughened Rooflights professional rooflight fitting service"
+alt="Professionally installed frameless rooflight"
 />
+
+</div>
+
+
+<div
+class="fitting-slide"
+data-fitting-slide="1"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-2.png"
+class="direct-visual-image"
+alt="Frameless rooflight installation example"
+/>
+
+</div>
+
+
+<div
+class="fitting-slide"
+data-fitting-slide="2"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-7.png"
+class="direct-visual-image"
+alt="Professional frameless rooflight fitting example"
+/>
+
+</div>
+
+
+<div
+class="fitting-slide"
+data-fitting-slide="3"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-8.png"
+class="direct-visual-image"
+alt="Completed frameless rooflight installation"
+/>
+
+</div>
+
+</div>
 
 </div>
 
@@ -8477,6 +8692,662 @@ requestEngineeredShimmerCheck();
 
 
 /* ===============================
+PROFESSIONAL FITTING MANUAL SLIDESHOW
+
+Manual only:
+- No autoplay
+- Swipe left = next
+- Swipe right = previous
+- Mouse drag also supported
+- Loops continuously in both directions
+
+Images:
+1. hero-rooflight-1.png
+2. hero-rooflight-2.png
+3. hero-rooflight-7.png
+4. hero-rooflight-8.png
+
+Progress:
+1 = 25%
+2 = 50%
+3 = 75%
+4 = 100%
+================================ */
+
+const fittingSlideshow =
+document.getElementById(
+"fittingSlideshow"
+);
+
+const fittingSlideshowViewport =
+document.getElementById(
+"fittingSlideshowViewport"
+);
+
+const fittingSlideshowProgress =
+document.getElementById(
+"fittingSlideshowProgress"
+);
+
+const fittingSlides =
+fittingSlideshow
+? Array.from(
+fittingSlideshow.querySelectorAll(
+".fitting-slide"
+)
+)
+: [];
+
+let activeFittingSlideIndex =
+0;
+
+let fittingTouchStartX =
+0;
+
+let fittingTouchStartY =
+0;
+
+let fittingTouchEndX =
+0;
+
+let fittingTouchEndY =
+0;
+
+let fittingMouseStartX =
+0;
+
+let fittingMouseStartY =
+0;
+
+let fittingMouseEndX =
+0;
+
+let fittingMouseEndY =
+0;
+
+let fittingMouseDragging =
+false;
+
+const FITTING_SWIPE_THRESHOLD =
+45;
+
+
+/* ===============================
+FITTING SLIDESHOW INDEX HELPER
+================================ */
+
+function normalizeFittingSlideIndex(
+index
+) {
+
+if (
+fittingSlides.length === 0
+) {
+return 0;
+}
+
+return (
+index +
+fittingSlides.length
+) %
+fittingSlides.length;
+
+}
+
+
+/* ===============================
+FITTING PROGRESS BAR
+================================ */
+
+function updateFittingSlideshowProgress() {
+
+if (
+!fittingSlideshowProgress ||
+fittingSlides.length === 0
+) {
+return;
+}
+
+const progress =
+(
+(
+activeFittingSlideIndex + 1
+) /
+fittingSlides.length
+) *
+100;
+
+fittingSlideshowProgress.style.width =
+`${progress}%`;
+
+}
+
+
+/* ===============================
+DISPLAY FITTING SLIDE
+================================ */
+
+function showFittingSlide(
+newIndex,
+direction = "next"
+) {
+
+if (
+fittingSlides.length === 0
+) {
+return;
+}
+
+const normalizedIndex =
+normalizeFittingSlideIndex(
+newIndex
+);
+
+if (
+normalizedIndex ===
+activeFittingSlideIndex
+) {
+
+updateFittingSlideshowProgress();
+
+return;
+
+}
+
+const oldIndex =
+activeFittingSlideIndex;
+
+const oldSlide =
+fittingSlides[
+oldIndex
+];
+
+const newSlide =
+fittingSlides[
+normalizedIndex
+];
+
+
+/*
+Remove all transitional states first so
+each swipe starts from a predictable state.
+*/
+
+fittingSlides.forEach(
+slide => {
+
+slide.classList.remove(
+"active",
+"previous"
+);
+
+slide.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+);
+
+
+/*
+The existing Index 3 animation expects:
+
+active = visible/current
+previous = outgoing left position
+
+For a forward swipe the outgoing image is
+marked previous.
+
+For a backwards swipe the destination is
+briefly placed in the previous position,
+then promoted to active on the next frame.
+*/
+
+if (
+direction === "previous"
+) {
+
+newSlide.classList.add(
+"previous"
+);
+
+void newSlide.offsetWidth;
+
+window.requestAnimationFrame(
+() => {
+
+newSlide.classList.remove(
+"previous"
+);
+
+newSlide.classList.add(
+"active"
+);
+
+newSlide.setAttribute(
+"aria-hidden",
+"false"
+);
+
+}
+);
+
+} else {
+
+if (
+oldSlide
+) {
+
+oldSlide.classList.add(
+"previous"
+);
+
+}
+
+newSlide.classList.add(
+"active"
+);
+
+newSlide.setAttribute(
+"aria-hidden",
+"false"
+);
+
+}
+
+activeFittingSlideIndex =
+normalizedIndex;
+
+updateFittingSlideshowProgress();
+
+}
+
+
+/* ===============================
+FITTING NEXT / PREVIOUS
+================================ */
+
+function showNextFittingSlide() {
+
+showFittingSlide(
+activeFittingSlideIndex + 1,
+"next"
+);
+
+}
+
+function showPreviousFittingSlide() {
+
+showFittingSlide(
+activeFittingSlideIndex - 1,
+"previous"
+);
+
+}
+
+
+/* ===============================
+SWIPE DIRECTION CHECK
+================================ */
+
+function processFittingSwipe(
+startX,
+startY,
+endX,
+endY
+) {
+
+const horizontalDistance =
+endX - startX;
+
+const verticalDistance =
+endY - startY;
+
+const absoluteHorizontalDistance =
+Math.abs(
+horizontalDistance
+);
+
+const absoluteVerticalDistance =
+Math.abs(
+verticalDistance
+);
+
+
+/*
+Ignore short movements and ordinary
+vertical page scrolling.
+*/
+
+if (
+absoluteHorizontalDistance <
+FITTING_SWIPE_THRESHOLD
+) {
+return;
+}
+
+if (
+absoluteHorizontalDistance <=
+absoluteVerticalDistance
+) {
+return;
+}
+
+
+/*
+Finger travelling left:
+show next image.
+
+Finger travelling right:
+show previous image.
+*/
+
+if (
+horizontalDistance < 0
+) {
+
+showNextFittingSlide();
+
+} else {
+
+showPreviousFittingSlide();
+
+}
+
+}
+
+
+/* ===============================
+TOUCH SWIPE
+================================ */
+
+if (
+fittingSlideshowViewport &&
+fittingSlides.length > 1
+) {
+
+fittingSlideshowViewport.addEventListener(
+"touchstart",
+event => {
+
+if (
+!event.touches ||
+event.touches.length !== 1
+) {
+return;
+}
+
+const touch =
+event.touches[0];
+
+fittingTouchStartX =
+touch.clientX;
+
+fittingTouchStartY =
+touch.clientY;
+
+fittingTouchEndX =
+touch.clientX;
+
+fittingTouchEndY =
+touch.clientY;
+
+},
+{
+passive:true
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"touchmove",
+event => {
+
+if (
+!event.touches ||
+event.touches.length !== 1
+) {
+return;
+}
+
+const touch =
+event.touches[0];
+
+fittingTouchEndX =
+touch.clientX;
+
+fittingTouchEndY =
+touch.clientY;
+
+},
+{
+passive:true
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"touchend",
+event => {
+
+if (
+event.changedTouches &&
+event.changedTouches.length > 0
+) {
+
+const touch =
+event.changedTouches[0];
+
+fittingTouchEndX =
+touch.clientX;
+
+fittingTouchEndY =
+touch.clientY;
+
+}
+
+processFittingSwipe(
+fittingTouchStartX,
+fittingTouchStartY,
+fittingTouchEndX,
+fittingTouchEndY
+);
+
+},
+{
+passive:true
+}
+);
+
+
+/* ===============================
+MOUSE DRAG
+================================ */
+
+fittingSlideshowViewport.addEventListener(
+"mousedown",
+event => {
+
+if (
+event.button !== 0
+) {
+return;
+}
+
+fittingMouseDragging =
+true;
+
+fittingMouseStartX =
+event.clientX;
+
+fittingMouseStartY =
+event.clientY;
+
+fittingMouseEndX =
+event.clientX;
+
+fittingMouseEndY =
+event.clientY;
+
+}
+);
+
+
+window.addEventListener(
+"mousemove",
+event => {
+
+if (
+!fittingMouseDragging
+) {
+return;
+}
+
+fittingMouseEndX =
+event.clientX;
+
+fittingMouseEndY =
+event.clientY;
+
+}
+);
+
+
+window.addEventListener(
+"mouseup",
+event => {
+
+if (
+!fittingMouseDragging
+) {
+return;
+}
+
+fittingMouseDragging =
+false;
+
+fittingMouseEndX =
+event.clientX;
+
+fittingMouseEndY =
+event.clientY;
+
+processFittingSwipe(
+fittingMouseStartX,
+fittingMouseStartY,
+fittingMouseEndX,
+fittingMouseEndY
+);
+
+}
+);
+
+
+/*
+Prevent the browser's native image-drag
+behaviour from fighting the gallery drag.
+*/
+
+fittingSlideshowViewport.addEventListener(
+"dragstart",
+event => {
+
+event.preventDefault();
+
+}
+);
+
+
+/* ===============================
+OPTIONAL KEYBOARD NAVIGATION
+
+Left / right arrows work when the fitting
+slideshow itself has keyboard focus.
+================================ */
+
+if (
+fittingSlideshow
+) {
+
+fittingSlideshow.setAttribute(
+"tabindex",
+"0"
+);
+
+fittingSlideshow.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key === "ArrowLeft"
+) {
+
+event.preventDefault();
+
+showPreviousFittingSlide();
+
+}
+
+if (
+event.key === "ArrowRight"
+) {
+
+event.preventDefault();
+
+showNextFittingSlide();
+
+}
+
+}
+);
+
+}
+
+
+/* ===============================
+INITIAL FITTING SLIDESHOW STATE
+================================ */
+
+if (
+fittingSlides.length > 0
+) {
+
+fittingSlides.forEach(
+(
+slide,
+index
+) => {
+
+const isActive =
+index ===
+activeFittingSlideIndex;
+
+slide.classList.toggle(
+"active",
+isActive
+);
+
+slide.classList.remove(
+"previous"
+);
+
+slide.setAttribute(
+"aria-hidden",
+isActive
+? "false"
+: "true"
+);
+
+}
+);
+
+updateFittingSlideshowProgress();
+
+}
+
+
+/* ===============================
 CUSTOM BUILD ELEMENT REFERENCES
 ================================ */
 
@@ -8663,16 +9534,16 @@ revealExistingOpeningRooflight();
 /* ===============================
 STANDARD + TINTED PRICE FORMATTING
 
-All numeric homepage product prices,
-including tinted temporary prices,
-use the same raised-decimal structure.
+Numeric homepage product prices are
+structured as:
 
-Example:
+£400. + small 00
 
-£435.00
+The decimal point belongs to the
+full-size main price.
 
-The .00 styling itself remains controlled
-by Index 1.
+Only the two decimal digits use the
+smaller top-aligned styling from Index 1.
 ================================ */
 
 function formatProductPrice(
@@ -8760,11 +9631,11 @@ return `
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£${formattedWholePounds}
+£${formattedWholePounds}<span class="home-price-decimal-point">.</span>
 </span>
 
 <span class="home-price-decimals">
-.${formattedDecimals}
+${formattedDecimals}
 </span>
 
 </span>
