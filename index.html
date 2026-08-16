@@ -1311,15 +1311,6 @@ letter-spacing:inherit;
 color:inherit;
 }
 
-/*
-The flex container aligns the font boxes.
-
-A very small downward correction is then
-applied to the decimals because the visible
-glyph top of the smaller Bahnschrift text
-sits slightly higher than the full-size digits.
-*/
-
 .home-price-decimals {
 display:block;
 position:static;
@@ -3675,6 +3666,95 @@ footer p:last-child {
 margin-bottom:0;
 }
 
+/* =========================================
+FOOTER COMPANY DETAILS
+========================================= */
+
+.footer-company-details {
+display:grid;
+gap:8px;
+margin:0 0 28px;
+max-width:520px;
+}
+
+.footer-company-intro {
+margin:0;
+color:rgba(247,247,243,.50);
+font-size:13px;
+line-height:1.6;
+}
+
+.footer-right-glaze {
+display:flex;
+align-items:center;
+gap:10px;
+margin-top:2px;
+}
+
+.footer-right-glaze-logo {
+display:block;
+width:auto;
+height:28px;
+max-width:110px;
+object-fit:contain;
+}
+
+.footer-right-glaze-name {
+color:rgba(247,247,243,.78);
+font-size:13px;
+font-weight:700;
+line-height:1.3;
+}
+
+.footer-company-numbers {
+display:grid;
+gap:2px;
+margin-top:3px;
+color:rgba(247,247,243,.48);
+font-size:11px;
+line-height:1.45;
+}
+
+.footer-company-numbers span {
+display:block;
+}
+
+/* =========================================
+FOOTER ADDRESS
+========================================= */
+
+.footer-address {
+display:grid;
+gap:0;
+margin-top:24px;
+color:rgba(247,247,243,.50);
+font-size:13px;
+line-height:1.6;
+}
+
+.footer-address-title {
+display:block;
+margin-bottom:2px;
+color:var(--white);
+font-family:
+"Bahnschrift",
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:14px;
+font-weight:700;
+line-height:1.45;
+}
+
+.footer-collection {
+display:block;
+margin-top:10px;
+color:rgba(247,247,243,.50);
+font-size:12px;
+line-height:1.55;
+}
+
 /* ===============================
 TABLET
 ================================ */
@@ -3936,11 +4016,6 @@ line-height:1;
 .home-price-main {
 line-height:1;
 }
-
-/*
-Same small downward optical correction
-is retained on mobile.
-*/
 
 .home-price-decimals {
 position:static;
@@ -4701,10 +4776,54 @@ padding:14px 15px;
 font-size:9px;
 }
 
+/* =========================================
+MOBILE FOOTER DETAILS
+========================================= */
+
+.footer-company-details {
+margin-bottom:24px;
+gap:7px;
+}
+
+.footer-company-intro {
+font-size:12px;
+}
+
+.footer-right-glaze {
+gap:8px;
+}
+
+.footer-right-glaze-logo {
+height:24px;
+max-width:95px;
+}
+
+.footer-right-glaze-name {
+font-size:12px;
+}
+
+.footer-company-numbers {
+font-size:10px;
+}
+
+.footer-address {
+margin-top:21px;
+font-size:12px;
+}
+
+.footer-address-title {
+font-size:13px;
+}
+
+.footer-collection {
+margin-top:9px;
+font-size:11px;
+}
 
 .footer-wordmark {
 font-size:20px;
 }
+
 }
 
 @media(max-width:390px) {
@@ -7297,70 +7416,9 @@ id="homepageClosing"
 
 <div class="homepage-closing-inner">
 
-<div class="homepage-closing-intro reveal">
-
-<div class="section-label">
-Ready To Order?
-</div>
-
-<h2 class="homepage-closing-heading">
-Find The Right Rooflight For Your Project
-</h2>
-
-<p class="homepage-closing-copy">
-Choose from our standard sizes, build a rooflight to your exact dimensions,
-or speak directly with our rooflight team if you need help with sizing,
-glazing, finishes or installation.
-</p>
-
-</div>
-
-
 <div class="homepage-closing-options">
 
-<div class="homepage-closing-option reveal reveal-delay-1">
-
-<h3>
-Shop Standard Sizes
-</h3>
-
-<p>
-Browse our ready-to-order range of popular frameless rooflight sizes and
-compare available glazing and finish options.
-</p>
-
-<a
-href="standard-sizes.html"
-class="button homepage-closing-primary"
->
-Shop Rooflights
-</a>
-
-</div>
-
-
-<div class="homepage-closing-option reveal reveal-delay-2">
-
-<h3>
-Need A Custom Size?
-</h3>
-
-<p>
-Enter your required dimensions and configure a made-to-order frameless
-rooflight around your opening.
-</p>
-
-<a
-href="#calculator"
-class="button homepage-closing-primary"
->
-Build Custom Size
-</a>
-
-</div>
-
-
-<div class="homepage-closing-option reveal reveal-delay-3">
+<div class="homepage-closing-option reveal">
 
 <h3>
 Need Some Help?
@@ -7368,7 +7426,7 @@ Need Some Help?
 
 <p>
 Speak directly with our rooflight team for help with specifications,
-sizing, delivery, installation or anything else you need before ordering.
+sizing, delivery, installation or anything else you need before ordering:
 </p>
 
 <button
@@ -7421,25 +7479,68 @@ Rooflights
 </div>
 
 
-<p>
-Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
+<div class="footer-company-details">
+
+<p class="footer-company-intro">
+Factory Toughened Rooflights is a trading name of
 </p>
 
-<p>
-British manufactured frameless flat rooflights, made to order using British glass
-and delivered across mainland UK.
-</p>
+<div class="footer-right-glaze">
 
-<p>
-Collection available with prior booking.
-</p>
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
+/>
 
-<p>
-Anamax Group Estate<br>
-Oxford Road, Denham<br>
-Buckinghamshire<br>
+<span class="footer-right-glaze-name">
+Right Glaze Ltd
+</span>
+
+</div>
+
+<div class="footer-company-numbers">
+
+<span>
+Company no. - 14336400
+</span>
+
+<span>
+VAT no. - 487373544
+</span>
+
+</div>
+
+</div>
+
+
+<div class="footer-address">
+
+<span class="footer-address-title">
+Factory Toughened Rooflights
+</span>
+
+<span>
+Anamax Group Estate
+</span>
+
+<span>
+Oxford Road, Denham
+</span>
+
+<span>
+Buckinghamshire
+</span>
+
+<span>
 SL9 7BB
-</p>
+</span>
+
+<span class="footer-collection">
+Collection available with prior booking
+</span>
+
+</div>
 
 </footer>
 <script>
