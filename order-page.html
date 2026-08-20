@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>600 × 900mm Triple Glazed Frameless Skylight | Factory Toughened Rooflights</title>
-<meta name="description" content="Configure and order a Factory Toughened Rooflights frameless flat roof skylight online.">
+
+<meta
+name="description"
+content="Configure and order a Factory Toughened Rooflights frameless flat roof skylight online."
+>
 
 <style>
+
+/* =========================================
+ROOT
+========================================= */
+
 :root {
 --black:#050505;
 --black-2:#080808;
@@ -59,6 +69,7 @@ outline:2px solid var(--orange);
 outline-offset:3px;
 }
 
+
 /* =========================================
 TOP ROLLING BANNER
 ========================================= */
@@ -108,9 +119,14 @@ right:-2px;
 }
 
 @keyframes tickerMove {
-from { transform:translateX(0); }
-to { transform:translateX(-50%); }
+from {
+transform:translateX(0);
 }
+to {
+transform:translateX(-50%);
+}
+}
+
 
 /* =========================================
 HEADER
@@ -192,7 +208,11 @@ align-items:center;
 justify-content:center;
 text-decoration:none;
 cursor:pointer;
-transition:border-color .22s ease, background .22s ease, transform .22s ease, color .22s ease;
+transition:
+border-color .22s ease,
+background .22s ease,
+transform .22s ease,
+color .22s ease;
 }
 
 .header-icon:hover,
@@ -228,6 +248,7 @@ fill:none;
 stroke-width:1.8;
 }
 
+
 /* =========================================
 MENU OVERLAY
 ========================================= */
@@ -240,7 +261,9 @@ background:rgba(4,4,4,.98);
 opacity:0;
 visibility:hidden;
 pointer-events:none;
-transition:opacity .25s ease, visibility .25s ease;
+transition:
+opacity .25s ease,
+visibility .25s ease;
 overflow:auto;
 }
 
@@ -286,7 +309,9 @@ font-size:clamp(24px,4vw,48px);
 line-height:1;
 font-weight:900;
 letter-spacing:-1.4px;
-transition:color .2s ease, padding-left .2s ease;
+transition:
+color .2s ease,
+padding-left .2s ease;
 }
 
 .menu-links a:hover {
@@ -294,55 +319,104 @@ color:var(--orange);
 padding-left:10px;
 }
 
+
 /* =========================================
 ORDER PAGE
 ========================================= */
 
 .order-page {
 position:relative;
+overflow:hidden;
 background:
-radial-gradient(circle at 17% 12%, rgba(255,135,8,.07), transparent 22%),
-linear-gradient(180deg,#090909 0%,#050505 52%,#070707 100%);
+radial-gradient(
+circle at 18% 11%,
+rgba(255,135,8,.085),
+transparent 27%
+),
+linear-gradient(
+180deg,
+#090909 0%,
+#050505 56%,
+#070707 100%
+);
+}
+
+.order-page::before {
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(
+90deg,
+rgba(255,255,255,.014),
+transparent 26%,
+transparent 73%,
+rgba(255,255,255,.012)
+);
 }
 
 .order-shell {
-width:min(var(--max),89%);
+position:relative;
+z-index:1;
+width:min(var(--max),91%);
 margin:0 auto;
-padding:clamp(44px,6vw,84px) 0 clamp(72px,8vw,118px);
+padding:
+clamp(40px,5vw,72px)
+0
+clamp(76px,8vw,112px);
 }
 
 .order-kicker {
-margin-bottom:16px;
+margin-bottom:18px;
 color:var(--orange);
-font-size:11px;
+font-size:10px;
 font-weight:950;
-letter-spacing:1.65px;
+letter-spacing:1.75px;
 text-transform:uppercase;
 }
 
+
+/* =========================================
+60 / 40 CONFIGURATION LAYOUT
+========================================= */
+
 .order-grid {
 display:grid;
-grid-template-columns:minmax(0,1.04fr) minmax(380px,.96fr);
-gap:clamp(38px,5vw,78px);
+grid-template-columns:minmax(0,3fr) minmax(330px,2fr);
+gap:clamp(24px,3.4vw,48px);
 align-items:start;
 }
 
+
 /* =========================================
-LEFT / PRODUCT VISUAL
+LEFT — PRODUCT / VISUAL CONFIGURATOR
 ========================================= */
 
 .product-visual-column {
 min-width:0;
 }
 
+.product-stage {
+padding:clamp(12px,1.5vw,18px);
+border:1px solid rgba(255,255,255,.11);
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.035),
+rgba(255,255,255,.012)
+);
+box-shadow:
+0 28px 78px rgba(0,0,0,.30);
+}
+
 .product-image-frame {
 position:relative;
 overflow:hidden;
 width:100%;
-aspect-ratio:1.13 / 1;
+aspect-ratio:1.28 / 1;
 background:#f2f2f0;
-border:1px solid rgba(255,255,255,.12);
-box-shadow:0 32px 80px rgba(0,0,0,.28);
+border:1px solid rgba(255,255,255,.09);
 }
 
 .product-image-frame::after {
@@ -351,7 +425,10 @@ position:absolute;
 inset:0;
 pointer-events:none;
 opacity:0;
-transition:opacity .35s ease, background .35s ease, backdrop-filter .35s ease;
+transition:
+opacity .35s ease,
+background .35s ease,
+backdrop-filter .35s ease;
 }
 
 .product-image-frame.tint-blue::after {
@@ -367,7 +444,9 @@ background:rgba(20,22,24,.27);
 .product-image-frame.tint-satin::after {
 opacity:1;
 background:rgba(236,238,236,.40);
-backdrop-filter:blur(1.4px) saturate(.72);
+backdrop-filter:
+blur(1.4px)
+saturate(.72);
 }
 
 .product-image-frame img {
@@ -375,55 +454,68 @@ display:block;
 width:100%;
 height:100%;
 object-fit:contain;
-transition:transform .45s ease, filter .35s ease, opacity .25s ease;
+transition:
+transform .45s ease,
+filter .35s ease,
+opacity .25s ease;
 }
 
 .product-image-frame:hover img {
-transform:scale(1.018);
+transform:scale(1.014);
 }
 
+
+/* =========================================
+LEFT — GLAZING / FINISH CONTROLS
+========================================= */
+
 .visual-controls {
-padding-top:24px;
+padding-top:18px;
+}
+
+.visual-control-block + .visual-control-block {
+margin-top:15px;
 }
 
 .selector-heading {
-margin-bottom:9px;
-color:#838581;
-font-size:10px;
+margin-bottom:8px;
+color:#80827e;
+font-size:9px;
 font-weight:950;
 letter-spacing:1.4px;
 text-transform:uppercase;
 }
 
 .glazing-selector {
-position:relative;
 display:grid;
 grid-template-columns:1fr 1fr;
-border:1px solid rgba(255,255,255,.18);
-background:#0b0c0c;
+border:1px solid rgba(255,255,255,.17);
+background:#0a0b0b;
 }
 
 .glazing-selector button,
 .tint-selector button {
 position:relative;
-z-index:1;
 border:0;
 background:transparent;
-color:#c5c6c3;
+color:#bebfbc;
 cursor:pointer;
-text-transform:uppercase;
 font-weight:950;
-letter-spacing:1.25px;
-transition:color .22s ease, background .22s ease;
+text-transform:uppercase;
+transition:
+color .2s ease,
+background .2s ease,
+transform .15s ease;
 }
 
 .glazing-selector button {
-min-height:56px;
-font-size:12px;
+min-height:48px;
+font-size:11px;
+letter-spacing:1.15px;
 }
 
 .glazing-selector button + button {
-border-left:1px solid rgba(255,255,255,.12);
+border-left:1px solid rgba(255,255,255,.11);
 }
 
 .glazing-selector button.active {
@@ -431,23 +523,27 @@ background:var(--orange);
 color:#050505;
 }
 
+.glazing-selector button:active,
+.tint-selector button:active {
+transform:scale(.985);
+}
+
 .glazed-label {
-min-height:30px;
+min-height:24px;
 display:flex;
-align-items:flex-end;
 justify-content:center;
-padding-top:8px;
-color:#b4b4b1;
-font-size:10px;
+align-items:flex-end;
+padding-top:6px;
+color:#a9aaa7;
+font-size:8px;
 font-weight:950;
-letter-spacing:1.35px;
+letter-spacing:1.3px;
 text-transform:uppercase;
 }
 
 .tint-wrap {
 position:relative;
-margin-top:17px;
-padding-bottom:31px;
+padding-bottom:26px;
 }
 
 .tint-selector {
@@ -458,9 +554,10 @@ background:#090a0a;
 }
 
 .tint-selector button {
-min-height:43px;
-font-size:9px;
-padding:0 5px;
+min-height:41px;
+padding:0 4px;
+font-size:8px;
+letter-spacing:.9px;
 }
 
 .tint-selector button + button {
@@ -481,71 +578,100 @@ position:absolute;
 left:0;
 right:0;
 bottom:0;
-height:24px;
+height:21px;
 overflow:hidden;
 pointer-events:none;
 }
 
 .tint-caption {
 width:25%;
-height:24px;
+height:21px;
 display:flex;
 align-items:flex-end;
 justify-content:center;
-color:#b4b4b1;
-font-size:9px;
+color:#9d9e9b;
+font-size:8px;
 font-weight:950;
-letter-spacing:1.35px;
+letter-spacing:1.2px;
 text-transform:uppercase;
 opacity:0;
 transform:translateX(0);
-transition:transform .28s cubic-bezier(.2,.8,.2,1), opacity .18s ease;
+transition:
+transform .28s cubic-bezier(.2,.8,.2,1),
+opacity .18s ease;
 }
 
 .tint-caption.visible {
 opacity:1;
 }
 
+
 /* =========================================
-RIGHT / PRODUCT DETAILS
+RIGHT — ORDER SUMMARY PANEL
 ========================================= */
 
 .product-details {
 min-width:0;
-padding-top:2px;
+border:1px solid rgba(255,255,255,.11);
+background:
+linear-gradient(
+180deg,
+rgba(17,19,19,.95),
+rgba(8,9,9,.95)
+);
+padding:
+clamp(24px,2.7vw,38px)
+clamp(22px,2.5vw,34px)
+clamp(24px,2.7vw,34px);
+box-shadow:
+0 26px 68px rgba(0,0,0,.23);
+}
+
+.summary-kicker {
+margin-bottom:11px;
+color:#747672;
+font-size:9px;
+font-weight:950;
+letter-spacing:1.4px;
+text-transform:uppercase;
 }
 
 .product-title {
 margin:0;
-max-width:680px;
-font-size:clamp(34px,4.5vw,64px);
+max-width:520px;
+font-size:clamp(27px,3vw,43px);
 line-height:.98;
-letter-spacing:-2.25px;
+letter-spacing:-1.65px;
 font-weight:950;
 }
 
 .product-description {
-margin:23px 0 31px;
-max-width:650px;
-color:#a9aaa7;
-font-size:15px;
-line-height:1.7;
+margin:16px 0 22px;
+max-width:520px;
+color:#999b97;
+font-size:12px;
+line-height:1.6;
 }
+
+
+/* =========================================
+RIGHT — OPTIONS
+========================================= */
 
 .options-stack {
 display:grid;
-gap:18px;
+gap:13px;
 }
 
 .option-group label,
 .option-label {
 display:block;
-margin:0 0 8px;
-color:#898b87;
-font-size:10px;
+margin:0 0 6px;
+color:#80827e;
+font-size:8px;
 line-height:1;
 font-weight:950;
-letter-spacing:1.45px;
+letter-spacing:1.25px;
 text-transform:uppercase;
 }
 
@@ -556,34 +682,36 @@ position:relative;
 .select-shell::after {
 content:"";
 position:absolute;
-right:18px;
+right:14px;
 top:50%;
-width:7px;
-height:7px;
+width:6px;
+height:6px;
 border-right:1px solid #c8c8c4;
 border-bottom:1px solid #c8c8c4;
-transform:translateY(-70%) rotate(45deg);
+transform:
+translateY(-70%)
+rotate(45deg);
 pointer-events:none;
 }
 
 .size-select {
 appearance:none;
 width:100%;
-height:54px;
-border:1px solid rgba(255,255,255,.18);
+height:46px;
+border:1px solid rgba(255,255,255,.16);
 border-radius:0;
-background:#0d0f0f;
+background:#0b0d0d;
 color:var(--white);
-padding:0 48px 0 17px;
-font-size:13px;
+padding:0 40px 0 13px;
+font-size:11px;
 font-weight:850;
 cursor:pointer;
 }
 
 .segmented {
 display:grid;
-border:1px solid rgba(255,255,255,.18);
-background:#0b0d0d;
+border:1px solid rgba(255,255,255,.16);
+background:#0a0c0c;
 }
 
 .segmented.two {
@@ -595,20 +723,23 @@ grid-template-columns:repeat(3,1fr);
 }
 
 .segmented button {
-min-height:50px;
+min-height:43px;
 border:0;
 background:transparent;
-color:#c2c3c0;
-font-size:10px;
+color:#b8b9b6;
+padding:0 7px;
+font-size:8px;
 font-weight:950;
-letter-spacing:1.05px;
+letter-spacing:.85px;
 text-transform:uppercase;
 cursor:pointer;
-transition:background .2s ease, color .2s ease;
+transition:
+background .2s ease,
+color .2s ease;
 }
 
 .segmented button + button {
-border-left:1px solid rgba(255,255,255,.11);
+border-left:1px solid rgba(255,255,255,.10);
 }
 
 .segmented button.active {
@@ -616,23 +747,62 @@ background:#1a1c1c;
 color:var(--orange);
 }
 
+
+/* =========================================
+RIGHT — SPECIFICATION SNAPSHOT
+========================================= */
+
+.specification-snapshot {
+margin-top:20px;
+border-top:1px solid rgba(255,255,255,.09);
+border-bottom:1px solid rgba(255,255,255,.09);
+}
+
+.snapshot-row {
+display:grid;
+grid-template-columns:88px minmax(0,1fr);
+gap:12px;
+align-items:center;
+padding:10px 0;
+}
+
+.snapshot-row + .snapshot-row {
+border-top:1px solid rgba(255,255,255,.065);
+}
+
+.snapshot-row span {
+color:#70726e;
+font-size:8px;
+font-weight:950;
+letter-spacing:1.05px;
+text-transform:uppercase;
+}
+
+.snapshot-row strong {
+min-width:0;
+color:#d9dad7;
+font-size:11px;
+line-height:1.35;
+text-align:right;
+font-weight:850;
+}
+
+
 /* =========================================
 PRICE
 ========================================= */
 
 .price-panel {
-margin-top:34px;
-padding:26px 0 23px;
-border-top:1px solid rgba(255,255,255,.10);
-border-bottom:1px solid rgba(255,255,255,.10);
+margin-top:22px;
+padding-top:20px;
 }
 
 .price-label {
-margin-bottom:8px;
-color:#858683;
-font-size:12px;
+margin-bottom:7px;
+color:#777975;
+font-size:9px;
 font-weight:950;
-letter-spacing:1.7px;
+letter-spacing:1.45px;
 text-transform:uppercase;
 }
 
@@ -644,117 +814,130 @@ line-height:.82;
 white-space:nowrap;
 }
 
-.price-pound {
-margin-right:2px;
-font-size:clamp(42px,5.4vw,72px);
+.price-pound,
+.price-whole,
+.price-dot {
+font-size:clamp(39px,4.4vw,60px);
 font-weight:950;
-letter-spacing:-3px;
+letter-spacing:-2.7px;
 }
 
-.price-whole {
-font-size:clamp(42px,5.4vw,72px);
-font-weight:950;
-letter-spacing:-3px;
+.price-pound {
+margin-right:2px;
 }
 
 .price-dot {
 position:relative;
 top:.02em;
 margin-left:1px;
-font-size:clamp(42px,5.4vw,72px);
-font-weight:950;
-letter-spacing:-3px;
 }
 
 .price-pence {
 position:relative;
-top:-.10em;
+top:-.08em;
 margin-left:3px;
-font-size:clamp(18px,2.2vw,29px);
+font-size:clamp(16px,1.8vw,24px);
 line-height:1;
 font-weight:950;
-letter-spacing:-.6px;
+letter-spacing:-.5px;
 }
 
 .vat-line {
-margin-top:13px;
-color:#858683;
-font-size:13px;
+margin-top:10px;
+color:#777975;
+font-size:10px;
 font-weight:700;
-letter-spacing:.15px;
 }
+
+
+/* =========================================
+DIMENSIONS
+========================================= */
 
 .dimension-block {
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:1px;
-margin-top:20px;
-border:1px solid rgba(255,255,255,.11);
-background:rgba(255,255,255,.11);
+margin-top:16px;
+border:1px solid rgba(255,255,255,.09);
+background:rgba(255,255,255,.09);
 }
 
 .dimension-item {
 min-width:0;
-padding:15px 16px 14px;
-background:#0b0d0d;
+padding:11px 12px;
+background:#090b0b;
 }
 
 .dimension-item span {
 display:block;
-color:#7f817d;
-font-size:9px;
+color:#70726e;
+font-size:7px;
 font-weight:950;
-letter-spacing:1.25px;
+letter-spacing:1.05px;
 text-transform:uppercase;
 }
 
 .dimension-item strong {
 display:block;
-margin-top:6px;
+margin-top:5px;
 color:var(--white);
-font-size:14px;
-line-height:1.2;
+font-size:11px;
+line-height:1.25;
 }
 
 .size-note {
-margin:10px 0 0;
-color:#777975;
-font-size:11px;
-line-height:1.5;
+margin:8px 0 0;
+color:#696b67;
+font-size:9px;
+line-height:1.45;
 }
+
 
 /* =========================================
 QUANTITY + ADD TO BASKET
 ========================================= */
 
 .purchase-panel {
-margin-top:28px;
+margin-top:20px;
 }
 
 .quantity-row {
 display:grid;
-grid-template-columns:58px 1fr 68px;
-min-height:62px;
-border:1px solid rgba(255,255,255,.19);
-background:linear-gradient(180deg,#101212,#0b0c0c);
-transition:border-color .24s ease, box-shadow .24s ease;
+grid-template-columns:47px 1fr 52px;
+min-height:52px;
+border:1px solid rgba(255,255,255,.17);
+background:
+linear-gradient(
+180deg,
+#101212,
+#0b0c0c
+);
+transition:
+border-color .24s ease,
+box-shadow .24s ease;
 }
 
 .quantity-row:focus-within,
 .quantity-row:hover {
-border-color:rgba(255,135,8,.54);
-box-shadow:0 0 0 1px rgba(255,135,8,.06), 0 14px 34px rgba(0,0,0,.18);
+border-color:rgba(255,135,8,.50);
+box-shadow:
+0 0 0 1px rgba(255,135,8,.05),
+0 12px 28px rgba(0,0,0,.16);
 }
 
 .quantity-button {
 border:0;
 background:transparent;
 color:#bfc0bd;
-font-size:28px;
+font-size:23px;
 line-height:1;
 font-weight:300;
 cursor:pointer;
-transition:background .2s ease, color .2s ease, transform .15s ease;
+transition:
+background .2s ease,
+color .2s ease,
+transform .15s ease;
 }
 
 .quantity-button:hover {
@@ -780,53 +963,58 @@ transform:scale(.91);
 display:flex;
 align-items:center;
 justify-content:center;
-gap:12px;
+gap:8px;
 text-align:center;
 }
 
 .quantity-display strong {
 color:var(--white);
-font-size:22px;
+font-size:18px;
 font-weight:950;
 }
 
 .quantity-display span {
 color:#71736f;
-font-size:9px;
+font-size:7px;
 font-weight:950;
-letter-spacing:1.1px;
+letter-spacing:.9px;
 text-transform:uppercase;
 }
 
 .add-to-basket {
 width:100%;
-min-height:66px;
-margin-top:11px;
+min-height:58px;
+margin-top:9px;
 border:1px solid var(--orange);
 background:var(--orange);
 color:#050505;
-padding:0 22px;
+padding:0 18px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:16px;
-font-size:13px;
+gap:13px;
+font-size:10px;
 font-weight:950;
-letter-spacing:1.2px;
+letter-spacing:1.05px;
 text-transform:uppercase;
 cursor:pointer;
-box-shadow:0 18px 48px rgba(255,135,8,.08);
-transition:transform .2s ease, filter .2s ease, box-shadow .2s ease;
+box-shadow:
+0 18px 42px rgba(255,135,8,.07);
+transition:
+transform .2s ease,
+filter .2s ease,
+box-shadow .2s ease;
 }
 
 .add-to-basket:hover {
 transform:translateY(-2px);
 filter:brightness(1.055);
-box-shadow:0 24px 58px rgba(255,135,8,.14);
+box-shadow:
+0 22px 52px rgba(255,135,8,.13);
 }
 
 .add-to-basket .basket-arrow {
-font-size:22px;
+font-size:19px;
 line-height:1;
 transition:transform .2s ease;
 }
@@ -836,41 +1024,42 @@ transform:translateX(4px);
 }
 
 .purchase-assurance {
-display:flex;
-flex-wrap:wrap;
-gap:7px 17px;
-margin-top:13px;
-color:#7f817d;
-font-size:10px;
-font-weight:800;
-letter-spacing:.4px;
-text-transform:uppercase;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:1px;
+margin-top:10px;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.08);
 }
 
 .purchase-assurance span {
-position:relative;
+min-height:38px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:5px;
+background:#090a0a;
+color:#71736f;
+font-size:7px;
+line-height:1.3;
+font-weight:850;
+letter-spacing:.45px;
+text-transform:uppercase;
+text-align:center;
 }
 
-.purchase-assurance span + span::before {
-content:"";
-position:absolute;
-left:-10px;
-top:50%;
-width:3px;
-height:3px;
-border-radius:50%;
-background:var(--orange);
-transform:translateY(-50%);
-}
 
 /* =========================================
-BOTTOM CTA — STANDARD SIZES ENDING
+BOTTOM CTA
 ========================================= */
 
 .bottom-cta {
 position:relative;
 overflow:hidden;
-padding:clamp(76px,9vw,140px) 6% clamp(88px,10vw,154px);
+padding:
+clamp(76px,9vw,140px)
+6%
+clamp(88px,10vw,154px);
 background:#050505;
 border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.10);
@@ -885,7 +1074,13 @@ top:-180px;
 width:min(920px,100vw);
 height:560px;
 transform:translateX(-50%);
-background:radial-gradient(circle,rgba(255,135,8,.115),rgba(255,135,8,.035) 32%,transparent 70%);
+background:
+radial-gradient(
+circle,
+rgba(255,135,8,.115),
+rgba(255,135,8,.035) 32%,
+transparent 70%
+);
 pointer-events:none;
 }
 
@@ -930,7 +1125,9 @@ font-size:clamp(15px,1.7vw,22px);
 font-weight:950;
 letter-spacing:1.8px;
 text-transform:uppercase;
-transition:transform .2s ease, filter .2s ease;
+transition:
+transform .2s ease,
+filter .2s ease;
 }
 
 .cta-button:hover {
@@ -966,6 +1163,7 @@ color:var(--orange);
 filter:none;
 }
 
+
 /* =========================================
 FOOTER
 ========================================= */
@@ -973,7 +1171,10 @@ FOOTER
 .site-footer {
 background:#050505;
 color:#8d8f8b;
-padding:clamp(54px,7vw,88px) 6% 30px;
+padding:
+clamp(54px,7vw,88px)
+6%
+30px;
 }
 
 .footer-inner {
@@ -983,7 +1184,9 @@ margin:0 auto;
 
 .footer-top {
 display:grid;
-grid-template-columns:minmax(260px,1.25fr) repeat(3,minmax(150px,.6fr));
+grid-template-columns:
+minmax(260px,1.25fr)
+repeat(3,minmax(150px,.6fr));
 gap:42px;
 padding-bottom:46px;
 border-bottom:1px solid rgba(255,255,255,.10);
@@ -1131,6 +1334,7 @@ text-decoration:none;
 color:var(--orange);
 }
 
+
 /* =========================================
 MOBILE STICKY BASKET
 ========================================= */
@@ -1139,22 +1343,48 @@ MOBILE STICKY BASKET
 display:none;
 }
 
+
 /* =========================================
-RESPONSIVE
+TABLET
 ========================================= */
 
 @media(max-width:980px) {
+
+.order-shell {
+width:92%;
+}
+
 .order-grid {
-grid-template-columns:1fr;
-gap:44px;
+grid-template-columns:minmax(0,1.45fr) minmax(285px,1fr);
+gap:24px;
+}
+
+.product-stage {
+padding:12px;
 }
 
 .product-image-frame {
-aspect-ratio:1.28 / 1;
+aspect-ratio:1.18 / 1;
 }
 
 .product-details {
-padding-top:0;
+padding:23px 20px;
+}
+
+.product-title {
+font-size:clamp(25px,3.5vw,36px);
+}
+
+.product-description {
+font-size:11px;
+}
+
+.purchase-assurance {
+grid-template-columns:1fr;
+}
+
+.purchase-assurance span {
+min-height:29px;
 }
 
 .footer-top {
@@ -1164,9 +1394,16 @@ grid-template-columns:1.35fr 1fr 1fr;
 .footer-brand {
 grid-column:1 / -1;
 }
+
 }
 
+
+/* =========================================
+MOBILE — COMPACT TWO-COLUMN CONFIGURATOR
+========================================= */
+
 @media(max-width:720px) {
+
 body {
 padding-bottom:72px;
 }
@@ -1182,8 +1419,8 @@ font-size:8px;
 }
 
 .site-header {
-padding:18px 5.5%;
-gap:12px;
+padding:17px 4.5%;
+gap:10px;
 }
 
 .address-line {
@@ -1191,13 +1428,13 @@ display:none;
 }
 
 .header-actions {
-gap:5px;
+gap:4px;
 }
 
 .header-icon {
-width:38px;
-min-width:38px;
-height:38px;
+width:37px;
+min-width:37px;
+height:37px;
 }
 
 .basket-chip {
@@ -1205,51 +1442,246 @@ display:none;
 }
 
 .order-shell {
-width:89%;
-padding-top:35px;
-padding-bottom:78px;
+width:94%;
+padding-top:27px;
+padding-bottom:58px;
 }
 
 .order-kicker {
-margin-bottom:12px;
+margin-bottom:11px;
+font-size:8px;
+letter-spacing:1.45px;
+}
+
+.order-grid {
+grid-template-columns:minmax(0,58fr) minmax(0,42fr);
+gap:9px;
+align-items:start;
+}
+
+.product-stage {
+padding:6px;
 }
 
 .product-image-frame {
-aspect-ratio:1.15 / 1;
+aspect-ratio:1 / 1;
 }
 
 .visual-controls {
-padding-top:17px;
+padding-top:8px;
+}
+
+.visual-control-block + .visual-control-block {
+margin-top:8px;
+}
+
+.selector-heading {
+margin-bottom:4px;
+font-size:6px;
+letter-spacing:.9px;
 }
 
 .glazing-selector button {
-min-height:52px;
+min-height:32px;
+padding:0 3px;
+font-size:7px;
+letter-spacing:.55px;
+}
+
+.glazed-label {
+min-height:16px;
+padding-top:3px;
+font-size:5.5px;
+letter-spacing:.8px;
+}
+
+.tint-wrap {
+padding-bottom:17px;
+}
+
+.tint-selector button {
+min-height:28px;
+padding:0 1px;
+font-size:5.5px;
+letter-spacing:.25px;
+}
+
+.tint-caption-track {
+height:14px;
+}
+
+.tint-caption {
+height:14px;
+font-size:5px;
+letter-spacing:.65px;
+}
+
+.product-details {
+padding:10px 8px 9px;
+}
+
+.summary-kicker {
+margin-bottom:5px;
+font-size:5.5px;
+letter-spacing:.75px;
 }
 
 .product-title {
-font-size:clamp(37px,11vw,52px);
-letter-spacing:-1.8px;
+font-size:clamp(16px,4.7vw,22px);
+line-height:.98;
+letter-spacing:-.75px;
 }
 
 .product-description {
-margin-top:19px;
-font-size:14px;
+display:none;
+}
+
+.options-stack {
+gap:7px;
+margin-top:10px;
+}
+
+.option-group label,
+.option-label {
+margin-bottom:4px;
+font-size:5.5px;
+letter-spacing:.7px;
+}
+
+.select-shell::after {
+right:8px;
+width:4px;
+height:4px;
+}
+
+.size-select {
+height:30px;
+padding:0 21px 0 7px;
+font-size:6.5px;
+}
+
+.segmented button {
+min-height:29px;
+padding:0 2px;
+font-size:5.5px;
+letter-spacing:.35px;
+}
+
+.specification-snapshot {
+margin-top:9px;
+}
+
+.snapshot-row {
+grid-template-columns:42px minmax(0,1fr);
+gap:4px;
+padding:5px 0;
+}
+
+.snapshot-row span {
+font-size:4.8px;
+letter-spacing:.55px;
+}
+
+.snapshot-row strong {
+font-size:6px;
+line-height:1.2;
+}
+
+.price-panel {
+margin-top:10px;
+padding-top:8px;
+}
+
+.price-label {
+margin-bottom:4px;
+font-size:5.5px;
+letter-spacing:.75px;
+}
+
+.price-pound,
+.price-whole,
+.price-dot {
+font-size:clamp(24px,7vw,31px);
+letter-spacing:-1.6px;
+}
+
+.price-pence {
+top:-.07em;
+margin-left:1px;
+font-size:10px;
+}
+
+.vat-line {
+margin-top:5px;
+font-size:6px;
 }
 
 .dimension-block {
 grid-template-columns:1fr;
+margin-top:8px;
+}
+
+.dimension-item {
+padding:6px 6px;
 }
 
 .dimension-item + .dimension-item {
-border-top:1px solid rgba(255,255,255,.10);
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.dimension-item span {
+font-size:4.8px;
+letter-spacing:.65px;
+}
+
+.dimension-item strong {
+margin-top:3px;
+font-size:6.5px;
+}
+
+.size-note {
+display:none;
+}
+
+.purchase-panel {
+margin-top:9px;
+}
+
+.quantity-row {
+grid-template-columns:27px 1fr 30px;
+min-height:33px;
+}
+
+.quantity-button {
+font-size:16px;
+}
+
+.quantity-display {
+gap:3px;
+}
+
+.quantity-display strong {
+font-size:11px;
+}
+
+.quantity-display span {
+display:none;
+}
+
+.add-to-basket {
+min-height:37px;
+margin-top:5px;
+padding:0 7px;
+gap:5px;
+font-size:5.8px;
+letter-spacing:.45px;
+}
+
+.add-to-basket .basket-arrow {
+font-size:12px;
 }
 
 .purchase-assurance {
-display:grid;
-gap:6px;
-}
-
-.purchase-assurance span + span::before {
 display:none;
 }
 
@@ -1351,12 +1783,19 @@ letter-spacing:.9px;
 text-transform:uppercase;
 cursor:pointer;
 }
+
 }
 
+
+/* =========================================
+SMALLEST MOBILE
+========================================= */
+
 @media(max-width:450px) {
+
 .wordmark {
-max-width:200px;
-font-size:18px;
+max-width:195px;
+font-size:17px;
 gap:0 5px;
 }
 
@@ -1368,18 +1807,39 @@ font-size:.38em;
 display:none;
 }
 
-.glazing-selector button {
-font-size:11px;
+.order-shell {
+width:96%;
+}
+
+.order-grid {
+grid-template-columns:minmax(0,59fr) minmax(0,41fr);
+gap:7px;
+}
+
+.product-stage {
+padding:5px;
+}
+
+.product-details {
+padding:9px 7px 8px;
+}
+
+.product-title {
+font-size:clamp(15px,4.55vw,20px);
 }
 
 .tint-selector button {
-font-size:8px;
-letter-spacing:.75px;
+font-size:5px;
 }
 
 .segmented button {
-padding:0 7px;
-font-size:9px;
+font-size:5px;
+}
+
+.price-pound,
+.price-whole,
+.price-dot {
+font-size:clamp(22px,6.8vw,29px);
 }
 
 .footer-top {
@@ -1390,9 +1850,16 @@ grid-template-columns:1fr;
 .footer-column {
 grid-column:auto;
 }
+
 }
 
+
+/* =========================================
+REDUCED MOTION
+========================================= */
+
 @media(prefers-reduced-motion:reduce) {
+
 *,
 *::before,
 *::after {
@@ -1401,491 +1868,1853 @@ animation-iteration-count:1 !important;
 scroll-behavior:auto !important;
 transition-duration:.01ms !important;
 }
+
 }
+
 </style>
 </head>
 
 <body>
 
+
 <!-- =========================================
 ROLLING BANNER
 ========================================= -->
-<div class="top-banner" aria-label="Service highlights">
+
+<div
+class="top-banner"
+aria-label="Service highlights"
+>
+
 <div class="ticker">
-<span>From 4 Working Days*</span>
-<span>Factory Insulated &amp; Ready For Fitting</span>
-<span>20 Year Warranty</span>
-<span>Made In Britain</span>
-<span>From 4 Working Days*</span>
-<span>Factory Insulated &amp; Ready For Fitting</span>
-<span>20 Year Warranty</span>
-<span>Made In Britain</span>
+
+<span>
+From 4 Working Days*
+</span>
+
+<span>
+Factory Insulated &amp; Ready For Fitting
+</span>
+
+<span>
+20 Year Warranty
+</span>
+
+<span>
+Made In Britain
+</span>
+
+<span>
+From 4 Working Days*
+</span>
+
+<span>
+Factory Insulated &amp; Ready For Fitting
+</span>
+
+<span>
+20 Year Warranty
+</span>
+
+<span>
+Made In Britain
+</span>
+
 </div>
+
 </div>
+
 
 <!-- =========================================
 HEADER
 ========================================= -->
+
 <header class="site-header">
+
 <div class="wordmark-wrap">
-<a href="index.html" class="wordmark" aria-label="Factory Toughened Rooflights home" style="text-decoration:none;">
+
+<a
+href="index.html"
+class="wordmark"
+aria-label="Factory Toughened Rooflights home"
+style="text-decoration:none;"
+>
+
 Factory
-<span>Toughened</span>
-<span class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></span>
+
+<span>
+Toughened
+</span>
+
+<span class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
+</span>
+
 </a>
-<div class="address-line">5-9 Willen Field Road, London, NW10 7BQ</div>
+
+<div class="address-line">
+5-9 Willen Field Road, London, NW10 7BQ
 </div>
 
+</div>
+
+
 <div class="header-actions">
-<div class="basket-chip" id="basketChip" aria-label="Basket total £0.00">
-<svg viewBox="0 0 24 24" aria-hidden="true">
+
+<div
+class="basket-chip"
+id="basketChip"
+aria-label="Basket total £0.00"
+>
+
+<svg
+viewBox="0 0 24 24"
+aria-hidden="true"
+>
 <path d="M3 4h2l2 11h10l2-8H7"></path>
 <circle cx="9" cy="19" r="1.2"></circle>
 <circle cx="17" cy="19" r="1.2"></circle>
 </svg>
-<span id="basketTotalText">£0.00</span>
+
+<span id="basketTotalText">
+£0.00
+</span>
+
 </div>
 
-<a class="header-icon email-icon" href="mailto:" aria-label="Email us">
-<svg viewBox="0 0 24 24" aria-hidden="true">
+
+<a
+class="header-icon email-icon"
+href="mailto:"
+aria-label="Email us"
+>
+
+<svg
+viewBox="0 0 24 24"
+aria-hidden="true"
+>
 <rect x="3" y="5" width="18" height="14" rx="1"></rect>
 <path d="M4 7l8 6 8-6"></path>
 </svg>
+
 </a>
 
-<a class="header-icon" href="#" aria-label="WhatsApp">
-<svg viewBox="0 0 24 24" aria-hidden="true">
+
+<a
+class="header-icon"
+href="#"
+aria-label="WhatsApp"
+>
+
+<svg
+viewBox="0 0 24 24"
+aria-hidden="true"
+>
 <path d="M20 11.6a8 8 0 0 1-11.7 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.6Z"></path>
 <path d="M9 8.5c.5 2.5 2 4 4.5 5"></path>
 <path d="M8.8 8.2l1.2-.6 1.1 2-1 .7"></path>
 <path d="M13.6 13.1l.8-1 2 1.1-.5 1.2"></path>
 </svg>
+
 </a>
 
-<button class="header-icon" type="button" onclick="openMenu()" aria-label="Open menu">
-<svg viewBox="0 0 24 24" aria-hidden="true">
+
+<button
+class="header-icon"
+type="button"
+onclick="openMenu()"
+aria-label="Open menu"
+>
+
+<svg
+viewBox="0 0 24 24"
+aria-hidden="true"
+>
 <path d="M4 7h16"></path>
 <path d="M4 12h16"></path>
 <path d="M4 17h16"></path>
 </svg>
+
 </button>
+
 </div>
+
 </header>
+
 
 <!-- =========================================
 MENU
 ========================================= -->
-<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+
+<div
+class="menu-overlay"
+id="menuOverlay"
+aria-hidden="true"
+>
+
 <div class="menu-top">
+
 <div class="wordmark-wrap">
+
 <div class="wordmark">
+
 Factory
-<span>Toughened</span>
-<span class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></span>
-</div>
-<div class="address-line">5-9 Willen Field Road, London, NW10 7BQ</div>
+
+<span>
+Toughened
+</span>
+
+<span class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
+</span>
+
 </div>
 
-<button class="close-menu" type="button" onclick="closeMenu()" aria-label="Close menu">×</button>
+<div class="address-line">
+5-9 Willen Field Road, London, NW10 7BQ
 </div>
 
-<nav class="menu-links" aria-label="Main navigation">
-<a href="standard-sizes.html" onclick="closeMenu()">Standard Sizes</a>
-<a href="index.html#calculator" onclick="closeMenu()">Build A Custom Rooflight</a>
-<a href="index.html#oversized" onclick="closeMenu()">Oversized Rooflights</a>
-<a href="fitting-installation.html" onclick="closeMenu()">Fitting &amp; Installation</a>
-<a href="shipping.html" onclick="closeMenu()">Shipping</a>
-<a href="warranty.html" onclick="closeMenu()">Warranty</a>
-<a href="terms.html" onclick="closeMenu()">Terms &amp; Conditions</a>
-<a href="#contact" onclick="closeMenu()">Contact Us</a>
+</div>
+
+
+<button
+class="close-menu"
+type="button"
+onclick="closeMenu()"
+aria-label="Close menu"
+>
+×
+</button>
+
+</div>
+
+
+<nav
+class="menu-links"
+aria-label="Main navigation"
+>
+
+<a
+href="standard-sizes.html"
+onclick="closeMenu()"
+>
+Standard Sizes
+</a>
+
+<a
+href="index.html#calculator"
+onclick="closeMenu()"
+>
+Build A Custom Rooflight
+</a>
+
+<a
+href="index.html#oversized"
+onclick="closeMenu()"
+>
+Oversized Rooflights
+</a>
+
+<a
+href="fitting-installation.html"
+onclick="closeMenu()"
+>
+Fitting &amp; Installation
+</a>
+
+<a
+href="shipping.html"
+onclick="closeMenu()"
+>
+Shipping
+</a>
+
+<a
+href="warranty.html"
+onclick="closeMenu()"
+>
+Warranty
+</a>
+
+<a
+href="terms.html"
+onclick="closeMenu()"
+>
+Terms &amp; Conditions
+</a>
+
+<a
+href="#contact"
+onclick="closeMenu()"
+>
+Contact Us
+</a>
+
 </nav>
+
 </div>
+
 
 <main>
+
 
 <!-- =========================================
 ORDER / CONFIGURATOR
 ========================================= -->
+
 <section class="order-page">
+
 <div class="order-shell">
-<div class="order-kicker">Configure Your Rooflight</div>
+
+<div class="order-kicker">
+Configure Your Rooflight
+</div>
+
 
 <div class="order-grid">
 
-<!-- LEFT -->
+
+<!-- =========================================
+LEFT — PRODUCT + VISUAL OPTIONS
+========================================= -->
+
 <div class="product-visual-column">
-<div class="product-image-frame" id="productImageFrame">
+
+<div class="product-stage">
+
+<div
+class="product-image-frame"
+id="productImageFrame"
+>
+
 <img
 id="productImage"
 src="images/product-cards/small-rectangle.png"
 alt="600mm by 900mm frameless flat roof skylight"
 >
+
 </div>
+
 
 <div class="visual-controls">
-<div class="selector-heading">Glazing</div>
 
-<div class="glazing-selector" role="group" aria-label="Choose glazing">
-<button type="button" data-glazing="double">Double</button>
-<button type="button" class="active" data-glazing="triple">Triple</button>
+
+<div class="visual-control-block">
+
+<div class="selector-heading">
+Glazing
 </div>
 
-<div class="glazed-label">Glazed</div>
+<div
+class="glazing-selector"
+role="group"
+aria-label="Choose glazing"
+>
+
+<button
+type="button"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+class="active"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="glazed-label">
+Glazed
+</div>
+
+</div>
+
+
+<div class="visual-control-block">
 
 <div class="tint-wrap">
-<div class="selector-heading">Glass Finish</div>
 
-<div class="tint-selector" role="group" aria-label="Choose glass finish">
-<button type="button" class="active" data-tint="clear">Clear</button>
-<button type="button" data-tint="blue">Blue</button>
-<button type="button" data-tint="grey">Grey</button>
-<button type="button" data-tint="satin">Satin</button>
+<div class="selector-heading">
+Glass Finish
 </div>
 
-<div class="tint-caption-track" aria-hidden="true">
-<div class="tint-caption" id="tintCaption">Tint</div>
-</div>
-</div>
-</div>
+<div
+class="tint-selector"
+role="group"
+aria-label="Choose glass finish"
+>
+
+<button
+type="button"
+class="active"
+data-tint="clear"
+>
+Clear
+</button>
+
+<button
+type="button"
+data-tint="blue"
+>
+Blue
+</button>
+
+<button
+type="button"
+data-tint="grey"
+>
+Grey
+</button>
+
+<button
+type="button"
+data-tint="satin"
+>
+Satin
+</button>
+
 </div>
 
-<!-- RIGHT -->
+
+<div
+class="tint-caption-track"
+aria-hidden="true"
+>
+
+<div
+class="tint-caption"
+id="tintCaption"
+>
+Tint
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+RIGHT — PRODUCT SUMMARY + ORDER OPTIONS
+========================================= -->
+
 <div class="product-details">
-<h1 class="product-title" id="productTitle">600 × 900mm Triple Glazed Frameless Skylight</h1>
+
+
+<div class="summary-kicker">
+Your Rooflight
+</div>
+
+
+<h1
+class="product-title"
+id="productTitle"
+>
+600 × 900mm Triple Glazed Frameless Skylight
+</h1>
+
 
 <p class="product-description">
 A made-to-order frameless flat roof skylight, factory sealed and insulated using premium safety glass, Low-E glazing and a permanent black ceramic border for a clean modern finish.
 </p>
 
+
 <div class="options-stack">
+
+
 <div class="option-group">
-<label for="sizeSelect">Size</label>
+
+<label for="sizeSelect">
+Size
+</label>
+
 <div class="select-shell">
-<select class="size-select" id="sizeSelect" aria-label="Choose rooflight size"></select>
+
+<select
+class="size-select"
+id="sizeSelect"
+aria-label="Choose rooflight size"
+></select>
+
 </div>
+
 </div>
+
 
 <div class="option-group">
-<div class="option-label">Type</div>
-<div class="segmented two" role="group" aria-label="Choose glass type">
-<button type="button" class="active" data-type="toughened">Toughened</button>
-<button type="button" data-type="laminated">Laminated</button>
-</div>
+
+<div class="option-label">
+Type
 </div>
 
-<div class="option-group">
-<div class="option-label">Border</div>
-<div class="segmented three" role="group" aria-label="Choose border size">
-<button type="button" class="active" data-border="100">100mm</button>
-<button type="button" data-border="125">125mm</button>
-<button type="button" data-border="150">150mm</button>
-</div>
-</div>
-</div>
+<div
+class="segmented two"
+role="group"
+aria-label="Choose glass type"
+>
 
-<div class="price-panel">
-<div class="price-label">From:</div>
-
-<div class="price-line" aria-label="Price including VAT">
-<span class="price-pound">£</span>
-<span class="price-whole" id="priceWhole">300</span>
-<span class="price-dot">.</span>
-<span class="price-pence" id="pricePence">00</span>
-</div>
-
-<div class="vat-line">inc. vat</div>
-
-<div class="dimension-block">
-<div class="dimension-item">
-<span>Internal</span>
-<strong id="internalSize">600mm × 900mm</strong>
-</div>
-
-<div class="dimension-item">
-<span>External</span>
-<strong id="externalSize">800mm × 1100mm</strong>
-</div>
-</div>
-
-<p class="size-note">Order size refers to the internal visible glass size.</p>
-</div>
-
-<div class="purchase-panel">
-<div class="option-label">Quantity</div>
-
-<div class="quantity-row" aria-label="Quantity selector">
-<button class="quantity-button minus" id="quantityMinus" type="button" aria-label="Decrease quantity">−</button>
-
-<div class="quantity-display" aria-live="polite">
-<strong id="quantityValue">1</strong>
-<span id="quantityUnitLabel">Unit</span>
-</div>
-
-<button class="quantity-button plus" id="quantityPlus" type="button" aria-label="Increase quantity">+</button>
-</div>
-
-<button class="add-to-basket" id="addToBasket" type="button">
-<span id="addToBasketText">Add 1 To Basket</span>
-<span class="basket-arrow" aria-hidden="true">→</span>
+<button
+type="button"
+class="active"
+data-type="toughened"
+>
+Toughened
 </button>
 
-<div class="purchase-assurance">
-<span>Made To Order</span>
-<span>From 4 Working Days*</span>
-<span>Free Mainland UK Delivery*</span>
-</div>
-</div>
+<button
+type="button"
+data-type="laminated"
+>
+Laminated
+</button>
+
 </div>
 
 </div>
+
+
+<div class="option-group">
+
+<div class="option-label">
+Border
 </div>
-</section>
+
+<div
+class="segmented three"
+role="group"
+aria-label="Choose border size"
+>
+
+<button
+type="button"
+class="active"
+data-border="100"
+>
+100mm
+</button>
+
+<button
+type="button"
+data-border="125"
+>
+125mm
+</button>
+
+<button
+type="button"
+data-border="150"
+>
+150mm
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
 
 <!-- =========================================
-ENDING SECTION — MATCH STANDARD SIZES PAGE
+SELECTED SPECIFICATION
 ========================================= -->
+
+<div class="specification-snapshot">
+
+<div class="snapshot-row">
+
+<span>
+Glazing
+</span>
+
+<strong id="summaryGlazing">
+Triple Glazed
+</strong>
+
+</div>
+
+
+<div class="snapshot-row">
+
+<span>
+Finish
+</span>
+
+<strong id="summaryFinish">
+Clear
+</strong>
+
+</div>
+
+
+<div class="snapshot-row">
+
+<span>
+Type
+</span>
+
+<strong id="summaryType">
+Toughened
+</strong>
+
+</div>
+
+
+<div class="snapshot-row">
+
+<span>
+Border
+</span>
+
+<strong id="summaryBorder">
+100mm
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+PRICE
+========================================= -->
+
+<div class="price-panel">
+
+<div class="price-label">
+From:
+</div>
+
+
+<div
+class="price-line"
+aria-label="Price including VAT"
+>
+
+<span class="price-pound">
+£
+</span>
+
+<span
+class="price-whole"
+id="priceWhole"
+>
+300
+</span>
+
+<span class="price-dot">
+.
+</span>
+
+<span
+class="price-pence"
+id="pricePence"
+>
+00
+</span>
+
+</div>
+
+
+<div class="vat-line">
+inc. vat
+</div>
+
+
+<div class="dimension-block">
+
+
+<div class="dimension-item">
+
+<span>
+Internal
+</span>
+
+<strong id="internalSize">
+600mm × 900mm
+</strong>
+
+</div>
+
+
+<div class="dimension-item">
+
+<span>
+External
+</span>
+
+<strong id="externalSize">
+800mm × 1100mm
+</strong>
+
+</div>
+
+
+</div>
+
+
+<p class="size-note">
+Order size refers to the internal visible glass size.
+</p>
+
+</div>
+
+
+<!-- =========================================
+QUANTITY / ADD TO BASKET
+========================================= -->
+
+<div class="purchase-panel">
+
+<div class="option-label">
+Quantity
+</div>
+
+
+<div
+class="quantity-row"
+aria-label="Quantity selector"
+>
+
+<button
+class="quantity-button minus"
+id="quantityMinus"
+type="button"
+aria-label="Decrease quantity"
+>
+−
+</button>
+
+
+<div
+class="quantity-display"
+aria-live="polite"
+>
+
+<strong id="quantityValue">
+1
+</strong>
+
+<span id="quantityUnitLabel">
+Unit
+</span>
+
+</div>
+
+
+<button
+class="quantity-button plus"
+id="quantityPlus"
+type="button"
+aria-label="Increase quantity"
+>
++
+</button>
+
+</div>
+
+
+<button
+class="add-to-basket"
+id="addToBasket"
+type="button"
+>
+
+<span id="addToBasketText">
+Add 1 To Basket
+</span>
+
+<span
+class="basket-arrow"
+aria-hidden="true"
+>
+→
+</span>
+
+</button>
+
+
+<div class="purchase-assurance">
+
+<span>
+Made To Order
+</span>
+
+<span>
+From 4 Working Days*
+</span>
+
+<span>
+Free Mainland UK Delivery*
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+ENDING SECTION
+========================================= -->
+
 <section class="bottom-cta">
+
 <div class="bottom-cta-inner">
-<h2>Can’t find your size?</h2>
+
+<h2>
+Can’t find your size?
+</h2>
 
 <p>
 If your required size is not listed, return to the calculator and build a made-to-order frameless rooflight online.
 </p>
 
-<a href="index.html#calculator" class="cta-button">Build Custom Size</a>
+<a
+href="index.html#calculator"
+class="cta-button"
+>
+Build Custom Size
+</a>
+
 
 <div class="larger-block">
-<h2>Need Something Larger?</h2>
+
+<h2>
+Need Something Larger?
+</h2>
 
 <p>
 Looking for a frameless rooflight beyond our listed range? Contact us for an oversized quotation and specialist delivery pricing.
 </p>
 
-<a href="index.html#oversized" class="cta-button secondary">Oversized Quote</a>
+<a
+href="index.html#oversized"
+class="cta-button secondary"
+>
+Oversized Quote
+</a>
+
 </div>
+
 </div>
+
 </section>
 
 </main>
 
+
 <!-- =========================================
 FOOTER
 ========================================= -->
-<footer class="site-footer" id="contact">
+
+<footer
+class="site-footer"
+id="contact"
+>
+
 <div class="footer-inner">
+
+
 <div class="footer-top">
+
+
 <div class="footer-brand">
+
 <div class="wordmark footer-wordmark">
+
 Factory
-<span>Toughened</span>
-<span class="wordmark-bottom">Rooflights<small class="wordmark-domain">.co.uk</small></span>
+
+<span>
+Toughened
+</span>
+
+<span class="wordmark-bottom">
+Rooflights<small class="wordmark-domain">.co.uk</small>
+</span>
+
 </div>
 
 <p class="footer-intro">
 Frameless flat roof skylights manufactured to order and delivered across mainland UK.
 </p>
+
 </div>
 
-<div class="footer-column">
-<h3>Order</h3>
-<div class="footer-links">
-<a href="standard-sizes.html">Standard Sizes</a>
-<a href="index.html#calculator">Build A Custom Rooflight</a>
-<a href="index.html#oversized">Oversized Rooflights</a>
-<a href="fitting-installation.html">Fitting &amp; Installation</a>
-</div>
-</div>
 
 <div class="footer-column">
-<h3>Information</h3>
+
+<h3>
+Order
+</h3>
+
 <div class="footer-links">
-<a href="shipping.html">Shipping</a>
-<a href="warranty.html">Warranty</a>
-<a href="terms.html">Terms &amp; Conditions</a>
-<a href="terms.html">Terms of Use</a>
-</div>
+
+<a href="standard-sizes.html">
+Standard Sizes
+</a>
+
+<a href="index.html#calculator">
+Build A Custom Rooflight
+</a>
+
+<a href="index.html#oversized">
+Oversized Rooflights
+</a>
+
+<a href="fitting-installation.html">
+Fitting &amp; Installation
+</a>
+
 </div>
 
+</div>
+
+
 <div class="footer-column">
-<h3>Contact</h3>
+
+<h3>
+Information
+</h3>
+
 <div class="footer-links">
-<a href="mailto:">Email Us</a>
-<a href="#">WhatsApp</a>
-<a href="index.html#contact">Contact Us</a>
+
+<a href="shipping.html">
+Shipping
+</a>
+
+<a href="warranty.html">
+Warranty
+</a>
+
+<a href="terms.html">
+Terms &amp; Conditions
+</a>
+
+<a href="terms.html">
+Terms of Use
+</a>
+
 </div>
+
 </div>
+
+
+<div class="footer-column">
+
+<h3>
+Contact
+</h3>
+
+<div class="footer-links">
+
+<a href="mailto:">
+Email Us
+</a>
+
+<a href="#">
+WhatsApp
+</a>
+
+<a href="index.html#contact">
+Contact Us
+</a>
+
 </div>
+
+</div>
+
+</div>
+
 
 <div class="footer-legal">
+
+
 <div class="footer-company">
+
 <div class="right-glaze-mark">
+
 <img
 src="images/smallrglogo.png"
 alt="Right Glaze"
 onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
 >
-<span class="right-glaze-fallback">Right Glaze</span>
+
+<span class="right-glaze-fallback">
+Right Glaze
+</span>
+
 </div>
 
-<p><strong style="color:#aaa;">Right Glaze Ltd</strong></p>
-<p>Factory Toughened Rooflights is a trading name of Right Glaze Ltd.</p>
-<p>5-9 Willen Field Road, London, NW10 7BQ</p>
+
+<p>
+<strong style="color:#aaa;">
+Right Glaze Ltd
+</strong>
+</p>
+
+<p>
+Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
+</p>
+
+<p>
+5-9 Willen Field Road, London, NW10 7BQ
+</p>
+
 </div>
 
-<div class="payment-icons" aria-label="Accepted payment methods">
-<span class="payment-badge">VISA</span>
-<span class="payment-badge">MC</span>
-<span class="payment-badge">AMEX</span>
-<span class="payment-badge">Apple Pay</span>
-<span class="payment-badge">G Pay</span>
+
+<div
+class="payment-icons"
+aria-label="Accepted payment methods"
+>
+
+<span class="payment-badge">
+VISA
+</span>
+
+<span class="payment-badge">
+MC
+</span>
+
+<span class="payment-badge">
+AMEX
+</span>
+
+<span class="payment-badge">
+Apple Pay
+</span>
+
+<span class="payment-badge">
+G Pay
+</span>
+
 </div>
+
 </div>
+
 
 <div class="footer-bottom">
-<span>© <span id="footerYear"></span> Factory Toughened Rooflights / Right Glaze Ltd.</span>
-<span><a href="mailto:">Contact</a> · <a href="terms.html">Terms of Use</a></span>
+
+<span>
+© <span id="footerYear"></span> Factory Toughened Rooflights / Right Glaze Ltd.
+</span>
+
+<span>
+<a href="mailto:">Contact</a> · <a href="terms.html">Terms of Use</a>
+</span>
+
 </div>
+
 </div>
+
 </footer>
 
-<!-- MOBILE PURCHASE BAR -->
-<div class="mobile-basket-bar" id="mobileBasketBar">
+
+<!-- =========================================
+MOBILE PURCHASE BAR
+========================================= -->
+
+<div
+class="mobile-basket-bar"
+id="mobileBasketBar"
+>
+
 <div>
-<div class="mobile-bar-price-label">From</div>
-<div class="mobile-bar-price" id="mobileBarPrice">£300.00</div>
+
+<div class="mobile-bar-price-label">
+From
 </div>
 
-<button class="mobile-bar-button" id="mobileAddToBasket" type="button">Add 1 To Basket</button>
+<div
+class="mobile-bar-price"
+id="mobileBarPrice"
+>
+£300.00
 </div>
+
+</div>
+
+
+<button
+class="mobile-bar-button"
+id="mobileAddToBasket"
+type="button"
+>
+Add 1 To Basket
+</button>
+
+</div>
+
 
 <script>
+
 /* =========================================
 ORDER PAGE DATA
-
-Base standard-size prices below mirror the
-current standard-size structure available to
-this draft. Type / border / tint retail uplifts
-are deliberately isolated in PRICE_MODIFIERS
-so they can be replaced without changing UI.
 ========================================= */
 
 const PRODUCTS = {
-"600x600": { double:220, triple:270, image:"small-square.png" },
-"600x900": { double:250, triple:300, image:"small-rectangle.png" },
-"600x1200": { double:310, triple:370, image:"large-rectangle.png" },
-"600x1500": { double:360, triple:430, image:"large-rectangle.png" },
-"600x2000": { double:455, triple:540, image:"large-rectangle.png" },
-"800x800": { double:290, triple:350, image:"medium-square.png" },
-"800x1200": { double:395, triple:470, image:"medium-rectangle.png" },
-"800x1500": { double:455, triple:545, image:"large-rectangle.png" },
-"800x2000": { double:560, triple:675, image:"large-rectangle.png" },
-"1000x1000": { double:420, triple:505, image:"large-square.png" },
-"1000x1500": { double:520, triple:625, image:"large-rectangle.png" },
-"1000x2000": { double:650, triple:780, image:"large-rectangle.png" },
-"1000x2500": { double:785, triple:945, image:"jumbo.png" },
-"1200x1200": { double:510, triple:615, image:"large-square.png" },
-"1500x1500": { double:760, triple:910, image:"large-square.png" },
-"1500x1800": { double:880, triple:1075, image:"jumbo.png" },
-"1500x2000": { double:980, triple:1180, image:"jumbo.png" },
-"1500x2500": { double:1225, triple:1475, image:"jumbo.png" }
+
+"600x600": {
+double:220,
+triple:270,
+image:"small-square.png"
+},
+
+"400x1500": {
+double:310,
+triple:370,
+image:"narrow-long-rectangle.png"
+},
+
+"600x900": {
+double:250,
+triple:300,
+image:"small-rectangle.png"
+},
+
+"600x1200": {
+double:310,
+triple:370,
+image:"large-rectangle.png"
+},
+
+"600x1500": {
+double:360,
+triple:430,
+image:"large-rectangle.png"
+},
+
+"600x2000": {
+double:455,
+triple:540,
+image:"large-rectangle.png"
+},
+
+"800x800": {
+double:290,
+triple:350,
+image:"medium-square.png"
+},
+
+"800x1000": {
+double:435,
+triple:520,
+image:"medium-square.png"
+},
+
+"800x1200": {
+double:395,
+triple:470,
+image:"medium-rectangle.png"
+},
+
+"800x1500": {
+double:455,
+triple:545,
+image:"large-rectangle.png"
+},
+
+"800x2000": {
+double:560,
+triple:675,
+image:"large-rectangle.png"
+},
+
+"1000x1000": {
+double:420,
+triple:505,
+image:"large-square.png"
+},
+
+"1000x1200": {
+double:465,
+triple:560,
+image:"medium-square.png"
+},
+
+"1000x1500": {
+double:520,
+triple:625,
+image:"large-rectangle.png"
+},
+
+"1000x2000": {
+double:650,
+triple:780,
+image:"large-rectangle.png"
+},
+
+"1000x2500": {
+double:785,
+triple:945,
+image:"jumbo.png"
+},
+
+"1200x1200": {
+double:510,
+triple:615,
+image:"large-square.png"
+},
+
+"1500x1500": {
+double:760,
+triple:910,
+image:"large-square.png"
+},
+
+"1500x1800": {
+double:880,
+triple:1075,
+image:"jumbo.png"
+},
+
+"1500x2000": {
+double:980,
+triple:1180,
+image:"jumbo.png"
+},
+
+"1500x2500": {
+double:1225,
+triple:1475,
+image:"jumbo.png"
+}
+
 };
 
-/*
-Draft 1: keep these at zero until the exact retail
-uplifts for laminated glass, 125/150 borders and
-blue/grey/satin finishes are locked into the site.
-*/
+
+/* =========================================
+KNOWN HOMEPAGE TINT PRICES
+========================================= */
+
+const TINT_PRICE_OVERRIDES = {
+
+"800x1000": {
+
+blue: {
+double:435,
+triple:520
+}
+
+},
+
+"600x1500": {
+
+blue: {
+double:470,
+triple:560
+}
+
+},
+
+"600x900": {
+
+satin: {
+double:325,
+triple:390
+}
+
+},
+
+"800x1500": {
+
+satin: {
+double:590,
+triple:710
+}
+
+}
+
+};
+
+
+/* =========================================
+PRICE MODIFIERS
+========================================= */
+
 const PRICE_MODIFIERS = {
+
 type: {
 toughened:0,
 laminated:0
 },
+
 border: {
 100:0,
 125:0,
 150:0
 },
+
 tint: {
 clear:0,
 blue:0,
 grey:0,
 satin:0
 }
+
 };
+
+
+/* =========================================
+ORDER PAGE STATE
+========================================= */
 
 const state = {
+
 size:"600x900",
+
 glazing:"triple",
+
 type:"toughened",
+
 border:100,
+
 tint:"clear",
+
 quantity:1,
-basketTotal:0
+
+basketTotal:0,
+
+homepageImport:null
+
 };
 
-const sizeSelect = document.getElementById("sizeSelect");
-const productTitle = document.getElementById("productTitle");
-const productImage = document.getElementById("productImage");
-const productImageFrame = document.getElementById("productImageFrame");
-const internalSize = document.getElementById("internalSize");
-const externalSize = document.getElementById("externalSize");
-const priceWhole = document.getElementById("priceWhole");
-const pricePence = document.getElementById("pricePence");
-const quantityValue = document.getElementById("quantityValue");
-const quantityUnitLabel = document.getElementById("quantityUnitLabel");
-const quantityMinus = document.getElementById("quantityMinus");
-const quantityPlus = document.getElementById("quantityPlus");
-const addToBasket = document.getElementById("addToBasket");
-const addToBasketText = document.getElementById("addToBasketText");
-const mobileAddToBasket = document.getElementById("mobileAddToBasket");
-const mobileBarPrice = document.getElementById("mobileBarPrice");
-const basketTotalText = document.getElementById("basketTotalText");
-const basketChip = document.getElementById("basketChip");
-const tintCaption = document.getElementById("tintCaption");
 
-function formatSize(size) {
-const [w,l] = size.split("x");
-return `${w} × ${l}mm`;
+/* =========================================
+ELEMENT REFERENCES
+========================================= */
+
+const sizeSelect =
+document.getElementById(
+"sizeSelect"
+);
+
+const productTitle =
+document.getElementById(
+"productTitle"
+);
+
+const productImage =
+document.getElementById(
+"productImage"
+);
+
+const productImageFrame =
+document.getElementById(
+"productImageFrame"
+);
+
+const internalSize =
+document.getElementById(
+"internalSize"
+);
+
+const externalSize =
+document.getElementById(
+"externalSize"
+);
+
+const priceWhole =
+document.getElementById(
+"priceWhole"
+);
+
+const pricePence =
+document.getElementById(
+"pricePence"
+);
+
+const quantityValue =
+document.getElementById(
+"quantityValue"
+);
+
+const quantityUnitLabel =
+document.getElementById(
+"quantityUnitLabel"
+);
+
+const quantityMinus =
+document.getElementById(
+"quantityMinus"
+);
+
+const quantityPlus =
+document.getElementById(
+"quantityPlus"
+);
+
+const addToBasket =
+document.getElementById(
+"addToBasket"
+);
+
+const addToBasketText =
+document.getElementById(
+"addToBasketText"
+);
+
+const mobileAddToBasket =
+document.getElementById(
+"mobileAddToBasket"
+);
+
+const mobileBarPrice =
+document.getElementById(
+"mobileBarPrice"
+);
+
+const basketTotalText =
+document.getElementById(
+"basketTotalText"
+);
+
+const basketChip =
+document.getElementById(
+"basketChip"
+);
+
+const tintCaption =
+document.getElementById(
+"tintCaption"
+);
+
+const summaryGlazing =
+document.getElementById(
+"summaryGlazing"
+);
+
+const summaryFinish =
+document.getElementById(
+"summaryFinish"
+);
+
+const summaryType =
+document.getElementById(
+"summaryType"
+);
+
+const summaryBorder =
+document.getElementById(
+"summaryBorder"
+);
+
+
+/* =========================================
+SIZE NORMALISATION
+========================================= */
+
+function normalizeSize(
+size
+) {
+
+return String(
+size ?? ""
+)
+.trim()
+.toLowerCase()
+.replace(/mm/g,"")
+.replace(/×/g,"x")
+.replace(/\s+/g,"");
+
 }
 
-function formatDimension(size) {
-const [w,l] = size.split("x").map(Number);
-return `${w}mm × ${l}mm`;
+
+/* =========================================
+FINISH NORMALISATION
+========================================= */
+
+function normalizeTint(
+finish
+) {
+
+const normalized =
+String(
+finish ?? ""
+)
+.trim()
+.toLowerCase();
+
+if (
+normalized === "blue" ||
+normalized === "blue tinted" ||
+normalized === "blue-tinted"
+) {
+
+return "blue";
+
 }
+
+if (
+normalized === "grey" ||
+normalized === "gray" ||
+normalized === "grey tinted" ||
+normalized === "grey-tinted" ||
+normalized === "gray tinted" ||
+normalized === "gray-tinted"
+) {
+
+return "grey";
+
+}
+
+if (
+normalized === "satin" ||
+normalized === "satin tinted" ||
+normalized === "satin-tinted" ||
+normalized === "privacy"
+) {
+
+return "satin";
+
+}
+
+return "clear";
+
+}
+
+
+/* =========================================
+SIZE FORMATTING
+========================================= */
+
+function formatSize(
+size
+) {
+
+const [
+width,
+length
+] =
+size.split(
+"x"
+);
+
+return `${width} × ${length}mm`;
+
+}
+
+
+function formatDimension(
+size
+) {
+
+const [
+width,
+length
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+return `${width}mm × ${length}mm`;
+
+}
+
+
+/* =========================================
+EXTERNAL SIZE
+========================================= */
 
 function calculateExternalSize() {
-const [w,l] = state.size.split("x").map(Number);
-const increase = state.border * 2;
-return `${w + increase}mm × ${l + increase}mm`;
+
+const [
+width,
+length
+] =
+state.size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const increase =
+state.border *
+2;
+
+return `${width + increase}mm × ${length + increase}mm`;
+
 }
+
+
+/* =========================================
+HOMEPAGE IMPORT MATCH
+========================================= */
+
+function homepageImportMatchesCurrentSelection() {
+
+const imported =
+state.homepageImport;
+
+if (
+!imported
+) {
+return false;
+}
+
+return (
+imported.size === state.size &&
+imported.glazing === state.glazing &&
+imported.type === state.type &&
+imported.border === state.border &&
+imported.tint === state.tint
+);
+
+}
+
+
+/* =========================================
+HOMEPAGE IMAGE MATCH
+========================================= */
+
+function homepageImageMatchesCurrentSelection() {
+
+const imported =
+state.homepageImport;
+
+if (
+!imported ||
+!imported.image
+) {
+return false;
+}
+
+return (
+imported.size === state.size &&
+imported.tint === state.tint
+);
+
+}
+
+
+/* =========================================
+SELECTED PRODUCT IMAGE
+========================================= */
+
+function selectedProductImage() {
+
+if (
+homepageImageMatchesCurrentSelection()
+) {
+
+return state.homepageImport.image;
+
+}
+
+const product =
+PRODUCTS[
+state.size
+];
+
+if (
+!product
+) {
+return "";
+}
+
+return (
+"images/product-cards/" +
+product.image
+);
+
+}
+
+
+/* =========================================
+SELECTED PRICE
+========================================= */
 
 function selectedPrice() {
-const product = PRODUCTS[state.size];
-const base = product[state.glazing];
-const typeExtra = PRICE_MODIFIERS.type[state.type] || 0;
-const borderExtra = PRICE_MODIFIERS.border[state.border] || 0;
-const tintExtra = PRICE_MODIFIERS.tint[state.tint] || 0;
 
-return base + typeExtra + borderExtra + tintExtra;
+const product =
+PRODUCTS[
+state.size
+];
+
+if (
+!product
+) {
+return 0;
 }
 
-function moneyParts(value) {
-const fixed = Number(value).toFixed(2);
-const [whole,pence] = fixed.split(".");
+
+/* Exact incoming homepage configuration */
+
+if (
+homepageImportMatchesCurrentSelection() &&
+Number.isFinite(
+state.homepageImport.price
+)
+) {
+
+return state.homepageImport.price;
+
+}
+
+
+/* Known tinted homepage pricing */
+
+const tintPrices =
+TINT_PRICE_OVERRIDES[
+state.size
+];
+
+if (
+state.type === "toughened" &&
+state.border === 100 &&
+tintPrices &&
+tintPrices[state.tint] &&
+Number.isFinite(
+Number(
+tintPrices[state.tint][state.glazing]
+)
+)
+) {
+
+return Number(
+tintPrices[state.tint][state.glazing]
+);
+
+}
+
+
+/* Standard price */
+
+const base =
+Number(
+product[state.glazing]
+);
+
+const typeExtra =
+PRICE_MODIFIERS.type[
+state.type
+] || 0;
+
+const borderExtra =
+PRICE_MODIFIERS.border[
+state.border
+] || 0;
+
+const tintExtra =
+PRICE_MODIFIERS.tint[
+state.tint
+] || 0;
+
+return (
+base +
+typeExtra +
+borderExtra +
+tintExtra
+);
+
+}
+
+
+/* =========================================
+MONEY FORMATTING
+========================================= */
+
+function moneyParts(
+value
+) {
+
+const fixed =
+Number(
+value
+).toFixed(
+2
+);
+
+const [
+whole,
+pence
+] =
+fixed.split(
+"."
+);
 
 return {
-whole:Number(whole).toLocaleString("en-GB"),
-pence
+
+whole:
+Number(
+whole
+).toLocaleString(
+"en-GB"
+),
+
+pence:pence
+
 };
+
 }
 
-function buildTitle() {
-const size = formatSize(state.size);
 
-const tintText =
-state.tint === "clear"
-? ""
-: `${state.tint.charAt(0).toUpperCase() + state.tint.slice(1)} Tinted `;
+/* =========================================
+PRODUCT TITLE
+========================================= */
+
+function buildTitle() {
+
+const size =
+formatSize(
+state.size
+);
+
+let tintText =
+"";
+
+if (
+state.tint === "blue"
+) {
+
+tintText =
+"Blue Tinted ";
+
+}
+
+if (
+state.tint === "grey"
+) {
+
+tintText =
+"Grey Tinted ";
+
+}
+
+if (
+state.tint === "satin"
+) {
+
+tintText =
+"Satin ";
+
+}
 
 const typeText =
 state.type === "laminated"
@@ -1898,25 +3727,116 @@ state.glazing === "triple"
 : "Double";
 
 return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
+
 }
 
+
+/* =========================================
+SUMMARY LABELS
+========================================= */
+
+function getFinishLabel() {
+
+if (
+state.tint === "blue"
+) {
+return "Blue Tinted";
+}
+
+if (
+state.tint === "grey"
+) {
+return "Grey Tinted";
+}
+
+if (
+state.tint === "satin"
+) {
+return "Satin Privacy";
+}
+
+return "Clear";
+
+}
+
+
+function updateSpecificationSummary() {
+
+if (
+summaryGlazing
+) {
+
+summaryGlazing.textContent =
+state.glazing === "triple"
+? "Triple Glazed"
+: "Double Glazed";
+
+}
+
+if (
+summaryFinish
+) {
+
+summaryFinish.textContent =
+getFinishLabel();
+
+}
+
+if (
+summaryType
+) {
+
+summaryType.textContent =
+state.type === "laminated"
+? "Laminated"
+: "Toughened";
+
+}
+
+if (
+summaryBorder
+) {
+
+summaryBorder.textContent =
+`${state.border}mm`;
+
+}
+
+}
+
+
+/* =========================================
+TINT APPEARANCE
+========================================= */
+
 function updateTintAppearance() {
+
 productImageFrame.classList.remove(
 "tint-blue",
 "tint-grey",
 "tint-satin"
 );
 
-if (state.tint !== "clear") {
-productImageFrame.classList.add(`tint-${state.tint}`);
+if (
+state.tint !== "clear"
+) {
+
+productImageFrame.classList.add(
+`tint-${state.tint}`
+);
+
 }
 
 const tintIndex = {
+
 clear:0,
 blue:1,
 grey:2,
 satin:3
-}[state.tint];
+
+}[
+state.tint
+];
 
 tintCaption.style.transform =
 `translateX(${tintIndex * 100}%)`;
@@ -1925,17 +3845,84 @@ tintCaption.classList.toggle(
 "visible",
 state.tint !== "clear"
 );
+
 }
 
-function updateQueryString() {
-const params =
-new URLSearchParams(window.location.search);
 
-params.set("size",state.size);
-params.set("glazing",state.glazing);
-params.set("type",state.type);
-params.set("border",String(state.border));
-params.set("tint",state.tint);
+/* =========================================
+QUERY STRING
+========================================= */
+
+function updateQueryString() {
+
+const params =
+new URLSearchParams();
+
+params.set(
+"size",
+state.size
+);
+
+params.set(
+"glazing",
+state.glazing
+);
+
+params.set(
+"type",
+state.type
+);
+
+params.set(
+"border",
+String(
+state.border
+)
+);
+
+params.set(
+"finish",
+state.tint
+);
+
+if (
+state.homepageImport &&
+state.homepageImport.source === "homepage"
+) {
+
+params.set(
+"source",
+"homepage"
+);
+
+if (
+homepageImportMatchesCurrentSelection() &&
+Number.isFinite(
+state.homepageImport.price
+)
+) {
+
+params.set(
+"price",
+String(
+state.homepageImport.price
+)
+);
+
+}
+
+if (
+homepageImageMatchesCurrentSelection()
+) {
+
+params.set(
+"image",
+state.homepageImport.image
+);
+
+}
+
+}
 
 const newUrl =
 `${window.location.pathname}?${params.toString()}${window.location.hash}`;
@@ -1945,29 +3932,70 @@ window.history.replaceState(
 "",
 newUrl
 );
+
 }
 
-function updateUI({ updateUrl = true } = {}) {
-const product = PRODUCTS[state.size];
-const price = selectedPrice();
-const parts = moneyParts(price);
-const title = buildTitle();
 
-productTitle.textContent = title;
+/* =========================================
+UPDATE PAGE UI
+========================================= */
+
+function updateUI(
+{
+updateUrl = true
+} = {}
+) {
+
+const product =
+PRODUCTS[
+state.size
+];
+
+if (
+!product
+) {
+return;
+}
+
+const price =
+selectedPrice();
+
+const parts =
+moneyParts(
+price
+);
+
+const title =
+buildTitle();
+
+const imageSource =
+selectedProductImage();
+
+productTitle.textContent =
+title;
 
 document.title =
 `${title} | Factory Toughened Rooflights`;
 
+if (
+imageSource
+) {
+
 productImage.src =
-`images/product-cards/${product.image}`;
+imageSource;
+
+}
 
 productImage.alt =
 `${formatSize(state.size)} frameless flat roof skylight`;
 
-sizeSelect.value = state.size;
+sizeSelect.value =
+state.size;
 
 internalSize.textContent =
-formatDimension(state.size);
+formatDimension(
+state.size
+);
 
 externalSize.textContent =
 calculateExternalSize();
@@ -2003,64 +4031,150 @@ state.quantity <= 1
 ? ".36"
 : "1";
 
-document
-.querySelectorAll("[data-glazing]")
-.forEach(button => {
-button.classList.toggle(
-"active",
-button.dataset.glazing === state.glazing
-);
-});
 
 document
-.querySelectorAll("[data-type]")
-.forEach(button => {
+.querySelectorAll(
+"[data-glazing]"
+)
+.forEach(
+button => {
+
 button.classList.toggle(
 "active",
-button.dataset.type === state.type
+button.dataset.glazing ===
+state.glazing
 );
-});
+
+}
+);
+
 
 document
-.querySelectorAll("[data-border]")
-.forEach(button => {
+.querySelectorAll(
+"[data-type]"
+)
+.forEach(
+button => {
+
 button.classList.toggle(
 "active",
-Number(button.dataset.border) === state.border
+button.dataset.type ===
+state.type
 );
-});
+
+}
+);
+
 
 document
-.querySelectorAll("[data-tint]")
-.forEach(button => {
+.querySelectorAll(
+"[data-border]"
+)
+.forEach(
+button => {
+
 button.classList.toggle(
 "active",
-button.dataset.tint === state.tint
+Number(
+button.dataset.border
+) ===
+state.border
 );
-});
+
+}
+);
+
+
+document
+.querySelectorAll(
+"[data-tint]"
+)
+.forEach(
+button => {
+
+button.classList.toggle(
+"active",
+button.dataset.tint ===
+state.tint
+);
+
+}
+);
 
 updateTintAppearance();
 
-if (updateUrl) {
+updateSpecificationSummary();
+
+if (
+updateUrl
+) {
+
 updateQueryString();
+
 }
+
 }
+
+
+/* =========================================
+POPULATE SIZE LIST
+========================================= */
 
 function populateSizes() {
-const orderedSizes =
-Object.keys(PRODUCTS).sort((a,b) => {
-const [aw,al] =
-a.split("x").map(Number);
 
-const [bw,bl] =
-b.split("x").map(Number);
+const orderedSizes =
+Object.keys(
+PRODUCTS
+)
+.sort(
+(
+a,
+b
+) => {
+
+const [
+aWidth,
+aLength
+] =
+a
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const [
+bWidth,
+bLength
+] =
+b
+.split(
+"x"
+)
+.map(
+Number
+);
 
 return (
-(aw * al) - (bw * bl) ||
-aw - bw ||
-al - bl
+(
+aWidth *
+aLength
+) -
+(
+bWidth *
+bLength
+)
+||
+aWidth -
+bWidth
+||
+aLength -
+bLength
 );
-});
+
+}
+);
 
 sizeSelect.innerHTML =
 orderedSizes
@@ -2068,161 +4182,526 @@ orderedSizes
 size =>
 `<option value="${size}">${formatSize(size)} internal</option>`
 )
-.join("");
+.join(
+""
+);
+
 }
 
-function loadStateFromQuery() {
-const params =
-new URLSearchParams(window.location.search);
 
-const size =
-params.get("size");
+/* =========================================
+LOAD STATE FROM QUERY STRING
+========================================= */
+
+function loadStateFromQuery() {
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+let size =
+normalizeSize(
+params.get(
+"size"
+)
+);
+
+
+if (
+!size
+) {
+
+const width =
+Number(
+params.get(
+"width"
+)
+);
+
+const length =
+Number(
+params.get(
+"length"
+)
+);
+
+if (
+Number.isFinite(
+width
+) &&
+Number.isFinite(
+length
+)
+) {
+
+size =
+`${width}x${length}`;
+
+}
+
+}
+
 
 const glazing =
-params.get("glazing");
+String(
+params.get(
+"glazing"
+) || ""
+)
+.trim()
+.toLowerCase();
+
 
 const type =
-params.get("type");
+String(
+params.get(
+"type"
+) || ""
+)
+.trim()
+.toLowerCase();
+
 
 const border =
-Number(params.get("border"));
+Number(
+params.get(
+"border"
+)
+);
+
+
+const finishParameter =
+params.get(
+"finish"
+) ??
+params.get(
+"tint"
+);
 
 const tint =
-params.get("tint");
+normalizeTint(
+finishParameter
+);
+
+
+const source =
+String(
+params.get(
+"source"
+) || ""
+)
+.trim()
+.toLowerCase();
+
+
+const importedPrice =
+Number(
+String(
+params.get(
+"price"
+) || ""
+)
+.replace(
+/£|,/g,
+""
+)
+.trim()
+);
+
+
+const importedImage =
+String(
+params.get(
+"image"
+) || ""
+)
+.trim();
+
 
 if (
 size &&
-PRODUCTS[size]
+PRODUCTS[
+size
+]
 ) {
-state.size = size;
+
+state.size =
+size;
+
 }
 
-if (
-["double","triple"].includes(glazing)
-) {
-state.glazing = glazing;
-}
 
 if (
-["toughened","laminated"].includes(type)
+[
+"double",
+"triple"
+].includes(
+glazing
+)
 ) {
-state.type = type;
+
+state.glazing =
+glazing;
+
 }
 
-if (
-[100,125,150].includes(border)
-) {
-state.border = border;
-}
 
 if (
-["clear","blue","grey","satin"].includes(tint)
+[
+"toughened",
+"laminated"
+].includes(
+type
+)
 ) {
-state.tint = tint;
+
+state.type =
+type;
+
+} else if (
+source === "homepage"
+) {
+
+state.type =
+"toughened";
+
 }
+
+
+if (
+[
+100,
+125,
+150
+].includes(
+border
+)
+) {
+
+state.border =
+border;
+
+} else if (
+source === "homepage"
+) {
+
+state.border =
+100;
+
 }
+
+
+if (
+[
+"clear",
+"blue",
+"grey",
+"satin"
+].includes(
+tint
+)
+) {
+
+state.tint =
+tint;
+
+}
+
+
+if (
+source === "homepage"
+) {
+
+state.homepageImport = {
+
+source:"homepage",
+
+size:
+state.size,
+
+glazing:
+state.glazing,
+
+type:
+state.type,
+
+border:
+state.border,
+
+tint:
+state.tint,
+
+price:
+Number.isFinite(
+importedPrice
+)
+? importedPrice
+: null,
+
+image:
+importedImage
+
+};
+
+}
+
+}
+
+
+/* =========================================
+SIZE CHANGE
+========================================= */
 
 sizeSelect.addEventListener(
 "change",
 event => {
+
+const newSize =
+normalizeSize(
+event.target.value
+);
+
 if (
-PRODUCTS[event.target.value]
+PRODUCTS[
+newSize
+]
 ) {
+
 state.size =
-event.target.value;
+newSize;
+
+state.quantity =
+1;
 
 updateUI();
+
 }
+
 }
 );
 
+
+/* =========================================
+GLAZING CHANGE
+========================================= */
+
 document
-.querySelectorAll("[data-glazing]")
-.forEach(button => {
+.querySelectorAll(
+"[data-glazing]"
+)
+.forEach(
+button => {
+
 button.addEventListener(
 "click",
 () => {
+
+const glazing =
+String(
+button.dataset.glazing || ""
+);
+
+if (
+![
+"double",
+"triple"
+].includes(
+glazing
+)
+) {
+return;
+}
+
 state.glazing =
-button.dataset.glazing;
+glazing;
 
 updateUI();
+
 }
 );
-});
+
+}
+);
+
+
+/* =========================================
+TYPE CHANGE
+========================================= */
 
 document
-.querySelectorAll("[data-type]")
-.forEach(button => {
+.querySelectorAll(
+"[data-type]"
+)
+.forEach(
+button => {
+
 button.addEventListener(
 "click",
 () => {
+
+const type =
+String(
+button.dataset.type || ""
+);
+
+if (
+![
+"toughened",
+"laminated"
+].includes(
+type
+)
+) {
+return;
+}
+
 state.type =
-button.dataset.type;
+type;
 
 updateUI();
+
 }
 );
-});
+
+}
+);
+
+
+/* =========================================
+BORDER CHANGE
+========================================= */
 
 document
-.querySelectorAll("[data-border]")
-.forEach(button => {
+.querySelectorAll(
+"[data-border]"
+)
+.forEach(
+button => {
+
 button.addEventListener(
 "click",
 () => {
+
+const border =
+Number(
+button.dataset.border
+);
+
+if (
+![
+100,
+125,
+150
+].includes(
+border
+)
+) {
+return;
+}
+
 state.border =
-Number(button.dataset.border);
+border;
 
 updateUI();
+
 }
 );
-});
+
+}
+);
+
+
+/* =========================================
+FINISH CHANGE
+========================================= */
 
 document
-.querySelectorAll("[data-tint]")
-.forEach(button => {
+.querySelectorAll(
+"[data-tint]"
+)
+.forEach(
+button => {
+
 button.addEventListener(
 "click",
 () => {
+
+const tint =
+normalizeTint(
+button.dataset.tint
+);
+
 state.tint =
-button.dataset.tint;
+tint;
 
 updateUI();
+
 }
 );
-});
+
+}
+);
+
+
+/* =========================================
+QUANTITY
+========================================= */
 
 quantityMinus.addEventListener(
 "click",
 () => {
-if (
-state.quantity > 1
-) {
-state.quantity -= 1;
 
-updateUI({
+if (
+state.quantity >
+1
+) {
+
+state.quantity -=
+1;
+
+updateUI(
+{
 updateUrl:false
-});
-}
 }
 );
+
+}
+
+}
+);
+
 
 quantityPlus.addEventListener(
 "click",
 () => {
-if (
-state.quantity < 99
-) {
-state.quantity += 1;
 
-updateUI({
+if (
+state.quantity <
+99
+) {
+
+state.quantity +=
+1;
+
+updateUI(
+{
 updateUrl:false
-});
-}
 }
 );
 
+}
+
+}
+);
+
+
+/* =========================================
+ADD CURRENT SELECTION TO BASKET
+========================================= */
+
 function addCurrentSelectionToBasket() {
+
 const lineTotal =
 selectedPrice() *
 state.quantity;
@@ -2263,31 +4742,48 @@ mobileAddToBasket.textContent =
 
 window.setTimeout(
 () => {
+
 addToBasketText.textContent =
 originalDesktop;
 
 mobileAddToBasket.textContent =
 originalMobile;
+
 },
 1200
 );
+
 }
+
 
 addToBasket.addEventListener(
 "click",
 addCurrentSelectionToBasket
 );
 
+
 mobileAddToBasket.addEventListener(
 "click",
 addCurrentSelectionToBasket
 );
 
+
+/* =========================================
+MENU
+========================================= */
+
 function openMenu() {
+
 const menu =
 document.getElementById(
 "menuOverlay"
 );
+
+if (
+!menu
+) {
+return;
+}
 
 menu.classList.add(
 "active"
@@ -2300,13 +4796,22 @@ menu.setAttribute(
 
 document.body.style.overflow =
 "hidden";
+
 }
 
+
 function closeMenu() {
+
 const menu =
 document.getElementById(
 "menuOverlay"
 );
+
+if (
+!menu
+) {
+return;
+}
 
 menu.classList.remove(
 "active"
@@ -2319,29 +4824,59 @@ menu.setAttribute(
 
 document.body.style.overflow =
 "";
+
 }
+
 
 document.addEventListener(
 "keydown",
 event => {
+
 if (
 event.key === "Escape"
 ) {
+
 closeMenu();
+
 }
+
 }
 );
 
+
+/* =========================================
+FOOTER YEAR
+========================================= */
+
+const footerYear =
 document.getElementById(
 "footerYear"
-).textContent =
+);
+
+if (
+footerYear
+) {
+
+footerYear.textContent =
 new Date().getFullYear();
 
+}
+
+
+/* =========================================
+INITIAL ORDER PAGE STATE
+========================================= */
+
 populateSizes();
+
 loadStateFromQuery();
-updateUI({
+
+updateUI(
+{
 updateUrl:false
-});
+}
+);
+
 </script>
 
 </body>
