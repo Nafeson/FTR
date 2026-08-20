@@ -3833,7 +3833,6 @@ text-transform:none;
 
 /* =========================================
 FOOTER QUICK LINKS
-INCREASED SPACING BY APPROX. TWO THIRDS
 ========================================= */
 
 footer .footer-quick-links {
@@ -3899,6 +3898,121 @@ text-transform:none;
 
 footer .footer-quick-links + .footer-company-details {
 margin-top:30px;
+}
+
+/* =========================================
+FOOTER PAYMENT METHODS
+========================================= */
+
+.footer-payment-area {
+display:grid;
+justify-items:start;
+gap:10px;
+max-width:620px;
+margin-top:30px;
+padding-top:24px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer-payment-label {
+margin:0;
+color:rgba(247,247,243,.46);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:10px;
+font-weight:600;
+line-height:1.35;
+letter-spacing:.8px;
+text-transform:uppercase;
+}
+
+.footer-payment-icons {
+display:flex;
+align-items:center;
+justify-content:flex-start;
+flex-wrap:wrap;
+gap:7px;
+}
+
+.footer-payment-icon {
+display:flex;
+align-items:center;
+justify-content:center;
+width:48px;
+height:31px;
+padding:4px 5px;
+overflow:hidden;
+background:#ffffff;
+border:1px solid rgba(255,255,255,.18);
+border-radius:4px;
+box-shadow:
+0 1px 0 rgba(255,255,255,.05),
+0 3px 8px rgba(0,0,0,.18);
+}
+
+.footer-payment-icon svg {
+display:block;
+width:100%;
+height:100%;
+max-width:40px;
+max-height:23px;
+}
+
+.footer-payment-icon img {
+display:block;
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+/*
+Apple Pay / Google Pay style badges can use
+a darker treatment where required.
+*/
+
+.footer-payment-icon.payment-dark {
+background:#ffffff;
+color:#111111;
+}
+
+/* =========================================
+FOOTER COPYRIGHT / CONTACT LINE
+========================================= */
+
+.footer-legal-line {
+display:flex;
+align-items:center;
+flex-wrap:wrap;
+gap:5px;
+max-width:900px;
+margin:14px 0 0;
+color:rgba(247,247,243,.43);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:10px;
+font-weight:400;
+line-height:1.55;
+letter-spacing:.05px;
+}
+
+.footer-legal-line a {
+color:rgba(247,247,243,.62);
+text-decoration:none;
+transition:color .18s ease;
+}
+
+.footer-legal-line a:hover,
+.footer-legal-line a:focus {
+color:var(--orange-bright);
+outline:none;
 }
 
 /* ===============================
@@ -5028,6 +5142,54 @@ margin-top:27px;
 font-size:20px;
 }
 
+/* =========================================
+MOBILE PAYMENT METHODS
+========================================= */
+
+.footer-payment-area {
+gap:9px;
+margin-top:26px;
+padding-top:21px;
+}
+
+.footer-payment-label {
+font-size:8.5px;
+letter-spacing:.65px;
+}
+
+.footer-payment-icons {
+gap:5px;
+}
+
+.footer-payment-icon {
+width:43px;
+height:28px;
+padding:4px;
+border-radius:3px;
+}
+
+.footer-payment-icon svg {
+max-width:36px;
+max-height:20px;
+}
+
+/* =========================================
+MOBILE COPYRIGHT / CONTACT LINE
+========================================= */
+
+.footer-legal-line {
+display:block;
+margin-top:13px;
+max-width:340px;
+font-size:8.5px;
+line-height:1.65;
+color:rgba(247,247,243,.43);
+}
+
+.footer-legal-line a {
+color:rgba(247,247,243,.62);
+}
+
 }
 
 @media(max-width:390px) {
@@ -5160,6 +5322,16 @@ font-size:33px;
 
 .spec-advice-heading {
 font-size:31px;
+}
+
+.footer-payment-icon {
+width:41px;
+height:27px;
+}
+
+.footer-legal-line {
+font-size:8px;
+max-width:315px;
 }
 }
 
@@ -7711,6 +7883,10 @@ Collection available with prior booking
 </div>
 
 
+<!-- =========================================
+FOOTER COMPANY DETAILS
+========================================= -->
+
 <div class="footer-company-details">
 
 <p class="footer-company-intro">
@@ -7744,6 +7920,96 @@ VAT no. - 487373544
 </span>
 
 </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+PAYMENT METHODS
+========================================= -->
+
+<div
+class="footer-payment-section"
+aria-label="Accepted payment methods"
+>
+
+<div class="footer-payment-methods">
+
+<span class="payment-badge payment-badge-amex">
+<span class="payment-badge-text">
+AMEX
+</span>
+</span>
+
+<span class="payment-badge payment-badge-apple-pay">
+<span class="payment-badge-text">
+Apple Pay
+</span>
+</span>
+
+<span class="payment-badge payment-badge-mastercard">
+<span
+class="payment-card-circles"
+aria-hidden="true"
+></span>
+<span class="payment-badge-text">
+Mastercard
+</span>
+</span>
+
+<span class="payment-badge payment-badge-visa">
+<span class="payment-badge-text">
+VISA
+</span>
+</span>
+
+<span class="payment-badge payment-badge-google-pay">
+<span class="payment-badge-text">
+G Pay
+</span>
+</span>
+
+<span class="payment-badge payment-badge-discover">
+<span class="payment-badge-text">
+Discover
+</span>
+</span>
+
+<span class="payment-badge payment-badge-paypal">
+<span class="payment-badge-text">
+PayPal
+</span>
+</span>
+
+<span class="payment-badge payment-badge-klarna">
+<span class="payment-badge-text">
+Klarna
+</span>
+</span>
+
+</div>
+
+
+<div class="footer-copyright">
+
+<span>
+© 2026 Factory Toughened Rooflights. All Rights Reserved
+</span>
+
+<span
+class="footer-copyright-divider"
+aria-hidden="true"
+>
+|
+</span>
+
+<a
+href="mailto:sales@factorytoughenedrooflights.co.uk"
+>
+sales@factorytoughenedrooflights.co.uk
+</a>
 
 </div>
 
