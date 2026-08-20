@@ -3896,8 +3896,10 @@ letter-spacing:0;
 text-transform:none;
 }
 
+/* REMOVE GAP BETWEEN COLLECTION NOTE AND COMPANY DETAILS */
+
 footer .footer-quick-links + .footer-company-details {
-margin-top:30px;
+margin-top:0;
 }
 
 /* =========================================
@@ -3966,11 +3968,6 @@ max-height:28px;
 overflow:visible;
 flex:0 0 auto;
 }
-
-/*
-Any SVG built at a wider natural ratio can use this
-class without being cropped inside the tile.
-*/
 
 .payment-badge.payment-wide svg {
 max-width:52px;
@@ -4054,11 +4051,6 @@ transform-origin:center;
 transform-box:fill-box;
 }
 
-/*
-Removes accidental browser fill/stroke inheritance
-from payment artwork.
-*/
-
 .payment-badge svg,
 .payment-badge svg * {
 vector-effect:non-scaling-stroke;
@@ -4100,7 +4092,12 @@ padding:0 1px;
 }
 
 .footer-copyright a {
-color:rgba(247,247,243,.68);
+color:var(--white);
+font-family:inherit;
+font-size:inherit;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 text-decoration:none;
 overflow-wrap:anywhere;
 transition:color .18s ease;
@@ -5231,8 +5228,10 @@ font-size:10.5px;
 line-height:1.5;
 }
 
+/* NO EXTRA GAP BELOW COLLECTION */
+
 footer .footer-quick-links + .footer-company-details {
-margin-top:27px;
+margin-top:0;
 }
 
 .footer-wordmark {
@@ -5241,7 +5240,7 @@ font-size:20px;
 
 /* =========================================
 MOBILE PAYMENT METHODS
-REFERENCE-STYLE TWO-ROW LAYOUT
+CENTRED WRAPPED ROWS
 ========================================= */
 
 .footer-payment-section {
@@ -5251,13 +5250,13 @@ padding-top:22px;
 }
 
 .footer-payment-methods {
-display:grid;
-grid-template-columns:repeat(6,52px);
+display:flex;
 align-items:center;
-justify-content:start;
+justify-content:center;
+flex-wrap:wrap;
 gap:8px 7px;
 width:100%;
-max-width:100%;
+max-width:347px;
 }
 
 .payment-badge {
@@ -5301,7 +5300,12 @@ padding:0 2px;
 }
 
 .footer-copyright a {
-color:rgba(247,247,243,.68);
+color:var(--white);
+font-family:inherit;
+font-size:inherit;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 text-decoration:none;
 }
 
@@ -5441,11 +5445,18 @@ font-size:31px;
 
 /* =========================================
 SMALL MOBILE PAYMENT METHODS
+KEEP SIX ACROSS WHERE SPACE ALLOWS
+AND CENTRE THE SHORT FINAL ROW
 ========================================= */
 
 .footer-payment-methods {
-grid-template-columns:repeat(5,51px);
+display:flex;
+align-items:center;
+justify-content:center;
+flex-wrap:wrap;
 gap:7px;
+width:100%;
+max-width:341px;
 }
 
 .payment-badge {
@@ -5461,6 +5472,11 @@ max-height:24px;
 .footer-copyright {
 font-size:8px;
 max-width:315px;
+}
+
+.footer-copyright a {
+font-size:inherit;
+color:var(--white);
 }
 }
 
@@ -6038,7 +6054,6 @@ height:2px;
 }
 </style>
 
-
 <!-- =========================================
 POPULAR / READY-TO-ORDER ROOFLIGHTS
 ========================================= -->
@@ -6064,7 +6079,6 @@ Discover our range of brand-new frameless rooflights, manufactured here in the U
 </p>
 
 </div>
-
 
 <div class="home-popular-grid">
 
@@ -6166,7 +6180,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
 data-double-price="310"
@@ -6265,7 +6278,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card image-size-1000x1200 reveal reveal-scale reveal-delay-2"
 data-double-price="465"
@@ -6363,7 +6375,6 @@ View Size
 </div>
 
 </div>
-
 
 <div
 class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
@@ -6465,7 +6476,6 @@ View Size
 
 </div>
 
-
 <div class="home-popular-footer reveal">
 
 <a
@@ -6476,7 +6486,6 @@ View All Standard Sizes
 </a>
 
 </div>
-
 
 <div
 class="mobile-feature-icons"
@@ -6503,7 +6512,6 @@ Triple Glazed
 
 </div>
 
-
 <div class="mobile-feature-item">
 
 <svg
@@ -6529,7 +6537,6 @@ Protection
 
 </div>
 
-
 <div class="mobile-feature-item">
 
 <svg
@@ -6547,7 +6554,6 @@ Glass
 
 </div>
 
-
 <div class="mobile-feature-item">
 
 <svg
@@ -6564,7 +6570,6 @@ Efficient
 </span>
 
 </div>
-
 
 <div class="mobile-feature-item">
 
@@ -6588,7 +6593,6 @@ Reduction
 </div>
 
 </section>
-
 
 <!-- =========================================
 PRIMARY PRODUCT VISUAL
@@ -6619,7 +6623,6 @@ alt="Brand new frameless rooflight manufactured ready for installation"
 </div>
 
 </section>
-
 
 <!-- =========================================
 ORDER ROUTES
@@ -6689,7 +6692,6 @@ Oversized Rooflights
 
 </section>
 
-
 <!-- =========================================
 FRAMELESS DESIGN
 ========================================= -->
@@ -6735,7 +6737,6 @@ architecture rather than an added frame.
 </p>
 
 </section>
-
 
 <!-- =========================================
 BESPOKE OPENING ASSISTANT
@@ -6796,7 +6797,6 @@ autocomplete="off"
 
 </div>
 
-
 <div class="existing-opening-field">
 
 <label for="openingInternalLength">
@@ -6818,7 +6818,6 @@ autocomplete="off"
 </div>
 
 </div>
-
 
 <p
 class="existing-opening-recommendation"
@@ -6843,7 +6842,6 @@ Recommended unit to suit:
 </div>
 
 </div>
-
 
 <div
 class="existing-opening-rooflight-visual"
@@ -6870,7 +6868,6 @@ alt="Custom made frameless rooflight"
 </div>
 
 </div>
-
 
 <!-- =========================================
 CUSTOM ROOFLIGHT BUILDER
@@ -6902,7 +6899,6 @@ streamlined manufacturing process means custom-made units can be prepared quickl
 without compromising on specification or finish.
 </p>
 
-
 <div class="calc-grid reveal reveal-delay-2">
 
 <div class="calc-field">
@@ -6924,7 +6920,6 @@ autocomplete="off"
 
 </div>
 
-
 <div class="calc-field">
 
 <label for="length">
@@ -6944,7 +6939,6 @@ autocomplete="off"
 
 </div>
 
-
 <div class="calc-field">
 
 <label for="border">
@@ -6958,7 +6952,6 @@ Border
 </select>
 
 </div>
-
 
 <div class="calc-field">
 
@@ -6992,7 +6985,6 @@ Glazing
 
 </div>
 
-
 <div class="calc-field">
 
 <label for="finish">
@@ -7009,7 +7001,6 @@ Glass Finish
 </div>
 
 </div>
-
 
 <div
 class="price-box"
@@ -7031,7 +7022,6 @@ id="price"
 £0
 </div>
 
-
 <div class="custom-price-dimensions">
 
 <div class="custom-price-dimension">
@@ -7048,7 +7038,6 @@ id="customPriceInternal"
 
 </div>
 
-
 <div class="custom-price-dimension">
 
 <span class="custom-price-dimension-label">
@@ -7064,7 +7053,6 @@ id="customPriceExternal"
 </div>
 
 </div>
-
 
 <div class="custom-price-meta">
 
@@ -7091,7 +7079,6 @@ Tuesday 18 August 2026
 
 </div>
 
-
 <a
 href="#"
 class="button"
@@ -7107,7 +7094,6 @@ Add To Order
 </div>
 
 </section>
-
 
 <!-- =========================================
 PRODUCT CONSTRUCTION VISUAL
@@ -7139,7 +7125,6 @@ alt="Finished frameless rooflight manufactured and prepared for installation"
 
 </section>
 
-
 <!-- =========================================
 MANUFACTURING / PRODUCT SPECIFICATION
 ========================================= -->
@@ -7165,7 +7150,6 @@ long-term performance.
 
 </div>
 
-
 <div
 class="engineered-grid"
 id="engineeredGrid"
@@ -7184,7 +7168,6 @@ in summer, helping improve thermal efficiency and lower energy costs.
 
 </div>
 
-
 <div class="engineered-card reveal reveal-scale reveal-delay-1">
 
 <h3>
@@ -7197,7 +7180,6 @@ All units are supplied with a 20 year warranty and are designed for an expected
 </p>
 
 </div>
-
 
 <div class="engineered-card reveal reveal-scale reveal-delay-2">
 
@@ -7212,7 +7194,6 @@ when correctly installed.
 </p>
 
 </div>
-
 
 <div class="engineered-card reveal reveal-scale reveal-delay-3">
 
@@ -7231,7 +7212,6 @@ for a durable, long-lasting finish that won’t peel, bubble or fade like window
 
 </section>
 
-
 <!-- =========================================
 TINTED ROOFLIGHTS
 ========================================= -->
@@ -7240,7 +7220,6 @@ TINTED ROOFLIGHTS
 class="tinted-options-section"
 id="tintedOptions"
 >
-
 
 <!-- =========================================
 TINTED & PRIVACY GLASS HEADER VISUAL
@@ -7272,7 +7251,6 @@ alt="Tinted and privacy glass frameless rooflight finish options"
 
 </div>
 
-
 <div class="home-popular-title-wrap reveal">
 
 <div class="home-workshop-kicker">
@@ -7285,7 +7263,6 @@ Tinted &amp; Privacy Glass
 </h2>
 
 </div>
-
 
 <div class="home-popular-grid">
 
@@ -7388,7 +7365,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-double-price="470"
@@ -7488,7 +7464,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-double-price="325"
@@ -7587,7 +7562,6 @@ View Size
 </div>
 
 </div>
-
 
 <div
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
@@ -7690,7 +7664,6 @@ View Size
 
 </div>
 
-
 <div class="home-popular-footer reveal">
 
 <a
@@ -7703,7 +7676,6 @@ View All Sizes
 </div>
 
 </section>
-
 
 <!-- =========================================
 PROFESSIONAL FITTING SERVICES
@@ -7733,7 +7705,6 @@ id="fittingSlideshowProgress"
 
 </div>
 
-
 <div
 class="fitting-slideshow-viewport"
 id="fittingSlideshowViewport"
@@ -7753,7 +7724,6 @@ alt="Professionally installed frameless rooflight"
 
 </div>
 
-
 <div
 class="fitting-slide"
 data-fitting-slide="1"
@@ -7768,7 +7738,6 @@ alt="Frameless rooflight installation example"
 
 </div>
 
-
 <div
 class="fitting-slide"
 data-fitting-slide="2"
@@ -7782,7 +7751,6 @@ alt="Professional frameless rooflight fitting example"
 />
 
 </div>
-
 
 <div
 class="fitting-slide"
@@ -7802,7 +7770,6 @@ alt="Completed frameless rooflight installation"
 
 </div>
 
-
 <div class="direct-inner">
 
 <div>
@@ -7816,7 +7783,6 @@ Have Your Rooflights Professionally Installed With Our Fitting Services
 </h2>
 
 </div>
-
 
 <div class="direct-copy">
 
@@ -7839,7 +7805,6 @@ Request a Fitting Quotation
 </div>
 
 </section>
-
 
 <!-- =========================================
 OVERSIZED ROOFLIGHTS
@@ -7878,7 +7843,6 @@ Request Oversized Quote
 </div>
 
 </section>
-
 
 <!-- =========================================
 HOMEPAGE CLOSING
@@ -7922,7 +7886,6 @@ Get In Touch
 
 </main>
 
-
 <!-- =========================================
 FOOTER
 ========================================= -->
@@ -7951,7 +7914,6 @@ Rooflights
 
 </div>
 
-
 <div class="footer-address">
 
 <span>
@@ -7973,7 +7935,6 @@ SL9 7BB
 </div>
 
 </div>
-
 
 <!-- =========================================
 FOOTER QUICK LINKS
@@ -8005,52 +7966,7 @@ Contact Us
 Terms of Use
 </a>
 
-<span class="footer-collection">
-Collection available with prior booking
-</span>
-
-<!-- =========================================
-FOOTER COMPANY DETAILS
-========================================= -->
-
-<div class="footer-company-details">
-
-<p class="footer-company-intro">
-Factory Toughened Rooflights is a trading name of
-</p>
-
-<div class="footer-right-glaze">
-
-<div class="footer-right-glaze-brand">
-
-<img
-src="images/smallrglogo.png"
-class="footer-right-glaze-logo"
-alt="Right Glaze Ltd"
-/>
-
 </div>
-
-<span class="footer-right-glaze-name">
-Right Glaze Ltd
-</span>
-
-<div class="footer-company-numbers">
-
-<span>
-Company no. - 14336400
-</span>
-
-<span>
-VAT no. - 487373544
-</span>
-
-</div>
-
-</div>
-
-</div>
-
 
 <!-- =========================================
 PAYMENT METHODS
@@ -8064,6 +7980,96 @@ aria-label="Accepted payment methods"
 
 <div class="footer-payment-methods">
 
+<!-- VISA -->
+
+<span
+class="payment-badge payment-badge-visa payment-wide"
+role="img"
+aria-label="Visa"
+>
+
+<svg
+viewBox="0 0 88 44"
+xmlns="http://www.w3.org/2000/svg"
+aria-hidden="true"
+>
+
+<rect
+x="0"
+y="0"
+width="88"
+height="44"
+rx="3"
+fill="#1434CB"
+/>
+
+<text
+x="44"
+y="30"
+text-anchor="middle"
+fill="#FFFFFF"
+font-family="Arial, Helvetica, sans-serif"
+font-size="24"
+font-weight="900"
+font-style="italic"
+letter-spacing="-2"
+>
+VISA
+</text>
+
+</svg>
+
+</span>
+
+<!-- MASTERCARD -->
+
+<span
+class="payment-badge payment-badge-mastercard"
+role="img"
+aria-label="Mastercard"
+>
+
+<svg
+viewBox="0 0 72 44"
+xmlns="http://www.w3.org/2000/svg"
+aria-hidden="true"
+>
+
+<circle
+cx="29"
+cy="19"
+r="12"
+fill="#EB001B"
+/>
+
+<circle
+cx="43"
+cy="19"
+r="12"
+fill="#F79E1B"
+/>
+
+<path
+d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z"
+fill="#FF5F00"
+/>
+
+<text
+x="36"
+y="38"
+text-anchor="middle"
+fill="#FFFFFF"
+font-family="Arial, Helvetica, sans-serif"
+font-size="6.5"
+font-weight="700"
+letter-spacing="-.2"
+>
+mastercard
+</text>
+
+</svg>
+
+</span>
 
 <!-- AMERICAN EXPRESS -->
 
@@ -8118,7 +8124,6 @@ EX
 
 </span>
 
-
 <!-- APPLE PAY -->
 
 <span
@@ -8158,111 +8163,6 @@ Pay
 </svg>
 
 </span>
-
-
-<!-- DINERS CLUB -->
-
-<span
-class="payment-badge payment-badge-diners"
-role="img"
-aria-label="Diners Club"
->
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<circle
-cx="28"
-cy="22"
-r="14"
-fill="#2E78B7"
-/>
-
-<circle
-cx="28"
-cy="22"
-r="9"
-fill="#FFFFFF"
-/>
-
-<path
-d="M26 14.5c-3.3 1-5.7 4-5.7 7.5s2.4 6.5 5.7 7.5z"
-fill="#2E78B7"
-/>
-
-<path
-d="M30 14.5v15c3.3-1 5.7-4 5.7-7.5S33.3 15.5 30 14.5z"
-fill="#2E78B7"
-/>
-
-<text
-x="47"
-y="20"
-text-anchor="middle"
-fill="#2E78B7"
-font-family="Arial, Helvetica, sans-serif"
-font-size="6.5"
-font-weight="700"
->
-DINERS
-</text>
-
-<text
-x="47"
-y="27"
-text-anchor="middle"
-fill="#2E78B7"
-font-family="Arial, Helvetica, sans-serif"
-font-size="6.5"
-font-weight="700"
->
-CLUB
-</text>
-
-</svg>
-
-</span>
-
-
-<!-- DISCOVER -->
-
-<span
-class="payment-badge payment-badge-discover payment-wide"
-role="img"
-aria-label="Discover"
->
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<text
-x="43"
-y="25"
-text-anchor="middle"
-fill="#202020"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="800"
-letter-spacing="-.8"
->
-DISCOVER
-</text>
-
-<path
-d="M50 32c8-6 17-8 29-8v8z"
-fill="#F58220"
-/>
-
-</svg>
-
-</span>
-
 
 <!-- GOOGLE PAY -->
 
@@ -8314,114 +8214,12 @@ Pay
 
 </span>
 
-
-<!-- MAESTRO -->
-
-<span
-class="payment-badge payment-badge-maestro"
-role="img"
-aria-label="Maestro"
->
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<circle
-cx="28"
-cy="20"
-r="12"
-fill="#E41B2D"
-/>
-
-<circle
-cx="42"
-cy="20"
-r="12"
-fill="#0099DF"
-/>
-
-<path
-d="M35 10.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z"
-fill="#6C5BA7"
-/>
-
-<text
-x="35"
-y="38"
-text-anchor="middle"
-fill="#333333"
-font-family="Arial, Helvetica, sans-serif"
-font-size="7"
-font-weight="700"
->
-maestro
-</text>
-
-</svg>
-
-</span>
-
-
-<!-- MASTERCARD -->
+<!-- PAYPAL -->
 
 <span
-class="payment-badge payment-badge-mastercard"
+class="payment-badge payment-badge-paypal payment-wide"
 role="img"
-aria-label="Mastercard"
->
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<circle
-cx="29"
-cy="19"
-r="12"
-fill="#EB001B"
-/>
-
-<circle
-cx="43"
-cy="19"
-r="12"
-fill="#F79E1B"
-/>
-
-<path
-d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z"
-fill="#FF5F00"
-/>
-
-<text
-x="36"
-y="38"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="6.5"
-font-weight="700"
-letter-spacing="-.2"
->
-mastercard
-</text>
-
-</svg>
-
-</span>
-
-
-<!-- SHOP PAY -->
-
-<span
-class="payment-badge payment-badge-shop-pay payment-wide"
-role="img"
-aria-label="Shop Pay"
+aria-label="PayPal"
 >
 
 <svg
@@ -8430,32 +8228,70 @@ xmlns="http://www.w3.org/2000/svg"
 aria-hidden="true"
 >
 
-<rect
-x="3"
-y="7"
-width="82"
-height="30"
-rx="6"
-fill="#5A31F4"
+<path
+d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z"
+fill="#003087"
+/>
+
+<path
+d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z"
+fill="#009CDE"
+opacity=".95"
 />
 
 <text
-x="44"
+x="61"
 y="28"
 text-anchor="middle"
-fill="#FFFFFF"
+fill="#003087"
 font-family="Arial, Helvetica, sans-serif"
-font-size="18"
+font-size="14"
 font-weight="800"
-letter-spacing="-1"
+font-style="italic"
+letter-spacing="-.8"
 >
-shop
+PayPal
 </text>
 
 </svg>
 
 </span>
 
+<!-- DISCOVER -->
+
+<span
+class="payment-badge payment-badge-discover payment-wide"
+role="img"
+aria-label="Discover"
+>
+
+<svg
+viewBox="0 0 88 44"
+xmlns="http://www.w3.org/2000/svg"
+aria-hidden="true"
+>
+
+<text
+x="43"
+y="25"
+text-anchor="middle"
+fill="#202020"
+font-family="Arial, Helvetica, sans-serif"
+font-size="14"
+font-weight="800"
+letter-spacing="-.8"
+>
+DISCOVER
+</text>
+
+<path
+d="M50 32c8-6 17-8 29-8v8z"
+fill="#F58220"
+/>
+
+</svg>
+
+</span>
 
 <!-- UNIONPAY -->
 
@@ -8514,50 +8350,49 @@ Pay
 
 </span>
 
+</div>
 
-<!-- VISA -->
+<!-- =========================================
+FOOTER COMPANY DETAILS
+========================================= -->
 
-<span
-class="payment-badge payment-badge-visa payment-wide"
-role="img"
-aria-label="Visa"
->
+<div class="footer-company-details">
 
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<p class="footer-company-intro">
+Factory Toughened Rooflights is a trading name of
+</p>
 
-<rect
-x="0"
-y="0"
-width="88"
-height="44"
-rx="3"
-fill="#1434CB"
+<div class="footer-right-glaze">
+
+<div class="footer-right-glaze-brand">
+
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
 />
 
-<text
-x="44"
-y="30"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="24"
-font-weight="900"
-font-style="italic"
-letter-spacing="-2"
->
-VISA
-</text>
+</div>
 
-</svg>
+<span class="footer-right-glaze-name">
+Right Glaze Ltd
+</span>
 
+<div class="footer-company-numbers">
+
+<span>
+Company no. - 14336400
+</span>
+
+<span>
+VAT no. - 487373544
 </span>
 
 </div>
 
+</div>
+
+</div>
 
 <!-- =========================================
 COPYRIGHT / CONTACT
