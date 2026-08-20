@@ -5658,6 +5658,103 @@ box-shadow:
 0 0 7px rgba(232,120,23,.22);
 }
 
+/* =========================================
+FOOTER ADDRESS — WORDMARK STYLE
+========================================= */
+
+.footer-wordmark .footer-address {
+display:grid;
+gap:3px;
+margin-top:23px;
+color:rgba(247,247,243,.72);
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:12px;
+font-weight:700;
+line-height:1.32;
+letter-spacing:1.05px;
+text-transform:uppercase;
+width:max-content;
+}
+
+/* =========================================
+FOOTER QUICK LINKS
+========================================= */
+
+.footer-quick-links {
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:5px;
+margin:28px 0 0;
+width:max-content;
+max-width:100%;
+}
+
+.footer-quick-links a {
+display:inline-block;
+color:rgba(247,247,243,.94);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:11px;
+font-weight:500;
+line-height:1.3;
+letter-spacing:.12px;
+text-decoration-line:underline;
+text-decoration-thickness:1px;
+text-underline-offset:3px;
+text-decoration-color:rgba(247,247,243,.62);
+transition:
+color .18s ease,
+text-decoration-color .18s ease;
+}
+
+.footer-quick-links a:hover,
+.footer-quick-links a:focus {
+color:var(--orange-bright);
+text-decoration-color:var(--orange-bright);
+outline:none;
+}
+
+/* =========================================
+FOOTER COLLECTION NOTE
+========================================= */
+
+.footer-quick-links .footer-collection {
+display:block;
+margin:11px 0 0;
+color:rgba(247,247,243,.50);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:11px;
+font-weight:400;
+line-height:1.5;
+letter-spacing:0;
+text-transform:none;
+}
+
+/*
+Creates the separation between the new
+quick-link block and company details.
+*/
+.footer-quick-links + .footer-company-details {
+margin-top:30px;
+}
+
 @media(max-width:560px) {
 
 .home-workshop-intro {
@@ -5688,6 +5785,37 @@ aspect-ratio:4 / 3;
 
 .fitting-slideshow-progress {
 height:2px;
+}
+
+/* Footer address */
+.footer-wordmark .footer-address {
+gap:3px;
+margin-top:21px;
+font-size:11px;
+line-height:1.32;
+letter-spacing:.95px;
+}
+
+/* Compact quick links */
+.footer-quick-links {
+gap:4px;
+margin-top:24px;
+}
+
+.footer-quick-links a {
+font-size:10.5px;
+line-height:1.3;
+text-underline-offset:3px;
+}
+
+.footer-quick-links .footer-collection {
+margin-top:10px;
+font-size:10.5px;
+line-height:1.5;
+}
+
+.footer-quick-links + .footer-company-details {
+margin-top:27px;
 }
 
 }
@@ -7625,10 +7753,6 @@ Buckinghamshire
 SL9 7BB
 </span>
 
-<span class="footer-collection">
-Collection available with prior booking
-</span>
-
 </div>
 
 </div>
@@ -7663,6 +7787,10 @@ Contact Us
 <a href="#">
 Terms of Use
 </a>
+
+<span class="footer-collection">
+Collection available with prior booking
+</span>
 
 </div>
 
