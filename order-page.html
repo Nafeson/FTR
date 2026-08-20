@@ -31,6 +31,7 @@ ROOT
 --orange-soft:#ff9a2f;
 --blue:#102a44;
 --max:1320px;
+--product-image-zoom:1.30;
 }
 
 * {
@@ -119,12 +120,15 @@ right:-2px;
 }
 
 @keyframes tickerMove {
+
 from {
 transform:translateX(0);
 }
+
 to {
 transform:translateX(-50%);
 }
+
 }
 
 
@@ -329,14 +333,14 @@ position:relative;
 overflow:hidden;
 background:
 radial-gradient(
-circle at 18% 11%,
-rgba(255,135,8,.085),
-transparent 27%
+circle at 18% 9%,
+rgba(255,135,8,.075),
+transparent 28%
 ),
 linear-gradient(
 180deg,
 #090909 0%,
-#050505 56%,
+#050505 58%,
 #070707 100%
 );
 }
@@ -349,7 +353,7 @@ pointer-events:none;
 background:
 linear-gradient(
 90deg,
-rgba(255,255,255,.014),
+rgba(255,255,255,.013),
 transparent 26%,
 transparent 73%,
 rgba(255,255,255,.012)
@@ -378,57 +382,87 @@ text-transform:uppercase;
 
 
 /* =========================================
-60 / 40 CONFIGURATION LAYOUT
+ONE UNIFIED PRODUCT / ORDER CARD
+========================================= */
+
+.order-card {
+position:relative;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.14);
+background:
+linear-gradient(
+135deg,
+rgba(20,22,22,.96),
+rgba(10,11,11,.98) 58%,
+rgba(7,8,8,.99)
+);
+box-shadow:
+0 32px 90px rgba(0,0,0,.33);
+padding:
+clamp(18px,2.1vw,29px);
+}
+
+.order-card::before {
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(
+115deg,
+rgba(255,255,255,.025),
+transparent 28%,
+transparent 72%,
+rgba(255,135,8,.012)
+);
+}
+
+
+/* =========================================
+HORIZONTAL LEFT / RIGHT CONFIGURATION
 ========================================= */
 
 .order-grid {
+position:relative;
+z-index:1;
 display:grid;
-grid-template-columns:minmax(0,3fr) minmax(330px,2fr);
-gap:clamp(24px,3.4vw,48px);
+grid-template-columns:minmax(0,44fr) minmax(0,56fr);
+gap:0;
 align-items:start;
 }
 
 
 /* =========================================
-LEFT — PRODUCT / VISUAL CONFIGURATOR
+LEFT — PRODUCT IMAGE / GLAZING / FINISH
 ========================================= */
 
 .product-visual-column {
 min-width:0;
-}
-
-.product-stage {
-padding:clamp(12px,1.5vw,18px);
-border:1px solid rgba(255,255,255,.11);
-background:
-linear-gradient(
-180deg,
-rgba(255,255,255,.035),
-rgba(255,255,255,.012)
-);
-box-shadow:
-0 28px 78px rgba(0,0,0,.30);
+padding-right:clamp(20px,2.5vw,35px);
 }
 
 .product-image-frame {
 position:relative;
 overflow:hidden;
 width:100%;
-aspect-ratio:1.28 / 1;
-background:#f2f2f0;
-border:1px solid rgba(255,255,255,.09);
+aspect-ratio:1.08 / 1;
+background:#f4f4f2;
+border:1px solid rgba(255,255,255,.10);
+box-shadow:
+0 20px 52px rgba(0,0,0,.20);
 }
 
 .product-image-frame::after {
 content:"";
 position:absolute;
 inset:0;
+z-index:2;
 pointer-events:none;
 opacity:0;
 transition:
-opacity .35s ease,
-background .35s ease,
-backdrop-filter .35s ease;
+opacity .32s ease,
+background .32s ease,
+backdrop-filter .32s ease;
 }
 
 .product-image-frame.tint-blue::after {
@@ -449,24 +483,40 @@ blur(1.4px)
 saturate(.72);
 }
 
+/*
+The product artwork is intentionally enlarged
+approximately 30% compared with the normal
+homepage-card image presentation.
+*/
+
 .product-image-frame img {
+position:relative;
+z-index:1;
 display:block;
 width:100%;
 height:100%;
 object-fit:contain;
+opacity:1;
+transform:scale(var(--product-image-zoom));
+transform-origin:center;
+will-change:opacity,transform;
 transition:
-transform .45s ease,
-filter .35s ease,
-opacity .25s ease;
+opacity .28s ease,
+transform .42s ease,
+filter .32s ease;
 }
 
-.product-image-frame:hover img {
-transform:scale(1.014);
+.product-image-frame img.image-fade-out {
+opacity:0;
+}
+
+.product-image-frame:hover img:not(.image-fade-out) {
+transform:scale(1.335);
 }
 
 
 /* =========================================
-LEFT — GLAZING / FINISH CONTROLS
+LEFT — SELECTORS
 ========================================= */
 
 .visual-controls {
@@ -479,7 +529,7 @@ margin-top:15px;
 
 .selector-heading {
 margin-bottom:8px;
-color:#80827e;
+color:#81837f;
 font-size:9px;
 font-weight:950;
 letter-spacing:1.4px;
@@ -489,8 +539,8 @@ text-transform:uppercase;
 .glazing-selector {
 display:grid;
 grid-template-columns:1fr 1fr;
-border:1px solid rgba(255,255,255,.17);
-background:#0a0b0b;
+border:1px solid rgba(255,255,255,.18);
+background:#090a0a;
 }
 
 .glazing-selector button,
@@ -498,7 +548,7 @@ background:#0a0b0b;
 position:relative;
 border:0;
 background:transparent;
-color:#bebfbc;
+color:#bfc0bd;
 cursor:pointer;
 font-weight:950;
 text-transform:uppercase;
@@ -509,13 +559,13 @@ transform .15s ease;
 }
 
 .glazing-selector button {
-min-height:48px;
+min-height:49px;
 font-size:11px;
-letter-spacing:1.15px;
+letter-spacing:1.2px;
 }
 
 .glazing-selector button + button {
-border-left:1px solid rgba(255,255,255,.11);
+border-left:1px solid rgba(255,255,255,.12);
 }
 
 .glazing-selector button.active {
@@ -529,21 +579,26 @@ transform:scale(.985);
 }
 
 .glazed-label {
-min-height:24px;
+height:27px;
+border:
+0 solid rgba(255,255,255,.12);
+border-left-width:1px;
+border-right-width:1px;
+border-bottom-width:1px;
 display:flex;
+align-items:center;
 justify-content:center;
-align-items:flex-end;
-padding-top:6px;
-color:#a9aaa7;
+color:#a4a5a2;
 font-size:8px;
 font-weight:950;
-letter-spacing:1.3px;
+letter-spacing:1.4px;
 text-transform:uppercase;
+background:#0a0b0b;
 }
 
 .tint-wrap {
 position:relative;
-padding-bottom:26px;
+padding-bottom:25px;
 }
 
 .tint-selector {
@@ -554,7 +609,7 @@ background:#090a0a;
 }
 
 .tint-selector button {
-min-height:41px;
+min-height:40px;
 padding:0 4px;
 font-size:8px;
 letter-spacing:.9px;
@@ -607,55 +662,54 @@ opacity:1;
 
 
 /* =========================================
-RIGHT — ORDER SUMMARY PANEL
+RIGHT — PRODUCT ORDER CONTENT
 ========================================= */
 
 .product-details {
 min-width:0;
-border:1px solid rgba(255,255,255,.11);
-background:
-linear-gradient(
-180deg,
-rgba(17,19,19,.95),
-rgba(8,9,9,.95)
-);
-padding:
-clamp(24px,2.7vw,38px)
-clamp(22px,2.5vw,34px)
-clamp(24px,2.7vw,34px);
-box-shadow:
-0 26px 68px rgba(0,0,0,.23);
-}
-
-.summary-kicker {
-margin-bottom:11px;
-color:#747672;
-font-size:9px;
-font-weight:950;
-letter-spacing:1.4px;
-text-transform:uppercase;
+padding-left:clamp(22px,2.7vw,39px);
+border-left:1px solid rgba(255,255,255,.105);
 }
 
 .product-title {
 margin:0;
-max-width:520px;
-font-size:clamp(27px,3vw,43px);
+max-width:680px;
+font-size:clamp(31px,3.4vw,48px);
 line-height:.98;
-letter-spacing:-1.65px;
+letter-spacing:-1.9px;
 font-weight:950;
-}
-
-.product-description {
-margin:16px 0 22px;
-max-width:520px;
-color:#999b97;
-font-size:12px;
-line-height:1.6;
 }
 
 
 /* =========================================
-RIGHT — OPTIONS
+HOMEPAGE-CARD STYLE PRODUCT DETAILS
+========================================= */
+
+.product-card-specs {
+display:grid;
+gap:6px;
+margin-top:18px;
+color:#9b9c99;
+font-size:clamp(11px,1.15vw,15px);
+line-height:1.3;
+font-weight:500;
+}
+
+.product-card-specs span:last-child {
+color:#858783;
+}
+
+.product-description {
+margin:18px 0 23px;
+max-width:620px;
+color:#858783;
+font-size:11px;
+line-height:1.62;
+}
+
+
+/* =========================================
+RIGHT — ORDER OPTIONS
 ========================================= */
 
 .options-stack {
@@ -700,7 +754,7 @@ width:100%;
 height:46px;
 border:1px solid rgba(255,255,255,.16);
 border-radius:0;
-background:#0b0d0d;
+background:#0a0c0c;
 color:var(--white);
 padding:0 40px 0 13px;
 font-size:11px;
@@ -711,7 +765,7 @@ cursor:pointer;
 .segmented {
 display:grid;
 border:1px solid rgba(255,255,255,.16);
-background:#0a0c0c;
+background:#090b0b;
 }
 
 .segmented.two {
@@ -735,7 +789,8 @@ text-transform:uppercase;
 cursor:pointer;
 transition:
 background .2s ease,
-color .2s ease;
+color .2s ease,
+transform .15s ease;
 }
 
 .segmented button + button {
@@ -747,62 +802,27 @@ background:#1a1c1c;
 color:var(--orange);
 }
 
-
-/* =========================================
-RIGHT — SPECIFICATION SNAPSHOT
-========================================= */
-
-.specification-snapshot {
-margin-top:20px;
-border-top:1px solid rgba(255,255,255,.09);
-border-bottom:1px solid rgba(255,255,255,.09);
-}
-
-.snapshot-row {
-display:grid;
-grid-template-columns:88px minmax(0,1fr);
-gap:12px;
-align-items:center;
-padding:10px 0;
-}
-
-.snapshot-row + .snapshot-row {
-border-top:1px solid rgba(255,255,255,.065);
-}
-
-.snapshot-row span {
-color:#70726e;
-font-size:8px;
-font-weight:950;
-letter-spacing:1.05px;
-text-transform:uppercase;
-}
-
-.snapshot-row strong {
-min-width:0;
-color:#d9dad7;
-font-size:11px;
-line-height:1.35;
-text-align:right;
-font-weight:850;
+.segmented button:active {
+transform:scale(.985);
 }
 
 
 /* =========================================
-PRICE
+PRICE — HOMEPAGE STYLE
 ========================================= */
 
 .price-panel {
-margin-top:22px;
-padding-top:20px;
+margin-top:24px;
+padding-top:19px;
+border-top:1px solid rgba(255,255,255,.10);
 }
 
 .price-label {
-margin-bottom:7px;
+margin-bottom:8px;
 color:#777975;
 font-size:9px;
 font-weight:950;
-letter-spacing:1.45px;
+letter-spacing:1.5px;
 text-transform:uppercase;
 }
 
@@ -817,9 +837,9 @@ white-space:nowrap;
 .price-pound,
 .price-whole,
 .price-dot {
-font-size:clamp(39px,4.4vw,60px);
+font-size:clamp(42px,4.7vw,66px);
 font-weight:950;
-letter-spacing:-2.7px;
+letter-spacing:-2.9px;
 }
 
 .price-pound {
@@ -834,9 +854,9 @@ margin-left:1px;
 
 .price-pence {
 position:relative;
-top:-.08em;
+top:-.09em;
 margin-left:3px;
-font-size:clamp(16px,1.8vw,24px);
+font-size:clamp(17px,1.9vw,26px);
 line-height:1;
 font-weight:950;
 letter-spacing:-.5px;
@@ -858,14 +878,14 @@ DIMENSIONS
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:1px;
-margin-top:16px;
+margin-top:17px;
 border:1px solid rgba(255,255,255,.09);
 background:rgba(255,255,255,.09);
 }
 
 .dimension-item {
 min-width:0;
-padding:11px 12px;
+padding:12px 13px;
 background:#090b0b;
 }
 
@@ -899,14 +919,14 @@ QUANTITY + ADD TO BASKET
 ========================================= */
 
 .purchase-panel {
-margin-top:20px;
+margin-top:21px;
 }
 
 .quantity-row {
 display:grid;
-grid-template-columns:47px 1fr 52px;
-min-height:52px;
-border:1px solid rgba(255,255,255,.17);
+grid-template-columns:52px 1fr 58px;
+min-height:55px;
+border:1px solid rgba(255,255,255,.18);
 background:
 linear-gradient(
 180deg,
@@ -915,22 +935,23 @@ linear-gradient(
 );
 transition:
 border-color .24s ease,
-box-shadow .24s ease;
+box-shadow .24s ease,
+transform .2s ease;
 }
 
 .quantity-row:focus-within,
 .quantity-row:hover {
-border-color:rgba(255,135,8,.50);
+border-color:rgba(255,135,8,.55);
 box-shadow:
 0 0 0 1px rgba(255,135,8,.05),
-0 12px 28px rgba(0,0,0,.16);
+0 14px 32px rgba(0,0,0,.18);
 }
 
 .quantity-button {
 border:0;
 background:transparent;
 color:#bfc0bd;
-font-size:23px;
+font-size:25px;
 line-height:1;
 font-weight:300;
 cursor:pointer;
@@ -956,7 +977,7 @@ border-right:1px solid rgba(255,255,255,.10);
 }
 
 .quantity-button:active {
-transform:scale(.91);
+transform:scale(.90);
 }
 
 .quantity-display {
@@ -969,7 +990,7 @@ text-align:center;
 
 .quantity-display strong {
 color:var(--white);
-font-size:18px;
+font-size:19px;
 font-weight:950;
 }
 
@@ -983,23 +1004,23 @@ text-transform:uppercase;
 
 .add-to-basket {
 width:100%;
-min-height:58px;
+min-height:61px;
 margin-top:9px;
 border:1px solid var(--orange);
 background:var(--orange);
 color:#050505;
-padding:0 18px;
+padding:0 19px;
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:13px;
 font-size:10px;
 font-weight:950;
-letter-spacing:1.05px;
+letter-spacing:1.08px;
 text-transform:uppercase;
 cursor:pointer;
 box-shadow:
-0 18px 42px rgba(255,135,8,.07);
+0 18px 44px rgba(255,135,8,.08);
 transition:
 transform .2s ease,
 filter .2s ease,
@@ -1010,11 +1031,11 @@ box-shadow .2s ease;
 transform:translateY(-2px);
 filter:brightness(1.055);
 box-shadow:
-0 22px 52px rgba(255,135,8,.13);
+0 24px 56px rgba(255,135,8,.14);
 }
 
 .add-to-basket .basket-arrow {
-font-size:19px;
+font-size:20px;
 line-height:1;
 transition:transform .2s ease;
 }
@@ -1354,29 +1375,36 @@ TABLET
 width:92%;
 }
 
+.order-card {
+padding:16px;
+}
+
 .order-grid {
-grid-template-columns:minmax(0,1.45fr) minmax(285px,1fr);
-gap:24px;
+grid-template-columns:minmax(0,43fr) minmax(0,57fr);
 }
 
-.product-stage {
-padding:12px;
-}
-
-.product-image-frame {
-aspect-ratio:1.18 / 1;
+.product-visual-column {
+padding-right:20px;
 }
 
 .product-details {
-padding:23px 20px;
+padding-left:21px;
+}
+
+.product-image-frame {
+aspect-ratio:1.03 / 1;
 }
 
 .product-title {
-font-size:clamp(25px,3.5vw,36px);
+font-size:clamp(27px,3.7vw,38px);
+}
+
+.product-card-specs {
+font-size:11px;
 }
 
 .product-description {
-font-size:11px;
+font-size:10.5px;
 }
 
 .purchase-assurance {
@@ -1399,7 +1427,8 @@ grid-column:1 / -1;
 
 
 /* =========================================
-MOBILE — COMPACT TWO-COLUMN CONFIGURATOR
+MOBILE / PORTRAIT
+KEEP HORIZONTAL LEFT + RIGHT LAYOUT
 ========================================= */
 
 @media(max-width:720px) {
@@ -1442,7 +1471,7 @@ display:none;
 }
 
 .order-shell {
-width:94%;
+width:95%;
 padding-top:27px;
 padding-bottom:58px;
 }
@@ -1453,26 +1482,43 @@ font-size:8px;
 letter-spacing:1.45px;
 }
 
+.order-card {
+padding:8px;
+}
+
 .order-grid {
-grid-template-columns:minmax(0,58fr) minmax(0,42fr);
-gap:9px;
+grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+gap:0;
 align-items:start;
 }
 
-.product-stage {
-padding:6px;
+.product-visual-column {
+padding-right:8px;
+}
+
+.product-details {
+padding-left:9px;
+border-left:1px solid rgba(255,255,255,.10);
 }
 
 .product-image-frame {
 aspect-ratio:1 / 1;
 }
 
+.product-image-frame img {
+transform:scale(1.30);
+}
+
+.product-image-frame:hover img:not(.image-fade-out) {
+transform:scale(1.30);
+}
+
 .visual-controls {
-padding-top:8px;
+padding-top:9px;
 }
 
 .visual-control-block + .visual-control-block {
-margin-top:8px;
+margin-top:9px;
 }
 
 .selector-heading {
@@ -1482,17 +1528,16 @@ letter-spacing:.9px;
 }
 
 .glazing-selector button {
-min-height:32px;
+min-height:34px;
 padding:0 3px;
 font-size:7px;
-letter-spacing:.55px;
+letter-spacing:.6px;
 }
 
 .glazed-label {
-min-height:16px;
-padding-top:3px;
+height:20px;
 font-size:5.5px;
-letter-spacing:.8px;
+letter-spacing:.85px;
 }
 
 .tint-wrap {
@@ -1500,7 +1545,7 @@ padding-bottom:17px;
 }
 
 .tint-selector button {
-min-height:28px;
+min-height:29px;
 padding:0 1px;
 font-size:5.5px;
 letter-spacing:.25px;
@@ -1516,29 +1561,28 @@ font-size:5px;
 letter-spacing:.65px;
 }
 
-.product-details {
-padding:10px 8px 9px;
-}
-
-.summary-kicker {
-margin-bottom:5px;
-font-size:5.5px;
-letter-spacing:.75px;
-}
-
 .product-title {
-font-size:clamp(16px,4.7vw,22px);
+font-size:clamp(17px,5vw,23px);
 line-height:.98;
-letter-spacing:-.75px;
+letter-spacing:-.85px;
+}
+
+.product-card-specs {
+gap:3px;
+margin-top:8px;
+font-size:7px;
+line-height:1.25;
 }
 
 .product-description {
-display:none;
+display:block;
+margin:8px 0 11px;
+font-size:6.5px;
+line-height:1.46;
 }
 
 .options-stack {
 gap:7px;
-margin-top:10px;
 }
 
 .option-group label,
@@ -1555,54 +1599,34 @@ height:4px;
 }
 
 .size-select {
-height:30px;
+height:31px;
 padding:0 21px 0 7px;
 font-size:6.5px;
 }
 
 .segmented button {
-min-height:29px;
+min-height:30px;
 padding:0 2px;
 font-size:5.5px;
 letter-spacing:.35px;
 }
 
-.specification-snapshot {
-margin-top:9px;
-}
-
-.snapshot-row {
-grid-template-columns:42px minmax(0,1fr);
-gap:4px;
-padding:5px 0;
-}
-
-.snapshot-row span {
-font-size:4.8px;
-letter-spacing:.55px;
-}
-
-.snapshot-row strong {
-font-size:6px;
-line-height:1.2;
-}
-
 .price-panel {
-margin-top:10px;
-padding-top:8px;
+margin-top:11px;
+padding-top:9px;
 }
 
 .price-label {
 margin-bottom:4px;
 font-size:5.5px;
-letter-spacing:.75px;
+letter-spacing:.8px;
 }
 
 .price-pound,
 .price-whole,
 .price-dot {
-font-size:clamp(24px,7vw,31px);
-letter-spacing:-1.6px;
+font-size:clamp(25px,7.2vw,32px);
+letter-spacing:-1.65px;
 }
 
 .price-pence {
@@ -1622,7 +1646,7 @@ margin-top:8px;
 }
 
 .dimension-item {
-padding:6px 6px;
+padding:6px;
 }
 
 .dimension-item + .dimension-item {
@@ -1644,16 +1668,16 @@ display:none;
 }
 
 .purchase-panel {
-margin-top:9px;
+margin-top:10px;
 }
 
 .quantity-row {
-grid-template-columns:27px 1fr 30px;
-min-height:33px;
+grid-template-columns:29px 1fr 33px;
+min-height:35px;
 }
 
 .quantity-button {
-font-size:16px;
+font-size:17px;
 }
 
 .quantity-display {
@@ -1661,7 +1685,7 @@ gap:3px;
 }
 
 .quantity-display strong {
-font-size:11px;
+font-size:12px;
 }
 
 .quantity-display span {
@@ -1669,16 +1693,16 @@ display:none;
 }
 
 .add-to-basket {
-min-height:37px;
+min-height:40px;
 margin-top:5px;
-padding:0 7px;
+padding:0 8px;
 gap:5px;
-font-size:5.8px;
-letter-spacing:.45px;
+font-size:6px;
+letter-spacing:.48px;
 }
 
 .add-to-basket .basket-arrow {
-font-size:12px;
+font-size:13px;
 }
 
 .purchase-assurance {
@@ -1811,21 +1835,32 @@ display:none;
 width:96%;
 }
 
-.order-grid {
-grid-template-columns:minmax(0,59fr) minmax(0,41fr);
-gap:7px;
+.order-card {
+padding:7px;
 }
 
-.product-stage {
-padding:5px;
+.order-grid {
+grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+}
+
+.product-visual-column {
+padding-right:7px;
 }
 
 .product-details {
-padding:9px 7px 8px;
+padding-left:8px;
 }
 
 .product-title {
-font-size:clamp(15px,4.55vw,20px);
+font-size:clamp(16px,4.8vw,21px);
+}
+
+.product-card-specs {
+font-size:6.4px;
+}
+
+.product-description {
+font-size:6px;
 }
 
 .tint-selector button {
@@ -1839,16 +1874,7 @@ font-size:5px;
 .price-pound,
 .price-whole,
 .price-dot {
-font-size:clamp(22px,6.8vw,29px);
-}
-
-.footer-top {
-grid-template-columns:1fr;
-}
-
-.footer-brand,
-.footer-column {
-grid-column:auto;
+font-size:clamp(23px,7vw,30px);
 }
 
 }
@@ -2171,16 +2197,16 @@ Configure Your Rooflight
 </div>
 
 
+<div class="order-card">
+
 <div class="order-grid">
 
 
 <!-- =========================================
-LEFT — PRODUCT + VISUAL OPTIONS
+LEFT — PRODUCT IMAGE + VISUAL OPTIONS
 ========================================= -->
 
 <div class="product-visual-column">
-
-<div class="product-stage">
 
 <div
 class="product-image-frame"
@@ -2299,7 +2325,6 @@ Tint
 
 </div>
 
-</div>
 
 </div>
 
@@ -2313,17 +2338,29 @@ RIGHT — PRODUCT SUMMARY + ORDER OPTIONS
 <div class="product-details">
 
 
-<div class="summary-kicker">
-Your Rooflight
-</div>
-
-
 <h1
 class="product-title"
 id="productTitle"
 >
 600 × 900mm Triple Glazed Frameless Skylight
 </h1>
+
+
+<div class="product-card-specs">
+
+<span>
+Inside Visible Glass Size
+</span>
+
+<span id="productGlassSpec">
+6mm Toughened Safety Glass
+</span>
+
+<span id="deliverySpec">
+Free Mainland UK Delivery
+</span>
+
+</div>
 
 
 <p class="product-description">
@@ -2423,66 +2460,6 @@ data-border="150"
 
 </div>
 
-
-</div>
-
-
-<!-- =========================================
-SELECTED SPECIFICATION
-========================================= -->
-
-<div class="specification-snapshot">
-
-<div class="snapshot-row">
-
-<span>
-Glazing
-</span>
-
-<strong id="summaryGlazing">
-Triple Glazed
-</strong>
-
-</div>
-
-
-<div class="snapshot-row">
-
-<span>
-Finish
-</span>
-
-<strong id="summaryFinish">
-Clear
-</strong>
-
-</div>
-
-
-<div class="snapshot-row">
-
-<span>
-Type
-</span>
-
-<strong id="summaryType">
-Toughened
-</strong>
-
-</div>
-
-
-<div class="snapshot-row">
-
-<span>
-Border
-</span>
-
-<strong id="summaryBorder">
-100mm
-</strong>
-
-</div>
 
 </div>
 
@@ -2661,6 +2638,9 @@ Free Mainland UK Delivery*
 </span>
 
 </div>
+
+</div>
+
 
 </div>
 
@@ -3224,6 +3204,16 @@ document.getElementById(
 "productImageFrame"
 );
 
+const productGlassSpec =
+document.getElementById(
+"productGlassSpec"
+);
+
+const deliverySpec =
+document.getElementById(
+"deliverySpec"
+);
+
 const internalSize =
 document.getElementById(
 "internalSize"
@@ -3299,25 +3289,16 @@ document.getElementById(
 "tintCaption"
 );
 
-const summaryGlazing =
-document.getElementById(
-"summaryGlazing"
-);
 
-const summaryFinish =
-document.getElementById(
-"summaryFinish"
-);
+/* =========================================
+IMAGE FADE STATE
+========================================= */
 
-const summaryType =
-document.getElementById(
-"summaryType"
-);
+let imageTransitionToken =
+0;
 
-const summaryBorder =
-document.getElementById(
-"summaryBorder"
-);
+let imageFadeTimer =
+null;
 
 
 /* =========================================
@@ -3440,7 +3421,7 @@ return `${width}mm × ${length}mm`;
 EXTERNAL SIZE
 ========================================= */
 
-function calculateExternalSize() {
+function getExternalDimensions() {
 
 const [
 width,
@@ -3458,7 +3439,98 @@ const increase =
 state.border *
 2;
 
-return `${width + increase}mm × ${length + increase}mm`;
+return {
+width:
+width +
+increase,
+
+length:
+length +
+increase
+};
+
+}
+
+
+function calculateExternalSize() {
+
+const dimensions =
+getExternalDimensions();
+
+return `${dimensions.width}mm × ${dimensions.length}mm`;
+
+}
+
+
+/* =========================================
+TOP GLASS SPECIFICATION
+========================================= */
+
+function getTopGlassLabel() {
+
+const dimensions =
+getExternalDimensions();
+
+const area =
+(
+dimensions.width *
+dimensions.length
+) /
+1000000;
+
+if (
+area >
+3.4
+) {
+
+return "10mm Toughened Safety Glass";
+
+}
+
+if (
+area >
+2.0
+) {
+
+return "8mm Toughened Safety Glass";
+
+}
+
+return "6mm Toughened Safety Glass";
+
+}
+
+
+/* =========================================
+DELIVERY DISPLAY
+========================================= */
+
+function getDeliveryLabel() {
+
+const [
+width,
+length
+] =
+state.size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+width <=
+1000 &&
+length <=
+2500
+) {
+
+return "Free Mainland UK Delivery";
+
+}
+
+return "Delivery Calculated By Postcode";
 
 }
 
@@ -3475,15 +3547,22 @@ state.homepageImport;
 if (
 !imported
 ) {
+
 return false;
+
 }
 
 return (
-imported.size === state.size &&
-imported.glazing === state.glazing &&
-imported.type === state.type &&
-imported.border === state.border &&
-imported.tint === state.tint
+imported.size ===
+state.size &&
+imported.glazing ===
+state.glazing &&
+imported.type ===
+state.type &&
+imported.border ===
+state.border &&
+imported.tint ===
+state.tint
 );
 
 }
@@ -3502,12 +3581,16 @@ if (
 !imported ||
 !imported.image
 ) {
+
 return false;
+
 }
 
 return (
-imported.size === state.size &&
-imported.tint === state.tint
+imported.size ===
+state.size &&
+imported.tint ===
+state.tint
 );
 
 }
@@ -3535,12 +3618,211 @@ state.size
 if (
 !product
 ) {
+
 return "";
+
 }
 
 return (
 "images/product-cards/" +
 product.image
+);
+
+}
+
+
+/* =========================================
+SMOOTH PRODUCT IMAGE FADE
+========================================= */
+
+function setProductImage(
+imageSource,
+altText,
+animate = false
+) {
+
+if (
+!imageSource
+) {
+
+return;
+
+}
+
+productImage.alt =
+altText;
+
+imageTransitionToken +=
+1;
+
+const transitionToken =
+imageTransitionToken;
+
+if (
+imageFadeTimer !==
+null
+) {
+
+window.clearTimeout(
+imageFadeTimer
+);
+
+imageFadeTimer =
+null;
+
+}
+
+if (
+!animate
+) {
+
+productImage.classList.remove(
+"image-fade-out"
+);
+
+if (
+productImage.getAttribute(
+"src"
+) !==
+imageSource
+) {
+
+productImage.src =
+imageSource;
+
+}
+
+return;
+
+}
+
+
+/*
+First gently fade the currently displayed
+image down.
+*/
+
+productImage.classList.add(
+"image-fade-out"
+);
+
+
+imageFadeTimer =
+window.setTimeout(
+() => {
+
+if (
+transitionToken !==
+imageTransitionToken
+) {
+
+return;
+
+}
+
+const currentSource =
+productImage.getAttribute(
+"src"
+) || "";
+
+
+/*
+Even where two sizes share the same generic
+product artwork, retain the fade so changing
+size still feels deliberate.
+*/
+
+if (
+currentSource ===
+imageSource
+) {
+
+window.requestAnimationFrame(
+() => {
+
+if (
+transitionToken ===
+imageTransitionToken
+) {
+
+productImage.classList.remove(
+"image-fade-out"
+);
+
+}
+
+}
+);
+
+return;
+
+}
+
+
+/*
+Preload the next image while the current image
+has faded down, then reveal it cleanly.
+*/
+
+const preloader =
+new Image();
+
+
+const revealImage =
+() => {
+
+if (
+transitionToken !==
+imageTransitionToken
+) {
+
+return;
+
+}
+
+productImage.src =
+imageSource;
+
+productImage.alt =
+altText;
+
+window.requestAnimationFrame(
+() => {
+
+window.requestAnimationFrame(
+() => {
+
+if (
+transitionToken ===
+imageTransitionToken
+) {
+
+productImage.classList.remove(
+"image-fade-out"
+);
+
+}
+
+}
+);
+
+}
+);
+
+};
+
+
+preloader.onload =
+revealImage;
+
+preloader.onerror =
+revealImage;
+
+preloader.src =
+imageSource;
+
+},
+140
 );
 
 }
@@ -3560,7 +3842,9 @@ state.size
 if (
 !product
 ) {
+
 return 0;
+
 }
 
 
@@ -3586,19 +3870,31 @@ state.size
 ];
 
 if (
-state.type === "toughened" &&
-state.border === 100 &&
+state.type ===
+"toughened" &&
+state.border ===
+100 &&
 tintPrices &&
-tintPrices[state.tint] &&
+tintPrices[
+state.tint
+] &&
 Number.isFinite(
 Number(
-tintPrices[state.tint][state.glazing]
+tintPrices[
+state.tint
+][
+state.glazing
+]
 )
 )
 ) {
 
 return Number(
-tintPrices[state.tint][state.glazing]
+tintPrices[
+state.tint
+][
+state.glazing
+]
 );
 
 }
@@ -3608,7 +3904,9 @@ tintPrices[state.tint][state.glazing]
 
 const base =
 Number(
-product[state.glazing]
+product[
+state.glazing
+]
 );
 
 const typeExtra =
@@ -3668,7 +3966,8 @@ whole
 "en-GB"
 ),
 
-pence:pence
+pence:
+pence
 
 };
 
@@ -3690,7 +3989,8 @@ let tintText =
 "";
 
 if (
-state.tint === "blue"
+state.tint ===
+"blue"
 ) {
 
 tintText =
@@ -3699,7 +3999,8 @@ tintText =
 }
 
 if (
-state.tint === "grey"
+state.tint ===
+"grey"
 ) {
 
 tintText =
@@ -3708,7 +4009,8 @@ tintText =
 }
 
 if (
-state.tint === "satin"
+state.tint ===
+"satin"
 ) {
 
 tintText =
@@ -3717,90 +4019,22 @@ tintText =
 }
 
 const typeText =
-state.type === "laminated"
-? "Laminated "
-: "";
+state.type ===
+"laminated"
+?
+"Laminated "
+:
+"";
 
 const glazingText =
-state.glazing === "triple"
-? "Triple"
-: "Double";
+state.glazing ===
+"triple"
+?
+"Triple"
+:
+"Double";
 
 return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
-
-}
-
-
-/* =========================================
-SUMMARY LABELS
-========================================= */
-
-function getFinishLabel() {
-
-if (
-state.tint === "blue"
-) {
-return "Blue Tinted";
-}
-
-if (
-state.tint === "grey"
-) {
-return "Grey Tinted";
-}
-
-if (
-state.tint === "satin"
-) {
-return "Satin Privacy";
-}
-
-return "Clear";
-
-}
-
-
-function updateSpecificationSummary() {
-
-if (
-summaryGlazing
-) {
-
-summaryGlazing.textContent =
-state.glazing === "triple"
-? "Triple Glazed"
-: "Double Glazed";
-
-}
-
-if (
-summaryFinish
-) {
-
-summaryFinish.textContent =
-getFinishLabel();
-
-}
-
-if (
-summaryType
-) {
-
-summaryType.textContent =
-state.type === "laminated"
-? "Laminated"
-: "Toughened";
-
-}
-
-if (
-summaryBorder
-) {
-
-summaryBorder.textContent =
-`${state.border}mm`;
-
-}
 
 }
 
@@ -3818,7 +4052,8 @@ productImageFrame.classList.remove(
 );
 
 if (
-state.tint !== "clear"
+state.tint !==
+"clear"
 ) {
 
 productImageFrame.classList.add(
@@ -3843,7 +4078,8 @@ tintCaption.style.transform =
 
 tintCaption.classList.toggle(
 "visible",
-state.tint !== "clear"
+state.tint !==
+"clear"
 );
 
 }
@@ -3887,7 +4123,8 @@ state.tint
 
 if (
 state.homepageImport &&
-state.homepageImport.source === "homepage"
+state.homepageImport.source ===
+"homepage"
 ) {
 
 params.set(
@@ -3942,7 +4179,8 @@ UPDATE PAGE UI
 
 function updateUI(
 {
-updateUrl = true
+updateUrl = true,
+animateImage = false
 } = {}
 ) {
 
@@ -3954,7 +4192,9 @@ state.size
 if (
 !product
 ) {
+
 return;
+
 }
 
 const price =
@@ -3971,65 +4211,91 @@ buildTitle();
 const imageSource =
 selectedProductImage();
 
+const imageAlt =
+`${formatSize(state.size)} frameless flat roof skylight`;
+
+
 productTitle.textContent =
 title;
 
 document.title =
 `${title} | Factory Toughened Rooflights`;
 
-if (
-imageSource
-) {
 
-productImage.src =
-imageSource;
+setProductImage(
+imageSource,
+imageAlt,
+animateImage
+);
 
-}
-
-productImage.alt =
-`${formatSize(state.size)} frameless flat roof skylight`;
 
 sizeSelect.value =
 state.size;
+
+
+productGlassSpec.textContent =
+getTopGlassLabel();
+
+
+deliverySpec.textContent =
+getDeliveryLabel();
+
 
 internalSize.textContent =
 formatDimension(
 state.size
 );
 
+
 externalSize.textContent =
 calculateExternalSize();
+
 
 priceWhole.textContent =
 parts.whole;
 
+
 pricePence.textContent =
 parts.pence;
+
 
 mobileBarPrice.textContent =
 `£${parts.whole}.${parts.pence}`;
 
+
 quantityValue.textContent =
 state.quantity;
 
+
 quantityUnitLabel.textContent =
-state.quantity === 1
-? "Unit"
-: "Units";
+state.quantity ===
+1
+?
+"Unit"
+:
+"Units";
+
 
 addToBasketText.textContent =
 `Add ${state.quantity} To Basket`;
 
+
 mobileAddToBasket.textContent =
 `Add ${state.quantity} To Basket`;
 
+
 quantityMinus.disabled =
-state.quantity <= 1;
+state.quantity <=
+1;
+
 
 quantityMinus.style.opacity =
-state.quantity <= 1
-? ".36"
-: "1";
+state.quantity <=
+1
+?
+".36"
+:
+"1";
 
 
 document
@@ -4101,9 +4367,9 @@ state.tint
 }
 );
 
+
 updateTintAppearance();
 
-updateSpecificationSummary();
 
 if (
 updateUrl
@@ -4279,6 +4545,7 @@ params.get(
 "tint"
 );
 
+
 const tint =
 normalizeTint(
 finishParameter
@@ -4359,8 +4626,10 @@ type
 state.type =
 type;
 
-} else if (
-source === "homepage"
+}
+else if (
+source ===
+"homepage"
 ) {
 
 state.type =
@@ -4382,8 +4651,10 @@ border
 state.border =
 border;
 
-} else if (
-source === "homepage"
+}
+else if (
+source ===
+"homepage"
 ) {
 
 state.border =
@@ -4410,12 +4681,14 @@ tint;
 
 
 if (
-source === "homepage"
+source ===
+"homepage"
 ) {
 
 state.homepageImport = {
 
-source:"homepage",
+source:
+"homepage",
 
 size:
 state.size,
@@ -4436,8 +4709,10 @@ price:
 Number.isFinite(
 importedPrice
 )
-? importedPrice
-: null,
+?
+importedPrice
+:
+null,
 
 image:
 importedImage
@@ -4474,7 +4749,17 @@ newSize;
 state.quantity =
 1;
 
-updateUI();
+
+/*
+Size changes use the dedicated smooth image
+fade. All other controls remain instant.
+*/
+
+updateUI(
+{
+animateImage:true
+}
+);
 
 }
 
@@ -4510,7 +4795,9 @@ if (
 glazing
 )
 ) {
+
 return;
+
 }
 
 state.glazing =
@@ -4553,7 +4840,9 @@ if (
 type
 )
 ) {
+
 return;
+
 }
 
 state.type =
@@ -4597,7 +4886,9 @@ if (
 border
 )
 ) {
+
 return;
+
 }
 
 state.border =
@@ -4782,7 +5073,9 @@ document.getElementById(
 if (
 !menu
 ) {
+
 return;
+
 }
 
 menu.classList.add(
@@ -4810,7 +5103,9 @@ document.getElementById(
 if (
 !menu
 ) {
+
 return;
+
 }
 
 menu.classList.remove(
@@ -4833,7 +5128,8 @@ document.addEventListener(
 event => {
 
 if (
-event.key === "Escape"
+event.key ===
+"Escape"
 ) {
 
 closeMenu();
@@ -4873,7 +5169,8 @@ loadStateFromQuery();
 
 updateUI(
 {
-updateUrl:false
+updateUrl:false,
+animateImage:false
 }
 );
 
