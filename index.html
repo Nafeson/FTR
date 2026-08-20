@@ -3902,94 +3902,260 @@ margin-top:30px;
 
 /* =========================================
 FOOTER PAYMENT METHODS
+MATCHES CURRENT INDEX 3
 ========================================= */
 
-.footer-payment-area {
+.footer-payment-section {
 display:grid;
 justify-items:start;
-gap:10px;
-max-width:620px;
-margin-top:30px;
+gap:14px;
+width:100%;
+max-width:760px;
+margin-top:32px;
 padding-top:24px;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
-.footer-payment-label {
-margin:0;
-color:rgba(247,247,243,.46);
-font-family:
-"Aptos",
-"Inter",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:10px;
-font-weight:600;
-line-height:1.35;
-letter-spacing:.8px;
-text-transform:uppercase;
-}
+/* Payment icon row */
 
-.footer-payment-icons {
+.footer-payment-methods {
 display:flex;
 align-items:center;
 justify-content:flex-start;
 flex-wrap:wrap;
 gap:7px;
+width:100%;
 }
 
-.footer-payment-icon {
-display:flex;
+/* Shared payment badge */
+
+.payment-badge {
+position:relative;
+display:inline-flex;
 align-items:center;
 justify-content:center;
-width:48px;
-height:31px;
+flex:0 0 auto;
+width:52px;
+height:32px;
 padding:4px 5px;
 overflow:hidden;
-background:#ffffff;
-border:1px solid rgba(255,255,255,.18);
 border-radius:4px;
+border:1px solid rgba(0,0,0,.10);
+background:#ffffff;
 box-shadow:
 0 1px 0 rgba(255,255,255,.05),
 0 3px 8px rgba(0,0,0,.18);
+font-family:
+Arial,
+Helvetica,
+sans-serif;
+line-height:1;
 }
 
-.footer-payment-icon svg {
+/* Text inside badges */
+
+.payment-badge-text {
+position:relative;
+z-index:2;
 display:block;
-width:100%;
-height:100%;
-max-width:40px;
-max-height:23px;
-}
-
-.footer-payment-icon img {
-display:block;
-width:100%;
-height:100%;
-object-fit:contain;
-}
-
-/*
-Apple Pay / Google Pay style badges can use
-a darker treatment where required.
-*/
-
-.footer-payment-icon.payment-dark {
-background:#ffffff;
-color:#111111;
+white-space:nowrap;
+font-size:8px;
+font-weight:800;
+line-height:1;
+letter-spacing:-.15px;
 }
 
 /* =========================================
-FOOTER COPYRIGHT / CONTACT LINE
+AMERICAN EXPRESS
 ========================================= */
 
-.footer-legal-line {
+.payment-badge-amex {
+background:#1478bd;
+border-color:#1478bd;
+}
+
+.payment-badge-amex .payment-badge-text {
+color:#ffffff;
+font-size:8px;
+font-weight:900;
+letter-spacing:-.55px;
+text-shadow:
+0 1px 0 rgba(0,0,0,.18);
+}
+
+/* =========================================
+APPLE PAY
+========================================= */
+
+.payment-badge-apple-pay {
+background:#ffffff;
+border-color:#d9d9d9;
+}
+
+.payment-badge-apple-pay .payment-badge-text {
+color:#111111;
+font-size:8.5px;
+font-weight:700;
+letter-spacing:-.35px;
+}
+
+/* =========================================
+MASTERCARD
+========================================= */
+
+.payment-badge-mastercard {
+background:#ffffff;
+border-color:#dddddd;
+flex-direction:column;
+gap:1px;
+}
+
+.payment-card-circles {
+position:relative;
+z-index:1;
+display:block;
+width:24px;
+height:13px;
+margin-bottom:0;
+}
+
+.payment-card-circles::before,
+.payment-card-circles::after {
+content:"";
+position:absolute;
+top:0;
+width:13px;
+height:13px;
+border-radius:50%;
+}
+
+.payment-card-circles::before {
+left:1px;
+background:#eb001b;
+}
+
+.payment-card-circles::after {
+right:1px;
+background:#f79e1b;
+opacity:.96;
+}
+
+.payment-badge-mastercard .payment-badge-text {
+color:#202020;
+font-size:5.2px;
+font-weight:700;
+letter-spacing:-.2px;
+}
+
+/* =========================================
+VISA
+========================================= */
+
+.payment-badge-visa {
+background:#ffffff;
+border-color:#dddddd;
+}
+
+.payment-badge-visa .payment-badge-text {
+color:#1a1f71;
+font-size:11px;
+font-weight:900;
+font-style:italic;
+letter-spacing:-.65px;
+}
+
+/* =========================================
+GOOGLE PAY
+========================================= */
+
+.payment-badge-google-pay {
+background:#ffffff;
+border-color:#dddddd;
+}
+
+.payment-badge-google-pay .payment-badge-text {
+color:#303134;
+font-size:9px;
+font-weight:700;
+letter-spacing:-.45px;
+}
+
+/* =========================================
+DISCOVER
+========================================= */
+
+.payment-badge-discover {
+background:#ffffff;
+border-color:#dddddd;
+}
+
+.payment-badge-discover .payment-badge-text {
+color:#1d1d1d;
+font-size:7px;
+font-weight:800;
+font-style:italic;
+letter-spacing:-.35px;
+}
+
+.payment-badge-discover::after {
+content:"";
+position:absolute;
+right:5px;
+bottom:5px;
+width:13px;
+height:5px;
+border-radius:50%;
+background:#f58220;
+opacity:.95;
+z-index:1;
+}
+
+/* =========================================
+PAYPAL
+========================================= */
+
+.payment-badge-paypal {
+background:#ffffff;
+border-color:#dddddd;
+}
+
+.payment-badge-paypal .payment-badge-text {
+color:#003087;
+font-size:8.5px;
+font-weight:900;
+font-style:italic;
+letter-spacing:-.55px;
+}
+
+/* =========================================
+KLARNA
+========================================= */
+
+.payment-badge-klarna {
+background:#ffb3c7;
+border-color:#ffb3c7;
+}
+
+.payment-badge-klarna .payment-badge-text {
+color:#111111;
+font-size:9px;
+font-weight:900;
+letter-spacing:-.45px;
+}
+
+/* =========================================
+FOOTER COPYRIGHT / EMAIL
+========================================= */
+
+.footer-copyright {
 display:flex;
 align-items:center;
+justify-content:flex-start;
 flex-wrap:wrap;
 gap:5px;
+width:100%;
 max-width:900px;
-margin:14px 0 0;
+margin:0;
 color:rgba(247,247,243,.43);
 font-family:
 "Aptos",
@@ -4003,14 +4169,24 @@ line-height:1.55;
 letter-spacing:.05px;
 }
 
-.footer-legal-line a {
+.footer-copyright span {
+display:inline;
+}
+
+.footer-copyright-divider {
+color:rgba(247,247,243,.28);
+padding:0 1px;
+}
+
+.footer-copyright a {
 color:rgba(247,247,243,.62);
 text-decoration:none;
+overflow-wrap:anywhere;
 transition:color .18s ease;
 }
 
-.footer-legal-line a:hover,
-.footer-legal-line a:focus {
+.footer-copyright a:hover,
+.footer-copyright a:focus {
 color:var(--orange-bright);
 outline:none;
 }
@@ -5146,47 +5322,99 @@ font-size:20px;
 MOBILE PAYMENT METHODS
 ========================================= */
 
-.footer-payment-area {
-gap:9px;
-margin-top:26px;
+.footer-payment-section {
+gap:12px;
+margin-top:27px;
 padding-top:21px;
 }
 
-.footer-payment-label {
-font-size:8.5px;
-letter-spacing:.65px;
-}
-
-.footer-payment-icons {
+.footer-payment-methods {
 gap:5px;
 }
 
-.footer-payment-icon {
+.payment-badge {
 width:43px;
 height:28px;
-padding:4px;
+padding:3px 4px;
 border-radius:3px;
 }
 
-.footer-payment-icon svg {
-max-width:36px;
-max-height:20px;
+.payment-badge-text {
+font-size:7px;
+}
+
+.payment-badge-amex .payment-badge-text {
+font-size:6.9px;
+}
+
+.payment-badge-apple-pay .payment-badge-text {
+font-size:7.2px;
+}
+
+.payment-card-circles {
+width:21px;
+height:11px;
+}
+
+.payment-card-circles::before,
+.payment-card-circles::after {
+width:11px;
+height:11px;
+}
+
+.payment-badge-mastercard .payment-badge-text {
+font-size:4.4px;
+}
+
+.payment-badge-visa .payment-badge-text {
+font-size:9px;
+}
+
+.payment-badge-google-pay .payment-badge-text {
+font-size:7.4px;
+}
+
+.payment-badge-discover .payment-badge-text {
+font-size:6px;
+}
+
+.payment-badge-discover::after {
+right:4px;
+bottom:4px;
+width:11px;
+height:4px;
+}
+
+.payment-badge-paypal .payment-badge-text {
+font-size:7px;
+}
+
+.payment-badge-klarna .payment-badge-text {
+font-size:7.4px;
 }
 
 /* =========================================
 MOBILE COPYRIGHT / CONTACT LINE
 ========================================= */
 
-.footer-legal-line {
+.footer-copyright {
 display:block;
-margin-top:13px;
 max-width:340px;
+margin:0;
 font-size:8.5px;
 line-height:1.65;
 color:rgba(247,247,243,.43);
 }
 
-.footer-legal-line a {
+.footer-copyright span {
+display:inline;
+}
+
+.footer-copyright-divider {
+padding:0 2px;
+}
+
+.footer-copyright a {
 color:rgba(247,247,243,.62);
 }
 
@@ -5324,12 +5552,12 @@ font-size:33px;
 font-size:31px;
 }
 
-.footer-payment-icon {
+.payment-badge {
 width:41px;
 height:27px;
 }
 
-.footer-legal-line {
+.footer-copyright {
 font-size:8px;
 max-width:315px;
 }
