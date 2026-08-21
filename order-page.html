@@ -958,22 +958,10 @@ background:#171919;
 color:var(--orange-bright);
 }
 
-
-/* =========================================
-CHANGE 3
-CLEAR RESTORED TO ORIGINAL APPEARANCE
-========================================= */
-
 .tint-selector button[data-tint="clear"].active {
 background:#171919;
 color:var(--white);
 }
-
-
-/* =========================================
-CHANGE 3
-TRANSPARENT GRADIENT TINT BUTTONS
-========================================= */
 
 .tint-selector button[data-tint="blue"].active {
 background:
@@ -1013,11 +1001,6 @@ color:#f7f7f3;
 box-shadow:
 inset 0 1px 0 rgba(255,255,255,.12);
 }
-
-
-/* =========================================
-PERMANENT TINT UNDERSIDE TRACK
-========================================= */
 
 .tint-caption-track {
 position:relative;
@@ -1064,6 +1047,56 @@ opacity:1;
 
 
 /* =========================================
+CHANGE 3
+ESTIMATED DELIVERY UNDER GLASS FINISH
+========================================= */
+
+.estimated-delivery-card {
+position:relative;
+margin-top:20px;
+padding:0;
+border:0;
+border-radius:0;
+background:none;
+box-shadow:none;
+}
+
+.estimated-delivery-card::after {
+display:none;
+}
+
+.estimated-delivery-label {
+display:block;
+margin:0;
+color:var(--white);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:11px;
+font-weight:800;
+line-height:1;
+letter-spacing:1.55px;
+text-transform:uppercase;
+}
+
+.estimated-delivery-date {
+display:block;
+margin-top:8px;
+color:var(--orange-bright);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(19px,2.1vw,29px);
+font-weight:800;
+line-height:1.05;
+letter-spacing:-.5px;
+}
+
+
+/* =========================================
 RIGHT PRODUCT DETAILS
 ========================================= */
 
@@ -1093,43 +1126,31 @@ color:var(--cream);
 
 /* =========================================
 CHANGE 4
-PRODUCT HIGHLIGHTS
+CLEAN PRODUCT HIGHLIGHTS
 ========================================= */
 
 .product-assurance-panel {
 display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:7px;
-margin-top:18px;
-padding:9px;
-border:1px solid rgba(255,255,255,.12);
-border-radius:14px;
-background:
-linear-gradient(
-135deg,
-rgba(232,120,23,.075) 0%,
-rgba(255,255,255,.022) 48%,
-rgba(0,0,0,.08) 100%
-);
-box-shadow:
-inset 0 1px 0 rgba(255,255,255,.018);
+grid-template-columns:repeat(2,minmax(0,1fr));
+column-gap:20px;
+row-gap:9px;
+margin-top:20px;
+padding:0;
+border:0;
+border-radius:0;
+background:none;
+box-shadow:none;
 }
 
 .product-assurance-item {
 position:relative;
 min-width:0;
-min-height:46px;
-padding:9px 9px 9px 34px;
-display:flex;
-align-items:center;
-border:1px solid rgba(255,255,255,.075);
-border-radius:9px;
-background:
-linear-gradient(
-180deg,
-rgba(19,21,21,.82),
-rgba(8,10,10,.78)
-);
+min-height:0;
+padding:0 0 0 14px;
+display:block;
+border:0;
+border-radius:0;
+background:none;
 color:#d7dad7;
 font-family:
 "Bahnschrift",
@@ -1137,124 +1158,21 @@ font-family:
 sans-serif;
 font-size:clamp(9px,1vw,12px);
 font-weight:750;
-line-height:1.18;
+line-height:1.25;
 letter-spacing:.05px;
 }
 
 .product-assurance-item::before {
-content:"✓";
-position:absolute;
-left:9px;
-top:50%;
-width:17px;
-height:17px;
-display:flex;
-align-items:center;
-justify-content:center;
-transform:translateY(-50%);
-border:1px solid rgba(232,120,23,.62);
-border-radius:4px;
-background:
-linear-gradient(
-145deg,
-rgba(232,120,23,.21),
-rgba(232,120,23,.08)
-);
-color:var(--orange-bright);
-font-family:
-"Aptos",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:11px;
-font-weight:900;
-line-height:1;
-}
-
-
-/* =========================================
-CHANGE 4
-ESTIMATED DELIVERY CARD
-========================================= */
-
-.estimated-delivery-card {
-position:relative;
-overflow:hidden;
-margin:14px 0 23px;
-padding:14px 16px 15px 18px;
-border:1px solid rgba(232,120,23,.25);
-border-left:3px solid var(--orange);
-border-radius:11px;
-background:
-linear-gradient(
-110deg,
-rgba(232,120,23,.095) 0%,
-rgba(232,120,23,.025) 42%,
-rgba(255,255,255,.014) 100%
-);
-box-shadow:
-inset 0 1px 0 rgba(255,255,255,.025);
-}
-
-.estimated-delivery-card::after {
 content:"";
 position:absolute;
-right:-35px;
-top:-45px;
-width:120px;
-height:120px;
+left:0;
+top:.55em;
+width:4px;
+height:4px;
+border:0;
 border-radius:50%;
-background:
-radial-gradient(
-circle,
-rgba(232,120,23,.10),
-transparent 68%
-);
-pointer-events:none;
-}
-
-.estimated-delivery-label {
-position:relative;
-z-index:1;
-color:#969c98;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:9px;
-font-weight:800;
-line-height:1;
-letter-spacing:1.5px;
-text-transform:uppercase;
-}
-
-.estimated-delivery-date {
-position:relative;
-z-index:1;
-display:block;
-margin-top:8px;
-color:var(--cream);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(20px,2vw,29px);
-font-weight:800;
-line-height:1;
-letter-spacing:-.55px;
-}
-
-.estimated-delivery-lead {
-position:relative;
-z-index:1;
-display:block;
-margin-top:8px;
-color:rgba(242,138,40,.83);
-font-size:9px;
-font-weight:700;
-line-height:1;
-letter-spacing:.45px;
+background:#ffffff;
+transform:translateY(-50%);
 }
 
 
@@ -1265,6 +1183,7 @@ OPTIONS
 .options-stack {
 display:grid;
 gap:13px;
+margin-top:24px;
 }
 
 .option-group label,
@@ -1635,7 +1554,8 @@ text-transform:uppercase;
 
 
 /* =========================================
-UNIT PRICE / TOTAL
+CHANGE 2
+UNIT PRICE / TOTAL 5% SMALLER
 ========================================= */
 
 .purchase-price-zone {
@@ -1659,7 +1579,7 @@ font-family:
 "Bahnschrift SemiCondensed",
 "Arial Narrow",
 sans-serif;
-font-size:clamp(45px,4.9vw,67px);
+font-size:clamp(42.75px,4.655vw,63.65px);
 font-weight:800;
 line-height:.78;
 letter-spacing:-2.6px;
@@ -1939,7 +1859,6 @@ text-transform:uppercase;
 
 
 /* =========================================
-CHANGE 1
 STACKED PURCHASE BUTTONS
 ========================================= */
 
@@ -1988,7 +1907,7 @@ border:1px solid var(--orange);
 border-radius:13px;
 background:var(--orange);
 color:#10100f;
-padding:0 48px;
+padding:0 43px;
 box-shadow:
 0 10px 28px rgba(232,120,23,.08);
 }
@@ -2009,29 +1928,33 @@ line-height:1;
 
 
 /* =========================================
-CHANGE 1
-HORIZONTAL BOUNCING ARROW
+CHANGE 5
+SMALLER / CENTRED ANIMATED ARROW
 ========================================= */
 
 .basket-arrow {
 position:absolute;
 right:17px;
 top:50%;
+width:22px;
+height:22px;
 display:flex;
 align-items:center;
 justify-content:center;
 font-family:
 "Aptos",
+"Segoe UI Symbol",
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:25px;
+font-size:20px;
 font-weight:500;
-line-height:1;
+line-height:22px;
+text-align:center;
 transform:
 translateY(-50%)
 translateX(0);
-transform-origin:center;
+transform-origin:center center;
 animation:
 basketArrowAttention
 4s ease-in-out
@@ -2052,8 +1975,8 @@ scale(1);
 75% {
 transform:
 translateY(-50%)
-translateX(6px)
-scale(1.08);
+translateX(5px)
+scale(1.07);
 }
 
 79% {
@@ -2066,8 +1989,8 @@ scale(.98);
 83% {
 transform:
 translateY(-50%)
-translateX(4px)
-scale(1.04);
+translateX(3px)
+scale(1.035);
 }
 
 87% {
@@ -2083,13 +2006,12 @@ scale(1);
 animation:none;
 transform:
 translateY(-50%)
-translateX(4px)
-scale(1.05);
+translateX(3px)
+scale(1.04);
 }
 
 
 /* =========================================
-CHANGE 1
 SECURE CHECKOUT
 ========================================= */
 
@@ -2141,8 +2063,6 @@ max-width:1180px;
 width:100%;
 margin:0 auto;
 padding-bottom:clamp(24px,3vw,38px);
-
-/* Change 2 — separator removed */
 border-bottom:0;
 }
 
@@ -2354,8 +2274,13 @@ line-height:1.6;
 display:flex;
 flex-direction:column;
 align-items:flex-start;
-gap:10px;
+gap:7px;
 margin-top:2px;
+}
+
+.footer-right-glaze-brand {
+margin-top:8px;
+margin-bottom:4px;
 }
 
 .footer-right-glaze-logo {
@@ -2375,7 +2300,7 @@ font-weight:700;
 .footer-company-numbers {
 display:grid;
 gap:2px;
-margin-top:-4px;
+margin-top:-1px;
 color:rgba(247,247,243,.48);
 font-size:11px;
 }
@@ -2660,52 +2585,44 @@ MOBILE PRODUCT HIGHLIGHTS
 grid-template-columns:1fr;
 gap:4px;
 margin-top:9px;
-padding:5px;
-border-radius:9px;
 }
 
 .product-assurance-item {
-min-height:24px;
-padding:5px 5px 5px 22px;
-border-radius:6px;
+padding-left:10px;
 font-size:6.4px;
-line-height:1.1;
+line-height:1.2;
 }
 
 .product-assurance-item::before {
-left:5px;
-width:11px;
-height:11px;
-border-radius:3px;
-font-size:7px;
+width:3px;
+height:3px;
+top:.55em;
 }
 
+
+/* =========================================
+MOBILE ESTIMATED DELIVERY
+========================================= */
+
 .estimated-delivery-card {
-margin:7px 0 12px;
-padding:8px 8px 8px 10px;
-border-left-width:2px;
-border-radius:7px;
+margin-top:12px;
 }
 
 .estimated-delivery-label {
-font-size:5.7px;
-letter-spacing:.8px;
+font-size:6.4px;
+letter-spacing:.85px;
 }
 
 .estimated-delivery-date {
 margin-top:5px;
-font-size:clamp(10px,2.9vw,13px);
+font-size:clamp(11px,3vw,14px);
 letter-spacing:-.2px;
-}
-
-.estimated-delivery-lead {
-margin-top:5px;
-font-size:5.7px;
-letter-spacing:.2px;
+line-height:1.08;
 }
 
 .options-stack {
 gap:8px;
+margin-top:13px;
 }
 
 .option-group label,
@@ -2816,7 +2733,7 @@ letter-spacing:1px;
 
 .price-line,
 .total-price-line {
-font-size:clamp(31px,8.9vw,39px);
+font-size:clamp(29.45px,8.455vw,37.05px);
 letter-spacing:-1.6px;
 }
 
@@ -2905,7 +2822,7 @@ border-radius:10px;
 }
 
 .add-to-basket {
-padding:0 32px;
+padding:0 28px;
 }
 
 .secure-checkout {
@@ -2914,7 +2831,10 @@ padding:0 10px;
 
 .basket-arrow {
 right:9px;
-font-size:18px;
+width:16px;
+height:16px;
+font-size:14px;
+line-height:16px;
 }
 
 .order-custom-intro {
@@ -3108,7 +3028,7 @@ padding-right:10px;
 
 .price-line,
 .total-price-line {
-font-size:clamp(29px,8.4vw,36px);
+font-size:clamp(27.55px,7.98vw,34.2px);
 }
 
 .purchase-action-controls {
@@ -3126,8 +3046,8 @@ letter-spacing:.5px;
 }
 
 .add-to-basket {
-padding-left:27px;
-padding-right:27px;
+padding-left:25px;
+padding-right:25px;
 }
 
 .secure-checkout {
@@ -3137,7 +3057,10 @@ padding-right:7px;
 
 .basket-arrow {
 right:7px;
-font-size:17px;
+width:15px;
+height:15px;
+font-size:13px;
+line-height:15px;
 }
 
 }
@@ -3585,6 +3508,30 @@ Tint
 
 </div>
 
+
+<!-- =========================================
+CHANGE 3 — ESTIMATED DELIVERY MOVED HERE
+========================================= -->
+
+<div
+class="estimated-delivery-card"
+aria-live="polite"
+>
+
+<div class="estimated-delivery-label">
+Estimated Delivery
+</div>
+
+<strong
+class="estimated-delivery-date"
+id="estimatedDeliveryRange"
+>
+27th August – 1st September
+</strong>
+
+</div>
+
+
 </div>
 
 </div>
@@ -3606,7 +3553,7 @@ id="productTitle"
 
 
 <!-- =========================================
-CHANGE 4 — PRODUCT HIGHLIGHTS
+CHANGE 4 — CLEAN PRODUCT HIGHLIGHTS
 ========================================= -->
 
 <div
@@ -3632,35 +3579,9 @@ id="glazingSpec"
 Triple Glazed
 </div>
 
+<div class="product-assurance-item">
+30 Year Service Life
 </div>
-
-
-<!-- =========================================
-CHANGE 4 — ESTIMATED DELIVERY
-========================================= -->
-
-<div
-class="estimated-delivery-card"
-aria-live="polite"
->
-
-<div class="estimated-delivery-label">
-Estimated Delivery
-</div>
-
-<strong
-class="estimated-delivery-date"
-id="estimatedDeliveryRange"
->
-27th August – 1st September
-</strong>
-
-<span
-class="estimated-delivery-lead"
-id="estimatedDeliveryLeadTime"
->
-4–6 working days
-</span>
 
 </div>
 
@@ -4234,17 +4155,6 @@ Factory Toughened Rooflights is a trading name of:
 <div class="footer-right-glaze">
 
 
-<div class="footer-right-glaze-brand">
-
-<img
-src="images/smallrglogo.png"
-class="footer-right-glaze-logo"
-alt="Right Glaze Ltd"
->
-
-</div>
-
-
 <span class="footer-right-glaze-name">
 Right Glaze Ltd
 </span>
@@ -4259,6 +4169,21 @@ Company no. - 14336400
 <span>
 VAT no. - 487373544
 </span>
+
+</div>
+
+
+<!-- =========================================
+CHANGE 1 — LOGO NOW BETWEEN VAT + COPYRIGHT
+========================================= -->
+
+<div class="footer-right-glaze-brand">
+
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
+>
 
 </div>
 
@@ -4680,10 +4605,6 @@ PRODUCT DATA
 const PRODUCTS = {
 
 
-/* =========================================
-300mm WIDTH
-========================================= */
-
 "300x800":{
 double:195,
 triple:235,
@@ -4708,11 +4629,6 @@ triple:325,
 image:"narrow-long-rectangle.png"
 },
 
-
-/* =========================================
-400mm WIDTH
-========================================= */
-
 "400x800":{
 double:215,
 triple:260,
@@ -4736,11 +4652,6 @@ double:310,
 triple:370,
 image:"narrow-long-rectangle.png"
 },
-
-
-/* =========================================
-600mm WIDTH
-========================================= */
 
 "600x600":{
 double:220,
@@ -4772,11 +4683,6 @@ triple:540,
 image:"large-rectangle.png"
 },
 
-
-/* =========================================
-800mm WIDTH
-========================================= */
-
 "800x800":{
 double:290,
 triple:350,
@@ -4806,11 +4712,6 @@ double:560,
 triple:675,
 image:"large-rectangle.png"
 },
-
-
-/* =========================================
-1000mm WIDTH
-========================================= */
 
 "1000x1000":{
 double:420,
@@ -4842,21 +4743,11 @@ triple:945,
 image:"jumbo.png"
 },
 
-
-/* =========================================
-OTHER EXISTING SIZE
-========================================= */
-
 "1200x1200":{
 double:510,
 triple:615,
 image:"large-square.png"
 },
-
-
-/* =========================================
-1500mm WIDTH
-========================================= */
 
 "1500x1500":{
 double:760,
@@ -5150,12 +5041,6 @@ document.getElementById(
 const estimatedDeliveryRange =
 document.getElementById(
 "estimatedDeliveryRange"
-);
-
-
-const estimatedDeliveryLeadTime =
-document.getElementById(
-"estimatedDeliveryLeadTime"
 );
 
 
@@ -5521,7 +5406,6 @@ return "6mm Toughened Safety Glass";
 
 
 /* =========================================
-CHANGE 4
 LIVE UK ESTIMATED DELIVERY
 ========================================= */
 
@@ -5627,12 +5511,6 @@ return `${year}-${month}-${day}`;
 }
 
 
-/* =========================================
-CURRENT UK DATE / TIME
-Always uses Europe/London,
-regardless of customer's device timezone.
-========================================= */
-
 function getCurrentUKDateTimeParts() {
 
 const formatter =
@@ -5716,11 +5594,6 @@ values.second
 
 }
 
-
-/* =========================================
-EASTER CALCULATION
-Used for Good Friday / Easter Monday.
-========================================= */
 
 function getEasterSunday(
 year
@@ -5832,10 +5705,6 @@ day
 }
 
 
-/* =========================================
-FIRST / LAST MONDAY HELPERS
-========================================= */
-
 function firstMondayOfMonth(
 year,
 month
@@ -5910,14 +5779,6 @@ return date;
 }
 
 
-/* =========================================
-ENGLAND & WALES BANK HOLIDAYS
-
-Standard bank holidays are calculated so
-delivery estimates do not count them as
-working days.
-========================================= */
-
 function getEnglandWalesBankHolidayKeys(
 year
 ) {
@@ -5951,8 +5812,6 @@ date
 
 }
 
-
-/* New Year's Day */
 
 const newYearsDay =
 createDateOnly(
@@ -5996,8 +5855,6 @@ year,
 }
 
 
-/* Good Friday / Easter Monday */
-
 const easterSunday =
 getEasterSunday(
 year
@@ -6018,8 +5875,6 @@ easterSunday,
 );
 
 
-/* Early May */
-
 addHoliday(
 firstMondayOfMonth(
 year,
@@ -6028,8 +5883,6 @@ year,
 );
 
 
-/* Spring Bank Holiday */
-
 addHoliday(
 lastMondayOfMonth(
 year,
@@ -6038,8 +5891,6 @@ year,
 );
 
 
-/* Summer Bank Holiday */
-
 addHoliday(
 lastMondayOfMonth(
 year,
@@ -6047,8 +5898,6 @@ year,
 )
 );
 
-
-/* Christmas / Boxing Day */
 
 const christmas =
 createDateOnly(
@@ -6144,10 +5993,6 @@ return holidays;
 }
 
 
-/* =========================================
-WORKING DAY CHECK
-========================================= */
-
 function isWorkingDay(
 date
 ) {
@@ -6184,13 +6029,7 @@ date
 
 
 /* =========================================
-12PM ORDER CUT-OFF
-
-Before noon:
-current working day counts as Day 1.
-
-12:00pm onwards:
-next working day becomes Day 1.
+12PM UK ORDER CUT-OFF
 ========================================= */
 
 function getDeliveryCalculationStartDate() {
@@ -6206,8 +6045,6 @@ ukNow.month,
 ukNow.day
 );
 
-
-/* Weekend / bank holiday */
 
 if (
 !isWorkingDay(
@@ -6235,8 +6072,6 @@ return startDate;
 
 }
 
-
-/* 12:00 noon or later */
 
 if (
 ukNow.hour >=
@@ -6265,12 +6100,6 @@ return startDate;
 
 }
 
-
-/* =========================================
-ADD WORKING DAYS
-
-Start date counts as working day 1.
-========================================= */
 
 function getWorkingDayNumber(
 startDate,
@@ -6331,8 +6160,6 @@ LEAD TIME BY CONFIGURATION
 function getCurrentLeadTime() {
 
 
-/* Laminated */
-
 if (
 state.type ===
 "laminated"
@@ -6359,8 +6186,6 @@ max:10
 }
 
 
-/* Toughened clear */
-
 if (
 state.tint ===
 "clear"
@@ -6373,8 +6198,6 @@ max:6
 
 }
 
-
-/* Toughened blue */
 
 if (
 state.tint ===
@@ -6389,8 +6212,6 @@ max:10
 }
 
 
-/* Toughened grey / satin */
-
 return {
 min:6,
 max:8
@@ -6398,10 +6219,6 @@ max:8
 
 }
 
-
-/* =========================================
-ORDINAL DATE FORMAT
-========================================= */
 
 function ordinalSuffix(
 day
@@ -6454,10 +6271,6 @@ return `${day}${ordinalSuffix(day)}`;
 
 }
 
-
-/* =========================================
-DELIVERY RANGE FORMAT
-========================================= */
 
 function formatDeliveryRange(
 startDate,
@@ -6535,8 +6348,7 @@ UPDATE LIVE DELIVERY DISPLAY
 function updateEstimatedDelivery() {
 
 if (
-!estimatedDeliveryRange ||
-!estimatedDeliveryLeadTime
+!estimatedDeliveryRange
 ) {
 
 return;
@@ -6571,10 +6383,6 @@ formatDeliveryRange(
 earliestDelivery,
 latestDelivery
 );
-
-
-estimatedDeliveryLeadTime.textContent =
-`${leadTime.min}–${leadTime.max} working days`;
 
 }
 
@@ -8572,8 +8380,6 @@ animateImage
 updateSizeDropdownDisplay();
 
 
-/* Product highlights */
-
 productGlassSpec.textContent =
 getTopGlassLabel();
 
@@ -8591,8 +8397,6 @@ state.glazing ===
 
 "Double Glazed";
 
-
-/* Dynamic delivery */
 
 updateEstimatedDelivery();
 
@@ -9058,11 +8862,6 @@ state.type =
 button.dataset.type;
 
 
-/*
-Title remains unchanged because
-buildTitle() ignores glass type.
-*/
-
 updateUI();
 
 }
@@ -9201,10 +9000,6 @@ updateUrl:false
 );
 
 
-/* =========================================
-PREVENT QUANTITY DOUBLE-TAP / DOUBLE-CLICK ZOOM
-========================================= */
-
 [
 quantityMinus,
 quantityPlus
@@ -9322,9 +9117,6 @@ addCurrentSelectionToBasket
 
 /* =========================================
 LIVE DELIVERY CLOCK
-
-Refreshes while the page is open so the
-12pm UK cut-off takes effect automatically.
 ========================================= */
 
 let deliveryRefreshTimer =
