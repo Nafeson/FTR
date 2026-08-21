@@ -1047,56 +1047,6 @@ opacity:1;
 
 
 /* =========================================
-CHANGE 3
-ESTIMATED DELIVERY UNDER GLASS FINISH
-========================================= */
-
-.estimated-delivery-card {
-position:relative;
-margin-top:20px;
-padding:0;
-border:0;
-border-radius:0;
-background:none;
-box-shadow:none;
-}
-
-.estimated-delivery-card::after {
-display:none;
-}
-
-.estimated-delivery-label {
-display:block;
-margin:0;
-color:var(--white);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:11px;
-font-weight:800;
-line-height:1;
-letter-spacing:1.55px;
-text-transform:uppercase;
-}
-
-.estimated-delivery-date {
-display:block;
-margin-top:8px;
-color:var(--orange-bright);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(19px,2.1vw,29px);
-font-weight:800;
-line-height:1.05;
-letter-spacing:-.5px;
-}
-
-
-/* =========================================
 RIGHT PRODUCT DETAILS
 ========================================= */
 
@@ -1125,8 +1075,62 @@ color:var(--cream);
 
 
 /* =========================================
-CHANGE 4
-CLEAN PRODUCT HIGHLIGHTS
+CHANGE 2
+ESTIMATED DELIVERY BETWEEN TITLE + SPECS
+========================================= */
+
+.estimated-delivery-card {
+position:relative;
+margin-top:clamp(14px,1.6vw,20px);
+padding:0;
+border:0;
+border-radius:0;
+background:none;
+box-shadow:none;
+overflow:visible;
+}
+
+.estimated-delivery-card::after {
+display:none;
+}
+
+.estimated-delivery-label {
+display:block;
+margin:0;
+color:#8f9692;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:clamp(9px,.9vw,11px);
+font-weight:800;
+line-height:1;
+letter-spacing:1.45px;
+text-transform:uppercase;
+white-space:nowrap;
+}
+
+.estimated-delivery-date {
+display:block;
+margin-top:7px;
+max-width:100%;
+color:var(--orange-bright);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(18px,1.85vw,26px);
+font-weight:800;
+line-height:1;
+letter-spacing:-.45px;
+white-space:nowrap;
+}
+
+
+/* =========================================
+CHANGE 1
+CLEAN PRODUCT HIGHLIGHTS / WHITE HYPHENS
 ========================================= */
 
 .product-assurance-panel {
@@ -1134,7 +1138,7 @@ display:grid;
 grid-template-columns:repeat(2,minmax(0,1fr));
 column-gap:20px;
 row-gap:9px;
-margin-top:20px;
+margin-top:clamp(16px,1.8vw,22px);
 padding:0;
 border:0;
 border-radius:0;
@@ -1146,7 +1150,7 @@ box-shadow:none;
 position:relative;
 min-width:0;
 min-height:0;
-padding:0 0 0 14px;
+padding:0 0 0 15px;
 display:block;
 border:0;
 border-radius:0;
@@ -1163,16 +1167,25 @@ letter-spacing:.05px;
 }
 
 .product-assurance-item::before {
-content:"";
+content:"-";
 position:absolute;
 left:0;
-top:.55em;
-width:4px;
-height:4px;
+top:0;
+width:auto;
+height:auto;
 border:0;
-border-radius:50%;
-background:#ffffff;
-transform:translateY(-50%);
+border-radius:0;
+background:none;
+color:#ffffff;
+font-family:
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:1em;
+font-weight:700;
+line-height:1.25;
+transform:none;
 }
 
 
@@ -1554,8 +1567,7 @@ text-transform:uppercase;
 
 
 /* =========================================
-CHANGE 2
-UNIT PRICE / TOTAL 5% SMALLER
+UNIT PRICE / TOTAL
 ========================================= */
 
 .purchase-price-zone {
@@ -1925,12 +1937,6 @@ width:100%;
 text-align:center;
 line-height:1;
 }
-
-
-/* =========================================
-CHANGE 5
-SMALLER / CENTRED ANIMATED ARROW
-========================================= */
 
 .basket-arrow {
 position:absolute;
@@ -2578,13 +2584,35 @@ letter-spacing:-.8px;
 
 
 /* =========================================
+MOBILE ESTIMATED DELIVERY
+========================================= */
+
+.estimated-delivery-card {
+margin-top:9px;
+}
+
+.estimated-delivery-label {
+font-size:6.2px;
+letter-spacing:.8px;
+}
+
+.estimated-delivery-date {
+margin-top:5px;
+font-size:clamp(9.5px,2.65vw,12.5px);
+letter-spacing:-.15px;
+line-height:1;
+white-space:nowrap;
+}
+
+
+/* =========================================
 MOBILE PRODUCT HIGHLIGHTS
 ========================================= */
 
 .product-assurance-panel {
 grid-template-columns:1fr;
 gap:4px;
-margin-top:9px;
+margin-top:11px;
 }
 
 .product-assurance-item {
@@ -2594,31 +2622,14 @@ line-height:1.2;
 }
 
 .product-assurance-item::before {
-width:3px;
-height:3px;
-top:.55em;
+font-size:1em;
+line-height:1.2;
 }
 
 
 /* =========================================
-MOBILE ESTIMATED DELIVERY
+MOBILE OPTIONS
 ========================================= */
-
-.estimated-delivery-card {
-margin-top:12px;
-}
-
-.estimated-delivery-label {
-font-size:6.4px;
-letter-spacing:.85px;
-}
-
-.estimated-delivery-date {
-margin-top:5px;
-font-size:clamp(11px,3vw,14px);
-letter-spacing:-.2px;
-line-height:1.08;
-}
 
 .options-stack {
 gap:8px;
@@ -3061,6 +3072,10 @@ width:15px;
 height:15px;
 font-size:13px;
 line-height:15px;
+}
+
+.estimated-delivery-date {
+font-size:clamp(9px,2.45vw,11.5px);
 }
 
 }
@@ -3509,29 +3524,6 @@ Tint
 </div>
 
 
-<!-- =========================================
-CHANGE 3 — ESTIMATED DELIVERY MOVED HERE
-========================================= -->
-
-<div
-class="estimated-delivery-card"
-aria-live="polite"
->
-
-<div class="estimated-delivery-label">
-Estimated Delivery
-</div>
-
-<strong
-class="estimated-delivery-date"
-id="estimatedDeliveryRange"
->
-27th August – 1st September
-</strong>
-
-</div>
-
-
 </div>
 
 </div>
@@ -3553,7 +3545,30 @@ id="productTitle"
 
 
 <!-- =========================================
-CHANGE 4 — CLEAN PRODUCT HIGHLIGHTS
+ESTIMATED DELIVERY
+========================================= -->
+
+<div
+class="estimated-delivery-card"
+aria-live="polite"
+>
+
+<div class="estimated-delivery-label">
+Estimated Delivery
+</div>
+
+<strong
+class="estimated-delivery-date"
+id="estimatedDeliveryRange"
+>
+27th Aug - 1st Sept
+</strong>
+
+</div>
+
+
+<!-- =========================================
+PRODUCT HIGHLIGHTS
 ========================================= -->
 
 <div
@@ -4173,10 +4188,6 @@ VAT no. - 487373544
 </div>
 
 
-<!-- =========================================
-CHANGE 1 — LOGO NOW BETWEEN VAT + COPYRIGHT
-========================================= -->
-
 <div class="footer-right-glaze-brand">
 
 <img
@@ -4603,7 +4614,6 @@ PRODUCT DATA
 ========================================= */
 
 const PRODUCTS = {
-
 
 "300x800":{
 double:195,
@@ -5413,20 +5423,20 @@ const UK_TIME_ZONE =
 "Europe/London";
 
 
-const UK_MONTH_NAMES = [
+const UK_MONTH_SHORT_NAMES = [
 
-"January",
-"February",
-"March",
-"April",
+"Jan",
+"Feb",
+"Mar",
+"Apr",
 "May",
-"June",
-"July",
-"August",
-"September",
-"October",
-"November",
-"December"
+"Jun",
+"Jul",
+"Aug",
+"Sept",
+"Oct",
+"Nov",
+"Dec"
 
 ];
 
@@ -6272,6 +6282,13 @@ return `${day}${ordinalSuffix(day)}`;
 }
 
 
+/* =========================================
+COMPACT DELIVERY RANGE
+Examples:
+27th Aug - 1st Sept
+27th - 29th Aug
+========================================= */
+
 function formatDeliveryRange(
 startDate,
 endDate
@@ -6291,39 +6308,28 @@ const endMonth =
 endDate.getUTCMonth();
 
 
-const startYear =
-startDate.getUTCFullYear();
+if (
+startDate.getTime() ===
+endDate.getTime()
+) {
 
-const endYear =
-endDate.getUTCFullYear();
+return (
+`${ordinalDay(startDay)} ` +
+`${UK_MONTH_SHORT_NAMES[startMonth]}`
+);
+
+}
 
 
 if (
-startYear ===
-endYear &&
 startMonth ===
 endMonth
 ) {
 
 return (
-`${ordinalDay(startDay)} – ` +
+`${ordinalDay(startDay)} - ` +
 `${ordinalDay(endDay)} ` +
-`${UK_MONTH_NAMES[endMonth]}`
-);
-
-}
-
-
-if (
-startYear ===
-endYear
-) {
-
-return (
-`${ordinalDay(startDay)} ` +
-`${UK_MONTH_NAMES[startMonth]} – ` +
-`${ordinalDay(endDay)} ` +
-`${UK_MONTH_NAMES[endMonth]}`
+`${UK_MONTH_SHORT_NAMES[endMonth]}`
 );
 
 }
@@ -6331,11 +6337,9 @@ return (
 
 return (
 `${ordinalDay(startDay)} ` +
-`${UK_MONTH_NAMES[startMonth]} ` +
-`${startYear} – ` +
+`${UK_MONTH_SHORT_NAMES[startMonth]} - ` +
 `${ordinalDay(endDay)} ` +
-`${UK_MONTH_NAMES[endMonth]} ` +
-`${endYear}`
+`${UK_MONTH_SHORT_NAMES[endMonth]}`
 );
 
 }
