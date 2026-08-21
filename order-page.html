@@ -552,12 +552,6 @@ border-top:0;
 border-bottom:1px solid rgba(255,255,255,.09);
 }
 
-
-/*
-Exact subtle right-side tonal treatment
-from the homepage Popular Sizes section.
-*/
-
 .order-page::before {
 content:"";
 position:absolute;
@@ -573,12 +567,6 @@ rgba(255,255,255,.013) 100%
 );
 pointer-events:none;
 }
-
-
-/*
-Exact 48px grid treatment from the
-homepage Popular Sizes section.
-*/
 
 .order-page::after {
 content:"";
@@ -598,7 +586,6 @@ background-size:48px 48px;
 opacity:.45;
 pointer-events:none;
 }
-
 
 .order-shell {
 position:relative;
@@ -660,28 +647,9 @@ color:var(--cream);
 text-transform:none;
 }
 
-
-/*
-Order-page refinement requested after the
-first heading test.
-
-The typography, alignment and structure
-remain the exact homepage treatment, but
-"Configure Your Rooflight" is reduced to
-approximately half the previous Order Page
-size.
-*/
-
 .order-opening-title span {
 font-size:clamp(18px,2.4vw,32px);
 }
-
-
-/*
-The Order Card occupies the same inner
-content width used by the homepage
-Popular Sizes grid.
-*/
 
 .order-content-wrap {
 position:relative;
@@ -1037,6 +1005,12 @@ rotate(45deg);
 pointer-events:none;
 }
 
+
+/* =========================================
+CHANGE 2
+SIZE DROPDOWN VALUE MATCHES DIMENSION VALUES
+========================================= */
+
 .size-select {
 appearance:none;
 width:100%;
@@ -1050,8 +1024,9 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:11px;
+font-size:clamp(16px,1.7vw,23px);
 font-weight:700;
+line-height:1;
 cursor:pointer;
 }
 
@@ -1259,17 +1234,35 @@ text-transform:lowercase;
 
 
 /* =========================================
+CHANGE 3
 DYNAMIC TOTAL
+UPRIGHT + FADE TRANSITIONS
 ========================================= */
 
 .total-price-block {
 margin-top:18px;
 padding-top:15px;
 border-top:1px solid rgba(232,120,23,.24);
+opacity:0;
+transform:translateY(4px);
+transition:
+opacity .16s ease,
+transform .16s ease;
+will-change:opacity,transform;
 }
 
 .total-price-block[hidden] {
 display:none !important;
+}
+
+.total-price-block.is-visible {
+opacity:1;
+transform:translateY(0);
+}
+
+.total-price-block.is-changing {
+opacity:0;
+transform:translateY(3px);
 }
 
 .total-price-label {
@@ -1293,7 +1286,7 @@ font-family:
 "Bahnschrift",
 "Arial Narrow",
 sans-serif;
-font-style:italic;
+font-style:normal;
 }
 
 .total-price-pound,
@@ -1379,17 +1372,10 @@ line-height:1;
 letter-spacing:-.3px;
 }
 
-.size-note {
-margin:13px 0 0;
-max-width:360px;
-color:rgba(247,247,243,.43);
-font-size:10px;
-line-height:1.5;
-}
-
 
 /* =========================================
-FULL-WIDTH QUANTITY / BASKET
+CHANGE 1
+ROUNDED QUANTITY / BASKET
 ========================================= */
 
 .purchase-action-controls {
@@ -1404,6 +1390,8 @@ display:grid;
 grid-template-columns:48px minmax(70px,1fr) 52px;
 min-height:72px;
 border:1px solid rgba(255,255,255,.17);
+border-radius:18px;
+overflow:hidden;
 background:
 linear-gradient(
 180deg,
@@ -1507,6 +1495,7 @@ width:100%;
 min-height:72px;
 margin:0;
 border:1px solid var(--orange);
+border-radius:18px;
 background:var(--orange);
 color:#10100f;
 padding:0 23px;
@@ -1534,8 +1523,7 @@ box-shadow .2s ease;
 .add-to-basket:hover {
 transform:translateY(-2px);
 background:var(--orange-bright);
-box-shadow:
-0 24px 56px rgba(232,120,23,.14);
+box-shadow:0 24px 56px rgba(232,120,23,.14);
 }
 
 .basket-arrow {
@@ -1550,36 +1538,127 @@ transform:translateX(4px);
 
 
 /* =========================================
-PURCHASE ASSURANCE
+CHANGE 1
+EXPRESS PAYMENT STACK
+
+Visual controls ready for future payment
+integration.
+
+Apple Pay on top.
+Google Pay underneath.
 ========================================= */
 
-.purchase-assurance {
+.express-payment-stack {
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:1px;
+grid-template-columns:1fr;
+gap:10px;
 margin-top:11px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(255,255,255,.08);
 }
 
-.purchase-assurance span {
-min-height:42px;
+.express-pay-button {
+width:100%;
+min-height:62px;
+margin:0;
+padding:0 22px;
+border:1px solid rgba(255,255,255,.88);
+border-radius:18px;
+background:#ffffff;
+color:#080808;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:7px 10px;
-background:#090a0a;
-color:rgba(247,247,243,.48);
+gap:9px;
+cursor:pointer;
+box-shadow:
+0 12px 28px rgba(0,0,0,.16),
+inset 0 1px 0 rgba(255,255,255,.90);
+transition:
+transform .20s ease,
+background .20s ease,
+border-color .20s ease,
+box-shadow .20s ease;
+}
+
+.express-pay-button:hover {
+transform:translateY(-1px);
+background:#f4f4f3;
+border-color:#ffffff;
+box-shadow:
+0 16px 34px rgba(0,0,0,.20),
+inset 0 1px 0 rgba(255,255,255,1);
+}
+
+.express-pay-button:active {
+transform:scale(.995);
+}
+
+.express-pay-prefix {
+color:#111111;
 font-family:
-"Bahnschrift",
 "Aptos",
+"Inter",
+"Segoe UI",
+Arial,
 sans-serif;
-font-size:8px;
-line-height:1.3;
-font-weight:700;
-letter-spacing:.7px;
-text-transform:uppercase;
-text-align:center;
+font-size:17px;
+font-weight:500;
+line-height:1;
+letter-spacing:-.25px;
+}
+
+.express-pay-brand {
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:3px;
+line-height:1;
+white-space:nowrap;
+}
+
+.apple-pay-mark {
+display:block;
+width:23px;
+height:27px;
+flex:0 0 auto;
+}
+
+.apple-pay-brand .express-pay-word {
+color:#050505;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Helvetica Neue",
+Arial,
+sans-serif;
+font-size:25px;
+font-weight:600;
+line-height:1;
+letter-spacing:-1px;
+}
+
+.google-pay-mark {
+display:block;
+width:21px;
+height:21px;
+flex:0 0 auto;
+}
+
+.google-pay-brand {
+gap:5px;
+}
+
+.google-pay-brand .express-pay-word {
+color:#3c4043;
+font-family:
+"Roboto",
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:24px;
+font-weight:500;
+line-height:1;
+letter-spacing:-.8px;
 }
 
 
@@ -2073,10 +2152,16 @@ letter-spacing:.75px;
 margin-bottom:5px;
 }
 
+
+/* =========================================
+CHANGE 2
+MOBILE SIZE VALUE MATCHES DIMENSION VALUES
+========================================= */
+
 .size-select {
 height:32px;
 padding-left:8px;
-font-size:6.7px;
+font-size:clamp(10px,2.9vw,13px);
 }
 
 .segmented button {
@@ -2193,12 +2278,6 @@ margin-top:5px;
 font-size:clamp(10px,2.9vw,13px);
 }
 
-.size-note {
-margin-top:8px;
-font-size:6.5px;
-line-height:1.4;
-}
-
 .purchase-action-controls {
 grid-template-columns:minmax(0,.74fr) minmax(0,1.26fr);
 gap:7px;
@@ -2207,6 +2286,7 @@ gap:7px;
 .quantity-row {
 grid-template-columns:32px minmax(46px,1fr) 35px;
 min-height:52px;
+border-radius:14px;
 }
 
 .quantity-button {
@@ -2236,21 +2316,50 @@ padding:0 11px;
 gap:8px;
 font-size:8px;
 letter-spacing:.75px;
+border-radius:14px;
 }
 
 .basket-arrow {
 font-size:18px;
 }
 
-.purchase-assurance {
-margin-top:7px;
+
+/* =========================================
+MOBILE EXPRESS PAYMENTS
+========================================= */
+
+.express-payment-stack {
+gap:7px;
+margin-top:8px;
 }
 
-.purchase-assurance span {
-min-height:34px;
-padding:5px 4px;
-font-size:5.5px;
-letter-spacing:.4px;
+.express-pay-button {
+min-height:50px;
+padding:0 12px;
+border-radius:14px;
+gap:7px;
+}
+
+.express-pay-prefix {
+font-size:13px;
+}
+
+.apple-pay-mark {
+width:19px;
+height:23px;
+}
+
+.apple-pay-brand .express-pay-word {
+font-size:20px;
+}
+
+.google-pay-mark {
+width:18px;
+height:18px;
+}
+
+.google-pay-brand .express-pay-word {
+font-size:19px;
 }
 
 }
@@ -2462,6 +2571,15 @@ animation:none;
 
 .product-image-frame img {
 transition-duration:.01ms !important;
+}
+
+.total-price-block {
+transition:none !important;
+transform:none !important;
+}
+
+.total-price-block.is-visible {
+opacity:1;
 }
 
 }
@@ -2753,10 +2871,6 @@ Configure Your Rooflight
 
 </div>
 
-
-<!-- =========================================
-EXACT HOMEPAGE CONTENT WIDTH / GUTTERS
-========================================= -->
 
 <div class="order-content-wrap">
 
@@ -3115,6 +3229,7 @@ class="total-price-block"
 id="totalPriceBlock"
 hidden
 aria-hidden="true"
+aria-live="polite"
 >
 
 <div class="total-price-label">
@@ -3198,11 +3313,6 @@ External
 
 
 </div>
-
-
-<p class="size-note">
-Order size refers to the internal visible glass size.
-</p>
 
 </div>
 
@@ -3292,19 +3402,108 @@ aria-hidden="true"
 </div>
 
 
-<div class="purchase-assurance">
+<!-- =========================================
+CHANGE 1
+EXPRESS PAYMENT BUTTONS
+APPLE PAY ABOVE GOOGLE PAY
+========================================= -->
 
-<span>
-Made To Order
+<div class="express-payment-stack">
+
+
+<button
+class="express-pay-button apple-pay-button"
+id="applePayButton"
+type="button"
+aria-label="Buy with Apple Pay"
+>
+
+<span class="express-pay-prefix">
+Buy with
 </span>
 
-<span>
-From 4 Working Days*
+<span class="express-pay-brand apple-pay-brand">
+
+<svg
+class="apple-pay-mark"
+viewBox="0 0 32 44"
+xmlns="http://www.w3.org/2000/svg"
+aria-hidden="true"
+focusable="false"
+>
+
+<path
+fill="#000000"
+d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"
+/>
+
+<path
+fill="#000000"
+d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"
+/>
+
+</svg>
+
+<span class="express-pay-word">
+Pay
 </span>
 
-<span>
-Free Mainland UK Delivery*
 </span>
+
+</button>
+
+
+<button
+class="express-pay-button google-pay-button"
+id="googlePayButton"
+type="button"
+aria-label="Buy with Google Pay"
+>
+
+<span class="express-pay-prefix">
+Buy with
+</span>
+
+<span class="express-pay-brand google-pay-brand">
+
+<svg
+class="google-pay-mark"
+viewBox="0 0 18 18"
+xmlns="http://www.w3.org/2000/svg"
+aria-hidden="true"
+focusable="false"
+>
+
+<path
+fill="#4285F4"
+d="M17.64 9.205c0-.638-.057-1.252-.164-1.841H9v3.482h4.844a4.14 4.14 0 0 1-1.797 2.715v2.258h2.909c1.703-1.568 2.684-3.878 2.684-6.614z"
+/>
+
+<path
+fill="#34A853"
+d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.835.86-3.047.86-2.344 0-4.328-1.585-5.037-3.715H.956v2.332A9 9 0 0 0 9 18z"
+/>
+
+<path
+fill="#FBBC05"
+d="M3.963 10.706A5.41 5.41 0 0 1 3.682 9c0-.592.102-1.167.281-1.706V4.962H.956A9 9 0 0 0 0 9c0 1.452.347 2.827.956 4.038l3.007-2.332z"
+/>
+
+<path
+fill="#EA4335"
+d="M9 3.579c1.322 0 2.507.455 3.44 1.345l2.582-2.582C13.463.891 11.427 0 9 0A9 9 0 0 0 .956 4.962l3.007 2.332C4.672 5.164 6.656 3.579 9 3.579z"
+/>
+
+</svg>
+
+<span class="express-pay-word">
+Pay
+</span>
+
+</span>
+
+</button>
+
 
 </div>
 
@@ -4564,6 +4763,23 @@ null;
 
 
 /* =========================================
+CHANGE 3
+TOTAL TRANSITION STATE
+========================================= */
+
+let displayedTotalAmount =
+null;
+
+
+let totalTransitionToken =
+0;
+
+
+let totalTransitionTimer =
+null;
+
+
+/* =========================================
 NORMALISATION
 ========================================= */
 
@@ -5328,6 +5544,427 @@ pence
 
 
 /* =========================================
+CHANGE 3
+TOTAL PRICE TEXT HELPER
+========================================= */
+
+function setTotalPriceText(
+value
+) {
+
+const parts =
+moneyParts(
+value
+);
+
+
+totalPriceWhole.textContent =
+parts.whole;
+
+
+totalPricePence.textContent =
+parts.pence;
+
+}
+
+
+/* =========================================
+CHANGE 3
+TOTAL FADE IN / FADE OUT
+========================================= */
+
+function updateTotalPrice(
+orderTotal,
+showTotal
+) {
+
+totalTransitionToken +=
+1;
+
+
+const token =
+totalTransitionToken;
+
+
+if (
+totalTransitionTimer !==
+null
+) {
+
+clearTimeout(
+totalTransitionTimer
+);
+
+totalTransitionTimer =
+null;
+
+}
+
+
+const numericTotal =
+Number(
+orderTotal
+);
+
+
+if (
+!showTotal
+) {
+
+displayedTotalAmount =
+null;
+
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"true"
+);
+
+
+if (
+totalPriceBlock.hidden
+) {
+
+setTotalPriceText(
+numericTotal
+);
+
+totalPriceBlock.classList.remove(
+"is-visible",
+"is-changing"
+);
+
+return;
+
+}
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+totalPriceBlock.hidden =
+true;
+
+totalPriceBlock.classList.remove(
+"is-visible",
+"is-changing"
+);
+
+setTotalPriceText(
+numericTotal
+);
+
+return;
+
+}
+
+
+totalPriceBlock.classList.remove(
+"is-visible"
+);
+
+
+totalPriceBlock.classList.add(
+"is-changing"
+);
+
+
+totalTransitionTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+totalPriceBlock.hidden =
+true;
+
+
+totalPriceBlock.classList.remove(
+"is-visible",
+"is-changing"
+);
+
+
+setTotalPriceText(
+numericTotal
+);
+
+},
+160
+);
+
+
+return;
+
+}
+
+
+/*
+FIRST APPEARANCE
+
+Reveal the new total immediately in the
+layout, then fade it in.
+*/
+
+if (
+totalPriceBlock.hidden ||
+displayedTotalAmount ===
+null
+) {
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceBlock.hidden =
+false;
+
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+
+totalPriceBlock.classList.remove(
+"is-visible",
+"is-changing"
+);
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+return;
+
+}
+
+
+requestAnimationFrame(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+requestAnimationFrame(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+}
+);
+
+}
+);
+
+
+return;
+
+}
+
+
+/*
+NO CHANGE TO THE TOTAL
+
+Keep the existing displayed value visible.
+*/
+
+if (
+displayedTotalAmount ===
+numericTotal
+) {
+
+totalPriceBlock.hidden =
+false;
+
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+
+totalPriceBlock.classList.remove(
+"is-changing"
+);
+
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+
+return;
+
+}
+
+
+/*
+TOTAL CHANGED
+
+Fade the old total out first.
+Once faded, replace the number.
+Then fade the new total back in.
+*/
+
+if (
+reducedMotionQuery.matches
+) {
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceBlock.hidden =
+false;
+
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+
+totalPriceBlock.classList.remove(
+"is-changing"
+);
+
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+
+return;
+
+}
+
+
+totalPriceBlock.classList.remove(
+"is-visible"
+);
+
+
+totalPriceBlock.classList.add(
+"is-changing"
+);
+
+
+totalTransitionTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceBlock.classList.remove(
+"is-changing"
+);
+
+
+requestAnimationFrame(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+requestAnimationFrame(
+() => {
+
+if (
+token !==
+totalTransitionToken
+) {
+
+return;
+
+}
+
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+}
+);
+
+}
+);
+
+},
+160
+);
+
+}
+
+
+/* =========================================
 TITLE
 ========================================= */
 
@@ -5575,12 +6212,6 @@ price *
 state.quantity;
 
 
-const totalParts =
-moneyParts(
-orderTotal
-);
-
-
 const title =
 buildTitle();
 
@@ -5649,31 +6280,14 @@ parts.pence;
 
 
 /* =========================================
+CHANGE 3
 DYNAMIC TOTAL
 ========================================= */
 
-totalPriceWhole.textContent =
-totalParts.whole;
-
-
-totalPricePence.textContent =
-totalParts.pence;
-
-
-const showTotal =
+updateTotalPrice(
+orderTotal,
 state.quantity >
-1;
-
-
-totalPriceBlock.hidden =
-!showTotal;
-
-
-totalPriceBlock.setAttribute(
-"aria-hidden",
-String(
-!showTotal
-)
+1
 );
 
 
@@ -6375,6 +6989,25 @@ originalDesktop;
 addToBasket.addEventListener(
 "click",
 addCurrentSelectionToBasket
+);
+
+
+/* =========================================
+EXPRESS PAYMENT PLACEHOLDERS
+
+Visual buttons are ready for the actual
+Apple Pay / Google Pay checkout integration.
+========================================= */
+
+const applePayButton =
+document.getElementById(
+"applePayButton"
+);
+
+
+const googlePayButton =
+document.getElementById(
+"googlePayButton"
 );
 
 
