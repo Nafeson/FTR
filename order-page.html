@@ -862,8 +862,6 @@ background .2s ease,
 transform .15s ease;
 }
 
-
-/* Change 1 — control text increased 15% */
 .glazing-selector button {
 min-height:49px;
 font-size:12.65px;
@@ -961,11 +959,49 @@ color:var(--orange-bright);
 }
 
 .tint-selector button[data-tint="clear"].active {
+background:#171919;
 color:var(--white);
 }
 
 
-/* Change 3 — permanent underside bubble / track */
+/* Change 2 — tint-coloured selected buttons */
+
+.tint-selector button[data-tint="blue"].active {
+background:
+linear-gradient(
+135deg,
+#213c4d 0%,
+#315d76 55%,
+#3c708d 100%
+);
+color:#f7f9fa;
+}
+
+.tint-selector button[data-tint="grey"].active {
+background:
+linear-gradient(
+135deg,
+#3f4442 0%,
+#555b58 55%,
+#696f6b 100%
+);
+color:#ffffff;
+}
+
+.tint-selector button[data-tint="satin"].active {
+background:
+linear-gradient(
+135deg,
+#b9bdb9 0%,
+#d0d2ce 52%,
+#a8ada9 100%
+);
+color:#171919;
+}
+
+
+/* Permanent underside bubble / track */
+
 .tint-caption-track {
 position:relative;
 width:100%;
@@ -1113,10 +1149,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-
-/* Change 1 — reduced enough for long sizes to remain on one line */
 font-size:clamp(14px,1.45vw,20px);
-
 font-weight:700;
 line-height:1;
 text-align:left;
@@ -1330,10 +1363,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-
-/* Change 1 — 15% larger */
 font-size:9.2px;
-
 font-weight:800;
 letter-spacing:.85px;
 text-transform:uppercase;
@@ -1462,14 +1492,29 @@ font-family:
 "Bahnschrift SemiCondensed",
 "Arial Narrow",
 sans-serif;
+font-size:clamp(45px,4.9vw,67px);
+font-weight:800;
 line-height:.78;
+letter-spacing:-2.6px;
+transition:
+opacity .16s ease,
+transform .16s ease;
+will-change:opacity,transform;
 }
 
 .price-line {
 color:var(--cream);
-font-size:clamp(45px,4.9vw,67px);
-font-weight:800;
-letter-spacing:-2.6px;
+}
+
+.total-price-line {
+color:var(--orange-bright);
+font-weight:850;
+}
+
+.price-line.is-changing,
+.total-price-line.is-changing {
+opacity:0;
+transform:translateY(3px);
 }
 
 .price-major,
@@ -1495,7 +1540,8 @@ line-height:inherit;
 letter-spacing:inherit;
 }
 
-.price-pence {
+.price-pence,
+.total-price-pence {
 display:inline-block;
 margin-left:2px;
 font-family:
@@ -1503,7 +1549,7 @@ font-family:
 "Arial Narrow",
 sans-serif;
 font-size:.35em;
-font-weight:800;
+font-weight:inherit;
 line-height:1;
 letter-spacing:-.1px;
 }
@@ -1543,11 +1589,6 @@ opacity:1;
 transform:translateY(0);
 }
 
-.total-price-block.is-changing {
-opacity:0;
-transform:translateY(3px);
-}
-
 .total-price-label {
 margin-bottom:8px;
 color:rgba(242,138,40,.78);
@@ -1560,34 +1601,6 @@ font-weight:800;
 line-height:1;
 letter-spacing:1.45px;
 text-transform:uppercase;
-}
-
-.total-price-line {
-color:var(--orange-bright);
-font-family:
-"Bahnschrift SemiCondensed",
-"Bahnschrift",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(31px,3.5vw,48px);
-font-style:normal;
-font-weight:850;
-line-height:.80;
-letter-spacing:-1.8px;
-}
-
-.total-price-pence {
-display:inline-block;
-margin-left:2px;
-font-family:
-"Bahnschrift",
-"Arial Narrow",
-sans-serif;
-font-size:.35em;
-font-style:normal;
-font-weight:850;
-line-height:1;
-letter-spacing:-.1px;
 }
 
 
@@ -1642,7 +1655,7 @@ letter-spacing:-.3px;
 
 
 /* =========================================
-QUANTITY / BASKET
+QUANTITY / PURCHASE ACTIONS
 ========================================= */
 
 .purchase-action-controls {
@@ -1757,55 +1770,235 @@ letter-spacing:1px;
 text-transform:uppercase;
 }
 
-.add-to-basket {
-width:100%;
+
+/* =========================================
+CHANGE 7 — STACKED PURCHASE BUTTONS
+========================================= */
+
+.purchase-button-stack {
 min-height:72px;
+display:grid;
+grid-template-rows:1fr 1fr;
+gap:7px;
+}
+
+.add-to-basket,
+.secure-checkout {
+position:relative;
+width:100%;
+min-width:0;
 margin:0;
-border:1px solid var(--orange);
-border-radius:18px;
-background:var(--orange);
-color:#10100f;
-padding:0 23px;
 display:flex;
 align-items:center;
-justify-content:space-between;
-gap:18px;
+justify-content:center;
+text-align:center;
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:clamp(11px,1.15vw,15px);
 font-weight:800;
-letter-spacing:1.3px;
 text-transform:uppercase;
 cursor:pointer;
-box-shadow:
-0 18px 44px rgba(232,120,23,.08);
+text-decoration:none;
 transition:
 transform .2s ease,
 background .2s ease,
+border-color .2s ease,
+color .2s ease,
 box-shadow .2s ease;
 }
 
+.add-to-basket {
+border:1px solid var(--orange);
+border-radius:13px;
+background:var(--orange);
+color:#10100f;
+padding:0 52px;
+font-size:clamp(10px,1vw,13px);
+letter-spacing:1.1px;
+box-shadow:
+0 10px 28px rgba(232,120,23,.08);
+}
+
 .add-to-basket:hover {
-transform:translateY(-2px);
+transform:translateY(-1px);
 background:var(--orange-bright);
-box-shadow:0 24px 56px rgba(232,120,23,.14);
+box-shadow:
+0 15px 34px rgba(232,120,23,.15);
 }
 
-.basket-arrow {
-font-size:25px;
+#addToBasketText {
+display:block;
+width:100%;
+text-align:center;
 line-height:1;
-transition:transform .2s ease;
 }
 
-.add-to-basket:hover .basket-arrow {
-transform:translateX(4px);
+
+/* Change 8 — upward pointer to header basket */
+
+.basket-pointer {
+position:absolute;
+right:17px;
+top:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Noto Color Emoji",
+sans-serif;
+font-size:26px;
+line-height:1;
+transform:translateY(-50%);
+transform-origin:center center;
+animation:
+basketPointerAttention
+4s ease-in-out
+1s
+infinite;
+}
+
+@keyframes basketPointerAttention {
+
+0%,
+70%,
+100% {
+transform:
+translateY(-50%)
+scale(1);
+}
+
+75% {
+transform:
+translateY(calc(-50% - 5px))
+scale(1.08);
+}
+
+79% {
+transform:
+translateY(-50%)
+scale(.98);
+}
+
+83% {
+transform:
+translateY(calc(-50% - 3px))
+scale(1.04);
+}
+
+87% {
+transform:
+translateY(-50%)
+scale(1);
+}
+
+}
+
+
+/* Secure checkout secondary button */
+
+.secure-checkout {
+border:1px solid rgba(255,255,255,.21);
+border-radius:13px;
+background:
+linear-gradient(
+180deg,
+#1a1d1d 0%,
+#111313 100%
+);
+color:var(--cream);
+padding:0 44px;
+font-size:clamp(8px,.84vw,11px);
+letter-spacing:1px;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.secure-checkout:hover {
+transform:translateY(-1px);
+border-color:rgba(232,120,23,.62);
+background:
+linear-gradient(
+180deg,
+#202323 0%,
+#141616 100%
+);
+color:#ffffff;
+box-shadow:0 10px 26px rgba(0,0,0,.18);
+}
+
+.checkout-card-icon {
+position:absolute;
+left:15px;
+top:50%;
+transform:translateY(-50%);
+font-family:
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Noto Color Emoji",
+sans-serif;
+font-size:15px;
+line-height:1;
 }
 
 
 /* =========================================
-CHANGE 4
+CHANGE 5 — CUSTOM SIZE INTRODUCTION
+========================================= */
+
+.order-custom-intro {
+position:relative;
+z-index:2;
+padding:
+clamp(58px,7vw,96px)
+6%
+clamp(30px,3.8vw,48px);
+background:#050505;
+}
+
+.order-custom-intro-inner {
+max-width:1180px;
+width:100%;
+margin:0 auto;
+padding-bottom:clamp(24px,3vw,38px);
+border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.order-custom-intro-kicker {
+margin:0;
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+"Aptos",
+sans-serif;
+font-size:clamp(10px,1vw,13px);
+font-weight:800;
+line-height:1;
+letter-spacing:2.1px;
+text-transform:uppercase;
+color:var(--steel);
+}
+
+.order-custom-intro-title {
+max-width:900px;
+margin:10px 0 0;
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:clamp(32px,5vw,62px);
+font-weight:800;
+line-height:.98;
+letter-spacing:-1.7px;
+color:var(--cream);
+}
+
+
+/* =========================================
 HOMEPAGE-STYLE STATIC CUSTOM ROOFLIGHT IMAGE
 ========================================= */
 
@@ -1889,8 +2082,6 @@ height:auto;
 border-bottom:0;
 }
 
-
-/* Deliberate blank section for future content */
 .order-future-blank-space {
 height:clamp(110px,13vw,210px);
 background:#050505;
@@ -2403,12 +2594,14 @@ font-size:6.8px;
 letter-spacing:1px;
 }
 
-.price-line {
+.price-line,
+.total-price-line {
 font-size:clamp(31px,8.9vw,39px);
 letter-spacing:-1.6px;
 }
 
-.price-pence {
+.price-pence,
+.total-price-pence {
 margin-left:1px;
 font-size:.35em;
 }
@@ -2427,16 +2620,6 @@ padding-top:10px;
 margin-bottom:6px;
 font-size:6.5px;
 letter-spacing:1px;
-}
-
-.total-price-line {
-font-size:clamp(24px,7vw,31px);
-letter-spacing:-1.2px;
-}
-
-.total-price-pence {
-margin-left:1px;
-font-size:.35em;
 }
 
 .dimension-block {
@@ -2489,17 +2672,55 @@ font-size:5.5px;
 letter-spacing:.6px;
 }
 
-.add-to-basket {
+.purchase-button-stack {
 min-height:52px;
-padding:0 11px;
-gap:8px;
-font-size:8px;
-letter-spacing:.75px;
-border-radius:14px;
+gap:4px;
 }
 
-.basket-arrow {
+.add-to-basket {
+border-radius:10px;
+padding:0 34px;
+font-size:7.5px;
+letter-spacing:.7px;
+}
+
+.basket-pointer {
+right:9px;
 font-size:18px;
+}
+
+.secure-checkout {
+border-radius:10px;
+padding:0 28px;
+font-size:6.3px;
+letter-spacing:.6px;
+}
+
+.checkout-card-icon {
+left:8px;
+font-size:11px;
+}
+
+.order-custom-intro {
+padding:
+40px
+5%
+22px;
+}
+
+.order-custom-intro-inner {
+padding-bottom:20px;
+}
+
+.order-custom-intro-kicker {
+font-size:8px;
+letter-spacing:1.4px;
+}
+
+.order-custom-intro-title {
+margin-top:7px;
+font-size:clamp(22px,6.5vw,30px);
+letter-spacing:-.9px;
 }
 
 .rooflight-slideshow-shell,
@@ -2668,7 +2889,8 @@ padding-left:10px;
 padding-right:10px;
 }
 
-.price-line {
+.price-line,
+.total-price-line {
 font-size:clamp(29px,8.4vw,36px);
 }
 
@@ -2681,10 +2903,27 @@ grid-template-columns:29px minmax(40px,1fr) 32px;
 }
 
 .add-to-basket {
-padding-left:9px;
-padding-right:9px;
-font-size:7.5px;
-letter-spacing:.55px;
+padding-left:28px;
+padding-right:28px;
+font-size:7px;
+letter-spacing:.5px;
+}
+
+.basket-pointer {
+right:7px;
+font-size:17px;
+}
+
+.secure-checkout {
+padding-left:25px;
+padding-right:25px;
+font-size:5.8px;
+letter-spacing:.45px;
+}
+
+.checkout-card-icon {
+left:7px;
+font-size:10px;
 }
 
 }
@@ -2702,12 +2941,20 @@ scroll-behavior:auto;
 
 .ticker,
 .whatsapp-action,
-.basket-total-text {
-animation:none;
+.basket-total-text,
+.basket-pointer {
+animation:none !important;
 }
 
 .product-image-frame img {
 transition-duration:.01ms !important;
+}
+
+.price-line,
+.total-price-line {
+transition:none !important;
+transform:none !important;
+opacity:1 !important;
 }
 
 .total-price-block {
@@ -3322,7 +3569,9 @@ Unit Price:
 
 <div
 class="price-line"
+id="unitPriceLine"
 aria-label="Unit price including VAT"
+aria-live="polite"
 >
 
 <span class="price-major">
@@ -3362,7 +3611,6 @@ class="total-price-block"
 id="totalPriceBlock"
 hidden
 aria-hidden="true"
-aria-live="polite"
 >
 
 <div class="total-price-label">
@@ -3372,7 +3620,9 @@ Total:
 
 <div
 class="total-price-line"
+id="totalPriceLine"
 aria-label="Order total including VAT"
+aria-live="polite"
 >
 
 <span class="total-price-major">
@@ -3451,7 +3701,7 @@ External
 
 
 <!-- =========================================
-QUANTITY / ADD TO BASKET
+QUANTITY / PURCHASE ACTIONS
 ========================================= -->
 
 <div class="purchase-zone purchase-action-zone">
@@ -3507,6 +3757,9 @@ aria-label="Increase quantity"
 </div>
 
 
+<div class="purchase-button-stack">
+
+
 <button
 class="add-to-basket"
 id="addToBasket"
@@ -3518,13 +3771,36 @@ Add 1 To Basket
 </span>
 
 <span
-class="basket-arrow"
+class="basket-pointer"
 aria-hidden="true"
 >
-→
+👆
 </span>
 
 </button>
+
+
+<a
+href="basket.html"
+class="secure-checkout"
+id="secureCheckout"
+>
+
+<span
+class="checkout-card-icon"
+aria-hidden="true"
+>
+💳
+</span>
+
+<span>
+Secure Checkout
+</span>
+
+</a>
+
+
+</div>
 
 
 </div>
@@ -3550,13 +3826,31 @@ aria-hidden="true"
 
 
 <!-- =========================================
-CHANGE 4 — STATIC CUSTOM ROOFLIGHT IMAGE
+CHANGE 5 — CUSTOM SIZE INTRO + IMAGE
 ========================================= -->
 
 <section
 class="engineered-visual-intro order-custom-rooflight-section"
 aria-label="Custom frameless rooflight"
 >
+
+
+<div class="order-custom-intro">
+
+<div class="order-custom-intro-inner reveal">
+
+<p class="order-custom-intro-kicker">
+Need A Different Size?
+</p>
+
+<h2 class="order-custom-intro-title">
+Configure A Custom Size Below
+</h2>
+
+</div>
+
+</div>
+
 
 <div
 class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
@@ -4619,6 +4913,12 @@ document.getElementById(
 );
 
 
+const unitPriceLine =
+document.getElementById(
+"unitPriceLine"
+);
+
+
 const priceWhole =
 document.getElementById(
 "priceWhole"
@@ -4634,6 +4934,12 @@ document.getElementById(
 const totalPriceBlock =
 document.getElementById(
 "totalPriceBlock"
+);
+
+
+const totalPriceLine =
+document.getElementById(
+"totalPriceLine"
 );
 
 
@@ -4704,15 +5010,29 @@ let imageFadeTimer =
 null;
 
 
-let displayedTotalAmount =
+let displayedUnitPriceAmount =
+null;
+
+let unitPriceTransitionToken =
+0;
+
+let unitPriceTransitionTimer =
 null;
 
 
-let totalTransitionToken =
+let displayedTotalAmount =
+null;
+
+let totalPriceTransitionToken =
 0;
 
+let totalPriceTransitionTimer =
+null;
 
-let totalTransitionTimer =
+let totalVisibilityToken =
+0;
+
+let totalVisibilityTimer =
 null;
 
 
@@ -5575,7 +5895,156 @@ pence
 
 
 /* =========================================
-TOTAL PRICE
+CHANGE 3 — UNIT PRICE ANIMATION
+========================================= */
+
+function setUnitPriceText(
+value
+) {
+
+const parts =
+moneyParts(
+value
+);
+
+
+priceWhole.textContent =
+parts.whole;
+
+
+pricePence.textContent =
+parts.pence;
+
+}
+
+
+function updateUnitPrice(
+value
+) {
+
+const numericPrice =
+Number(
+value
+);
+
+
+if (
+displayedUnitPriceAmount ===
+null
+) {
+
+setUnitPriceText(
+numericPrice
+);
+
+
+displayedUnitPriceAmount =
+numericPrice;
+
+
+return;
+
+}
+
+
+if (
+displayedUnitPriceAmount ===
+numericPrice
+) {
+
+return;
+
+}
+
+
+unitPriceTransitionToken +=
+1;
+
+
+const token =
+unitPriceTransitionToken;
+
+
+if (
+unitPriceTransitionTimer !==
+null
+) {
+
+clearTimeout(
+unitPriceTransitionTimer
+);
+
+unitPriceTransitionTimer =
+null;
+
+}
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+setUnitPriceText(
+numericPrice
+);
+
+
+displayedUnitPriceAmount =
+numericPrice;
+
+
+unitPriceLine.classList.remove(
+"is-changing"
+);
+
+
+return;
+
+}
+
+
+unitPriceLine.classList.add(
+"is-changing"
+);
+
+
+unitPriceTransitionTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+unitPriceTransitionToken
+) {
+
+return;
+
+}
+
+
+setUnitPriceText(
+numericPrice
+);
+
+
+displayedUnitPriceAmount =
+numericPrice;
+
+
+unitPriceLine.classList.remove(
+"is-changing"
+);
+
+
+},
+160
+);
+
+}
+
+
+/* =========================================
+CHANGE 3 / 6 — TOTAL PRICE
 ========================================= */
 
 function setTotalPriceText(
@@ -5598,33 +6067,116 @@ parts.pence;
 }
 
 
-function updateTotalPrice(
-orderTotal,
-showTotal
+function animateTotalPriceValue(
+value
 ) {
 
-totalTransitionToken +=
+const numericTotal =
+Number(
+value
+);
+
+
+if (
+displayedTotalAmount ===
+numericTotal
+) {
+
+return;
+
+}
+
+
+totalPriceTransitionToken +=
 1;
 
 
 const token =
-totalTransitionToken;
+totalPriceTransitionToken;
 
 
 if (
-totalTransitionTimer !==
+totalPriceTransitionTimer !==
 null
 ) {
 
 clearTimeout(
-totalTransitionTimer
+totalPriceTransitionTimer
 );
 
-totalTransitionTimer =
+totalPriceTransitionTimer =
 null;
 
 }
 
+
+if (
+reducedMotionQuery.matches
+) {
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceLine.classList.remove(
+"is-changing"
+);
+
+
+return;
+
+}
+
+
+totalPriceLine.classList.add(
+"is-changing"
+);
+
+
+totalPriceTransitionTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+totalPriceTransitionToken
+) {
+
+return;
+
+}
+
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceLine.classList.remove(
+"is-changing"
+);
+
+
+},
+160
+);
+
+}
+
+
+function updateTotalPrice(
+orderTotal,
+showTotal
+) {
 
 const numericTotal =
 Number(
@@ -5632,12 +6184,65 @@ orderTotal
 );
 
 
+totalVisibilityToken +=
+1;
+
+
+const visibilityToken =
+totalVisibilityToken;
+
+
+if (
+totalVisibilityTimer !==
+null
+) {
+
+clearTimeout(
+totalVisibilityTimer
+);
+
+totalVisibilityTimer =
+null;
+
+}
+
+
+/*
+Quantity returns to 1:
+hide the entire Total section,
+including the orange separator.
+*/
+
 if (
 !showTotal
 ) {
 
 displayedTotalAmount =
 null;
+
+
+totalPriceTransitionToken +=
+1;
+
+
+if (
+totalPriceTransitionTimer !==
+null
+) {
+
+clearTimeout(
+totalPriceTransitionTimer
+);
+
+totalPriceTransitionTimer =
+null;
+
+}
+
+
+totalPriceLine.classList.remove(
+"is-changing"
+);
 
 
 totalPriceBlock.setAttribute(
@@ -5654,11 +6259,6 @@ setTotalPriceText(
 numericTotal
 );
 
-totalPriceBlock.classList.remove(
-"is-visible",
-"is-changing"
-);
-
 return;
 
 }
@@ -5668,40 +6268,42 @@ if (
 reducedMotionQuery.matches
 ) {
 
+totalPriceBlock.classList.remove(
+"is-visible"
+);
+
+
 totalPriceBlock.hidden =
 true;
 
-totalPriceBlock.classList.remove(
-"is-visible",
-"is-changing"
-);
 
 setTotalPriceText(
 numericTotal
 );
+
 
 return;
 
 }
 
 
+/*
+Removing is-visible fades the whole section,
+including the orange separator line.
+*/
+
 totalPriceBlock.classList.remove(
 "is-visible"
 );
 
 
-totalPriceBlock.classList.add(
-"is-changing"
-);
-
-
-totalTransitionTimer =
+totalVisibilityTimer =
 setTimeout(
 () => {
 
 if (
-token !==
-totalTransitionToken
+visibilityToken !==
+totalVisibilityToken
 ) {
 
 return;
@@ -5713,15 +6315,10 @@ totalPriceBlock.hidden =
 true;
 
 
-totalPriceBlock.classList.remove(
-"is-visible",
-"is-changing"
-);
-
-
 setTotalPriceText(
 numericTotal
 );
+
 
 },
 160
@@ -5733,8 +6330,109 @@ return;
 }
 
 
+/*
+Quantity is 2+.
+
+If the section is currently hidden,
+the separator and Total appear together.
+*/
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+
 if (
-totalPriceBlock.hidden ||
+totalPriceBlock.hidden
+) {
+
+setTotalPriceText(
+numericTotal
+);
+
+
+displayedTotalAmount =
+numericTotal;
+
+
+totalPriceBlock.hidden =
+false;
+
+
+totalPriceLine.classList.remove(
+"is-changing"
+);
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+return;
+
+}
+
+
+requestAnimationFrame(
+() => {
+
+if (
+visibilityToken !==
+totalVisibilityToken
+) {
+
+return;
+
+}
+
+
+requestAnimationFrame(
+() => {
+
+if (
+visibilityToken !==
+totalVisibilityToken
+) {
+
+return;
+
+}
+
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+}
+);
+
+}
+);
+
+
+return;
+
+}
+
+
+/*
+The Total section is already visible.
+
+Keep the orange separator completely static.
+Only fade the number itself when it changes.
+*/
+
+totalPriceBlock.classList.add(
+"is-visible"
+);
+
+
+if (
 displayedTotalAmount ===
 null
 ) {
@@ -5748,228 +6446,22 @@ displayedTotalAmount =
 numericTotal;
 
 
-totalPriceBlock.hidden =
-false;
-
-
-totalPriceBlock.setAttribute(
-"aria-hidden",
-"false"
-);
-
-
-totalPriceBlock.classList.remove(
-"is-visible",
-"is-changing"
-);
-
-
-if (
-reducedMotionQuery.matches
-) {
-
-totalPriceBlock.classList.add(
-"is-visible"
-);
-
 return;
 
 }
 
 
-requestAnimationFrame(
-() => {
-
-if (
-token !==
-totalTransitionToken
-) {
-
-return;
-
-}
-
-
-requestAnimationFrame(
-() => {
-
-if (
-token !==
-totalTransitionToken
-) {
-
-return;
-
-}
-
-
-totalPriceBlock.classList.add(
-"is-visible"
-);
-
-}
-);
-
-}
-);
-
-
-return;
-
-}
-
-
-if (
-displayedTotalAmount ===
+animateTotalPriceValue(
 numericTotal
-) {
-
-totalPriceBlock.hidden =
-false;
-
-
-totalPriceBlock.setAttribute(
-"aria-hidden",
-"false"
-);
-
-
-totalPriceBlock.classList.remove(
-"is-changing"
-);
-
-
-totalPriceBlock.classList.add(
-"is-visible"
-);
-
-
-return;
-
-}
-
-
-if (
-reducedMotionQuery.matches
-) {
-
-setTotalPriceText(
-numericTotal
-);
-
-
-displayedTotalAmount =
-numericTotal;
-
-
-totalPriceBlock.hidden =
-false;
-
-
-totalPriceBlock.setAttribute(
-"aria-hidden",
-"false"
-);
-
-
-totalPriceBlock.classList.remove(
-"is-changing"
-);
-
-
-totalPriceBlock.classList.add(
-"is-visible"
-);
-
-
-return;
-
-}
-
-
-totalPriceBlock.classList.remove(
-"is-visible"
-);
-
-
-totalPriceBlock.classList.add(
-"is-changing"
-);
-
-
-totalTransitionTimer =
-setTimeout(
-() => {
-
-if (
-token !==
-totalTransitionToken
-) {
-
-return;
-
-}
-
-
-setTotalPriceText(
-numericTotal
-);
-
-
-displayedTotalAmount =
-numericTotal;
-
-
-totalPriceBlock.classList.remove(
-"is-changing"
-);
-
-
-requestAnimationFrame(
-() => {
-
-if (
-token !==
-totalTransitionToken
-) {
-
-return;
-
-}
-
-
-requestAnimationFrame(
-() => {
-
-if (
-token !==
-totalTransitionToken
-) {
-
-return;
-
-}
-
-
-totalPriceBlock.classList.add(
-"is-visible"
-);
-
-}
-);
-
-}
-);
-
-},
-160
 );
 
 }
 
 
 /* =========================================
-TITLE
+CHANGE 1 — TITLE
+Glass type does NOT alter title.
+Tint and glazing DO alter title.
 ========================================= */
 
 function buildTitle() {
@@ -6017,20 +6509,6 @@ tintText =
 }
 
 
-const typeText =
-
-state.type ===
-"laminated"
-
-?
-
-"Laminated "
-
-:
-
-"";
-
-
 const glazingText =
 
 state.glazing ===
@@ -6045,7 +6523,7 @@ state.glazing ===
 "Double";
 
 
-return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
+return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
 }
 
@@ -6786,12 +7264,6 @@ const price =
 selectedPrice();
 
 
-const parts =
-moneyParts(
-price
-);
-
-
 const orderTotal =
 price *
 state.quantity;
@@ -6858,12 +7330,15 @@ externalSize.textContent =
 calculateExternalSize();
 
 
-priceWhole.textContent =
-parts.whole;
+/*
+Change 3:
+Unit price now uses its own fade-out /
+update / fade-in behaviour.
+*/
 
-
-pricePence.textContent =
-parts.pence;
+updateUnitPrice(
+price
+);
 
 
 updateTotalPrice(
@@ -7311,6 +7786,11 @@ closeSizeDropdown();
 state.type =
 button.dataset.type;
 
+
+/*
+Title deliberately remains unchanged
+because buildTitle() ignores glass type.
+*/
 
 updateUI();
 
