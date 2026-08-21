@@ -733,19 +733,11 @@ height:100%;
 object-fit:contain;
 object-position:center center;
 opacity:1;
-
-/*
-The frame itself stays upright.
-Only the PNG image layer is scaled / rotated.
-*/
 transform:
 scale(var(--product-image-scale,1.30))
 rotate(var(--product-image-rotation,0deg));
-
 transform-origin:center center;
-
 will-change:opacity,transform;
-
 transition:
 opacity .28s ease,
 transform .42s ease,
@@ -760,7 +752,6 @@ opacity:0;
 transform:
 scale(var(--product-image-hover-scale,1.335))
 rotate(var(--product-image-rotation,0deg));
-
 filter:contrast(1.015);
 }
 
@@ -1004,7 +995,6 @@ text-transform:uppercase;
 
 
 /* =========================================
-CHANGE 1
 CUSTOM SIZE DROPDOWN
 ========================================= */
 
@@ -1020,39 +1010,29 @@ width:100%;
 height:46px;
 margin:0;
 padding:0 46px 0 13px;
-
 display:flex;
 align-items:center;
 justify-content:flex-start;
-
 border:1px solid rgba(255,255,255,.16);
 border-radius:16px;
-
 background:
 linear-gradient(
 180deg,
 #0d0f0f 0%,
 #090b0b 100%
 );
-
 color:var(--white);
-
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-
 font-size:clamp(16px,1.7vw,23px);
 font-weight:700;
 line-height:1;
-
 text-align:left;
-
 cursor:pointer;
-
 box-shadow:
 inset 0 1px 0 rgba(255,255,255,.015);
-
 transition:
 border-color .2s ease,
 background .2s ease,
@@ -1070,17 +1050,13 @@ content:"";
 position:absolute;
 right:17px;
 top:50%;
-
 width:7px;
 height:7px;
-
 border-right:1px solid #c8c8c4;
 border-bottom:1px solid #c8c8c4;
-
 transform:
 translateY(-68%)
 rotate(45deg);
-
 transition:
 transform .22s ease,
 border-color .22s ease;
@@ -1088,7 +1064,6 @@ border-color .22s ease;
 
 .size-dropdown.is-open .size-dropdown-trigger::after {
 border-color:var(--orange-bright);
-
 transform:
 translateY(-28%)
 rotate(225deg);
@@ -1096,35 +1071,26 @@ rotate(225deg);
 
 .size-dropdown-panel {
 position:absolute;
-
 top:calc(100% + 6px);
 left:0;
 right:0;
-
 z-index:100;
-
 overflow:hidden;
-
 border:1px solid rgba(255,255,255,.17);
 border-radius:14px;
-
 background:
 linear-gradient(
 180deg,
 #121414 0%,
 #090b0b 100%
 );
-
 box-shadow:
 0 26px 58px rgba(0,0,0,.62),
 0 0 0 1px rgba(0,0,0,.20);
-
 opacity:0;
 visibility:hidden;
 pointer-events:none;
-
 transform:translateY(-5px);
-
 transition:
 opacity .16s ease,
 visibility .16s ease,
@@ -1141,15 +1107,11 @@ transform:translateY(0);
 .size-dropdown-list {
 display:block;
 width:100%;
-
 max-height:286px;
-
 overflow-x:hidden;
 overflow-y:auto;
-
 overscroll-behavior:contain;
 -webkit-overflow-scrolling:touch;
-
 scrollbar-width:thin;
 scrollbar-color:
 rgba(232,120,23,.60)
@@ -1171,39 +1133,29 @@ border-radius:999px;
 
 .size-dropdown-option {
 position:relative;
-
 width:100%;
 min-height:49px;
-
 margin:0;
 padding:0 43px 0 14px;
-
 display:flex;
 align-items:center;
 justify-content:flex-start;
-
 border:0;
 border-bottom:1px solid rgba(255,255,255,.075);
-
 background:#0b0d0d;
 color:rgba(247,247,243,.87);
-
 font-family:
 "Bahnschrift SemiCondensed",
 "Aptos Display",
 "Arial Narrow",
 sans-serif;
-
 font-size:clamp(13px,1.35vw,18px);
 font-weight:650;
 line-height:1.1;
 letter-spacing:-.15px;
-
 text-align:left;
 white-space:nowrap;
-
 cursor:pointer;
-
 transition:
 background .16s ease,
 color .16s ease,
@@ -1227,7 +1179,6 @@ linear-gradient(
 rgba(232,120,23,.17),
 rgba(232,120,23,.045)
 );
-
 color:var(--orange-bright);
 }
 
@@ -1384,6 +1335,12 @@ text-transform:uppercase;
 
 /* =========================================
 UNIT PRICE / TOTAL
+
+Decimal runs naturally:
+£880.00 / £1,760.00
+
+Only the final two digits are reduced
+to 35% of the main figure size.
 ========================================= */
 
 .purchase-price-zone {
@@ -1399,7 +1356,7 @@ min-width:0;
 .price-line,
 .total-price-line {
 display:flex;
-align-items:flex-end;
+align-items:baseline;
 justify-content:flex-start;
 white-space:nowrap;
 font-family:
@@ -1407,44 +1364,50 @@ font-family:
 "Bahnschrift SemiCondensed",
 "Arial Narrow",
 sans-serif;
-line-height:1;
+line-height:.78;
 }
 
 .price-line {
 color:var(--cream);
+font-size:clamp(45px,4.9vw,67px);
+font-weight:800;
+letter-spacing:-2.6px;
+}
+
+.price-major,
+.total-price-major {
+display:inline-flex;
+align-items:baseline;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 }
 
 .price-pound,
 .price-whole,
-.price-dot {
-display:block;
-font-size:clamp(45px,4.9vw,67px);
-font-weight:800;
-line-height:.78;
-letter-spacing:-2.6px;
-}
-
-.price-pound {
-margin-right:1px;
-}
-
-.price-dot {
-margin-left:1px;
+.price-dot,
+.total-price-pound,
+.total-price-whole,
+.total-price-dot {
+display:inline;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 }
 
 .price-pence {
-display:block;
-align-self:flex-end;
-margin-left:4px;
-padding-bottom:0;
+display:inline-block;
+margin-left:2px;
 font-family:
 "Bahnschrift",
 "Arial Narrow",
 sans-serif;
-font-size:clamp(16px,1.7vw,23px);
+font-size:.35em;
 font-weight:800;
-line-height:.78;
-letter-spacing:-.45px;
+line-height:1;
+letter-spacing:-.1px;
 }
 
 .vat-line {
@@ -1508,40 +1471,25 @@ font-family:
 "Bahnschrift",
 "Arial Narrow",
 sans-serif;
-font-style:normal;
-}
-
-.total-price-pound,
-.total-price-whole,
-.total-price-dot {
-display:block;
 font-size:clamp(31px,3.5vw,48px);
+font-style:normal;
 font-weight:850;
 line-height:.80;
 letter-spacing:-1.8px;
 }
 
-.total-price-pound {
-margin-right:1px;
-}
-
-.total-price-dot {
-margin-left:1px;
-}
-
 .total-price-pence {
-display:block;
-align-self:flex-end;
-margin-left:4px;
+display:inline-block;
+margin-left:2px;
 font-family:
 "Bahnschrift",
 "Arial Narrow",
 sans-serif;
-font-size:clamp(12px,1.35vw,18px);
+font-size:.35em;
 font-style:normal;
 font-weight:850;
-line-height:.80;
-letter-spacing:-.3px;
+line-height:1;
+letter-spacing:-.1px;
 }
 
 
@@ -2269,7 +2217,6 @@ height:32px;
 padding-left:8px;
 padding-right:31px;
 border-radius:12px;
-
 font-size:clamp(10px,2.9vw,13px);
 }
 
@@ -2292,7 +2239,6 @@ max-height:218px;
 min-height:36px;
 padding-left:9px;
 padding-right:29px;
-
 font-size:clamp(9px,2.65vw,12px);
 }
 
@@ -2360,17 +2306,14 @@ font-size:6.8px;
 letter-spacing:1px;
 }
 
-.price-pound,
-.price-whole,
-.price-dot {
+.price-line {
 font-size:clamp(31px,8.9vw,39px);
 letter-spacing:-1.6px;
 }
 
 .price-pence {
-margin-left:3px;
-font-size:clamp(11px,3vw,14px);
-letter-spacing:-.2px;
+margin-left:1px;
+font-size:.35em;
 }
 
 .vat-line {
@@ -2389,16 +2332,14 @@ font-size:6.5px;
 letter-spacing:1px;
 }
 
-.total-price-pound,
-.total-price-whole,
-.total-price-dot {
+.total-price-line {
 font-size:clamp(24px,7vw,31px);
 letter-spacing:-1.2px;
 }
 
 .total-price-pence {
-margin-left:3px;
-font-size:clamp(9px,2.5vw,12px);
+margin-left:1px;
+font-size:.35em;
 }
 
 .dimension-block {
@@ -2621,9 +2562,7 @@ padding-left:10px;
 padding-right:10px;
 }
 
-.price-pound,
-.price-whole,
-.price-dot {
+.price-line {
 font-size:clamp(29px,8.4vw,36px);
 }
 
@@ -2790,9 +2729,7 @@ aria-label="Open WhatsApp Business chat with our rooflight team"
 viewBox="0 0 32 32"
 aria-hidden="true"
 >
-
 <path d="M16 3.2A12.5 12.5 0 0 0 5.2 22l-1.8 6.8 7-1.8A12.5 12.5 0 1 0 16 3.2zm0 22.7c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.2 10.2 0 1 1 9.2 5.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.9-.9-3.2-1.7-4.5-3.9-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
-
 </svg>
 
 </a>
@@ -3117,10 +3054,6 @@ A made-to-order frameless flat roof skylight, factory sealed and insulated using
 <div class="options-stack">
 
 
-<!-- =========================================
-CHANGE 1 — CUSTOM SIZE DROPDOWN
-========================================= -->
-
 <div class="option-group">
 
 <div
@@ -3275,9 +3208,9 @@ class="price-line"
 aria-label="Unit price including VAT"
 >
 
-<span class="price-pound">
-£
-</span>
+<span class="price-major">
+
+<span class="price-pound">£</span>
 
 <span
 class="price-whole"
@@ -3286,8 +3219,8 @@ id="priceWhole"
 300
 </span>
 
-<span class="price-dot">
-.
+<span class="price-dot">.</span>
+
 </span>
 
 <span
@@ -3325,9 +3258,9 @@ class="total-price-line"
 aria-label="Order total including VAT"
 >
 
-<span class="total-price-pound">
-£
-</span>
+<span class="total-price-major">
+
+<span class="total-price-pound">£</span>
 
 <span
 class="total-price-whole"
@@ -3336,8 +3269,8 @@ id="totalPriceWhole"
 600
 </span>
 
-<span class="total-price-dot">
-.
+<span class="total-price-dot">.</span>
+
 </span>
 
 <span
@@ -3691,11 +3624,9 @@ VAT no. - 487373544
 
 <div class="footer-copyright">
 
-
 <span>
 © 2026 Factory Toughened Rooflights. All Rights Reserved
 </span>
-
 
 <span
 class="footer-copyright-divider"
@@ -3704,13 +3635,9 @@ aria-hidden="true"
 |
 </span>
 
-
-<a
-href="mailto:sales@factorytoughenedrooflights.co.uk"
->
+<a href="mailto:sales@factorytoughenedrooflights.co.uk">
 sales@factorytoughenedrooflights.co.uk
 </a>
-
 
 </div>
 
@@ -3732,38 +3659,10 @@ class="payment-badge payment-badge-visa payment-wide"
 role="img"
 aria-label="Visa"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<rect
-x="0"
-y="0"
-width="88"
-height="44"
-rx="3"
-fill="#1434CB"
-/>
-
-<text
-x="44"
-y="30"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="24"
-font-weight="900"
-font-style="italic"
-letter-spacing="-2"
->
-VISA
-</text>
-
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<rect x="0" y="0" width="88" height="44" rx="3" fill="#1434CB"/>
+<text x="44" y="30" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" font-style="italic" letter-spacing="-2">VISA</text>
 </svg>
-
 </span>
 
 
@@ -3772,35 +3671,12 @@ class="payment-badge payment-badge-mastercard"
 role="img"
 aria-label="Mastercard"
 >
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <circle cx="29" cy="19" r="12" fill="#EB001B"/>
 <circle cx="43" cy="19" r="12" fill="#F79E1B"/>
-
-<path
-d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z"
-fill="#FF5F00"
-/>
-
-<text
-x="36"
-y="38"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="6.5"
-font-weight="700"
->
-mastercard
-</text>
-
+<path d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z" fill="#FF5F00"/>
+<text x="36" y="38" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="6.5" font-weight="700">mastercard</text>
 </svg>
-
 </span>
 
 
@@ -3809,48 +3685,11 @@ class="payment-badge payment-badge-amex"
 role="img"
 aria-label="American Express"
 >
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<rect
-x="0"
-y="0"
-width="72"
-height="44"
-rx="3"
-fill="#0877C9"
-/>
-
-<text
-x="36"
-y="18"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="15"
-font-weight="900"
->
-AM
-</text>
-
-<text
-x="36"
-y="34"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="15"
-font-weight="900"
->
-EX
-</text>
-
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<rect x="0" y="0" width="72" height="44" rx="3" fill="#0877C9"/>
+<text x="36" y="18" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">AM</text>
+<text x="36" y="34" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">EX</text>
 </svg>
-
 </span>
 
 
@@ -3859,36 +3698,11 @@ class="payment-badge payment-badge-apple-pay payment-wide"
 role="img"
 aria-label="Apple Pay"
 >
-
-<svg
-viewBox="0 0 86 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-fill="#000000"
-d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"
-/>
-
-<path
-fill="#000000"
-d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"
-/>
-
-<text
-x="35"
-y="29"
-fill="#111111"
-font-family="Arial, Helvetica, sans-serif"
-font-size="20"
-font-weight="700"
->
-Pay
-</text>
-
+<svg viewBox="0 0 86 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path fill="#000000" d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"/>
+<path fill="#000000" d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"/>
+<text x="35" y="29" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Pay</text>
 </svg>
-
 </span>
 
 
@@ -3897,31 +3711,10 @@ class="payment-badge payment-badge-google-pay payment-wide"
 role="img"
 aria-label="Google Pay"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z"
-fill="#4285F4"
-/>
-
-<text
-x="50"
-y="27"
-text-anchor="middle"
-fill="#5F6368"
-font-family="Arial, Helvetica, sans-serif"
-font-size="17"
->
-Pay
-</text>
-
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z" fill="#4285F4"/>
+<text x="50" y="27" text-anchor="middle" fill="#5F6368" font-family="Arial, Helvetica, sans-serif" font-size="17">Pay</text>
 </svg>
-
 </span>
 
 
@@ -3930,37 +3723,11 @@ class="payment-badge payment-badge-paypal payment-wide"
 role="img"
 aria-label="PayPal"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z"
-fill="#003087"
-/>
-
-<path
-d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z"
-fill="#009CDE"
-/>
-
-<text
-x="61"
-y="28"
-text-anchor="middle"
-fill="#003087"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="800"
->
-PayPal
-</text>
-
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z" fill="#003087"/>
+<path d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z" fill="#009CDE"/>
+<text x="61" y="28" text-anchor="middle" fill="#003087" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">PayPal</text>
 </svg>
-
 </span>
 
 
@@ -3969,32 +3736,10 @@ class="payment-badge payment-badge-discover payment-wide"
 role="img"
 aria-label="Discover"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<text
-x="43"
-y="25"
-text-anchor="middle"
-fill="#202020"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="800"
->
-DISCOVER
-</text>
-
-<path
-d="M50 32c8-6 17-8 29-8v8z"
-fill="#F58220"
-/>
-
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<text x="43" y="25" text-anchor="middle" fill="#202020" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">DISCOVER</text>
+<path d="M50 32c8-6 17-8 29-8v8z" fill="#F58220"/>
 </svg>
-
 </span>
 
 
@@ -4003,43 +3748,13 @@ class="payment-badge payment-badge-unionpay payment-wide"
 role="img"
 aria-label="UnionPay"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M12 7h22l-6 30H6z" fill="#E21836"/>
 <path d="M28 7h22l-6 30H22z" fill="#007B84"/>
 <path d="M44 7h22l-6 30H38z" fill="#00A6A6"/>
-
-<text
-x="38"
-y="20"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="8.5"
-font-weight="800"
->
-Union
-</text>
-
-<text
-x="38"
-y="29"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="8.5"
-font-weight="800"
->
-Pay
-</text>
-
+<text x="38" y="20" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="800">Union</text>
+<text x="38" y="29" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="800">Pay</text>
 </svg>
-
 </span>
 
 
@@ -4320,16 +4035,73 @@ PRODUCT DATA
 
 const PRODUCTS = {
 
-"600x600":{
+
+/* =========================================
+300mm WIDTH
+========================================= */
+
+"300x800":{
+double:195,
+triple:235,
+image:"ultra-narrow-rectangle.png"
+},
+
+"300x1000":{
 double:220,
 triple:270,
-image:"small-square.png"
+image:"ultra-narrow-rectangle.png"
+},
+
+"300x1200":{
+double:235,
+triple:285,
+image:"narrow-tall-rectangle.png"
+},
+
+"300x1500":{
+double:270,
+triple:325,
+image:"narrow-long-rectangle.png"
+},
+
+
+/* =========================================
+400mm WIDTH
+========================================= */
+
+"400x800":{
+double:215,
+triple:260,
+image:"narrow-tall-rectangle.png"
+},
+
+"400x1000":{
+double:235,
+triple:285,
+image:"narrow-tall-rectangle.png"
+},
+
+"400x1200":{
+double:260,
+triple:315,
+image:"narrow-long-rectangle.png"
 },
 
 "400x1500":{
 double:310,
 triple:370,
 image:"narrow-long-rectangle.png"
+},
+
+
+/* =========================================
+600mm WIDTH
+========================================= */
+
+"600x600":{
+double:220,
+triple:270,
+image:"small-square.png"
 },
 
 "600x900":{
@@ -4356,6 +4128,11 @@ triple:540,
 image:"large-rectangle.png"
 },
 
+
+/* =========================================
+800mm WIDTH
+========================================= */
+
 "800x800":{
 double:290,
 triple:350,
@@ -4371,11 +4148,6 @@ image:"medium-square.png"
 "800x1200":{
 double:395,
 triple:470,
-
-/*
-800 × 1200 intentionally uses the exact
-same image family as 800 × 1000.
-*/
 image:"medium-square.png"
 },
 
@@ -4390,6 +4162,11 @@ double:560,
 triple:675,
 image:"large-rectangle.png"
 },
+
+
+/* =========================================
+1000mm WIDTH
+========================================= */
 
 "1000x1000":{
 double:420,
@@ -4421,11 +4198,21 @@ triple:945,
 image:"jumbo.png"
 },
 
+
+/* =========================================
+OTHER EXISTING SIZE
+========================================= */
+
 "1200x1200":{
 double:510,
 triple:615,
 image:"large-square.png"
 },
+
+
+/* =========================================
+1500mm WIDTH
+========================================= */
 
 "1500x1500":{
 double:760,
@@ -4460,6 +4247,16 @@ SIZE DROPDOWN ORDER
 
 const SIZE_DROPDOWN_ORDER = [
 
+"300x800",
+"300x1000",
+"300x1200",
+"300x1500",
+
+"400x800",
+"400x1000",
+"400x1200",
+"400x1500",
+
 "600x600",
 "600x900",
 "600x1200",
@@ -4486,47 +4283,6 @@ const SIZE_DROPDOWN_ORDER = [
 ];
 
 
-const TINT_PRICE_OVERRIDES = {
-
-"800x1000":{
-
-blue:{
-double:435,
-triple:520
-}
-
-},
-
-"600x1500":{
-
-blue:{
-double:470,
-triple:560
-}
-
-},
-
-"600x900":{
-
-satin:{
-double:325,
-triple:390
-}
-
-},
-
-"800x1500":{
-
-satin:{
-double:590,
-triple:710
-}
-
-}
-
-};
-
-
 /* =========================================
 ACTUAL IMAGE FAMILIES
 ========================================= */
@@ -4550,11 +4306,64 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 
 /* =========================================
-CHANGE 2
-LATEST FINAL IMAGE SCALE ADJUSTMENTS
+PROVISIONAL CONFIGURATION PRICING
 
-These are final adjustments relative to
-the original Order Page 1.30 baseline.
+Clear Toughened = base price.
+
+Grey +22%
+Satin +25%
+Blue +30%
+Laminated +20%
+
+Laminated + tint is additive against
+the original clear toughened base.
+
+Final price rounds to nearest £5.
+========================================= */
+
+const CONFIGURATION_UPLIFTS = {
+
+type:{
+toughened:0,
+laminated:.20
+},
+
+tint:{
+clear:0,
+grey:.22,
+satin:.25,
+blue:.30
+}
+
+};
+
+
+const BORDER_PRICE_ADJUSTMENTS = {
+
+100:0,
+125:0,
+150:0
+
+};
+
+
+function roundToNearestFive(
+value
+) {
+
+return Math.round(
+Number(
+value
+) /
+5
+) *
+5;
+
+}
+
+
+/* =========================================
+PRODUCT IMAGE SCALE
 ========================================= */
 
 const PRODUCT_IMAGE_BASE_SCALE =
@@ -4573,9 +4382,6 @@ PRODUCT_IMAGE_BASE_SCALE;
 
 const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 
-/*
-Previous -40%, then +10%
-*/
 "600x600":-30,
 
 "600x900":15,
@@ -4583,55 +4389,25 @@ Previous -40%, then +10%
 "600x1500":-15,
 "600x2000":-15,
 
-/*
-Previous -40%, then +10%
-*/
 "800x800":-30,
 
-/*
-Previous -30%, then +5%
-*/
 "800x1000":-25,
 "800x1200":-25,
 
-/*
-Previous -25%, then +5%
-*/
 "800x1500":-20,
 
-/*
-Previous -15%, then +3%
-*/
 "800x2000":-12,
 
-/*
-Previous -50%, then +20%
-*/
 "1000x1000":-30,
 
-/*
-Previous -50%, then +25%
-*/
 "1000x1200":-25,
 
-/*
-Previous -25%, then +3%
-*/
 "1000x1500":-22,
 
-/*
-Previous -25%, then +7%
-*/
 "1000x2000":-18,
 
-/*
-Previous -25%, then +3%
-*/
 "1000x2500":-22,
 
-/*
-Previous -35%, then +12%
-*/
 "1500x1500":-23,
 
 "1500x1800":-15,
@@ -4642,39 +4418,29 @@ Previous -35%, then +12%
 
 
 /* =========================================
-CHANGE 2
 PER-SIZE IMAGE ROTATION
 
-ONLY THE PNG IMAGE LAYER ROTATES.
-THE WHITE FRAME REMAINS UPRIGHT.
+White image frame stays upright.
+Only PNG layer rotates.
 ========================================= */
 
 const PRODUCT_IMAGE_ROTATIONS = {
+
+"300x1500":90,
+"400x1500":90,
 
 "1500x1500":-15
 
 };
 
 
-const PRICE_MODIFIERS = {
+/* =========================================
+PER-SIZE OBJECT FIT
+========================================= */
 
-type:{
-toughened:0,
-laminated:0
-},
+const PRODUCT_IMAGE_OBJECT_FIT = {
 
-border:{
-100:0,
-125:0,
-150:0
-},
-
-tint:{
-clear:0,
-blue:0,
-grey:0,
-satin:0
-}
+"400x800":"cover"
 
 };
 
@@ -4854,10 +4620,6 @@ let totalTransitionToken =
 let totalTransitionTimer =
 null;
 
-
-/* =========================================
-CUSTOM SIZE DROPDOWN STATE
-========================================= */
 
 let sizeDropdownKeyboardIndex =
 0;
@@ -5281,7 +5043,6 @@ filename
 
 
 /* =========================================
-CHANGE 2
 PRODUCT IMAGE SCALE / ROTATION
 ========================================= */
 
@@ -5340,6 +5101,17 @@ const rotation =
 getProductImageRotation();
 
 
+const objectFit =
+
+PRODUCT_IMAGE_OBJECT_FIT[
+state.size
+]
+
+||
+
+"contain";
+
+
 productImage.style.setProperty(
 "--product-image-scale",
 scale.toFixed(
@@ -5360,6 +5132,10 @@ productImage.style.setProperty(
 "--product-image-rotation",
 `${rotation}deg`
 );
+
+
+productImage.style.objectFit =
+objectFit;
 
 }
 
@@ -5583,6 +5359,11 @@ return 0;
 }
 
 
+/*
+Keep an exact homepage-carried price when
+the imported configuration still matches.
+*/
+
 if (
 homepageImportMatchesCurrentSelection() &&
 Number.isFinite(
@@ -5595,47 +5376,6 @@ return state.homepageImport.price;
 }
 
 
-const tintPrices =
-TINT_PRICE_OVERRIDES[
-state.size
-];
-
-
-if (
-state.type ===
-"toughened" &&
-
-state.border ===
-100 &&
-
-tintPrices &&
-
-tintPrices[
-state.tint
-] &&
-
-Number.isFinite(
-Number(
-tintPrices[
-state.tint
-][
-state.glazing
-]
-)
-)
-) {
-
-return Number(
-tintPrices[
-state.tint
-][
-state.glazing
-]
-);
-
-}
-
-
 const base =
 Number(
 product[
@@ -5644,40 +5384,70 @@ state.glazing
 );
 
 
-return (
+const typeUplift =
+
+CONFIGURATION_UPLIFTS.type[
+state.type
+]
+
+||
+
+0;
+
+
+const tintUplift =
+
+CONFIGURATION_UPLIFTS.tint[
+state.tint
+]
+
+||
+
+0;
+
+
+const borderAdjustment =
+
+BORDER_PRICE_ADJUSTMENTS[
+state.border
+]
+
+||
+
+0;
+
+
+/*
+Both upgrade percentages are calculated
+against the original Clear Toughened base,
+rather than compounding one on the other.
+*/
+
+const configuredPrice =
 
 base
 
 +
 
 (
-PRICE_MODIFIERS.type[
-state.type
-]
-||
-0
+base *
+typeUplift
 )
 
 +
 
 (
-PRICE_MODIFIERS.border[
-state.border
-]
-||
-0
+base *
+tintUplift
 )
 
 +
 
-(
-PRICE_MODIFIERS.tint[
-state.tint
-]
-||
-0
-)
+borderAdjustment;
 
+
+return roundToNearestFive(
+configuredPrice
 );
 
 }
@@ -6322,7 +6092,6 @@ history.replaceState(
 
 
 /* =========================================
-CHANGE 1
 CUSTOM SIZE DROPDOWN
 ========================================= */
 
@@ -6468,10 +6237,10 @@ sizeDropdownTrigger.setAttribute(
 
 
 /*
-Important:
-Always start the opened list at the top so
-600 × 600mm internal is the first option
-directly underneath the current selection.
+Always open at the beginning of the list.
+
+300 × 800mm is now the first available
+size immediately beneath the selected size.
 */
 
 sizeDropdownList.scrollTop =
@@ -6957,11 +6726,6 @@ document.title =
 `${title} | Factory Toughened Rooflights`;
 
 
-/* =========================================
-CHANGE 2
-SCALE + IMAGE-ONLY ROTATION
-========================================= */
-
 updateProductImageTransform();
 
 
@@ -6971,11 +6735,6 @@ imageSource,
 animateImage
 );
 
-
-/* =========================================
-CHANGE 1
-CUSTOM SIZE DISPLAY
-========================================= */
 
 updateSizeDropdownDisplay();
 
