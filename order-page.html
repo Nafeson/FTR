@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>600 × 900mm Triple Glazed Frameless Skylight | Factory Toughened Rooflights</title>
-
 <meta
 name="description"
 content="Configure and order a Factory Toughened Rooflights frameless flat roof skylight online."
@@ -13,23 +11,35 @@ content="Configure and order a Factory Toughened Rooflights frameless flat roof 
 
 <style>
 
-/* =========================================
-ROOT
-========================================= */
-
 :root {
---black:#050505;
---black-2:#080808;
---panel:#0d0f0f;
---panel-2:#111313;
---line:rgba(255,255,255,.12);
---line-strong:rgba(255,255,255,.20);
---white:#f7f7f5;
---muted:#a7a7a4;
---muted-2:#777976;
---orange:#ff8708;
---orange-soft:#ff9a2f;
---blue:#102a44;
+--orange:#e87817;
+--orange-bright:#f28a28;
+--orange-soft:#b75a12;
+--black:#090a0a;
+--dark:#0d0f0f;
+--dark-2:#111313;
+--panel:#151818;
+--panel-raised:#191c1c;
+--graphite:#242828;
+--graphite-light:#303535;
+--steel:#9ca3a1;
+--steel-light:#c9cecb;
+--steel-dark:#686f6d;
+--cream:#f1f0e9;
+--white:#f7f7f3;
+--muted:#b7bbb8;
+--muted-soft:#8f9692;
+--line:rgba(216,221,217,.14);
+--line-strong:rgba(216,221,217,.24);
+--navy:#17232a;
+--workshop-green:#163c2d;
+--workshop-green-mid:#1c4c39;
+--workshop-green-bright:#286449;
+--workshop-green-dark:#0c1e17;
+--whatsapp:#25d366;
+--gold:#b89a62;
+--gold-light:#e1c98f;
+--gold-dark:#6f5a34;
 --max:1320px;
 --product-image-zoom:1.30;
 }
@@ -45,11 +55,21 @@ background:var(--black);
 
 body {
 margin:0;
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 background:var(--black);
 color:var(--white);
-font-family:Arial, Helvetica, sans-serif;
--webkit-font-smoothing:antialiased;
 overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility;
+}
+
+img {
+max-width:100%;
 }
 
 button,
@@ -70,56 +90,54 @@ outline:2px solid var(--orange);
 outline-offset:3px;
 }
 
+h1,
+h2,
+h3,
+.wordmark {
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+}
+
 
 /* =========================================
-TOP ROLLING BANNER
+EXACT HOMEPAGE TOP MOVING BANNER
 ========================================= */
 
 .top-banner {
-position:relative;
-z-index:40;
+background:#161918;
+color:rgba(247,247,243,.72);
 overflow:hidden;
-border-bottom:1px solid rgba(255,255,255,.08);
-background:#080808;
-min-height:34px;
-display:flex;
-align-items:center;
-}
-
-.ticker {
-display:flex;
-align-items:center;
-width:max-content;
-min-width:100%;
-animation:tickerMove 34s linear infinite;
 white-space:nowrap;
-}
-
-.ticker span {
-position:relative;
-display:inline-flex;
-align-items:center;
-min-height:34px;
-padding:0 34px;
-color:#b8b8b5;
-font-size:10px;
-line-height:1;
-font-weight:900;
-letter-spacing:1.35px;
+border-bottom:1px solid rgba(255,255,255,.07);
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+"Aptos",
+Arial,
+sans-serif;
+font-size:8px;
+font-weight:700;
+letter-spacing:1.65px;
 text-transform:uppercase;
 }
 
-.ticker span::after {
-content:"";
-width:4px;
-height:4px;
-border-radius:50%;
-background:var(--orange);
-position:absolute;
-right:-2px;
+.ticker {
+display:inline-block;
+padding:8px 0;
+animation:ticker 52s linear infinite;
 }
 
-@keyframes tickerMove {
+.ticker span {
+margin-right:90px;
+}
+
+@keyframes ticker {
 
 from {
 transform:translateX(0);
@@ -133,193 +151,605 @@ transform:translateX(-50%);
 
 
 /* =========================================
-HEADER
+EXACT HOMEPAGE HEADER
 ========================================= */
 
-.site-header {
-position:relative;
-z-index:35;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:24px;
-padding:24px 5.5%;
-background:#050505;
-border-bottom:1px solid rgba(255,255,255,.08);
+header {
+background:rgba(11,12,12,.965);
+border-bottom:1px solid rgba(255,255,255,.09);
+padding:24px 6% 20px;
+display:grid;
+grid-template-columns:1fr auto;
+align-items:start;
+gap:32px;
+position:sticky;
+top:0;
+z-index:30;
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+box-shadow:0 8px 30px rgba(0,0,0,.16);
 }
 
 .wordmark-wrap {
-min-width:0;
+display:grid;
+gap:9px;
 }
 
 .wordmark {
-display:inline-flex;
-flex-wrap:wrap;
-gap:0 7px;
-align-items:baseline;
-color:#d0d0cd;
-font-size:clamp(20px,2.2vw,30px);
-line-height:.92;
-font-weight:950;
-letter-spacing:-1.25px;
+line-height:.91;
+font-weight:850;
+letter-spacing:2.8px;
+color:var(--cream);
+font-size:24px;
 text-transform:uppercase;
+width:max-content;
 }
 
 .wordmark span {
-color:var(--white);
+color:var(--orange);
+display:block;
 }
 
-.wordmark .wordmark-bottom {
-display:inline-flex;
-align-items:baseline;
-color:#d0d0cd;
+.wordmark-bottom {
+display:flex;
+align-items:flex-end;
+gap:0;
+white-space:nowrap;
+width:max-content;
 }
 
 .wordmark-domain {
-margin-left:2px;
-color:#8d8d89;
-font-size:.42em;
-font-weight:800;
-letter-spacing:0;
-text-transform:none;
+color:var(--steel-light);
+font-size:.40em;
+font-weight:700;
+letter-spacing:.15px;
+line-height:1;
+margin-left:1px;
+padding-bottom:2px;
+text-transform:lowercase;
 }
 
 .address-line {
-margin-top:9px;
-color:#7c7e7a;
-font-size:9px;
-font-weight:800;
-letter-spacing:1.1px;
+font-size:12px;
+line-height:1.45;
+font-weight:600;
+color:rgba(255,255,255,.72);
+letter-spacing:.6px;
 text-transform:uppercase;
 }
 
-.header-actions {
+.action-icons {
+display:flex;
+gap:8px;
+align-self:end;
+padding-bottom:1px;
+}
+
+.header-action-wrap {
+position:relative;
 display:flex;
 align-items:center;
-gap:8px;
-flex-shrink:0;
+justify-content:center;
 }
 
-.header-icon,
-.basket-chip {
-height:44px;
-min-width:44px;
-border:1px solid rgba(255,255,255,.14);
-background:#0a0b0b;
-color:var(--white);
-display:inline-flex;
+.action-icons button,
+.action-icons a.header-icon-button {
+width:42px;
+height:42px;
+border:1px solid rgba(230,233,230,.16);
+background:#111313;
+color:var(--steel-light);
+text-decoration:none;
+display:flex;
 align-items:center;
 justify-content:center;
-text-decoration:none;
+font-size:18px;
+font-weight:800;
 cursor:pointer;
 transition:
-border-color .22s ease,
-background .22s ease,
 transform .22s ease,
-color .22s ease;
+border-color .22s ease,
+color .22s ease,
+background .22s ease,
+box-shadow .22s ease;
+line-height:1;
+padding:0;
 }
 
-.header-icon:hover,
-.basket-chip:hover {
-border-color:rgba(255,135,8,.72);
-color:var(--orange);
+.action-icons button:hover,
+.action-icons a.header-icon-button:hover {
+border-color:rgba(232,120,23,.70);
+color:var(--orange-bright);
+background:#171817;
+box-shadow:0 7px 22px rgba(0,0,0,.25);
 transform:translateY(-1px);
 }
 
-.header-icon svg {
-width:18px;
-height:18px;
-stroke:currentColor;
-fill:none;
-stroke-width:1.8;
-}
-
-.basket-chip {
-min-width:82px;
-padding:0 12px;
-gap:8px;
-color:#d9d9d6;
-font-size:12px;
-font-weight:900;
-letter-spacing:.3px;
-}
-
-.basket-chip svg {
-width:17px;
-height:17px;
-stroke:currentColor;
-fill:none;
-stroke-width:1.8;
+.action-icons button.is-selected {
+border-color:rgba(232,120,23,.85);
+color:var(--orange-bright);
+background:#191714;
+box-shadow:
+0 0 0 1px rgba(232,120,23,.08),
+0 7px 22px rgba(0,0,0,.24);
 }
 
 
 /* =========================================
-MENU OVERLAY
+WHATSAPP ACTION
+========================================= */
+
+.whatsapp-action {
+position:absolute;
+left:50%;
+bottom:calc(100% + 15px);
+z-index:85;
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:7px;
+background:
+linear-gradient(
+145deg,
+#36e676 0%,
+#25d366 52%,
+#179b46 100%
+);
+border:1px solid rgba(255,255,255,.30);
+box-shadow:
+0 15px 30px rgba(0,0,0,.55),
+0 0 14px rgba(37,211,102,.18),
+inset 0 1px 0 rgba(255,255,255,.30);
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:
+translate(-50%,20px)
+scale(.58);
+transform-origin:center bottom;
+transition:
+opacity .2s ease,
+visibility .2s ease,
+transform .38s cubic-bezier(.18,.82,.28,1.35);
+}
+
+.whatsapp-action.is-open {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:
+translate(-50%,0)
+scale(1);
+animation:whatsappAttention 4s ease-in-out .9s infinite;
+}
+
+.whatsapp-action svg {
+width:27px;
+height:27px;
+display:block;
+fill:#ffffff;
+filter:drop-shadow(0 2px 2px rgba(0,0,0,.22));
+}
+
+.whatsapp-action:hover,
+.whatsapp-action:active {
+transform:
+translate(-50%,-2px)
+scale(1.04);
+box-shadow:
+0 18px 35px rgba(0,0,0,.62),
+0 0 22px rgba(37,211,102,.38),
+inset 0 1px 0 rgba(255,255,255,.38);
+}
+
+@keyframes whatsappAttention {
+
+0%,
+72%,
+100% {
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+78% {
+transform:
+translate(-50%,-2px)
+scale(1.045);
+}
+
+83% {
+transform:
+translate(-50%,0)
+scale(.99);
+}
+
+88% {
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+}
+
+
+/* =========================================
+BASKET TOTAL
+========================================= */
+
+.basket-total-text {
+position:absolute;
+top:-16px;
+left:50%;
+z-index:5;
+font-family:
+"Bahnschrift Condensed",
+"Arial Narrow",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:800;
+line-height:1;
+letter-spacing:.3px;
+color:var(--cream);
+text-align:center;
+white-space:nowrap;
+text-shadow:0 2px 5px rgba(0,0,0,.92);
+opacity:0;
+transform:
+translate(-50%,7px)
+scale(.78);
+transform-origin:center bottom;
+pointer-events:none;
+}
+
+.basket-total-text.is-visible {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+transition:
+opacity .22s ease,
+transform .42s cubic-bezier(.18,.78,.28,1.35);
+}
+
+.basket-total-text.is-updating {
+animation:basketTotalUpdate .52s cubic-bezier(.18,.78,.28,1.28);
+}
+
+@keyframes basketTotalUpdate {
+
+0% {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+42% {
+transform:
+translate(-50%,-4px)
+scale(1.12);
+color:#f6dbc1;
+}
+
+72% {
+transform:
+translate(-50%,1px)
+scale(.98);
+}
+
+100% {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+}
+
+
+/* =========================================
+EXACT HOMEPAGE LEAD-TIME BANNER
+========================================= */
+
+.lead-time-banner {
+position:relative;
+overflow:hidden;
+background:#111313;
+border-top:0;
+border-bottom:1px solid rgba(232,120,23,.28);
+padding:11px 6%;
+text-align:center;
+}
+
+.lead-time-inner {
+position:relative;
+max-width:1180px;
+margin:0 auto;
+display:grid;
+justify-items:center;
+}
+
+.lead-time-main {
+display:flex;
+justify-content:center;
+align-items:center;
+gap:11px;
+flex-wrap:wrap;
+line-height:1;
+}
+
+.lead-time-van {
+width:50px;
+height:24px;
+display:block;
+flex:0 0 auto;
+color:var(--steel-light);
+filter:drop-shadow(0 2px 3px rgba(0,0,0,.55));
+}
+
+.lead-time-feature {
+display:inline-flex;
+align-items:baseline;
+gap:5px;
+font-family:
+"Bahnschrift Condensed",
+"Arial Narrow",
+"Aptos",
+sans-serif;
+font-size:clamp(13px,1.5vw,18px);
+font-weight:800;
+letter-spacing:1.5px;
+line-height:1;
+text-transform:uppercase;
+padding:3px 1px 4px;
+}
+
+.lead-time-fast {
+color:var(--cream);
+}
+
+.lead-time-red {
+color:var(--orange);
+}
+
+.lead-time-divider {
+color:rgba(255,255,255,.22);
+font-size:15px;
+font-weight:400;
+}
+
+.lead-time-message {
+position:relative;
+display:inline-flex;
+align-items:flex-start;
+font-family:
+"Bahnschrift",
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:clamp(11px,1.35vw,15px);
+font-weight:700;
+letter-spacing:1px;
+line-height:1.15;
+text-transform:uppercase;
+color:rgba(247,247,243,.82);
+white-space:nowrap;
+}
+
+.lead-time-message-text {
+position:relative;
+display:inline-block;
+overflow:hidden;
+}
+
+.lead-time-message-text::after {
+content:attr(data-text);
+position:absolute;
+inset:0;
+z-index:2;
+color:transparent;
+background:
+linear-gradient(
+112deg,
+transparent 0%,
+transparent 42%,
+rgba(255,255,255,.08) 46%,
+rgba(255,255,255,.62) 50%,
+rgba(255,255,255,.08) 54%,
+transparent 60%,
+transparent 100%
+);
+background-size:245% 100%;
+background-position:165% 0;
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glassTextReflection 9s ease-in-out 3s infinite;
+pointer-events:none;
+}
+
+.lead-time-star {
+position:relative;
+display:inline-block;
+margin-left:1px;
+font-size:.92em;
+line-height:.8;
+transform-origin:center;
+animation:leadStarGlint 9s ease-in-out 3s infinite;
+}
+
+.lead-time-star::before,
+.lead-time-star::after {
+content:"";
+position:absolute;
+left:50%;
+top:43%;
+z-index:-1;
+width:17px;
+height:1px;
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.80),
+transparent
+);
+opacity:0;
+transform:translate(-50%,-50%);
+animation:leadStarRays 9s ease-in-out 3s infinite;
+pointer-events:none;
+}
+
+.lead-time-star::after {
+transform:
+translate(-50%,-50%)
+rotate(90deg);
+}
+
+@keyframes glassTextReflection {
+
+0%,
+2% {
+background-position:165% 0;
+opacity:0;
+}
+
+3% {
+opacity:.20;
+}
+
+11% {
+background-position:-75% 0;
+opacity:.85;
+}
+
+14%,
+100% {
+background-position:-75% 0;
+opacity:0;
+}
+
+}
+
+@keyframes leadStarGlint {
+
+0%,
+9%,
+16%,
+100% {
+color:var(--cream);
+text-shadow:none;
+transform:scale(1);
+}
+
+11% {
+color:#fff4e8;
+text-shadow:
+0 0 4px rgba(255,255,255,.55),
+0 0 10px rgba(232,120,23,.30);
+transform:scale(1.16);
+}
+
+13% {
+color:var(--cream);
+transform:scale(1.05);
+}
+
+}
+
+@keyframes leadStarRays {
+
+0%,
+9%,
+16%,
+100% {
+opacity:0;
+width:5px;
+}
+
+11% {
+opacity:.75;
+width:18px;
+}
+
+13% {
+opacity:.25;
+width:13px;
+}
+
+}
+
+
+/* =========================================
+EXACT HOMEPAGE MENU
 ========================================= */
 
 .menu-overlay {
 position:fixed;
 inset:0;
+background:rgba(10,11,11,.992);
 z-index:100;
-background:rgba(4,4,4,.98);
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-transition:
-opacity .25s ease,
-visibility .25s ease;
-overflow:auto;
+display:none;
+padding:55px 6%;
+overflow-y:auto;
 }
 
 .menu-overlay.active {
-opacity:1;
-visibility:visible;
-pointer-events:auto;
+display:block;
 }
 
 .menu-top {
 display:flex;
-align-items:flex-start;
 justify-content:space-between;
-gap:24px;
-padding:28px 6%;
-border-bottom:1px solid var(--line);
+align-items:flex-start;
+margin-bottom:60px;
 }
 
 .close-menu {
-width:48px;
-height:48px;
-border:1px solid var(--line-strong);
-background:transparent;
-color:var(--white);
-font-size:30px;
-line-height:1;
+background:#111313;
+color:var(--cream);
+border:1px solid rgba(255,255,255,.16);
+width:44px;
+height:44px;
+font-size:26px;
 cursor:pointer;
 }
 
 .menu-links {
-width:min(900px,88%);
-margin:0 auto;
-padding:54px 0 90px;
 display:grid;
+gap:0;
+max-width:760px;
+border-top:1px solid rgba(255,255,255,.10);
 }
 
 .menu-links a {
-color:var(--white);
+color:var(--cream);
 text-decoration:none;
-border-bottom:1px solid rgba(255,255,255,.10);
-padding:17px 0;
-font-size:clamp(24px,4vw,48px);
+font-family:
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+sans-serif;
+font-size:clamp(31px,5vw,62px);
+font-weight:750;
 line-height:1;
-font-weight:900;
-letter-spacing:-1.4px;
+letter-spacing:-1.2px;
+text-transform:uppercase;
+border-bottom:1px solid rgba(255,255,255,.10);
+padding:22px 0;
 transition:
 color .2s ease,
-padding-left .2s ease;
+padding-left .2s ease,
+background .2s ease;
 }
 
 .menu-links a:hover {
-color:var(--orange);
+color:var(--orange-bright);
 padding-left:10px;
 }
 
@@ -334,7 +764,7 @@ overflow:hidden;
 background:
 radial-gradient(
 circle at 18% 9%,
-rgba(255,135,8,.075),
+rgba(232,120,23,.075),
 transparent 28%
 ),
 linear-gradient(
@@ -375,15 +805,10 @@ clamp(76px,8vw,112px);
 margin-bottom:18px;
 color:var(--orange);
 font-size:10px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.75px;
 text-transform:uppercase;
 }
-
-
-/* =========================================
-ONE UNIFIED PRODUCT / ORDER CARD
-========================================= */
 
 .order-card {
 position:relative;
@@ -398,8 +823,7 @@ rgba(7,8,8,.99)
 );
 box-shadow:
 0 32px 90px rgba(0,0,0,.33);
-padding:
-clamp(18px,2.1vw,29px);
+padding:clamp(18px,2.1vw,29px);
 }
 
 .order-card::before {
@@ -413,14 +837,9 @@ linear-gradient(
 rgba(255,255,255,.025),
 transparent 28%,
 transparent 72%,
-rgba(255,135,8,.012)
+rgba(232,120,23,.012)
 );
 }
-
-
-/* =========================================
-HORIZONTAL LEFT / RIGHT CONFIGURATION
-========================================= */
 
 .order-grid {
 position:relative;
@@ -433,7 +852,7 @@ align-items:start;
 
 
 /* =========================================
-LEFT — PRODUCT IMAGE / GLAZING / FINISH
+PRODUCT IMAGE
 ========================================= */
 
 .product-visual-column {
@@ -446,59 +865,21 @@ position:relative;
 overflow:hidden;
 width:100%;
 aspect-ratio:1.08 / 1;
-background:#f4f4f2;
+background:#ffffff;
 border:1px solid rgba(255,255,255,.10);
-box-shadow:
-0 20px 52px rgba(0,0,0,.20);
+box-shadow:0 20px 52px rgba(0,0,0,.20);
 }
-
-.product-image-frame::after {
-content:"";
-position:absolute;
-inset:0;
-z-index:2;
-pointer-events:none;
-opacity:0;
-transition:
-opacity .32s ease,
-background .32s ease,
-backdrop-filter .32s ease;
-}
-
-.product-image-frame.tint-blue::after {
-opacity:1;
-background:rgba(22,78,153,.18);
-}
-
-.product-image-frame.tint-grey::after {
-opacity:1;
-background:rgba(20,22,24,.27);
-}
-
-.product-image-frame.tint-satin::after {
-opacity:1;
-background:rgba(236,238,236,.40);
-backdrop-filter:
-blur(1.4px)
-saturate(.72);
-}
-
-/*
-The product artwork is intentionally enlarged
-approximately 30% compared with the normal
-homepage-card image presentation.
-*/
 
 .product-image-frame img {
-position:relative;
-z-index:1;
 display:block;
 width:100%;
 height:100%;
 object-fit:contain;
+object-position:center center;
+background:#ffffff;
 opacity:1;
 transform:scale(var(--product-image-zoom));
-transform-origin:center;
+transform-origin:center center;
 will-change:opacity,transform;
 transition:
 opacity .28s ease,
@@ -512,11 +893,12 @@ opacity:0;
 
 .product-image-frame:hover img:not(.image-fade-out) {
 transform:scale(1.335);
+filter:contrast(1.015);
 }
 
 
 /* =========================================
-LEFT — SELECTORS
+LEFT CONTROLS
 ========================================= */
 
 .visual-controls {
@@ -531,7 +913,7 @@ margin-top:15px;
 margin-bottom:8px;
 color:#81837f;
 font-size:9px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.4px;
 text-transform:uppercase;
 }
@@ -550,7 +932,11 @@ border:0;
 background:transparent;
 color:#bfc0bd;
 cursor:pointer;
-font-weight:950;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-weight:800;
 text-transform:uppercase;
 transition:
 color .2s ease,
@@ -570,7 +956,7 @@ border-left:1px solid rgba(255,255,255,.12);
 
 .glazing-selector button.active {
 background:var(--orange);
-color:#050505;
+color:#10100f;
 }
 
 .glazing-selector button:active,
@@ -580,8 +966,7 @@ transform:scale(.985);
 
 .glazed-label {
 height:27px;
-border:
-0 solid rgba(255,255,255,.12);
+border:0 solid rgba(255,255,255,.12);
 border-left-width:1px;
 border-right-width:1px;
 border-bottom-width:1px;
@@ -590,7 +975,7 @@ align-items:center;
 justify-content:center;
 color:#a4a5a2;
 font-size:8px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.4px;
 text-transform:uppercase;
 background:#0a0b0b;
@@ -621,7 +1006,7 @@ border-left:1px solid rgba(255,255,255,.10);
 
 .tint-selector button.active {
 background:#171919;
-color:var(--orange);
+color:var(--orange-bright);
 }
 
 .tint-selector button[data-tint="clear"].active {
@@ -646,7 +1031,7 @@ align-items:flex-end;
 justify-content:center;
 color:#9d9e9b;
 font-size:8px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.2px;
 text-transform:uppercase;
 opacity:0;
@@ -662,7 +1047,7 @@ opacity:1;
 
 
 /* =========================================
-RIGHT — PRODUCT ORDER CONTENT
+RIGHT PRODUCT DETAILS
 ========================================= */
 
 .product-details {
@@ -674,43 +1059,39 @@ border-left:1px solid rgba(255,255,255,.105);
 .product-title {
 margin:0;
 max-width:680px;
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
 font-size:clamp(31px,3.4vw,48px);
 line-height:.98;
-letter-spacing:-1.9px;
-font-weight:950;
+letter-spacing:-1.6px;
+font-weight:800;
+color:var(--cream);
 }
-
-
-/* =========================================
-HOMEPAGE-CARD STYLE PRODUCT DETAILS
-========================================= */
 
 .product-card-specs {
 display:grid;
 gap:6px;
 margin-top:18px;
-color:#9b9c99;
+color:var(--muted-soft);
 font-size:clamp(11px,1.15vw,15px);
 line-height:1.3;
 font-weight:500;
 }
 
 .product-card-specs span:last-child {
-color:#858783;
+color:rgba(247,247,243,.76);
 }
 
 .product-description {
 margin:18px 0 23px;
 max-width:620px;
-color:#858783;
+color:var(--muted-soft);
 font-size:11px;
 line-height:1.62;
 }
-
-
-/* =========================================
-RIGHT — ORDER OPTIONS
-========================================= */
 
 .options-stack {
 display:grid;
@@ -722,9 +1103,13 @@ gap:13px;
 display:block;
 margin:0 0 6px;
 color:#80827e;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:8px;
 line-height:1;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.25px;
 text-transform:uppercase;
 }
@@ -757,8 +1142,12 @@ border-radius:0;
 background:#0a0c0c;
 color:var(--white);
 padding:0 40px 0 13px;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:11px;
-font-weight:850;
+font-weight:700;
 cursor:pointer;
 }
 
@@ -782,8 +1171,12 @@ border:0;
 background:transparent;
 color:#b8b9b6;
 padding:0 7px;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:8px;
-font-weight:950;
+font-weight:800;
 letter-spacing:.85px;
 text-transform:uppercase;
 cursor:pointer;
@@ -799,16 +1192,12 @@ border-left:1px solid rgba(255,255,255,.10);
 
 .segmented button.active {
 background:#1a1c1c;
-color:var(--orange);
-}
-
-.segmented button:active {
-transform:scale(.985);
+color:var(--orange-bright);
 }
 
 
 /* =========================================
-PRICE — HOMEPAGE STYLE
+PRICE
 ========================================= */
 
 .price-panel {
@@ -819,9 +1208,13 @@ border-top:1px solid rgba(255,255,255,.10);
 
 .price-label {
 margin-bottom:8px;
-color:#777975;
+color:rgba(255,255,255,.42);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:9px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.5px;
 text-transform:uppercase;
 }
@@ -829,17 +1222,22 @@ text-transform:uppercase;
 .price-line {
 display:flex;
 align-items:flex-start;
-color:var(--white);
+color:var(--cream);
 line-height:.82;
 white-space:nowrap;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+sans-serif;
 }
 
 .price-pound,
 .price-whole,
 .price-dot {
 font-size:clamp(42px,4.7vw,66px);
-font-weight:950;
-letter-spacing:-2.9px;
+font-weight:800;
+letter-spacing:-2.2px;
 }
 
 .price-pound {
@@ -858,15 +1256,16 @@ top:-.09em;
 margin-left:3px;
 font-size:clamp(17px,1.9vw,26px);
 line-height:1;
-font-weight:950;
+font-weight:800;
 letter-spacing:-.5px;
 }
 
 .vat-line {
 margin-top:10px;
-color:#777975;
+color:rgba(255,255,255,.46);
 font-size:10px;
-font-weight:700;
+font-weight:500;
+text-transform:lowercase;
 }
 
 
@@ -893,7 +1292,7 @@ background:#090b0b;
 display:block;
 color:#70726e;
 font-size:7px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.05px;
 text-transform:uppercase;
 }
@@ -915,7 +1314,7 @@ line-height:1.45;
 
 
 /* =========================================
-QUANTITY + ADD TO BASKET
+QUANTITY / BASKET
 ========================================= */
 
 .purchase-panel {
@@ -935,15 +1334,14 @@ linear-gradient(
 );
 transition:
 border-color .24s ease,
-box-shadow .24s ease,
-transform .2s ease;
+box-shadow .24s ease;
 }
 
 .quantity-row:focus-within,
 .quantity-row:hover {
-border-color:rgba(255,135,8,.55);
+border-color:rgba(232,120,23,.55);
 box-shadow:
-0 0 0 1px rgba(255,135,8,.05),
+0 0 0 1px rgba(232,120,23,.05),
 0 14px 32px rgba(0,0,0,.18);
 }
 
@@ -955,29 +1353,15 @@ font-size:25px;
 line-height:1;
 font-weight:300;
 cursor:pointer;
-transition:
-background .2s ease,
-color .2s ease,
-transform .15s ease;
-}
-
-.quantity-button:hover {
-background:rgba(255,255,255,.035);
-color:var(--white);
 }
 
 .quantity-button.plus {
 border-left:1px solid rgba(255,255,255,.10);
-color:var(--orange);
-font-weight:500;
+color:var(--orange-bright);
 }
 
 .quantity-button.minus {
 border-right:1px solid rgba(255,255,255,.10);
-}
-
-.quantity-button:active {
-transform:scale(.90);
 }
 
 .quantity-display {
@@ -991,13 +1375,13 @@ text-align:center;
 .quantity-display strong {
 color:var(--white);
 font-size:19px;
-font-weight:950;
+font-weight:800;
 }
 
 .quantity-display span {
 color:#71736f;
 font-size:7px;
-font-weight:950;
+font-weight:800;
 letter-spacing:.9px;
 text-transform:uppercase;
 }
@@ -1008,40 +1392,36 @@ min-height:61px;
 margin-top:9px;
 border:1px solid var(--orange);
 background:var(--orange);
-color:#050505;
+color:#10100f;
 padding:0 19px;
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:13px;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:10px;
-font-weight:950;
+font-weight:800;
 letter-spacing:1.08px;
 text-transform:uppercase;
 cursor:pointer;
-box-shadow:
-0 18px 44px rgba(255,135,8,.08);
+box-shadow:0 18px 44px rgba(232,120,23,.08);
 transition:
 transform .2s ease,
-filter .2s ease,
+background .2s ease,
 box-shadow .2s ease;
 }
 
 .add-to-basket:hover {
 transform:translateY(-2px);
-filter:brightness(1.055);
-box-shadow:
-0 24px 56px rgba(255,135,8,.14);
+background:var(--orange-bright);
+box-shadow:0 24px 56px rgba(232,120,23,.14);
 }
 
-.add-to-basket .basket-arrow {
+.basket-arrow {
 font-size:20px;
-line-height:1;
-transition:transform .2s ease;
-}
-
-.add-to-basket:hover .basket-arrow {
-transform:translateX(4px);
 }
 
 .purchase-assurance {
@@ -1063,7 +1443,7 @@ background:#090a0a;
 color:#71736f;
 font-size:7px;
 line-height:1.3;
-font-weight:850;
+font-weight:700;
 letter-spacing:.45px;
 text-transform:uppercase;
 text-align:center;
@@ -1098,8 +1478,8 @@ transform:translateX(-50%);
 background:
 radial-gradient(
 circle,
-rgba(255,135,8,.115),
-rgba(255,135,8,.035) 32%,
+rgba(232,120,23,.115),
+rgba(232,120,23,.035) 32%,
 transparent 70%
 );
 pointer-events:none;
@@ -1117,7 +1497,7 @@ margin:0;
 color:var(--white);
 font-size:clamp(45px,6vw,78px);
 line-height:.96;
-font-weight:950;
+font-weight:800;
 letter-spacing:-2.8px;
 }
 
@@ -1140,20 +1520,16 @@ min-height:82px;
 margin-top:58px;
 border:1px solid var(--orange);
 background:var(--orange);
-color:#050505;
+color:#10100f;
 text-decoration:none;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
 font-size:clamp(15px,1.7vw,22px);
-font-weight:950;
+font-weight:800;
 letter-spacing:1.8px;
 text-transform:uppercase;
-transition:
-transform .2s ease,
-filter .2s ease;
-}
-
-.cta-button:hover {
-transform:translateY(-2px);
-filter:brightness(1.06);
 }
 
 .larger-block {
@@ -1162,11 +1538,6 @@ margin-top:clamp(96px,10vw,150px);
 
 .larger-block h2 {
 font-size:clamp(38px,5vw,64px);
-}
-
-.larger-block p {
-max-width:830px;
-margin-top:37px;
 }
 
 .cta-button.secondary {
@@ -1178,206 +1549,209 @@ border-color:rgba(255,255,255,.30);
 color:var(--white);
 }
 
-.cta-button.secondary:hover {
-border-color:var(--orange);
-color:var(--orange);
-filter:none;
-}
-
 
 /* =========================================
-FOOTER
+EXACT HOMEPAGE FOOTER
 ========================================= */
 
-.site-footer {
-background:#050505;
-color:#8d8f8b;
-padding:
-clamp(54px,7vw,88px)
-6%
-30px;
-}
-
-.footer-inner {
-width:min(var(--max),100%);
-margin:0 auto;
-}
-
-.footer-top {
-display:grid;
-grid-template-columns:
-minmax(260px,1.25fr)
-repeat(3,minmax(150px,.6fr));
-gap:42px;
-padding-bottom:46px;
-border-bottom:1px solid rgba(255,255,255,.10);
+footer {
+background:#090a0a;
+border-top:1px solid rgba(255,255,255,.10);
+color:rgba(247,247,243,.50);
+padding:46px 6%;
+font-size:13px;
 }
 
 .footer-wordmark {
+margin-bottom:22px;
+color:var(--steel);
+}
+
+.footer-wordmark .footer-wordmark-factory {
 display:block;
-max-width:285px;
-font-size:32px;
-line-height:.88;
+color:#b6b8b7;
+background:linear-gradient(180deg,#e0e1e0 0%,#b8bab9 46%,#8e9190 100%);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.footer-wordmark .wordmark-bottom {
-margin-top:4px;
+.footer-wordmark .footer-wordmark-toughened {
+display:block;
+color:#f2f2f0;
+background:linear-gradient(180deg,#fff 0%,#f0f0ee 45%,#cfd1cf 100%);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.footer-intro {
-max-width:420px;
-margin:21px 0 0;
-color:#858783;
-font-size:13px;
-line-height:1.7;
+.footer-wordmark .footer-wordmark-rooflights {
+display:block;
+color:#b6b8b7;
+background:linear-gradient(180deg,#e0e1e0 0%,#b8bab9 46%,#8e9190 100%);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.footer-column h3 {
-margin:0 0 17px;
-color:#d5d5d2;
-font-size:10px;
-line-height:1;
-font-weight:950;
-letter-spacing:1.4px;
-text-transform:uppercase;
+.footer-wordmark .wordmark-domain {
+color:#9ea19f;
+-webkit-text-fill-color:#9ea19f;
 }
 
-.footer-links {
+.footer-company-details {
 display:grid;
-gap:11px;
+gap:8px;
+margin:0 0 28px;
+max-width:520px;
 }
 
-.footer-links a {
-width:max-content;
-max-width:100%;
-color:#8d8f8b;
-text-decoration:none;
-font-size:12px;
-line-height:1.4;
-transition:color .2s ease;
-}
-
-.footer-links a:hover {
-color:var(--orange);
-}
-
-.footer-legal {
-padding:32px 0 26px;
-display:grid;
-grid-template-columns:1fr auto;
-gap:26px;
-align-items:end;
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.footer-company {
-max-width:720px;
-}
-
-.footer-company a {
-color:#b0b1ae;
-text-decoration:none;
-}
-
-.footer-company a:hover {
-color:var(--orange);
-}
-
-.footer-company p {
-margin:8px 0 0;
-color:#767874;
+.footer-company-intro {
+margin:0;
+color:rgba(247,247,243,.50);
 font-size:11px;
 line-height:1.6;
 }
 
-.right-glaze-mark {
-margin-bottom:16px;
-min-height:26px;
+.footer-right-glaze {
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+margin-top:2px;
+}
+
+.footer-right-glaze-logo {
+display:block;
+width:auto;
+height:28px;
+max-width:110px;
+object-fit:contain;
+}
+
+.footer-right-glaze-name {
+color:var(--white);
+font-size:13px;
+font-weight:700;
+}
+
+.footer-company-numbers {
+display:grid;
+gap:2px;
+margin-top:-4px;
+color:rgba(247,247,243,.48);
+font-size:11px;
+}
+
+.footer-address {
+display:grid;
+margin-top:12px;
+font-family:"Aptos","Inter","Segoe UI",Arial,sans-serif;
+font-size:10.2px;
+font-weight:600;
+line-height:1.45;
+letter-spacing:.6px;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
+}
+
+.footer-address span {
+color:rgba(255,255,255,.72) !important;
+}
+
+.footer-quick-links {
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+margin:30px 0 0;
+width:max-content;
+}
+
+.footer-quick-links a {
+color:rgba(247,247,243,.96);
+font-size:13px;
+font-weight:500;
+text-decoration:underline;
+text-underline-offset:3px;
+}
+
+.footer-payment-section {
+display:grid;
+justify-items:start;
+gap:18px;
+width:100%;
+max-width:760px;
+margin-top:34px;
+padding-top:25px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer-payment-methods {
 display:flex;
 align-items:center;
-}
-
-.right-glaze-mark img {
-display:block;
-max-width:118px;
-max-height:32px;
-object-fit:contain;
-object-position:left center;
-}
-
-.right-glaze-fallback {
-display:none;
-color:#b5b6b3;
-font-size:16px;
-font-weight:900;
-letter-spacing:-.4px;
-}
-
-.payment-icons {
-display:flex;
-justify-content:flex-end;
+justify-content:flex-start;
 flex-wrap:wrap;
-gap:6px;
+gap:8px;
+width:100%;
+max-width:700px;
 }
 
 .payment-badge {
-min-width:50px;
-height:29px;
-padding:0 8px;
-border-radius:4px;
-background:#ededeb;
-color:#111;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-font-size:8px;
-font-weight:950;
-letter-spacing:.15px;
+width:58px;
+height:38px;
+padding:5px 6px;
+overflow:hidden;
+border-radius:5px;
+background:#fff;
+border:1px solid rgba(0,0,0,.12);
 }
 
-.footer-bottom {
+.payment-badge svg {
+display:block;
+width:100%;
+height:100%;
+max-width:48px;
+max-height:28px;
+}
+
+.payment-badge.payment-wide svg {
+max-width:52px;
+}
+
+.payment-badge-amex {background:#0877c9;border-color:#0877c9;}
+.payment-badge-mastercard {background:#202020;border-color:#333;}
+.payment-badge-visa {background:#1434cb;border-color:#1434cb;}
+
+.footer-copyright {
 display:flex;
-justify-content:space-between;
-gap:24px;
 align-items:center;
-padding-top:25px;
-color:#626460;
+flex-wrap:wrap;
+gap:5px;
+margin:0;
+color:rgba(247,247,243,.48);
 font-size:10px;
-line-height:1.5;
+line-height:1.55;
 }
 
-.footer-bottom a {
-color:#8c8e8a;
+.footer-copyright a {
+color:var(--white);
 text-decoration:none;
-}
-
-.footer-bottom a:hover {
-color:var(--orange);
 }
 
 
 /* =========================================
-MOBILE STICKY BASKET
+MOBILE
 ========================================= */
 
 .mobile-basket-bar {
 display:none;
 }
 
-
-/* =========================================
-TABLET
-========================================= */
-
 @media(max-width:980px) {
-
-.order-shell {
-width:92%;
-}
-
-.order-card {
-padding:16px;
-}
 
 .order-grid {
 grid-template-columns:minmax(0,43fr) minmax(0,57fr);
@@ -1391,83 +1765,12 @@ padding-right:20px;
 padding-left:21px;
 }
 
-.product-image-frame {
-aspect-ratio:1.03 / 1;
 }
-
-.product-title {
-font-size:clamp(27px,3.7vw,38px);
-}
-
-.product-card-specs {
-font-size:11px;
-}
-
-.product-description {
-font-size:10.5px;
-}
-
-.purchase-assurance {
-grid-template-columns:1fr;
-}
-
-.purchase-assurance span {
-min-height:29px;
-}
-
-.footer-top {
-grid-template-columns:1.35fr 1fr 1fr;
-}
-
-.footer-brand {
-grid-column:1 / -1;
-}
-
-}
-
-
-/* =========================================
-MOBILE / PORTRAIT
-KEEP HORIZONTAL LEFT + RIGHT LAYOUT
-========================================= */
 
 @media(max-width:720px) {
 
 body {
 padding-bottom:72px;
-}
-
-.top-banner {
-min-height:30px;
-}
-
-.ticker span {
-min-height:30px;
-padding:0 26px;
-font-size:8px;
-}
-
-.site-header {
-padding:17px 4.5%;
-gap:10px;
-}
-
-.address-line {
-display:none;
-}
-
-.header-actions {
-gap:4px;
-}
-
-.header-icon {
-width:37px;
-min-width:37px;
-height:37px;
-}
-
-.basket-chip {
-display:none;
 }
 
 .order-shell {
@@ -1476,20 +1779,12 @@ padding-top:27px;
 padding-bottom:58px;
 }
 
-.order-kicker {
-margin-bottom:11px;
-font-size:8px;
-letter-spacing:1.45px;
-}
-
 .order-card {
 padding:8px;
 }
 
 .order-grid {
 grid-template-columns:minmax(0,46fr) minmax(0,54fr);
-gap:0;
-align-items:start;
 }
 
 .product-visual-column {
@@ -1498,17 +1793,13 @@ padding-right:8px;
 
 .product-details {
 padding-left:9px;
-border-left:1px solid rgba(255,255,255,.10);
 }
 
 .product-image-frame {
 aspect-ratio:1 / 1;
 }
 
-.product-image-frame img {
-transform:scale(1.30);
-}
-
+.product-image-frame img,
 .product-image-frame:hover img:not(.image-fade-out) {
 transform:scale(1.30);
 }
@@ -1517,250 +1808,56 @@ transform:scale(1.30);
 padding-top:9px;
 }
 
-.visual-control-block + .visual-control-block {
-margin-top:9px;
-}
-
-.selector-heading {
-margin-bottom:4px;
-font-size:6px;
-letter-spacing:.9px;
-}
-
 .glazing-selector button {
 min-height:34px;
-padding:0 3px;
 font-size:7px;
-letter-spacing:.6px;
 }
 
 .glazed-label {
 height:20px;
 font-size:5.5px;
-letter-spacing:.85px;
-}
-
-.tint-wrap {
-padding-bottom:17px;
 }
 
 .tint-selector button {
 min-height:29px;
-padding:0 1px;
 font-size:5.5px;
-letter-spacing:.25px;
-}
-
-.tint-caption-track {
-height:14px;
-}
-
-.tint-caption {
-height:14px;
-font-size:5px;
-letter-spacing:.65px;
 }
 
 .product-title {
 font-size:clamp(17px,5vw,23px);
-line-height:.98;
-letter-spacing:-.85px;
 }
 
 .product-card-specs {
-gap:3px;
-margin-top:8px;
 font-size:7px;
-line-height:1.25;
 }
 
 .product-description {
-display:block;
-margin:8px 0 11px;
 font-size:6.5px;
-line-height:1.46;
-}
-
-.options-stack {
-gap:7px;
-}
-
-.option-group label,
-.option-label {
-margin-bottom:4px;
-font-size:5.5px;
-letter-spacing:.7px;
-}
-
-.select-shell::after {
-right:8px;
-width:4px;
-height:4px;
+margin:8px 0 11px;
 }
 
 .size-select {
 height:31px;
-padding:0 21px 0 7px;
 font-size:6.5px;
 }
 
 .segmented button {
 min-height:30px;
-padding:0 2px;
 font-size:5.5px;
-letter-spacing:.35px;
-}
-
-.price-panel {
-margin-top:11px;
-padding-top:9px;
-}
-
-.price-label {
-margin-bottom:4px;
-font-size:5.5px;
-letter-spacing:.8px;
 }
 
 .price-pound,
 .price-whole,
 .price-dot {
 font-size:clamp(25px,7.2vw,32px);
-letter-spacing:-1.65px;
-}
-
-.price-pence {
-top:-.07em;
-margin-left:1px;
-font-size:10px;
-}
-
-.vat-line {
-margin-top:5px;
-font-size:6px;
 }
 
 .dimension-block {
 grid-template-columns:1fr;
-margin-top:8px;
-}
-
-.dimension-item {
-padding:6px;
-}
-
-.dimension-item + .dimension-item {
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-.dimension-item span {
-font-size:4.8px;
-letter-spacing:.65px;
-}
-
-.dimension-item strong {
-margin-top:3px;
-font-size:6.5px;
-}
-
-.size-note {
-display:none;
-}
-
-.purchase-panel {
-margin-top:10px;
-}
-
-.quantity-row {
-grid-template-columns:29px 1fr 33px;
-min-height:35px;
-}
-
-.quantity-button {
-font-size:17px;
-}
-
-.quantity-display {
-gap:3px;
-}
-
-.quantity-display strong {
-font-size:12px;
-}
-
-.quantity-display span {
-display:none;
-}
-
-.add-to-basket {
-min-height:40px;
-margin-top:5px;
-padding:0 8px;
-gap:5px;
-font-size:6px;
-letter-spacing:.48px;
-}
-
-.add-to-basket .basket-arrow {
-font-size:13px;
 }
 
 .purchase-assurance {
 display:none;
-}
-
-.bottom-cta {
-padding-left:7%;
-padding-right:7%;
-}
-
-.bottom-cta h2 {
-font-size:clamp(42px,12vw,62px);
-}
-
-.bottom-cta p {
-margin-top:30px;
-font-size:clamp(18px,5.5vw,25px);
-line-height:1.48;
-}
-
-.cta-button {
-min-width:100%;
-width:100%;
-min-height:70px;
-margin-top:42px;
-}
-
-.larger-block {
-margin-top:91px;
-}
-
-.cta-button.secondary {
-min-width:100%;
-min-height:68px;
-margin-top:43px;
-}
-
-.footer-top {
-grid-template-columns:1fr 1fr;
-gap:34px 24px;
-}
-
-.footer-brand {
-grid-column:1 / -1;
-}
-
-.footer-legal {
-grid-template-columns:1fr;
-}
-
-.payment-icons {
-justify-content:flex-start;
-}
-
-.footer-bottom {
-align-items:flex-start;
-flex-direction:column;
 }
 
 .mobile-basket-bar {
@@ -1781,117 +1878,179 @@ backdrop-filter:blur(14px);
 }
 
 .mobile-bar-price-label {
-color:#777975;
 font-size:8px;
-font-weight:950;
-letter-spacing:1px;
+color:#777975;
 text-transform:uppercase;
 }
 
 .mobile-bar-price {
-margin-top:3px;
-color:var(--white);
 font-size:20px;
-line-height:1;
-font-weight:950;
+font-weight:800;
 }
 
 .mobile-bar-button {
 height:52px;
 border:1px solid var(--orange);
 background:var(--orange);
-color:#050505;
+color:#10100f;
 font-size:10px;
-font-weight:950;
-letter-spacing:.9px;
+font-weight:800;
 text-transform:uppercase;
-cursor:pointer;
 }
 
 }
 
+@media(max-width:560px) {
 
-/* =========================================
-SMALLEST MOBILE
-========================================= */
-
-@media(max-width:450px) {
-
-.wordmark {
-max-width:195px;
-font-size:17px;
-gap:0 5px;
+.top-banner {
+font-size:7px;
 }
 
-.wordmark-domain {
-font-size:.38em;
+.ticker {
+padding:7px 0;
 }
 
-.header-icon.email-icon {
+header {
+padding:19px 5.5%;
+gap:14px;
+}
+
+.action-icons {
+gap:5px;
+}
+
+.action-icons button,
+.action-icons a.header-icon-button {
+width:34px;
+height:34px;
+font-size:15px;
+}
+
+.whatsapp-action {
+width:34px;
+height:34px;
+bottom:calc(100% + 14px);
+}
+
+.whatsapp-action svg {
+width:22px;
+height:22px;
+}
+
+.basket-total-text {
+top:-15px;
+font-size:7px;
+}
+
+.lead-time-banner {
+padding:9px 4%;
+}
+
+.lead-time-main {
+gap:5px;
+}
+
+.lead-time-van {
+width:40px;
+height:21px;
+}
+
+.lead-time-feature {
+font-size:11.5px;
+letter-spacing:.8px;
+}
+
+.lead-time-message {
+font-size:9.5px;
+letter-spacing:.45px;
+}
+
+.footer-company-intro {
+font-size:10px;
+margin-top:40px;
+margin-bottom:1px;
+}
+
+.footer-right-glaze-logo {
+height:24px;
+max-width:95px;
+transform:translateX(-2.5px);
+}
+
+.footer-right-glaze-name {
+font-size:12px;
+}
+
+.footer-company-numbers {
+font-size:10px;
+}
+
+.footer-wordmark {
+font-size:20px;
+}
+
+.footer-payment-methods {
+justify-content:center;
+max-width:347px;
+gap:8px 7px;
+}
+
+.payment-badge {
+width:52px;
+height:34px;
+}
+
+.footer-copyright {
+display:block;
+max-width:350px;
+font-size:8.5px;
+line-height:1.7;
+}
+
+}
+
+@media(max-width:390px) {
+
+.lead-time-divider {
 display:none;
 }
 
-.order-shell {
-width:96%;
+.lead-time-message {
+width:100%;
+justify-content:center;
 }
 
-.order-card {
-padding:7px;
+.footer-payment-methods {
+max-width:341px;
 }
 
-.order-grid {
-grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+.payment-badge {
+width:51px;
+height:33px;
 }
 
-.product-visual-column {
-padding-right:7px;
-}
-
-.product-details {
-padding-left:8px;
-}
-
-.product-title {
-font-size:clamp(16px,4.8vw,21px);
-}
-
-.product-card-specs {
-font-size:6.4px;
-}
-
-.product-description {
-font-size:6px;
-}
-
-.tint-selector button {
-font-size:5px;
-}
-
-.segmented button {
-font-size:5px;
-}
-
-.price-pound,
-.price-whole,
-.price-dot {
-font-size:clamp(23px,7vw,30px);
+.footer-copyright {
+font-size:8px;
+max-width:315px;
 }
 
 }
-
-
-/* =========================================
-REDUCED MOTION
-========================================= */
 
 @media(prefers-reduced-motion:reduce) {
 
-*,
-*::before,
-*::after {
-animation-duration:.01ms !important;
-animation-iteration-count:1 !important;
-scroll-behavior:auto !important;
+html {
+scroll-behavior:auto;
+}
+
+.ticker,
+.whatsapp-action,
+.basket-total-text,
+.lead-time-message-text::after,
+.lead-time-star {
+animation:none;
+}
+
+.product-image-frame img {
 transition-duration:.01ms !important;
 }
 
@@ -1902,180 +2061,176 @@ transition-duration:.01ms !important;
 
 <body>
 
-
-<!-- =========================================
-ROLLING BANNER
-========================================= -->
-
-<div
-class="top-banner"
-aria-label="Service highlights"
->
-
+<div class="top-banner">
 <div class="ticker">
+<span>Specialist British workshop for frameless rooflights</span>
+<span>Brand new rooflights made to order</span>
+<span>British glass • British manufacturing</span>
+<span>Estimated production from 4 working days</span>
+<span>Factory insulated and ready for fitting</span>
+<span>20 year warranty on all units</span>
+<span>Expected 30+ year service life</span>
+<span>UKCA compliant • CE marked • building regs compliant</span>
+<span>Free mainland UK delivery on listed sizes</span>
+<span>Collection available with prior booking</span>
 
-<span>
-From 4 Working Days*
-</span>
-
-<span>
-Factory Insulated &amp; Ready For Fitting
-</span>
-
-<span>
-20 Year Warranty
-</span>
-
-<span>
-Made In Britain
-</span>
-
-<span>
-From 4 Working Days*
-</span>
-
-<span>
-Factory Insulated &amp; Ready For Fitting
-</span>
-
-<span>
-20 Year Warranty
-</span>
-
-<span>
-Made In Britain
-</span>
-
+<span>Specialist British workshop for frameless rooflights</span>
+<span>Brand new rooflights made to order</span>
+<span>British glass • British manufacturing</span>
+<span>Estimated production from 4 working days</span>
+<span>Factory insulated and ready for fitting</span>
+<span>20 year warranty on all units</span>
+<span>Expected 30+ year service life</span>
+<span>UKCA compliant • CE marked • building regs compliant</span>
+<span>Free mainland UK delivery on listed sizes</span>
+<span>Collection available with prior booking</span>
+</div>
 </div>
 
-</div>
-
-
-<!-- =========================================
-HEADER
-========================================= -->
-
-<header class="site-header">
+<header>
 
 <div class="wordmark-wrap">
+<div class="wordmark">
+Factory
+<span>Toughened</span>
+<div class="wordmark-bottom">
+Rooflights
+<small class="wordmark-domain">.co.uk</small>
+</div>
+</div>
+</div>
+
+<div class="action-icons">
 
 <a
-href="index.html"
-class="wordmark"
-aria-label="Factory Toughened Rooflights home"
-style="text-decoration:none;"
+href="contact.html"
+class="header-icon-button"
+aria-label="Contact Factory Toughened Rooflights"
+title="Contact our rooflight team"
 >
-
-Factory
-
-<span>
-Toughened
-</span>
-
-<span class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
-</span>
-
+✉
 </a>
 
-<div class="address-line">
-5-9 Willen Field Road, London, NW10 7BQ
-</div>
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="whatsappButton"
+aria-label="Show WhatsApp Business button"
+title="WhatsApp our rooflight team"
+aria-expanded="false"
+>
+📱
+</button>
+
+<a
+id="whatsappAction"
+class="whatsapp-action"
+href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
+target="_blank"
+rel="noopener"
+aria-label="Open WhatsApp Business chat with our rooflight team"
+>
+<svg viewBox="0 0 32 32" aria-hidden="true">
+<path d="M16 3.2A12.5 12.5 0 0 0 5.2 22l-1.8 6.8 7-1.8A12.5 12.5 0 1 0 16 3.2zm0 22.7c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.2 10.2 0 1 1 9.2 5.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.9-.9-3.2-1.7-4.5-3.9-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+</svg>
+</a>
 
 </div>
 
+<div class="header-action-wrap">
 
-<div class="header-actions">
+<a
+href="basket.html"
+class="header-icon-button"
+id="basketButton"
+aria-label="View basket and checkout"
+title="Basket and checkout"
+>
+💳
+</a>
 
-<div
-class="basket-chip"
-id="basketChip"
+<span
+class="basket-total-text"
+id="basketTotalText"
 aria-label="Basket total £0.00"
 >
-
-<svg
-viewBox="0 0 24 24"
-aria-hidden="true"
->
-<path d="M3 4h2l2 11h10l2-8H7"></path>
-<circle cx="9" cy="19" r="1.2"></circle>
-<circle cx="17" cy="19" r="1.2"></circle>
-</svg>
-
-<span id="basketTotalText">
 £0.00
 </span>
 
 </div>
 
-
-<a
-class="header-icon email-icon"
-href="mailto:"
-aria-label="Email us"
->
-
-<svg
-viewBox="0 0 24 24"
-aria-hidden="true"
->
-<rect x="3" y="5" width="18" height="14" rx="1"></rect>
-<path d="M4 7l8 6 8-6"></path>
-</svg>
-
-</a>
-
-
-<a
-class="header-icon"
-href="#"
-aria-label="WhatsApp"
->
-
-<svg
-viewBox="0 0 24 24"
-aria-hidden="true"
->
-<path d="M20 11.6a8 8 0 0 1-11.7 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.6Z"></path>
-<path d="M9 8.5c.5 2.5 2 4 4.5 5"></path>
-<path d="M8.8 8.2l1.2-.6 1.1 2-1 .7"></path>
-<path d="M13.6 13.1l.8-1 2 1.1-.5 1.2"></path>
-</svg>
-
-</a>
-
-
 <button
-class="header-icon"
 type="button"
 onclick="openMenu()"
 aria-label="Open menu"
+title="Menu"
 >
-
-<svg
-viewBox="0 0 24 24"
-aria-hidden="true"
->
-<path d="M4 7h16"></path>
-<path d="M4 12h16"></path>
-<path d="M4 17h16"></path>
-</svg>
-
+☰
 </button>
 
 </div>
 
 </header>
 
+<section
+class="lead-time-banner"
+aria-label="Current estimated rooflight manufacturing lead time"
+>
 
-<!-- =========================================
-MENU
-========================================= -->
+<div class="lead-time-inner">
+<div class="lead-time-main">
+
+<svg
+class="lead-time-van"
+viewBox="0 0 76 36"
+aria-hidden="true"
+>
+<g
+fill="none"
+stroke="currentColor"
+stroke-width="2.8"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M3 11h15"/>
+<path d="M7 17h11"/>
+<path d="M11 23h7"/>
+<path d="M24 7h27v20H24z" fill="currentColor"/>
+<path d="M51 13h10l10 9v5H51z" fill="currentColor"/>
+<path d="M56 16h4l6 6H56z" fill="#080808" stroke="#080808"/>
+<circle cx="34" cy="28" r="5" fill="#080808"/>
+<circle cx="62" cy="28" r="5" fill="#080808"/>
+<path d="M23 27h6"/>
+<path d="M39 27h18"/>
+<path d="M67 27h6"/>
+</g>
+</svg>
+
+<span class="lead-time-feature">
+<span class="lead-time-fast">Fast</span>
+<span class="lead-time-red">Lead Times</span>
+</span>
+
+<span class="lead-time-divider">-</span>
+
+<span class="lead-time-message">
+<span
+class="lead-time-message-text"
+data-text="From 4 Working Days"
+>
+From 4 Working Days
+</span>
+<span class="lead-time-star">*</span>
+</span>
+
+</div>
+</div>
+</section>
 
 <div
-class="menu-overlay"
 id="menuOverlay"
-aria-hidden="true"
+class="menu-overlay"
 >
 
 <div class="menu-top">
@@ -2083,25 +2238,22 @@ aria-hidden="true"
 <div class="wordmark-wrap">
 
 <div class="wordmark">
-
 Factory
-
-<span>
-Toughened
-</span>
-
-<span class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
-</span>
-
+<span>Toughened</span>
+<div class="wordmark-bottom">
+Rooflights
+<small class="wordmark-domain">.co.uk</small>
+</div>
 </div>
 
 <div class="address-line">
-5-9 Willen Field Road, London, NW10 7BQ
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
 </div>
 
 </div>
-
 
 <button
 class="close-menu"
@@ -2114,79 +2266,33 @@ aria-label="Close menu"
 
 </div>
 
+<div class="menu-links">
 
-<nav
-class="menu-links"
-aria-label="Main navigation"
->
-
-<a
-href="standard-sizes.html"
-onclick="closeMenu()"
->
+<a href="standard-sizes.html" onclick="closeMenu()">
 Standard Sizes
 </a>
 
-<a
-href="index.html#calculator"
-onclick="closeMenu()"
->
-Build A Custom Rooflight
+<a href="index.html#calculator" onclick="closeMenu()">
+Build A Rooflight
 </a>
 
-<a
-href="index.html#oversized"
-onclick="closeMenu()"
->
+<a href="index.html#oversized" onclick="closeMenu()">
 Oversized Rooflights
 </a>
 
-<a
-href="fitting-installation.html"
-onclick="closeMenu()"
->
-Fitting &amp; Installation
+<a href="index.html#specification-advice" onclick="closeMenu()">
+Specification Advice
 </a>
 
-<a
-href="shipping.html"
-onclick="closeMenu()"
->
-Shipping
+<a href="contact.html" onclick="closeMenu()">
+Contact Our Rooflight Team
 </a>
-
-<a
-href="warranty.html"
-onclick="closeMenu()"
->
-Warranty
-</a>
-
-<a
-href="terms.html"
-onclick="closeMenu()"
->
-Terms &amp; Conditions
-</a>
-
-<a
-href="#contact"
-onclick="closeMenu()"
->
-Contact Us
-</a>
-
-</nav>
 
 </div>
 
+</div>
 
 <main>
-
-
-<!-- =========================================
-ORDER / CONFIGURATOR
-========================================= -->
 
 <section class="order-page">
 
@@ -2196,15 +2302,8 @@ ORDER / CONFIGURATOR
 Configure Your Rooflight
 </div>
 
-
 <div class="order-card">
-
 <div class="order-grid">
-
-
-<!-- =========================================
-LEFT — PRODUCT IMAGE + VISUAL OPTIONS
-========================================= -->
 
 <div class="product-visual-column">
 
@@ -2212,18 +2311,14 @@ LEFT — PRODUCT IMAGE + VISUAL OPTIONS
 class="product-image-frame"
 id="productImageFrame"
 >
-
 <img
 id="productImage"
 src="images/product-cards/small-rectangle.png"
 alt="600mm by 900mm frameless flat roof skylight"
 >
-
 </div>
 
-
 <div class="visual-controls">
-
 
 <div class="visual-control-block">
 
@@ -2259,7 +2354,6 @@ Glazed
 </div>
 
 </div>
-
 
 <div class="visual-control-block">
 
@@ -2306,37 +2400,22 @@ Satin
 
 </div>
 
-
-<div
-class="tint-caption-track"
-aria-hidden="true"
->
-
+<div class="tint-caption-track" aria-hidden="true">
 <div
 class="tint-caption"
 id="tintCaption"
 >
 Tint
 </div>
-
 </div>
 
 </div>
-
-</div>
-
-
 </div>
 
 </div>
-
-
-<!-- =========================================
-RIGHT — PRODUCT SUMMARY + ORDER OPTIONS
-========================================= -->
+</div>
 
 <div class="product-details">
-
 
 <h1
 class="product-title"
@@ -2345,31 +2424,17 @@ id="productTitle"
 600 × 900mm Triple Glazed Frameless Skylight
 </h1>
 
-
 <div class="product-card-specs">
-
-<span>
-Inside Visible Glass Size
-</span>
-
-<span id="productGlassSpec">
-6mm Toughened Safety Glass
-</span>
-
-<span id="deliverySpec">
-Free Mainland UK Delivery
-</span>
-
+<span>Inside Visible Glass Size</span>
+<span id="productGlassSpec">6mm Toughened Safety Glass</span>
+<span id="deliverySpec">Free Mainland UK Delivery</span>
 </div>
-
 
 <p class="product-description">
 A made-to-order frameless flat roof skylight, factory sealed and insulated using premium safety glass, Low-E glazing and a permanent black ceramic border for a clean modern finish.
 </p>
 
-
 <div class="options-stack">
-
 
 <div class="option-group">
 
@@ -2378,17 +2443,14 @@ Size
 </label>
 
 <div class="select-shell">
-
 <select
 class="size-select"
 id="sizeSelect"
 aria-label="Choose rooflight size"
 ></select>
-
 </div>
 
 </div>
-
 
 <div class="option-group">
 
@@ -2420,7 +2482,6 @@ Laminated
 </div>
 
 </div>
-
 
 <div class="option-group">
 
@@ -2457,16 +2518,9 @@ data-border="150"
 </button>
 
 </div>
-
 </div>
 
-
 </div>
-
-
-<!-- =========================================
-PRICE
-========================================= -->
 
 <div class="price-panel">
 
@@ -2474,15 +2528,12 @@ PRICE
 From:
 </div>
 
-
 <div
 class="price-line"
 aria-label="Price including VAT"
 >
 
-<span class="price-pound">
-£
-</span>
+<span class="price-pound">£</span>
 
 <span
 class="price-whole"
@@ -2491,9 +2542,7 @@ id="priceWhole"
 300
 </span>
 
-<span class="price-dot">
-.
-</span>
+<span class="price-dot">.</span>
 
 <span
 class="price-pence"
@@ -2504,43 +2553,27 @@ id="pricePence"
 
 </div>
 
-
 <div class="vat-line">
 inc. vat
 </div>
 
-
 <div class="dimension-block">
 
-
 <div class="dimension-item">
-
-<span>
-Internal
-</span>
-
+<span>Internal</span>
 <strong id="internalSize">
 600mm × 900mm
 </strong>
-
 </div>
 
-
 <div class="dimension-item">
-
-<span>
-External
-</span>
-
+<span>External</span>
 <strong id="externalSize">
 800mm × 1100mm
 </strong>
-
 </div>
 
-
 </div>
-
 
 <p class="size-note">
 Order size refers to the internal visible glass size.
@@ -2548,17 +2581,11 @@ Order size refers to the internal visible glass size.
 
 </div>
 
-
-<!-- =========================================
-QUANTITY / ADD TO BASKET
-========================================= -->
-
 <div class="purchase-panel">
 
 <div class="option-label">
 Quantity
 </div>
-
 
 <div
 class="quantity-row"
@@ -2574,22 +2601,13 @@ aria-label="Decrease quantity"
 −
 </button>
 
-
 <div
 class="quantity-display"
 aria-live="polite"
 >
-
-<strong id="quantityValue">
-1
-</strong>
-
-<span id="quantityUnitLabel">
-Unit
-</span>
-
+<strong id="quantityValue">1</strong>
+<span id="quantityUnitLabel">Unit</span>
 </div>
-
 
 <button
 class="quantity-button plus"
@@ -2602,60 +2620,33 @@ aria-label="Increase quantity"
 
 </div>
 
-
 <button
 class="add-to-basket"
 id="addToBasket"
 type="button"
 >
-
 <span id="addToBasketText">
 Add 1 To Basket
 </span>
-
-<span
-class="basket-arrow"
-aria-hidden="true"
->
-→
-</span>
-
+<span class="basket-arrow">→</span>
 </button>
 
-
 <div class="purchase-assurance">
-
-<span>
-Made To Order
-</span>
-
-<span>
-From 4 Working Days*
-</span>
-
-<span>
-Free Mainland UK Delivery*
-</span>
-
-</div>
-
-</div>
-
-
+<span>Made To Order</span>
+<span>From 4 Working Days*</span>
+<span>Free Mainland UK Delivery*</span>
 </div>
 
 </div>
 
 </div>
 
+</div>
+</div>
 </div>
 
 </section>
 
-
-<!-- =========================================
-ENDING SECTION
-========================================= -->
 
 <section class="bottom-cta">
 
@@ -2675,7 +2666,6 @@ class="cta-button"
 >
 Build Custom Size
 </a>
-
 
 <div class="larger-block">
 
@@ -2703,216 +2693,230 @@ Oversized Quote
 </main>
 
 
-<!-- =========================================
-FOOTER
-========================================= -->
-
-<footer
-class="site-footer"
-id="contact"
->
-
-<div class="footer-inner">
-
-
-<div class="footer-top">
-
-
-<div class="footer-brand">
+<footer id="contact">
 
 <div class="wordmark footer-wordmark">
 
+<span class="footer-wordmark-factory">
 Factory
+</span>
 
-<span>
+<span class="footer-wordmark-toughened">
 Toughened
 </span>
 
-<span class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
+<div class="wordmark-bottom">
+
+<span class="footer-wordmark-rooflights">
+Rooflights
 </span>
 
+<small class="wordmark-domain">
+.co.uk
+</small>
+
 </div>
 
-<p class="footer-intro">
-Frameless flat roof skylights manufactured to order and delivered across mainland UK.
+<div class="footer-address">
+<span>Anamax Group Estate</span>
+<span>Oxford Road, Denham</span>
+<span>Buckinghamshire</span>
+<span>SL9 7BB</span>
+</div>
+
+</div>
+
+<div class="footer-quick-links">
+
+<a href="#">Shipping</a>
+<a href="#">Fitting &amp; Installation</a>
+<a href="#">Return Policy</a>
+<a href="#">Warranty</a>
+<a href="#">Contact Us</a>
+<a href="#">Terms of Use</a>
+
+</div>
+
+<div class="footer-company-details">
+
+<p class="footer-company-intro">
+Factory Toughened Rooflights is a trading name of:
 </p>
 
-</div>
+<div class="footer-right-glaze">
 
-
-<div class="footer-column">
-
-<h3>
-Order
-</h3>
-
-<div class="footer-links">
-
-<a href="standard-sizes.html">
-Standard Sizes
-</a>
-
-<a href="index.html#calculator">
-Build A Custom Rooflight
-</a>
-
-<a href="index.html#oversized">
-Oversized Rooflights
-</a>
-
-<a href="fitting-installation.html">
-Fitting &amp; Installation
-</a>
-
-</div>
-
-</div>
-
-
-<div class="footer-column">
-
-<h3>
-Information
-</h3>
-
-<div class="footer-links">
-
-<a href="shipping.html">
-Shipping
-</a>
-
-<a href="warranty.html">
-Warranty
-</a>
-
-<a href="terms.html">
-Terms &amp; Conditions
-</a>
-
-<a href="terms.html">
-Terms of Use
-</a>
-
-</div>
-
-</div>
-
-
-<div class="footer-column">
-
-<h3>
-Contact
-</h3>
-
-<div class="footer-links">
-
-<a href="mailto:">
-Email Us
-</a>
-
-<a href="#">
-WhatsApp
-</a>
-
-<a href="index.html#contact">
-Contact Us
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="footer-legal">
-
-
-<div class="footer-company">
-
-<div class="right-glaze-mark">
-
+<div class="footer-right-glaze-brand">
 <img
 src="images/smallrglogo.png"
-alt="Right Glaze"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
 >
+</div>
 
-<span class="right-glaze-fallback">
-Right Glaze
+<span class="footer-right-glaze-name">
+Right Glaze Ltd
 </span>
 
+<div class="footer-company-numbers">
+<span>Company no. - 14336400</span>
+<span>VAT no. - 487373544</span>
 </div>
-
-
-<p>
-<strong style="color:#aaa;">
-Right Glaze Ltd
-</strong>
-</p>
-
-<p>
-Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
-</p>
-
-<p>
-5-9 Willen Field Road, London, NW10 7BQ
-</p>
 
 </div>
 
+<div class="footer-copyright">
+
+<span>
+© 2026 Factory Toughened Rooflights. All Rights Reserved
+</span>
+
+<span
+class="footer-copyright-divider"
+aria-hidden="true"
+>
+|
+</span>
+
+<a
+href="mailto:sales@factorytoughenedrooflights.co.uk"
+>
+sales@factorytoughenedrooflights.co.uk
+</a>
+
+</div>
+
+</div>
 
 <div
-class="payment-icons"
+class="footer-payment-section"
 aria-label="Accepted payment methods"
 >
 
-<span class="payment-badge">
+<div class="footer-payment-methods">
+
+<span
+class="payment-badge payment-badge-visa payment-wide"
+role="img"
+aria-label="Visa"
+>
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="88" height="44" rx="3" fill="#1434CB"/>
+<text
+x="44"
+y="30"
+text-anchor="middle"
+fill="#FFFFFF"
+font-family="Arial, Helvetica, sans-serif"
+font-size="24"
+font-weight="900"
+font-style="italic"
+letter-spacing="-2"
+>
 VISA
+</text>
+</svg>
 </span>
 
-<span class="payment-badge">
-MC
+<span
+class="payment-badge payment-badge-mastercard"
+role="img"
+aria-label="Mastercard"
+>
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg">
+<circle cx="29" cy="19" r="12" fill="#EB001B"/>
+<circle cx="43" cy="19" r="12" fill="#F79E1B"/>
+<path d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z" fill="#FF5F00"/>
+<text
+x="36"
+y="38"
+text-anchor="middle"
+fill="#FFFFFF"
+font-family="Arial, Helvetica, sans-serif"
+font-size="6.5"
+font-weight="700"
+>
+mastercard
+</text>
+</svg>
 </span>
 
-<span class="payment-badge">
-AMEX
+<span
+class="payment-badge payment-badge-amex"
+role="img"
+aria-label="American Express"
+>
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="72" height="44" rx="3" fill="#0877C9"/>
+<text x="36" y="18" text-anchor="middle" fill="#fff" font-size="15" font-weight="900">AM</text>
+<text x="36" y="34" text-anchor="middle" fill="#fff" font-size="15" font-weight="900">EX</text>
+</svg>
 </span>
 
-<span class="payment-badge">
-Apple Pay
+<span
+class="payment-badge payment-badge-apple-pay payment-wide"
+role="img"
+aria-label="Apple Pay"
+>
+<svg viewBox="0 0 86 44" xmlns="http://www.w3.org/2000/svg">
+<path fill="#000" d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"/>
+<path fill="#000" d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"/>
+<text x="35" y="29" fill="#111" font-size="20" font-weight="700">Pay</text>
+</svg>
 </span>
 
-<span class="payment-badge">
-G Pay
+<span
+class="payment-badge payment-badge-google-pay payment-wide"
+role="img"
+aria-label="Google Pay"
+>
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z" fill="#4285F4"/>
+<text x="50" y="27" text-anchor="middle" fill="#5F6368" font-size="17">Pay</text>
+</svg>
+</span>
+
+<span
+class="payment-badge payment-badge-paypal payment-wide"
+role="img"
+aria-label="PayPal"
+>
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z" fill="#003087"/>
+<path d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z" fill="#009CDE"/>
+<text x="61" y="28" text-anchor="middle" fill="#003087" font-size="14" font-weight="800">PayPal</text>
+</svg>
+</span>
+
+<span
+class="payment-badge payment-badge-discover payment-wide"
+role="img"
+aria-label="Discover"
+>
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+<text x="43" y="25" text-anchor="middle" fill="#202020" font-size="14" font-weight="800">DISCOVER</text>
+<path d="M50 32c8-6 17-8 29-8v8z" fill="#F58220"/>
+</svg>
+</span>
+
+<span
+class="payment-badge payment-badge-unionpay payment-wide"
+role="img"
+aria-label="UnionPay"
+>
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 7h22l-6 30H6z" fill="#E21836"/>
+<path d="M28 7h22l-6 30H22z" fill="#007B84"/>
+<path d="M44 7h22l-6 30H38z" fill="#00A6A6"/>
+<text x="38" y="20" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="800">Union</text>
+<text x="38" y="29" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="800">Pay</text>
+</svg>
 </span>
 
 </div>
-
-</div>
-
-
-<div class="footer-bottom">
-
-<span>
-© <span id="footerYear"></span> Factory Toughened Rooflights / Right Glaze Ltd.
-</span>
-
-<span>
-<a href="mailto:">Contact</a> · <a href="terms.html">Terms of Use</a>
-</span>
-
-</div>
-
 </div>
 
 </footer>
 
-
-<!-- =========================================
-MOBILE PURCHASE BAR
-========================================= -->
 
 <div
 class="mobile-basket-bar"
@@ -2934,7 +2938,6 @@ id="mobileBarPrice"
 
 </div>
 
-
 <button
 class="mobile-bar-button"
 id="mobileAddToBasket"
@@ -2948,133 +2951,397 @@ Add 1 To Basket
 
 <script>
 
+const reducedMotionQuery =
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+);
+
+
 /* =========================================
-ORDER PAGE DATA
+MENU / WHATSAPP
+========================================= */
+
+function openMenu() {
+
+closeWhatsAppAction();
+
+const menuOverlay =
+document.getElementById(
+"menuOverlay"
+);
+
+if (
+menuOverlay
+) {
+menuOverlay.classList.add(
+"active"
+);
+}
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+
+function closeMenu() {
+
+const menuOverlay =
+document.getElementById(
+"menuOverlay"
+);
+
+if (
+menuOverlay
+) {
+menuOverlay.classList.remove(
+"active"
+);
+}
+
+document.body.style.overflow =
+"";
+
+}
+
+
+const whatsappButton =
+document.getElementById(
+"whatsappButton"
+);
+
+const whatsappAction =
+document.getElementById(
+"whatsappAction"
+);
+
+
+function setWhatsAppState(
+shouldOpen
+) {
+
+if (
+!whatsappButton ||
+!whatsappAction
+) {
+return;
+}
+
+whatsappButton.classList.toggle(
+"is-selected",
+shouldOpen
+);
+
+whatsappAction.classList.toggle(
+"is-open",
+shouldOpen
+);
+
+whatsappButton.setAttribute(
+"aria-expanded",
+String(
+shouldOpen
+)
+);
+
+}
+
+
+function closeWhatsAppAction() {
+
+setWhatsAppState(
+false
+);
+
+}
+
+
+if (
+whatsappButton &&
+whatsappAction
+) {
+
+whatsappButton.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+setWhatsAppState(
+!whatsappAction.classList.contains(
+"is-open"
+)
+);
+
+}
+);
+
+whatsappAction.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+}
+);
+
+}
+
+
+document.addEventListener(
+"click",
+closeWhatsAppAction
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key === "Escape"
+) {
+
+closeWhatsAppAction();
+
+closeMenu();
+
+}
+
+}
+);
+
+
+/* =========================================
+HEADER BASKET TOTAL
+========================================= */
+
+const basketTotalText =
+document.getElementById(
+"basketTotalText"
+);
+
+let basketAnimationTimer =
+null;
+
+
+function animateBasketTotal() {
+
+if (
+!basketTotalText
+) {
+return;
+}
+
+basketTotalText.classList.add(
+"is-visible"
+);
+
+basketTotalText.classList.remove(
+"is-updating"
+);
+
+void basketTotalText.offsetWidth;
+
+basketTotalText.classList.add(
+"is-updating"
+);
+
+if (
+basketAnimationTimer !==
+null
+) {
+
+clearTimeout(
+basketAnimationTimer
+);
+
+}
+
+basketAnimationTimer =
+setTimeout(
+() => {
+
+basketTotalText.classList.remove(
+"is-updating"
+);
+
+},
+560
+);
+
+}
+
+
+function updateBasketTotal(
+total
+) {
+
+const safeTotal =
+Number.isFinite(
+Number(
+total
+)
+)
+?
+Number(
+total
+)
+:
+0;
+
+const formatted =
+new Intl.NumberFormat(
+"en-GB",
+{
+style:"currency",
+currency:"GBP"
+}
+).format(
+safeTotal
+);
+
+basketTotalText.textContent =
+formatted;
+
+basketTotalText.setAttribute(
+"aria-label",
+"Basket total " +
+formatted
+);
+
+animateBasketTotal();
+
+}
+
+
+/* =========================================
+PRODUCT DATA
 ========================================= */
 
 const PRODUCTS = {
 
-"600x600": {
+"600x600":{
 double:220,
 triple:270,
 image:"small-square.png"
 },
 
-"400x1500": {
+"400x1500":{
 double:310,
 triple:370,
 image:"narrow-long-rectangle.png"
 },
 
-"600x900": {
+"600x900":{
 double:250,
 triple:300,
 image:"small-rectangle.png"
 },
 
-"600x1200": {
+"600x1200":{
 double:310,
 triple:370,
 image:"large-rectangle.png"
 },
 
-"600x1500": {
+"600x1500":{
 double:360,
 triple:430,
 image:"large-rectangle.png"
 },
 
-"600x2000": {
+"600x2000":{
 double:455,
 triple:540,
 image:"large-rectangle.png"
 },
 
-"800x800": {
+"800x800":{
 double:290,
 triple:350,
 image:"medium-square.png"
 },
 
-"800x1000": {
+"800x1000":{
 double:435,
 triple:520,
 image:"medium-square.png"
 },
 
-"800x1200": {
+"800x1200":{
 double:395,
 triple:470,
 image:"medium-rectangle.png"
 },
 
-"800x1500": {
+"800x1500":{
 double:455,
 triple:545,
 image:"large-rectangle.png"
 },
 
-"800x2000": {
+"800x2000":{
 double:560,
 triple:675,
 image:"large-rectangle.png"
 },
 
-"1000x1000": {
+"1000x1000":{
 double:420,
 triple:505,
 image:"large-square.png"
 },
 
-"1000x1200": {
+"1000x1200":{
 double:465,
 triple:560,
 image:"medium-square.png"
 },
 
-"1000x1500": {
+"1000x1500":{
 double:520,
 triple:625,
 image:"large-rectangle.png"
 },
 
-"1000x2000": {
+"1000x2000":{
 double:650,
 triple:780,
 image:"large-rectangle.png"
 },
 
-"1000x2500": {
+"1000x2500":{
 double:785,
 triple:945,
 image:"jumbo.png"
 },
 
-"1200x1200": {
+"1200x1200":{
 double:510,
 triple:615,
 image:"large-square.png"
 },
 
-"1500x1500": {
+"1500x1500":{
 double:760,
 triple:910,
 image:"large-square.png"
 },
 
-"1500x1800": {
+"1500x1800":{
 double:880,
 triple:1075,
 image:"jumbo.png"
 },
 
-"1500x2000": {
+"1500x2000":{
 double:980,
 triple:1180,
 image:"jumbo.png"
 },
 
-"1500x2500": {
+"1500x2500":{
 double:1225,
 triple:1475,
 image:"jumbo.png"
@@ -3083,69 +3350,84 @@ image:"jumbo.png"
 };
 
 
-/* =========================================
-KNOWN HOMEPAGE TINT PRICES
-========================================= */
-
 const TINT_PRICE_OVERRIDES = {
 
-"800x1000": {
-
-blue: {
+"800x1000":{
+blue:{
 double:435,
 triple:520
 }
-
 },
 
-"600x1500": {
-
-blue: {
+"600x1500":{
+blue:{
 double:470,
 triple:560
 }
-
 },
 
-"600x900": {
-
-satin: {
+"600x900":{
+satin:{
 double:325,
 triple:390
 }
-
 },
 
-"800x1500": {
-
-satin: {
+"800x1500":{
+satin:{
 double:590,
 triple:710
 }
-
 }
 
 };
 
 
 /* =========================================
-PRICE MODIFIERS
+ACTUAL IMAGE FAMILIES
 ========================================= */
+
+const TINT_IMAGE_PREFIX = {
+
+clear:"",
+blue:"blue-",
+grey:"grey-",
+satin:"satin-"
+
+};
+
+
+/*
+There is no blue/grey/satin medium-rectangle
+filename shown in the repository screenshots.
+
+For the 800 × 1200 shape, use the real
+large-rectangle tint artwork instead of
+inventing a non-existent filename.
+*/
+
+const TINT_IMAGE_BASE_FALLBACKS = {
+
+"medium-rectangle.png":
+"large-rectangle.png"
+
+};
+
 
 const PRICE_MODIFIERS = {
 
-type: {
+type:{
 toughened:0,
 laminated:0
 },
 
-border: {
+border:{
 100:0,
 125:0,
 150:0
 },
 
-tint: {
+tint:{
 clear:0,
 blue:0,
 grey:0,
@@ -3154,10 +3436,6 @@ satin:0
 
 };
 
-
-/* =========================================
-ORDER PAGE STATE
-========================================= */
 
 const state = {
 
@@ -3181,7 +3459,7 @@ homepageImport:null
 
 
 /* =========================================
-ELEMENT REFERENCES
+ELEMENTS
 ========================================= */
 
 const sizeSelect =
@@ -3197,11 +3475,6 @@ document.getElementById(
 const productImage =
 document.getElementById(
 "productImage"
-);
-
-const productImageFrame =
-document.getElementById(
-"productImageFrame"
 );
 
 const productGlassSpec =
@@ -3274,25 +3547,11 @@ document.getElementById(
 "mobileBarPrice"
 );
 
-const basketTotalText =
-document.getElementById(
-"basketTotalText"
-);
-
-const basketChip =
-document.getElementById(
-"basketChip"
-);
-
 const tintCaption =
 document.getElementById(
 "tintCaption"
 );
 
-
-/* =========================================
-IMAGE FADE STATE
-========================================= */
 
 let imageTransitionToken =
 0;
@@ -3302,7 +3561,7 @@ null;
 
 
 /* =========================================
-SIZE NORMALISATION
+NORMALISATION
 ========================================= */
 
 function normalizeSize(
@@ -3314,61 +3573,64 @@ size ?? ""
 )
 .trim()
 .toLowerCase()
-.replace(/mm/g,"")
-.replace(/×/g,"x")
-.replace(/\s+/g,"");
+.replace(
+/mm/g,
+""
+)
+.replace(
+/×/g,
+"x"
+)
+.replace(
+/\s+/g,
+""
+);
 
 }
 
-
-/* =========================================
-FINISH NORMALISATION
-========================================= */
 
 function normalizeTint(
 finish
 ) {
 
-const normalized =
+const value =
 String(
 finish ?? ""
 )
 .trim()
 .toLowerCase();
 
-if (
-normalized === "blue" ||
-normalized === "blue tinted" ||
-normalized === "blue-tinted"
-) {
 
+if (
+value === "blue" ||
+value === "blue tinted" ||
+value === "blue-tinted"
+) {
 return "blue";
-
 }
 
-if (
-normalized === "grey" ||
-normalized === "gray" ||
-normalized === "grey tinted" ||
-normalized === "grey-tinted" ||
-normalized === "gray tinted" ||
-normalized === "gray-tinted"
-) {
 
+if (
+value === "grey" ||
+value === "gray" ||
+value === "grey tinted" ||
+value === "grey-tinted" ||
+value === "gray tinted" ||
+value === "gray-tinted"
+) {
 return "grey";
-
 }
+
 
 if (
-normalized === "satin" ||
-normalized === "satin tinted" ||
-normalized === "satin-tinted" ||
-normalized === "privacy"
+value === "satin" ||
+value === "satin tinted" ||
+value === "satin-tinted" ||
+value === "privacy"
 ) {
-
 return "satin";
-
 }
+
 
 return "clear";
 
@@ -3376,7 +3638,7 @@ return "clear";
 
 
 /* =========================================
-SIZE FORMATTING
+FORMATTING
 ========================================= */
 
 function formatSize(
@@ -3418,7 +3680,7 @@ return `${width}mm × ${length}mm`;
 
 
 /* =========================================
-EXTERNAL SIZE
+DIMENSIONS
 ========================================= */
 
 function getExternalDimensions() {
@@ -3440,6 +3702,7 @@ state.border *
 2;
 
 return {
+
 width:
 width +
 increase,
@@ -3447,6 +3710,7 @@ increase,
 length:
 length +
 increase
+
 };
 
 }
@@ -3462,10 +3726,6 @@ return `${dimensions.width}mm × ${dimensions.length}mm`;
 }
 
 
-/* =========================================
-TOP GLASS SPECIFICATION
-========================================= */
-
 function getTopGlassLabel() {
 
 const dimensions =
@@ -3478,6 +3738,7 @@ dimensions.length
 ) /
 1000000;
 
+
 if (
 area >
 3.4
@@ -3486,6 +3747,7 @@ area >
 return "10mm Toughened Safety Glass";
 
 }
+
 
 if (
 area >
@@ -3496,14 +3758,11 @@ return "8mm Toughened Safety Glass";
 
 }
 
+
 return "6mm Toughened Safety Glass";
 
 }
 
-
-/* =========================================
-DELIVERY DISPLAY
-========================================= */
 
 function getDeliveryLabel() {
 
@@ -3519,6 +3778,7 @@ state.size
 Number
 );
 
+
 if (
 width <=
 1000 &&
@@ -3530,19 +3790,21 @@ return "Free Mainland UK Delivery";
 
 }
 
+
 return "Delivery Calculated By Postcode";
 
 }
 
 
 /* =========================================
-HOMEPAGE IMPORT MATCH
+HOMEPAGE IMPORT
 ========================================= */
 
 function homepageImportMatchesCurrentSelection() {
 
 const imported =
 state.homepageImport;
+
 
 if (
 !imported
@@ -3552,30 +3814,34 @@ return false;
 
 }
 
+
 return (
+
 imported.size ===
 state.size &&
+
 imported.glazing ===
 state.glazing &&
+
 imported.type ===
 state.type &&
+
 imported.border ===
 state.border &&
+
 imported.tint ===
 state.tint
+
 );
 
 }
 
 
-/* =========================================
-HOMEPAGE IMAGE MATCH
-========================================= */
-
 function homepageImageMatchesCurrentSelection() {
 
 const imported =
 state.homepageImport;
+
 
 if (
 !imported ||
@@ -3586,21 +3852,70 @@ return false;
 
 }
 
+
 return (
+
 imported.size ===
 state.size &&
+
 imported.tint ===
 state.tint
+
 );
 
 }
 
 
 /* =========================================
-SELECTED PRODUCT IMAGE
+REAL TINTED PRODUCT IMAGES
 ========================================= */
 
+function getTintedProductFilename(
+baseFilename,
+tint
+) {
+
+const normalizedTint =
+normalizeTint(
+tint
+);
+
+
+if (
+normalizedTint ===
+"clear"
+) {
+
+return baseFilename;
+
+}
+
+
+const usableBaseFilename =
+
+TINT_IMAGE_BASE_FALLBACKS[
+baseFilename
+] ||
+
+baseFilename;
+
+
+const prefix =
+
+TINT_IMAGE_PREFIX[
+normalizedTint
+] ||
+
+"";
+
+
+return `${prefix}${usableBaseFilename}`;
+
+}
+
+
 function selectedProductImage() {
+
 
 if (
 homepageImageMatchesCurrentSelection()
@@ -3610,10 +3925,12 @@ return state.homepageImport.image;
 
 }
 
+
 const product =
 PRODUCTS[
 state.size
 ];
+
 
 if (
 !product
@@ -3623,16 +3940,24 @@ return "";
 
 }
 
+
+const filename =
+getTintedProductFilename(
+product.image,
+state.tint
+);
+
+
 return (
 "images/product-cards/" +
-product.image
+filename
 );
 
 }
 
 
 /* =========================================
-SMOOTH PRODUCT IMAGE FADE
+SMOOTH IMAGE TRANSITION
 ========================================= */
 
 function setProductImage(
@@ -3640,6 +3965,7 @@ imageSource,
 altText,
 animate = false
 ) {
+
 
 if (
 !imageSource
@@ -3649,21 +3975,25 @@ return;
 
 }
 
+
 productImage.alt =
 altText;
+
 
 imageTransitionToken +=
 1;
 
-const transitionToken =
+
+const token =
 imageTransitionToken;
+
 
 if (
 imageFadeTimer !==
 null
 ) {
 
-window.clearTimeout(
+clearTimeout(
 imageFadeTimer
 );
 
@@ -3672,13 +4002,16 @@ null;
 
 }
 
+
 if (
-!animate
+!animate ||
+reducedMotionQuery.matches
 ) {
 
 productImage.classList.remove(
 "image-fade-out"
 );
+
 
 if (
 productImage.getAttribute(
@@ -3692,15 +4025,11 @@ imageSource;
 
 }
 
+
 return;
 
 }
 
-
-/*
-First gently fade the currently displayed
-image down.
-*/
 
 productImage.classList.add(
 "image-fade-out"
@@ -3708,11 +4037,12 @@ productImage.classList.add(
 
 
 imageFadeTimer =
-window.setTimeout(
+setTimeout(
 () => {
 
+
 if (
-transitionToken !==
+token !==
 imageTransitionToken
 ) {
 
@@ -3720,28 +4050,24 @@ return;
 
 }
 
+
 const currentSource =
 productImage.getAttribute(
 "src"
-) || "";
+) ||
+"";
 
-
-/*
-Even where two sizes share the same generic
-product artwork, retain the fade so changing
-size still feels deliberate.
-*/
 
 if (
 currentSource ===
 imageSource
 ) {
 
-window.requestAnimationFrame(
+requestAnimationFrame(
 () => {
 
 if (
-transitionToken ===
+token ===
 imageTransitionToken
 ) {
 
@@ -3759,26 +4085,23 @@ return;
 }
 
 
-/*
-Preload the next image while the current image
-has faded down, then reveal it cleanly.
-*/
-
 const preloader =
 new Image();
 
 
-const revealImage =
+const reveal =
 () => {
 
+
 if (
-transitionToken !==
+token !==
 imageTransitionToken
 ) {
 
 return;
 
 }
+
 
 productImage.src =
 imageSource;
@@ -3786,14 +4109,16 @@ imageSource;
 productImage.alt =
 altText;
 
-window.requestAnimationFrame(
+
+requestAnimationFrame(
 () => {
 
-window.requestAnimationFrame(
+requestAnimationFrame(
 () => {
+
 
 if (
-transitionToken ===
+token ===
 imageTransitionToken
 ) {
 
@@ -3802,6 +4127,7 @@ productImage.classList.remove(
 );
 
 }
+
 
 }
 );
@@ -3813,13 +4139,14 @@ productImage.classList.remove(
 
 
 preloader.onload =
-revealImage;
+reveal;
 
 preloader.onerror =
-revealImage;
+reveal;
 
 preloader.src =
 imageSource;
+
 
 },
 140
@@ -3829,7 +4156,7 @@ imageSource;
 
 
 /* =========================================
-SELECTED PRICE
+PRICE
 ========================================= */
 
 function selectedPrice() {
@@ -3839,6 +4166,7 @@ PRODUCTS[
 state.size
 ];
 
+
 if (
 !product
 ) {
@@ -3847,8 +4175,6 @@ return 0;
 
 }
 
-
-/* Exact incoming homepage configuration */
 
 if (
 homepageImportMatchesCurrentSelection() &&
@@ -3862,22 +4188,25 @@ return state.homepageImport.price;
 }
 
 
-/* Known tinted homepage pricing */
-
 const tintPrices =
 TINT_PRICE_OVERRIDES[
 state.size
 ];
 
+
 if (
 state.type ===
 "toughened" &&
+
 state.border ===
 100 &&
+
 tintPrices &&
+
 tintPrices[
 state.tint
 ] &&
+
 Number.isFinite(
 Number(
 tintPrices[
@@ -3900,8 +4229,6 @@ state.glazing
 }
 
 
-/* Standard price */
-
 const base =
 Number(
 product[
@@ -3909,60 +4236,63 @@ state.glazing
 ]
 );
 
-const typeExtra =
-PRICE_MODIFIERS.type[
-state.type
-] || 0;
-
-const borderExtra =
-PRICE_MODIFIERS.border[
-state.border
-] || 0;
-
-const tintExtra =
-PRICE_MODIFIERS.tint[
-state.tint
-] || 0;
 
 return (
+
 base +
-typeExtra +
-borderExtra +
-tintExtra
+
+(
+PRICE_MODIFIERS.type[
+state.type
+] ||
+0
+) +
+
+(
+PRICE_MODIFIERS.border[
+state.border
+] ||
+0
+) +
+
+(
+PRICE_MODIFIERS.tint[
+state.tint
+] ||
+0
+)
+
 );
 
 }
 
 
-/* =========================================
-MONEY FORMATTING
-========================================= */
-
 function moneyParts(
 value
 ) {
-
-const fixed =
-Number(
-value
-).toFixed(
-2
-);
 
 const [
 whole,
 pence
 ] =
-fixed.split(
+Number(
+value
+)
+.toFixed(
+2
+)
+.split(
 "."
 );
+
 
 return {
 
 whole:
 Number(
 whole
-).toLocaleString(
+)
+.toLocaleString(
 "en-GB"
 ),
 
@@ -3975,7 +4305,7 @@ pence
 
 
 /* =========================================
-PRODUCT TITLE
+TITLE
 ========================================= */
 
 function buildTitle() {
@@ -3985,8 +4315,10 @@ formatSize(
 state.size
 );
 
+
 let tintText =
 "";
+
 
 if (
 state.tint ===
@@ -3998,6 +4330,7 @@ tintText =
 
 }
 
+
 if (
 state.tint ===
 "grey"
@@ -4007,6 +4340,7 @@ tintText =
 "Grey Tinted ";
 
 }
+
 
 if (
 state.tint ===
@@ -4018,21 +4352,34 @@ tintText =
 
 }
 
+
 const typeText =
+
 state.type ===
 "laminated"
+
 ?
+
 "Laminated "
+
 :
+
 "";
 
+
 const glazingText =
+
 state.glazing ===
 "triple"
+
 ?
+
 "Triple"
+
 :
+
 "Double";
+
 
 return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
 
@@ -4040,27 +4387,10 @@ return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
 
 
 /* =========================================
-TINT APPEARANCE
+TINT LABEL
 ========================================= */
 
 function updateTintAppearance() {
-
-productImageFrame.classList.remove(
-"tint-blue",
-"tint-grey",
-"tint-satin"
-);
-
-if (
-state.tint !==
-"clear"
-) {
-
-productImageFrame.classList.add(
-`tint-${state.tint}`
-);
-
-}
 
 const tintIndex = {
 
@@ -4073,8 +4403,10 @@ satin:3
 state.tint
 ];
 
+
 tintCaption.style.transform =
 `translateX(${tintIndex * 100}%)`;
+
 
 tintCaption.classList.toggle(
 "visible",
@@ -4093,6 +4425,7 @@ function updateQueryString() {
 
 const params =
 new URLSearchParams();
+
 
 params.set(
 "size",
@@ -4121,6 +4454,7 @@ params.set(
 state.tint
 );
 
+
 if (
 state.homepageImport &&
 state.homepageImport.source ===
@@ -4131,6 +4465,7 @@ params.set(
 "source",
 "homepage"
 );
+
 
 if (
 homepageImportMatchesCurrentSelection() &&
@@ -4148,6 +4483,7 @@ state.homepageImport.price
 
 }
 
+
 if (
 homepageImageMatchesCurrentSelection()
 ) {
@@ -4161,20 +4497,18 @@ state.homepageImport.image
 
 }
 
-const newUrl =
-`${window.location.pathname}?${params.toString()}${window.location.hash}`;
 
-window.history.replaceState(
+history.replaceState(
 {},
 "",
-newUrl
+`${location.pathname}?${params.toString()}${location.hash}`
 );
 
 }
 
 
 /* =========================================
-UPDATE PAGE UI
+UPDATE UI
 ========================================= */
 
 function updateUI(
@@ -4184,10 +4518,12 @@ animateImage = false
 } = {}
 ) {
 
+
 const product =
 PRODUCTS[
 state.size
 ];
+
 
 if (
 !product
@@ -4197,26 +4533,42 @@ return;
 
 }
 
+
 const price =
 selectedPrice();
+
 
 const parts =
 moneyParts(
 price
 );
 
+
 const title =
 buildTitle();
+
 
 const imageSource =
 selectedProductImage();
 
-const imageAlt =
-`${formatSize(state.size)} frameless flat roof skylight`;
+
+const finishAlt =
+
+state.tint ===
+"clear"
+
+?
+
+"clear"
+
+:
+
+`${state.tint} tinted`;
 
 
 productTitle.textContent =
 title;
+
 
 document.title =
 `${title} | Factory Toughened Rooflights`;
@@ -4224,7 +4576,7 @@ document.title =
 
 setProductImage(
 imageSource,
-imageAlt,
+`${formatSize(state.size)} ${finishAlt} frameless flat roof skylight`,
 animateImage
 );
 
@@ -4268,11 +4620,16 @@ state.quantity;
 
 
 quantityUnitLabel.textContent =
+
 state.quantity ===
 1
+
 ?
+
 "Unit"
+
 :
+
 "Units";
 
 
@@ -4290,11 +4647,16 @@ state.quantity <=
 
 
 quantityMinus.style.opacity =
+
 state.quantity <=
 1
+
 ?
+
 ".36"
+
 :
+
 "1";
 
 
@@ -4383,13 +4745,15 @@ updateQueryString();
 
 
 /* =========================================
-POPULATE SIZE LIST
+SIZE LIST
 ========================================= */
 
 function populateSizes() {
 
 const orderedSizes =
-Object.keys(
+
+Object
+.keys(
 PRODUCTS
 )
 .sort(
@@ -4399,8 +4763,8 @@ b
 ) => {
 
 const [
-aWidth,
-aLength
+aW,
+aL
 ] =
 a
 .split(
@@ -4410,9 +4774,10 @@ a
 Number
 );
 
+
 const [
-bWidth,
-bLength
+bW,
+bL
 ] =
 b
 .split(
@@ -4422,32 +4787,44 @@ b
 Number
 );
 
+
 return (
+
 (
-aWidth *
-aLength
-) -
-(
-bWidth *
-bLength
+aW *
+aL
 )
+-
+(
+bW *
+bL
+)
+
 ||
-aWidth -
-bWidth
+
+aW -
+bW
+
 ||
-aLength -
-bLength
+
+aL -
+bL
+
 );
 
 }
 );
 
+
 sizeSelect.innerHTML =
+
 orderedSizes
+
 .map(
 size =>
 `<option value="${size}">${formatSize(size)} internal</option>`
 )
+
 .join(
 ""
 );
@@ -4456,15 +4833,16 @@ size =>
 
 
 /* =========================================
-LOAD STATE FROM QUERY STRING
+QUERY LOAD
 ========================================= */
 
 function loadStateFromQuery() {
 
 const params =
 new URLSearchParams(
-window.location.search
+location.search
 );
+
 
 let size =
 normalizeSize(
@@ -4485,6 +4863,7 @@ params.get(
 )
 );
 
+
 const length =
 Number(
 params.get(
@@ -4492,10 +4871,12 @@ params.get(
 )
 );
 
+
 if (
 Number.isFinite(
 width
-) &&
+)
+&&
 Number.isFinite(
 length
 )
@@ -4513,9 +4894,10 @@ const glazing =
 String(
 params.get(
 "glazing"
-) || ""
 )
-.trim()
+||
+""
+)
 .toLowerCase();
 
 
@@ -4523,9 +4905,10 @@ const type =
 String(
 params.get(
 "type"
-) || ""
 )
-.trim()
+||
+""
+)
 .toLowerCase();
 
 
@@ -4537,18 +4920,15 @@ params.get(
 );
 
 
-const finishParameter =
-params.get(
-"finish"
-) ??
-params.get(
-"tint"
-);
-
-
 const tint =
 normalizeTint(
-finishParameter
+params.get(
+"finish"
+)
+??
+params.get(
+"tint"
+)
 );
 
 
@@ -4556,9 +4936,10 @@ const source =
 String(
 params.get(
 "source"
-) || ""
 )
-.trim()
+||
+""
+)
 .toLowerCase();
 
 
@@ -4567,13 +4948,14 @@ Number(
 String(
 params.get(
 "price"
-) || ""
+)
+||
+""
 )
 .replace(
 /£|,/g,
 ""
 )
-.trim()
 );
 
 
@@ -4581,9 +4963,10 @@ const importedImage =
 String(
 params.get(
 "image"
-) || ""
 )
-.trim();
+||
+""
+);
 
 
 if (
@@ -4603,7 +4986,8 @@ if (
 [
 "double",
 "triple"
-].includes(
+]
+.includes(
 glazing
 )
 ) {
@@ -4618,7 +5002,8 @@ if (
 [
 "toughened",
 "laminated"
-].includes(
+]
+.includes(
 type
 )
 ) {
@@ -4643,7 +5028,8 @@ if (
 100,
 125,
 150
-].includes(
+]
+.includes(
 border
 )
 ) {
@@ -4663,21 +5049,8 @@ state.border =
 }
 
 
-if (
-[
-"clear",
-"blue",
-"grey",
-"satin"
-].includes(
-tint
-)
-) {
-
 state.tint =
 tint;
-
-}
 
 
 if (
@@ -4725,7 +5098,7 @@ importedImage
 
 
 /* =========================================
-SIZE CHANGE
+EVENTS
 ========================================= */
 
 sizeSelect.addEventListener(
@@ -4736,6 +5109,7 @@ const newSize =
 normalizeSize(
 event.target.value
 );
+
 
 if (
 PRODUCTS[
@@ -4750,11 +5124,6 @@ state.quantity =
 1;
 
 
-/*
-Size changes use the dedicated smooth image
-fade. All other controls remain instant.
-*/
-
 updateUI(
 {
 animateImage:true
@@ -4767,10 +5136,6 @@ animateImage:true
 );
 
 
-/* =========================================
-GLAZING CHANGE
-========================================= */
-
 document
 .querySelectorAll(
 "[data-glazing]"
@@ -4782,26 +5147,9 @@ button.addEventListener(
 "click",
 () => {
 
-const glazing =
-String(
-button.dataset.glazing || ""
-);
-
-if (
-![
-"double",
-"triple"
-].includes(
-glazing
-)
-) {
-
-return;
-
-}
-
 state.glazing =
-glazing;
+button.dataset.glazing;
+
 
 updateUI();
 
@@ -4811,10 +5159,6 @@ updateUI();
 }
 );
 
-
-/* =========================================
-TYPE CHANGE
-========================================= */
 
 document
 .querySelectorAll(
@@ -4827,26 +5171,9 @@ button.addEventListener(
 "click",
 () => {
 
-const type =
-String(
-button.dataset.type || ""
-);
-
-if (
-![
-"toughened",
-"laminated"
-].includes(
-type
-)
-) {
-
-return;
-
-}
-
 state.type =
-type;
+button.dataset.type;
+
 
 updateUI();
 
@@ -4856,10 +5183,6 @@ updateUI();
 }
 );
 
-
-/* =========================================
-BORDER CHANGE
-========================================= */
 
 document
 .querySelectorAll(
@@ -4872,27 +5195,11 @@ button.addEventListener(
 "click",
 () => {
 
-const border =
+state.border =
 Number(
 button.dataset.border
 );
 
-if (
-![
-100,
-125,
-150
-].includes(
-border
-)
-) {
-
-return;
-
-}
-
-state.border =
-border;
 
 updateUI();
 
@@ -4902,10 +5209,6 @@ updateUI();
 }
 );
 
-
-/* =========================================
-FINISH CHANGE
-========================================= */
 
 document
 .querySelectorAll(
@@ -4923,21 +5226,33 @@ normalizeTint(
 button.dataset.tint
 );
 
+
+if (
+tint ===
+state.tint
+) {
+
+return;
+
+}
+
+
 state.tint =
 tint;
 
-updateUI();
 
+updateUI(
+{
+animateImage:true
 }
 );
 
 }
 );
 
+}
+);
 
-/* =========================================
-QUANTITY
-========================================= */
 
 quantityMinus.addEventListener(
 "click",
@@ -4948,8 +5263,8 @@ state.quantity >
 1
 ) {
 
-state.quantity -=
-1;
+state.quantity --;
+
 
 updateUI(
 {
@@ -4972,8 +5287,8 @@ state.quantity <
 99
 ) {
 
-state.quantity +=
-1;
+state.quantity ++;
+
 
 updateUI(
 {
@@ -4988,54 +5303,45 @@ updateUrl:false
 
 
 /* =========================================
-ADD CURRENT SELECTION TO BASKET
+ADD TO BASKET
 ========================================= */
 
 function addCurrentSelectionToBasket() {
 
-const lineTotal =
-selectedPrice() *
+state.basketTotal +=
+
+selectedPrice()
+*
 state.quantity;
 
-state.basketTotal +=
-lineTotal;
 
-const formatted =
-new Intl.NumberFormat(
-"en-GB",
-{
-style:"currency",
-currency:"GBP"
-}
-).format(
+updateBasketTotal(
 state.basketTotal
 );
 
-basketTotalText.textContent =
-formatted;
-
-basketChip.setAttribute(
-"aria-label",
-`Basket total ${formatted}`
-);
 
 const originalDesktop =
 addToBasketText.textContent;
 
+
 const originalMobile =
 mobileAddToBasket.textContent;
+
 
 addToBasketText.textContent =
 "Added To Basket ✓";
 
+
 mobileAddToBasket.textContent =
 "Added ✓";
 
-window.setTimeout(
+
+setTimeout(
 () => {
 
 addToBasketText.textContent =
 originalDesktop;
+
 
 mobileAddToBasket.textContent =
 originalMobile;
@@ -5060,107 +5366,7 @@ addCurrentSelectionToBasket
 
 
 /* =========================================
-MENU
-========================================= */
-
-function openMenu() {
-
-const menu =
-document.getElementById(
-"menuOverlay"
-);
-
-if (
-!menu
-) {
-
-return;
-
-}
-
-menu.classList.add(
-"active"
-);
-
-menu.setAttribute(
-"aria-hidden",
-"false"
-);
-
-document.body.style.overflow =
-"hidden";
-
-}
-
-
-function closeMenu() {
-
-const menu =
-document.getElementById(
-"menuOverlay"
-);
-
-if (
-!menu
-) {
-
-return;
-
-}
-
-menu.classList.remove(
-"active"
-);
-
-menu.setAttribute(
-"aria-hidden",
-"true"
-);
-
-document.body.style.overflow =
-"";
-
-}
-
-
-document.addEventListener(
-"keydown",
-event => {
-
-if (
-event.key ===
-"Escape"
-) {
-
-closeMenu();
-
-}
-
-}
-);
-
-
-/* =========================================
-FOOTER YEAR
-========================================= */
-
-const footerYear =
-document.getElementById(
-"footerYear"
-);
-
-if (
-footerYear
-) {
-
-footerYear.textContent =
-new Date().getFullYear();
-
-}
-
-
-/* =========================================
-INITIAL ORDER PAGE STATE
+INITIALISE
 ========================================= */
 
 populateSizes();
@@ -5172,6 +5378,25 @@ updateUI(
 updateUrl:false,
 animateImage:false
 }
+);
+
+
+setTimeout(
+() => {
+
+if (
+state.basketTotal ===
+0
+) {
+
+updateBasketTotal(
+0
+);
+
+}
+
+},
+2000
 );
 
 </script>
