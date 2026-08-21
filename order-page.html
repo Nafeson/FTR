@@ -55,6 +55,8 @@ content="Configure and order a Factory Toughened Rooflights frameless flat roof 
 --max:1320px;
 
 --product-image-zoom:1.30;
+--product-image-scale:1.30;
+--product-image-hover-scale:1.335;
 }
 
 * {
@@ -737,7 +739,7 @@ object-fit:contain;
 object-position:center center;
 background:#ffffff;
 opacity:1;
-transform:scale(var(--product-image-zoom));
+transform:scale(var(--product-image-scale,1.30));
 transform-origin:center center;
 will-change:opacity,transform;
 transition:
@@ -751,7 +753,7 @@ opacity:0;
 }
 
 .product-image-frame:hover img:not(.image-fade-out) {
-transform:scale(1.335);
+transform:scale(var(--product-image-hover-scale,1.335));
 filter:contrast(1.015);
 }
 
@@ -782,10 +784,18 @@ letter-spacing:1.55px;
 text-transform:uppercase;
 }
 
+
+/* =========================================
+CHANGE 1
+ROUNDED GLAZING SELECTOR
+========================================= */
+
 .glazing-selector {
 display:grid;
 grid-template-columns:1fr 1fr;
 border:1px solid rgba(255,255,255,.18);
+border-radius:16px 16px 0 0;
+overflow:hidden;
 background:#090a0a;
 }
 
@@ -834,6 +844,7 @@ border:0 solid rgba(255,255,255,.12);
 border-left-width:1px;
 border-right-width:1px;
 border-bottom-width:1px;
+border-radius:0 0 16px 16px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -854,10 +865,18 @@ position:relative;
 padding-bottom:25px;
 }
 
+
+/* =========================================
+CHANGE 1
+ROUNDED GLASS FINISH SELECTOR
+========================================= */
+
 .tint-selector {
 display:grid;
 grid-template-columns:repeat(4,1fr);
 border:1px solid rgba(255,255,255,.16);
+border-radius:16px;
+overflow:hidden;
 background:#090a0a;
 }
 
@@ -988,6 +1007,7 @@ text-transform:uppercase;
 
 .select-shell {
 position:relative;
+border-radius:16px;
 }
 
 .select-shell::after {
@@ -1007,8 +1027,7 @@ pointer-events:none;
 
 
 /* =========================================
-CHANGE 2
-SIZE DROPDOWN VALUE MATCHES DIMENSION VALUES
+ROUNDED SIZE DROPDOWN
 ========================================= */
 
 .size-select {
@@ -1016,7 +1035,7 @@ appearance:none;
 width:100%;
 height:46px;
 border:1px solid rgba(255,255,255,.16);
-border-radius:0;
+border-radius:16px;
 background:#0a0c0c;
 color:var(--white);
 padding:0 40px 0 13px;
@@ -1030,9 +1049,17 @@ line-height:1;
 cursor:pointer;
 }
 
+
+/* =========================================
+CHANGE 1
+ROUNDED GLASS / BORDER SELECTORS
+========================================= */
+
 .segmented {
 display:grid;
 border:1px solid rgba(255,255,255,.16);
+border-radius:16px;
+overflow:hidden;
 background:#090b0b;
 }
 
@@ -1234,9 +1261,7 @@ text-transform:lowercase;
 
 
 /* =========================================
-CHANGE 3
 DYNAMIC TOTAL
-UPRIGHT + FADE TRANSITIONS
 ========================================= */
 
 .total-price-block {
@@ -1534,131 +1559,6 @@ transition:transform .2s ease;
 
 .add-to-basket:hover .basket-arrow {
 transform:translateX(4px);
-}
-
-
-/* =========================================
-CHANGE 1
-EXPRESS PAYMENT STACK
-
-Visual controls ready for future payment
-integration.
-
-Apple Pay on top.
-Google Pay underneath.
-========================================= */
-
-.express-payment-stack {
-display:grid;
-grid-template-columns:1fr;
-gap:10px;
-margin-top:11px;
-}
-
-.express-pay-button {
-width:100%;
-min-height:62px;
-margin:0;
-padding:0 22px;
-border:1px solid rgba(255,255,255,.88);
-border-radius:18px;
-background:#ffffff;
-color:#080808;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:9px;
-cursor:pointer;
-box-shadow:
-0 12px 28px rgba(0,0,0,.16),
-inset 0 1px 0 rgba(255,255,255,.90);
-transition:
-transform .20s ease,
-background .20s ease,
-border-color .20s ease,
-box-shadow .20s ease;
-}
-
-.express-pay-button:hover {
-transform:translateY(-1px);
-background:#f4f4f3;
-border-color:#ffffff;
-box-shadow:
-0 16px 34px rgba(0,0,0,.20),
-inset 0 1px 0 rgba(255,255,255,1);
-}
-
-.express-pay-button:active {
-transform:scale(.995);
-}
-
-.express-pay-prefix {
-color:#111111;
-font-family:
-"Aptos",
-"Inter",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:17px;
-font-weight:500;
-line-height:1;
-letter-spacing:-.25px;
-}
-
-.express-pay-brand {
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:3px;
-line-height:1;
-white-space:nowrap;
-}
-
-.apple-pay-mark {
-display:block;
-width:23px;
-height:27px;
-flex:0 0 auto;
-}
-
-.apple-pay-brand .express-pay-word {
-color:#050505;
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Helvetica Neue",
-Arial,
-sans-serif;
-font-size:25px;
-font-weight:600;
-line-height:1;
-letter-spacing:-1px;
-}
-
-.google-pay-mark {
-display:block;
-width:21px;
-height:21px;
-flex:0 0 auto;
-}
-
-.google-pay-brand {
-gap:5px;
-}
-
-.google-pay-brand .express-pay-word {
-color:#3c4043;
-font-family:
-"Roboto",
-"Aptos",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:24px;
-font-weight:500;
-line-height:1;
-letter-spacing:-.8px;
 }
 
 
@@ -2075,7 +1975,7 @@ aspect-ratio:1 / 1;
 
 .product-image-frame img,
 .product-image-frame:hover img:not(.image-fade-out) {
-transform:scale(1.30);
+transform:scale(var(--product-image-scale,1.30));
 }
 
 .visual-controls {
@@ -2092,6 +1992,10 @@ font-size:9.1px;
 letter-spacing:.95px;
 }
 
+.glazing-selector {
+border-radius:12px 12px 0 0;
+}
+
 .glazing-selector button {
 min-height:34px;
 font-size:7px;
@@ -2101,10 +2005,15 @@ letter-spacing:.55px;
 .glazed-label {
 height:20px;
 font-size:5.5px;
+border-radius:0 0 12px 12px;
 }
 
 .tint-wrap {
 padding-bottom:18px;
+}
+
+.tint-selector {
+border-radius:12px;
 }
 
 .tint-selector button {
@@ -2152,16 +2061,19 @@ letter-spacing:.75px;
 margin-bottom:5px;
 }
 
-
-/* =========================================
-CHANGE 2
-MOBILE SIZE VALUE MATCHES DIMENSION VALUES
-========================================= */
+.select-shell {
+border-radius:12px;
+}
 
 .size-select {
 height:32px;
 padding-left:8px;
 font-size:clamp(10px,2.9vw,13px);
+border-radius:12px;
+}
+
+.segmented {
+border-radius:12px;
 }
 
 .segmented button {
@@ -2321,45 +2233,6 @@ border-radius:14px;
 
 .basket-arrow {
 font-size:18px;
-}
-
-
-/* =========================================
-MOBILE EXPRESS PAYMENTS
-========================================= */
-
-.express-payment-stack {
-gap:7px;
-margin-top:8px;
-}
-
-.express-pay-button {
-min-height:50px;
-padding:0 12px;
-border-radius:14px;
-gap:7px;
-}
-
-.express-pay-prefix {
-font-size:13px;
-}
-
-.apple-pay-mark {
-width:19px;
-height:23px;
-}
-
-.apple-pay-brand .express-pay-word {
-font-size:20px;
-}
-
-.google-pay-mark {
-width:18px;
-height:18px;
-}
-
-.google-pay-brand .express-pay-word {
-font-size:19px;
 }
 
 }
@@ -2853,10 +2726,6 @@ ORDER CONFIGURATOR
 <div class="order-shell">
 
 
-<!-- =========================================
-EXACT HOMEPAGE POPULAR-SIZES HEADING SYSTEM
-========================================= -->
-
 <div class="home-popular-title-wrap">
 
 <div class="home-opening-title order-opening-title">
@@ -2877,10 +2746,6 @@ Configure Your Rooflight
 
 <div class="order-card">
 
-
-<!-- =========================================
-UPPER TWO-COLUMN SECTION
-========================================= -->
 
 <div class="order-grid">
 
@@ -3397,112 +3262,6 @@ aria-hidden="true"
 </div>
 
 </div>
-
-
-</div>
-
-
-<!-- =========================================
-CHANGE 1
-EXPRESS PAYMENT BUTTONS
-APPLE PAY ABOVE GOOGLE PAY
-========================================= -->
-
-<div class="express-payment-stack">
-
-
-<button
-class="express-pay-button apple-pay-button"
-id="applePayButton"
-type="button"
-aria-label="Buy with Apple Pay"
->
-
-<span class="express-pay-prefix">
-Buy with
-</span>
-
-<span class="express-pay-brand apple-pay-brand">
-
-<svg
-class="apple-pay-mark"
-viewBox="0 0 32 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
-focusable="false"
->
-
-<path
-fill="#000000"
-d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"
-/>
-
-<path
-fill="#000000"
-d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"
-/>
-
-</svg>
-
-<span class="express-pay-word">
-Pay
-</span>
-
-</span>
-
-</button>
-
-
-<button
-class="express-pay-button google-pay-button"
-id="googlePayButton"
-type="button"
-aria-label="Buy with Google Pay"
->
-
-<span class="express-pay-prefix">
-Buy with
-</span>
-
-<span class="express-pay-brand google-pay-brand">
-
-<svg
-class="google-pay-mark"
-viewBox="0 0 18 18"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
-focusable="false"
->
-
-<path
-fill="#4285F4"
-d="M17.64 9.205c0-.638-.057-1.252-.164-1.841H9v3.482h4.844a4.14 4.14 0 0 1-1.797 2.715v2.258h2.909c1.703-1.568 2.684-3.878 2.684-6.614z"
-/>
-
-<path
-fill="#34A853"
-d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.835.86-3.047.86-2.344 0-4.328-1.585-5.037-3.715H.956v2.332A9 9 0 0 0 9 18z"
-/>
-
-<path
-fill="#FBBC05"
-d="M3.963 10.706A5.41 5.41 0 0 1 3.682 9c0-.592.102-1.167.281-1.706V4.962H.956A9 9 0 0 0 0 9c0 1.452.347 2.827.956 4.038l3.007-2.332z"
-/>
-
-<path
-fill="#EA4335"
-d="M9 3.579c1.322 0 2.507.455 3.44 1.345l2.582-2.582C13.463.891 11.427 0 9 0A9 9 0 0 0 .956 4.962l3.007 2.332C4.672 5.164 6.656 3.579 9 3.579z"
-/>
-
-</svg>
-
-<span class="express-pay-word">
-Pay
-</span>
-
-</span>
-
-</button>
 
 
 </div>
@@ -4420,7 +4179,7 @@ image:"medium-square.png"
 "800x1200":{
 double:395,
 triple:470,
-image:"medium-rectangle.png"
+image:"medium-square.png"
 },
 
 "800x1500":{
@@ -4593,6 +4352,59 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 };
 
 
+/* =========================================
+CHANGE 2
+PER-SIZE PRODUCT IMAGE SCALING
+
+All adjustments are relative to the
+original Order Page scale of 1.30.
+
+Applies equally to:
+Clear / Blue / Grey / Satin
+========================================= */
+
+const PRODUCT_IMAGE_BASE_SCALE =
+1.30;
+
+
+const PRODUCT_IMAGE_BASE_HOVER_SCALE =
+1.335;
+
+
+const PRODUCT_IMAGE_HOVER_RATIO =
+
+PRODUCT_IMAGE_BASE_HOVER_SCALE /
+PRODUCT_IMAGE_BASE_SCALE;
+
+
+const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
+
+"600x600":-40,
+"600x900":15,
+"600x1200":-25,
+"600x1500":-15,
+"600x2000":-15,
+
+"800x800":-40,
+"800x1000":-30,
+"800x1200":-30,
+"800x1500":-25,
+"800x2000":-15,
+
+"1000x1000":-50,
+"1000x1200":-50,
+"1000x1500":-25,
+"1000x2000":-25,
+"1000x2500":-25,
+
+"1500x1500":-35,
+"1500x1800":-15,
+"1500x2000":-15,
+"1500x2500":-15
+
+};
+
+
 const PRICE_MODIFIERS = {
 
 type:{
@@ -4761,11 +4573,6 @@ let imageTransitionToken =
 let imageFadeTimer =
 null;
 
-
-/* =========================================
-CHANGE 3
-TOTAL TRANSITION STATE
-========================================= */
 
 let displayedTotalAmount =
 null;
@@ -5188,6 +4995,67 @@ filename
 
 
 /* =========================================
+CHANGE 2
+PRODUCT IMAGE SCALE
+========================================= */
+
+function getProductImageScale() {
+
+const adjustment =
+Number(
+PRODUCT_IMAGE_SCALE_ADJUSTMENTS[
+state.size
+]
+||
+0
+);
+
+
+return (
+
+PRODUCT_IMAGE_BASE_SCALE *
+(
+1 +
+adjustment /
+100
+)
+
+);
+
+}
+
+
+function updateProductImageScale() {
+
+const scale =
+getProductImageScale();
+
+
+const hoverScale =
+
+scale *
+PRODUCT_IMAGE_HOVER_RATIO;
+
+
+productImage.style.setProperty(
+"--product-image-scale",
+scale.toFixed(
+4
+)
+);
+
+
+productImage.style.setProperty(
+"--product-image-hover-scale",
+hoverScale.toFixed(
+4
+)
+);
+
+}
+
+
+/* =========================================
 SMOOTH IMAGE TRANSITION
 ========================================= */
 
@@ -5544,7 +5412,6 @@ pence
 
 
 /* =========================================
-CHANGE 3
 TOTAL PRICE TEXT HELPER
 ========================================= */
 
@@ -5569,7 +5436,6 @@ parts.pence;
 
 
 /* =========================================
-CHANGE 3
 TOTAL FADE IN / FADE OUT
 ========================================= */
 
@@ -5708,13 +5574,6 @@ return;
 }
 
 
-/*
-FIRST APPEARANCE
-
-Reveal the new total immediately in the
-layout, then fade it in.
-*/
-
 if (
 totalPriceBlock.hidden ||
 displayedTotalAmount ===
@@ -5801,12 +5660,6 @@ return;
 }
 
 
-/*
-NO CHANGE TO THE TOTAL
-
-Keep the existing displayed value visible.
-*/
-
 if (
 displayedTotalAmount ===
 numericTotal
@@ -5836,14 +5689,6 @@ return;
 
 }
 
-
-/*
-TOTAL CHANGED
-
-Fade the old total out first.
-Once faded, replace the number.
-Then fade the new total back in.
-*/
 
 if (
 reducedMotionQuery.matches
@@ -6242,6 +6087,14 @@ document.title =
 `${title} | Factory Toughened Rooflights`;
 
 
+/* =========================================
+CHANGE 2
+APPLY PER-SIZE SCALE BEFORE IMAGE UPDATE
+========================================= */
+
+updateProductImageScale();
+
+
 setProductImage(
 imageSource,
 `${formatSize(state.size)} ${finishAlt} frameless flat roof skylight`,
@@ -6279,21 +6132,12 @@ pricePence.textContent =
 parts.pence;
 
 
-/* =========================================
-CHANGE 3
-DYNAMIC TOTAL
-========================================= */
-
 updateTotalPrice(
 orderTotal,
 state.quantity >
 1
 );
 
-
-/* =========================================
-QUANTITY
-========================================= */
 
 quantityValue.textContent =
 state.quantity;
@@ -6989,25 +6833,6 @@ originalDesktop;
 addToBasket.addEventListener(
 "click",
 addCurrentSelectionToBasket
-);
-
-
-/* =========================================
-EXPRESS PAYMENT PLACEHOLDERS
-
-Visual buttons are ready for the actual
-Apple Pay / Google Pay checkout integration.
-========================================= */
-
-const applePayButton =
-document.getElementById(
-"applePayButton"
-);
-
-
-const googlePayButton =
-document.getElementById(
-"googlePayButton"
 );
 
 
