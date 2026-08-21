@@ -884,7 +884,7 @@ transform:scale(.985);
 
 
 /* =========================================
-HOMEPAGE-STYLE SLIDING GLAZED TRACK
+SLIDING GLAZED TRACK
 ========================================= */
 
 .glazed-label {
@@ -958,49 +958,66 @@ background:#171919;
 color:var(--orange-bright);
 }
 
+
+/* =========================================
+CHANGE 3
+CLEAR RESTORED TO ORIGINAL APPEARANCE
+========================================= */
+
 .tint-selector button[data-tint="clear"].active {
 background:#171919;
 color:var(--white);
 }
 
 
-/* Change 2 — tint-coloured selected buttons */
+/* =========================================
+CHANGE 3
+TRANSPARENT GRADIENT TINT BUTTONS
+========================================= */
 
 .tint-selector button[data-tint="blue"].active {
 background:
 linear-gradient(
 135deg,
-#213c4d 0%,
-#315d76 55%,
-#3c708d 100%
+rgba(48,156,224,.40) 0%,
+rgba(84,187,242,.52) 52%,
+rgba(118,207,250,.38) 100%
 );
-color:#f7f9fa;
+color:#f5fbff;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.10);
 }
 
 .tint-selector button[data-tint="grey"].active {
 background:
 linear-gradient(
 135deg,
-#3f4442 0%,
-#555b58 55%,
-#696f6b 100%
+rgba(97,103,101,.35) 0%,
+rgba(137,143,140,.46) 52%,
+rgba(175,180,177,.30) 100%
 );
 color:#ffffff;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .tint-selector button[data-tint="satin"].active {
 background:
 linear-gradient(
 135deg,
-#b9bdb9 0%,
-#d0d2ce 52%,
-#a8ada9 100%
+rgba(205,210,205,.28) 0%,
+rgba(235,237,232,.42) 52%,
+rgba(178,184,179,.30) 100%
 );
-color:#171919;
+color:#f7f7f3;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 
-/* Permanent underside bubble / track */
+/* =========================================
+PERMANENT TINT UNDERSIDE TRACK
+========================================= */
 
 .tint-caption-track {
 position:relative;
@@ -1073,27 +1090,177 @@ font-weight:800;
 color:var(--cream);
 }
 
-.product-card-specs {
+
+/* =========================================
+CHANGE 4
+PRODUCT HIGHLIGHTS
+========================================= */
+
+.product-assurance-panel {
 display:grid;
-gap:6px;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:7px;
 margin-top:18px;
-color:var(--muted-soft);
-font-size:clamp(11px,1.15vw,15px);
-line-height:1.3;
-font-weight:500;
+padding:9px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:14px;
+background:
+linear-gradient(
+135deg,
+rgba(232,120,23,.075) 0%,
+rgba(255,255,255,.022) 48%,
+rgba(0,0,0,.08) 100%
+);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.018);
 }
 
-.product-card-specs span:last-child {
-color:rgba(247,247,243,.76);
+.product-assurance-item {
+position:relative;
+min-width:0;
+min-height:46px;
+padding:9px 9px 9px 34px;
+display:flex;
+align-items:center;
+border:1px solid rgba(255,255,255,.075);
+border-radius:9px;
+background:
+linear-gradient(
+180deg,
+rgba(19,21,21,.82),
+rgba(8,10,10,.78)
+);
+color:#d7dad7;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:clamp(9px,1vw,12px);
+font-weight:750;
+line-height:1.18;
+letter-spacing:.05px;
 }
 
-.product-description {
-margin:18px 0 23px;
-max-width:620px;
-color:var(--muted-soft);
+.product-assurance-item::before {
+content:"✓";
+position:absolute;
+left:9px;
+top:50%;
+width:17px;
+height:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+transform:translateY(-50%);
+border:1px solid rgba(232,120,23,.62);
+border-radius:4px;
+background:
+linear-gradient(
+145deg,
+rgba(232,120,23,.21),
+rgba(232,120,23,.08)
+);
+color:var(--orange-bright);
+font-family:
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
 font-size:11px;
-line-height:1.62;
+font-weight:900;
+line-height:1;
 }
+
+
+/* =========================================
+CHANGE 4
+ESTIMATED DELIVERY CARD
+========================================= */
+
+.estimated-delivery-card {
+position:relative;
+overflow:hidden;
+margin:14px 0 23px;
+padding:14px 16px 15px 18px;
+border:1px solid rgba(232,120,23,.25);
+border-left:3px solid var(--orange);
+border-radius:11px;
+background:
+linear-gradient(
+110deg,
+rgba(232,120,23,.095) 0%,
+rgba(232,120,23,.025) 42%,
+rgba(255,255,255,.014) 100%
+);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.estimated-delivery-card::after {
+content:"";
+position:absolute;
+right:-35px;
+top:-45px;
+width:120px;
+height:120px;
+border-radius:50%;
+background:
+radial-gradient(
+circle,
+rgba(232,120,23,.10),
+transparent 68%
+);
+pointer-events:none;
+}
+
+.estimated-delivery-label {
+position:relative;
+z-index:1;
+color:#969c98;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:800;
+line-height:1;
+letter-spacing:1.5px;
+text-transform:uppercase;
+}
+
+.estimated-delivery-date {
+position:relative;
+z-index:1;
+display:block;
+margin-top:8px;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(20px,2vw,29px);
+font-weight:800;
+line-height:1;
+letter-spacing:-.55px;
+}
+
+.estimated-delivery-lead {
+position:relative;
+z-index:1;
+display:block;
+margin-top:8px;
+color:rgba(242,138,40,.83);
+font-size:9px;
+font-weight:700;
+line-height:1;
+letter-spacing:.45px;
+}
+
+
+/* =========================================
+OPTIONS
+========================================= */
 
 .options-stack {
 display:grid;
@@ -1605,7 +1772,7 @@ text-transform:uppercase;
 
 
 /* =========================================
-FULL-WIDTH DIMENSIONS
+DIMENSIONS
 ========================================= */
 
 .dimension-block {
@@ -1772,7 +1939,8 @@ text-transform:uppercase;
 
 
 /* =========================================
-CHANGE 7 — STACKED PURCHASE BUTTONS
+CHANGE 1
+STACKED PURCHASE BUTTONS
 ========================================= */
 
 .purchase-button-stack {
@@ -1796,7 +1964,9 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
+font-size:clamp(10px,1vw,13px);
 font-weight:800;
+letter-spacing:1.1px;
 text-transform:uppercase;
 cursor:pointer;
 text-decoration:none;
@@ -1808,14 +1978,17 @@ color .2s ease,
 box-shadow .2s ease;
 }
 
+
+/* =========================================
+ADD TO BASKET
+========================================= */
+
 .add-to-basket {
 border:1px solid var(--orange);
 border-radius:13px;
 background:var(--orange);
 color:#10100f;
-padding:0 52px;
-font-size:clamp(10px,1vw,13px);
-letter-spacing:1.1px;
+padding:0 48px;
 box-shadow:
 0 10px 28px rgba(232,120,23,.08);
 }
@@ -1835,9 +2008,12 @@ line-height:1;
 }
 
 
-/* Change 8 — upward pointer to header basket */
+/* =========================================
+CHANGE 1
+HORIZONTAL BOUNCING ARROW
+========================================= */
 
-.basket-pointer {
+.basket-arrow {
 position:absolute;
 right:17px;
 top:50%;
@@ -1845,59 +2021,77 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-family:
-"Apple Color Emoji",
-"Segoe UI Emoji",
-"Noto Color Emoji",
+"Aptos",
+"Segoe UI",
+Arial,
 sans-serif;
-font-size:26px;
+font-size:25px;
+font-weight:500;
 line-height:1;
-transform:translateY(-50%);
-transform-origin:center center;
+transform:
+translateY(-50%)
+translateX(0);
+transform-origin:center;
 animation:
-basketPointerAttention
+basketArrowAttention
 4s ease-in-out
-1s
-infinite;
+1s infinite;
 }
 
-@keyframes basketPointerAttention {
+@keyframes basketArrowAttention {
 
 0%,
 70%,
 100% {
 transform:
 translateY(-50%)
+translateX(0)
 scale(1);
 }
 
 75% {
 transform:
-translateY(calc(-50% - 5px))
+translateY(-50%)
+translateX(6px)
 scale(1.08);
 }
 
 79% {
 transform:
 translateY(-50%)
+translateX(-1px)
 scale(.98);
 }
 
 83% {
 transform:
-translateY(calc(-50% - 3px))
+translateY(-50%)
+translateX(4px)
 scale(1.04);
 }
 
 87% {
 transform:
 translateY(-50%)
+translateX(0)
 scale(1);
 }
 
 }
 
+.add-to-basket:hover .basket-arrow {
+animation:none;
+transform:
+translateY(-50%)
+translateX(4px)
+scale(1.05);
+}
 
-/* Secure checkout secondary button */
+
+/* =========================================
+CHANGE 1
+SECURE CHECKOUT
+========================================= */
 
 .secure-checkout {
 border:1px solid rgba(255,255,255,.21);
@@ -1909,9 +2103,7 @@ linear-gradient(
 #111313 100%
 );
 color:var(--cream);
-padding:0 44px;
-font-size:clamp(8px,.84vw,11px);
-letter-spacing:1px;
+padding:0 18px;
 box-shadow:
 inset 0 1px 0 rgba(255,255,255,.025);
 }
@@ -1929,23 +2121,9 @@ color:#ffffff;
 box-shadow:0 10px 26px rgba(0,0,0,.18);
 }
 
-.checkout-card-icon {
-position:absolute;
-left:15px;
-top:50%;
-transform:translateY(-50%);
-font-family:
-"Apple Color Emoji",
-"Segoe UI Emoji",
-"Noto Color Emoji",
-sans-serif;
-font-size:15px;
-line-height:1;
-}
-
 
 /* =========================================
-CHANGE 5 — CUSTOM SIZE INTRODUCTION
+CUSTOM SIZE INTRODUCTION
 ========================================= */
 
 .order-custom-intro {
@@ -1963,7 +2141,9 @@ max-width:1180px;
 width:100%;
 margin:0 auto;
 padding-bottom:clamp(24px,3vw,38px);
-border-bottom:1px solid rgba(255,255,255,.10);
+
+/* Change 2 — separator removed */
+border-bottom:0;
 }
 
 .order-custom-intro-kicker {
@@ -1999,7 +2179,7 @@ color:var(--cream);
 
 
 /* =========================================
-HOMEPAGE-STYLE STATIC CUSTOM ROOFLIGHT IMAGE
+STATIC CUSTOM ROOFLIGHT IMAGE
 ========================================= */
 
 .engineered-visual-intro {
@@ -2471,17 +2651,57 @@ font-size:clamp(17px,5vw,23px);
 letter-spacing:-.8px;
 }
 
-.product-card-specs {
+
+/* =========================================
+MOBILE PRODUCT HIGHLIGHTS
+========================================= */
+
+.product-assurance-panel {
+grid-template-columns:1fr;
 gap:4px;
 margin-top:9px;
-font-size:7px;
-line-height:1.3;
+padding:5px;
+border-radius:9px;
 }
 
-.product-description {
-font-size:6.5px;
-line-height:1.48;
-margin:9px 0 12px;
+.product-assurance-item {
+min-height:24px;
+padding:5px 5px 5px 22px;
+border-radius:6px;
+font-size:6.4px;
+line-height:1.1;
+}
+
+.product-assurance-item::before {
+left:5px;
+width:11px;
+height:11px;
+border-radius:3px;
+font-size:7px;
+}
+
+.estimated-delivery-card {
+margin:7px 0 12px;
+padding:8px 8px 8px 10px;
+border-left-width:2px;
+border-radius:7px;
+}
+
+.estimated-delivery-label {
+font-size:5.7px;
+letter-spacing:.8px;
+}
+
+.estimated-delivery-date {
+margin-top:5px;
+font-size:clamp(10px,2.9vw,13px);
+letter-spacing:-.2px;
+}
+
+.estimated-delivery-lead {
+margin-top:5px;
+font-size:5.7px;
+letter-spacing:.2px;
 }
 
 .options-stack {
@@ -2677,28 +2897,24 @@ min-height:52px;
 gap:4px;
 }
 
-.add-to-basket {
-border-radius:10px;
-padding:0 34px;
+.add-to-basket,
+.secure-checkout {
 font-size:7.5px;
 letter-spacing:.7px;
+border-radius:10px;
 }
 
-.basket-pointer {
-right:9px;
-font-size:18px;
+.add-to-basket {
+padding:0 32px;
 }
 
 .secure-checkout {
-border-radius:10px;
-padding:0 28px;
-font-size:6.3px;
-letter-spacing:.6px;
+padding:0 10px;
 }
 
-.checkout-card-icon {
-left:8px;
-font-size:11px;
+.basket-arrow {
+right:9px;
+font-size:18px;
 }
 
 .order-custom-intro {
@@ -2710,6 +2926,7 @@ padding:
 
 .order-custom-intro-inner {
 padding-bottom:20px;
+border-bottom:0;
 }
 
 .order-custom-intro-kicker {
@@ -2902,28 +3119,25 @@ grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
 grid-template-columns:29px minmax(40px,1fr) 32px;
 }
 
-.add-to-basket {
-padding-left:28px;
-padding-right:28px;
+.add-to-basket,
+.secure-checkout {
 font-size:7px;
 letter-spacing:.5px;
 }
 
-.basket-pointer {
-right:7px;
-font-size:17px;
+.add-to-basket {
+padding-left:27px;
+padding-right:27px;
 }
 
 .secure-checkout {
-padding-left:25px;
-padding-right:25px;
-font-size:5.8px;
-letter-spacing:.45px;
+padding-left:7px;
+padding-right:7px;
 }
 
-.checkout-card-icon {
-left:7px;
-font-size:10px;
+.basket-arrow {
+right:7px;
+font-size:17px;
 }
 
 }
@@ -2942,7 +3156,7 @@ scroll-behavior:auto;
 .ticker,
 .whatsapp-action,
 .basket-total-text,
-.basket-pointer {
+.basket-arrow {
 animation:none !important;
 }
 
@@ -3248,9 +3462,7 @@ Configure Your Rooflight
 
 <div class="order-content-wrap">
 
-
 <div class="order-card">
-
 
 <div class="order-grid">
 
@@ -3393,26 +3605,64 @@ id="productTitle"
 </h1>
 
 
-<div class="product-card-specs">
+<!-- =========================================
+CHANGE 4 — PRODUCT HIGHLIGHTS
+========================================= -->
 
-<span>
-Inside Visible Glass Size
-</span>
+<div
+class="product-assurance-panel"
+aria-label="Product highlights"
+>
 
-<span id="productGlassSpec">
+<div class="product-assurance-item">
+UK Manufactured
+</div>
+
+<div
+class="product-assurance-item"
+id="productGlassSpec"
+>
 6mm Toughened Safety Glass
-</span>
+</div>
 
-<span id="deliverySpec">
-Free Mainland UK Delivery
-</span>
+<div
+class="product-assurance-item"
+id="glazingSpec"
+>
+Triple Glazed
+</div>
 
 </div>
 
 
-<p class="product-description">
-A made-to-order frameless flat roof skylight, factory sealed and insulated using premium safety glass, Low-E glazing and a permanent black ceramic border for a clean modern finish.
-</p>
+<!-- =========================================
+CHANGE 4 — ESTIMATED DELIVERY
+========================================= -->
+
+<div
+class="estimated-delivery-card"
+aria-live="polite"
+>
+
+<div class="estimated-delivery-label">
+Estimated Delivery
+</div>
+
+<strong
+class="estimated-delivery-date"
+id="estimatedDeliveryRange"
+>
+27th August – 1st September
+</strong>
+
+<span
+class="estimated-delivery-lead"
+id="estimatedDeliveryLeadTime"
+>
+4–6 working days
+</span>
+
+</div>
 
 
 <div class="options-stack">
@@ -3491,7 +3741,10 @@ data-type="toughened"
 Toughened
 </button>
 
-<button type="button" data-type="laminated">
+<button
+type="button"
+data-type="laminated"
+>
 Laminated
 </button>
 
@@ -3521,11 +3774,17 @@ data-border="100"
 100mm
 </button>
 
-<button type="button" data-border="125">
+<button
+type="button"
+data-border="125"
+>
 125mm
 </button>
 
-<button type="button" data-border="150">
+<button
+type="button"
+data-border="150"
+>
 150mm
 </button>
 
@@ -3540,7 +3799,6 @@ data-border="100"
 
 
 </div>
-<!-- END UPPER TWO-COLUMN SECTION -->
 
 
 <!-- =========================================
@@ -3771,10 +4029,10 @@ Add 1 To Basket
 </span>
 
 <span
-class="basket-pointer"
+class="basket-arrow"
 aria-hidden="true"
 >
-👆
+→
 </span>
 
 </button>
@@ -3785,18 +4043,9 @@ href="basket.html"
 class="secure-checkout"
 id="secureCheckout"
 >
-
-<span
-class="checkout-card-icon"
-aria-hidden="true"
->
-💳
-</span>
-
 <span>
 Secure Checkout
 </span>
-
 </a>
 
 
@@ -3813,12 +4062,9 @@ Secure Checkout
 
 </div>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -3826,7 +4072,7 @@ Secure Checkout
 
 
 <!-- =========================================
-CHANGE 5 — CUSTOM SIZE INTRO + IMAGE
+CUSTOM SIZE INTRO + IMAGE
 ========================================= -->
 
 <section
@@ -4895,9 +5141,21 @@ document.getElementById(
 );
 
 
-const deliverySpec =
+const glazingSpec =
 document.getElementById(
-"deliverySpec"
+"glazingSpec"
+);
+
+
+const estimatedDeliveryRange =
+document.getElementById(
+"estimatedDeliveryRange"
+);
+
+
+const estimatedDeliveryLeadTime =
+document.getElementById(
+"estimatedDeliveryLeadTime"
 );
 
 
@@ -5262,34 +5520,1061 @@ return "6mm Toughened Safety Glass";
 }
 
 
-function getDeliveryLabel() {
+/* =========================================
+CHANGE 4
+LIVE UK ESTIMATED DELIVERY
+========================================= */
 
-const [
-width,
-length
-] =
-state.size
-.split(
-"x"
-)
-.map(
-Number
-);
+const UK_TIME_ZONE =
+"Europe/London";
 
 
-if (
-width <=
-1000 &&
-length <=
-2500
+const UK_MONTH_NAMES = [
+
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+
+];
+
+
+const BANK_HOLIDAY_CACHE =
+new Map();
+
+
+function createDateOnly(
+year,
+month,
+day
 ) {
 
-return "Free Mainland UK Delivery";
+return new Date(
+Date.UTC(
+year,
+month - 1,
+day
+)
+);
 
 }
 
 
-return "Delivery Calculated By Postcode";
+function cloneDateOnly(
+date
+) {
+
+return new Date(
+date.getTime()
+);
+
+}
+
+
+function addCalendarDays(
+date,
+days
+) {
+
+const result =
+cloneDateOnly(
+date
+);
+
+result.setUTCDate(
+result.getUTCDate() +
+days
+);
+
+return result;
+
+}
+
+
+function dateKey(
+date
+) {
+
+const year =
+date.getUTCFullYear();
+
+const month =
+String(
+date.getUTCMonth() + 1
+).padStart(
+2,
+"0"
+);
+
+const day =
+String(
+date.getUTCDate()
+).padStart(
+2,
+"0"
+);
+
+return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================================
+CURRENT UK DATE / TIME
+Always uses Europe/London,
+regardless of customer's device timezone.
+========================================= */
+
+function getCurrentUKDateTimeParts() {
+
+const formatter =
+new Intl.DateTimeFormat(
+"en-GB",
+{
+timeZone:UK_TIME_ZONE,
+year:"numeric",
+month:"2-digit",
+day:"2-digit",
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hourCycle:"h23"
+}
+);
+
+
+const parts =
+formatter.formatToParts(
+new Date()
+);
+
+
+const values =
+{};
+
+
+parts.forEach(
+part => {
+
+if (
+part.type !==
+"literal"
+) {
+
+values[
+part.type
+] =
+part.value;
+
+}
+
+}
+);
+
+
+return {
+
+year:
+Number(
+values.year
+),
+
+month:
+Number(
+values.month
+),
+
+day:
+Number(
+values.day
+),
+
+hour:
+Number(
+values.hour
+),
+
+minute:
+Number(
+values.minute
+),
+
+second:
+Number(
+values.second
+)
+
+};
+
+}
+
+
+/* =========================================
+EASTER CALCULATION
+Used for Good Friday / Easter Monday.
+========================================= */
+
+function getEasterSunday(
+year
+) {
+
+const a =
+year % 19;
+
+const b =
+Math.floor(
+year / 100
+);
+
+const c =
+year % 100;
+
+const d =
+Math.floor(
+b / 4
+);
+
+const e =
+b % 4;
+
+const f =
+Math.floor(
+(
+b + 8
+) /
+25
+);
+
+const g =
+Math.floor(
+(
+b - f + 1
+) /
+3
+);
+
+const h =
+(
+19 * a +
+b -
+d -
+g +
+15
+) %
+30;
+
+const i =
+Math.floor(
+c / 4
+);
+
+const k =
+c % 4;
+
+const l =
+(
+32 +
+2 * e +
+2 * i -
+h -
+k
+) %
+7;
+
+const m =
+Math.floor(
+(
+a +
+11 * h +
+22 * l
+) /
+451
+);
+
+const month =
+Math.floor(
+(
+h +
+l -
+7 * m +
+114
+) /
+31
+);
+
+const day =
+(
+(
+h +
+l -
+7 * m +
+114
+) %
+31
+) +
+1;
+
+
+return createDateOnly(
+year,
+month,
+day
+);
+
+}
+
+
+/* =========================================
+FIRST / LAST MONDAY HELPERS
+========================================= */
+
+function firstMondayOfMonth(
+year,
+month
+) {
+
+let date =
+createDateOnly(
+year,
+month,
+1
+);
+
+
+while (
+date.getUTCDay() !==
+1
+) {
+
+date =
+addCalendarDays(
+date,
+1
+);
+
+}
+
+
+return date;
+
+}
+
+
+function lastMondayOfMonth(
+year,
+month
+) {
+
+const lastDay =
+new Date(
+Date.UTC(
+year,
+month,
+0
+)
+);
+
+
+let date =
+createDateOnly(
+year,
+month,
+lastDay.getUTCDate()
+);
+
+
+while (
+date.getUTCDay() !==
+1
+) {
+
+date =
+addCalendarDays(
+date,
+-1
+);
+
+}
+
+
+return date;
+
+}
+
+
+/* =========================================
+ENGLAND & WALES BANK HOLIDAYS
+
+Standard bank holidays are calculated so
+delivery estimates do not count them as
+working days.
+========================================= */
+
+function getEnglandWalesBankHolidayKeys(
+year
+) {
+
+if (
+BANK_HOLIDAY_CACHE.has(
+year
+)
+) {
+
+return BANK_HOLIDAY_CACHE.get(
+year
+);
+
+}
+
+
+const holidays =
+new Set();
+
+
+function addHoliday(
+date
+) {
+
+holidays.add(
+dateKey(
+date
+)
+);
+
+}
+
+
+/* New Year's Day */
+
+const newYearsDay =
+createDateOnly(
+year,
+1,
+1
+);
+
+addHoliday(
+newYearsDay
+);
+
+
+if (
+newYearsDay.getUTCDay() ===
+6
+) {
+
+addHoliday(
+createDateOnly(
+year,
+1,
+3
+)
+);
+
+}
+else if (
+newYearsDay.getUTCDay() ===
+0
+) {
+
+addHoliday(
+createDateOnly(
+year,
+1,
+2
+)
+);
+
+}
+
+
+/* Good Friday / Easter Monday */
+
+const easterSunday =
+getEasterSunday(
+year
+);
+
+addHoliday(
+addCalendarDays(
+easterSunday,
+-2
+)
+);
+
+addHoliday(
+addCalendarDays(
+easterSunday,
+1
+)
+);
+
+
+/* Early May */
+
+addHoliday(
+firstMondayOfMonth(
+year,
+5
+)
+);
+
+
+/* Spring Bank Holiday */
+
+addHoliday(
+lastMondayOfMonth(
+year,
+5
+)
+);
+
+
+/* Summer Bank Holiday */
+
+addHoliday(
+lastMondayOfMonth(
+year,
+8
+)
+);
+
+
+/* Christmas / Boxing Day */
+
+const christmas =
+createDateOnly(
+year,
+12,
+25
+);
+
+const boxingDay =
+createDateOnly(
+year,
+12,
+26
+);
+
+
+addHoliday(
+christmas
+);
+
+addHoliday(
+boxingDay
+);
+
+
+[
+christmas,
+boxingDay
+]
+.forEach(
+holiday => {
+
+const weekday =
+holiday.getUTCDay();
+
+
+if (
+weekday !==
+0 &&
+weekday !==
+6
+) {
+
+return;
+
+}
+
+
+let substitute =
+addCalendarDays(
+holiday,
+1
+);
+
+
+while (
+substitute.getUTCDay() ===
+0 ||
+substitute.getUTCDay() ===
+6 ||
+holidays.has(
+dateKey(
+substitute
+)
+)
+) {
+
+substitute =
+addCalendarDays(
+substitute,
+1
+);
+
+}
+
+
+addHoliday(
+substitute
+);
+
+}
+);
+
+
+BANK_HOLIDAY_CACHE.set(
+year,
+holidays
+);
+
+
+return holidays;
+
+}
+
+
+/* =========================================
+WORKING DAY CHECK
+========================================= */
+
+function isWorkingDay(
+date
+) {
+
+const weekday =
+date.getUTCDay();
+
+
+if (
+weekday ===
+0 ||
+weekday ===
+6
+) {
+
+return false;
+
+}
+
+
+const holidays =
+getEnglandWalesBankHolidayKeys(
+date.getUTCFullYear()
+);
+
+
+return !holidays.has(
+dateKey(
+date
+)
+);
+
+}
+
+
+/* =========================================
+12PM ORDER CUT-OFF
+
+Before noon:
+current working day counts as Day 1.
+
+12:00pm onwards:
+next working day becomes Day 1.
+========================================= */
+
+function getDeliveryCalculationStartDate() {
+
+const ukNow =
+getCurrentUKDateTimeParts();
+
+
+let startDate =
+createDateOnly(
+ukNow.year,
+ukNow.month,
+ukNow.day
+);
+
+
+/* Weekend / bank holiday */
+
+if (
+!isWorkingDay(
+startDate
+)
+) {
+
+do {
+
+startDate =
+addCalendarDays(
+startDate,
+1
+);
+
+}
+while (
+!isWorkingDay(
+startDate
+)
+);
+
+
+return startDate;
+
+}
+
+
+/* 12:00 noon or later */
+
+if (
+ukNow.hour >=
+12
+) {
+
+do {
+
+startDate =
+addCalendarDays(
+startDate,
+1
+);
+
+}
+while (
+!isWorkingDay(
+startDate
+)
+);
+
+}
+
+
+return startDate;
+
+}
+
+
+/* =========================================
+ADD WORKING DAYS
+
+Start date counts as working day 1.
+========================================= */
+
+function getWorkingDayNumber(
+startDate,
+workingDayNumber
+) {
+
+let cursor =
+cloneDateOnly(
+startDate
+);
+
+
+let count =
+0;
+
+
+while (
+true
+) {
+
+if (
+isWorkingDay(
+cursor
+)
+) {
+
+count +=
+1;
+
+
+if (
+count ===
+workingDayNumber
+) {
+
+return cursor;
+
+}
+
+}
+
+
+cursor =
+addCalendarDays(
+cursor,
+1
+);
+
+}
+
+}
+
+
+/* =========================================
+LEAD TIME BY CONFIGURATION
+========================================= */
+
+function getCurrentLeadTime() {
+
+
+/* Laminated */
+
+if (
+state.type ===
+"laminated"
+) {
+
+if (
+state.tint ===
+"clear"
+) {
+
+return {
+min:6,
+max:8
+};
+
+}
+
+
+return {
+min:8,
+max:10
+};
+
+}
+
+
+/* Toughened clear */
+
+if (
+state.tint ===
+"clear"
+) {
+
+return {
+min:4,
+max:6
+};
+
+}
+
+
+/* Toughened blue */
+
+if (
+state.tint ===
+"blue"
+) {
+
+return {
+min:8,
+max:10
+};
+
+}
+
+
+/* Toughened grey / satin */
+
+return {
+min:6,
+max:8
+};
+
+}
+
+
+/* =========================================
+ORDINAL DATE FORMAT
+========================================= */
+
+function ordinalSuffix(
+day
+) {
+
+const mod100 =
+day %
+100;
+
+
+if (
+mod100 >=
+11 &&
+mod100 <=
+13
+) {
+
+return "th";
+
+}
+
+
+switch (
+day %
+10
+) {
+
+case 1:
+return "st";
+
+case 2:
+return "nd";
+
+case 3:
+return "rd";
+
+default:
+return "th";
+
+}
+
+}
+
+
+function ordinalDay(
+day
+) {
+
+return `${day}${ordinalSuffix(day)}`;
+
+}
+
+
+/* =========================================
+DELIVERY RANGE FORMAT
+========================================= */
+
+function formatDeliveryRange(
+startDate,
+endDate
+) {
+
+const startDay =
+startDate.getUTCDate();
+
+const endDay =
+endDate.getUTCDate();
+
+
+const startMonth =
+startDate.getUTCMonth();
+
+const endMonth =
+endDate.getUTCMonth();
+
+
+const startYear =
+startDate.getUTCFullYear();
+
+const endYear =
+endDate.getUTCFullYear();
+
+
+if (
+startYear ===
+endYear &&
+startMonth ===
+endMonth
+) {
+
+return (
+`${ordinalDay(startDay)} – ` +
+`${ordinalDay(endDay)} ` +
+`${UK_MONTH_NAMES[endMonth]}`
+);
+
+}
+
+
+if (
+startYear ===
+endYear
+) {
+
+return (
+`${ordinalDay(startDay)} ` +
+`${UK_MONTH_NAMES[startMonth]} – ` +
+`${ordinalDay(endDay)} ` +
+`${UK_MONTH_NAMES[endMonth]}`
+);
+
+}
+
+
+return (
+`${ordinalDay(startDay)} ` +
+`${UK_MONTH_NAMES[startMonth]} ` +
+`${startYear} – ` +
+`${ordinalDay(endDay)} ` +
+`${UK_MONTH_NAMES[endMonth]} ` +
+`${endYear}`
+);
+
+}
+
+
+/* =========================================
+UPDATE LIVE DELIVERY DISPLAY
+========================================= */
+
+function updateEstimatedDelivery() {
+
+if (
+!estimatedDeliveryRange ||
+!estimatedDeliveryLeadTime
+) {
+
+return;
+
+}
+
+
+const leadTime =
+getCurrentLeadTime();
+
+
+const calculationStart =
+getDeliveryCalculationStartDate();
+
+
+const earliestDelivery =
+getWorkingDayNumber(
+calculationStart,
+leadTime.min
+);
+
+
+const latestDelivery =
+getWorkingDayNumber(
+calculationStart,
+leadTime.max
+);
+
+
+estimatedDeliveryRange.textContent =
+formatDeliveryRange(
+earliestDelivery,
+latestDelivery
+);
+
+
+estimatedDeliveryLeadTime.textContent =
+`${leadTime.min}–${leadTime.max} working days`;
 
 }
 
@@ -5895,7 +7180,7 @@ pence
 
 
 /* =========================================
-CHANGE 3 — UNIT PRICE ANIMATION
+UNIT PRICE ANIMATION
 ========================================= */
 
 function setUnitPriceText(
@@ -6044,7 +7329,7 @@ unitPriceLine.classList.remove(
 
 
 /* =========================================
-CHANGE 3 / 6 — TOTAL PRICE
+TOTAL PRICE
 ========================================= */
 
 function setTotalPriceText(
@@ -6207,12 +7492,6 @@ null;
 }
 
 
-/*
-Quantity returns to 1:
-hide the entire Total section,
-including the orange separator.
-*/
-
 if (
 !showTotal
 ) {
@@ -6287,11 +7566,6 @@ return;
 }
 
 
-/*
-Removing is-visible fades the whole section,
-including the orange separator line.
-*/
-
 totalPriceBlock.classList.remove(
 "is-visible"
 );
@@ -6329,13 +7603,6 @@ return;
 
 }
 
-
-/*
-Quantity is 2+.
-
-If the section is currently hidden,
-the separator and Total appear together.
-*/
 
 totalPriceBlock.setAttribute(
 "aria-hidden",
@@ -6420,13 +7687,6 @@ return;
 }
 
 
-/*
-The Total section is already visible.
-
-Keep the orange separator completely static.
-Only fade the number itself when it changes.
-*/
-
 totalPriceBlock.classList.add(
 "is-visible"
 );
@@ -6459,7 +7719,7 @@ numericTotal
 
 
 /* =========================================
-CHANGE 1 — TITLE
+TITLE
 Glass type does NOT alter title.
 Tint and glazing DO alter title.
 ========================================= */
@@ -7312,12 +8572,29 @@ animateImage
 updateSizeDropdownDisplay();
 
 
+/* Product highlights */
+
 productGlassSpec.textContent =
 getTopGlassLabel();
 
 
-deliverySpec.textContent =
-getDeliveryLabel();
+glazingSpec.textContent =
+
+state.glazing ===
+"triple"
+
+?
+
+"Triple Glazed"
+
+:
+
+"Double Glazed";
+
+
+/* Dynamic delivery */
+
+updateEstimatedDelivery();
 
 
 internalSize.textContent =
@@ -7329,12 +8606,6 @@ state.size
 externalSize.textContent =
 calculateExternalSize();
 
-
-/*
-Change 3:
-Unit price now uses its own fade-out /
-update / fade-in behaviour.
-*/
 
 updateUnitPrice(
 price
@@ -7788,8 +9059,8 @@ button.dataset.type;
 
 
 /*
-Title deliberately remains unchanged
-because buildTitle() ignores glass type.
+Title remains unchanged because
+buildTitle() ignores glass type.
 */
 
 updateUI();
@@ -8050,6 +9321,70 @@ addCurrentSelectionToBasket
 
 
 /* =========================================
+LIVE DELIVERY CLOCK
+
+Refreshes while the page is open so the
+12pm UK cut-off takes effect automatically.
+========================================= */
+
+let deliveryRefreshTimer =
+null;
+
+
+function startDeliveryClock() {
+
+if (
+deliveryRefreshTimer !==
+null
+) {
+
+clearInterval(
+deliveryRefreshTimer
+);
+
+}
+
+
+deliveryRefreshTimer =
+setInterval(
+() => {
+
+updateEstimatedDelivery();
+
+},
+30000
+);
+
+}
+
+
+window.addEventListener(
+"focus",
+() => {
+
+updateEstimatedDelivery();
+
+}
+);
+
+
+document.addEventListener(
+"visibilitychange",
+() => {
+
+if (
+!document.hidden
+) {
+
+updateEstimatedDelivery();
+
+}
+
+}
+);
+
+
+/* =========================================
 HOMEPAGE-STYLE SCROLL REVEAL
 ========================================= */
 
@@ -8144,6 +9479,9 @@ updateUrl:false,
 animateImage:false
 }
 );
+
+
+startDeliveryClock();
 
 
 setTimeout(
