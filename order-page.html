@@ -57,6 +57,7 @@ content="Configure and order a Factory Toughened Rooflights frameless flat roof 
 --product-image-zoom:1.30;
 --product-image-scale:1.30;
 --product-image-hover-scale:1.335;
+--product-image-rotation:0deg;
 }
 
 * {
@@ -537,7 +538,6 @@ padding-left:10px;
 
 /* =========================================
 ORDER PAGE
-EXACT HOMEPAGE POPULAR-SIZES BACKGROUND
 ========================================= */
 
 .order-page {
@@ -600,7 +600,7 @@ padding:0;
 
 
 /* =========================================
-EXACT HOMEPAGE POPULAR-SIZES TITLE WRAPPER
+HEADING
 ========================================= */
 
 .home-popular-title-wrap {
@@ -611,11 +611,6 @@ margin:0 auto 28px;
 padding-bottom:19px;
 border-bottom:1px solid rgba(255,255,255,.10);
 }
-
-
-/* =========================================
-EXACT HOMEPAGE POPULAR-SIZES HEADING STYLE
-========================================= */
 
 .home-opening-title {
 margin:0;
@@ -668,7 +663,7 @@ ORDER CARD
 
 .order-card {
 position:relative;
-overflow:hidden;
+overflow:visible;
 border:1px solid rgba(255,255,255,.14);
 background:
 linear-gradient(
@@ -704,7 +699,7 @@ UPPER TWO-COLUMN CONFIGURATOR
 
 .order-grid {
 position:relative;
-z-index:1;
+z-index:3;
 display:grid;
 grid-template-columns:minmax(0,44fr) minmax(0,56fr);
 gap:0;
@@ -737,11 +732,20 @@ width:100%;
 height:100%;
 object-fit:contain;
 object-position:center center;
-background:#ffffff;
 opacity:1;
-transform:scale(var(--product-image-scale,1.30));
+
+/*
+The frame itself stays upright.
+Only the PNG image layer is scaled / rotated.
+*/
+transform:
+scale(var(--product-image-scale,1.30))
+rotate(var(--product-image-rotation,0deg));
+
 transform-origin:center center;
+
 will-change:opacity,transform;
+
 transition:
 opacity .28s ease,
 transform .42s ease,
@@ -753,7 +757,10 @@ opacity:0;
 }
 
 .product-image-frame:hover img:not(.image-fade-out) {
-transform:scale(var(--product-image-hover-scale,1.335));
+transform:
+scale(var(--product-image-hover-scale,1.335))
+rotate(var(--product-image-rotation,0deg));
+
 filter:contrast(1.015);
 }
 
@@ -783,12 +790,6 @@ line-height:1;
 letter-spacing:1.55px;
 text-transform:uppercase;
 }
-
-
-/* =========================================
-CHANGE 1
-ROUNDED GLAZING SELECTOR
-========================================= */
 
 .glazing-selector {
 display:grid;
@@ -865,12 +866,6 @@ position:relative;
 padding-bottom:25px;
 }
 
-
-/* =========================================
-CHANGE 1
-ROUNDED GLASS FINISH SELECTOR
-========================================= */
-
 .tint-selector {
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -942,6 +937,8 @@ RIGHT PRODUCT DETAILS
 ========================================= */
 
 .product-details {
+position:relative;
+z-index:10;
 min-width:0;
 padding-left:clamp(22px,2.7vw,39px);
 border-left:1px solid rgba(255,255,255,.105);
@@ -1005,55 +1002,255 @@ letter-spacing:1.4px;
 text-transform:uppercase;
 }
 
-.select-shell {
-position:relative;
-border-radius:16px;
-}
-
-.select-shell::after {
-content:"";
-position:absolute;
-right:14px;
-top:50%;
-width:6px;
-height:6px;
-border-right:1px solid #c8c8c4;
-border-bottom:1px solid #c8c8c4;
-transform:
-translateY(-70%)
-rotate(45deg);
-pointer-events:none;
-}
-
 
 /* =========================================
-ROUNDED SIZE DROPDOWN
+CHANGE 1
+CUSTOM SIZE DROPDOWN
 ========================================= */
 
-.size-select {
-appearance:none;
+.size-dropdown {
+position:relative;
+z-index:80;
+width:100%;
+}
+
+.size-dropdown-trigger {
+position:relative;
 width:100%;
 height:46px;
+margin:0;
+padding:0 46px 0 13px;
+
+display:flex;
+align-items:center;
+justify-content:flex-start;
+
 border:1px solid rgba(255,255,255,.16);
 border-radius:16px;
-background:#0a0c0c;
+
+background:
+linear-gradient(
+180deg,
+#0d0f0f 0%,
+#090b0b 100%
+);
+
 color:var(--white);
-padding:0 40px 0 13px;
+
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
+
 font-size:clamp(16px,1.7vw,23px);
 font-weight:700;
 line-height:1;
+
+text-align:left;
+
 cursor:pointer;
+
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.015);
+
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
 }
 
+.size-dropdown-trigger:hover,
+.size-dropdown.is-open .size-dropdown-trigger {
+border-color:rgba(232,120,23,.48);
+background:#0d0f0f;
+}
 
-/* =========================================
-CHANGE 1
-ROUNDED GLASS / BORDER SELECTORS
-========================================= */
+.size-dropdown-trigger::after {
+content:"";
+position:absolute;
+right:17px;
+top:50%;
+
+width:7px;
+height:7px;
+
+border-right:1px solid #c8c8c4;
+border-bottom:1px solid #c8c8c4;
+
+transform:
+translateY(-68%)
+rotate(45deg);
+
+transition:
+transform .22s ease,
+border-color .22s ease;
+}
+
+.size-dropdown.is-open .size-dropdown-trigger::after {
+border-color:var(--orange-bright);
+
+transform:
+translateY(-28%)
+rotate(225deg);
+}
+
+.size-dropdown-panel {
+position:absolute;
+
+top:calc(100% + 6px);
+left:0;
+right:0;
+
+z-index:100;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.17);
+border-radius:14px;
+
+background:
+linear-gradient(
+180deg,
+#121414 0%,
+#090b0b 100%
+);
+
+box-shadow:
+0 26px 58px rgba(0,0,0,.62),
+0 0 0 1px rgba(0,0,0,.20);
+
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+
+transform:translateY(-5px);
+
+transition:
+opacity .16s ease,
+visibility .16s ease,
+transform .18s ease;
+}
+
+.size-dropdown.is-open .size-dropdown-panel {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:translateY(0);
+}
+
+.size-dropdown-list {
+display:block;
+width:100%;
+
+max-height:286px;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+overscroll-behavior:contain;
+-webkit-overflow-scrolling:touch;
+
+scrollbar-width:thin;
+scrollbar-color:
+rgba(232,120,23,.60)
+rgba(255,255,255,.04);
+}
+
+.size-dropdown-list::-webkit-scrollbar {
+width:6px;
+}
+
+.size-dropdown-list::-webkit-scrollbar-track {
+background:rgba(255,255,255,.025);
+}
+
+.size-dropdown-list::-webkit-scrollbar-thumb {
+background:rgba(232,120,23,.55);
+border-radius:999px;
+}
+
+.size-dropdown-option {
+position:relative;
+
+width:100%;
+min-height:49px;
+
+margin:0;
+padding:0 43px 0 14px;
+
+display:flex;
+align-items:center;
+justify-content:flex-start;
+
+border:0;
+border-bottom:1px solid rgba(255,255,255,.075);
+
+background:#0b0d0d;
+color:rgba(247,247,243,.87);
+
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+
+font-size:clamp(13px,1.35vw,18px);
+font-weight:650;
+line-height:1.1;
+letter-spacing:-.15px;
+
+text-align:left;
+white-space:nowrap;
+
+cursor:pointer;
+
+transition:
+background .16s ease,
+color .16s ease,
+padding-left .16s ease;
+}
+
+.size-dropdown-option:last-child {
+border-bottom:0;
+}
+
+.size-dropdown-option:hover,
+.size-dropdown-option:focus-visible {
+background:#151716;
+color:var(--white);
+}
+
+.size-dropdown-option.is-selected {
+background:
+linear-gradient(
+90deg,
+rgba(232,120,23,.17),
+rgba(232,120,23,.045)
+);
+
+color:var(--orange-bright);
+}
+
+.size-dropdown-option.is-selected::before {
+content:"";
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:3px;
+background:var(--orange);
+}
+
+.size-dropdown-option.is-selected::after {
+content:"✓";
+position:absolute;
+right:16px;
+top:50%;
+transform:translateY(-50%);
+color:var(--orange-bright);
+font-size:13px;
+font-weight:900;
+}
 
 .segmented {
 display:grid;
@@ -1399,8 +1596,7 @@ letter-spacing:-.3px;
 
 
 /* =========================================
-CHANGE 1
-ROUNDED QUANTITY / BASKET
+QUANTITY / BASKET
 ========================================= */
 
 .purchase-action-controls {
@@ -1890,7 +2086,7 @@ text-decoration:none;
 
 
 /* =========================================
-TABLET — HOMEPAGE HEADER BREAKPOINT
+TABLET
 ========================================= */
 
 @media(max-width:950px) {
@@ -1904,11 +2100,6 @@ font-size:9px;
 }
 
 }
-
-
-/* =========================================
-ORDER PAGE TABLET
-========================================= */
 
 @media(max-width:980px) {
 
@@ -1973,9 +2164,16 @@ padding-left:9px;
 aspect-ratio:1 / 1;
 }
 
-.product-image-frame img,
+.product-image-frame img {
+transform:
+scale(var(--product-image-scale,1.30))
+rotate(var(--product-image-rotation,0deg));
+}
+
 .product-image-frame:hover img:not(.image-fade-out) {
-transform:scale(var(--product-image-scale,1.30));
+transform:
+scale(var(--product-image-hover-scale,1.335))
+rotate(var(--product-image-rotation,0deg));
 }
 
 .visual-controls {
@@ -2061,15 +2259,46 @@ letter-spacing:.75px;
 margin-bottom:5px;
 }
 
-.select-shell {
-border-radius:12px;
-}
 
-.size-select {
+/* =========================================
+MOBILE CUSTOM SIZE DROPDOWN
+========================================= */
+
+.size-dropdown-trigger {
 height:32px;
 padding-left:8px;
-font-size:clamp(10px,2.9vw,13px);
+padding-right:31px;
 border-radius:12px;
+
+font-size:clamp(10px,2.9vw,13px);
+}
+
+.size-dropdown-trigger::after {
+right:11px;
+width:5px;
+height:5px;
+}
+
+.size-dropdown-panel {
+top:calc(100% + 4px);
+border-radius:11px;
+}
+
+.size-dropdown-list {
+max-height:218px;
+}
+
+.size-dropdown-option {
+min-height:36px;
+padding-left:9px;
+padding-right:29px;
+
+font-size:clamp(9px,2.65vw,12px);
+}
+
+.size-dropdown-option.is-selected::after {
+right:10px;
+font-size:9px;
 }
 
 .segmented {
@@ -2084,7 +2313,7 @@ letter-spacing:.35px;
 
 
 /* =========================================
-MOBILE FULL-WIDTH PURCHASE SECTION
+MOBILE PURCHASE
 ========================================= */
 
 .order-purchase-section {
@@ -2239,7 +2468,7 @@ font-size:18px;
 
 
 /* =========================================
-EXACT HOMEPAGE MOBILE SECTION / HEADER
+MOBILE HOMEPAGE SECTION / HEADER
 ========================================= */
 
 @media(max-width:560px) {
@@ -2295,11 +2524,6 @@ translate(-50%,0)
 scale(1);
 }
 
-
-/* =========================================
-EXACT HOMEPAGE POPULAR-SIZES MOBILE GUTTERS
-========================================= */
-
 .order-page {
 padding:28px 3.5% 22px;
 }
@@ -2326,11 +2550,6 @@ font-size:18px;
 .order-content-wrap {
 padding:0 2.5%;
 }
-
-
-/* =========================================
-MOBILE FOOTER
-========================================= */
 
 .footer-company-intro {
 font-size:10px;
@@ -2455,6 +2674,10 @@ transform:none !important;
 opacity:1;
 }
 
+.size-dropdown-panel {
+transition:none !important;
+}
+
 }
 
 </style>
@@ -2499,7 +2722,7 @@ TOP MOVING BANNER
 
 
 <!-- =========================================
-EXACT HOMEPAGE HEADER
+HEADER
 ========================================= -->
 
 <header>
@@ -2674,38 +2897,23 @@ aria-label="Close menu"
 
 <div class="menu-links">
 
-<a
-href="standard-sizes.html"
-onclick="closeMenu()"
->
+<a href="standard-sizes.html" onclick="closeMenu()">
 Standard Sizes
 </a>
 
-<a
-href="index.html#calculator"
-onclick="closeMenu()"
->
+<a href="index.html#calculator" onclick="closeMenu()">
 Build A Rooflight
 </a>
 
-<a
-href="index.html#oversized"
-onclick="closeMenu()"
->
+<a href="index.html#oversized" onclick="closeMenu()">
 Oversized Rooflights
 </a>
 
-<a
-href="index.html#specification-advice"
-onclick="closeMenu()"
->
+<a href="index.html#specification-advice" onclick="closeMenu()">
 Specification Advice
 </a>
 
-<a
-href="contact.html"
-onclick="closeMenu()"
->
+<a href="contact.html" onclick="closeMenu()">
 Contact Our Rooflight Team
 </a>
 
@@ -2786,10 +2994,7 @@ role="group"
 aria-label="Choose glazing"
 >
 
-<button
-type="button"
-data-glazing="double"
->
+<button type="button" data-glazing="double">
 Double
 </button>
 
@@ -2834,24 +3039,15 @@ data-tint="clear"
 Clear
 </button>
 
-<button
-type="button"
-data-tint="blue"
->
+<button type="button" data-tint="blue">
 Blue
 </button>
 
-<button
-type="button"
-data-tint="grey"
->
+<button type="button" data-tint="grey">
 Grey
 </button>
 
-<button
-type="button"
-data-tint="satin"
->
+<button type="button" data-tint="satin">
 Satin
 </button>
 
@@ -2921,21 +3117,56 @@ A made-to-order frameless flat roof skylight, factory sealed and insulated using
 <div class="options-stack">
 
 
+<!-- =========================================
+CHANGE 1 — CUSTOM SIZE DROPDOWN
+========================================= -->
+
 <div class="option-group">
 
-<label for="sizeSelect">
-Size
-</label>
-
-
-<div class="select-shell">
-
-<select
-class="size-select"
-id="sizeSelect"
-aria-label="Choose rooflight size"
+<div
+class="option-label"
+id="sizeControlLabel"
 >
-</select>
+Size
+</div>
+
+
+<div
+class="size-dropdown"
+id="sizeDropdown"
+>
+
+<button
+class="size-dropdown-trigger"
+id="sizeDropdownTrigger"
+type="button"
+aria-haspopup="listbox"
+aria-expanded="false"
+aria-labelledby="sizeControlLabel sizeDropdownValue"
+>
+
+<span id="sizeDropdownValue">
+600 × 900mm internal
+</span>
+
+</button>
+
+
+<div
+class="size-dropdown-panel"
+id="sizeDropdownPanel"
+>
+
+<div
+class="size-dropdown-list"
+id="sizeDropdownList"
+role="listbox"
+aria-labelledby="sizeControlLabel"
+tabindex="-1"
+>
+</div>
+
+</div>
 
 </div>
 
@@ -2963,10 +3194,7 @@ data-type="toughened"
 Toughened
 </button>
 
-<button
-type="button"
-data-type="laminated"
->
+<button type="button" data-type="laminated">
 Laminated
 </button>
 
@@ -2996,17 +3224,11 @@ data-border="100"
 100mm
 </button>
 
-<button
-type="button"
-data-border="125"
->
+<button type="button" data-border="125">
 125mm
 </button>
 
-<button
-type="button"
-data-border="150"
->
+<button type="button" data-border="150">
 150mm
 </button>
 
@@ -3037,10 +3259,6 @@ Order Summary
 
 <div class="purchase-layout">
 
-
-<!-- =========================================
-UNIT PRICE / TOTAL
-========================================= -->
 
 <div class="purchase-zone purchase-price-zone">
 
@@ -3268,19 +3486,15 @@ aria-hidden="true"
 
 
 </div>
-<!-- END FULL-WIDTH PURCHASE SECTION -->
 
 
 </div>
-<!-- END ORDER CARD -->
 
 
 </div>
-<!-- END HOMEPAGE-WIDTH CONTENT WRAPPER -->
 
 
 </div>
-<!-- END ORDER SHELL -->
 
 </section>
 
@@ -3853,6 +4067,7 @@ MENU / WHATSAPP
 function openMenu() {
 
 closeWhatsAppAction();
+closeSizeDropdown();
 
 const menuOverlay =
 document.getElementById(
@@ -3963,6 +4178,8 @@ event => {
 
 event.stopPropagation();
 
+closeSizeDropdown();
+
 setWhatsAppState(
 !whatsappAction.classList.contains(
 "is-open"
@@ -3983,31 +4200,6 @@ event.stopPropagation();
 );
 
 }
-
-
-document.addEventListener(
-"click",
-closeWhatsAppAction
-);
-
-
-document.addEventListener(
-"keydown",
-event => {
-
-if (
-event.key ===
-"Escape"
-) {
-
-closeWhatsAppAction();
-
-closeMenu();
-
-}
-
-}
-);
 
 
 /* =========================================
@@ -4179,6 +4371,11 @@ image:"medium-square.png"
 "800x1200":{
 double:395,
 triple:470,
+
+/*
+800 × 1200 intentionally uses the exact
+same image family as 800 × 1000.
+*/
 image:"medium-square.png"
 },
 
@@ -4354,13 +4551,10 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 /* =========================================
 CHANGE 2
-PER-SIZE PRODUCT IMAGE SCALING
+LATEST FINAL IMAGE SCALE ADJUSTMENTS
 
-All adjustments are relative to the
-original Order Page scale of 1.30.
-
-Applies equally to:
-Clear / Blue / Grey / Satin
+These are final adjustments relative to
+the original Order Page 1.30 baseline.
 ========================================= */
 
 const PRODUCT_IMAGE_BASE_SCALE =
@@ -4379,28 +4573,85 @@ PRODUCT_IMAGE_BASE_SCALE;
 
 const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 
-"600x600":-40,
+/*
+Previous -40%, then +10%
+*/
+"600x600":-30,
+
 "600x900":15,
 "600x1200":-25,
 "600x1500":-15,
 "600x2000":-15,
 
-"800x800":-40,
-"800x1000":-30,
-"800x1200":-30,
-"800x1500":-25,
-"800x2000":-15,
+/*
+Previous -40%, then +10%
+*/
+"800x800":-30,
 
-"1000x1000":-50,
-"1000x1200":-50,
-"1000x1500":-25,
-"1000x2000":-25,
-"1000x2500":-25,
+/*
+Previous -30%, then +5%
+*/
+"800x1000":-25,
+"800x1200":-25,
 
-"1500x1500":-35,
+/*
+Previous -25%, then +5%
+*/
+"800x1500":-20,
+
+/*
+Previous -15%, then +3%
+*/
+"800x2000":-12,
+
+/*
+Previous -50%, then +20%
+*/
+"1000x1000":-30,
+
+/*
+Previous -50%, then +25%
+*/
+"1000x1200":-25,
+
+/*
+Previous -25%, then +3%
+*/
+"1000x1500":-22,
+
+/*
+Previous -25%, then +7%
+*/
+"1000x2000":-18,
+
+/*
+Previous -25%, then +3%
+*/
+"1000x2500":-22,
+
+/*
+Previous -35%, then +12%
+*/
+"1500x1500":-23,
+
 "1500x1800":-15,
 "1500x2000":-15,
 "1500x2500":-15
+
+};
+
+
+/* =========================================
+CHANGE 2
+PER-SIZE IMAGE ROTATION
+
+ONLY THE PNG IMAGE LAYER ROTATES.
+THE WHITE FRAME REMAINS UPRIGHT.
+========================================= */
+
+const PRODUCT_IMAGE_ROTATIONS = {
+
+"1500x1500":-15
 
 };
 
@@ -4453,9 +4704,27 @@ homepageImport:null
 ELEMENTS
 ========================================= */
 
-const sizeSelect =
+const sizeDropdown =
 document.getElementById(
-"sizeSelect"
+"sizeDropdown"
+);
+
+
+const sizeDropdownTrigger =
+document.getElementById(
+"sizeDropdownTrigger"
+);
+
+
+const sizeDropdownValue =
+document.getElementById(
+"sizeDropdownValue"
+);
+
+
+const sizeDropdownList =
+document.getElementById(
+"sizeDropdownList"
 );
 
 
@@ -4587,6 +4856,14 @@ null;
 
 
 /* =========================================
+CUSTOM SIZE DROPDOWN STATE
+========================================= */
+
+let sizeDropdownKeyboardIndex =
+0;
+
+
+/* =========================================
 NORMALISATION
 ========================================= */
 
@@ -4686,6 +4963,15 @@ size.split(
 );
 
 return `${width} × ${length}mm`;
+
+}
+
+
+function formatSizeDropdownValue(
+size
+) {
+
+return `${formatSize(size)} internal`;
 
 }
 
@@ -4996,7 +5282,7 @@ filename
 
 /* =========================================
 CHANGE 2
-PRODUCT IMAGE SCALE
+PRODUCT IMAGE SCALE / ROTATION
 ========================================= */
 
 function getProductImageScale() {
@@ -5025,7 +5311,20 @@ adjustment /
 }
 
 
-function updateProductImageScale() {
+function getProductImageRotation() {
+
+return Number(
+PRODUCT_IMAGE_ROTATIONS[
+state.size
+]
+||
+0
+);
+
+}
+
+
+function updateProductImageTransform() {
 
 const scale =
 getProductImageScale();
@@ -5035,6 +5334,10 @@ const hoverScale =
 
 scale *
 PRODUCT_IMAGE_HOVER_RATIO;
+
+
+const rotation =
+getProductImageRotation();
 
 
 productImage.style.setProperty(
@@ -5050,6 +5353,12 @@ productImage.style.setProperty(
 hoverScale.toFixed(
 4
 )
+);
+
+
+productImage.style.setProperty(
+"--product-image-rotation",
+`${rotation}deg`
 );
 
 }
@@ -5412,7 +5721,7 @@ pence
 
 
 /* =========================================
-TOTAL PRICE TEXT HELPER
+TOTAL PRICE
 ========================================= */
 
 function setTotalPriceText(
@@ -5434,10 +5743,6 @@ parts.pence;
 
 }
 
-
-/* =========================================
-TOTAL FADE IN / FADE OUT
-========================================= */
 
 function updateTotalPrice(
 orderTotal,
@@ -6017,6 +6322,571 @@ history.replaceState(
 
 
 /* =========================================
+CHANGE 1
+CUSTOM SIZE DROPDOWN
+========================================= */
+
+function getSizeOptionButtons() {
+
+return Array.from(
+sizeDropdownList.querySelectorAll(
+".size-dropdown-option"
+)
+);
+
+}
+
+
+function populateSizes() {
+
+const orderedSizes =
+
+SIZE_DROPDOWN_ORDER
+.filter(
+size =>
+Boolean(
+PRODUCTS[
+size
+]
+)
+);
+
+
+sizeDropdownList.innerHTML =
+
+orderedSizes
+.map(
+size => {
+
+return `
+<button
+type="button"
+class="size-dropdown-option"
+data-size="${size}"
+role="option"
+aria-selected="false"
+tabindex="-1"
+>
+${formatSizeDropdownValue(size)}
+</button>
+`;
+
+}
+)
+.join(
+""
+);
+
+
+getSizeOptionButtons()
+.forEach(
+button => {
+
+button.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+selectSizeFromDropdown(
+button.dataset.size
+);
+
+}
+);
+
+}
+);
+
+}
+
+
+function updateSizeDropdownDisplay() {
+
+sizeDropdownValue.textContent =
+formatSizeDropdownValue(
+state.size
+);
+
+
+const options =
+getSizeOptionButtons();
+
+
+options.forEach(
+button => {
+
+const isSelected =
+
+button.dataset.size ===
+state.size;
+
+
+button.classList.toggle(
+"is-selected",
+isSelected
+);
+
+
+button.setAttribute(
+"aria-selected",
+String(
+isSelected
+)
+);
+
+}
+);
+
+}
+
+
+function openSizeDropdown() {
+
+if (
+!sizeDropdown ||
+!sizeDropdownList
+) {
+
+return;
+
+}
+
+
+closeWhatsAppAction();
+
+
+sizeDropdown.classList.add(
+"is-open"
+);
+
+
+sizeDropdownTrigger.setAttribute(
+"aria-expanded",
+"true"
+);
+
+
+/*
+Important:
+Always start the opened list at the top so
+600 × 600mm internal is the first option
+directly underneath the current selection.
+*/
+
+sizeDropdownList.scrollTop =
+0;
+
+
+sizeDropdownKeyboardIndex =
+0;
+
+}
+
+
+function closeSizeDropdown(
+returnFocus = false
+) {
+
+if (
+!sizeDropdown ||
+!sizeDropdownTrigger
+) {
+
+return;
+
+}
+
+
+const wasOpen =
+sizeDropdown.classList.contains(
+"is-open"
+);
+
+
+sizeDropdown.classList.remove(
+"is-open"
+);
+
+
+sizeDropdownTrigger.setAttribute(
+"aria-expanded",
+"false"
+);
+
+
+if (
+returnFocus &&
+wasOpen
+) {
+
+sizeDropdownTrigger.focus();
+
+}
+
+}
+
+
+function toggleSizeDropdown() {
+
+if (
+sizeDropdown.classList.contains(
+"is-open"
+)
+) {
+
+closeSizeDropdown();
+
+}
+else {
+
+openSizeDropdown();
+
+}
+
+}
+
+
+function selectSizeFromDropdown(
+size
+) {
+
+const newSize =
+normalizeSize(
+size
+);
+
+
+if (
+!PRODUCTS[
+newSize
+]
+) {
+
+return;
+
+}
+
+
+const sizeChanged =
+
+newSize !==
+state.size;
+
+
+state.size =
+newSize;
+
+
+if (
+sizeChanged
+) {
+
+state.quantity =
+1;
+
+}
+
+
+closeSizeDropdown(
+true
+);
+
+
+updateUI(
+{
+animateImage:
+sizeChanged
+}
+);
+
+}
+
+
+function focusSizeDropdownOption(
+index
+) {
+
+const options =
+getSizeOptionButtons();
+
+
+if (
+!options.length
+) {
+
+return;
+
+}
+
+
+sizeDropdownKeyboardIndex =
+
+Math.max(
+0,
+Math.min(
+index,
+options.length - 1
+)
+);
+
+
+const target =
+options[
+sizeDropdownKeyboardIndex
+];
+
+
+target.focus(
+{
+preventScroll:true
+}
+);
+
+
+target.scrollIntoView(
+{
+block:"nearest"
+}
+);
+
+}
+
+
+sizeDropdownTrigger.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+toggleSizeDropdown();
+
+}
+);
+
+
+sizeDropdownTrigger.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"ArrowDown"
+) {
+
+event.preventDefault();
+
+
+if (
+!sizeDropdown.classList.contains(
+"is-open"
+)
+) {
+
+openSizeDropdown();
+
+}
+
+
+focusSizeDropdownOption(
+0
+);
+
+}
+
+
+if (
+event.key ===
+"ArrowUp"
+) {
+
+event.preventDefault();
+
+
+if (
+!sizeDropdown.classList.contains(
+"is-open"
+)
+) {
+
+openSizeDropdown();
+
+}
+
+
+const options =
+getSizeOptionButtons();
+
+
+focusSizeDropdownOption(
+options.length - 1
+);
+
+}
+
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
+closeSizeDropdown();
+
+}
+
+}
+);
+
+
+sizeDropdownList.addEventListener(
+"keydown",
+event => {
+
+const options =
+getSizeOptionButtons();
+
+
+if (
+!options.length
+) {
+
+return;
+
+}
+
+
+const activeIndex =
+options.indexOf(
+document.activeElement
+);
+
+
+if (
+activeIndex >=
+0
+) {
+
+sizeDropdownKeyboardIndex =
+activeIndex;
+
+}
+
+
+if (
+event.key ===
+"ArrowDown"
+) {
+
+event.preventDefault();
+
+focusSizeDropdownOption(
+sizeDropdownKeyboardIndex + 1
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
+"ArrowUp"
+) {
+
+event.preventDefault();
+
+focusSizeDropdownOption(
+sizeDropdownKeyboardIndex - 1
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
+"Home"
+) {
+
+event.preventDefault();
+
+focusSizeDropdownOption(
+0
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
+"End"
+) {
+
+event.preventDefault();
+
+focusSizeDropdownOption(
+options.length - 1
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
+"Enter" ||
+event.key ===
+" "
+) {
+
+const activeButton =
+document.activeElement;
+
+
+if (
+activeButton &&
+activeButton.classList.contains(
+"size-dropdown-option"
+)
+) {
+
+event.preventDefault();
+
+selectSizeFromDropdown(
+activeButton.dataset.size
+);
+
+}
+
+return;
+
+}
+
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
+closeSizeDropdown(
+true
+);
+
+}
+
+}
+);
+
+
+/* =========================================
 UPDATE UI
 ========================================= */
 
@@ -6089,10 +6959,10 @@ document.title =
 
 /* =========================================
 CHANGE 2
-APPLY PER-SIZE SCALE BEFORE IMAGE UPDATE
+SCALE + IMAGE-ONLY ROTATION
 ========================================= */
 
-updateProductImageScale();
+updateProductImageTransform();
 
 
 setProductImage(
@@ -6102,8 +6972,12 @@ animateImage
 );
 
 
-sizeSelect.value =
-state.size;
+/* =========================================
+CHANGE 1
+CUSTOM SIZE DISPLAY
+========================================= */
+
+updateSizeDropdownDisplay();
 
 
 productGlassSpec.textContent =
@@ -6260,39 +7134,6 @@ updateUrl
 updateQueryString();
 
 }
-
-}
-
-
-/* =========================================
-SIZE LIST
-========================================= */
-
-function populateSizes() {
-
-const orderedSizes =
-
-SIZE_DROPDOWN_ORDER
-.filter(
-size =>
-Boolean(
-PRODUCTS[
-size
-]
-)
-);
-
-
-sizeSelect.innerHTML =
-
-orderedSizes
-.map(
-size =>
-`<option value="${size}">${formatSize(size)} internal</option>`
-)
-.join(
-""
-);
 
 }
 
@@ -6566,41 +7407,6 @@ importedImage
 EVENTS
 ========================================= */
 
-sizeSelect.addEventListener(
-"change",
-event => {
-
-const newSize =
-normalizeSize(
-event.target.value
-);
-
-
-if (
-PRODUCTS[
-newSize
-]
-) {
-
-state.size =
-newSize;
-
-state.quantity =
-1;
-
-
-updateUI(
-{
-animateImage:true
-}
-);
-
-}
-
-}
-);
-
-
 document
 .querySelectorAll(
 "[data-glazing]"
@@ -6611,6 +7417,8 @@ button => {
 button.addEventListener(
 "click",
 () => {
+
+closeSizeDropdown();
 
 state.glazing =
 button.dataset.glazing;
@@ -6636,6 +7444,8 @@ button.addEventListener(
 "click",
 () => {
 
+closeSizeDropdown();
+
 state.type =
 button.dataset.type;
 
@@ -6659,6 +7469,8 @@ button => {
 button.addEventListener(
 "click",
 () => {
+
+closeSizeDropdown();
 
 state.border =
 Number(
@@ -6685,6 +7497,9 @@ button => {
 button.addEventListener(
 "click",
 () => {
+
+closeSizeDropdown();
+
 
 const tint =
 normalizeTint(
@@ -6723,6 +7538,9 @@ quantityMinus.addEventListener(
 "click",
 () => {
 
+closeSizeDropdown();
+
+
 if (
 state.quantity >
 1
@@ -6746,6 +7564,9 @@ updateUrl:false
 quantityPlus.addEventListener(
 "click",
 () => {
+
+closeSizeDropdown();
+
 
 if (
 state.quantity <
@@ -6792,10 +7613,60 @@ event.preventDefault();
 
 
 /* =========================================
+OUTSIDE CLICK / ESCAPE
+========================================= */
+
+document.addEventListener(
+"click",
+event => {
+
+closeWhatsAppAction();
+
+
+if (
+sizeDropdown &&
+!sizeDropdown.contains(
+event.target
+)
+) {
+
+closeSizeDropdown();
+
+}
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"Escape"
+) {
+
+closeWhatsAppAction();
+
+closeSizeDropdown();
+
+closeMenu();
+
+}
+
+}
+);
+
+
+/* =========================================
 ADD TO BASKET
 ========================================= */
 
 function addCurrentSelectionToBasket() {
+
+closeSizeDropdown();
+
 
 state.basketTotal +=
 
