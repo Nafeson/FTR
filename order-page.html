@@ -90,7 +90,6 @@ max-width:100%;
 
 button,
 select,
-input,
 a {
 font:inherit;
 }
@@ -102,8 +101,7 @@ a {
 
 button:focus-visible,
 a:focus-visible,
-select:focus-visible,
-input:focus-visible {
+select:focus-visible {
 outline:2px solid var(--orange);
 outline-offset:3px;
 }
@@ -539,6 +537,53 @@ padding-left:10px;
 
 
 /* =========================================
+HOMEPAGE SCROLL REVEAL
+========================================= */
+
+.reveal {
+opacity:0;
+transform:translateY(34px);
+transition:
+opacity .85s ease,
+transform .85s cubic-bezier(.18,.72,.28,1);
+will-change:opacity,transform;
+}
+
+.reveal.reveal-left {
+transform:translateX(-38px);
+}
+
+.reveal.reveal-right {
+transform:translateX(38px);
+}
+
+.reveal.reveal-scale {
+transform:translateY(22px) scale(.975);
+}
+
+.reveal.is-visible {
+opacity:1;
+transform:translate(0,0) scale(1);
+}
+
+.reveal-delay-1 {
+transition-delay:.08s;
+}
+
+.reveal-delay-2 {
+transition-delay:.16s;
+}
+
+.reveal-delay-3 {
+transition-delay:.24s;
+}
+
+.reveal-delay-4 {
+transition-delay:.32s;
+}
+
+
+/* =========================================
 ORDER PAGE
 ========================================= */
 
@@ -784,6 +829,11 @@ letter-spacing:1.55px;
 text-transform:uppercase;
 }
 
+
+/* =========================================
+GLAZING SELECTOR
+========================================= */
+
 .glazing-selector {
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -812,9 +862,11 @@ background .2s ease,
 transform .15s ease;
 }
 
+
+/* Change 1 — control text increased 15% */
 .glazing-selector button {
 min-height:49px;
-font-size:11px;
+font-size:12.65px;
 letter-spacing:1.2px;
 }
 
@@ -834,12 +886,7 @@ transform:scale(.985);
 
 
 /* =========================================
-CHANGE 2
-HOMEPAGE GLAZED LABEL MOVEMENT
-
-Same original pattern:
-label text occupies 50% of the track and
-moves left/right using the .triple class.
+HOMEPAGE-STYLE SLIDING GLAZED TRACK
 ========================================= */
 
 .glazed-label {
@@ -856,8 +903,8 @@ background:#0a0b0b;
 
 .glazed-label span {
 position:absolute;
-left:0;
 top:50%;
+left:0;
 width:50%;
 text-align:center;
 transform:translateY(-50%);
@@ -866,7 +913,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+font-size:9.2px;
 font-weight:800;
 line-height:1;
 letter-spacing:1.4px;
@@ -879,16 +926,20 @@ left:50%;
 }
 
 
+/* =========================================
+GLASS FINISH / SLIDING TINT TRACK
+========================================= */
+
 .tint-wrap {
 position:relative;
-padding-bottom:25px;
+padding-bottom:0;
 }
 
 .tint-selector {
 display:grid;
 grid-template-columns:repeat(4,1fr);
 border:1px solid rgba(255,255,255,.16);
-border-radius:16px;
+border-radius:16px 16px 0 0;
 overflow:hidden;
 background:#090a0a;
 }
@@ -896,7 +947,7 @@ background:#090a0a;
 .tint-selector button {
 min-height:40px;
 padding:0 4px;
-font-size:8px;
+font-size:9.2px;
 letter-spacing:.9px;
 }
 
@@ -914,45 +965,41 @@ color:var(--white);
 }
 
 
-/* =========================================
-CHANGE 2
-GLASS FINISH MOVING TINT LABEL
-
-Uses the same moving-label principle.
-Hidden on Clear.
-Moves beneath Blue / Grey / Satin.
-========================================= */
-
+/* Change 3 — permanent underside bubble / track */
 .tint-caption-track {
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-height:21px;
+position:relative;
+width:100%;
+height:27px;
 overflow:hidden;
+border:0 solid rgba(255,255,255,.12);
+border-left-width:1px;
+border-right-width:1px;
+border-bottom-width:1px;
+border-radius:0 0 16px 16px;
+background:#0a0b0b;
 pointer-events:none;
 }
 
 .tint-caption {
 position:absolute;
+top:50%;
 left:0;
-bottom:0;
 width:25%;
-height:21px;
 display:flex;
-align-items:flex-end;
+align-items:center;
 justify-content:center;
 color:#9d9e9b;
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+font-size:9.2px;
 font-weight:800;
 line-height:1;
 letter-spacing:1.2px;
 text-transform:uppercase;
 opacity:0;
+transform:translateY(-50%);
 transition:
 left .28s ease,
 opacity .18s ease;
@@ -1067,11 +1114,8 @@ font-family:
 "Aptos",
 sans-serif;
 
-/* =========================================
-CHANGE 1
-SLIGHTLY SMALLER SELECTED SIZE TEXT
-========================================= */
-font-size:clamp(14px,1.45vw,19px);
+/* Change 1 — reduced enough for long sizes to remain on one line */
+font-size:clamp(14px,1.45vw,20px);
 
 font-weight:700;
 line-height:1;
@@ -1087,7 +1131,7 @@ box-shadow .2s ease;
 
 #sizeDropdownValue {
 display:block;
-min-width:0;
+max-width:100%;
 white-space:nowrap;
 }
 
@@ -1257,7 +1301,7 @@ font-weight:900;
 
 
 /* =========================================
-GLASS / BORDER SELECTORS
+GLASS / BORDER CONTROLS
 ========================================= */
 
 .segmented {
@@ -1286,7 +1330,10 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+
+/* Change 1 — 15% larger */
+font-size:9.2px;
+
 font-weight:800;
 letter-spacing:.85px;
 text-transform:uppercase;
@@ -1758,708 +1805,96 @@ transform:translateX(4px);
 
 
 /* =========================================
-CHANGE 3
-CUSTOM ROOFLIGHT MEASUREMENT VISUAL
+CHANGE 4
+HOMEPAGE-STYLE STATIC CUSTOM ROOFLIGHT IMAGE
 ========================================= */
 
-.custom-rooflight-visual-section {
+.engineered-visual-intro {
 position:relative;
 overflow:hidden;
-padding:
-clamp(60px,7vw,105px)
-6%
-clamp(40px,5vw,72px);
-background:
-radial-gradient(
-circle at 50% 26%,
-rgba(232,120,23,.14),
-rgba(232,120,23,.045) 30%,
-transparent 68%
-),
-#050505;
+background:#050505;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
-.custom-rooflight-visual-inner {
-position:relative;
-z-index:2;
-max-width:1180px;
-margin:0 auto;
+.engineered-visual-intro .buy-rooflight-slideshow {
+margin:0;
+box-shadow:none;
 }
 
-.custom-rooflight-image-shell {
+.buy-rooflight-slideshow {
 position:relative;
-width:min(760px,100%);
-margin:0 auto;
-aspect-ratio:1.45 / 1;
 overflow:hidden;
-background:#ffffff;
-border:1px solid rgba(255,255,255,.12);
-box-shadow:
-0 30px 75px rgba(0,0,0,.46);
+background:#090909;
+box-shadow:0 24px 65px rgba(0,0,0,.40);
 }
 
-.custom-rooflight-image-shell img {
+.rooflight-slideshow-shell {
+width:100%;
+height:clamp(250px,36vw,470px);
+position:relative;
+overflow:hidden;
+touch-action:pan-y;
+user-select:none;
+}
+
+.rooflight-slide {
+position:absolute;
+inset:0;
+opacity:0;
+visibility:hidden;
+transform:translateX(8%);
+transition:
+opacity .8s ease,
+visibility .8s ease,
+transform .8s cubic-bezier(.18,.72,.28,1);
+}
+
+.rooflight-slide.active {
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+z-index:3;
+}
+
+.rooflight-slide.previous {
+opacity:0;
+visibility:visible;
+transform:translateX(-8%);
+z-index:2;
+}
+
+.rooflight-slide img {
 display:block;
 width:100%;
 height:100%;
-object-fit:contain;
-object-position:center;
-transform:scale(.92);
-transform-origin:center;
+object-fit:cover;
+object-position:48% 49%;
 }
 
-.custom-measure-width {
-position:absolute;
-left:10%;
-right:10%;
-bottom:7%;
-height:28px;
-border-top:2px solid rgba(20,20,20,.82);
-pointer-events:none;
-}
-
-.custom-measure-width::before,
-.custom-measure-width::after {
-content:"";
-position:absolute;
-top:-7px;
-width:2px;
-height:13px;
-background:rgba(20,20,20,.82);
-}
-
-.custom-measure-width::before {
-left:0;
-}
-
-.custom-measure-width::after {
-right:0;
-}
-
-.custom-measure-width span {
-position:absolute;
-left:50%;
-top:6px;
-transform:translateX(-50%);
-padding:2px 8px;
-background:rgba(255,255,255,.92);
-color:#151515;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:10px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase;
-white-space:nowrap;
-}
-
-.custom-measure-length {
-position:absolute;
-top:10%;
-bottom:10%;
-right:5%;
-width:30px;
-border-left:2px solid rgba(20,20,20,.82);
-pointer-events:none;
-}
-
-.custom-measure-length::before,
-.custom-measure-length::after {
-content:"";
-position:absolute;
-left:-7px;
-width:13px;
-height:2px;
-background:rgba(20,20,20,.82);
-}
-
-.custom-measure-length::before {
-top:0;
-}
-
-.custom-measure-length::after {
-bottom:0;
-}
-
-.custom-measure-length span {
-position:absolute;
-left:9px;
-top:50%;
-transform:
-translateY(-50%)
-rotate(90deg);
-transform-origin:center;
-padding:2px 8px;
-background:rgba(255,255,255,.92);
-color:#151515;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:10px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase;
-white-space:nowrap;
-}
-
-
-/* =========================================
-CHANGE 3
-HOMEPAGE-STYLE CUSTOM CALCULATOR
-========================================= */
-
-.calculator-wrap {
-position:relative;
-overflow:visible;
-background:
-radial-gradient(
-circle at 88% 16%,
-rgba(23,35,42,.72),
-transparent 34%
-),
-linear-gradient(
-180deg,
-#050505 0%,
-#080808 100%
-);
-padding:
-clamp(48px,6vw,88px)
-6%
-clamp(72px,8vw,112px);
-border-top:1px solid rgba(255,255,255,.08);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.calculator-wrap::before {
-content:"";
-position:absolute;
-top:0;
-left:50%;
-transform:translateX(-50%);
-width:min(88%,1120px);
-height:1px;
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(232,120,23,.80),
-transparent
-);
-}
-
-.calculator-wrap::after {
-content:"Configure • Price • Continue";
-position:absolute;
-top:0;
-left:50%;
-transform:translate(-50%,-50%);
-color:rgba(255,255,255,.28);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:9px;
-font-weight:900;
-letter-spacing:2.2px;
-text-transform:uppercase;
-white-space:nowrap;
-}
-
-.calculator {
-position:relative;
-max-width:1180px;
-margin:0 auto;
-padding:50px;
-background:#101010;
-border:1px solid rgba(255,255,255,.09);
-box-shadow:0 28px 85px rgba(0,0,0,.65);
-}
-
-.calculator .section-label {
-margin:0 0 12px;
-color:var(--orange-bright);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:11px;
-line-height:1;
-font-weight:800;
-letter-spacing:2px;
-text-transform:uppercase;
-}
-
-.calculator h2 {
-margin:0;
-color:var(--cream);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(36px,5vw,62px);
-line-height:.98;
-letter-spacing:-1.8px;
-font-weight:800;
-}
-
-.calculator-intro {
-max-width:850px;
-margin:18px 0 0;
-color:rgba(247,247,243,.62);
-font-size:15px;
-line-height:1.65;
-}
-
-.calc-orientation-section {
-margin-top:36px;
-padding-top:28px;
-border-top:1px solid rgba(255,255,255,.10);
-}
-
-.calc-orientation-title {
-margin-bottom:17px;
-color:rgba(247,247,243,.52);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:10px;
-font-weight:900;
-line-height:1;
-letter-spacing:1.65px;
-text-transform:uppercase;
-}
-
-.calc-grid {
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:20px;
-}
-
-.calc-options-row {
-grid-template-columns:
-minmax(0,1.6fr)
-minmax(0,.75fr)
-minmax(0,1fr);
-margin-top:24px;
-}
-
-.calc-field {
-min-width:0;
-}
-
-.calc-field label {
-display:block;
-margin:0 0 10px;
-color:var(--white);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:12px;
-font-weight:900;
-line-height:1;
-letter-spacing:.65px;
-text-transform:uppercase;
-}
-
-.calc-field input,
-.calc-field select {
-appearance:none;
+.static-rooflight-visual {
 width:100%;
-height:54px;
-margin:0;
-padding:0 16px;
-border:1px solid rgba(255,255,255,.14);
-border-radius:0;
+}
+
+.static-rooflight-visual .rooflight-slideshow-shell {
+width:100%;
+}
+
+.static-rooflight-visual img {
+display:block;
+width:100%;
+height:auto;
+}
+
+.order-custom-rooflight-section {
+border-bottom:0;
+}
+
+
+/* Deliberate blank section for future content */
+.order-future-blank-space {
+height:clamp(110px,13vw,210px);
 background:#050505;
-color:var(--white);
-font-size:15px;
-font-weight:650;
-transition:
-border-color .25s ease,
-box-shadow .25s ease,
-background .25s ease;
-}
-
-.calc-field select {
-padding-right:42px;
-cursor:pointer;
-}
-
-.calc-select-shell {
-position:relative;
-}
-
-.calc-select-shell::after {
-content:"";
-position:absolute;
-right:17px;
-top:50%;
-width:7px;
-height:7px;
-border-right:1px solid rgba(255,255,255,.70);
-border-bottom:1px solid rgba(255,255,255,.70);
-transform:
-translateY(-70%)
-rotate(45deg);
-pointer-events:none;
-}
-
-.calc-field input:hover,
-.calc-field select:hover {
-border-color:rgba(232,120,23,.42);
-}
-
-.calc-field input:focus,
-.calc-field select:focus {
-outline:none;
-border-color:var(--orange);
-background:#080808;
-box-shadow:0 0 0 3px rgba(232,120,23,.12);
-}
-
-.calc-field input::placeholder {
-color:rgba(255,255,255,.24);
-}
-
-.calc-field-help {
-margin-top:8px;
-color:rgba(255,255,255,.38);
-font-size:10px;
-line-height:1.45;
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR EXTERNAL SIZE
-========================================= */
-
-.calc-external-result {
-max-height:0;
-opacity:0;
-visibility:hidden;
-overflow:hidden;
-transform:translateY(18px);
-pointer-events:none;
-margin:0;
-padding:0 30px;
-background:
-linear-gradient(
-135deg,
-rgba(23,35,42,.94),
-rgba(9,20,26,.96)
-);
-border:1px solid transparent;
-transition:
-max-height .65s ease,
-opacity .5s ease,
-visibility .5s ease,
-transform .65s ease,
-margin .65s ease,
-padding .65s ease,
-border-color .3s ease;
-}
-
-.calc-external-result.is-visible {
-max-height:280px;
-opacity:1;
-visibility:visible;
-transform:translateY(0);
-pointer-events:auto;
-margin-top:28px;
-padding:25px 28px;
-border-color:rgba(255,255,255,.12);
-}
-
-.calc-external-result-heading {
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:22px;
-}
-
-.calc-external-result-label {
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:10px;
-font-weight:900;
-letter-spacing:1.35px;
-text-transform:uppercase;
-color:var(--orange-bright);
-margin-bottom:8px;
-}
-
-.calc-external-result-value {
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-sans-serif;
-font-size:clamp(27px,3.5vw,43px);
-font-weight:850;
-line-height:1;
-letter-spacing:-1px;
-color:var(--white);
-}
-
-.calc-external-border-badge {
-flex:0 0 auto;
-padding:9px 12px;
-border:1px solid rgba(232,120,23,.48);
-background:rgba(232,120,23,.10);
-color:var(--orange-bright);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:9px;
-font-weight:900;
-letter-spacing:.75px;
-text-transform:uppercase;
-white-space:nowrap;
-}
-
-.calc-external-result-note {
-margin-top:11px;
-font-size:11px;
-line-height:1.55;
-color:rgba(255,255,255,.52);
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR SIZE ALERT
-========================================= */
-
-.calc-size-alert {
-margin-top:24px;
-padding:21px 22px;
-border:1px solid rgba(232,120,23,.48);
-background:
-linear-gradient(
-135deg,
-rgba(232,120,23,.12),
-rgba(232,120,23,.035)
-);
-}
-
-.calc-size-alert[hidden] {
-display:none !important;
-}
-
-.calc-size-alert strong {
-display:block;
-margin-bottom:7px;
-color:var(--orange-bright);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:11px;
-font-weight:900;
-letter-spacing:1.1px;
-text-transform:uppercase;
-}
-
-.calc-size-alert p {
-margin:0;
-color:rgba(247,247,243,.68);
-font-size:12px;
-line-height:1.55;
-}
-
-.calc-size-alert a {
-display:inline-block;
-margin-top:13px;
-color:var(--white);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:11px;
-font-weight:900;
-letter-spacing:.9px;
-text-transform:uppercase;
-text-underline-offset:4px;
-}
-
-
-/* =========================================
-CHANGE 4
-CUSTOM CALCULATOR PRICE BOX
-========================================= */
-
-.calc-price-box {
-margin-top:34px;
-padding:34px;
-background:var(--navy);
-border:1px solid rgba(255,255,255,.10);
-}
-
-.calc-price-top {
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
-gap:28px;
-flex-wrap:wrap;
-}
-
-.calc-price-label {
-color:var(--muted);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:12px;
-text-transform:uppercase;
-letter-spacing:1px;
-font-weight:900;
-}
-
-.calc-price {
-margin-top:6px;
-color:var(--white);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(44px,5.2vw,68px);
-font-weight:850;
-line-height:.95;
-letter-spacing:-2px;
-}
-
-.calc-price-note {
-display:block;
-margin-top:8px;
-color:rgba(247,247,243,.54);
-font-size:10px;
-line-height:1.5;
-}
-
-.calc-price-box.is-unavailable .calc-price {
-color:rgba(247,247,243,.38);
-}
-
-.calc-summary-grid {
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:1px;
-margin-top:28px;
-background:rgba(255,255,255,.10);
-border:1px solid rgba(255,255,255,.10);
-}
-
-.calc-summary-item {
-padding:15px 16px;
-background:#10242d;
-}
-
-.calc-summary-item span {
-display:block;
-color:rgba(247,247,243,.44);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:8px;
-font-weight:900;
-letter-spacing:1.1px;
-text-transform:uppercase;
-}
-
-.calc-summary-item strong {
-display:block;
-margin-top:6px;
-color:var(--cream);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-sans-serif;
-font-size:17px;
-font-weight:800;
-line-height:1.1;
-}
-
-.calc-delivery-date-row {
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-margin-top:16px;
-padding-top:16px;
-border-top:1px solid rgba(255,255,255,.12);
-}
-
-.calc-delivery-date-row span {
-color:rgba(247,247,243,.48);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:9px;
-font-weight:900;
-letter-spacing:1.1px;
-text-transform:uppercase;
-}
-
-.calc-delivery-date-row strong {
-color:var(--white);
-font-size:13px;
-font-weight:750;
-text-align:right;
-}
-
-.calc-order-button {
-min-width:min(330px,100%);
-min-height:64px;
-border:1px solid var(--orange);
-border-radius:0;
-background:var(--orange);
-color:#10100f;
-padding:0 22px;
-display:inline-flex;
-align-items:center;
-justify-content:space-between;
-gap:22px;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:12px;
-font-weight:900;
-letter-spacing:1.2px;
-text-transform:uppercase;
-cursor:pointer;
-transition:
-transform .2s ease,
-background .2s ease,
-box-shadow .2s ease,
-opacity .2s ease;
-}
-
-.calc-order-button:hover:not(:disabled) {
-transform:translateY(-2px);
-background:var(--orange-bright);
-box-shadow:0 20px 46px rgba(232,120,23,.14);
-}
-
-.calc-order-button:disabled {
-opacity:.35;
-cursor:not-allowed;
-}
-
-.calc-order-arrow {
-font-size:23px;
-line-height:1;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 
@@ -2694,6 +2129,18 @@ text-decoration:none;
 TABLET
 ========================================= */
 
+@media(max-width:950px) {
+
+.wordmark {
+font-size:20px;
+}
+
+.address-line {
+font-size:9px;
+}
+
+}
+
 @media(max-width:980px) {
 
 .order-grid {
@@ -2721,30 +2168,6 @@ padding:20px 18px;
 
 .purchase-action-controls {
 grid-template-columns:minmax(130px,.7fr) minmax(190px,1.3fr);
-}
-
-.calc-options-row {
-grid-template-columns:1fr 1fr;
-}
-
-.calc-options-row .calc-finish-field {
-grid-column:1 / -1;
-}
-
-}
-
-@media(max-width:950px) {
-
-.wordmark {
-font-size:20px;
-}
-
-.address-line {
-font-size:9px;
-}
-
-.calculator {
-padding:32px;
 }
 
 }
@@ -2813,7 +2236,7 @@ border-radius:12px 12px 0 0;
 
 .glazing-selector button {
 min-height:34px;
-font-size:7px;
+font-size:8.05px;
 letter-spacing:.55px;
 }
 
@@ -2823,33 +2246,33 @@ border-radius:0 0 12px 12px;
 }
 
 .glazed-label span {
-font-size:5.5px;
+font-size:6.35px;
 letter-spacing:.8px;
 }
 
 .tint-wrap {
-padding-bottom:18px;
+padding-bottom:0;
 }
 
 .tint-selector {
-border-radius:12px;
+border-radius:12px 12px 0 0;
 }
 
 .tint-selector button {
 min-height:29px;
 padding:0 1px;
-font-size:5.5px;
+font-size:6.35px;
 letter-spacing:.25px;
 }
 
-.tint-caption-track,
-.tint-caption {
-height:14px;
+.tint-caption-track {
+height:20px;
+border-radius:0 0 12px 12px;
 }
 
 .tint-caption {
-font-size:5px;
-letter-spacing:.6px;
+font-size:6.35px;
+letter-spacing:.65px;
 }
 
 .product-title {
@@ -2883,8 +2306,7 @@ margin-bottom:5px;
 
 
 /* =========================================
-CHANGE 1
-MOBILE SELECTED SIZE REMAINS ONE LINE
+MOBILE CUSTOM SIZE DROPDOWN
 ========================================= */
 
 .size-dropdown-trigger {
@@ -2892,8 +2314,7 @@ height:32px;
 padding-left:8px;
 padding-right:31px;
 border-radius:12px;
-font-size:clamp(8.5px,2.35vw,10.7px);
-letter-spacing:-.08px;
+font-size:clamp(8.8px,2.35vw,10.8px);
 }
 
 .size-dropdown-trigger::after {
@@ -2929,7 +2350,7 @@ border-radius:12px;
 
 .segmented button {
 min-height:31px;
-font-size:5.5px;
+font-size:6.35px;
 letter-spacing:.35px;
 }
 
@@ -3081,215 +2502,13 @@ border-radius:14px;
 font-size:18px;
 }
 
-
-/* =========================================
-MOBILE CUSTOM VISUAL / CALCULATOR
-========================================= */
-
-.custom-rooflight-visual-section {
-padding:
-48px
-6%
-30px;
+.rooflight-slideshow-shell,
+.engineered-visual-intro .rooflight-slideshow-shell {
+height:250px;
 }
 
-.custom-rooflight-image-shell {
-aspect-ratio:1.12 / 1;
-}
-
-.custom-rooflight-image-shell img {
-transform:scale(1.02);
-}
-
-.custom-measure-width {
-left:9%;
-right:9%;
-bottom:7%;
-}
-
-.custom-measure-width span,
-.custom-measure-length span {
-font-size:7px;
-letter-spacing:.55px;
-}
-
-.custom-measure-length {
-right:5%;
-}
-
-.calculator-wrap {
-padding:
-55px
-6%
-62px;
-}
-
-.calculator-wrap::after {
-font-size:7px;
-letter-spacing:1.45px;
-}
-
-.calculator {
-padding:25px 20px;
-}
-
-.calculator .section-label {
-font-size:8px;
-letter-spacing:1.5px;
-}
-
-.calculator h2 {
-font-size:clamp(30px,9vw,42px);
-letter-spacing:-1.2px;
-}
-
-.calculator-intro {
-margin-top:14px;
-font-size:12px;
-line-height:1.55;
-}
-
-.calc-orientation-section {
-margin-top:26px;
-padding-top:22px;
-}
-
-.calc-orientation-title {
-font-size:8px;
-letter-spacing:1.15px;
-}
-
-.calc-grid,
-.calc-options-row {
-grid-template-columns:1fr;
-gap:13px;
-}
-
-.calc-options-row {
-margin-top:18px;
-}
-
-.calc-options-row .calc-finish-field {
-grid-column:auto;
-}
-
-.calc-field label {
-font-size:9px;
-margin-bottom:7px;
-}
-
-.calc-field input,
-.calc-field select {
-height:46px;
-padding-left:12px;
-font-size:12px;
-}
-
-.calc-field-help {
-font-size:8px;
-}
-
-.calc-external-result.is-visible {
-margin-top:20px;
-padding:20px 17px;
-}
-
-.calc-external-result-heading {
-flex-direction:column;
-align-items:flex-start;
-gap:13px;
-}
-
-.calc-external-result-label {
-font-size:8px;
-}
-
-.calc-external-result-value {
-font-size:27px;
-}
-
-.calc-external-border-badge {
-font-size:7px;
-padding:7px 9px;
-}
-
-.calc-external-result-note {
-font-size:9px;
-}
-
-.calc-size-alert {
-padding:17px;
-}
-
-.calc-size-alert strong {
-font-size:9px;
-}
-
-.calc-size-alert p,
-.calc-size-alert a {
-font-size:9px;
-}
-
-.calc-price-box {
-padding:22px 18px;
-margin-top:24px;
-}
-
-.calc-price-top {
-align-items:stretch;
-flex-direction:column;
-}
-
-.calc-price-label {
-font-size:9px;
-}
-
-.calc-price {
-font-size:43px;
-}
-
-.calc-price-note {
-font-size:8px;
-}
-
-.calc-summary-grid {
-grid-template-columns:1fr;
-margin-top:21px;
-}
-
-.calc-summary-item {
-padding:13px;
-}
-
-.calc-summary-item span {
-font-size:7px;
-}
-
-.calc-summary-item strong {
-font-size:14px;
-}
-
-.calc-delivery-date-row {
-align-items:flex-start;
-flex-direction:column;
-gap:6px;
-}
-
-.calc-delivery-date-row span {
-font-size:7px;
-}
-
-.calc-delivery-date-row strong {
-font-size:11px;
-text-align:left;
-}
-
-.calc-order-button {
-width:100%;
-min-width:0;
-min-height:54px;
-font-size:9px;
-letter-spacing:.85px;
+.order-future-blank-space {
+height:120px;
 }
 
 }
@@ -3491,20 +2710,24 @@ animation:none;
 transition-duration:.01ms !important;
 }
 
-.total-price-block,
-.size-dropdown-panel,
-.glazed-label span,
-.tint-caption,
-.calc-external-result {
-transition:none !important;
-}
-
 .total-price-block {
+transition:none !important;
 transform:none !important;
 }
 
 .total-price-block.is-visible {
 opacity:1;
+}
+
+.size-dropdown-panel {
+transition:none !important;
+}
+
+.reveal,
+.reveal.reveal-scale {
+opacity:1;
+transform:none;
+transition:none;
 }
 
 }
@@ -3728,7 +2951,7 @@ aria-label="Close menu"
 Standard Sizes
 </a>
 
-<a href="#calculator" onclick="closeMenu()">
+<a href="index.html#calculator" onclick="closeMenu()">
 Build A Rooflight
 </a>
 
@@ -3778,7 +3001,9 @@ Configure Your Rooflight
 
 <div class="order-content-wrap">
 
+
 <div class="order-card">
+
 
 <div class="order-grid">
 
@@ -3819,10 +3044,7 @@ role="group"
 aria-label="Choose glazing"
 >
 
-<button
-type="button"
-data-glazing="double"
->
+<button type="button" data-glazing="double">
 Double
 </button>
 
@@ -3842,9 +3064,7 @@ class="glazed-label triple"
 id="glazedLabel"
 aria-hidden="true"
 >
-<span>
-Glazed
-</span>
+<span>Glazed</span>
 </div>
 
 </div>
@@ -3873,24 +3093,15 @@ data-tint="clear"
 Clear
 </button>
 
-<button
-type="button"
-data-tint="blue"
->
+<button type="button" data-tint="blue">
 Blue
 </button>
 
-<button
-type="button"
-data-tint="grey"
->
+<button type="button" data-tint="grey">
 Grey
 </button>
 
-<button
-type="button"
-data-tint="satin"
->
+<button type="button" data-tint="satin">
 Satin
 </button>
 
@@ -4033,10 +3244,7 @@ data-type="toughened"
 Toughened
 </button>
 
-<button
-type="button"
-data-type="laminated"
->
+<button type="button" data-type="laminated">
 Laminated
 </button>
 
@@ -4066,17 +3274,11 @@ data-border="100"
 100mm
 </button>
 
-<button
-type="button"
-data-border="125"
->
+<button type="button" data-border="125">
 125mm
 </button>
 
-<button
-type="button"
-data-border="150"
->
+<button type="button" data-border="150">
 150mm
 </button>
 
@@ -4109,6 +3311,7 @@ Order Summary
 
 
 <div class="purchase-zone purchase-price-zone">
+
 
 <div class="unit-price-block">
 
@@ -4198,6 +3401,7 @@ id="totalPricePence"
 
 </div>
 
+
 </div>
 
 
@@ -4213,6 +3417,7 @@ Rooflight Dimensions
 
 
 <div class="dimension-block">
+
 
 <div class="dimension-item">
 
@@ -4239,6 +3444,7 @@ External
 
 </div>
 
+
 </div>
 
 </div>
@@ -4256,6 +3462,7 @@ Quantity &amp; Order
 
 
 <div class="purchase-action-controls">
+
 
 <div
 class="quantity-row"
@@ -4319,18 +3526,23 @@ aria-hidden="true"
 
 </button>
 
+
 </div>
+
+</div>
+
 
 </div>
 
 
 </div>
 
-</div>
 
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -4338,40 +3550,27 @@ aria-hidden="true"
 
 
 <!-- =========================================
-CHANGE 3
-CUSTOM ROOFLIGHT IMAGE ABOVE CALCULATOR
+CHANGE 4 — STATIC CUSTOM ROOFLIGHT IMAGE
 ========================================= -->
 
 <section
-class="custom-rooflight-visual-section"
-aria-label="Custom rooflight internal dimensions"
+class="engineered-visual-intro order-custom-rooflight-section"
+aria-label="Custom frameless rooflight"
 >
 
-<div class="custom-rooflight-visual-inner">
+<div
+class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
+>
 
-<div class="custom-rooflight-image-shell">
+<div class="rooflight-slideshow-shell">
+
+<div class="rooflight-slide active">
 
 <img
-src="images/product-cards/large-rectangle.png"
-alt="Frameless rooflight showing internal width and length measurement directions"
+src="images/custom-rooflight-1.png"
+alt="Custom made frameless rooflight"
 >
 
-<div
-class="custom-measure-width"
-aria-hidden="true"
->
-<span>
-Width (mm)
-</span>
-</div>
-
-<div
-class="custom-measure-length"
-aria-hidden="true"
->
-<span>
-Length (mm)
-</span>
 </div>
 
 </div>
@@ -4382,356 +3581,13 @@ Length (mm)
 
 
 <!-- =========================================
-CHANGE 3 + CHANGE 4
-CUSTOM ROOFLIGHT CALCULATOR
-
-NO "MADE TO YOUR OPENING" ASSISTANT
+BLANK SPACE FOR FUTURE CONTENT
 ========================================= -->
 
 <section
-id="calculator"
-class="calculator-wrap"
->
-
-<div
-class="calculator"
-id="homepageCalculator"
->
-
-<div class="section-label">
-Build Online
-</div>
-
-<h2>
-Build A Custom Rooflight
-</h2>
-
-<p class="calculator-intro">
-Enter your required internal visible glass size below and configure your made-to-order frameless rooflight.
-</p>
-
-
-<div class="calc-orientation-section">
-
-<div class="calc-orientation-title">
-Internal Glass Size
-</div>
-
-
-<div class="calc-grid">
-
-
-<div class="calc-field">
-
-<label for="calcWidth">
-Width / Short Side
-</label>
-
-<input
-id="calcWidth"
-type="number"
-inputmode="numeric"
-min="300"
-max="1500"
-step="1"
-placeholder="mm"
-autocomplete="off"
->
-
-<div class="calc-field-help">
-300mm – 1500mm
-</div>
-
-</div>
-
-
-<div class="calc-field">
-
-<label for="calcLength">
-Length / Long Side
-</label>
-
-<input
-id="calcLength"
-type="number"
-inputmode="numeric"
-min="400"
-max="2500"
-step="1"
-placeholder="mm"
-autocomplete="off"
->
-
-<div class="calc-field-help">
-400mm – 2500mm
-</div>
-
-</div>
-
-
-</div>
-
-
-<div
-class="calc-external-result"
-id="calcExternalResult"
-aria-live="polite"
->
-
-<div class="calc-external-result-heading">
-
-<div>
-
-<div class="calc-external-result-label">
-External Glass Size
-</div>
-
-<div
-class="calc-external-result-value"
-id="calcExternalDimensions"
->
-—
-</div>
-
-</div>
-
-<div
-class="calc-external-border-badge"
-id="calcExternalBorderBadge"
->
-100mm Border
-</div>
-
-</div>
-
-<div class="calc-external-result-note">
-External dimensions include the selected ceramic border around all four sides.
-</div>
-
-</div>
-
-
-<div class="calc-grid calc-options-row">
-
-
-<div class="calc-field">
-
-<label for="calcGlazing">
-Glazing
-</label>
-
-<div class="calc-select-shell">
-
-<select id="calcGlazing">
-
-<option value="toughened-double">
-Toughened Double Glazed
-</option>
-
-<option value="toughened-triple">
-Toughened Triple Glazed
-</option>
-
-<option value="laminated-double">
-Laminated Double Glazed
-</option>
-
-<option value="laminated-triple">
-Laminated Triple Glazed
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="calc-field">
-
-<label for="calcBorder">
-Border
-</label>
-
-<div class="calc-select-shell">
-
-<select id="calcBorder">
-
-<option value="100">
-100mm
-</option>
-
-<option value="125">
-125mm
-</option>
-
-<option value="150">
-150mm
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="calc-field calc-finish-field">
-
-<label for="calcFinish">
-Glass Finish
-</label>
-
-<div class="calc-select-shell">
-
-<select id="calcFinish">
-
-<option value="clear">
-Clear
-</option>
-
-<option value="blue">
-Blue Tinted
-</option>
-
-<option value="grey">
-Grey Tinted
-</option>
-
-<option value="satin">
-Satin Tinted
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<div
-class="calc-size-alert"
-id="calcSizeAlert"
-hidden
->
-
-<strong>
-This size requires our team
-</strong>
-
-<p id="calcSizeAlertText">
-The dimensions entered fall outside the online calculator range.
-</p>
-
-<a href="contact.html">
-Contact us to discuss this size
-</a>
-
-</div>
-
-
-<div
-class="calc-price-box is-unavailable"
-id="calcPriceBox"
->
-
-<div class="calc-price-top">
-
-
-<div>
-
-<div class="calc-price-label">
-Made-To-Order Price
-</div>
-
-<div
-class="calc-price"
-id="calcPrice"
-aria-live="polite"
->
-—
-</div>
-
-<small class="calc-price-note">
-Includes VAT. Custom calculator pricing includes the 8% made-to-order uplift.
-</small>
-
-</div>
-
-
-<button
-class="calc-order-button"
-id="customAddToBasket"
-type="button"
-disabled
->
-
-<span id="customAddToBasketText">
-Add To Basket
-</span>
-
-<span
-class="calc-order-arrow"
+class="order-future-blank-space"
 aria-hidden="true"
 >
-→
-</span>
-
-</button>
-
-
-</div>
-
-
-<div class="calc-summary-grid">
-
-<div class="calc-summary-item">
-
-<span>
-Internal
-</span>
-
-<strong id="calcInternalDimensions">
-—
-</strong>
-
-</div>
-
-
-<div class="calc-summary-item">
-
-<span>
-External
-</span>
-
-<strong id="calcExternalDimensionsSummary">
-—
-</strong>
-
-</div>
-
-</div>
-
-
-<div class="calc-delivery-date-row">
-
-<span>
-Estimated Delivery
-</span>
-
-<strong id="calcDeliveryDate">
-Enter your dimensions
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
 
@@ -4907,11 +3763,7 @@ class="payment-badge payment-badge-visa payment-wide"
 role="img"
 aria-label="Visa"
 >
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <rect x="0" y="0" width="88" height="44" rx="3" fill="#1434CB"/>
 <text x="44" y="30" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" font-style="italic" letter-spacing="-2">VISA</text>
 </svg>
@@ -4923,11 +3775,7 @@ class="payment-badge payment-badge-mastercard"
 role="img"
 aria-label="Mastercard"
 >
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <circle cx="29" cy="19" r="12" fill="#EB001B"/>
 <circle cx="43" cy="19" r="12" fill="#F79E1B"/>
 <path d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z" fill="#FF5F00"/>
@@ -4941,11 +3789,7 @@ class="payment-badge payment-badge-amex"
 role="img"
 aria-label="American Express"
 >
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <rect x="0" y="0" width="72" height="44" rx="3" fill="#0877C9"/>
 <text x="36" y="18" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">AM</text>
 <text x="36" y="34" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">EX</text>
@@ -4958,11 +3802,7 @@ class="payment-badge payment-badge-apple-pay payment-wide"
 role="img"
 aria-label="Apple Pay"
 >
-<svg
-viewBox="0 0 86 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 86 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path fill="#000000" d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"/>
 <path fill="#000000" d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"/>
 <text x="35" y="29" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Pay</text>
@@ -4975,11 +3815,7 @@ class="payment-badge payment-badge-google-pay payment-wide"
 role="img"
 aria-label="Google Pay"
 >
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z" fill="#4285F4"/>
 <text x="50" y="27" text-anchor="middle" fill="#5F6368" font-family="Arial, Helvetica, sans-serif" font-size="17">Pay</text>
 </svg>
@@ -4991,11 +3827,7 @@ class="payment-badge payment-badge-paypal payment-wide"
 role="img"
 aria-label="PayPal"
 >
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z" fill="#003087"/>
 <path d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z" fill="#009CDE"/>
 <text x="61" y="28" text-anchor="middle" fill="#003087" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">PayPal</text>
@@ -5008,11 +3840,7 @@ class="payment-badge payment-badge-discover payment-wide"
 role="img"
 aria-label="Discover"
 >
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <text x="43" y="25" text-anchor="middle" fill="#202020" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">DISCOVER</text>
 <path d="M50 32c8-6 17-8 29-8v8z" fill="#F58220"/>
 </svg>
@@ -5024,11 +3852,7 @@ class="payment-badge payment-badge-unionpay payment-wide"
 role="img"
 aria-label="UnionPay"
 >
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
+<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M12 7h22l-6 30H6z" fill="#E21836"/>
 <path d="M28 7h22l-6 30H22z" fill="#007B84"/>
 <path d="M44 7h22l-6 30H38z" fill="#00A6A6"/>
@@ -5041,6 +3865,7 @@ aria-hidden="true"
 </div>
 
 </div>
+
 
 </footer>
 
@@ -5315,6 +4140,10 @@ PRODUCT DATA
 const PRODUCTS = {
 
 
+/* =========================================
+300mm WIDTH
+========================================= */
+
 "300x800":{
 double:195,
 triple:235,
@@ -5340,6 +4169,10 @@ image:"narrow-long-rectangle.png"
 },
 
 
+/* =========================================
+400mm WIDTH
+========================================= */
+
 "400x800":{
 double:215,
 triple:260,
@@ -5364,6 +4197,10 @@ triple:370,
 image:"narrow-long-rectangle.png"
 },
 
+
+/* =========================================
+600mm WIDTH
+========================================= */
 
 "600x600":{
 double:220,
@@ -5396,6 +4233,10 @@ image:"large-rectangle.png"
 },
 
 
+/* =========================================
+800mm WIDTH
+========================================= */
+
 "800x800":{
 double:290,
 triple:350,
@@ -5426,6 +4267,10 @@ triple:675,
 image:"large-rectangle.png"
 },
 
+
+/* =========================================
+1000mm WIDTH
+========================================= */
 
 "1000x1000":{
 double:420,
@@ -5458,12 +4303,20 @@ image:"jumbo.png"
 },
 
 
+/* =========================================
+OTHER EXISTING SIZE
+========================================= */
+
 "1200x1200":{
 double:510,
 triple:615,
 image:"large-square.png"
 },
 
+
+/* =========================================
+1500mm WIDTH
+========================================= */
 
 "1500x1500":{
 double:760,
@@ -5558,16 +4411,6 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 /* =========================================
 PROVISIONAL CONFIGURATION PRICING
-
-Clear Toughened = base price.
-
-Grey +22%
-Satin +25%
-Blue +30%
-Laminated +20%
-
-Laminated + tint remains additive against
-the original clear toughened base.
 ========================================= */
 
 const CONFIGURATION_UPLIFTS = {
@@ -5857,7 +4700,6 @@ document.getElementById(
 let imageTransitionToken =
 0;
 
-
 let imageFadeTimer =
 null;
 
@@ -5922,8 +4764,7 @@ finish ?? ""
 if (
 value === "blue" ||
 value === "blue tinted" ||
-value === "blue-tinted" ||
-value === "solar blue"
+value === "blue-tinted"
 ) {
 
 return "blue";
@@ -5937,9 +4778,7 @@ value === "gray" ||
 value === "grey tinted" ||
 value === "grey-tinted" ||
 value === "gray tinted" ||
-value === "gray-tinted" ||
-value === "solar grey" ||
-value === "solar gray"
+value === "gray-tinted"
 ) {
 
 return "grey";
@@ -5951,7 +4790,6 @@ if (
 value === "satin" ||
 value === "satin tinted" ||
 value === "satin-tinted" ||
-value === "satin privacy" ||
 value === "privacy"
 ) {
 
@@ -6059,7 +4897,6 @@ function calculateExternalSize() {
 
 const dimensions =
 getExternalDimensions();
-
 
 return `${dimensions.width}mm × ${dimensions.length}mm`;
 
@@ -6597,7 +5434,7 @@ imageSource;
 
 
 /* =========================================
-ORDER PAGE PRICE
+PRICE
 ========================================= */
 
 function selectedPrice() {
@@ -6700,10 +5537,6 @@ configuredPrice
 }
 
 
-/* =========================================
-MONEY
-========================================= */
-
 function moneyParts(
 value
 ) {
@@ -6737,27 +5570,6 @@ pence:
 pence
 
 };
-
-}
-
-
-function formatMoney(
-value
-) {
-
-return new Intl.NumberFormat(
-"en-GB",
-{
-style:"currency",
-currency:"GBP",
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-).format(
-Number(
-value
-)
-);
 
 }
 
@@ -7239,11 +6051,10 @@ return `${size} ${tintText}${typeText}${glazingText} Glazed Frameless Skylight`;
 
 
 /* =========================================
-CHANGE 2
-GLAZED + TINT MOVING LABELS
+SLIDING GLAZED LABEL
 ========================================= */
 
-function updateGlazingLabel() {
+function updateGlazedAppearance() {
 
 if (
 !glazedLabel
@@ -7262,6 +6073,10 @@ state.glazing ===
 
 }
 
+
+/* =========================================
+SLIDING TINT LABEL
+========================================= */
 
 function updateTintAppearance() {
 
@@ -7942,7 +6757,7 @@ true
 
 
 /* =========================================
-UPDATE MAIN ORDER PAGE UI
+UPDATE UI
 ========================================= */
 
 function updateUI(
@@ -8169,8 +6984,7 @@ state.tint
 );
 
 
-updateGlazingLabel();
-
+updateGlazedAppearance();
 
 updateTintAppearance();
 
@@ -8452,7 +7266,7 @@ importedImage
 
 
 /* =========================================
-MAIN ORDER PAGE EVENTS
+EVENTS
 ========================================= */
 
 document
@@ -8467,7 +7281,6 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
-
 
 state.glazing =
 button.dataset.glazing;
@@ -8495,7 +7308,6 @@ button.addEventListener(
 
 closeSizeDropdown();
 
-
 state.type =
 button.dataset.type;
 
@@ -8521,7 +7333,6 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
-
 
 state.border =
 Number(
@@ -8640,7 +7451,7 @@ updateUrl:false
 
 
 /* =========================================
-PREVENT QUANTITY DOUBLE TAP / CLICK ZOOM
+PREVENT QUANTITY DOUBLE-TAP / DOUBLE-CLICK ZOOM
 ========================================= */
 
 [
@@ -8711,7 +7522,7 @@ closeMenu();
 
 
 /* =========================================
-MAIN ORDER ADD TO BASKET
+ADD TO BASKET
 ========================================= */
 
 function addCurrentSelectionToBasket() {
@@ -8731,7 +7542,7 @@ state.basketTotal
 );
 
 
-const originalText =
+const originalDesktop =
 addToBasketText.textContent;
 
 
@@ -8743,7 +7554,7 @@ setTimeout(
 () => {
 
 addToBasketText.textContent =
-originalText;
+originalDesktop;
 
 },
 1200
@@ -8759,993 +7570,82 @@ addCurrentSelectionToBasket
 
 
 /* =========================================
-CHANGE 3
-CUSTOM CALCULATOR ELEMENTS
+HOMEPAGE-STYLE SCROLL REVEAL
 ========================================= */
 
-const calcWidth =
-document.getElementById(
-"calcWidth"
-);
-
-
-const calcLength =
-document.getElementById(
-"calcLength"
-);
-
-
-const calcGlazing =
-document.getElementById(
-"calcGlazing"
-);
-
-
-const calcBorder =
-document.getElementById(
-"calcBorder"
-);
-
-
-const calcFinish =
-document.getElementById(
-"calcFinish"
-);
-
-
-const calcExternalResult =
-document.getElementById(
-"calcExternalResult"
-);
-
-
-const calcExternalDimensions =
-document.getElementById(
-"calcExternalDimensions"
-);
-
-
-const calcExternalBorderBadge =
-document.getElementById(
-"calcExternalBorderBadge"
-);
-
-
-const calcSizeAlert =
-document.getElementById(
-"calcSizeAlert"
-);
-
-
-const calcSizeAlertText =
-document.getElementById(
-"calcSizeAlertText"
-);
-
-
-const calcPriceBox =
-document.getElementById(
-"calcPriceBox"
-);
-
-
-const calcPrice =
-document.getElementById(
-"calcPrice"
-);
-
-
-const calcInternalDimensions =
-document.getElementById(
-"calcInternalDimensions"
-);
-
-
-const calcExternalDimensionsSummary =
-document.getElementById(
-"calcExternalDimensionsSummary"
-);
-
-
-const calcDeliveryDate =
-document.getElementById(
-"calcDeliveryDate"
-);
-
-
-const customAddToBasket =
-document.getElementById(
-"customAddToBasket"
-);
-
-
-const customAddToBasketText =
-document.getElementById(
-"customAddToBasketText"
-);
-
-
-let currentCustomCalculatorPrice =
-null;
-
-
-/* =========================================
-CHANGE 4
-PARSE CUSTOM GLAZING CONFIGURATION
-========================================= */
-
-function getCustomGlazingConfiguration() {
-
-const value =
-String(
-calcGlazing.value
-);
-
-
-const parts =
-value.split(
-"-"
-);
-
-
-return {
-
-type:
-parts[0] ===
-"laminated"
-?
-"laminated"
-:
-"toughened",
-
-glazing:
-parts[1] ===
-"triple"
-?
-"triple"
-:
-"double"
-
-};
-
-}
-
-
-/* =========================================
-CHANGE 4
-ORDER-PAGE BASE PRICE INTERPOLATION
-
-Exact listed dimensions use the exact
-Order Page base price.
-
-Unlisted dimensions interpolate between
-the nearest Order Page size prices.
-========================================= */
-
-function getCustomBasePrice(
-width,
-length,
-glazing
-) {
-
-const requestedWidth =
-Number(
-width
-);
-
-
-const requestedLength =
-Number(
-length
-);
-
-
-const exactKey =
-`${requestedWidth}x${requestedLength}`;
-
-
-if (
-PRODUCTS[
-exactKey
-] &&
-Number.isFinite(
-Number(
-PRODUCTS[
-exactKey
-][
-glazing
-]
+const revealElements =
+Array.from(
+document.querySelectorAll(
+".reveal"
 )
-)
-) {
-
-return Number(
-PRODUCTS[
-exactKey
-][
-glazing
-]
-);
-
-}
-
-
-const pricingPoints =
-Object
-.entries(
-PRODUCTS
-)
-.map(
-([
-size,
-product
-]) => {
-
-const [
-pointWidth,
-pointLength
-] =
-size
-.split(
-"x"
-)
-.map(
-Number
-);
-
-
-const widthDistance =
-(
-requestedWidth -
-pointWidth
-) /
-1200;
-
-
-const lengthDistance =
-(
-requestedLength -
-pointLength
-) /
-2200;
-
-
-const distance =
-Math.sqrt(
-(
-widthDistance *
-widthDistance
-)
-+
-(
-lengthDistance *
-lengthDistance
-)
-);
-
-
-return {
-
-price:
-Number(
-product[
-glazing
-]
-),
-
-distance:
-distance
-
-};
-
-}
-)
-.filter(
-point =>
-Number.isFinite(
-point.price
-)
-)
-.sort(
-(
-a,
-b
-) =>
-a.distance -
-b.distance
-)
-.slice(
-0,
-5
 );
 
 
 if (
-!pricingPoints.length
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
 ) {
 
-return 0;
+revealElements.forEach(
+element => {
 
-}
-
-
-let weightedPrice =
-0;
-
-
-let totalWeight =
-0;
-
-
-pricingPoints.forEach(
-point => {
-
-const weight =
-1 /
-Math.pow(
-Math.max(
-point.distance,
-.025
-),
-2
-);
-
-
-weightedPrice +=
-point.price *
-weight;
-
-
-totalWeight +=
-weight;
-
-}
-);
-
-
-if (
-totalWeight <=
-0
-) {
-
-return 0;
-
-}
-
-
-return weightedPrice /
-totalWeight;
-
-}
-
-
-/* =========================================
-CHANGE 4
-CUSTOM CALCULATOR PRICE
-
-1. Uses Order Page base pricing.
-2. Uses same tint / lamination uplifts.
-3. Uses same border adjustment.
-4. THEN adds exactly 8%.
-========================================= */
-
-function calculateCustomPrice(
-width,
-length
-) {
-
-const glazingConfiguration =
-getCustomGlazingConfiguration();
-
-
-const base =
-getCustomBasePrice(
-width,
-length,
-glazingConfiguration.glazing
-);
-
-
-if (
-!Number.isFinite(
-base
-) ||
-base <=
-0
-) {
-
-return null;
-
-}
-
-
-const typeUplift =
-
-CONFIGURATION_UPLIFTS.type[
-glazingConfiguration.type
-]
-
-||
-
-0;
-
-
-const tint =
-normalizeTint(
-calcFinish.value
-);
-
-
-const tintUplift =
-
-CONFIGURATION_UPLIFTS.tint[
-tint
-]
-
-||
-
-0;
-
-
-const border =
-Number(
-calcBorder.value
-);
-
-
-const borderAdjustment =
-
-BORDER_PRICE_ADJUSTMENTS[
-border
-]
-
-||
-
-0;
-
-
-const equivalentOrderPagePrice =
-
-roundToNearestFive(
-
-base
-
-+
-
-(
-base *
-typeUplift
-)
-
-+
-
-(
-base *
-tintUplift
-)
-
-+
-
-borderAdjustment
-
-);
-
-
-/*
-CHANGE 4
-
-Custom calculator is 8% above the
-equivalent Order Page configured price.
-*/
-
-const customPrice =
-
-equivalentOrderPagePrice *
-1.08;
-
-
-/*
-Keep the 8% uplift intact and round only
-to the nearest whole pound for display.
-*/
-
-return Math.round(
-customPrice
-);
-
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR VALIDATION
-========================================= */
-
-function getCustomCalculatorValidation(
-width,
-length
-) {
-
-if (
-!Number.isFinite(
-width
-) ||
-!Number.isFinite(
-length
-) ||
-width <=
-0 ||
-length <=
-0
-) {
-
-return {
-
-valid:false,
-empty:true,
-message:"Enter both internal glass dimensions to calculate your made-to-order price."
-
-};
-
-}
-
-
-if (
-width <
-300
-) {
-
-return {
-
-valid:false,
-empty:false,
-message:"The minimum online width is 300mm."
-
-};
-
-}
-
-
-if (
-width >
-1500
-) {
-
-return {
-
-valid:false,
-empty:false,
-message:"Widths above 1500mm require a manual oversized quotation."
-
-};
-
-}
-
-
-if (
-length <
-400
-) {
-
-return {
-
-valid:false,
-empty:false,
-message:"The minimum online length is 400mm."
-
-};
-
-}
-
-
-if (
-length >
-2500
-) {
-
-return {
-
-valid:false,
-empty:false,
-message:"Lengths above 2500mm require a manual oversized quotation."
-
-};
-
-}
-
-
-if (
-length <
-width
-) {
-
-return {
-
-valid:false,
-empty:false,
-message:"Length / Long Side must be equal to or greater than Width / Short Side."
-
-};
-
-}
-
-
-return {
-
-valid:true,
-empty:false,
-message:""
-
-};
-
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR DELIVERY DATE
-========================================= */
-
-function addWorkingDays(
-startDate,
-workingDays
-) {
-
-const date =
-new Date(
-startDate
-);
-
-
-let remaining =
-Number(
-workingDays
-);
-
-
-while (
-remaining >
-0
-) {
-
-date.setDate(
-date.getDate() +
-1
-);
-
-
-const day =
-date.getDay();
-
-
-if (
-day !==
-0 &&
-day !==
-6
-) {
-
-remaining -=
-1;
-
-}
-
-}
-
-
-return date;
-
-}
-
-
-function getEstimatedDeliveryDateText() {
-
-const estimatedDate =
-addWorkingDays(
-new Date(),
-5
-);
-
-
-return new Intl.DateTimeFormat(
-"en-GB",
-{
-weekday:"short",
-day:"numeric",
-month:"short",
-year:"numeric"
-}
-).format(
-estimatedDate
-);
-
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR UI
-========================================= */
-
-function resetCustomCalculatorOutput() {
-
-currentCustomCalculatorPrice =
-null;
-
-
-calcPrice.textContent =
-"—";
-
-
-calcInternalDimensions.textContent =
-"—";
-
-
-calcExternalDimensionsSummary.textContent =
-"—";
-
-
-calcDeliveryDate.textContent =
-"Enter your dimensions";
-
-
-calcExternalResult.classList.remove(
+element.classList.add(
 "is-visible"
 );
 
-
-calcPriceBox.classList.add(
-"is-unavailable"
-);
-
-
-customAddToBasket.disabled =
-true;
-
 }
-
-
-function updateCustomCalculator() {
-
-const width =
-Number(
-calcWidth.value
 );
-
-
-const length =
-Number(
-calcLength.value
-);
-
-
-const validation =
-getCustomCalculatorValidation(
-width,
-length
-);
-
-
-if (
-!validation.valid
-) {
-
-resetCustomCalculatorOutput();
-
-
-if (
-validation.empty
-) {
-
-calcSizeAlert.hidden =
-true;
 
 }
 else {
 
-calcSizeAlert.hidden =
-false;
+const revealObserver =
+new IntersectionObserver(
+entries => {
 
+entries.forEach(
+entry => {
 
-calcSizeAlertText.textContent =
-validation.message;
-
-}
-
+if (
+!entry.isIntersecting
+) {
 
 return;
 
 }
 
 
-calcSizeAlert.hidden =
-true;
-
-
-const border =
-Number(
-calcBorder.value
-);
-
-
-const externalWidth =
-width +
-(
-border *
-2
-);
-
-
-const externalLength =
-length +
-(
-border *
-2
-);
-
-
-const internalText =
-`${width}mm × ${length}mm`;
-
-
-const externalText =
-`${externalWidth}mm × ${externalLength}mm`;
-
-
-calcExternalDimensions.textContent =
-externalText;
-
-
-calcExternalDimensionsSummary.textContent =
-externalText;
-
-
-calcInternalDimensions.textContent =
-internalText;
-
-
-calcExternalBorderBadge.textContent =
-`${border}mm Border`;
-
-
-calcExternalResult.classList.add(
+entry.target.classList.add(
 "is-visible"
 );
 
 
-const calculatedPrice =
-calculateCustomPrice(
-width,
-length
-);
-
-
-if (
-!Number.isFinite(
-calculatedPrice
-)
-) {
-
-resetCustomCalculatorOutput();
-
-return;
-
-}
-
-
-currentCustomCalculatorPrice =
-calculatedPrice;
-
-
-calcPrice.textContent =
-formatMoney(
-calculatedPrice
-);
-
-
-calcDeliveryDate.textContent =
-getEstimatedDeliveryDateText();
-
-
-calcPriceBox.classList.remove(
-"is-unavailable"
-);
-
-
-customAddToBasket.disabled =
-false;
-
-}
-
-
-/* =========================================
-CUSTOM CALCULATOR EVENTS
-========================================= */
-
-[
-calcWidth,
-calcLength
-]
-.forEach(
-input => {
-
-input.addEventListener(
-"input",
-updateCustomCalculator
-);
-
-
-input.addEventListener(
-"change",
-updateCustomCalculator
+revealObserver.unobserve(
+entry.target
 );
 
 }
 );
-
-
-[
-calcGlazing,
-calcBorder,
-calcFinish
-]
-.forEach(
-select => {
-
-select.addEventListener(
-"change",
-updateCustomCalculator
-);
-
-}
-);
-
-
-/* =========================================
-CUSTOM CALCULATOR ADD TO BASKET
-========================================= */
-
-customAddToBasket.addEventListener(
-"click",
-() => {
-
-if (
-!Number.isFinite(
-currentCustomCalculatorPrice
-)
-) {
-
-return;
-
-}
-
-
-state.basketTotal +=
-currentCustomCalculatorPrice;
-
-
-updateBasketTotal(
-state.basketTotal
-);
-
-
-const originalText =
-customAddToBasketText.textContent;
-
-
-customAddToBasketText.textContent =
-"Added To Basket ✓";
-
-
-setTimeout(
-() => {
-
-customAddToBasketText.textContent =
-originalText;
 
 },
-1200
+{
+threshold:.14,
+rootMargin:"0px 0px -7% 0px"
+}
+);
+
+
+revealElements.forEach(
+element => {
+
+revealObserver.observe(
+element
 );
 
 }
 );
+
+}
 
 
 /* =========================================
@@ -9764,9 +7664,6 @@ updateUrl:false,
 animateImage:false
 }
 );
-
-
-updateCustomCalculator();
 
 
 setTimeout(
