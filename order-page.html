@@ -580,18 +580,57 @@ clamp(40px,5vw,72px)
 clamp(76px,8vw,112px);
 }
 
-.order-kicker {
-margin-bottom:18px;
-color:var(--orange);
+
+/* =========================================
+ORDER PAGE HOMEPAGE-STYLE HEADING
+========================================= */
+
+.order-heading {
+margin-bottom:clamp(30px,3.6vw,48px);
+}
+
+.order-heading-eyebrow {
+margin:0;
+color:rgba(247,247,243,.47);
 font-family:
 "Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
 "Aptos",
 sans-serif;
-font-size:10px;
+font-size:clamp(10px,.9vw,13px);
 font-weight:800;
-letter-spacing:1.75px;
+line-height:1;
+letter-spacing:2.05px;
 text-transform:uppercase;
 }
+
+.order-heading-title {
+margin:9px 0 0;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Bahnschrift",
+"Arial Narrow",
+"Aptos Display",
+sans-serif;
+font-size:clamp(38px,5vw,67px);
+font-weight:800;
+line-height:.96;
+letter-spacing:-2px;
+}
+
+.order-heading-rule {
+width:clamp(155px,17vw,225px);
+height:1px;
+margin-top:clamp(21px,2.2vw,29px);
+background:rgba(247,247,243,.70);
+}
+
+
+/* =========================================
+ORDER CARD
+========================================= */
 
 .order-card {
 position:relative;
@@ -697,16 +736,19 @@ padding-top:18px;
 margin-top:15px;
 }
 
+/* CHANGE 3 — 40% LARGER */
+
 .selector-heading {
-margin-bottom:8px;
+margin-bottom:9px;
 color:#81837f;
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:9px;
+font-size:12.6px;
 font-weight:800;
-letter-spacing:1.4px;
+line-height:1;
+letter-spacing:1.55px;
 text-transform:uppercase;
 }
 
@@ -898,19 +940,21 @@ display:grid;
 gap:13px;
 }
 
+/* CHANGE 3 — 40% LARGER */
+
 .option-group label,
 .option-label {
 display:block;
-margin:0 0 6px;
+margin:0 0 8px;
 color:#80827e;
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+font-size:11.2px;
 line-height:1;
 font-weight:800;
-letter-spacing:1.25px;
+letter-spacing:1.4px;
 text-transform:uppercase;
 }
 
@@ -1012,27 +1056,29 @@ padding-top:clamp(23px,2.5vw,34px);
 border-top:1px solid rgba(255,255,255,.12);
 }
 
+/* CHANGE 3 — 40% LARGER */
+
 .purchase-section-heading {
 display:flex;
 align-items:center;
-gap:11px;
-margin-bottom:14px;
-color:rgba(247,247,243,.52);
+gap:12px;
+margin-bottom:17px;
+color:rgba(247,247,243,.58);
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:9px;
+font-size:12.6px;
 font-weight:800;
 line-height:1;
-letter-spacing:1.8px;
+letter-spacing:1.9px;
 text-transform:uppercase;
 }
 
 .purchase-section-heading::before {
 content:"";
 display:block;
-width:27px;
+width:29px;
 height:1px;
 background:var(--orange);
 }
@@ -1065,13 +1111,13 @@ border-left:1px solid rgba(255,255,255,.10);
 }
 
 .purchase-zone-label {
-margin-bottom:12px;
-color:rgba(247,247,243,.44);
+margin-bottom:11px;
+color:rgba(247,247,243,.49);
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:9px;
+font-size:9.5px;
 font-weight:800;
 line-height:1;
 letter-spacing:1.45px;
@@ -1080,14 +1126,24 @@ text-transform:uppercase;
 
 
 /* =========================================
-FULL-WIDTH PRICE
+UNIT PRICE / TOTAL
 ========================================= */
 
-.price-line {
+.purchase-price-zone {
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+}
+
+.unit-price-block {
+min-width:0;
+}
+
+.price-line,
+.total-price-line {
 display:flex;
 align-items:flex-end;
 justify-content:flex-start;
-color:var(--cream);
 white-space:nowrap;
 font-family:
 "Bahnschrift",
@@ -1097,14 +1153,18 @@ sans-serif;
 line-height:1;
 }
 
+.price-line {
+color:var(--cream);
+}
+
 .price-pound,
 .price-whole,
 .price-dot {
 display:block;
-font-size:clamp(54px,5.8vw,82px);
+font-size:clamp(45px,4.9vw,67px);
 font-weight:800;
 line-height:.78;
-letter-spacing:-3px;
+letter-spacing:-2.6px;
 }
 
 .price-pound {
@@ -1116,33 +1176,104 @@ margin-left:1px;
 }
 
 /*
-The pence stay intentionally small but now
-sit on the SAME BOTTOM EDGE as the large
-price digits instead of at the top-right.
+Small pence remain small, but bottom-align
+with the large digits.
 */
 
 .price-pence {
 display:block;
 align-self:flex-end;
-margin-left:5px;
+margin-left:4px;
 padding-bottom:0;
 font-family:
 "Bahnschrift",
 "Arial Narrow",
 sans-serif;
-font-size:clamp(19px,2vw,29px);
+font-size:clamp(16px,1.7vw,23px);
 font-weight:800;
 line-height:.78;
-letter-spacing:-.6px;
+letter-spacing:-.45px;
 }
 
 .vat-line {
-margin-top:14px;
-color:rgba(255,255,255,.48);
-font-size:12px;
+margin-top:11px;
+color:rgba(255,255,255,.46);
+font-size:10px;
 font-weight:500;
 line-height:1;
 text-transform:lowercase;
+}
+
+
+/* =========================================
+DYNAMIC TOTAL
+========================================= */
+
+.total-price-block {
+margin-top:18px;
+padding-top:15px;
+border-top:1px solid rgba(232,120,23,.24);
+}
+
+.total-price-block[hidden] {
+display:none !important;
+}
+
+.total-price-label {
+margin-bottom:8px;
+color:rgba(242,138,40,.78);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:800;
+line-height:1;
+letter-spacing:1.45px;
+text-transform:uppercase;
+}
+
+.total-price-line {
+color:var(--orange-bright);
+font-family:
+"Bahnschrift SemiCondensed",
+"Bahnschrift",
+"Arial Narrow",
+sans-serif;
+font-style:italic;
+}
+
+.total-price-pound,
+.total-price-whole,
+.total-price-dot {
+display:block;
+font-size:clamp(31px,3.5vw,48px);
+font-weight:850;
+line-height:.80;
+letter-spacing:-1.8px;
+}
+
+.total-price-pound {
+margin-right:1px;
+}
+
+.total-price-dot {
+margin-left:1px;
+}
+
+.total-price-pence {
+display:block;
+align-self:flex-end;
+margin-left:4px;
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(12px,1.35vw,18px);
+font-style:normal;
+font-weight:850;
+line-height:.80;
+letter-spacing:-.3px;
 }
 
 
@@ -1229,6 +1360,15 @@ linear-gradient(
 transition:
 border-color .24s ease,
 box-shadow .24s ease;
+
+/*
+Stops double-tap browser zoom on the
+quantity control without disabling normal
+pinch-to-zoom on the page.
+*/
+touch-action:manipulation;
+-webkit-user-select:none;
+user-select:none;
 }
 
 .quantity-row:focus-within,
@@ -1256,6 +1396,9 @@ transition:
 background .18s ease,
 color .18s ease,
 transform .15s ease;
+touch-action:manipulation;
+-webkit-user-select:none;
+user-select:none;
 }
 
 .quantity-button:hover {
@@ -1283,6 +1426,9 @@ align-items:center;
 justify-content:center;
 gap:9px;
 text-align:center;
+touch-action:manipulation;
+-webkit-user-select:none;
+user-select:none;
 }
 
 .quantity-display strong {
@@ -1341,8 +1487,7 @@ box-shadow .2s ease;
 .add-to-basket:hover {
 transform:translateY(-2px);
 background:var(--orange-bright);
-box-shadow:
-0 24px 56px rgba(232,120,23,.14);
+box-shadow:0 24px 56px rgba(232,120,23,.14);
 }
 
 .basket-arrow {
@@ -1719,7 +1864,6 @@ text-decoration:none;
 
 /* =========================================
 TABLET — HOMEPAGE HEADER BREAKPOINT
-THIS WAS MISSING FROM THE ORDER PAGE
 ========================================= */
 
 @media(max-width:950px) {
@@ -1783,6 +1927,27 @@ padding-top:27px;
 padding-bottom:58px;
 }
 
+.order-heading {
+margin-bottom:27px;
+}
+
+.order-heading-eyebrow {
+font-size:8px;
+letter-spacing:1.6px;
+}
+
+.order-heading-title {
+margin-top:7px;
+font-size:clamp(32px,9.6vw,43px);
+line-height:.97;
+letter-spacing:-1.35px;
+}
+
+.order-heading-rule {
+width:165px;
+margin-top:18px;
+}
+
 .order-card {
 padding:8px;
 }
@@ -1816,10 +1981,12 @@ padding-top:9px;
 margin-top:9px;
 }
 
+/* 40% larger than previous mobile value */
+
 .selector-heading {
-margin-bottom:5px;
-font-size:6.5px;
-letter-spacing:.9px;
+margin-bottom:6px;
+font-size:9.1px;
+letter-spacing:.95px;
 }
 
 .glazing-selector button {
@@ -1875,11 +2042,13 @@ margin:9px 0 12px;
 gap:8px;
 }
 
+/* 40% larger than previous mobile value */
+
 .option-group label,
 .option-label {
-font-size:5.7px;
-letter-spacing:.7px;
-margin-bottom:4px;
+font-size:8px;
+letter-spacing:.75px;
+margin-bottom:5px;
 }
 
 .size-select {
@@ -1904,14 +2073,16 @@ margin-top:20px;
 padding-top:19px;
 }
 
+/* 40% larger than previous mobile value */
+
 .purchase-section-heading {
-margin-bottom:10px;
-font-size:7px;
-letter-spacing:1.25px;
+margin-bottom:12px;
+font-size:9.8px;
+letter-spacing:1.35px;
 }
 
 .purchase-section-heading::before {
-width:20px;
+width:22px;
 }
 
 .purchase-layout {
@@ -1939,26 +2110,49 @@ padding:13px 12px 14px;
 
 .purchase-zone-label {
 margin-bottom:8px;
-font-size:6.5px;
+font-size:6.8px;
 letter-spacing:1px;
 }
 
 .price-pound,
 .price-whole,
 .price-dot {
-font-size:clamp(34px,10.5vw,44px);
-letter-spacing:-1.8px;
+font-size:clamp(31px,8.9vw,39px);
+letter-spacing:-1.6px;
 }
 
 .price-pence {
 margin-left:3px;
-font-size:clamp(12px,3.7vw,16px);
-letter-spacing:-.25px;
+font-size:clamp(11px,3vw,14px);
+letter-spacing:-.2px;
 }
 
 .vat-line {
-margin-top:8px;
-font-size:8px;
+margin-top:7px;
+font-size:7.5px;
+}
+
+.total-price-block {
+margin-top:11px;
+padding-top:10px;
+}
+
+.total-price-label {
+margin-bottom:6px;
+font-size:6.5px;
+letter-spacing:1px;
+}
+
+.total-price-pound,
+.total-price-whole,
+.total-price-dot {
+font-size:clamp(24px,7vw,31px);
+letter-spacing:-1.2px;
+}
+
+.total-price-pence {
+margin-left:3px;
+font-size:clamp(9px,2.5vw,12px);
 }
 
 .dimension-block {
@@ -2177,7 +2371,7 @@ padding-right:10px;
 .price-pound,
 .price-whole,
 .price-dot {
-font-size:clamp(32px,10vw,40px);
+font-size:clamp(29px,8.4vw,36px);
 }
 
 .purchase-action-controls {
@@ -2351,7 +2545,6 @@ Rooflights
 
 
 <div class="action-icons">
-
 
 <a
 href="contact.html"
@@ -2547,8 +2740,26 @@ ORDER CONFIGURATOR
 
 <div class="order-shell">
 
-<div class="order-kicker">
+
+<!-- =========================================
+CHANGE 1 — HOMEPAGE-STYLE PAGE HEADING
+========================================= -->
+
+<div class="order-heading">
+
+<div class="order-heading-eyebrow">
+Place Your Order
+</div>
+
+<h2 class="order-heading-title">
 Configure Your Rooflight
+</h2>
+
+<div
+class="order-heading-rule"
+aria-hidden="true"
+></div>
+
 </div>
 
 
@@ -2757,7 +2968,7 @@ aria-label="Choose rooflight size"
 <div class="option-group">
 
 <div class="option-label">
-Type
+Glass
 </div>
 
 
@@ -2850,18 +3061,23 @@ Order Summary
 <div class="purchase-layout">
 
 
-<!-- PRICE -->
+<!-- =========================================
+UNIT PRICE / TOTAL
+========================================= -->
 
 <div class="purchase-zone purchase-price-zone">
 
+
+<div class="unit-price-block">
+
 <div class="purchase-zone-label">
-From
+Unit Price:
 </div>
 
 
 <div
 class="price-line"
-aria-label="Price including VAT"
+aria-label="Unit price including VAT"
 >
 
 <span class="price-pound">
@@ -2896,7 +3112,56 @@ inc. vat
 </div>
 
 
-<!-- DIMENSIONS -->
+<div
+class="total-price-block"
+id="totalPriceBlock"
+hidden
+aria-hidden="true"
+>
+
+<div class="total-price-label">
+Total:
+</div>
+
+
+<div
+class="total-price-line"
+aria-label="Order total including VAT"
+>
+
+<span class="total-price-pound">
+£
+</span>
+
+<span
+class="total-price-whole"
+id="totalPriceWhole"
+>
+600
+</span>
+
+<span class="total-price-dot">
+.
+</span>
+
+<span
+class="total-price-pence"
+id="totalPricePence"
+>
+00
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================
+DIMENSIONS
+========================================= -->
 
 <div class="purchase-zone purchase-dimensions-zone">
 
@@ -2944,7 +3209,9 @@ Order size refers to the internal visible glass size.
 </div>
 
 
-<!-- QUANTITY / ADD TO BASKET -->
+<!-- =========================================
+QUANTITY / ADD TO BASKET
+========================================= -->
 
 <div class="purchase-zone purchase-action-zone">
 
@@ -4065,6 +4332,38 @@ image:"jumbo.png"
 };
 
 
+/* =========================================
+CHANGE 2 — SIZE DROPDOWN ORDER
+========================================= */
+
+const SIZE_DROPDOWN_ORDER = [
+
+"600x600",
+"600x900",
+"600x1200",
+"600x1500",
+"600x2000",
+
+"800x800",
+"800x1000",
+"800x1200",
+"800x1500",
+"800x2000",
+
+"1000x1000",
+"1000x1200",
+"1000x1500",
+"1000x2000",
+"1000x2500",
+
+"1500x1500",
+"1500x1800",
+"1500x2000",
+"1500x2500"
+
+];
+
+
 const TINT_PRICE_OVERRIDES = {
 
 "800x1000":{
@@ -4119,16 +4418,6 @@ satin:"satin-"
 
 };
 
-
-/*
-No blue / grey / satin medium-rectangle
-filename was visible in the supplied
-repository listing.
-
-For 800 × 1200 use the existing real
-large-rectangle tint image rather than
-inventing a filename.
-*/
 
 const TINT_IMAGE_BASE_FALLBACKS = {
 
@@ -4237,6 +4526,24 @@ document.getElementById(
 const pricePence =
 document.getElementById(
 "pricePence"
+);
+
+
+const totalPriceBlock =
+document.getElementById(
+"totalPriceBlock"
+);
+
+
+const totalPriceWhole =
+document.getElementById(
+"totalPriceWhole"
+);
+
+
+const totalPricePence =
+document.getElementById(
+"totalPricePence"
 );
 
 
@@ -5296,6 +5603,17 @@ price
 );
 
 
+const orderTotal =
+price *
+state.quantity;
+
+
+const totalParts =
+moneyParts(
+orderTotal
+);
+
+
 const title =
 buildTitle();
 
@@ -5362,6 +5680,39 @@ parts.whole;
 pricePence.textContent =
 parts.pence;
 
+
+/* =========================================
+DYNAMIC TOTAL
+========================================= */
+
+totalPriceWhole.textContent =
+totalParts.whole;
+
+
+totalPricePence.textContent =
+totalParts.pence;
+
+
+const showTotal =
+state.quantity >
+1;
+
+
+totalPriceBlock.hidden =
+!showTotal;
+
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+String(
+!showTotal
+)
+);
+
+
+/* =========================================
+QUANTITY
+========================================= */
 
 quantityValue.textContent =
 state.quantity;
@@ -5490,73 +5841,21 @@ updateQueryString();
 
 /* =========================================
 SIZE LIST
+CHANGE 2 — WIDTH GROUPED ORDER
 ========================================= */
 
 function populateSizes() {
 
 const orderedSizes =
 
-Object
-.keys(
-PRODUCTS
+SIZE_DROPDOWN_ORDER
+.filter(
+size =>
+Boolean(
+PRODUCTS[
+size
+]
 )
-.sort(
-(
-a,
-b
-) => {
-
-const [
-aW,
-aL
-] =
-a
-.split(
-"x"
-)
-.map(
-Number
-);
-
-
-const [
-bW,
-bL
-] =
-b
-.split(
-"x"
-)
-.map(
-Number
-);
-
-
-return (
-
-(
-aW *
-aL
-)
--
-(
-bW *
-bL
-)
-
-||
-
-aW -
-bW
-
-||
-
-aL -
-bL
-
-);
-
-}
 );
 
 
@@ -6039,6 +6338,30 @@ updateUrl:false
 );
 
 }
+
+}
+);
+
+
+/* =========================================
+CHANGE 4 — PREVENT QUANTITY DOUBLE-TAP ZOOM
+========================================= */
+
+[
+quantityMinus,
+quantityPlus
+]
+.forEach(
+button => {
+
+button.addEventListener(
+"dblclick",
+event => {
+
+event.preventDefault();
+
+}
+);
 
 }
 );
