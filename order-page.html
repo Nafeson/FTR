@@ -691,8 +691,9 @@ color:var(--cream);
 text-transform:none;
 }
 
+/* CHANGE 2 — 15% larger */
 .order-opening-title span {
-font-size:clamp(18px,2.4vw,32px);
+font-size:clamp(20.7px,2.76vw,36.8px);
 }
 
 .order-content-wrap {
@@ -1075,7 +1076,6 @@ color:var(--cream);
 
 
 /* =========================================
-CHANGE 2
 ESTIMATED DELIVERY BETWEEN TITLE + SPECS
 ========================================= */
 
@@ -1129,7 +1129,6 @@ white-space:nowrap;
 
 
 /* =========================================
-CHANGE 1
 CLEAN PRODUCT HIGHLIGHTS / WHITE HYPHENS
 ========================================= */
 
@@ -2022,6 +2021,8 @@ SECURE CHECKOUT
 ========================================= */
 
 .secure-checkout {
+overflow:hidden;
+isolation:isolate;
 border:1px solid rgba(255,255,255,.21);
 border-radius:13px;
 background:
@@ -2034,6 +2035,115 @@ color:var(--cream);
 padding:0 18px;
 box-shadow:
 inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.secure-checkout span {
+position:relative;
+z-index:2;
+}
+
+.secure-checkout::before {
+content:"";
+position:absolute;
+z-index:1;
+top:-80%;
+left:-55%;
+width:24%;
+height:260%;
+pointer-events:none;
+opacity:0;
+background:
+linear-gradient(
+90deg,
+transparent 0%,
+rgba(255,255,255,.03) 20%,
+rgba(255,255,255,.26) 50%,
+rgba(255,255,255,.04) 80%,
+transparent 100%
+);
+transform:
+translateX(-180%)
+skewX(-18deg);
+}
+
+.secure-checkout.has-basket {
+animation:
+secureCheckoutEncouragement
+3s ease-in-out
+infinite;
+}
+
+.secure-checkout.has-basket::before {
+opacity:1;
+animation:
+secureCheckoutShine
+3s ease-in-out
+infinite;
+}
+
+@keyframes secureCheckoutShine {
+
+0%,
+58% {
+transform:
+translateX(-180%)
+skewX(-18deg);
+opacity:0;
+}
+
+62% {
+opacity:.9;
+}
+
+78% {
+transform:
+translateX(720%)
+skewX(-18deg);
+opacity:.85;
+}
+
+82%,
+100% {
+transform:
+translateX(720%)
+skewX(-18deg);
+opacity:0;
+}
+
+}
+
+@keyframes secureCheckoutEncouragement {
+
+0%,
+67%,
+100% {
+border-color:rgba(255,255,255,.21);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+73% {
+border-color:rgba(232,120,23,.48);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.04),
+0 0 0 1px rgba(232,120,23,.035),
+0 7px 18px rgba(232,120,23,.09);
+}
+
+79% {
+border-color:rgba(255,255,255,.29);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.035),
+0 4px 13px rgba(0,0,0,.10);
+}
+
+85% {
+border-color:rgba(232,120,23,.34);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.03),
+0 5px 15px rgba(232,120,23,.055);
+}
+
 }
 
 .secure-checkout:hover {
@@ -2959,8 +3069,9 @@ margin-top:7px;
 line-height:1;
 }
 
+/* CHANGE 2 — mobile also 15% larger */
 .order-opening-title span {
-font-size:18px;
+font-size:20.7px;
 }
 
 .order-content-wrap {
@@ -3094,7 +3205,9 @@ scroll-behavior:auto;
 .ticker,
 .whatsapp-action,
 .basket-total-text,
-.basket-arrow {
+.basket-arrow,
+.secure-checkout.has-basket,
+.secure-checkout.has-basket::before {
 animation:none !important;
 }
 
@@ -3754,7 +3867,10 @@ Order Summary
 <div class="purchase-zone purchase-price-zone">
 
 
-<div class="unit-price-block">
+<div
+class="unit-price-block"
+id="unitPriceBlock"
+>
 
 <div class="purchase-zone-label">
 Unit Price:
@@ -3793,7 +3909,10 @@ id="pricePence"
 </div>
 
 
-<div class="vat-line">
+<div
+class="vat-line"
+id="vatLine"
+>
 inc. vat
 </div>
 
@@ -4507,6 +4626,12 @@ document.getElementById(
 );
 
 
+const secureCheckout =
+document.getElementById(
+"secureCheckout"
+);
+
+
 let basketAnimationTimer =
 null;
 
@@ -4602,6 +4727,19 @@ basketTotalText.setAttribute(
 "Basket total " +
 formatted
 );
+
+
+if (
+secureCheckout
+) {
+
+secureCheckout.classList.toggle(
+"has-basket",
+safeTotal >
+0
+);
+
+}
 
 
 animateBasketTotal();
@@ -5066,9 +5204,21 @@ document.getElementById(
 );
 
 
+const unitPriceBlock =
+document.getElementById(
+"unitPriceBlock"
+);
+
+
 const unitPriceLine =
 document.getElementById(
 "unitPriceLine"
+);
+
+
+const vatLine =
+document.getElementById(
+"vatLine"
 );
 
 
@@ -6284,9 +6434,6 @@ return `${day}${ordinalSuffix(day)}`;
 
 /* =========================================
 COMPACT DELIVERY RANGE
-Examples:
-27th Aug - 1st Sept
-27th - 29th Aug
 ========================================= */
 
 function formatDeliveryRange(
@@ -7531,6 +7678,59 @@ numericTotal
 
 
 /* =========================================
+CHANGE 1
+MOVE INC. VAT BETWEEN UNIT + TOTAL
+========================================= */
+
+function updateVatPosition() {
+
+if (
+!vatLine ||
+!unitPriceBlock ||
+!totalPriceBlock
+) {
+
+return;
+
+}
+
+
+if (
+state.quantity >
+1
+) {
+
+if (
+vatLine.parentElement !==
+totalPriceBlock
+) {
+
+totalPriceBlock.appendChild(
+vatLine
+);
+
+}
+
+}
+else {
+
+if (
+vatLine.parentElement !==
+unitPriceBlock
+) {
+
+unitPriceBlock.appendChild(
+vatLine
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================
 TITLE
 Glass type does NOT alter title.
 Tint and glazing DO alter title.
@@ -8418,6 +8618,11 @@ calculateExternalSize();
 updateUnitPrice(
 price
 );
+
+
+/* Move inc. VAT before total visibility update */
+
+updateVatPosition();
 
 
 updateTotalPrice(
