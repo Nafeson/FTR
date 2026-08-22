@@ -2,7 +2,10 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <title>600 × 900mm Triple Glazed Frameless Skylight | Factory Toughened Rooflights</title>
 
@@ -75,6 +78,7 @@ box-sizing:border-box;
 html {
 scroll-behavior:smooth;
 background:var(--black);
+touch-action:pan-x pan-y;
 }
 
 body {
@@ -90,6 +94,7 @@ color:var(--white);
 overflow-x:hidden;
 -webkit-font-smoothing:antialiased;
 text-rendering:optimizeLegibility;
+touch-action:pan-x pan-y;
 }
 
 img {
@@ -1843,6 +1848,10 @@ border-right:1px solid rgba(255,255,255,.10);
 transform:scale(.9);
 }
 
+.quantity-button:disabled {
+cursor:default;
+}
+
 .quantity-display {
 display:flex;
 align-items:center;
@@ -1914,7 +1923,8 @@ transform .2s ease,
 background .2s ease,
 border-color .2s ease,
 color .2s ease,
-box-shadow .2s ease;
+box-shadow .2s ease,
+opacity .2s ease;
 border:1px solid var(--orange);
 border-radius:18px;
 background:var(--orange);
@@ -1924,14 +1934,21 @@ box-shadow:
 0 10px 28px rgba(232,120,23,.08);
 }
 
-.add-to-order:hover {
+.add-to-order:hover:not(:disabled) {
 transform:translateY(-1px);
 background:var(--orange-bright);
 box-shadow:
 0 15px 34px rgba(232,120,23,.15);
 }
 
-#addToOrderText {
+.add-to-order:disabled {
+opacity:.38;
+cursor:not-allowed;
+box-shadow:none;
+}
+
+#addToOrderText,
+#customAddToOrderText {
 display:block;
 width:100%;
 text-align:center;
@@ -2008,7 +2025,7 @@ scale(1);
 
 }
 
-.add-to-order:hover .basket-arrow {
+.add-to-order:hover:not(:disabled) .basket-arrow {
 animation:none;
 transform:
 translateY(-50%)
@@ -2032,19 +2049,48 @@ transform:translateY(0);
 
 .order-final-summary-section.summary-enter {
 animation:
-orderSummaryReveal
-.48s cubic-bezier(.18,.72,.28,1)
+orderSummarySlowReveal
+1.75s
+linear
 both;
 }
 
-@keyframes orderSummaryReveal {
-
-from {
-opacity:0;
-transform:translateY(16px);
+.order-summary-item.summary-item-enter {
+animation:
+orderSummarySlowReveal
+1.75s
+linear
+both;
 }
 
-to {
+@keyframes orderSummarySlowReveal {
+
+0% {
+opacity:0;
+transform:translateY(18px);
+}
+
+35% {
+opacity:.28;
+transform:translateY(12px);
+}
+
+65% {
+opacity:.58;
+transform:translateY(7px);
+}
+
+82% {
+opacity:.84;
+transform:translateY(4px);
+}
+
+93% {
+opacity:.93;
+transform:translateY(2px);
+}
+
+100% {
 opacity:1;
 transform:translateY(0);
 }
@@ -2381,13 +2427,11 @@ font-size .22s ease,
 letter-spacing .22s ease;
 }
 
-/* £1,000.00 and above */
 .order-summary-total-price.is-four-figure {
 font-size:clamp(35px,3.85vw,53px);
 letter-spacing:-2.1px;
 }
 
-/* £10,000.00 and above */
 .order-summary-total-price.is-five-figure {
 font-size:clamp(28px,3.15vw,43px);
 letter-spacing:-1.6px;
@@ -2615,7 +2659,7 @@ min-height:clamp(340px,31vw,485px);
 padding:
 clamp(34px,4.5vw,58px)
 clamp(32px,4.7vw,64px)
-0;
+clamp(38px,4.8vw,64px);
 border:1px solid rgba(255,255,255,.10);
 border-top:3px solid var(--orange);
 background:
@@ -2670,10 +2714,7 @@ font-family:
 "Inter",
 Arial,
 sans-serif;
-
-/* 15% smaller than previous title */
 font-size:clamp(32.3px,4.42vw,56.1px);
-
 font-weight:800;
 line-height:.95;
 letter-spacing:-1.65px;
@@ -2758,6 +2799,12 @@ border-color:rgba(232,120,23,.48);
 background:#0d0f0f;
 box-shadow:
 0 0 0 1px rgba(232,120,23,.035);
+}
+
+.order-custom-input.is-invalid {
+border-color:rgba(232,120,23,.76);
+box-shadow:
+0 0 0 1px rgba(232,120,23,.06);
 }
 
 
@@ -2989,10 +3036,35 @@ font-weight:900;
 }
 
 
-/* blank area retained for later additions */
+/* =========================================
+CUSTOM UNIT SUMMARY
+========================================= */
 
-.order-custom-build-spacer {
-min-height:clamp(145px,15vw,240px);
+.custom-unit-summary-section {
+margin-top:clamp(38px,4.5vw,62px);
+}
+
+.custom-purchase-layout.is-incomplete {
+grid-template-columns:1fr;
+}
+
+.custom-purchase-layout.is-incomplete
+.custom-action-zone {
+grid-column:1 / -1;
+border-left:0 !important;
+}
+
+.custom-summary-details[hidden] {
+display:none !important;
+}
+
+
+/* =========================================
+CUSTOM ORDER SUMMARY
+========================================= */
+
+.custom-order-final-summary-section {
+margin-bottom:0;
 }
 
 
@@ -3541,6 +3613,11 @@ border-top:1px solid rgba(255,255,255,.10);
 padding:13px 12px 14px;
 }
 
+.custom-purchase-layout.is-incomplete
+.custom-action-zone {
+border-top:0;
+}
+
 .purchase-zone-label {
 margin-bottom:8px;
 font-size:6.8px;
@@ -3826,7 +3903,7 @@ min-height:365px;
 padding:
 31px
 20px
-0;
+34px;
 border-top-width:2px;
 }
 
@@ -3842,10 +3919,7 @@ width:25px;
 
 .order-custom-build-title {
 margin-top:21px;
-
-/* 15% smaller on mobile */
 font-size:clamp(27.2px,7.65vw,39.1px);
-
 line-height:.96;
 letter-spacing:-1.05px;
 }
@@ -3899,10 +3973,6 @@ font-size:clamp(10.5px,3.1vw,14px);
 .custom-build-dropdown-option.is-selected::after {
 right:13px;
 font-size:10px;
-}
-
-.order-custom-build-spacer {
-min-height:170px;
 }
 
 }
@@ -4145,19 +4215,12 @@ padding-right:18px;
 }
 
 .order-custom-build-title {
-
-/* 15% smaller than previous smallest-mobile size */
 font-size:clamp(25.5px,7.395vw,34px);
-
 }
 
 .order-custom-input,
 .custom-build-dropdown-trigger {
 height:46px;
-}
-
-.order-custom-build-spacer {
-min-height:160px;
 }
 
 }
@@ -4177,7 +4240,8 @@ scroll-behavior:auto;
 .whatsapp-action,
 .basket-total-text,
 .basket-arrow,
-.order-final-summary-section.summary-enter {
+.order-final-summary-section.summary-enter,
+.order-summary-item.summary-item-enter {
 animation:none !important;
 }
 
@@ -5246,6 +5310,8 @@ Border
 <div
 class="custom-build-dropdown"
 data-custom-build-dropdown
+data-custom-setting="border"
+data-value="100"
 >
 
 <button
@@ -5333,6 +5399,8 @@ Glazing
 <div
 class="custom-build-dropdown"
 data-custom-build-dropdown
+data-custom-setting="glazing"
+data-value="double-toughened"
 >
 
 <button
@@ -5432,6 +5500,8 @@ Glass Finish
 <div
 class="custom-build-dropdown"
 data-custom-build-dropdown
+data-custom-setting="finish"
+data-value="clear"
 >
 
 <button
@@ -5520,13 +5590,326 @@ Satin Tinted
 </div>
 
 
-<!-- BLANK SPACE FOR LATER CONTENT -->
+<!-- =========================================
+CUSTOM UNIT SUMMARY
+========================================= -->
 
 <div
-class="order-custom-build-spacer"
+class="order-purchase-section custom-unit-summary-section"
+id="customUnitSummarySection"
+>
+
+<div class="purchase-section-heading">
+Custom Unit Summary
+</div>
+
+
+<div
+class="purchase-layout custom-purchase-layout is-incomplete"
+id="customPurchaseLayout"
+>
+
+
+<div
+class="purchase-zone purchase-price-zone custom-summary-details"
+id="customPriceZone"
+hidden
+>
+
+
+<div
+class="unit-price-block"
+id="customUnitPriceBlock"
+>
+
+<div class="purchase-zone-label">
+Unit Price:
+</div>
+
+
+<div
+class="price-line"
+id="customUnitPriceLine"
+aria-label="Custom unit price including VAT"
+aria-live="polite"
+>
+
+<span class="price-major">
+
+<span class="price-pound">£</span>
+
+<span
+class="price-whole"
+id="customPriceWhole"
+>
+0
+</span>
+
+<span class="price-dot">.</span>
+
+</span>
+
+<span
+class="price-pence"
+id="customPricePence"
+>
+00
+</span>
+
+</div>
+
+
+<div
+class="vat-line"
+id="customVatLine"
+>
+inc. vat
+</div>
+
+</div>
+
+
+<div
+class="total-price-block"
+id="customTotalPriceBlock"
+hidden
 aria-hidden="true"
 >
+
+<div class="total-price-label">
+Total:
 </div>
+
+
+<div
+class="total-price-line"
+id="customTotalPriceLine"
+aria-label="Custom selection total including VAT"
+aria-live="polite"
+>
+
+<span class="total-price-major">
+
+<span class="total-price-pound">£</span>
+
+<span
+class="total-price-whole"
+id="customTotalPriceWhole"
+>
+0
+</span>
+
+<span class="total-price-dot">.</span>
+
+</span>
+
+<span
+class="total-price-pence"
+id="customTotalPricePence"
+>
+00
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="purchase-zone purchase-dimensions-zone custom-summary-details"
+id="customDimensionsZone"
+hidden
+>
+
+<div class="purchase-zone-label">
+Rooflight Dimensions
+</div>
+
+
+<div class="dimension-block">
+
+
+<div class="dimension-item">
+
+<span>
+Internal
+</span>
+
+<strong id="customInternalSize">
+-
+</strong>
+
+</div>
+
+
+<div class="dimension-item">
+
+<span>
+External
+</span>
+
+<strong id="customExternalSize">
+-
+</strong>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="purchase-zone purchase-action-zone custom-action-zone">
+
+<div class="purchase-zone-label">
+Quantity &amp; Order
+</div>
+
+
+<div class="purchase-action-controls">
+
+
+<div
+class="quantity-row"
+aria-label="Custom rooflight quantity selector"
+>
+
+<button
+class="quantity-button minus"
+id="customQuantityMinus"
+type="button"
+aria-label="Decrease custom rooflight quantity"
+>
+−
+</button>
+
+
+<div
+class="quantity-display"
+aria-live="polite"
+>
+
+<strong id="customQuantityValue">
+1
+</strong>
+
+<span id="customQuantityUnitLabel">
+Unit
+</span>
+
+</div>
+
+
+<button
+class="quantity-button plus"
+id="customQuantityPlus"
+type="button"
+aria-label="Increase custom rooflight quantity"
+>
++
+</button>
+
+</div>
+
+
+<div class="purchase-button-stack">
+
+<button
+class="add-to-order"
+id="customAddToOrder"
+type="button"
+disabled
+>
+
+<span id="customAddToOrderText">
+Add 1 To Order
+</span>
+
+<span
+class="basket-arrow"
+aria-hidden="true"
+>
+→
+</span>
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+CUSTOM ORDER SUMMARY
+========================================= -->
+
+<div
+class="order-purchase-section order-final-summary-section custom-order-final-summary-section"
+id="customOrderSummarySection"
+hidden
+>
+
+<div class="purchase-section-heading">
+Custom Order Summary
+</div>
+
+
+<div class="order-summary-card">
+
+<div
+class="order-summary-items"
+id="customOrderSummaryItems"
+>
+</div>
+
+
+<div class="order-summary-footer">
+
+<div class="order-summary-total-block">
+
+<div class="order-summary-total-label">
+Order Total:
+</div>
+
+<div
+class="order-summary-total-price"
+id="customOrderSummaryTotal"
+>
+£0.00
+</div>
+
+<div class="order-summary-total-vat">
+inc. vat
+</div>
+
+</div>
+
+
+<a
+href="basket.html"
+class="checkout-now"
+>
+Checkout Now
+</a>
+
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -5821,6 +6204,136 @@ aria-label="UnionPay"
 const reducedMotionQuery =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
+);
+
+
+/* =========================================
+PREVENT PAGE ZOOM
+========================================= */
+
+document.addEventListener(
+"dblclick",
+event => {
+
+event.preventDefault();
+
+},
+{
+passive:false
+}
+);
+
+
+let lastTouchEndTime =
+0;
+
+
+document.addEventListener(
+"touchend",
+event => {
+
+const now =
+Date.now();
+
+
+if (
+now -
+lastTouchEndTime <=
+300
+) {
+
+event.preventDefault();
+
+}
+
+
+lastTouchEndTime =
+now;
+
+},
+{
+passive:false
+}
+);
+
+
+[
+"gesturestart",
+"gesturechange",
+"gestureend"
+]
+.forEach(
+eventName => {
+
+document.addEventListener(
+eventName,
+event => {
+
+event.preventDefault();
+
+},
+{
+passive:false
+}
+);
+
+}
+);
+
+
+document.addEventListener(
+"wheel",
+event => {
+
+if (
+event.ctrlKey
+) {
+
+event.preventDefault();
+
+}
+
+},
+{
+passive:false
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+!(
+event.ctrlKey ||
+event.metaKey
+)
+) {
+
+return;
+
+}
+
+
+if (
+[
+"+",
+"=",
+"-",
+"_",
+"0"
+]
+.includes(
+event.key
+)
+) {
+
+event.preventDefault();
+
+}
+
+}
 );
 
 
@@ -6342,7 +6855,7 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 
 /* =========================================
-PROVISIONAL CONFIGURATION PRICING
+CONFIGURATION PRICING
 ========================================= */
 
 const CONFIGURATION_UPLIFTS = {
@@ -6362,13 +6875,23 @@ blue:.30
 };
 
 
-const BORDER_PRICE_ADJUSTMENTS = {
+/*
+100mm = standard
+125mm = +7%
+150mm = +15%
+*/
+
+const BORDER_PRICE_UPLIFTS = {
 
 100:0,
-125:0,
-150:0
+125:.07,
+150:.15
 
 };
+
+
+const CUSTOM_PRICE_PREMIUM =
+.08;
 
 
 function roundToNearestFive(
@@ -6382,6 +6905,90 @@ value
 5
 ) *
 5;
+
+}
+
+
+function calculateConfiguredPrice(
+basePrice,
+type,
+tint,
+border,
+{
+customPremium = 0
+} = {}
+) {
+
+const base =
+Number(
+basePrice
+) || 0;
+
+
+const typeUplift =
+
+CONFIGURATION_UPLIFTS.type[
+type
+]
+
+||
+
+0;
+
+
+const tintUplift =
+
+CONFIGURATION_UPLIFTS.tint[
+tint
+]
+
+||
+
+0;
+
+
+const borderUplift =
+
+BORDER_PRICE_UPLIFTS[
+Number(
+border
+)
+]
+
+||
+
+0;
+
+
+let price =
+
+base *
+(
+1 +
+typeUplift +
+tintUplift
+);
+
+
+price *=
+(
+1 +
+Number(
+customPremium
+)
+);
+
+
+price *=
+(
+1 +
+borderUplift
+);
+
+
+return roundToNearestFive(
+price
+);
 
 }
 
@@ -6509,7 +7116,28 @@ basketTotal:0,
 
 orderItems:[],
 
+customOrderItems:[],
+
 homepageImport:null
+
+};
+
+
+const customState = {
+
+width:null,
+
+length:null,
+
+border:100,
+
+glazing:"double",
+
+type:"toughened",
+
+tint:"clear",
+
+quantity:1
 
 };
 
@@ -6736,6 +7364,138 @@ document.getElementById(
 );
 
 
+const customUnitSummarySection =
+document.getElementById(
+"customUnitSummarySection"
+);
+
+
+const customPurchaseLayout =
+document.getElementById(
+"customPurchaseLayout"
+);
+
+
+const customPriceZone =
+document.getElementById(
+"customPriceZone"
+);
+
+
+const customDimensionsZone =
+document.getElementById(
+"customDimensionsZone"
+);
+
+
+const customUnitPriceBlock =
+document.getElementById(
+"customUnitPriceBlock"
+);
+
+
+const customPriceWhole =
+document.getElementById(
+"customPriceWhole"
+);
+
+
+const customPricePence =
+document.getElementById(
+"customPricePence"
+);
+
+
+const customVatLine =
+document.getElementById(
+"customVatLine"
+);
+
+
+const customTotalPriceBlock =
+document.getElementById(
+"customTotalPriceBlock"
+);
+
+
+const customTotalPriceWhole =
+document.getElementById(
+"customTotalPriceWhole"
+);
+
+
+const customTotalPricePence =
+document.getElementById(
+"customTotalPricePence"
+);
+
+
+const customInternalSize =
+document.getElementById(
+"customInternalSize"
+);
+
+
+const customExternalSize =
+document.getElementById(
+"customExternalSize"
+);
+
+
+const customQuantityMinus =
+document.getElementById(
+"customQuantityMinus"
+);
+
+
+const customQuantityPlus =
+document.getElementById(
+"customQuantityPlus"
+);
+
+
+const customQuantityValue =
+document.getElementById(
+"customQuantityValue"
+);
+
+
+const customQuantityUnitLabel =
+document.getElementById(
+"customQuantityUnitLabel"
+);
+
+
+const customAddToOrder =
+document.getElementById(
+"customAddToOrder"
+);
+
+
+const customAddToOrderText =
+document.getElementById(
+"customAddToOrderText"
+);
+
+
+const customOrderSummarySection =
+document.getElementById(
+"customOrderSummarySection"
+);
+
+
+const customOrderSummaryItems =
+document.getElementById(
+"customOrderSummaryItems"
+);
+
+
+const customOrderSummaryTotal =
+document.getElementById(
+"customOrderSummaryTotal"
+);
+
+
 let imageTransitionToken =
 0;
 
@@ -6774,6 +7534,20 @@ let sizeDropdownKeyboardIndex =
 
 
 let addToOrderFeedbackTimer =
+null;
+
+let addToOrderScrollTimer =
+null;
+
+
+let customAddToOrderFeedbackTimer =
+null;
+
+let customAddToOrderScrollTimer =
+null;
+
+
+let activeScrollFrame =
 null;
 
 
@@ -6923,6 +7697,104 @@ dropdown
 }
 
 
+function applyCustomSetting(
+dropdown,
+value
+) {
+
+const setting =
+dropdown?.dataset.customSetting;
+
+
+if (
+setting ===
+"border"
+) {
+
+customState.border =
+Number(
+value
+);
+
+return;
+
+}
+
+
+if (
+setting ===
+"finish"
+) {
+
+customState.tint =
+normalizeTint(
+value
+);
+
+return;
+
+}
+
+
+if (
+setting ===
+"glazing"
+) {
+
+switch (
+value
+) {
+
+case "triple-toughened":
+
+customState.glazing =
+"triple";
+
+customState.type =
+"toughened";
+
+break;
+
+
+case "double-laminated":
+
+customState.glazing =
+"double";
+
+customState.type =
+"laminated";
+
+break;
+
+
+case "triple-laminated":
+
+customState.glazing =
+"triple";
+
+customState.type =
+"laminated";
+
+break;
+
+
+default:
+
+customState.glazing =
+"double";
+
+customState.type =
+"toughened";
+
+break;
+
+}
+
+}
+
+}
+
+
 function chooseCustomBuildOption(
 dropdown,
 option
@@ -6957,6 +7829,11 @@ option.dataset.label ||
 option.textContent.trim();
 
 
+const value =
+option.dataset.value ||
+"";
+
+
 if (
 valueElement
 ) {
@@ -6965,6 +7842,10 @@ valueElement.textContent =
 label;
 
 }
+
+
+dropdown.dataset.value =
+value;
 
 
 options.forEach(
@@ -6992,12 +7873,16 @@ selected
 );
 
 
-dropdown.dataset.value =
-option.dataset.value ||
-"";
+applyCustomSetting(
+dropdown,
+value
+);
 
 
 closeCustomBuildDropdowns();
+
+
+updateCustomConfiguratorUI();
 
 }
 
@@ -7081,13 +7966,7 @@ option.classList.contains(
 options[0];
 
 
-if (
-selectedOption
-) {
-
-selectedOption.focus();
-
-}
+selectedOption?.focus();
 
 }
 
@@ -7129,17 +8008,12 @@ event.key ===
 
 event.preventDefault();
 
-
-const next =
 options[
 Math.min(
 index + 1,
 options.length - 1
 )
-];
-
-
-next?.focus();
+]?.focus();
 
 return;
 
@@ -7153,17 +8027,12 @@ event.key ===
 
 event.preventDefault();
 
-
-const previous =
 options[
 Math.max(
 index - 1,
 0
 )
-];
-
-
-previous?.focus();
+]?.focus();
 
 return;
 
@@ -7202,6 +8071,25 @@ return;
 
 if (
 event.key ===
+"Enter" ||
+event.key ===
+" "
+) {
+
+event.preventDefault();
+
+chooseCustomBuildOption(
+dropdown,
+option
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
 "Escape"
 ) {
 
@@ -7210,52 +8098,11 @@ event.preventDefault();
 closeCustomBuildDropdowns();
 
 
-if (
-trigger
-) {
-
-trigger.focus();
+trigger?.focus();
 
 }
 
 }
-
-}
-);
-
-}
-);
-
-}
-);
-
-
-/* digits only in custom size inputs */
-
-[
-customInternalWidth,
-customInternalLength
-]
-.forEach(
-input => {
-
-if (
-!input
-) {
-
-return;
-
-}
-
-
-input.addEventListener(
-"input",
-() => {
-
-input.value =
-input.value.replace(
-/[^0-9]/g,
-""
 );
 
 }
@@ -7395,6 +8242,19 @@ Number
 );
 
 return `${width}mm × ${length}mm`;
+
+}
+
+
+function formatCustomDimension(
+width,
+length
+) {
+
+return (
+`${Number(width)}mm × ` +
+`${Number(length)}mm`
+);
 
 }
 
@@ -9029,7 +9889,7 @@ imageSource;
 
 
 /* =========================================
-PRICE
+STANDARD PRICE
 ========================================= */
 
 function selectedPrice() {
@@ -9048,15 +9908,6 @@ return 0;
 
 }
 
-
-/*
-Only use a homepage-imported price when it
-is a genuine positive price.
-
-This prevents a missing price query parameter
-from ever forcing the Unit Summary to £0.00
-after a refresh.
-*/
 
 if (
 homepageImportMatchesCurrentSelection() &&
@@ -9080,68 +9931,376 @@ state.glazing
 );
 
 
-const typeUplift =
-
-CONFIGURATION_UPLIFTS.type[
-state.type
-]
-
-||
-
-0;
-
-
-const tintUplift =
-
-CONFIGURATION_UPLIFTS.tint[
-state.tint
-]
-
-||
-
-0;
-
-
-const borderAdjustment =
-
-BORDER_PRICE_ADJUSTMENTS[
+return calculateConfiguredPrice(
+base,
+state.type,
+state.tint,
 state.border
-]
-
-||
-
-0;
-
-
-const configuredPrice =
-
-base
-
-+
-
-(
-base *
-typeUplift
-)
-
-+
-
-(
-base *
-tintUplift
-)
-
-+
-
-borderAdjustment;
-
-
-return roundToNearestFive(
-configuredPrice
 );
 
 }
 
+
+/* =========================================
+CUSTOM PRICE ESTIMATION
+========================================= */
+
+function getStandardPricePoints(
+glazing
+) {
+
+const grouped =
+new Map();
+
+
+Object.entries(
+PRODUCTS
+)
+.forEach(
+(
+[
+size,
+product
+]
+) => {
+
+const [
+width,
+length
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+
+const area =
+(
+width *
+length
+) /
+1000000;
+
+
+const key =
+area.toFixed(
+6
+);
+
+
+if (
+!grouped.has(
+key
+)
+) {
+
+grouped.set(
+key,
+{
+area:area,
+total:0,
+count:0
+}
+);
+
+}
+
+
+const group =
+grouped.get(
+key
+);
+
+
+group.total +=
+Number(
+product[
+glazing
+]
+);
+
+
+group.count +=
+1;
+
+}
+);
+
+
+return Array.from(
+grouped.values()
+)
+.map(
+group => {
+
+return {
+
+area:
+group.area,
+
+price:
+group.total /
+group.count
+
+};
+
+}
+)
+.sort(
+(
+first,
+second
+) =>
+first.area -
+second.area
+);
+
+}
+
+
+function estimateStandardBasePrice(
+width,
+length,
+glazing
+) {
+
+const area =
+(
+Number(
+width
+) *
+Number(
+length
+)
+) /
+1000000;
+
+
+const points =
+getStandardPricePoints(
+glazing
+);
+
+
+if (
+!points.length
+) {
+
+return 0;
+
+}
+
+
+if (
+area <=
+points[0].area
+) {
+
+return points[0].price;
+
+}
+
+
+const lastPoint =
+points[
+points.length - 1
+];
+
+
+if (
+area >=
+lastPoint.area
+) {
+
+if (
+points.length <
+2
+) {
+
+return lastPoint.price;
+
+}
+
+
+const previousPoint =
+points[
+points.length - 2
+];
+
+
+const areaDifference =
+lastPoint.area -
+previousPoint.area;
+
+
+if (
+areaDifference <=
+0
+) {
+
+return lastPoint.price;
+
+}
+
+
+const priceDifference =
+lastPoint.price -
+previousPoint.price;
+
+
+const slope =
+priceDifference /
+areaDifference;
+
+
+return Math.max(
+lastPoint.price,
+lastPoint.price +
+(
+area -
+lastPoint.area
+) *
+slope
+);
+
+}
+
+
+for (
+let index = 1;
+index <
+points.length;
+index +=
+1
+) {
+
+const upper =
+points[
+index
+];
+
+
+const lower =
+points[
+index - 1
+];
+
+
+if (
+area <=
+upper.area
+) {
+
+const areaSpan =
+upper.area -
+lower.area;
+
+
+if (
+areaSpan <=
+0
+) {
+
+return upper.price;
+
+}
+
+
+const position =
+(
+area -
+lower.area
+) /
+areaSpan;
+
+
+return (
+lower.price +
+(
+upper.price -
+lower.price
+) *
+position
+);
+
+}
+
+}
+
+
+return lastPoint.price;
+
+}
+
+
+function customInputsAreValid() {
+
+return (
+
+Number.isFinite(
+customState.width
+) &&
+
+Number.isFinite(
+customState.length
+) &&
+
+customState.width >=
+290 &&
+
+customState.width <=
+1500 &&
+
+customState.length >=
+290 &&
+
+customState.length <=
+3000
+
+);
+
+}
+
+
+function selectedCustomPrice() {
+
+if (
+!customInputsAreValid()
+) {
+
+return 0;
+
+}
+
+
+const estimatedBase =
+estimateStandardBasePrice(
+customState.width,
+customState.length,
+customState.glazing
+);
+
+
+return calculateConfiguredPrice(
+estimatedBase,
+customState.type,
+customState.tint,
+customState.border,
+{
+customPremium:
+CUSTOM_PRICE_PREMIUM
+}
+);
+
+}
+
+
+/* =========================================
+MONEY PARTS
+========================================= */
 
 function moneyParts(
 value
@@ -9772,6 +10931,336 @@ vatLine
 
 
 /* =========================================
+CUSTOM UNIT SUMMARY DISPLAY
+========================================= */
+
+function setCustomUnitPriceText(
+value
+) {
+
+const parts =
+moneyParts(
+value
+);
+
+
+customPriceWhole.textContent =
+parts.whole;
+
+
+customPricePence.textContent =
+parts.pence;
+
+}
+
+
+function setCustomTotalPriceText(
+value
+) {
+
+const parts =
+moneyParts(
+value
+);
+
+
+customTotalPriceWhole.textContent =
+parts.whole;
+
+
+customTotalPricePence.textContent =
+parts.pence;
+
+}
+
+
+function updateCustomVatPosition() {
+
+if (
+!customVatLine ||
+!customUnitPriceBlock ||
+!customTotalPriceBlock
+) {
+
+return;
+
+}
+
+
+if (
+customState.quantity >
+1 &&
+customInputsAreValid()
+) {
+
+if (
+customVatLine.parentElement !==
+customTotalPriceBlock
+) {
+
+customTotalPriceBlock.appendChild(
+customVatLine
+);
+
+}
+
+}
+else {
+
+if (
+customVatLine.parentElement !==
+customUnitPriceBlock
+) {
+
+customUnitPriceBlock.appendChild(
+customVatLine
+);
+
+}
+
+}
+
+}
+
+
+function updateCustomConfiguratorUI() {
+
+const valid =
+customInputsAreValid();
+
+
+const widthHasValue =
+customInternalWidth.value.trim() !==
+"";
+
+
+const lengthHasValue =
+customInternalLength.value.trim() !==
+"";
+
+
+customInternalWidth.classList.toggle(
+"is-invalid",
+widthHasValue &&
+!(
+customState.width >=
+290 &&
+customState.width <=
+1500
+)
+);
+
+
+customInternalLength.classList.toggle(
+"is-invalid",
+lengthHasValue &&
+!(
+customState.length >=
+290 &&
+customState.length <=
+3000
+)
+);
+
+
+customInternalWidth.setAttribute(
+"aria-invalid",
+String(
+widthHasValue &&
+!(
+customState.width >=
+290 &&
+customState.width <=
+1500
+)
+)
+);
+
+
+customInternalLength.setAttribute(
+"aria-invalid",
+String(
+lengthHasValue &&
+!(
+customState.length >=
+290 &&
+customState.length <=
+3000
+)
+)
+);
+
+
+customPurchaseLayout.classList.toggle(
+"is-incomplete",
+!valid
+);
+
+
+customPriceZone.hidden =
+!valid;
+
+
+customDimensionsZone.hidden =
+!valid;
+
+
+customAddToOrder.disabled =
+!valid;
+
+
+customQuantityValue.textContent =
+customState.quantity;
+
+
+customQuantityUnitLabel.textContent =
+
+customState.quantity ===
+1
+
+?
+
+"Unit"
+
+:
+
+"Units";
+
+
+customQuantityMinus.disabled =
+customState.quantity <=
+1;
+
+
+customQuantityMinus.style.opacity =
+
+customState.quantity <=
+1
+
+?
+
+".36"
+
+:
+
+"1";
+
+
+customAddToOrderText.textContent =
+`Add ${customState.quantity} To Order`;
+
+
+if (
+!valid
+) {
+
+customTotalPriceBlock.hidden =
+true;
+
+customTotalPriceBlock.classList.remove(
+"is-visible"
+);
+
+customTotalPriceBlock.setAttribute(
+"aria-hidden",
+"true"
+);
+
+updateCustomVatPosition();
+
+return;
+
+}
+
+
+const price =
+selectedCustomPrice();
+
+
+const total =
+price *
+customState.quantity;
+
+
+setCustomUnitPriceText(
+price
+);
+
+
+setCustomTotalPriceText(
+total
+);
+
+
+customInternalSize.textContent =
+formatCustomDimension(
+customState.width,
+customState.length
+);
+
+
+const external =
+getExternalDimensionsFor(
+`${customState.width}x${customState.length}`,
+customState.border
+);
+
+
+customExternalSize.textContent =
+formatCustomDimension(
+external.width,
+external.length
+);
+
+
+if (
+customState.quantity >
+1
+) {
+
+customTotalPriceBlock.hidden =
+false;
+
+customTotalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+
+requestAnimationFrame(
+() => {
+
+customTotalPriceBlock.classList.add(
+"is-visible"
+);
+
+}
+);
+
+}
+else {
+
+customTotalPriceBlock.classList.remove(
+"is-visible"
+);
+
+customTotalPriceBlock.hidden =
+true;
+
+customTotalPriceBlock.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+
+
+updateCustomVatPosition();
+
+}
+
+
+/* =========================================
 TITLE
 ========================================= */
 
@@ -9783,6 +11272,70 @@ const size =
 formatSize(
 selection.size
 );
+
+
+let tintText =
+"";
+
+
+if (
+selection.tint ===
+"blue"
+) {
+
+tintText =
+"Blue Tinted ";
+
+}
+
+
+if (
+selection.tint ===
+"grey"
+) {
+
+tintText =
+"Grey Tinted ";
+
+}
+
+
+if (
+selection.tint ===
+"satin"
+) {
+
+tintText =
+"Satin ";
+
+}
+
+
+const glazingText =
+
+selection.glazing ===
+"triple"
+
+?
+
+"Triple"
+
+:
+
+"Double";
+
+
+return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
+
+}
+
+
+function buildCustomTitleForSelection(
+selection
+) {
+
+const size =
+`${selection.width} × ${selection.length}mm`;
 
 
 let tintText =
@@ -10727,7 +12280,7 @@ positionCurrentSizeAtTop();
 PERSISTENT ORDER STORAGE
 ========================================= */
 
-function calculateOrderTotal() {
+function calculateStandardOrderTotal() {
 
 return state.orderItems.reduce(
 (
@@ -10747,6 +12300,41 @@ item.quantity
 
 },
 0
+);
+
+}
+
+
+function calculateCustomOrderTotal() {
+
+return state.customOrderItems.reduce(
+(
+total,
+item
+) => {
+
+return total +
+(
+Number(
+item.unitPrice
+) *
+Number(
+item.quantity
+)
+);
+
+},
+0
+);
+
+}
+
+
+function calculateOrderTotal() {
+
+return (
+calculateStandardOrderTotal() +
+calculateCustomOrderTotal()
 );
 
 }
@@ -10908,6 +12496,185 @@ unitPrice:unitPrice
 }
 
 
+function sanitizeStoredCustomOrderItem(
+item
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return null;
+
+}
+
+
+const width =
+Math.floor(
+Number(
+item.width
+)
+);
+
+
+const length =
+Math.floor(
+Number(
+item.length
+)
+);
+
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+) ||
+width <
+290 ||
+width >
+1500 ||
+length <
+290 ||
+length >
+3000
+) {
+
+return null;
+
+}
+
+
+const glazing =
+
+[
+"double",
+"triple"
+]
+.includes(
+item.glazing
+)
+
+?
+
+item.glazing
+
+:
+
+"double";
+
+
+const type =
+
+[
+"toughened",
+"laminated"
+]
+.includes(
+item.type
+)
+
+?
+
+item.type
+
+:
+
+"toughened";
+
+
+const borderNumber =
+Number(
+item.border
+);
+
+
+const border =
+
+[
+100,
+125,
+150
+]
+.includes(
+borderNumber
+)
+
+?
+
+borderNumber
+
+:
+
+100;
+
+
+const tint =
+normalizeTint(
+item.tint
+);
+
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity
+) || 1
+)
+)
+);
+
+
+const unitPrice =
+Number(
+item.unitPrice
+);
+
+
+if (
+!Number.isFinite(
+unitPrice
+) ||
+unitPrice <=
+0
+) {
+
+return null;
+
+}
+
+
+return {
+
+width:width,
+
+length:length,
+
+glazing:glazing,
+
+type:type,
+
+border:border,
+
+tint:tint,
+
+quantity:quantity,
+
+unitPrice:unitPrice
+
+};
+
+}
+
+
 function saveOrderToStorage() {
 
 try {
@@ -10916,8 +12683,9 @@ localStorage.setItem(
 ORDER_STORAGE_KEY,
 JSON.stringify(
 {
-version:1,
-items:state.orderItems
+version:2,
+items:state.orderItems,
+customItems:state.customOrderItems
 }
 )
 );
@@ -10952,6 +12720,9 @@ if (
 ) {
 
 state.orderItems =
+[];
+
+state.customOrderItems =
 [];
 
 state.basketTotal =
@@ -10991,10 +12762,35 @@ parsed.items
 );
 
 
+const rawCustomItems =
+
+Array.isArray(
+parsed?.customItems
+)
+
+?
+
+parsed.customItems
+
+:
+
+[];
+
+
 state.orderItems =
 rawItems
 .map(
 sanitizeStoredOrderItem
+)
+.filter(
+Boolean
+);
+
+
+state.customOrderItems =
+rawCustomItems
+.map(
+sanitizeStoredCustomOrderItem
 )
 .filter(
 Boolean
@@ -11010,6 +12806,9 @@ error
 ) {
 
 state.orderItems =
+[];
+
+state.customOrderItems =
 [];
 
 state.basketTotal =
@@ -11121,16 +12920,66 @@ second.unitPrice
 }
 
 
+function customOrderItemsMatch(
+first,
+second
+) {
+
+return (
+
+Number(
+first.width
+) ===
+Number(
+second.width
+) &&
+
+Number(
+first.length
+) ===
+Number(
+second.length
+) &&
+
+first.glazing ===
+second.glazing &&
+
+first.type ===
+second.type &&
+
+Number(
+first.border
+) ===
+Number(
+second.border
+) &&
+
+first.tint ===
+second.tint &&
+
+Number(
+first.unitPrice
+) ===
+Number(
+second.unitPrice
+)
+
+);
+
+}
+
+
 /* =========================================
 ORDER TOTAL RESPONSIVE SIZE
 ========================================= */
 
-function updateOrderSummaryTotalDisplay(
+function updateSummaryTotalDisplay(
+element,
 total
 ) {
 
 if (
-!orderSummaryTotal
+!element
 ) {
 
 return;
@@ -11144,13 +12993,13 @@ total
 ) || 0;
 
 
-orderSummaryTotal.textContent =
+element.textContent =
 formatMoney(
 numericTotal
 );
 
 
-orderSummaryTotal.classList.toggle(
+element.classList.toggle(
 "is-four-figure",
 numericTotal >=
 1000 &&
@@ -11159,10 +13008,34 @@ numericTotal <
 );
 
 
-orderSummaryTotal.classList.toggle(
+element.classList.toggle(
 "is-five-figure",
 numericTotal >=
 10000
+);
+
+}
+
+
+function updateOrderSummaryTotalDisplay(
+total
+) {
+
+updateSummaryTotalDisplay(
+orderSummaryTotal,
+total
+);
+
+}
+
+
+function updateCustomOrderSummaryTotalDisplay(
+total
+) {
+
+updateSummaryTotalDisplay(
+customOrderSummaryTotal,
+total
 );
 
 }
@@ -11184,13 +13057,26 @@ item.size
 }
 
 
+function getDifferentCustomOrderSizeCount() {
+
+return new Set(
+state.customOrderItems.map(
+item =>
+`${item.width}x${item.length}`
+)
+).size;
+
+}
+
+
 /* =========================================
-RENDER FINAL ORDER SUMMARY
+RENDER STANDARD ORDER SUMMARY
 ========================================= */
 
 function renderOrderSummary(
 {
-animate = false
+animate = false,
+focusOrderIndex = null
 } = {}
 ) {
 
@@ -11287,9 +13173,18 @@ item.quantity
 );
 
 
+const animateItem =
+
+animate &&
+!wasHidden &&
+!reducedMotionQuery.matches &&
+index ===
+focusOrderIndex;
+
+
 return `
 <div
-class="order-summary-item"
+class="order-summary-item${animateItem ? " summary-item-enter" : ""}"
 data-order-summary-item-index="${index}"
 >
 
@@ -11431,7 +13326,7 @@ calculateOrderTotal();
 
 
 updateOrderSummaryTotalDisplay(
-state.basketTotal
+calculateStandardOrderTotal()
 );
 
 
@@ -11439,16 +13334,16 @@ orderSummarySection.hidden =
 false;
 
 
+orderSummarySection.classList.remove(
+"summary-enter"
+);
+
+
 if (
 animate &&
 wasHidden &&
 !reducedMotionQuery.matches
 ) {
-
-orderSummarySection.classList.remove(
-"summary-enter"
-);
-
 
 void orderSummarySection.offsetWidth;
 
@@ -11466,14 +13361,315 @@ orderSummarySection.classList.remove(
 );
 
 },
-520
+1820
 );
 
 }
-else {
 
-orderSummarySection.classList.remove(
+}
+
+
+/* =========================================
+RENDER CUSTOM ORDER SUMMARY
+========================================= */
+
+function renderCustomOrderSummary(
+{
+animate = false,
+focusOrderIndex = null
+} = {}
+) {
+
+if (
+!customOrderSummarySection ||
+!customOrderSummaryItems ||
+!customOrderSummaryTotal
+) {
+
+return;
+
+}
+
+
+if (
+!state.customOrderItems.length
+) {
+
+customOrderSummaryItems.innerHTML =
+"";
+
+
+updateCustomOrderSummaryTotalDisplay(
+0
+);
+
+
+customOrderSummarySection.classList.remove(
 "summary-enter"
+);
+
+
+customOrderSummarySection.hidden =
+true;
+
+
+return;
+
+}
+
+
+const wasHidden =
+customOrderSummarySection.hidden;
+
+
+const showLineTotals =
+
+getDifferentCustomOrderSizeCount() >=
+2;
+
+
+customOrderSummaryItems.innerHTML =
+state.customOrderItems
+.map(
+(
+item,
+index
+) => {
+
+const title =
+buildCustomTitleForSelection(
+item
+);
+
+
+const internal =
+formatCustomDimension(
+item.width,
+item.length
+);
+
+
+const externalDimensions =
+getExternalDimensionsFor(
+`${item.width}x${item.length}`,
+item.border
+);
+
+
+const external =
+formatCustomDimension(
+externalDimensions.width,
+externalDimensions.length
+);
+
+
+const topGlass =
+getTopGlassLabelFor(
+`${item.width}x${item.length}`,
+item.border,
+item.glazing
+);
+
+
+const lineTotal =
+
+Number(
+item.unitPrice
+) *
+Number(
+item.quantity
+);
+
+
+const animateItem =
+
+animate &&
+!wasHidden &&
+!reducedMotionQuery.matches &&
+index ===
+focusOrderIndex;
+
+
+return `
+<div
+class="order-summary-item${animateItem ? " summary-item-enter" : ""}"
+data-custom-order-summary-item-index="${index}"
+>
+
+<h3 class="order-summary-item-title">
+${escapeHTML(item.quantity)} × ${escapeHTML(title)}
+</h3>
+
+<div class="order-summary-item-body">
+
+<div class="order-summary-spec-grid">
+
+<div class="order-summary-spec">
+<span>Glazing</span>
+<strong>${escapeHTML(getGlazingDisplayName(item.glazing))}</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>Glass</span>
+<strong>${escapeHTML(getTypeDisplayName(item.type))}</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>Border</span>
+<strong>${escapeHTML(item.border)}mm</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>Glass Finish</span>
+<strong>${escapeHTML(getTintDisplayName(item.tint))}</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>Internal</span>
+<strong>${escapeHTML(internal)}</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>External</span>
+<strong>${escapeHTML(external)}</strong>
+</div>
+
+<div class="order-summary-spec">
+<span>Top Glass</span>
+<strong>${escapeHTML(topGlass)}</strong>
+</div>
+
+<div class="order-summary-spec unit-price-spec">
+<span>Unit Price</span>
+<strong>${escapeHTML(formatMoney(item.unitPrice))}</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="order-summary-line-section">
+
+<div class="order-summary-line-controls">
+
+
+<div
+class="order-summary-quantity"
+aria-label="Adjust custom rooflight quantity"
+>
+
+<button
+type="button"
+data-custom-order-quantity-action="decrease"
+data-custom-order-index="${index}"
+aria-label="Decrease quantity"
+${Number(item.quantity) <= 1 ? "disabled" : ""}
+>
+−
+</button>
+
+<strong>
+${escapeHTML(item.quantity)}
+</strong>
+
+<button
+type="button"
+data-custom-order-quantity-action="increase"
+data-custom-order-index="${index}"
+aria-label="Increase quantity"
+>
++
+</button>
+
+</div>
+
+
+<button
+type="button"
+class="order-summary-remove"
+data-custom-order-remove-index="${index}"
+aria-label="Remove this custom rooflight from the order"
+>
+Remove
+</button>
+
+
+</div>
+
+
+<div
+class="order-summary-line-total"
+${showLineTotals ? "" : "hidden"}
+>
+
+<div class="order-summary-line-total-label">
+Line Total:
+</div>
+
+<div class="order-summary-line-total-price">
+${escapeHTML(formatMoney(lineTotal))}
+</div>
+
+<div class="order-summary-line-total-vat">
+inc. vat
+</div>
+
+</div>
+
+</div>
+
+</div>
+`;
+
+}
+)
+.join(
+""
+);
+
+
+state.basketTotal =
+calculateOrderTotal();
+
+
+updateCustomOrderSummaryTotalDisplay(
+calculateCustomOrderTotal()
+);
+
+
+customOrderSummarySection.hidden =
+false;
+
+
+customOrderSummarySection.classList.remove(
+"summary-enter"
+);
+
+
+if (
+animate &&
+wasHidden &&
+!reducedMotionQuery.matches
+) {
+
+void customOrderSummarySection.offsetWidth;
+
+
+customOrderSummarySection.classList.add(
+"summary-enter"
+);
+
+
+setTimeout(
+() => {
+
+customOrderSummarySection.classList.remove(
+"summary-enter"
+);
+
+},
+1820
 );
 
 }
@@ -11508,9 +13704,57 @@ state.basketTotal
 }
 
 
+function commitCustomOrderSummaryChange() {
+
+state.basketTotal =
+calculateOrderTotal();
+
+
+saveOrderToStorage();
+
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+
+updateBasketTotal(
+state.basketTotal
+);
+
+}
+
+
 /* =========================================
-CENTRE ORDER CONTENT AFTER REMOVE
+CENTRE CONTENT
 ========================================= */
+
+function getElementViewportCentreTarget(
+element
+) {
+
+const rect =
+element.getBoundingClientRect();
+
+
+return Math.max(
+0,
+window.scrollY +
+rect.top +
+(
+rect.height /
+2
+) -
+(
+window.innerHeight /
+2
+)
+);
+
+}
+
 
 function scrollElementToViewportCentre(
 element
@@ -11525,30 +13769,11 @@ return;
 }
 
 
-const rect =
-element.getBoundingClientRect();
-
-
-const targetTop =
-
-window.scrollY +
-rect.top +
-(
-rect.height /
-2
-) -
-(
-window.innerHeight /
-2
-);
-
-
 window.scrollTo(
 {
 top:
-Math.max(
-0,
-targetTop
+getElementViewportCentreTarget(
+element
 ),
 behavior:
 reducedMotionQuery.matches
@@ -11561,6 +13786,177 @@ reducedMotionQuery.matches
 
 }
 
+
+function animateElementToViewportCentre(
+element,
+duration = 560
+) {
+
+if (
+!element
+) {
+
+return;
+
+}
+
+
+if (
+activeScrollFrame !==
+null
+) {
+
+cancelAnimationFrame(
+activeScrollFrame
+);
+
+activeScrollFrame =
+null;
+
+}
+
+
+const target =
+getElementViewportCentreTarget(
+element
+);
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+window.scrollTo(
+0,
+target
+);
+
+return;
+
+}
+
+
+const start =
+window.scrollY;
+
+
+const distance =
+target -
+start;
+
+
+if (
+Math.abs(
+distance
+) <
+2
+) {
+
+window.scrollTo(
+0,
+target
+);
+
+return;
+
+}
+
+
+const startTime =
+performance.now();
+
+
+function easeInOutCubic(
+progress
+) {
+
+return progress <
+.5
+
+?
+
+4 *
+progress *
+progress *
+progress
+
+:
+
+1 -
+Math.pow(
+-2 *
+progress +
+2,
+3
+) /
+2;
+
+}
+
+
+function step(
+time
+) {
+
+const elapsed =
+time -
+startTime;
+
+
+const progress =
+Math.min(
+1,
+elapsed /
+duration
+);
+
+
+const eased =
+easeInOutCubic(
+progress
+);
+
+
+window.scrollTo(
+0,
+start +
+distance *
+eased
+);
+
+
+if (
+progress <
+1
+) {
+
+activeScrollFrame =
+requestAnimationFrame(
+step
+);
+
+}
+else {
+
+activeScrollFrame =
+null;
+
+}
+
+}
+
+
+activeScrollFrame =
+requestAnimationFrame(
+step
+);
+
+}
+
+
+/* =========================================
+CENTRE AFTER STANDARD REMOVE
+========================================= */
 
 function centreAfterOrderItemRemoval(
 removedIndex
@@ -11728,6 +14124,180 @@ commitOrderSummaryChange();
 }
 
 
+/* =========================================
+CENTRE AFTER CUSTOM REMOVE
+========================================= */
+
+function centreAfterCustomOrderItemRemoval(
+removedIndex
+) {
+
+requestAnimationFrame(
+() => {
+
+requestAnimationFrame(
+() => {
+
+if (
+!state.customOrderItems.length
+) {
+
+scrollElementToViewportCentre(
+customUnitSummarySection
+);
+
+return;
+
+}
+
+
+const remainingItems =
+Array.from(
+customOrderSummaryItems.querySelectorAll(
+".order-summary-item"
+)
+);
+
+
+if (
+!remainingItems.length
+) {
+
+scrollElementToViewportCentre(
+customUnitSummarySection
+);
+
+return;
+
+}
+
+
+const targetIndex =
+Math.min(
+removedIndex,
+remainingItems.length - 1
+);
+
+
+scrollElementToViewportCentre(
+remainingItems[
+targetIndex
+]
+);
+
+}
+);
+
+}
+);
+
+}
+
+
+function removeCustomOrderItem(
+index
+) {
+
+if (
+!Number.isInteger(
+index
+) ||
+index <
+0 ||
+index >=
+state.customOrderItems.length
+) {
+
+return;
+
+}
+
+
+state.customOrderItems.splice(
+index,
+1
+);
+
+
+commitCustomOrderSummaryChange();
+
+
+centreAfterCustomOrderItemRemoval(
+index
+);
+
+}
+
+
+function adjustCustomOrderItemQuantity(
+index,
+change
+) {
+
+if (
+!Number.isInteger(
+index
+) ||
+index <
+0 ||
+index >=
+state.customOrderItems.length
+) {
+
+return;
+
+}
+
+
+const item =
+state.customOrderItems[
+index
+];
+
+
+const currentQuantity =
+Math.max(
+1,
+Number(
+item.quantity
+) || 1
+);
+
+
+const nextQuantity =
+Math.max(
+1,
+Math.min(
+999,
+currentQuantity +
+change
+)
+);
+
+
+if (
+nextQuantity ===
+currentQuantity
+) {
+
+return;
+
+}
+
+
+item.quantity =
+nextQuantity;
+
+
+commitCustomOrderSummaryChange();
+
+}
+
+
+/* =========================================
+STANDARD ORDER SUMMARY EVENTS
+========================================= */
+
 if (
 orderSummaryItems
 ) {
@@ -11813,18 +14383,88 @@ index,
 }
 );
 
+}
 
-orderSummaryItems.addEventListener(
-"dblclick",
-event => {
+
+/* =========================================
+CUSTOM ORDER SUMMARY EVENTS
+========================================= */
 
 if (
-event.target.closest(
-"[data-order-quantity-action]"
-)
+customOrderSummaryItems
 ) {
 
-event.preventDefault();
+customOrderSummaryItems.addEventListener(
+"click",
+event => {
+
+const removeButton =
+event.target.closest(
+"[data-custom-order-remove-index]"
+);
+
+
+if (
+removeButton
+) {
+
+removeCustomOrderItem(
+Number(
+removeButton.dataset.customOrderRemoveIndex
+)
+);
+
+
+return;
+
+}
+
+
+const quantityButton =
+event.target.closest(
+"[data-custom-order-quantity-action]"
+);
+
+
+if (
+!quantityButton
+) {
+
+return;
+
+}
+
+
+const index =
+Number(
+quantityButton.dataset.customOrderIndex
+);
+
+
+const action =
+quantityButton.dataset.customOrderQuantityAction;
+
+
+if (
+action ===
+"increase"
+) {
+
+adjustCustomOrderItemQuantity(
+index,
+1
+);
+
+}
+else if (
+action ===
+"decrease"
+) {
+
+adjustCustomOrderItemQuantity(
+index,
+-1
+);
 
 }
 
@@ -11835,7 +14475,7 @@ event.preventDefault();
 
 
 /* =========================================
-UPDATE CONFIGURATOR UI
+UPDATE STANDARD CONFIGURATOR UI
 ========================================= */
 
 function updateUI(
@@ -12087,9 +14727,6 @@ updateQueryString();
 
 /* =========================================
 QUERY LOAD
-
-A missing price parameter must remain null.
-It must never become Number("") === 0.
 ========================================= */
 
 function loadStateFromQuery() {
@@ -12374,7 +15011,7 @@ importedImage
 
 
 /* =========================================
-CONFIGURATION EVENTS
+STANDARD CONFIGURATION EVENTS
 ========================================= */
 
 document
@@ -12564,21 +15201,125 @@ updateUrl:false
 );
 
 
+/* =========================================
+CUSTOM SIZE INPUT EVENTS
+========================================= */
+
 [
-quantityMinus,
-quantityPlus
+customInternalWidth,
+customInternalLength
 ]
 .forEach(
-button => {
+input => {
 
-button.addEventListener(
-"dblclick",
-event => {
+if (
+!input
+) {
 
-event.preventDefault();
+return;
+
+}
+
+
+input.addEventListener(
+"input",
+() => {
+
+input.value =
+input.value.replace(
+/[^0-9]/g,
+""
+);
+
+
+const numericValue =
+input.value ===
+""
+
+?
+
+null
+
+:
+
+Number(
+input.value
+);
+
+
+if (
+input ===
+customInternalWidth
+) {
+
+customState.width =
+numericValue;
+
+}
+else {
+
+customState.length =
+numericValue;
+
+}
+
+
+updateCustomConfiguratorUI();
 
 }
 );
+
+}
+);
+
+
+/* =========================================
+CUSTOM QUANTITY EVENTS
+========================================= */
+
+customQuantityMinus.addEventListener(
+"click",
+() => {
+
+closeSizeDropdown();
+closeCustomBuildDropdowns();
+
+
+if (
+customState.quantity >
+1
+) {
+
+customState.quantity --;
+
+
+updateCustomConfiguratorUI();
+
+}
+
+}
+);
+
+
+customQuantityPlus.addEventListener(
+"click",
+() => {
+
+closeSizeDropdown();
+closeCustomBuildDropdowns();
+
+
+if (
+customState.quantity <
+99
+) {
+
+customState.quantity ++;
+
+
+updateCustomConfiguratorUI();
+
+}
 
 }
 );
@@ -12649,7 +15390,95 @@ closeMenu();
 
 
 /* =========================================
-ADD CURRENT CONFIGURATION TO ORDER
+ADD-TO-ORDER AUTO FOCUS
+========================================= */
+
+function scheduleStandardOrderFocus(
+index
+) {
+
+if (
+addToOrderScrollTimer !==
+null
+) {
+
+clearTimeout(
+addToOrderScrollTimer
+);
+
+}
+
+
+addToOrderScrollTimer =
+setTimeout(
+() => {
+
+const target =
+orderSummaryItems.querySelector(
+`[data-order-summary-item-index="${index}"]`
+);
+
+
+animateElementToViewportCentre(
+target,
+560
+);
+
+
+addToOrderScrollTimer =
+null;
+
+},
+1120
+);
+
+}
+
+
+function scheduleCustomOrderFocus(
+index
+) {
+
+if (
+customAddToOrderScrollTimer !==
+null
+) {
+
+clearTimeout(
+customAddToOrderScrollTimer
+);
+
+}
+
+
+customAddToOrderScrollTimer =
+setTimeout(
+() => {
+
+const target =
+customOrderSummaryItems.querySelector(
+`[data-custom-order-summary-item-index="${index}"]`
+);
+
+
+animateElementToViewportCentre(
+target,
+560
+);
+
+
+customAddToOrderScrollTimer =
+null;
+
+},
+1120
+);
+
+}
+
+
+/* =========================================
+ADD STANDARD CONFIGURATION TO ORDER
 ========================================= */
 
 function addCurrentSelectionToOrder() {
@@ -12688,8 +15517,8 @@ unitPrice
 };
 
 
-const existingItem =
-state.orderItems.find(
+const existingIndex =
+state.orderItems.findIndex(
 item =>
 orderItemsMatch(
 item,
@@ -12698,20 +15527,32 @@ newItem
 );
 
 
+let targetIndex;
+
+
 if (
-existingItem
+existingIndex >=
+0
 ) {
 
-existingItem.quantity =
+state.orderItems[
+existingIndex
+].quantity =
 Math.min(
 999,
 Number(
-existingItem.quantity
+state.orderItems[
+existingIndex
+].quantity
 ) +
 Number(
 newItem.quantity
 )
 );
+
+
+targetIndex =
+existingIndex;
 
 }
 else {
@@ -12719,6 +15560,11 @@ else {
 state.orderItems.push(
 newItem
 );
+
+
+targetIndex =
+state.orderItems.length -
+1;
 
 }
 
@@ -12737,7 +15583,9 @@ state.basketTotal
 
 renderOrderSummary(
 {
-animate:true
+animate:true,
+focusOrderIndex:
+targetIndex
 }
 );
 
@@ -12784,7 +15632,12 @@ addToOrderFeedbackTimer =
 null;
 
 },
-1200
+1100
+);
+
+
+scheduleStandardOrderFocus(
+targetIndex
 );
 
 }
@@ -12793,6 +15646,185 @@ null;
 addToOrder.addEventListener(
 "click",
 addCurrentSelectionToOrder
+);
+
+
+/* =========================================
+ADD CUSTOM CONFIGURATION TO ORDER
+========================================= */
+
+function addCurrentCustomSelectionToOrder() {
+
+closeSizeDropdown();
+closeCustomBuildDropdowns();
+
+
+if (
+!customInputsAreValid()
+) {
+
+return;
+
+}
+
+
+const unitPrice =
+selectedCustomPrice();
+
+
+const newItem = {
+
+width:
+customState.width,
+
+length:
+customState.length,
+
+glazing:
+customState.glazing,
+
+type:
+customState.type,
+
+border:
+customState.border,
+
+tint:
+customState.tint,
+
+quantity:
+customState.quantity,
+
+unitPrice:
+unitPrice
+
+};
+
+
+const existingIndex =
+state.customOrderItems.findIndex(
+item =>
+customOrderItemsMatch(
+item,
+newItem
+)
+);
+
+
+let targetIndex;
+
+
+if (
+existingIndex >=
+0
+) {
+
+state.customOrderItems[
+existingIndex
+].quantity =
+Math.min(
+999,
+Number(
+state.customOrderItems[
+existingIndex
+].quantity
+) +
+Number(
+newItem.quantity
+)
+);
+
+
+targetIndex =
+existingIndex;
+
+}
+else {
+
+state.customOrderItems.push(
+newItem
+);
+
+
+targetIndex =
+state.customOrderItems.length -
+1;
+
+}
+
+
+state.basketTotal =
+calculateOrderTotal();
+
+
+saveOrderToStorage();
+
+
+updateBasketTotal(
+state.basketTotal
+);
+
+
+renderCustomOrderSummary(
+{
+animate:true,
+focusOrderIndex:
+targetIndex
+}
+);
+
+
+/* Reset only custom quantity */
+
+customState.quantity =
+1;
+
+
+updateCustomConfiguratorUI();
+
+
+if (
+customAddToOrderFeedbackTimer !==
+null
+) {
+
+clearTimeout(
+customAddToOrderFeedbackTimer
+);
+
+}
+
+
+customAddToOrderText.textContent =
+"Added To Order ✓";
+
+
+customAddToOrderFeedbackTimer =
+setTimeout(
+() => {
+
+customAddToOrderText.textContent =
+"Add 1 To Order";
+
+
+customAddToOrderFeedbackTimer =
+null;
+
+},
+1100
+);
+
+
+scheduleCustomOrderFocus(
+targetIndex
+);
+
+}
+
+
+customAddToOrder.addEventListener(
+"click",
+addCurrentCustomSelectionToOrder
 );
 
 
@@ -12884,6 +15916,13 @@ animate:false
 );
 
 
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+
 updateBasketTotal(
 state.basketTotal,
 {
@@ -12917,6 +15956,13 @@ loadOrderFromStorage();
 
 
 renderOrderSummary(
+{
+animate:false
+}
+);
+
+
+renderCustomOrderSummary(
 {
 animate:false
 }
@@ -13034,7 +16080,17 @@ animateImage:false
 );
 
 
+updateCustomConfiguratorUI();
+
+
 renderOrderSummary(
+{
+animate:false
+}
+);
+
+
+renderCustomOrderSummary(
 {
 animate:false
 }
