@@ -1350,6 +1350,7 @@ scrollbar-width:thin;
 scrollbar-color:
 rgba(232,120,23,.60)
 rgba(255,255,255,.04);
+padding-bottom:0;
 }
 
 .size-dropdown-list::-webkit-scrollbar {
@@ -2084,10 +2085,6 @@ letter-spacing:-.75px;
 }
 
 .order-summary-item-body {
-display:grid;
-grid-template-columns:minmax(0,1fr) minmax(175px,235px);
-gap:clamp(24px,3vw,48px);
-align-items:end;
 margin-top:20px;
 }
 
@@ -2129,72 +2126,9 @@ font-weight:700;
 line-height:1.28;
 }
 
-.order-summary-item-price {
-min-width:0;
-align-self:end;
-justify-self:end;
-width:100%;
-padding-left:clamp(18px,2vw,27px);
-border-left:1px solid rgba(255,255,255,.09);
-text-align:right;
-}
-
-.order-summary-item-price-label {
-color:rgba(247,247,243,.42);
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:8px;
-font-weight:800;
-line-height:1;
-letter-spacing:1.2px;
-text-transform:uppercase;
-}
-
-.order-summary-unit-price {
-display:flex;
-align-items:baseline;
-justify-content:flex-end;
-margin-top:10px;
-white-space:nowrap;
+.order-summary-spec.unit-price-spec strong {
 color:var(--cream);
-font-family:
-"Bahnschrift",
-"Bahnschrift SemiCondensed",
-"Arial Narrow",
-sans-serif;
-font-size:clamp(31px,3.65vw,49px);
 font-weight:800;
-line-height:.79;
-letter-spacing:-1.9px;
-}
-
-.order-summary-unit-price-major {
-display:inline-flex;
-align-items:baseline;
-font-size:1em;
-font-weight:inherit;
-line-height:inherit;
-letter-spacing:inherit;
-}
-
-.order-summary-unit-price-pence {
-display:inline-block;
-margin-left:2px;
-font-size:.35em;
-font-weight:inherit;
-line-height:1;
-letter-spacing:-.1px;
-}
-
-.order-summary-unit-vat {
-margin-top:10px;
-color:rgba(247,247,243,.43);
-font-size:9px;
-font-weight:500;
-line-height:1;
-text-transform:lowercase;
 }
 
 
@@ -2215,56 +2149,17 @@ border-top:1px solid rgba(255,255,255,.09);
 .order-summary-line-controls {
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
 min-width:0;
-}
-
-.order-summary-remove {
-min-height:42px;
-padding:0 17px;
-border:1px solid rgba(255,255,255,.16);
-border-radius:12px;
-background:
-linear-gradient(
-180deg,
-#151717,
-#0c0e0e
-);
-color:#bfc2bf;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:8.5px;
-font-weight:800;
-letter-spacing:1px;
-line-height:1;
-text-transform:uppercase;
-cursor:pointer;
-transition:
-border-color .2s ease,
-background .2s ease,
-color .2s ease,
-transform .15s ease;
-}
-
-.order-summary-remove:hover {
-border-color:rgba(232,120,23,.54);
-background:#181513;
-color:var(--orange-bright);
-}
-
-.order-summary-remove:active {
-transform:scale(.97);
 }
 
 .order-summary-quantity {
 display:grid;
-grid-template-columns:38px minmax(44px,52px) 38px;
-min-height:42px;
+grid-template-columns:32px 38px 32px;
+min-height:38px;
 overflow:hidden;
 border:1px solid rgba(255,255,255,.16);
-border-radius:12px;
+border-radius:11px;
 background:
 linear-gradient(
 180deg,
@@ -2285,7 +2180,7 @@ font-family:
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:19px;
+font-size:17px;
 font-weight:400;
 line-height:1;
 cursor:pointer;
@@ -2331,9 +2226,48 @@ font-family:
 "Bahnschrift SemiCondensed",
 "Aptos Display",
 sans-serif;
-font-size:17px;
+font-size:15px;
 font-weight:800;
 line-height:1;
+}
+
+.order-summary-remove {
+min-height:38px;
+padding:0 15px;
+border:1px solid rgba(255,255,255,.16);
+border-radius:11px;
+background:
+linear-gradient(
+180deg,
+#151717,
+#0c0e0e
+);
+color:#bfc2bf;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8px;
+font-weight:800;
+letter-spacing:.9px;
+line-height:1;
+text-transform:uppercase;
+cursor:pointer;
+transition:
+border-color .2s ease,
+background .2s ease,
+color .2s ease,
+transform .15s ease;
+}
+
+.order-summary-remove:hover {
+border-color:rgba(232,120,23,.54);
+background:#181513;
+color:var(--orange-bright);
+}
+
+.order-summary-remove:active {
+transform:scale(.97);
 }
 
 .order-summary-line-total {
@@ -2384,7 +2318,7 @@ text-transform:lowercase;
 
 
 /* =========================================
-COSMIC METALLIC GREEN ORDER TOTAL
+STATIC COSMIC GREEN ORDER TOTAL
 ========================================= */
 
 .order-summary-footer {
@@ -2419,8 +2353,6 @@ font-weight:800;
 line-height:1;
 letter-spacing:1.45px;
 text-transform:uppercase;
-text-shadow:
-0 0 12px rgba(47,202,138,.13);
 }
 
 .order-summary-total-price {
@@ -2438,20 +2370,9 @@ font-weight:850;
 line-height:.78;
 letter-spacing:-2.6px;
 color:var(--cosmic-green-bright);
-background:
-linear-gradient(
-180deg,
-#d3f4e6 0%,
-#8ce1be 22%,
-#39c98e 48%,
-#159766 70%,
-#72d5ae 100%
-);
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
-filter:
-drop-shadow(0 5px 13px rgba(13,103,72,.20));
+-webkit-text-fill-color:currentColor;
+text-shadow:
+0 5px 14px rgba(13,103,72,.18);
 transition:
 font-size .22s ease,
 letter-spacing .22s ease;
@@ -2480,7 +2401,11 @@ text-transform:lowercase;
 
 
 /* =========================================
-COSMIC METALLIC GREEN CHECKOUT BUTTON
+STATIC COSMIC GREEN CHECKOUT BUTTON
+
+Dark left section.
+Green occupies approximately the right 70%.
+The green section has a diagonal left edge.
 ========================================= */
 
 .checkout-now {
@@ -2493,25 +2418,15 @@ display:flex;
 align-items:center;
 justify-content:center;
 padding:0 45px 0 22px;
-border:1px solid rgba(114,213,174,.78);
+border:1px solid rgba(70,190,137,.66);
 border-radius:18px;
 background:
 linear-gradient(
-115deg,
-#071d16 0%,
-#0b4d37 13%,
-#159263 25%,
-#82d9b8 37%,
-#18a06c 49%,
-#0a3f2e 60%,
-#2fc98a 72%,
-#a5e5ca 83%,
-#0d6748 94%,
-#071d16 100%
+180deg,
+#0b1511 0%,
+#07100d 100%
 );
-background-size:260% 260%;
-background-position:0% 50%;
-color:#04110d;
+color:#f0fff8;
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -2524,16 +2439,10 @@ text-decoration:none;
 text-align:center;
 text-transform:uppercase;
 text-shadow:
-0 1px 0 rgba(255,255,255,.16);
+0 1px 2px rgba(0,0,0,.48);
 box-shadow:
-0 13px 31px rgba(5,78,54,.22),
-0 0 0 1px rgba(112,222,177,.04),
-inset 0 1px 0 rgba(226,255,243,.34),
-inset 0 -1px 0 rgba(0,0,0,.32);
-animation:
-cosmicCheckoutGradient
-5.5s ease-in-out
-infinite;
+0 13px 31px rgba(5,78,54,.15),
+inset 0 1px 0 rgba(255,255,255,.08);
 transition:
 transform .2s ease,
 filter .2s ease,
@@ -2545,25 +2454,26 @@ box-shadow .2s ease;
 content:"";
 position:absolute;
 z-index:-1;
-inset:0;
+top:0;
+right:0;
+bottom:0;
+left:28%;
 pointer-events:none;
 background:
 linear-gradient(
-108deg,
-transparent 0%,
-transparent 34%,
-rgba(235,255,247,.18) 43%,
-rgba(255,255,255,.36) 49%,
-rgba(214,255,236,.15) 55%,
-transparent 64%,
-transparent 100%
+90deg,
+#0a4a34 0%,
+#0d6748 35%,
+#139765 68%,
+#2fca8a 100%
 );
-background-size:220% 100%;
-background-position:-120% 0;
-animation:
-cosmicCheckoutShimmer
-4.4s ease-in-out
-infinite;
+clip-path:
+polygon(
+11% 0,
+100% 0,
+100% 100%,
+0 100%
+);
 }
 
 .checkout-now::after {
@@ -2585,56 +2495,11 @@ line-height:1;
 
 .checkout-now:hover {
 transform:translateY(-1px);
-filter:
-saturate(1.12)
-brightness(1.07);
-border-color:rgba(151,235,202,.96);
+filter:brightness(1.05);
+border-color:rgba(114,213,174,.86);
 box-shadow:
-0 17px 39px rgba(18,151,101,.28),
-0 0 22px rgba(47,202,138,.11),
-inset 0 1px 0 rgba(238,255,247,.42),
-inset 0 -1px 0 rgba(0,0,0,.27);
-}
-
-@keyframes cosmicCheckoutGradient {
-
-0% {
-background-position:0% 50%;
-}
-
-50% {
-background-position:100% 50%;
-}
-
-100% {
-background-position:0% 50%;
-}
-
-}
-
-@keyframes cosmicCheckoutShimmer {
-
-0%,
-55% {
-background-position:-120% 0;
-opacity:0;
-}
-
-62% {
-opacity:.8;
-}
-
-80% {
-background-position:120% 0;
-opacity:.72;
-}
-
-86%,
-100% {
-background-position:120% 0;
-opacity:0;
-}
-
+0 16px 36px rgba(18,151,101,.20),
+inset 0 1px 0 rgba(255,255,255,.10);
 }
 
 
@@ -3060,11 +2925,6 @@ padding:20px 18px;
 grid-template-columns:minmax(130px,.7fr) minmax(190px,1.3fr);
 }
 
-.order-summary-item-body {
-grid-template-columns:minmax(0,1fr) minmax(160px,210px);
-gap:24px;
-}
-
 .order-summary-spec-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
 }
@@ -3452,8 +3312,6 @@ letter-spacing:-.45px;
 }
 
 .order-summary-item-body {
-grid-template-columns:1fr;
-gap:15px;
 margin-top:14px;
 }
 
@@ -3472,36 +3330,6 @@ margin-top:4px;
 font-size:7.7px;
 }
 
-.order-summary-item-price {
-width:100%;
-min-width:0;
-padding-top:13px;
-padding-left:0;
-border-left:0;
-border-top:1px solid rgba(255,255,255,.08);
-text-align:right;
-}
-
-.order-summary-item-price-label {
-font-size:5.7px;
-letter-spacing:.8px;
-}
-
-.order-summary-unit-price {
-margin-top:7px;
-font-size:clamp(25px,7vw,32px);
-letter-spacing:-1.2px;
-}
-
-.order-summary-unit-price-pence {
-margin-left:1px;
-}
-
-.order-summary-unit-vat {
-margin-top:7px;
-font-size:6.5px;
-}
-
 
 /* =========================================
 MOBILE ORDER LINE CONTROLS
@@ -3514,29 +3342,29 @@ padding-top:12px;
 }
 
 .order-summary-line-controls {
-gap:6px;
-}
-
-.order-summary-remove {
-min-height:34px;
-padding:0 10px;
-border-radius:9px;
-font-size:5.8px;
-letter-spacing:.65px;
+gap:5px;
 }
 
 .order-summary-quantity {
-grid-template-columns:28px 34px 28px;
-min-height:34px;
+grid-template-columns:24px 28px 24px;
+min-height:32px;
 border-radius:9px;
 }
 
 .order-summary-quantity button {
-font-size:15px;
+font-size:14px;
 }
 
 .order-summary-quantity strong {
-font-size:13px;
+font-size:12px;
+}
+
+.order-summary-remove {
+min-height:32px;
+padding:0 9px;
+border-radius:9px;
+font-size:5.8px;
+letter-spacing:.65px;
 }
 
 .order-summary-line-total {
@@ -3599,6 +3427,10 @@ padding-left:12px;
 padding-right:29px;
 font-size:7.5px;
 letter-spacing:.7px;
+}
+
+.checkout-now::before {
+left:28%;
 }
 
 .checkout-now::after {
@@ -3840,17 +3672,13 @@ padding-left:10px;
 padding-right:10px;
 }
 
-.order-summary-unit-price {
-font-size:clamp(23px,6.8vw,29px);
+.order-summary-quantity {
+grid-template-columns:22px 26px 22px;
 }
 
 .order-summary-remove {
-padding-left:8px;
-padding-right:8px;
-}
-
-.order-summary-quantity {
-grid-template-columns:25px 30px 25px;
+padding-left:7px;
+padding-right:7px;
 }
 
 .order-summary-line-total {
@@ -3893,14 +3721,8 @@ scroll-behavior:auto;
 .whatsapp-action,
 .basket-total-text,
 .basket-arrow,
-.order-final-summary-section.summary-enter,
-.checkout-now,
-.checkout-now::before {
+.order-final-summary-section.summary-enter {
 animation:none !important;
-}
-
-.checkout-now {
-background-position:50% 50%;
 }
 
 .product-image-frame img {
@@ -5759,8 +5581,6 @@ value
 
 /* =========================================
 PRODUCT IMAGE SCALE
-
-600 × 2000 reduced another 5%.
 ========================================= */
 
 const PRODUCT_IMAGE_BASE_SCALE =
@@ -5785,7 +5605,7 @@ const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 "600x1200":-25,
 "600x1500":-15,
 
-/* reduced by a further 5% */
+/* 600 × 2000 reduced another 5% */
 "600x2000":-20,
 
 "800x800":-30,
@@ -5822,8 +5642,8 @@ PER-SIZE IMAGE ROTATION
 Negative = left
 Positive = right
 
-Applies to every tint because transformation
-is based only on selected size.
+All tints use the same rotation because
+rotation is determined only by selected size.
 ========================================= */
 
 const PRODUCT_IMAGE_ROTATIONS = {
@@ -5833,14 +5653,19 @@ const PRODUCT_IMAGE_ROTATIONS = {
 
 "600x600":-15,
 "600x900":-15,
+"600x1200":-15,
+"600x1500":-15,
 "600x2000":15,
 
 "800x800":-15,
 "800x1000":-15,
 "800x1200":-15,
+"800x1500":-15,
 
 "1000x1000":-15,
 "1000x1200":-15,
+"1000x1500":-15,
+"1000x2000":15,
 
 "1500x1500":-15
 
@@ -9057,9 +8882,9 @@ sizeDropdownList.style.maxHeight =
 /* =========================================
 CURRENT SIZE POSITION
 
-No artificial bottom padding is used.
-The physical end of the dropdown is therefore
-always directly beneath 1500 × 2500.
+No artificial bottom padding.
+The actual dropdown content ends immediately
+beneath 1500 × 2500.
 ========================================= */
 
 function positionCurrentSizeAtTop() {
@@ -9099,10 +8924,6 @@ selectedIndex
 sizeDropdownKeyboardIndex =
 selectedIndex;
 
-
-/*
-Remove the old artificial blank space.
-*/
 
 sizeDropdownList.style.paddingBottom =
 "0px";
@@ -9984,15 +9805,6 @@ second.unitPrice
 
 /* =========================================
 ORDER TOTAL RESPONSIVE SIZE
-
-£0 - £999.99:
-normal size
-
-£1,000 - £9,999.99:
-reduced
-
-£10,000+:
-reduced again
 ========================================= */
 
 function updateOrderSummaryTotalDisplay(
@@ -10147,12 +9959,6 @@ item.glazing
 );
 
 
-const itemPriceParts =
-moneyParts(
-item.unitPrice
-);
-
-
 const lineTotal =
 
 Number(
@@ -10164,7 +9970,10 @@ item.quantity
 
 
 return `
-<div class="order-summary-item">
+<div
+class="order-summary-item"
+data-order-summary-item-index="${index}"
+>
 
 <h3 class="order-summary-item-title">
 ${escapeHTML(item.quantity)} × ${escapeHTML(title)}
@@ -10209,29 +10018,9 @@ ${escapeHTML(item.quantity)} × ${escapeHTML(title)}
 <strong>${escapeHTML(topGlass)}</strong>
 </div>
 
-</div>
-
-
-<div class="order-summary-item-price">
-
-<div class="order-summary-item-price-label">
-Unit Price:
-</div>
-
-<div class="order-summary-unit-price">
-
-<span class="order-summary-unit-price-major">
-£${escapeHTML(itemPriceParts.whole)}.
-</span>
-
-<span class="order-summary-unit-price-pence">
-${escapeHTML(itemPriceParts.pence)}
-</span>
-
-</div>
-
-<div class="order-summary-unit-vat">
-inc. vat
+<div class="order-summary-spec unit-price-spec">
+<span>Unit Price</span>
+<strong>${escapeHTML(formatMoney(item.unitPrice))}</strong>
 </div>
 
 </div>
@@ -10243,14 +10032,6 @@ inc. vat
 
 <div class="order-summary-line-controls">
 
-<button
-type="button"
-class="order-summary-remove"
-data-order-remove-index="${index}"
-aria-label="Remove this rooflight from the order"
->
-Remove
-</button>
 
 <div
 class="order-summary-quantity"
@@ -10281,6 +10062,17 @@ aria-label="Increase quantity"
 </button>
 
 </div>
+
+
+<button
+type="button"
+class="order-summary-remove"
+data-order-remove-index="${index}"
+aria-label="Remove this rooflight from the order"
+>
+Remove
+</button>
+
 
 </div>
 
@@ -10398,6 +10190,126 @@ state.basketTotal
 }
 
 
+/* =========================================
+CENTRE ORDER CONTENT AFTER REMOVE
+========================================= */
+
+function scrollElementToViewportCentre(
+element
+) {
+
+if (
+!element
+) {
+
+return;
+
+}
+
+
+const rect =
+element.getBoundingClientRect();
+
+
+const targetTop =
+
+window.scrollY +
+rect.top +
+(
+rect.height /
+2
+) -
+(
+window.innerHeight /
+2
+);
+
+
+window.scrollTo(
+{
+top:
+Math.max(
+0,
+targetTop
+),
+behavior:
+reducedMotionQuery.matches
+?
+"auto"
+:
+"smooth"
+}
+);
+
+}
+
+
+function centreAfterOrderItemRemoval(
+removedIndex
+) {
+
+requestAnimationFrame(
+() => {
+
+requestAnimationFrame(
+() => {
+
+if (
+!state.orderItems.length
+) {
+
+scrollElementToViewportCentre(
+unitSummarySection
+);
+
+return;
+
+}
+
+
+const remainingItems =
+Array.from(
+orderSummaryItems.querySelectorAll(
+".order-summary-item"
+)
+);
+
+
+if (
+!remainingItems.length
+) {
+
+scrollElementToViewportCentre(
+unitSummarySection
+);
+
+return;
+
+}
+
+
+const targetIndex =
+Math.min(
+removedIndex,
+remainingItems.length - 1
+);
+
+
+scrollElementToViewportCentre(
+remainingItems[
+targetIndex
+]
+);
+
+}
+);
+
+}
+);
+
+}
+
+
 function removeOrderItem(
 index
 ) {
@@ -10424,6 +10336,11 @@ index,
 
 
 commitOrderSummaryChange();
+
+
+centreAfterOrderItemRemoval(
+index
+);
 
 }
 
@@ -11369,9 +11286,6 @@ closeMenu();
 
 /* =========================================
 ADD CURRENT CONFIGURATION TO ORDER
-
-Configurator quantity resets to 1 after
-the selected quantity is successfully added.
 ========================================= */
 
 function addCurrentSelectionToOrder() {
@@ -11462,6 +11376,8 @@ animate:true
 }
 );
 
+
+/* Reset configurator quantity after add */
 
 state.quantity =
 1;
