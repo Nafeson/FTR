@@ -98,6 +98,7 @@ max-width:100%;
 
 button,
 select,
+input,
 a {
 font:inherit;
 }
@@ -109,7 +110,8 @@ a {
 
 button:focus-visible,
 a:focus-visible,
-select:focus-visible {
+select:focus-visible,
+input:focus-visible {
 outline:2px solid var(--orange);
 outline-offset:3px;
 }
@@ -2318,7 +2320,7 @@ text-transform:lowercase;
 
 
 /* =========================================
-DARKER SHINY STATIC GREEN ORDER TOTAL
+SOLID WHITE ORDER TOTAL
 ========================================= */
 
 .order-summary-footer {
@@ -2343,7 +2345,7 @@ min-width:0;
 }
 
 .order-summary-total-label {
-color:#5da98a;
+color:#8f9692;
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -2353,6 +2355,7 @@ font-weight:800;
 line-height:1;
 letter-spacing:1.45px;
 text-transform:uppercase;
+text-shadow:none;
 }
 
 .order-summary-total-price {
@@ -2369,13 +2372,10 @@ font-size:clamp(42.75px,4.655vw,63.65px);
 font-weight:850;
 line-height:.78;
 letter-spacing:-2.6px;
-color:#18825d;
+color:var(--white);
 -webkit-text-fill-color:currentColor;
-text-shadow:
-0 -1px 0 rgba(206,247,228,.34),
-0 1px 0 rgba(2,30,21,.92),
-0 4px 11px rgba(7,91,62,.26);
-filter:saturate(1.08);
+text-shadow:none;
+filter:none;
 transition:
 font-size .22s ease,
 letter-spacing .22s ease;
@@ -2395,7 +2395,7 @@ letter-spacing:-1.6px;
 
 .order-summary-total-vat {
 margin-top:11px;
-color:rgba(84,159,127,.66);
+color:rgba(247,247,243,.46);
 font-size:10px;
 font-weight:500;
 line-height:1;
@@ -2404,32 +2404,22 @@ text-transform:lowercase;
 
 
 /* =========================================
-STATIC DARK GREEN TO FADED WHITE CHECKOUT
+SOLID DARK METALLIC GREEN CHECKOUT
 ========================================= */
 
 .checkout-now {
 position:relative;
 overflow:hidden;
-isolation:isolate;
 width:100%;
 min-height:64px;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:0 45px 0 22px;
-border:1px solid rgba(84,157,127,.68);
+border:1px solid rgba(103,166,140,.58);
 border-radius:18px;
-background:
-linear-gradient(
-90deg,
-#083c2b 0%,
-#0c573e 21%,
-#116a4b 39%,
-#398d6c 59%,
-#83bba4 79%,
-rgba(239,247,243,.82) 100%
-);
-color:#07130e;
+background:#176149;
+color:#f4faf7;
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -2443,10 +2433,10 @@ text-align:center;
 text-transform:uppercase;
 text-shadow:none;
 box-shadow:
-0 12px 27px rgba(5,67,47,.16);
+0 12px 27px rgba(0,0,0,.24);
 transition:
 transform .2s ease,
-filter .2s ease,
+background .2s ease,
 border-color .2s ease,
 box-shadow .2s ease;
 }
@@ -2470,10 +2460,10 @@ line-height:1;
 
 .checkout-now:hover {
 transform:translateY(-1px);
-filter:brightness(1.035);
-border-color:rgba(101,181,146,.82);
+background:#1a6d51;
+border-color:rgba(122,186,158,.72);
 box-shadow:
-0 15px 31px rgba(7,88,61,.19);
+0 15px 31px rgba(0,0,0,.27);
 }
 
 
@@ -2680,12 +2670,326 @@ font-family:
 "Inter",
 Arial,
 sans-serif;
-font-size:clamp(38px,5.2vw,66px);
+
+/* 15% smaller than previous title */
+font-size:clamp(32.3px,4.42vw,56.1px);
+
 font-weight:800;
 line-height:.95;
-letter-spacing:-1.9px;
+letter-spacing:-1.65px;
 color:var(--cream);
 }
+
+
+/* =========================================
+CUSTOM ROOFLIGHT CONFIGURATOR
+========================================= */
+
+.order-custom-configurator {
+position:relative;
+z-index:5;
+display:grid;
+gap:clamp(17px,2vw,23px);
+width:100%;
+max-width:930px;
+margin-top:clamp(34px,4vw,52px);
+}
+
+.order-custom-field {
+position:relative;
+min-width:0;
+}
+
+.order-custom-field-label {
+display:block;
+margin:0 0 9px;
+color:#8b908d;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:clamp(9px,.95vw,12px);
+font-weight:800;
+line-height:1;
+letter-spacing:1.65px;
+text-transform:uppercase;
+}
+
+.order-custom-input {
+display:block;
+width:100%;
+height:clamp(51px,5vw,62px);
+margin:0;
+padding:0 clamp(15px,1.8vw,20px);
+border:1px solid rgba(255,255,255,.16);
+border-radius:16px;
+outline:0;
+background:
+linear-gradient(
+180deg,
+#0d0f0f 0%,
+#090b0b 100%
+);
+color:var(--white);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(15px,1.6vw,21px);
+font-weight:650;
+line-height:1;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.015);
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
+}
+
+.order-custom-input::placeholder {
+color:rgba(247,247,243,.38);
+opacity:1;
+}
+
+.order-custom-input:hover,
+.order-custom-input:focus {
+border-color:rgba(232,120,23,.48);
+background:#0d0f0f;
+box-shadow:
+0 0 0 1px rgba(232,120,23,.035);
+}
+
+
+/* =========================================
+CUSTOM BUILD DROPDOWNS
+========================================= */
+
+.custom-build-dropdown {
+position:relative;
+z-index:1;
+width:100%;
+}
+
+.custom-build-dropdown.is-open {
+z-index:30;
+}
+
+.custom-build-dropdown-trigger {
+position:relative;
+width:100%;
+height:clamp(51px,5vw,62px);
+margin:0;
+padding:
+0
+clamp(46px,5vw,55px)
+0
+clamp(15px,1.8vw,20px);
+display:flex;
+align-items:center;
+justify-content:flex-start;
+border:1px solid rgba(255,255,255,.16);
+border-radius:16px;
+background:
+linear-gradient(
+180deg,
+#0d0f0f 0%,
+#090b0b 100%
+);
+color:var(--white);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(15px,1.6vw,21px);
+font-weight:650;
+line-height:1;
+text-align:left;
+cursor:pointer;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.015);
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
+}
+
+.custom-build-dropdown-trigger span {
+display:block;
+max-width:100%;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+}
+
+.custom-build-dropdown-trigger:hover,
+.custom-build-dropdown.is-open .custom-build-dropdown-trigger {
+border-color:rgba(232,120,23,.48);
+background:#0d0f0f;
+}
+
+.custom-build-dropdown-trigger::after {
+content:"";
+position:absolute;
+right:20px;
+top:50%;
+width:8px;
+height:8px;
+border-right:1px solid #c8c8c4;
+border-bottom:1px solid #c8c8c4;
+transform:
+translateY(-68%)
+rotate(45deg);
+transition:
+transform .22s ease,
+border-color .22s ease;
+}
+
+.custom-build-dropdown.is-open
+.custom-build-dropdown-trigger::after {
+border-color:var(--orange-bright);
+transform:
+translateY(-28%)
+rotate(225deg);
+}
+
+.custom-build-dropdown-panel {
+position:absolute;
+top:calc(100% + 6px);
+left:0;
+right:0;
+z-index:50;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.17);
+border-radius:14px;
+background:
+linear-gradient(
+180deg,
+#121414 0%,
+#090b0b 100%
+);
+box-shadow:
+0 26px 58px rgba(0,0,0,.62),
+0 0 0 1px rgba(0,0,0,.20);
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:translateY(-5px);
+transition:
+opacity .16s ease,
+visibility .16s ease,
+transform .18s ease;
+}
+
+.custom-build-dropdown.is-open
+.custom-build-dropdown-panel {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:translateY(0);
+}
+
+.custom-build-dropdown-list {
+display:block;
+width:100%;
+max-height:280px;
+overflow-x:hidden;
+overflow-y:auto;
+overscroll-behavior:contain;
+-webkit-overflow-scrolling:touch;
+scrollbar-width:thin;
+scrollbar-color:
+rgba(232,120,23,.60)
+rgba(255,255,255,.04);
+}
+
+.custom-build-dropdown-list::-webkit-scrollbar {
+width:6px;
+}
+
+.custom-build-dropdown-list::-webkit-scrollbar-track {
+background:rgba(255,255,255,.025);
+}
+
+.custom-build-dropdown-list::-webkit-scrollbar-thumb {
+background:rgba(232,120,23,.55);
+border-radius:999px;
+}
+
+.custom-build-dropdown-option {
+position:relative;
+width:100%;
+min-height:50px;
+margin:0;
+padding:0 44px 0 16px;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+border:0;
+border-bottom:1px solid rgba(255,255,255,.075);
+background:#0b0d0d;
+color:rgba(247,247,243,.87);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(13px,1.35vw,18px);
+font-weight:650;
+line-height:1.12;
+letter-spacing:-.1px;
+text-align:left;
+cursor:pointer;
+transition:
+background .16s ease,
+color .16s ease,
+padding-left .16s ease;
+}
+
+.custom-build-dropdown-option:last-child {
+border-bottom:0;
+}
+
+.custom-build-dropdown-option:hover,
+.custom-build-dropdown-option:focus-visible {
+background:#151716;
+color:var(--white);
+}
+
+.custom-build-dropdown-option.is-selected {
+background:
+linear-gradient(
+90deg,
+rgba(232,120,23,.17),
+rgba(232,120,23,.045)
+);
+color:var(--orange-bright);
+}
+
+.custom-build-dropdown-option.is-selected::before {
+content:"";
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:3px;
+background:var(--orange);
+}
+
+.custom-build-dropdown-option.is-selected::after {
+content:"✓";
+position:absolute;
+right:17px;
+top:50%;
+transform:translateY(-50%);
+color:var(--orange-bright);
+font-size:13px;
+font-weight:900;
+}
+
+
+/* blank area retained for later additions */
 
 .order-custom-build-spacer {
 min-height:clamp(145px,15vw,240px);
@@ -3538,13 +3842,67 @@ width:25px;
 
 .order-custom-build-title {
 margin-top:21px;
-font-size:clamp(32px,9vw,46px);
+
+/* 15% smaller on mobile */
+font-size:clamp(27.2px,7.65vw,39.1px);
+
 line-height:.96;
-letter-spacing:-1.25px;
+letter-spacing:-1.05px;
+}
+
+.order-custom-configurator {
+gap:15px;
+margin-top:30px;
+}
+
+.order-custom-field-label {
+margin-bottom:7px;
+font-size:7.6px;
+letter-spacing:1.2px;
+}
+
+.order-custom-input,
+.custom-build-dropdown-trigger {
+height:48px;
+border-radius:13px;
+font-size:clamp(12px,3.6vw,16px);
+}
+
+.order-custom-input {
+padding-left:13px;
+padding-right:13px;
+}
+
+.custom-build-dropdown-trigger {
+padding-left:13px;
+padding-right:40px;
+}
+
+.custom-build-dropdown-trigger::after {
+right:15px;
+width:6px;
+height:6px;
+}
+
+.custom-build-dropdown-panel {
+top:calc(100% + 5px);
+border-radius:12px;
+}
+
+.custom-build-dropdown-option {
+min-height:43px;
+padding-left:13px;
+padding-right:35px;
+font-size:clamp(10.5px,3.1vw,14px);
+}
+
+.custom-build-dropdown-option.is-selected::after {
+right:13px;
+font-size:10px;
 }
 
 .order-custom-build-spacer {
-min-height:190px;
+min-height:170px;
 }
 
 }
@@ -3787,11 +4145,19 @@ padding-right:18px;
 }
 
 .order-custom-build-title {
-font-size:clamp(30px,8.7vw,40px);
+
+/* 15% smaller than previous smallest-mobile size */
+font-size:clamp(25.5px,7.395vw,34px);
+
+}
+
+.order-custom-input,
+.custom-build-dropdown-trigger {
+height:46px;
 }
 
 .order-custom-build-spacer {
-min-height:180px;
+min-height:160px;
 }
 
 }
@@ -3835,7 +4201,8 @@ transform:none !important;
 opacity:1;
 }
 
-.size-dropdown-panel {
+.size-dropdown-panel,
+.custom-build-dropdown-panel {
 transition:none !important;
 }
 
@@ -4808,6 +5175,353 @@ Build A Custom<br>
 Rooflight
 </h2>
 
+
+<!-- =========================================
+CUSTOM CONFIGURATOR
+========================================= -->
+
+<div
+class="order-custom-configurator"
+aria-label="Custom rooflight configuration"
+>
+
+
+<div class="order-custom-field">
+
+<label
+class="order-custom-field-label"
+for="customInternalWidth"
+>
+Internal Width
+</label>
+
+<input
+class="order-custom-input"
+id="customInternalWidth"
+type="text"
+inputmode="numeric"
+pattern="[0-9]*"
+placeholder="e.g. 1000"
+autocomplete="off"
+aria-label="Internal width in millimetres"
+>
+
+</div>
+
+
+<div class="order-custom-field">
+
+<label
+class="order-custom-field-label"
+for="customInternalLength"
+>
+Internal Length
+</label>
+
+<input
+class="order-custom-input"
+id="customInternalLength"
+type="text"
+inputmode="numeric"
+pattern="[0-9]*"
+placeholder="e.g. 1000"
+autocomplete="off"
+aria-label="Internal length in millimetres"
+>
+
+</div>
+
+
+<!-- BORDER -->
+
+<div class="order-custom-field">
+
+<div
+class="order-custom-field-label"
+id="customBorderLabel"
+>
+Border
+</div>
+
+<div
+class="custom-build-dropdown"
+data-custom-build-dropdown
+>
+
+<button
+type="button"
+class="custom-build-dropdown-trigger"
+data-custom-build-dropdown-trigger
+aria-haspopup="listbox"
+aria-expanded="false"
+aria-labelledby="customBorderLabel customBorderValue"
+>
+
+<span
+id="customBorderValue"
+data-custom-build-dropdown-value
+>
+100mm Standard
+</span>
+
+</button>
+
+<div class="custom-build-dropdown-panel">
+
+<div
+class="custom-build-dropdown-list"
+role="listbox"
+aria-labelledby="customBorderLabel"
+>
+
+<button
+type="button"
+class="custom-build-dropdown-option is-selected"
+data-custom-build-dropdown-option
+data-value="100"
+data-label="100mm Standard"
+role="option"
+aria-selected="true"
+>
+100mm Standard
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="125"
+data-label="125mm"
+role="option"
+aria-selected="false"
+>
+125mm
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="150"
+data-label="150mm"
+role="option"
+aria-selected="false"
+>
+150mm
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- GLAZING -->
+
+<div class="order-custom-field">
+
+<div
+class="order-custom-field-label"
+id="customGlazingLabel"
+>
+Glazing
+</div>
+
+<div
+class="custom-build-dropdown"
+data-custom-build-dropdown
+>
+
+<button
+type="button"
+class="custom-build-dropdown-trigger"
+data-custom-build-dropdown-trigger
+aria-haspopup="listbox"
+aria-expanded="false"
+aria-labelledby="customGlazingLabel customGlazingValue"
+>
+
+<span
+id="customGlazingValue"
+data-custom-build-dropdown-value
+>
+Double Glazed - Toughened
+</span>
+
+</button>
+
+<div class="custom-build-dropdown-panel">
+
+<div
+class="custom-build-dropdown-list"
+role="listbox"
+aria-labelledby="customGlazingLabel"
+>
+
+<button
+type="button"
+class="custom-build-dropdown-option is-selected"
+data-custom-build-dropdown-option
+data-value="double-toughened"
+data-label="Double Glazed - Toughened"
+role="option"
+aria-selected="true"
+>
+Double Glazed - Toughened
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="triple-toughened"
+data-label="Triple Glazed - Toughened"
+role="option"
+aria-selected="false"
+>
+Triple Glazed - Toughened
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="double-laminated"
+data-label="Double Glazed - Laminated"
+role="option"
+aria-selected="false"
+>
+Double Glazed - Laminated
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="triple-laminated"
+data-label="Triple Glazed - Laminated"
+role="option"
+aria-selected="false"
+>
+Triple Glazed - Laminated
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- GLASS FINISH -->
+
+<div class="order-custom-field">
+
+<div
+class="order-custom-field-label"
+id="customFinishLabel"
+>
+Glass Finish
+</div>
+
+<div
+class="custom-build-dropdown"
+data-custom-build-dropdown
+>
+
+<button
+type="button"
+class="custom-build-dropdown-trigger"
+data-custom-build-dropdown-trigger
+aria-haspopup="listbox"
+aria-expanded="false"
+aria-labelledby="customFinishLabel customFinishValue"
+>
+
+<span
+id="customFinishValue"
+data-custom-build-dropdown-value
+>
+Clear
+</span>
+
+</button>
+
+<div class="custom-build-dropdown-panel">
+
+<div
+class="custom-build-dropdown-list"
+role="listbox"
+aria-labelledby="customFinishLabel"
+>
+
+<button
+type="button"
+class="custom-build-dropdown-option is-selected"
+data-custom-build-dropdown-option
+data-value="clear"
+data-label="Clear"
+role="option"
+aria-selected="true"
+>
+Clear
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="blue"
+data-label="Blue Tinted"
+role="option"
+aria-selected="false"
+>
+Blue Tinted
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="grey"
+data-label="Grey Tinted"
+role="option"
+aria-selected="false"
+>
+Grey Tinted
+</button>
+
+<button
+type="button"
+class="custom-build-dropdown-option"
+data-custom-build-dropdown-option
+data-value="satin"
+data-label="Satin Tinted"
+role="option"
+aria-selected="false"
+>
+Satin Tinted
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- BLANK SPACE FOR LATER CONTENT -->
+
 <div
 class="order-custom-build-spacer"
 aria-hidden="true"
@@ -5118,6 +5832,7 @@ function openMenu() {
 
 closeWhatsAppAction();
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 const menuOverlay =
 document.getElementById(
@@ -5229,6 +5944,7 @@ event => {
 event.stopPropagation();
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 setWhatsAppState(
 !whatsappAction.classList.contains(
@@ -6000,6 +6716,26 @@ document.getElementById(
 );
 
 
+const customBuildDropdowns =
+Array.from(
+document.querySelectorAll(
+"[data-custom-build-dropdown]"
+)
+);
+
+
+const customInternalWidth =
+document.getElementById(
+"customInternalWidth"
+);
+
+
+const customInternalLength =
+document.getElementById(
+"customInternalLength"
+);
+
+
 let imageTransitionToken =
 0;
 
@@ -6039,6 +6775,494 @@ let sizeDropdownKeyboardIndex =
 
 let addToOrderFeedbackTimer =
 null;
+
+
+/* =========================================
+CUSTOM BUILD DROPDOWNS
+========================================= */
+
+function closeCustomBuildDropdowns(
+exceptDropdown = null,
+returnFocus = false
+) {
+
+customBuildDropdowns.forEach(
+dropdown => {
+
+if (
+dropdown ===
+exceptDropdown
+) {
+
+return;
+
+}
+
+
+const trigger =
+dropdown.querySelector(
+"[data-custom-build-dropdown-trigger]"
+);
+
+
+const wasOpen =
+dropdown.classList.contains(
+"is-open"
+);
+
+
+dropdown.classList.remove(
+"is-open"
+);
+
+
+if (
+trigger
+) {
+
+trigger.setAttribute(
+"aria-expanded",
+"false"
+);
+
+
+if (
+returnFocus &&
+wasOpen
+) {
+
+trigger.focus();
+
+}
+
+}
+
+}
+);
+
+}
+
+
+function openCustomBuildDropdown(
+dropdown
+) {
+
+if (
+!dropdown
+) {
+
+return;
+
+}
+
+
+closeWhatsAppAction();
+
+closeSizeDropdown();
+
+closeCustomBuildDropdowns(
+dropdown
+);
+
+
+const trigger =
+dropdown.querySelector(
+"[data-custom-build-dropdown-trigger]"
+);
+
+
+dropdown.classList.add(
+"is-open"
+);
+
+
+if (
+trigger
+) {
+
+trigger.setAttribute(
+"aria-expanded",
+"true"
+);
+
+}
+
+}
+
+
+function toggleCustomBuildDropdown(
+dropdown
+) {
+
+if (
+!dropdown
+) {
+
+return;
+
+}
+
+
+if (
+dropdown.classList.contains(
+"is-open"
+)
+) {
+
+closeCustomBuildDropdowns();
+
+}
+else {
+
+openCustomBuildDropdown(
+dropdown
+);
+
+}
+
+}
+
+
+function chooseCustomBuildOption(
+dropdown,
+option
+) {
+
+if (
+!dropdown ||
+!option
+) {
+
+return;
+
+}
+
+
+const valueElement =
+dropdown.querySelector(
+"[data-custom-build-dropdown-value]"
+);
+
+
+const options =
+Array.from(
+dropdown.querySelectorAll(
+"[data-custom-build-dropdown-option]"
+)
+);
+
+
+const label =
+option.dataset.label ||
+option.textContent.trim();
+
+
+if (
+valueElement
+) {
+
+valueElement.textContent =
+label;
+
+}
+
+
+options.forEach(
+candidate => {
+
+const selected =
+candidate ===
+option;
+
+
+candidate.classList.toggle(
+"is-selected",
+selected
+);
+
+
+candidate.setAttribute(
+"aria-selected",
+String(
+selected
+)
+);
+
+}
+);
+
+
+dropdown.dataset.value =
+option.dataset.value ||
+"";
+
+
+closeCustomBuildDropdowns();
+
+}
+
+
+customBuildDropdowns.forEach(
+dropdown => {
+
+const trigger =
+dropdown.querySelector(
+"[data-custom-build-dropdown-trigger]"
+);
+
+
+const options =
+Array.from(
+dropdown.querySelectorAll(
+"[data-custom-build-dropdown-option]"
+)
+);
+
+
+if (
+trigger
+) {
+
+trigger.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+toggleCustomBuildDropdown(
+dropdown
+);
+
+}
+);
+
+
+trigger.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
+closeCustomBuildDropdowns(
+null,
+true
+);
+
+return;
+
+}
+
+
+if (
+event.key ===
+"ArrowDown"
+) {
+
+event.preventDefault();
+
+openCustomBuildDropdown(
+dropdown
+);
+
+
+const selectedOption =
+options.find(
+option =>
+option.classList.contains(
+"is-selected"
+)
+)
+||
+options[0];
+
+
+if (
+selectedOption
+) {
+
+selectedOption.focus();
+
+}
+
+}
+
+}
+);
+
+}
+
+
+options.forEach(
+(
+option,
+index
+) => {
+
+option.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+chooseCustomBuildOption(
+dropdown,
+option
+);
+
+}
+);
+
+
+option.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"ArrowDown"
+) {
+
+event.preventDefault();
+
+
+const next =
+options[
+Math.min(
+index + 1,
+options.length - 1
+)
+];
+
+
+next?.focus();
+
+return;
+
+}
+
+
+if (
+event.key ===
+"ArrowUp"
+) {
+
+event.preventDefault();
+
+
+const previous =
+options[
+Math.max(
+index - 1,
+0
+)
+];
+
+
+previous?.focus();
+
+return;
+
+}
+
+
+if (
+event.key ===
+"Home"
+) {
+
+event.preventDefault();
+
+options[0]?.focus();
+
+return;
+
+}
+
+
+if (
+event.key ===
+"End"
+) {
+
+event.preventDefault();
+
+options[
+options.length - 1
+]?.focus();
+
+return;
+
+}
+
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
+closeCustomBuildDropdowns();
+
+
+if (
+trigger
+) {
+
+trigger.focus();
+
+}
+
+}
+
+}
+);
+
+}
+);
+
+}
+);
+
+
+/* digits only in custom size inputs */
+
+[
+customInternalWidth,
+customInternalLength
+]
+.forEach(
+input => {
+
+if (
+!input
+) {
+
+return;
+
+}
+
+
+input.addEventListener(
+"input",
+() => {
+
+input.value =
+input.value.replace(
+/[^0-9]/g,
+""
+);
+
+}
+);
+
+}
+);
 
 
 /* =========================================
@@ -9056,6 +10280,7 @@ return;
 
 
 closeWhatsAppAction();
+closeCustomBuildDropdowns();
 
 
 sizeDropdown.classList.add(
@@ -11164,6 +12389,7 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 state.glazing =
 button.dataset.glazing;
@@ -11190,6 +12416,7 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 state.type =
 button.dataset.type;
@@ -11216,6 +12443,7 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 state.border =
 Number(
@@ -11244,6 +12472,7 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 
 const tint =
@@ -11284,6 +12513,7 @@ quantityMinus.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 
 if (
@@ -11311,6 +12541,7 @@ quantityPlus.addEventListener(
 () => {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 
 if (
@@ -11375,6 +12606,21 @@ closeSizeDropdown();
 
 }
 
+
+const clickedCustomDropdown =
+event.target.closest(
+"[data-custom-build-dropdown]"
+);
+
+
+if (
+!clickedCustomDropdown
+) {
+
+closeCustomBuildDropdowns();
+
+}
+
 }
 );
 
@@ -11392,6 +12638,8 @@ closeWhatsAppAction();
 
 closeSizeDropdown();
 
+closeCustomBuildDropdowns();
+
 closeMenu();
 
 }
@@ -11407,6 +12655,7 @@ ADD CURRENT CONFIGURATION TO ORDER
 function addCurrentSelectionToOrder() {
 
 closeSizeDropdown();
+closeCustomBuildDropdowns();
 
 
 const unitPrice =
