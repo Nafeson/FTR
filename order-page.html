@@ -2579,13 +2579,6 @@ z-index:4;
 width:90%;
 max-width:980px;
 
-/*
-The total vertical margin remains very similar,
-but most of it is now above the copy instead of
-beneath it. This lowers the text towards the
-custom rooflight image without materially
-pushing the image further down the page.
-*/
 margin:
 clamp(22px,2.8vw,36px)
 auto
@@ -3288,7 +3281,7 @@ text-underline-offset:3px;
 
 
 /* =========================================
-CHANGE 1 — OFFICIAL PNG PAYMENT LOGO STRIP
+PAYMENT LOGOS — INDIVIDUAL POSITION CONTROLS
 ========================================= */
 
 .footer-payment-logo-strip {
@@ -3322,29 +3315,53 @@ object-fit:contain;
 object-position:center;
 }
 
+
+/* VISA
+Positive X = right
+Negative X = left
+Positive Y = down
+Negative Y = up
+*/
 .footer-payment-logo-item.visa {
 width:64px;
+transform:translateX(0px) translateY(0px);
 }
 
+
+/* MASTERCARD */
 .footer-payment-logo-item.mastercard {
 width:46px;
+transform:translateX(5px) translateY(0px);
 }
 
+
+/* AMERICAN EXPRESS */
 .footer-payment-logo-item.amex {
 width:58px;
+transform:translateX(0px) translateY(0px);
 }
 
+
+/* PAYPAL */
 .footer-payment-logo-item.paypal {
 width:76px;
+transform:translateX(0px) translateY(0px);
 }
 
+
+/* APPLE PAY */
 .footer-payment-logo-item.apple-pay {
 width:72px;
+transform:translateX(2px) translateY(0px);
 }
 
+
+/* GOOGLE PAY */
 .footer-payment-logo-item.google-pay {
 width:76px;
+transform:translateX(-12px) translateY(0px);
 }
+
 
 .footer-copyright {
 display:flex;
@@ -3928,9 +3945,9 @@ MOBILE CUSTOM ROOFLIGHT SECTION
 
 .order-custom-rooflight-section {
 padding:
-1px
+40px
 0
-52px;
+100px;
 background:
 radial-gradient(
 ellipse at 50% 52%,
@@ -3955,13 +3972,10 @@ linear-gradient(
 width:91%;
 max-width:620px;
 
-/*
-Mobile version keeps approximately the same
-overall spacing but moves the copy noticeably
-closer to the rooflight image.
-*/
-margin:75px
-auto:6px;
+margin:
+75px
+auto
+6px;
 
 padding:0 7px;
 }
@@ -4162,7 +4176,7 @@ padding:0 2.5%;
 
 
 /* =========================================
-MOBILE OFFICIAL PAYMENT LOGOS
+MOBILE PAYMENT LOGOS
 ========================================= */
 
 .footer-payment-logo-strip {
@@ -4357,7 +4371,7 @@ height:46px;
 
 
 /* =========================================
-SMALLEST MOBILE OFFICIAL PAYMENT LOGOS
+SMALLEST MOBILE PAYMENT LOGOS
 ========================================= */
 
 .footer-payment-logo-strip {
@@ -5386,8 +5400,8 @@ Need a different size?
 If can't find what you're after with the options above, use the calculator to build a bespoke rooflight
 </p>
 
-
 </div>
+
 
 <div
 class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
@@ -6194,19 +6208,13 @@ Terms of Use
 </div>
 
 
-<!-- =========================================
-CHANGE 1 — OFFICIAL PNG PAYMENT LOGOS
-========================================= -->
-
 <div
 class="footer-payment-logo-strip"
 aria-label="Accepted payment methods"
 >
 
 
-<span
-class="footer-payment-logo-item visa"
->
+<span class="footer-payment-logo-item visa">
 <img
 src="images/visa.png"
 alt="Visa"
@@ -6214,9 +6222,7 @@ alt="Visa"
 </span>
 
 
-<span
-class="footer-payment-logo-item mastercard"
->
+<span class="footer-payment-logo-item mastercard">
 <img
 src="images/mastercard.png"
 alt="Mastercard"
@@ -6224,9 +6230,7 @@ alt="Mastercard"
 </span>
 
 
-<span
-class="footer-payment-logo-item amex"
->
+<span class="footer-payment-logo-item amex">
 <img
 src="images/amex.png"
 alt="American Express"
@@ -6234,9 +6238,7 @@ alt="American Express"
 </span>
 
 
-<span
-class="footer-payment-logo-item paypal"
->
+<span class="footer-payment-logo-item paypal">
 <img
 src="images/paypal.png"
 alt="PayPal"
@@ -6244,9 +6246,7 @@ alt="PayPal"
 </span>
 
 
-<span
-class="footer-payment-logo-item apple-pay"
->
+<span class="footer-payment-logo-item apple-pay">
 <img
 src="images/apple-pay.png"
 alt="Apple Pay"
@@ -6254,9 +6254,7 @@ alt="Apple Pay"
 </span>
 
 
-<span
-class="footer-payment-logo-item google-pay"
->
+<span class="footer-payment-logo-item google-pay">
 <img
 src="images/google-pay.png"
 alt="Google Pay"
