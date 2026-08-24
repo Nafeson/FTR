@@ -2570,7 +2570,8 @@ rgba(0,0,0,.17) 100%
 
 
 /* =========================================
-CHANGE 1 — CENTRED CUSTOM SECTION INTRO
+CHANGE 2 — CENTRED CUSTOM SECTION INTRO
+MOVED LOWER TOWARDS ROOFLIGHT IMAGE
 ========================================= */
 
 .order-custom-preintro {
@@ -2578,10 +2579,19 @@ position:relative;
 z-index:4;
 width:90%;
 max-width:980px;
+
+/*
+Adds approximately 25% of the section's
+existing top spacing above the copy while
+reducing the space beneath by a similar amount.
+This moves the copy visually towards the image
+without pushing the image significantly lower.
+*/
 margin:
-0
+clamp(11px,1.45vw,20px)
 auto
-clamp(27px,3.5vw,44px);
+clamp(16px,2.05vw,25px);
+
 padding:0 clamp(10px,2vw,24px);
 text-align:center;
 }
@@ -2904,15 +2914,7 @@ font-family:
 sans-serif;
 font-size:clamp(15px,1.6vw,21px);
 font-weight:650;
-
-/*
-Change 2:
-Slightly taller line box prevents descenders such as
-the "g" in Toughened from being clipped.
-The font size and dropdown height are unchanged.
-*/
 line-height:1.18;
-
 text-align:left;
 cursor:pointer;
 box-shadow:
@@ -3287,131 +3289,71 @@ text-underline-offset:3px;
 
 
 /* =========================================
-MUTED FOOTER PAYMENT SYMBOLS
+CHANGE 1 — OFFICIAL PAYMENT LOGO STRIP
 ========================================= */
 
-.footer-muted-payment-strip {
+.footer-payment-logo-strip {
 display:flex;
 align-items:center;
 justify-content:flex-start;
-flex-wrap:wrap;
-gap:clamp(16px,2vw,25px);
+flex-wrap:nowrap;
+gap:clamp(12px,1.5vw,22px);
 width:100%;
-max-width:650px;
+max-width:620px;
 margin:
 clamp(24px,2.8vw,34px)
 0
 clamp(28px,3vw,38px);
-color:rgba(213,217,214,.43);
 }
 
-.footer-muted-payment-logo {
-display:inline-flex;
+.footer-payment-logo-item {
+display:flex;
 align-items:center;
 justify-content:center;
-height:40px;
 flex:0 0 auto;
-color:inherit;
-opacity:.92;
+min-width:0;
 }
 
-.footer-muted-payment-logo svg {
+.footer-payment-logo-item img {
 display:block;
 width:100%;
-height:100%;
-overflow:visible;
+height:auto;
+max-height:32px;
+object-fit:contain;
+object-position:center;
 }
 
-.footer-muted-payment-logo.visa {
+.footer-payment-logo-item.visa {
+width:64px;
+}
+
+.footer-payment-logo-item.mastercard {
+width:46px;
+}
+
+.footer-payment-logo-item.amex {
+width:58px;
+}
+
+.footer-payment-logo-item.paypal {
+width:76px;
+}
+
+.footer-payment-logo-item.apple-pay {
 width:72px;
 }
 
-.footer-muted-payment-logo.mastercard {
-width:60px;
+.footer-payment-logo-item.google-pay {
+width:76px;
 }
 
-.footer-muted-payment-logo.amex {
-width:65px;
-}
-
-.footer-muted-payment-logo.paypal {
-width:83px;
-}
-
-.footer-muted-payment-logo.apple-pay {
-width:84px;
-}
-
-.footer-muted-payment-logo.google-pay {
-width:86px;
-}
-
-.footer-muted-payment-logo text,
-.footer-muted-payment-logo path,
-.footer-muted-payment-logo circle,
-.footer-muted-payment-logo rect {
-transition:none;
-}
-
-.footer-payment-section {
-display:grid;
-justify-items:start;
-gap:18px;
-width:100%;
-max-width:760px;
-margin-top:34px;
-padding-top:25px;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-.footer-payment-methods {
-display:flex;
-align-items:center;
-justify-content:flex-start;
-flex-wrap:wrap;
-gap:8px;
-width:100%;
-max-width:700px;
-}
-
-.payment-badge {
-display:inline-flex;
-align-items:center;
-justify-content:center;
-width:58px;
-height:38px;
-padding:5px 6px;
-overflow:hidden;
-border-radius:5px;
-background:#ffffff;
-border:1px solid rgba(0,0,0,.12);
-}
-
-.payment-badge svg {
-display:block;
-width:100%;
-height:100%;
-max-width:48px;
-max-height:28px;
-}
-
-.payment-badge.payment-wide svg {
-max-width:52px;
-}
-
-.payment-badge-amex {
-background:#0877c9;
-border-color:#0877c9;
-}
-
-.payment-badge-mastercard {
-background:#202020;
-border-color:#333333;
-}
-
-.payment-badge-visa {
-background:#1434cb;
-border-color:#1434cb;
+/*
+Official Apple Pay artwork is black.
+Convert only this SVG to white so it remains
+legible against the black footer.
+*/
+.footer-payment-logo-item.apple-pay img {
+filter:brightness(0) invert(1);
 }
 
 .footer-copyright {
@@ -4022,10 +3964,15 @@ linear-gradient(
 .order-custom-preintro {
 width:91%;
 max-width:620px;
+
+/*
+Mobile equivalent of the 25% downward move.
+*/
 margin:
-0
+7px
 auto
-23px;
+16px;
+
 padding:0 7px;
 }
 
@@ -4223,39 +4170,44 @@ font-size:20.7px;
 padding:0 2.5%;
 }
 
-.footer-muted-payment-strip {
-gap:13px 17px;
+
+/* =========================================
+MOBILE OFFICIAL PAYMENT LOGOS
+========================================= */
+
+.footer-payment-logo-strip {
+gap:10px;
 max-width:350px;
 margin-top:25px;
 margin-bottom:31px;
 }
 
-.footer-muted-payment-logo {
-height:35px;
+.footer-payment-logo-item img {
+max-height:25px;
 }
 
-.footer-muted-payment-logo.visa {
-width:61px;
+.footer-payment-logo-item.visa {
+width:46px;
 }
 
-.footer-muted-payment-logo.mastercard {
-width:52px;
+.footer-payment-logo-item.mastercard {
+width:34px;
 }
 
-.footer-muted-payment-logo.amex {
-width:57px;
+.footer-payment-logo-item.amex {
+width:40px;
 }
 
-.footer-muted-payment-logo.paypal {
-width:72px;
+.footer-payment-logo-item.paypal {
+width:56px;
 }
 
-.footer-muted-payment-logo.apple-pay {
-width:74px;
+.footer-payment-logo-item.apple-pay {
+width:54px;
 }
 
-.footer-muted-payment-logo.google-pay {
-width:76px;
+.footer-payment-logo-item.google-pay {
+width:56px;
 }
 
 .footer-company-intro {
@@ -4282,17 +4234,6 @@ font-size:10px;
 font-size:20px;
 }
 
-.footer-payment-methods {
-justify-content:center;
-max-width:347px;
-gap:8px 7px;
-}
-
-.payment-badge {
-width:52px;
-height:34px;
-}
-
 .footer-copyright {
 display:block;
 max-width:350px;
@@ -4308,15 +4249,6 @@ SMALLEST MOBILE
 ========================================= */
 
 @media(max-width:390px) {
-
-.footer-payment-methods {
-max-width:341px;
-}
-
-.payment-badge {
-width:51px;
-height:33px;
-}
 
 .footer-copyright {
 font-size:8px;
@@ -4406,7 +4338,8 @@ padding-right:26px;
 
 .order-custom-preintro {
 width:92%;
-margin-bottom:20px;
+margin-top:7px;
+margin-bottom:13px;
 }
 
 .order-custom-preintro-title {
@@ -4432,37 +4365,42 @@ font-size:clamp(25.5px,7.395vw,34px);
 height:46px;
 }
 
-.footer-muted-payment-strip {
-gap:11px 14px;
+
+/* =========================================
+SMALLEST MOBILE OFFICIAL PAYMENT LOGOS
+========================================= */
+
+.footer-payment-logo-strip {
+gap:7px;
 max-width:320px;
 }
 
-.footer-muted-payment-logo {
-height:32px;
+.footer-payment-logo-item img {
+max-height:23px;
 }
 
-.footer-muted-payment-logo.visa {
-width:57px;
+.footer-payment-logo-item.visa {
+width:42px;
 }
 
-.footer-muted-payment-logo.mastercard {
-width:48px;
+.footer-payment-logo-item.mastercard {
+width:31px;
 }
 
-.footer-muted-payment-logo.amex {
-width:53px;
+.footer-payment-logo-item.amex {
+width:37px;
 }
 
-.footer-muted-payment-logo.paypal {
-width:67px;
+.footer-payment-logo-item.paypal {
+width:51px;
 }
 
-.footer-muted-payment-logo.apple-pay {
-width:69px;
+.footer-payment-logo-item.apple-pay {
+width:49px;
 }
 
-.footer-muted-payment-logo.google-pay {
-width:71px;
+.footer-payment-logo-item.google-pay {
+width:51px;
 }
 
 }
@@ -5448,10 +5386,6 @@ aria-label="Custom frameless rooflight"
 >
 
 
-<!-- =========================================
-CHANGE 1 — CENTRED HEADER / SUBHEADER
-========================================= -->
-
 <div class="order-custom-preintro reveal">
 
 <h2 class="order-custom-preintro-title">
@@ -6270,234 +6204,73 @@ Terms of Use
 </div>
 
 
+<!-- =========================================
+CHANGE 1 — OFFICIAL PAYMENT LOGOS
+========================================= -->
+
 <div
-class="footer-muted-payment-strip"
+class="footer-payment-logo-strip"
 aria-label="Accepted payment methods"
 >
 
 
 <span
-class="footer-muted-payment-logo visa"
-role="img"
-aria-label="Visa"
+class="footer-payment-logo-item visa"
 >
-
-<svg
-viewBox="0 0 92 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/visa.svg"
+alt="Visa"
 >
-
-<text
-x="46"
-y="29"
-text-anchor="middle"
-fill="currentColor"
-font-family="Arial, Helvetica, sans-serif"
-font-size="27"
-font-weight="900"
-font-style="italic"
-letter-spacing="-2.2"
->
-VISA
-</text>
-
-</svg>
-
 </span>
 
 
 <span
-class="footer-muted-payment-logo mastercard"
-role="img"
-aria-label="Mastercard"
+class="footer-payment-logo-item mastercard"
 >
-
-<svg
-viewBox="0 0 70 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/mastercard.svg"
+alt="Mastercard"
 >
-
-<circle
-cx="27"
-cy="20"
-r="13"
-fill="currentColor"
-opacity=".78"
-/>
-
-<circle
-cx="43"
-cy="20"
-r="13"
-fill="currentColor"
-opacity=".45"
-/>
-
-<path
-d="M35 9.8a13 13 0 0 1 0 20.4 13 13 0 0 1 0-20.4z"
-fill="currentColor"
-opacity=".62"
-/>
-
-</svg>
-
 </span>
 
 
 <span
-class="footer-muted-payment-logo amex"
-role="img"
-aria-label="American Express"
+class="footer-payment-logo-item amex"
 >
-
-<svg
-viewBox="0 0 72 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/amex.svg"
+alt="American Express"
 >
-
-<rect
-x="4"
-y="6"
-width="64"
-height="28"
-rx="3"
-fill="none"
-stroke="currentColor"
-stroke-width="2"
-/>
-
-<text
-x="36"
-y="26"
-text-anchor="middle"
-fill="currentColor"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="900"
-letter-spacing="-.7"
->
-AMEX
-</text>
-
-</svg>
-
 </span>
 
 
 <span
-class="footer-muted-payment-logo paypal"
-role="img"
-aria-label="PayPal"
+class="footer-payment-logo-item paypal"
 >
-
-<svg
-viewBox="0 0 94 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/paypal.svg"
+alt="PayPal"
 >
-
-<path
-d="M8 7h12.3c8.1 0 12.4 3.8 11.1 10.7-1.3 7.1-6.6 10.6-14.5 10.6h-3.8L11 36H3.6z"
-fill="currentColor"
-opacity=".88"
-/>
-
-<path
-d="M15 11.2h8.2c4.7 0 7 2 6.4 5.4-.7 3.9-3.7 6-8.5 6h-4.3z"
-fill="currentColor"
-opacity=".52"
-/>
-
-<text
-x="63"
-y="27"
-text-anchor="middle"
-fill="currentColor"
-font-family="Arial, Helvetica, sans-serif"
-font-size="17"
-font-weight="800"
-letter-spacing="-.8"
->
-PayPal
-</text>
-
-</svg>
-
 </span>
 
 
 <span
-class="footer-muted-payment-logo apple-pay"
-role="img"
-aria-label="Apple Pay"
+class="footer-payment-logo-item apple-pay"
 >
-
-<svg
-viewBox="0 0 92 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/apple-pay.svg"
+alt="Apple Pay"
 >
-
-<path
-fill="currentColor"
-d="M19.8 10.1c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"
-/>
-
-<path
-fill="currentColor"
-d="M24.5 19.9c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"
-/>
-
-<text
-x="57"
-y="28"
-fill="currentColor"
-font-family="Arial, Helvetica, sans-serif"
-font-size="21"
-font-weight="700"
->
-Pay
-</text>
-
-</svg>
-
 </span>
 
 
 <span
-class="footer-muted-payment-logo google-pay"
-role="img"
-aria-label="Google Pay"
+class="footer-payment-logo-item google-pay"
 >
-
-<svg
-viewBox="0 0 98 40"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
+<img
+src="images/google-pay.svg"
+alt="Google Pay"
 >
-
-<path
-d="M19.5 7.8c3.9 0 7.1 1.4 9.6 3.7l-3.8 3.7c-1.6-1.5-3.5-2.3-5.8-2.3-4.9 0-8.9 3.3-8.9 8.1s4 8.1 8.9 8.1c3 0 4.8-1.2 5.9-2.3.9-.9 1.5-2.3 1.8-4.2h-7.7v-4.7h12.4c.2.7.2 1.4.2 2.3 0 4.2-1.1 7.4-3.8 9.9-2.6 2.6-5.9 4-10.3 4-7.5 0-13.8-6-13.8-13.7S11.9 7.8 19.5 7.8z"
-fill="currentColor"
-/>
-
-<text
-x="65"
-y="28"
-text-anchor="middle"
-fill="currentColor"
-font-family="Arial, Helvetica, sans-serif"
-font-size="21"
-font-weight="500"
->
-Pay
-</text>
-
-</svg>
-
 </span>
 
 
@@ -6566,124 +6339,6 @@ sales@factorytoughenedrooflights.co.uk
 
 </div>
 
-
-</div>
-
-
-<div
-class="footer-payment-section"
-aria-label="Accepted payment methods"
->
-
-
-<div class="footer-payment-methods">
-
-
-<span
-class="payment-badge payment-badge-visa payment-wide"
-role="img"
-aria-label="Visa"
->
-<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<rect x="0" y="0" width="88" height="44" rx="3" fill="#1434CB"/>
-<text x="44" y="30" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" font-style="italic" letter-spacing="-2">VISA</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-mastercard"
-role="img"
-aria-label="Mastercard"
->
-<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<circle cx="29" cy="19" r="12" fill="#EB001B"/>
-<circle cx="43" cy="19" r="12" fill="#F79E1B"/>
-<path d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z" fill="#FF5F00"/>
-<text x="36" y="38" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="6.5" font-weight="700">mastercard</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-amex"
-role="img"
-aria-label="American Express"
->
-<svg viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<rect x="0" y="0" width="72" height="44" rx="3" fill="#0877C9"/>
-<text x="36" y="18" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">AM</text>
-<text x="36" y="34" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900">EX</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-apple-pay payment-wide"
-role="img"
-aria-label="Apple Pay"
->
-<svg viewBox="0 0 86 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<path fill="#000000" d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"/>
-<path fill="#000000" d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"/>
-<text x="35" y="29" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Pay</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-google-pay payment-wide"
-role="img"
-aria-label="Google Pay"
->
-<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<path d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z" fill="#4285F4"/>
-<text x="50" y="27" text-anchor="middle" fill="#5F6368" font-family="Arial, Helvetica, sans-serif" font-size="17">Pay</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-paypal payment-wide"
-role="img"
-aria-label="PayPal"
->
-<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<path d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z" fill="#003087"/>
-<path d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z" fill="#009CDE"/>
-<text x="61" y="28" text-anchor="middle" fill="#003087" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">PayPal</text>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-discover payment-wide"
-role="img"
-aria-label="Discover"
->
-<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<text x="43" y="25" text-anchor="middle" fill="#202020" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">DISCOVER</text>
-<path d="M50 32c8-6 17-8 29-8v8z" fill="#F58220"/>
-</svg>
-</span>
-
-
-<span
-class="payment-badge payment-badge-unionpay payment-wide"
-role="img"
-aria-label="UnionPay"
->
-<svg viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<path d="M12 7h22l-6 30H6z" fill="#E21836"/>
-<path d="M28 7h22l-6 30H22z" fill="#007B84"/>
-<path d="M44 7h22l-6 30H38z" fill="#00A6A6"/>
-<text x="38" y="20" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="800">Union</text>
-<text x="38" y="29" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="800">Pay</text>
-</svg>
-</span>
-
-
-</div>
 
 </div>
 
@@ -7136,11 +6791,6 @@ triple:325,
 image:"narrow-long-rectangle.png"
 },
 
-/*
-Change 3:
-400 × 800 now uses small-rectangle.png.
-Tint prefixes automatically apply to the same image family.
-*/
 "400x800":{
 double:215,
 triple:260,
@@ -7503,9 +7153,6 @@ PRODUCT_IMAGE_BASE_HOVER_SCALE /
 PRODUCT_IMAGE_BASE_SCALE;
 
 
-/*
-Existing per-size scaling remains intact.
-*/
 const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 
 "600x600":-30,
@@ -7545,7 +7192,7 @@ const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 
 
 /* =========================================
-CHANGE 3 — SIZE + FINISH IMAGE ADJUSTMENTS
+SIZE + FINISH IMAGE ADJUSTMENTS
 ========================================= */
 
 const PRODUCT_IMAGE_FINISH_ADJUSTMENTS = {
@@ -7666,11 +7313,6 @@ const PRODUCT_IMAGE_ROTATIONS = {
 PER-SIZE OBJECT FIT
 ========================================= */
 
-/*
-400 × 800 previously used cover because it was
-using the wrong image family. It now uses the
-correct small-rectangle image and returns to contain.
-*/
 const PRODUCT_IMAGE_OBJECT_FIT = {
 
 };
@@ -10142,11 +9784,6 @@ return `${prefix}${usableBaseFilename}`;
 
 function selectedProductImage() {
 
-/*
-400 × 800 is deliberately forced onto the corrected
-small-rectangle family even if an older homepage URL
-still contains the previous image parameter.
-*/
 if (
 state.size !==
 "400x800" &&
@@ -16264,8 +15901,6 @@ targetIndex
 );
 
 
-/* Reset configurator quantity after add */
-
 state.quantity =
 1;
 
@@ -16447,8 +16082,6 @@ targetIndex
 }
 );
 
-
-/* Reset only custom quantity */
 
 customState.quantity =
 1;
