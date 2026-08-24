@@ -2570,8 +2570,7 @@ rgba(0,0,0,.17) 100%
 
 
 /* =========================================
-CHANGE 2 — CENTRED CUSTOM SECTION INTRO
-MOVED LOWER TOWARDS ROOFLIGHT IMAGE
+CHANGE 2 — CUSTOM INTRO MOVED LOWER
 ========================================= */
 
 .order-custom-preintro {
@@ -2581,16 +2580,16 @@ width:90%;
 max-width:980px;
 
 /*
-Adds approximately 25% of the section's
-existing top spacing above the copy while
-reducing the space beneath by a similar amount.
-This moves the copy visually towards the image
-without pushing the image significantly lower.
+The total vertical margin remains very similar,
+but most of it is now above the copy instead of
+beneath it. This lowers the text towards the
+custom rooflight image without materially
+pushing the image further down the page.
 */
 margin:
-clamp(11px,1.45vw,20px)
+clamp(22px,2.8vw,36px)
 auto
-clamp(16px,2.05vw,25px);
+clamp(5px,.7vw,8px);
 
 padding:0 clamp(10px,2vw,24px);
 text-align:center;
@@ -3289,7 +3288,7 @@ text-underline-offset:3px;
 
 
 /* =========================================
-CHANGE 1 — OFFICIAL PAYMENT LOGO STRIP
+CHANGE 1 — OFFICIAL PNG PAYMENT LOGO STRIP
 ========================================= */
 
 .footer-payment-logo-strip {
@@ -3348,9 +3347,9 @@ width:76px;
 }
 
 /*
-Official Apple Pay artwork is black.
-Convert only this SVG to white so it remains
-legible against the black footer.
+Apple Pay artwork is black.
+Convert only Apple Pay to white so it remains
+visible against the dark footer background.
 */
 .footer-payment-logo-item.apple-pay img {
 filter:brightness(0) invert(1);
@@ -3966,12 +3965,14 @@ width:91%;
 max-width:620px;
 
 /*
-Mobile equivalent of the 25% downward move.
+Mobile version keeps approximately the same
+overall spacing but moves the copy noticeably
+closer to the rooflight image.
 */
 margin:
-7px
+17px
 auto
-16px;
+6px;
 
 padding:0 7px;
 }
@@ -4338,8 +4339,8 @@ padding-right:26px;
 
 .order-custom-preintro {
 width:92%;
-margin-top:7px;
-margin-bottom:13px;
+margin-top:15px;
+margin-bottom:5px;
 }
 
 .order-custom-preintro-title {
@@ -6205,7 +6206,7 @@ Terms of Use
 
 
 <!-- =========================================
-CHANGE 1 — OFFICIAL PAYMENT LOGOS
+CHANGE 1 — OFFICIAL PNG PAYMENT LOGOS
 ========================================= -->
 
 <div
@@ -6218,7 +6219,7 @@ aria-label="Accepted payment methods"
 class="footer-payment-logo-item visa"
 >
 <img
-src="images/visa.svg"
+src="images/visa.png"
 alt="Visa"
 >
 </span>
@@ -6228,7 +6229,7 @@ alt="Visa"
 class="footer-payment-logo-item mastercard"
 >
 <img
-src="images/mastercard.svg"
+src="images/mastercard.png"
 alt="Mastercard"
 >
 </span>
@@ -6238,7 +6239,7 @@ alt="Mastercard"
 class="footer-payment-logo-item amex"
 >
 <img
-src="images/amex.svg"
+src="images/amex.png"
 alt="American Express"
 >
 </span>
@@ -6248,7 +6249,7 @@ alt="American Express"
 class="footer-payment-logo-item paypal"
 >
 <img
-src="images/paypal.svg"
+src="images/paypal.png"
 alt="PayPal"
 >
 </span>
@@ -6258,7 +6259,7 @@ alt="PayPal"
 class="footer-payment-logo-item apple-pay"
 >
 <img
-src="images/apple-pay.svg"
+src="images/apple-pay.png"
 alt="Apple Pay"
 >
 </span>
@@ -6268,7 +6269,7 @@ alt="Apple Pay"
 class="footer-payment-logo-item google-pay"
 >
 <img
-src="images/google-pay.svg"
+src="images/google-pay.png"
 alt="Google Pay"
 >
 </span>
