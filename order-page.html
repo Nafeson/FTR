@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+(no subject)
+Nathan Knight <nathank3290@gmail.com>	Mon, Aug 24, 2026 at 9:57 PM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -2570,7 +2574,7 @@ rgba(0,0,0,.17) 100%
 
 
 /* =========================================
-CHANGE 2 — CUSTOM INTRO MOVED LOWER
+CUSTOM INTRO
 ========================================= */
 
 .order-custom-preintro {
@@ -3133,9 +3137,37 @@ footer {
 background:#090a0a;
 border-top:1px solid rgba(255,255,255,.10);
 color:rgba(247,247,243,.50);
-padding:46px 6%;
+padding:0;
 font-size:13px;
 }
+
+
+/* =========================================
+UPPER FOOTER SECTION
+========================================= */
+
+.footer-upper-section {
+padding:
+46px
+6%
+30px;
+background:#090a0a;
+}
+
+
+/* =========================================
+LOWER FOOTER SECTION
+========================================= */
+
+.footer-lower-section {
+padding:
+clamp(28px,3vw,38px)
+6%
+46px;
+background:#111313;
+border-top:1px solid rgba(255,255,255,.16);
+}
+
 
 .footer-wordmark {
 margin-bottom:22px;
@@ -3195,7 +3227,7 @@ color:#9ea19f;
 .footer-company-details {
 display:grid;
 gap:8px;
-margin:0 0 28px;
+margin:0;
 max-width:520px;
 }
 
@@ -3241,6 +3273,9 @@ color:rgba(247,247,243,.48);
 font-size:11px;
 }
 
+
+/* ANAMAX ADDRESS — REDUCED BY 15% */
+
 .footer-address {
 display:grid;
 margin-top:12px;
@@ -3250,7 +3285,7 @@ font-family:
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:10.2px;
+font-size:8.67px;
 font-weight:600;
 line-height:1.45;
 letter-spacing:.6px;
@@ -3324,42 +3359,42 @@ Negative Y = up
 */
 .footer-payment-logo-item.visa {
 width:64px;
-transform:translateX(0px) translateY(0px);
+transform:translateX(0px) translateY(-10px);
 }
 
 
 /* MASTERCARD */
 .footer-payment-logo-item.mastercard {
 width:46px;
-transform:translateX(1px) translateY(0px);
+transform:translateX(1px) translateY(-10px);
 }
 
 
 /* AMERICAN EXPRESS */
 .footer-payment-logo-item.amex {
 width:58px;
-transform:translateX(-3px) translateY(0px);
+transform:translateX(-3px) translateY(-10px);
 }
 
 
 /* PAYPAL */
 .footer-payment-logo-item.paypal {
 width:76px;
-transform:translateX(-4px) translateY(0px);
+transform:translateX(-4px) translateY(-10px);
 }
 
 
 /* APPLE PAY */
 .footer-payment-logo-item.apple-pay {
 width:72px;
-transform:translateX(-1px) translateY(0px);
+transform:translateX(-1px) translateY(-10px);
 }
 
 
 /* GOOGLE PAY */
 .footer-payment-logo-item.google-pay {
 width:76px;
-transform:translateX(-17px) translateY(0px);
+transform:translateX(-17px) translateY(-10px);
 }
 
 
@@ -6126,6 +6161,13 @@ FOOTER
 <footer id="contact">
 
 
+<!-- =========================================
+UPPER FOOTER
+========================================= -->
+
+<div class="footer-upper-section">
+
+
 <div class="wordmark footer-wordmark">
 
 
@@ -6208,61 +6250,14 @@ Terms of Use
 </div>
 
 
-<div
-class="footer-payment-logo-strip"
-aria-label="Accepted payment methods"
->
-
-
-<span class="footer-payment-logo-item visa">
-<img
-src="images/visa.png"
-alt="Visa"
->
-</span>
-
-
-<span class="footer-payment-logo-item mastercard">
-<img
-src="images/mastercard.png"
-alt="Mastercard"
->
-</span>
-
-
-<span class="footer-payment-logo-item amex">
-<img
-src="images/amex.png"
-alt="American Express"
->
-</span>
-
-
-<span class="footer-payment-logo-item paypal">
-<img
-src="images/paypal.png"
-alt="PayPal"
->
-</span>
-
-
-<span class="footer-payment-logo-item apple-pay">
-<img
-src="images/apple-pay.png"
-alt="Apple Pay"
->
-</span>
-
-
-<span class="footer-payment-logo-item google-pay">
-<img
-src="images/google-pay.png"
-alt="Google Pay"
->
-</span>
-
-
 </div>
+
+
+<!-- =========================================
+LOWER FOOTER
+========================================= -->
+
+<div class="footer-lower-section">
 
 
 <div class="footer-company-details">
@@ -6324,6 +6319,70 @@ aria-hidden="true"
 <a href="mailto:sales@factorytoughenedrooflights.co.uk">
 sales@factorytoughenedrooflights.co.uk
 </a>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================
+PAYMENT LOGOS
+========================================= -->
+
+<div
+class="footer-payment-logo-strip"
+aria-label="Accepted payment methods"
+>
+
+
+<span class="footer-payment-logo-item visa">
+<img
+src="images/visa.png"
+alt="Visa"
+>
+</span>
+
+
+<span class="footer-payment-logo-item mastercard">
+<img
+src="images/mastercard.png"
+alt="Mastercard"
+>
+</span>
+
+
+<span class="footer-payment-logo-item amex">
+<img
+src="images/amex.png"
+alt="American Express"
+>
+</span>
+
+
+<span class="footer-payment-logo-item paypal">
+<img
+src="images/paypal.png"
+alt="PayPal"
+>
+</span>
+
+
+<span class="footer-payment-logo-item apple-pay">
+<img
+src="images/apple-pay.png"
+alt="Apple Pay"
+>
+</span>
+
+
+<span class="footer-payment-logo-item google-pay">
+<img
+src="images/google-pay.png"
+alt="Google Pay"
+>
+</span>
+
 
 </div>
 
