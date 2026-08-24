@@ -1819,6 +1819,8 @@ letter-spacing:-.3px;
 
 /* =========================================
 QUANTITY / PURCHASE ACTION
+CHANGE 3 + CHANGE 4
+EQUAL LEFT / RIGHT BUTTON WIDTHS
 ========================================= */
 
 .purchase-action-controls {
@@ -1830,7 +1832,7 @@ align-items:stretch;
 
 .quantity-row {
 display:grid;
-grid-template-columns:48px minmax(70px,1fr) 52px;
+grid-template-columns:46px minmax(70px,1fr) 46px;
 min-height:72px;
 border:1px solid rgba(255,255,255,.17);
 border-radius:18px;
@@ -1858,6 +1860,11 @@ box-shadow:
 }
 
 .quantity-button {
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+text-align:center;
 border:0;
 background:transparent;
 color:#bfc0bd;
@@ -3172,6 +3179,481 @@ margin-bottom:0;
 
 
 /* =========================================
+CHANGE 5
+HOMEPAGE FOLLOW-ON SECTIONS
+========================================= */
+
+.section-label {
+display:flex;
+align-items:center;
+gap:10px;
+color:var(--orange);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:10px;
+font-weight:800;
+letter-spacing:2.4px;
+line-height:1;
+text-transform:uppercase;
+margin-bottom:18px;
+}
+
+.section-label::before {
+content:"";
+display:block;
+width:28px;
+height:1px;
+background:var(--orange);
+opacity:.85;
+}
+
+
+/* =========================================
+PRODUCT CONSTRUCTION VISUAL
+========================================= */
+
+.order-manufacturing-visual {
+position:relative;
+overflow:hidden;
+background:#090a0a;
+border-top:1px solid rgba(255,255,255,.07);
+}
+
+.order-manufacturing-visual .buy-rooflight-slideshow {
+margin:0;
+box-shadow:none;
+}
+
+.order-manufacturing-visual .rooflight-slideshow-shell {
+height:clamp(250px,36vw,470px);
+}
+
+.order-manufacturing-visual .rooflight-slide img {
+object-fit:cover;
+object-position:48% 49%;
+}
+
+
+/* =========================================
+BRITISH MANUFACTURING
+========================================= */
+
+.engineered {
+padding:82px 6%;
+background:#101212;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.engineered-intro {
+max-width:880px;
+margin-bottom:38px;
+}
+
+.engineered-intro h2 {
+margin:0 0 26px;
+color:var(--cream);
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:clamp(38px,5vw,61px);
+line-height:.99;
+letter-spacing:-1.45px;
+font-weight:750;
+}
+
+.engineered-intro p {
+margin:0;
+color:var(--muted);
+line-height:1.68;
+font-size:17px;
+}
+
+.engineered-grid {
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.engineered-card {
+position:relative;
+overflow:hidden;
+isolation:isolate;
+background:#151818;
+border:1px solid rgba(255,255,255,.10);
+padding:28px 25px;
+box-shadow:none;
+transition:
+opacity .75s ease,
+transform .75s cubic-bezier(.18,.72,.28,1),
+border-color .22s ease,
+background .22s ease;
+}
+
+.engineered-card::before {
+content:"";
+position:absolute;
+z-index:1;
+left:-58%;
+bottom:-95%;
+width:65%;
+height:205%;
+background:
+linear-gradient(
+58deg,
+transparent 0%,
+rgba(255,255,255,.01) 31%,
+rgba(255,255,255,.06) 40%,
+rgba(255,255,255,.28) 49%,
+rgba(255,255,255,.06) 57%,
+transparent 70%
+);
+filter:blur(.35px);
+opacity:0;
+transform:
+translate(0,0)
+skewX(-14deg);
+pointer-events:none;
+}
+
+.engineered-card.shimmer-play::before {
+animation:
+trustDiagonalShimmer
+1.15s
+cubic-bezier(.18,.72,.28,1)
+both;
+}
+
+@keyframes trustDiagonalShimmer {
+
+0% {
+left:-58%;
+bottom:-95%;
+opacity:0;
+}
+
+12% {
+opacity:.15;
+}
+
+48% {
+opacity:.55;
+}
+
+78% {
+opacity:.20;
+}
+
+100% {
+left:108%;
+bottom:82%;
+opacity:0;
+}
+
+}
+
+.engineered-card h3 {
+position:relative;
+z-index:2;
+margin:0 0 13px;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+sans-serif;
+font-size:19px;
+font-weight:750;
+line-height:1.15;
+transition:color .22s ease;
+}
+
+.engineered-card p {
+position:relative;
+z-index:2;
+margin:0;
+color:var(--muted-soft);
+font-size:14px;
+line-height:1.58;
+}
+
+.engineered-card:hover {
+border-color:rgba(232,120,23,.30);
+background:#191c1b;
+box-shadow:none;
+}
+
+.engineered-card.is-visible:hover {
+transform:translateY(-3px);
+}
+
+.engineered-card:hover h3 {
+color:var(--orange-bright);
+letter-spacing:0;
+}
+
+
+/* =========================================
+PROFESSIONAL FITTING SERVICES
+========================================= */
+
+.direct-section {
+position:relative;
+overflow:hidden;
+padding:72px 6% 48px;
+background:
+linear-gradient(
+180deg,
+#0f1111 0%,
+#151818 100%
+);
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.direct-section::before {
+display:none;
+}
+
+.direct-visual-intro {
+position:relative;
+width:100vw;
+margin:
+-72px
+0
+72px
+calc(50% - 50vw);
+overflow:hidden;
+background:#090a0a;
+border-bottom:1px solid rgba(255,255,255,.09);
+box-shadow:none;
+}
+
+.direct-visual-intro::after {
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(
+180deg,
+transparent 72%,
+rgba(9,10,10,.20) 100%
+);
+}
+
+.direct-image-reveal {
+opacity:0;
+clip-path:inset(7% 0 7% 0);
+filter:
+blur(4px)
+brightness(.84)
+saturate(.88);
+transform:
+translateY(24px)
+scale(1.025);
+transition:
+opacity .95s ease,
+clip-path 1.05s cubic-bezier(.18,.72,.28,1),
+filter .95s ease,
+transform 1.05s cubic-bezier(.18,.72,.28,1);
+will-change:
+opacity,
+clip-path,
+filter,
+transform;
+}
+
+.direct-image-reveal.is-visible {
+opacity:1;
+clip-path:inset(0 0 0 0);
+filter:
+blur(0)
+brightness(1)
+saturate(1);
+transform:
+translateY(0)
+scale(1);
+}
+
+.direct-visual-image {
+display:block;
+width:100%;
+height:auto;
+aspect-ratio:16 / 9;
+object-fit:cover;
+object-position:center;
+}
+
+.direct-inner {
+position:relative;
+z-index:1;
+max-width:1120px;
+margin:0 auto;
+display:grid;
+grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+gap:76px;
+align-items:start;
+}
+
+.direct-heading {
+margin:0;
+max-width:520px;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:clamp(40px,5.5vw,70px);
+line-height:.97;
+letter-spacing:-2px;
+font-weight:750;
+color:var(--cream);
+}
+
+.direct-copy {
+max-width:700px;
+padding-top:3px;
+}
+
+.direct-copy p {
+margin:0 0 22px;
+font-size:18px;
+line-height:1.68;
+color:var(--muted);
+}
+
+.direct-copy p:last-of-type {
+margin-bottom:0;
+}
+
+.button {
+background:var(--orange);
+color:#10100f;
+border:1px solid var(--orange);
+padding:16px 25px;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:11px;
+font-weight:800;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+text-transform:uppercase;
+letter-spacing:1.15px;
+transition:
+transform .2s ease,
+background .2s ease,
+border-color .2s ease,
+color .2s ease;
+}
+
+.button:hover {
+transform:translateY(-1px);
+background:var(--orange-bright);
+border-color:var(--orange-bright);
+}
+
+
+/* =========================================
+PROFESSIONAL FITTING MANUAL SLIDESHOW
+========================================= */
+
+.fitting-slideshow {
+position:relative;
+}
+
+.fitting-slideshow-viewport {
+position:relative;
+width:100%;
+aspect-ratio:16 / 9;
+overflow:hidden;
+touch-action:pan-y;
+user-select:none;
+-webkit-user-select:none;
+}
+
+.fitting-slide {
+position:absolute;
+inset:0;
+z-index:1;
+opacity:0;
+visibility:hidden;
+transform:translateX(6%);
+transition:
+opacity .52s ease,
+visibility .52s ease,
+transform .58s cubic-bezier(.18,.72,.28,1);
+pointer-events:none;
+}
+
+.fitting-slide.active {
+z-index:2;
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+pointer-events:auto;
+}
+
+.fitting-slide.previous {
+z-index:1;
+opacity:0;
+visibility:visible;
+transform:translateX(-6%);
+}
+
+.fitting-slide .direct-visual-image {
+display:block;
+width:100%;
+height:100%;
+aspect-ratio:auto;
+object-fit:cover;
+object-position:center;
+}
+
+
+/* =========================================
+FITTING SLIDESHOW PROGRESS
+========================================= */
+
+.fitting-slideshow-progress {
+position:absolute;
+top:0;
+left:0;
+right:0;
+z-index:8;
+height:3px;
+overflow:hidden;
+background:rgba(232,120,23,.14);
+pointer-events:none;
+}
+
+.fitting-slideshow-progress-fill {
+display:block;
+width:25%;
+height:100%;
+background:var(--orange);
+transform-origin:left center;
+transition:
+width .42s cubic-bezier(.18,.72,.28,1);
+box-shadow:
+0 0 7px rgba(232,120,23,.22);
+}
+
+
+/* =========================================
 HOMEPAGE FOOTER
 ========================================= */
 
@@ -3301,11 +3783,11 @@ max-width:110px;
 object-fit:contain;
 }
 
-.footer-right-glaze-name {
-color:var(--white);
-font-size:13px;
-font-weight:700;
-}
+
+/* =========================================
+CHANGE 1
+REGISTERED ADDRESS / RIGHT GLAZE LTD
+========================================= */
 
 .footer-registered-address {
 display:grid;
@@ -3313,6 +3795,13 @@ gap:2px;
 margin-top:0;
 color:rgba(247,247,243,.48);
 font-size:11px;
+line-height:1.45;
+}
+
+.footer-registered-company-name {
+color:inherit;
+font-size:1.15em;
+font-weight:inherit;
 line-height:1.45;
 }
 
@@ -3403,12 +3892,7 @@ object-position:center;
 }
 
 
-/* VISA
-Positive X = right
-Negative X = left
-Positive Y = down
-Negative Y = up
-*/
+/* VISA */
 .footer-payment-logo-item.visa {
 width:64px;
 transform:translateX(0px) translateY(5px);
@@ -3479,6 +3963,15 @@ font-size:20px;
 
 .address-line {
 font-size:9px;
+}
+
+.direct-inner {
+grid-template-columns:1fr;
+gap:32px;
+}
+
+.engineered-grid {
+grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
 }
@@ -3843,7 +4336,7 @@ gap:7px;
 }
 
 .quantity-row {
-grid-template-columns:32px minmax(46px,1fr) 35px;
+grid-template-columns:30px minmax(46px,1fr) 30px;
 min-height:52px;
 border-radius:14px;
 }
@@ -4085,6 +4578,10 @@ line-height:1.5;
 height:clamp(255px,63vw,380px);
 }
 
+.order-manufacturing-visual .rooflight-slideshow-shell {
+height:250px;
+}
+
 .order-custom-build-wrap {
 width:90%;
 margin-top:4px;
@@ -4172,6 +4669,61 @@ line-height:1.18;
 .custom-build-dropdown-option.is-selected::after {
 right:13px;
 font-size:10px;
+}
+
+
+/* =========================================
+MOBILE CHANGE 5 SECTIONS
+========================================= */
+
+.section-label {
+font-size:8px;
+letter-spacing:1.8px;
+gap:8px;
+}
+
+.section-label::before {
+width:20px;
+}
+
+.engineered {
+padding:29px 6%;
+}
+
+.engineered-grid {
+grid-template-columns:1fr;
+}
+
+.engineered-card {
+padding:24px 20px;
+}
+
+.direct-section {
+padding:80px 6% 32px;
+}
+
+.direct-visual-intro {
+margin:
+-56px
+0
+44px
+calc(50% - 50vw);
+}
+
+.direct-heading {
+font-size:39px;
+}
+
+.direct-copy p {
+font-size:16px;
+}
+
+.fitting-slideshow-viewport {
+aspect-ratio:4 / 3;
+}
+
+.fitting-slideshow-progress {
+height:2px;
 }
 
 }
@@ -4297,8 +4849,11 @@ width:56px;
 width:54px;
 }
 
+
+/* CHANGE 2 — GOOGLE PAY BACK TO 56PX */
+
 .footer-payment-logo-item.google-pay {
-width:40px;
+width:56px;
 }
 
 .footer-company-intro {
@@ -4311,10 +4866,6 @@ margin-bottom:1px;
 height:24px;
 max-width:95px;
 transform:translateX(-2.5px);
-}
-
-.footer-right-glaze-name {
-font-size:12px;
 }
 
 .footer-registered-address {
@@ -4364,8 +4915,11 @@ font-size:clamp(27.55px,7.98vw,34.2px);
 grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
 }
 
+
+/* CHANGE 3 + CHANGE 4 */
+
 .quantity-row {
-grid-template-columns:29px minmax(40px,1fr) 32px;
+grid-template-columns:27px minmax(40px,1fr) 27px;
 }
 
 .add-to-order {
@@ -4494,8 +5048,11 @@ width:51px;
 width:49px;
 }
 
+
+/* CHANGE 2 — KEEP GOOGLE PAY AT 56PX */
+
 .footer-payment-logo-item.google-pay {
-width:40px;
+width:56px;
 }
 
 }
@@ -4517,7 +5074,8 @@ scroll-behavior:auto;
 .basket-arrow,
 .estimated-delivery-date.delivery-pop,
 .order-final-summary-section.summary-enter,
-.order-summary-item.summary-item-enter {
+.order-summary-item.summary-item-enter,
+.engineered-card.shimmer-play::before {
 animation:none !important;
 }
 
@@ -4552,9 +5110,16 @@ transition:none !important;
 }
 
 .reveal,
-.reveal.reveal-scale {
+.reveal.reveal-scale,
+.direct-image-reveal {
 opacity:1;
+clip-path:none;
+filter:none;
 transform:none;
+transition:none;
+}
+
+.fitting-slide {
 transition:none;
 }
 
@@ -6266,6 +6831,258 @@ Checkout Now
 </section>
 
 
+<!-- =========================================
+CHANGE 5
+PRODUCT CONSTRUCTION VISUAL
+========================================= -->
+
+<section
+class="engineered-visual-intro order-manufacturing-visual"
+aria-label="Frameless rooflight product image"
+>
+
+<div
+class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
+>
+
+<div class="rooflight-slideshow-shell">
+
+<div class="rooflight-slide active">
+
+<img
+src="images/hero-rooflight-4.png"
+alt="Finished frameless rooflight manufactured and prepared for installation"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+BRITISH MANUFACTURING / PRODUCT SPECIFICATION
+========================================= -->
+
+<section class="engineered">
+
+<div class="engineered-intro">
+
+<div class="section-label reveal">
+British Manufacturing
+</div>
+
+<h2 class="reveal">
+British Glass. Designed For Year-Round Comfort
+</h2>
+
+<p class="reveal reveal-delay-1">
+All our rooflights are manufactured to the highest standard ready for immediate fitting.
+Our toughened glass, ceramic border, insulation and sealing specification are brought
+together during production to create a durable frameless rooflight designed for
+long-term performance.
+</p>
+
+</div>
+
+<div
+class="engineered-grid"
+id="engineeredGrid"
+>
+
+<div class="engineered-card reveal reveal-scale">
+
+<h3>
+Low E Energy Saving Glass
+</h3>
+
+<p>
+Our Low E glass is designed to keep heat in during winter and reduce overheating
+in summer, helping improve thermal efficiency and lower energy costs.
+</p>
+
+</div>
+
+<div class="engineered-card reveal reveal-scale reveal-delay-1">
+
+<h3>
+20 Year Warranty
+</h3>
+
+<p>
+All units are supplied with a 20 year warranty and are designed for an expected
+30+ year service life when correctly specified and installed.
+</p>
+
+</div>
+
+<div class="engineered-card reveal reveal-scale reveal-delay-2">
+
+<h3>
+Two-Stage Sealing
+</h3>
+
+<p>
+Our insulated units use an internal and external two-stage sealing process,
+producing a flush finished unit engineered for reliable long-term weather performance
+when correctly installed.
+</p>
+
+</div>
+
+<div class="engineered-card reveal reveal-scale reveal-delay-3">
+
+<h3>
+Factory-Tinted Glass
+</h3>
+
+<p>
+Our tinted units contain no applied film—the colour is manufactured into the glass
+for a durable, long-lasting finish that won’t peel, bubble or fade like window film.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+PROFESSIONAL FITTING SERVICES
+========================================= -->
+
+<section
+class="direct-section"
+id="specification-advice"
+>
+
+<div
+class="direct-visual-intro direct-image-reveal fitting-slideshow"
+id="fittingSlideshow"
+aria-label="Professional rooflight fitting gallery"
+aria-roledescription="carousel"
+>
+
+<div
+class="fitting-slideshow-progress"
+aria-hidden="true"
+>
+
+<span
+class="fitting-slideshow-progress-fill"
+id="fittingSlideshowProgress"
+></span>
+
+</div>
+
+<div
+class="fitting-slideshow-viewport"
+id="fittingSlideshowViewport"
+>
+
+<div
+class="fitting-slide active"
+data-fitting-slide="0"
+aria-hidden="false"
+>
+
+<img
+src="images/hero-rooflight-1.png"
+class="direct-visual-image"
+alt="Professionally installed frameless rooflight"
+>
+
+</div>
+
+<div
+class="fitting-slide"
+data-fitting-slide="1"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-2.png"
+class="direct-visual-image"
+alt="Frameless rooflight installation example"
+>
+
+</div>
+
+<div
+class="fitting-slide"
+data-fitting-slide="2"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-7.png"
+class="direct-visual-image"
+alt="Professional frameless rooflight fitting example"
+>
+
+</div>
+
+<div
+class="fitting-slide"
+data-fitting-slide="3"
+aria-hidden="true"
+>
+
+<img
+src="images/hero-rooflight-8.png"
+class="direct-visual-image"
+alt="Completed frameless rooflight installation"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="direct-inner">
+
+<div>
+
+<div class="section-label reveal">
+Professionally Installed
+</div>
+
+<h2 class="direct-heading reveal">
+Have Your Rooflights Professionally Installed With Our Fitting Services
+</h2>
+
+</div>
+
+
+<div class="direct-copy">
+
+<p>
+Let our experienced fitting team take care of everything, without the need to rely
+on third-party builders or installers. From delivery and safe lifting to positioning,
+sealing and final installation, every stage is professionally managed for a smooth,
+hassle-free service.
+</p>
+
+<a
+href="#"
+class="button"
+>
+Request a Fitting Quotation
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
 </main>
 
 
@@ -6386,12 +7203,13 @@ Factory Toughened Rooflights is a trading name of:
 <div class="footer-right-glaze">
 
 
-<span class="footer-right-glaze-name">
-Right Glaze Ltd
-</span>
-
+<!-- CHANGE 1 -->
 
 <div class="footer-registered-address">
+
+<span class="footer-registered-company-name">
+Right Glaze Ltd
+</span>
 
 <span>
 128 City Road
@@ -16524,7 +17342,7 @@ HOMEPAGE-STYLE SCROLL REVEAL
 const revealElements =
 Array.from(
 document.querySelectorAll(
-".reveal"
+".reveal, .direct-image-reveal"
 )
 );
 
@@ -16592,6 +17410,886 @@ element
 
 }
 );
+
+}
+
+
+/* =========================================
+CHANGE 5
+ENGINEERED CARD FULL-VIEW SHIMMERS
+========================================= */
+
+const engineeredItems =
+Array.from(
+document.querySelectorAll(
+".engineered-card"
+)
+);
+
+
+let engineeredShimmerFrame =
+null;
+
+
+function getVisiblePageTop() {
+
+const pageHeader =
+document.querySelector(
+"header"
+);
+
+
+if (
+!pageHeader
+) {
+
+return 0;
+
+}
+
+
+return Math.max(
+0,
+pageHeader
+.getBoundingClientRect()
+.bottom
+);
+
+}
+
+
+function checkEngineeredCardShimmers() {
+
+engineeredShimmerFrame =
+null;
+
+
+if (
+reducedMotionQuery.matches ||
+engineeredItems.length ===
+0
+) {
+
+return;
+
+}
+
+
+const visibleTop =
+getVisiblePageTop();
+
+
+const visibleBottom =
+window.innerHeight -
+8;
+
+
+engineeredItems.forEach(
+item => {
+
+if (
+item.dataset.shimmerPlayed ===
+"true"
+) {
+
+return;
+
+}
+
+
+const itemRect =
+item.getBoundingClientRect();
+
+
+const isFullyVisible =
+
+itemRect.top >=
+visibleTop &&
+
+itemRect.bottom <=
+visibleBottom;
+
+
+if (
+!isFullyVisible
+) {
+
+return;
+
+}
+
+
+item.dataset.shimmerPlayed =
+"true";
+
+
+item.classList.add(
+"shimmer-play"
+);
+
+}
+);
+
+}
+
+
+function requestEngineeredShimmerCheck() {
+
+if (
+engineeredShimmerFrame !==
+null
+) {
+
+return;
+
+}
+
+
+engineeredShimmerFrame =
+window.requestAnimationFrame(
+checkEngineeredCardShimmers
+);
+
+}
+
+
+if (
+reducedMotionQuery.matches
+) {
+
+engineeredItems.forEach(
+item => {
+
+item.dataset.shimmerPlayed =
+"true";
+
+}
+);
+
+}
+else {
+
+window.addEventListener(
+"scroll",
+requestEngineeredShimmerCheck,
+{
+passive:true
+}
+);
+
+
+window.addEventListener(
+"resize",
+requestEngineeredShimmerCheck
+);
+
+
+window.addEventListener(
+"load",
+requestEngineeredShimmerCheck
+);
+
+
+requestEngineeredShimmerCheck();
+
+}
+
+
+/* =========================================
+CHANGE 5
+PROFESSIONAL FITTING MANUAL SLIDESHOW
+========================================= */
+
+const fittingSlideshow =
+document.getElementById(
+"fittingSlideshow"
+);
+
+
+const fittingSlideshowViewport =
+document.getElementById(
+"fittingSlideshowViewport"
+);
+
+
+const fittingSlideshowProgress =
+document.getElementById(
+"fittingSlideshowProgress"
+);
+
+
+const fittingSlides =
+fittingSlideshow
+?
+Array.from(
+fittingSlideshow.querySelectorAll(
+".fitting-slide"
+)
+)
+:
+[];
+
+
+let activeFittingSlideIndex =
+0;
+
+
+let fittingTouchStartX =
+0;
+
+let fittingTouchStartY =
+0;
+
+let fittingTouchEndX =
+0;
+
+let fittingTouchEndY =
+0;
+
+
+let fittingMouseStartX =
+0;
+
+let fittingMouseStartY =
+0;
+
+let fittingMouseEndX =
+0;
+
+let fittingMouseEndY =
+0;
+
+let fittingMouseDragging =
+false;
+
+
+const FITTING_SWIPE_THRESHOLD =
+45;
+
+
+/* =========================================
+FITTING SLIDESHOW INDEX HELPER
+========================================= */
+
+function normalizeFittingSlideIndex(
+index
+) {
+
+if (
+fittingSlides.length ===
+0
+) {
+
+return 0;
+
+}
+
+
+return (
+index +
+fittingSlides.length
+) %
+fittingSlides.length;
+
+}
+
+
+/* =========================================
+FITTING PROGRESS BAR
+========================================= */
+
+function updateFittingSlideshowProgress() {
+
+if (
+!fittingSlideshowProgress ||
+fittingSlides.length ===
+0
+) {
+
+return;
+
+}
+
+
+const progress =
+(
+(
+activeFittingSlideIndex +
+1
+) /
+fittingSlides.length
+) *
+100;
+
+
+fittingSlideshowProgress.style.width =
+`${progress}%`;
+
+}
+
+
+/* =========================================
+DISPLAY FITTING SLIDE
+========================================= */
+
+function showFittingSlide(
+newIndex,
+direction = "next"
+) {
+
+if (
+fittingSlides.length ===
+0
+) {
+
+return;
+
+}
+
+
+const normalizedIndex =
+normalizeFittingSlideIndex(
+newIndex
+);
+
+
+if (
+normalizedIndex ===
+activeFittingSlideIndex
+) {
+
+updateFittingSlideshowProgress();
+
+return;
+
+}
+
+
+const oldIndex =
+activeFittingSlideIndex;
+
+
+const oldSlide =
+fittingSlides[
+oldIndex
+];
+
+
+const newSlide =
+fittingSlides[
+normalizedIndex
+];
+
+
+fittingSlides.forEach(
+slide => {
+
+slide.classList.remove(
+"active",
+"previous"
+);
+
+
+slide.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+);
+
+
+if (
+direction ===
+"previous"
+) {
+
+newSlide.classList.add(
+"previous"
+);
+
+
+void newSlide.offsetWidth;
+
+
+window.requestAnimationFrame(
+() => {
+
+newSlide.classList.remove(
+"previous"
+);
+
+
+newSlide.classList.add(
+"active"
+);
+
+
+newSlide.setAttribute(
+"aria-hidden",
+"false"
+);
+
+}
+);
+
+}
+else {
+
+if (
+oldSlide
+) {
+
+oldSlide.classList.add(
+"previous"
+);
+
+}
+
+
+newSlide.classList.add(
+"active"
+);
+
+
+newSlide.setAttribute(
+"aria-hidden",
+"false"
+);
+
+}
+
+
+activeFittingSlideIndex =
+normalizedIndex;
+
+
+updateFittingSlideshowProgress();
+
+}
+
+
+/* =========================================
+FITTING NEXT / PREVIOUS
+========================================= */
+
+function showNextFittingSlide() {
+
+showFittingSlide(
+activeFittingSlideIndex +
+1,
+"next"
+);
+
+}
+
+
+function showPreviousFittingSlide() {
+
+showFittingSlide(
+activeFittingSlideIndex -
+1,
+"previous"
+);
+
+}
+
+
+/* =========================================
+SWIPE DIRECTION CHECK
+========================================= */
+
+function processFittingSwipe(
+startX,
+startY,
+endX,
+endY
+) {
+
+const horizontalDistance =
+endX -
+startX;
+
+
+const verticalDistance =
+endY -
+startY;
+
+
+const absoluteHorizontalDistance =
+Math.abs(
+horizontalDistance
+);
+
+
+const absoluteVerticalDistance =
+Math.abs(
+verticalDistance
+);
+
+
+if (
+absoluteHorizontalDistance <
+FITTING_SWIPE_THRESHOLD
+) {
+
+return;
+
+}
+
+
+if (
+absoluteHorizontalDistance <=
+absoluteVerticalDistance
+) {
+
+return;
+
+}
+
+
+if (
+horizontalDistance <
+0
+) {
+
+showNextFittingSlide();
+
+}
+else {
+
+showPreviousFittingSlide();
+
+}
+
+}
+
+
+/* =========================================
+TOUCH / MOUSE FITTING SLIDESHOW
+========================================= */
+
+if (
+fittingSlideshowViewport &&
+fittingSlides.length >
+1
+) {
+
+fittingSlideshowViewport.addEventListener(
+"touchstart",
+event => {
+
+if (
+!event.touches ||
+event.touches.length !==
+1
+) {
+
+return;
+
+}
+
+
+const touch =
+event.touches[0];
+
+
+fittingTouchStartX =
+touch.clientX;
+
+
+fittingTouchStartY =
+touch.clientY;
+
+
+fittingTouchEndX =
+touch.clientX;
+
+
+fittingTouchEndY =
+touch.clientY;
+
+},
+{
+passive:true
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"touchmove",
+event => {
+
+if (
+!event.touches ||
+event.touches.length !==
+1
+) {
+
+return;
+
+}
+
+
+const touch =
+event.touches[0];
+
+
+fittingTouchEndX =
+touch.clientX;
+
+
+fittingTouchEndY =
+touch.clientY;
+
+},
+{
+passive:true
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"touchend",
+event => {
+
+if (
+event.changedTouches &&
+event.changedTouches.length >
+0
+) {
+
+const touch =
+event.changedTouches[0];
+
+
+fittingTouchEndX =
+touch.clientX;
+
+
+fittingTouchEndY =
+touch.clientY;
+
+}
+
+
+processFittingSwipe(
+fittingTouchStartX,
+fittingTouchStartY,
+fittingTouchEndX,
+fittingTouchEndY
+);
+
+},
+{
+passive:true
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"mousedown",
+event => {
+
+if (
+event.button !==
+0
+) {
+
+return;
+
+}
+
+
+fittingMouseDragging =
+true;
+
+
+fittingMouseStartX =
+event.clientX;
+
+
+fittingMouseStartY =
+event.clientY;
+
+
+fittingMouseEndX =
+event.clientX;
+
+
+fittingMouseEndY =
+event.clientY;
+
+}
+);
+
+
+window.addEventListener(
+"mousemove",
+event => {
+
+if (
+!fittingMouseDragging
+) {
+
+return;
+
+}
+
+
+fittingMouseEndX =
+event.clientX;
+
+
+fittingMouseEndY =
+event.clientY;
+
+}
+);
+
+
+window.addEventListener(
+"mouseup",
+event => {
+
+if (
+!fittingMouseDragging
+) {
+
+return;
+
+}
+
+
+fittingMouseDragging =
+false;
+
+
+fittingMouseEndX =
+event.clientX;
+
+
+fittingMouseEndY =
+event.clientY;
+
+
+processFittingSwipe(
+fittingMouseStartX,
+fittingMouseStartY,
+fittingMouseEndX,
+fittingMouseEndY
+);
+
+}
+);
+
+
+fittingSlideshowViewport.addEventListener(
+"dragstart",
+event => {
+
+event.preventDefault();
+
+}
+);
+
+}
+
+
+/* =========================================
+FITTING KEYBOARD NAVIGATION
+========================================= */
+
+if (
+fittingSlideshow
+) {
+
+fittingSlideshow.setAttribute(
+"tabindex",
+"0"
+);
+
+
+fittingSlideshow.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key ===
+"ArrowLeft"
+) {
+
+event.preventDefault();
+
+
+showPreviousFittingSlide();
+
+}
+
+
+if (
+event.key ===
+"ArrowRight"
+) {
+
+event.preventDefault();
+
+
+showNextFittingSlide();
+
+}
+
+}
+);
+
+}
+
+
+/* =========================================
+INITIAL FITTING SLIDESHOW STATE
+========================================= */
+
+if (
+fittingSlides.length >
+0
+) {
+
+fittingSlides.forEach(
+(
+slide,
+index
+) => {
+
+const isActive =
+index ===
+activeFittingSlideIndex;
+
+
+slide.classList.toggle(
+"active",
+isActive
+);
+
+
+slide.classList.remove(
+"previous"
+);
+
+
+slide.setAttribute(
+"aria-hidden",
+isActive
+?
+"false"
+:
+"true"
+);
+
+}
+);
+
+
+updateFittingSlideshowProgress();
 
 }
 
