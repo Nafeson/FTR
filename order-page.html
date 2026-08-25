@@ -2602,7 +2602,7 @@ linear-gradient(
 #0b3b2a 84%,
 #09271e 100%
 );
-border-bottom:1px solid rgba(255,255,255,.07);
+border-bottom:0;
 }
 
 .order-custom-rooflight-section::before {
@@ -3209,28 +3209,16 @@ opacity:.85;
 
 
 /* =========================================
-PRODUCT CONSTRUCTION VISUAL
+FULL-WIDTH ORDER INFORMATION SEPARATOR
 ========================================= */
 
-.order-manufacturing-visual {
-position:relative;
-overflow:hidden;
-background:#090a0a;
-border-top:1px solid rgba(255,255,255,.07);
-}
-
-.order-manufacturing-visual .buy-rooflight-slideshow {
+.order-information-separator {
+display:block;
+width:100%;
+height:1px;
 margin:0;
-box-shadow:none;
-}
-
-.order-manufacturing-visual .rooflight-slideshow-shell {
-height:clamp(250px,36vw,470px);
-}
-
-.order-manufacturing-visual .rooflight-slide img {
-object-fit:cover;
-object-position:48% 49%;
+padding:0;
+background:rgba(255,255,255,.16);
 }
 
 
@@ -3249,7 +3237,7 @@ linear-gradient(
 #101212 0%,
 #0d0f0f 100%
 );
-border-top:1px solid rgba(255,255,255,.08);
+border-top:0;
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -4545,10 +4533,6 @@ line-height:1.5;
 .rooflight-slideshow-shell,
 .engineered-visual-intro .rooflight-slideshow-shell {
 height:clamp(255px,63vw,380px);
-}
-
-.order-manufacturing-visual .rooflight-slideshow-shell {
-height:250px;
 }
 
 .order-custom-build-wrap {
@@ -6816,34 +6800,13 @@ Checkout Now
 
 
 <!-- =========================================
-PRODUCT CONSTRUCTION VISUAL
+FULL-WIDTH SEPARATOR
 ========================================= -->
 
-<section
-class="engineered-visual-intro order-manufacturing-visual"
-aria-label="Frameless rooflight product image"
->
-
 <div
-class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
->
-
-<div class="rooflight-slideshow-shell">
-
-<div class="rooflight-slide active">
-
-<img
-src="images/hero-rooflight-4.png"
-alt="Finished frameless rooflight manufactured and prepared for installation"
->
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+class="order-information-separator"
+aria-hidden="true"
+></div>
 
 
 <!-- =========================================
@@ -12369,7 +12332,8 @@ customState.length >=
 customState.length <=
 3000
 )
-);
+)
+;
 
 
 customInternalWidth.setAttribute(
