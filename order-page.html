@@ -117,7 +117,8 @@ a {
 button:focus-visible,
 a:focus-visible,
 select:focus-visible,
-input:focus-visible {
+input:focus-visible,
+summary:focus-visible {
 outline:2px solid var(--orange);
 outline-offset:3px;
 }
@@ -1819,8 +1820,6 @@ letter-spacing:-.3px;
 
 /* =========================================
 QUANTITY / PURCHASE ACTION
-CHANGE 3 + CHANGE 4
-EQUAL LEFT / RIGHT BUTTON WIDTHS
 ========================================= */
 
 .purchase-action-controls {
@@ -3179,7 +3178,6 @@ margin-bottom:0;
 
 
 /* =========================================
-CHANGE 5
 HOMEPAGE FOLLOW-ON SECTIONS
 ========================================= */
 
@@ -3237,165 +3235,139 @@ object-position:48% 49%;
 
 
 /* =========================================
-BRITISH MANUFACTURING
+ORDER INFORMATION — EXPANDABLE SECTIONS
 ========================================= */
 
-.engineered {
-padding:82px 6%;
-background:#101212;
+.order-information-section {
+position:relative;
+padding:
+clamp(50px,6vw,76px)
+6%;
+background:
+linear-gradient(
+180deg,
+#101212 0%,
+#0d0f0f 100%
+);
 border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.engineered-intro {
-max-width:880px;
-margin-bottom:38px;
+.order-information-inner {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto;
 }
 
-.engineered-intro h2 {
-margin:0 0 26px;
+.order-information-list {
+width:100%;
+border-top:1px solid rgba(255,255,255,.12);
+}
+
+.order-information-item {
+margin:0;
+border-bottom:1px solid rgba(255,255,255,.12);
+background:transparent;
+}
+
+.order-information-item summary {
+position:relative;
+display:flex;
+align-items:center;
+width:100%;
+min-height:72px;
+margin:0;
+padding:
+21px
+58px
+21px
+0;
 color:var(--cream);
 font-family:
-"Bahnschrift",
 "Bahnschrift SemiCondensed",
-"Arial Narrow",
 "Aptos Display",
-"Inter",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(19px,2.2vw,28px);
+font-weight:750;
+line-height:1.1;
+letter-spacing:-.35px;
+list-style:none;
+cursor:pointer;
+transition:
+color .2s ease,
+padding-left .2s ease,
+background .2s ease;
+}
+
+.order-information-item summary::-webkit-details-marker {
+display:none;
+}
+
+.order-information-item summary::marker {
+display:none;
+content:"";
+}
+
+.order-information-item summary::after {
+content:"+";
+position:absolute;
+right:4px;
+top:50%;
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(255,255,255,.16);
+border-radius:50%;
+color:var(--orange-bright);
+font-family:
+"Aptos",
+"Segoe UI",
 Arial,
 sans-serif;
-font-size:clamp(38px,5vw,61px);
-line-height:.99;
-letter-spacing:-1.45px;
-font-weight:750;
-}
-
-.engineered-intro p {
-margin:0;
-color:var(--muted);
-line-height:1.68;
-font-size:17px;
-}
-
-.engineered-grid {
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-}
-
-.engineered-card {
-position:relative;
-overflow:hidden;
-isolation:isolate;
-background:#151818;
-border:1px solid rgba(255,255,255,.10);
-padding:28px 25px;
-box-shadow:none;
+font-size:23px;
+font-weight:300;
+line-height:1;
+transform:translateY(-50%);
 transition:
-opacity .75s ease,
-transform .75s cubic-bezier(.18,.72,.28,1),
-border-color .22s ease,
-background .22s ease;
+border-color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
-.engineered-card::before {
-content:"";
-position:absolute;
-z-index:1;
-left:-58%;
-bottom:-95%;
-width:65%;
-height:205%;
-background:
-linear-gradient(
-58deg,
-transparent 0%,
-rgba(255,255,255,.01) 31%,
-rgba(255,255,255,.06) 40%,
-rgba(255,255,255,.28) 49%,
-rgba(255,255,255,.06) 57%,
-transparent 70%
-);
-filter:blur(.35px);
-opacity:0;
-transform:
-translate(0,0)
-skewX(-14deg);
-pointer-events:none;
-}
-
-.engineered-card.shimmer-play::before {
-animation:
-trustDiagonalShimmer
-1.15s
-cubic-bezier(.18,.72,.28,1)
-both;
-}
-
-@keyframes trustDiagonalShimmer {
-
-0% {
-left:-58%;
-bottom:-95%;
-opacity:0;
-}
-
-12% {
-opacity:.15;
-}
-
-48% {
-opacity:.55;
-}
-
-78% {
-opacity:.20;
-}
-
-100% {
-left:108%;
-bottom:82%;
-opacity:0;
-}
-
-}
-
-.engineered-card h3 {
-position:relative;
-z-index:2;
-margin:0 0 13px;
-color:var(--cream);
-font-family:
-"Bahnschrift SemiCondensed",
-"Aptos Display",
-sans-serif;
-font-size:19px;
-font-weight:750;
-line-height:1.15;
-transition:color .22s ease;
-}
-
-.engineered-card p {
-position:relative;
-z-index:2;
-margin:0;
-color:var(--muted-soft);
-font-size:14px;
-line-height:1.58;
-}
-
-.engineered-card:hover {
-border-color:rgba(232,120,23,.30);
-background:#191c1b;
-box-shadow:none;
-}
-
-.engineered-card.is-visible:hover {
-transform:translateY(-3px);
-}
-
-.engineered-card:hover h3 {
+.order-information-item summary:hover {
 color:var(--orange-bright);
-letter-spacing:0;
+padding-left:5px;
+}
+
+.order-information-item summary:hover::after {
+border-color:rgba(232,120,23,.52);
+background:rgba(232,120,23,.05);
+}
+
+.order-information-item[open] summary {
+color:var(--orange-bright);
+}
+
+.order-information-item[open] summary::after {
+content:"−";
+border-color:rgba(232,120,23,.52);
+background:rgba(232,120,23,.05);
+}
+
+.order-information-content {
+min-height:110px;
+padding:
+0
+58px
+26px
+0;
+color:var(--muted);
+font-size:15px;
+line-height:1.65;
 }
 
 
@@ -3692,7 +3664,6 @@ background:#111313;
 border-top:1px solid rgba(255,255,255,.16);
 }
 
-
 .footer-wordmark {
 margin-bottom:22px;
 color:var(--steel);
@@ -3785,7 +3756,6 @@ object-fit:contain;
 
 
 /* =========================================
-CHANGE 1
 REGISTERED ADDRESS / RIGHT GLAZE LTD
 ========================================= */
 
@@ -3800,9 +3770,9 @@ line-height:1.45;
 
 .footer-registered-company-name {
 color:inherit;
-font-size:1.15em;
+font-size:inherit;
 font-weight:inherit;
-line-height:1.45;
+line-height:inherit;
 }
 
 .footer-company-numbers {
@@ -3927,10 +3897,13 @@ transform:translateX(-1px) translateY(5px);
 }
 
 
-/* GOOGLE PAY */
+/* GOOGLE PAY — 10% REDUCED VISUAL SCALE */
 .footer-payment-logo-item.google-pay {
 width:76px;
-transform:translateX(-17px) translateY(5px);
+transform:
+translateX(-17px)
+translateY(5px)
+scale(.90);
 }
 
 
@@ -3968,10 +3941,6 @@ font-size:9px;
 .direct-inner {
 grid-template-columns:1fr;
 gap:32px;
-}
-
-.engineered-grid {
-grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
 }
@@ -4673,7 +4642,44 @@ font-size:10px;
 
 
 /* =========================================
-MOBILE CHANGE 5 SECTIONS
+MOBILE INFORMATION SECTION
+========================================= */
+
+.order-information-section {
+padding:34px 6%;
+}
+
+.order-information-item summary {
+min-height:58px;
+padding:
+17px
+46px
+17px
+0;
+font-size:clamp(15px,4.4vw,20px);
+letter-spacing:-.2px;
+}
+
+.order-information-item summary::after {
+right:1px;
+width:29px;
+height:29px;
+font-size:19px;
+}
+
+.order-information-content {
+min-height:75px;
+padding:
+0
+46px
+20px
+0;
+font-size:13px;
+}
+
+
+/* =========================================
+MOBILE FOLLOW-ON SECTIONS
 ========================================= */
 
 .section-label {
@@ -4684,18 +4690,6 @@ gap:8px;
 
 .section-label::before {
 width:20px;
-}
-
-.engineered {
-padding:29px 6%;
-}
-
-.engineered-grid {
-grid-template-columns:1fr;
-}
-
-.engineered-card {
-padding:24px 20px;
 }
 
 .direct-section {
@@ -4849,9 +4843,6 @@ width:56px;
 width:54px;
 }
 
-
-/* CHANGE 2 — GOOGLE PAY BACK TO 56PX */
-
 .footer-payment-logo-item.google-pay {
 width:56px;
 }
@@ -4914,9 +4905,6 @@ font-size:clamp(27.55px,7.98vw,34.2px);
 .purchase-action-controls {
 grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
 }
-
-
-/* CHANGE 3 + CHANGE 4 */
 
 .quantity-row {
 grid-template-columns:27px minmax(40px,1fr) 27px;
@@ -5048,9 +5036,6 @@ width:51px;
 width:49px;
 }
 
-
-/* CHANGE 2 — KEEP GOOGLE PAY AT 56PX */
-
 .footer-payment-logo-item.google-pay {
 width:56px;
 }
@@ -5074,8 +5059,7 @@ scroll-behavior:auto;
 .basket-arrow,
 .estimated-delivery-date.delivery-pop,
 .order-final-summary-section.summary-enter,
-.order-summary-item.summary-item-enter,
-.engineered-card.shimmer-play::before {
+.order-summary-item.summary-item-enter {
 animation:none !important;
 }
 
@@ -6832,7 +6816,6 @@ Checkout Now
 
 
 <!-- =========================================
-CHANGE 5
 PRODUCT CONSTRUCTION VISUAL
 ========================================= -->
 
@@ -6864,85 +6847,54 @@ alt="Finished frameless rooflight manufactured and prepared for installation"
 
 
 <!-- =========================================
-BRITISH MANUFACTURING / PRODUCT SPECIFICATION
+EXPANDABLE ORDER INFORMATION
 ========================================= -->
 
-<section class="engineered">
-
-<div class="engineered-intro">
-
-<div class="section-label reveal">
-British Manufacturing
-</div>
-
-<h2 class="reveal">
-British Glass. Designed For Year-Round Comfort
-</h2>
-
-<p class="reveal reveal-delay-1">
-All our rooflights are manufactured to the highest standard ready for immediate fitting.
-Our toughened glass, ceramic border, insulation and sealing specification are brought
-together during production to create a durable frameless rooflight designed for
-long-term performance.
-</p>
-
-</div>
-
-<div
-class="engineered-grid"
-id="engineeredGrid"
+<section
+class="order-information-section"
+aria-label="Rooflight order information"
 >
 
-<div class="engineered-card reveal reveal-scale">
+<div class="order-information-inner">
 
-<h3>
-Low E Energy Saving Glass
-</h3>
+<div class="order-information-list">
 
-<p>
-Our Low E glass is designed to keep heat in during winter and reduce overheating
-in summer, helping improve thermal efficiency and lower energy costs.
-</p>
 
+<details class="order-information-item reveal">
+
+<summary>
+Installation Guidelines
+</summary>
+
+<div class="order-information-content">
 </div>
 
-<div class="engineered-card reveal reveal-scale reveal-delay-1">
+</details>
 
-<h3>
-20 Year Warranty
-</h3>
 
-<p>
-All units are supplied with a 20 year warranty and are designed for an expected
-30+ year service life when correctly specified and installed.
-</p>
+<details class="order-information-item reveal reveal-delay-1">
 
+<summary>
+Technical Information
+</summary>
+
+<div class="order-information-content">
 </div>
 
-<div class="engineered-card reveal reveal-scale reveal-delay-2">
+</details>
 
-<h3>
-Two-Stage Sealing
-</h3>
 
-<p>
-Our insulated units use an internal and external two-stage sealing process,
-producing a flush finished unit engineered for reliable long-term weather performance
-when correctly installed.
-</p>
+<details class="order-information-item reveal reveal-delay-2">
 
+<summary>
+Delivery Terms &amp; Lead Times
+</summary>
+
+<div class="order-information-content">
 </div>
 
-<div class="engineered-card reveal reveal-scale reveal-delay-3">
+</details>
 
-<h3>
-Factory-Tinted Glass
-</h3>
-
-<p>
-Our tinted units contain no applied film—the colour is manufactured into the glass
-for a durable, long-lasting finish that won’t peel, bubble or fade like window film.
-</p>
 
 </div>
 
@@ -7202,8 +7154,6 @@ Factory Toughened Rooflights is a trading name of:
 
 <div class="footer-right-glaze">
 
-
-<!-- CHANGE 1 -->
 
 <div class="footer-registered-address">
 
@@ -17415,188 +17365,6 @@ element
 
 
 /* =========================================
-CHANGE 5
-ENGINEERED CARD FULL-VIEW SHIMMERS
-========================================= */
-
-const engineeredItems =
-Array.from(
-document.querySelectorAll(
-".engineered-card"
-)
-);
-
-
-let engineeredShimmerFrame =
-null;
-
-
-function getVisiblePageTop() {
-
-const pageHeader =
-document.querySelector(
-"header"
-);
-
-
-if (
-!pageHeader
-) {
-
-return 0;
-
-}
-
-
-return Math.max(
-0,
-pageHeader
-.getBoundingClientRect()
-.bottom
-);
-
-}
-
-
-function checkEngineeredCardShimmers() {
-
-engineeredShimmerFrame =
-null;
-
-
-if (
-reducedMotionQuery.matches ||
-engineeredItems.length ===
-0
-) {
-
-return;
-
-}
-
-
-const visibleTop =
-getVisiblePageTop();
-
-
-const visibleBottom =
-window.innerHeight -
-8;
-
-
-engineeredItems.forEach(
-item => {
-
-if (
-item.dataset.shimmerPlayed ===
-"true"
-) {
-
-return;
-
-}
-
-
-const itemRect =
-item.getBoundingClientRect();
-
-
-const isFullyVisible =
-
-itemRect.top >=
-visibleTop &&
-
-itemRect.bottom <=
-visibleBottom;
-
-
-if (
-!isFullyVisible
-) {
-
-return;
-
-}
-
-
-item.dataset.shimmerPlayed =
-"true";
-
-
-item.classList.add(
-"shimmer-play"
-);
-
-}
-);
-
-}
-
-
-function requestEngineeredShimmerCheck() {
-
-if (
-engineeredShimmerFrame !==
-null
-) {
-
-return;
-
-}
-
-
-engineeredShimmerFrame =
-window.requestAnimationFrame(
-checkEngineeredCardShimmers
-);
-
-}
-
-
-if (
-reducedMotionQuery.matches
-) {
-
-engineeredItems.forEach(
-item => {
-
-item.dataset.shimmerPlayed =
-"true";
-
-}
-);
-
-}
-else {
-
-window.addEventListener(
-"scroll",
-requestEngineeredShimmerCheck,
-{
-passive:true
-}
-);
-
-
-window.addEventListener(
-"resize",
-requestEngineeredShimmerCheck
-);
-
-
-window.addEventListener(
-"load",
-requestEngineeredShimmerCheck
-);
-
-
-requestEngineeredShimmerCheck();
-
-}
-
-
-/* =========================================
-CHANGE 5
 PROFESSIONAL FITTING MANUAL SLIDESHOW
 ========================================= */
 
