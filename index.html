@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+Index
+Nathan Knight <nathank3290@gmail.com>	Wed, Aug 26, 2026 at 1:22 AM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3903,157 +3907,83 @@ margin-top:0;
 }
 
 /* =========================================
-FOOTER PAYMENT METHODS
-REAL INLINE SVG PAYMENT MARKS
+PAYMENT LOGOS — INDIVIDUAL POSITION CONTROLS
 ========================================= */
 
-.footer-payment-section {
-display:grid;
-justify-items:start;
-gap:18px;
-width:100%;
-max-width:760px;
-margin-top:34px;
-padding-top:25px;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-/* =========================================
-PAYMENT ICON ROW
-========================================= */
-
-.footer-payment-methods {
+.footer-payment-logo-strip {
 display:flex;
 align-items:center;
 justify-content:flex-start;
-flex-wrap:wrap;
-gap:8px;
+flex-wrap:nowrap;
+gap:clamp(12px,1.5vw,22px);
 width:100%;
-max-width:700px;
+max-width:620px;
+margin:
+clamp(24px,2.8vw,34px)
+0
+clamp(28px,3vw,38px);
 }
 
-/* =========================================
-INDIVIDUAL PAYMENT TILE
-========================================= */
-
-.payment-badge {
-position:relative;
-display:inline-flex;
+.footer-payment-logo-item {
+display:flex;
 align-items:center;
 justify-content:center;
 flex:0 0 auto;
-width:58px;
-height:38px;
-padding:5px 6px;
-overflow:hidden;
-border-radius:5px;
-background:#ffffff;
-border:1px solid rgba(0,0,0,.12);
-box-shadow:
-0 1px 0 rgba(255,255,255,.06),
-0 4px 10px rgba(0,0,0,.22);
-isolation:isolate;
+min-width:0;
 }
 
-/* =========================================
-INLINE SVG ARTWORK
-========================================= */
-
-.payment-badge svg {
+.footer-payment-logo-item img {
 display:block;
 width:100%;
-height:100%;
-max-width:48px;
-max-height:28px;
-overflow:visible;
-flex:0 0 auto;
+height:auto;
+max-height:32px;
+object-fit:contain;
+object-position:center;
 }
 
-.payment-badge.payment-wide svg {
-max-width:52px;
+/* VISA */
+
+.footer-payment-logo-item.visa {
+width:64px;
+transform:translateX(0px) translateY(5px);
 }
 
-/* =========================================
-BRAND-SPECIFIC TILE BACKGROUNDS
-========================================= */
+/* MASTERCARD */
 
-.payment-badge-amex {
-background:#0877c9;
-border-color:#0877c9;
+.footer-payment-logo-item.mastercard {
+width:46px;
+transform:translateX(1px) translateY(5px);
 }
 
-.payment-badge-apple-pay {
-background:#ffffff;
-border-color:#d7d7d7;
+/* AMERICAN EXPRESS */
+
+.footer-payment-logo-item.amex {
+width:58px;
+transform:translateX(-3px) translateY(5px);
 }
 
-.payment-badge-diners {
-background:#ffffff;
-border-color:#dedede;
+/* PAYPAL */
+
+.footer-payment-logo-item.paypal {
+width:76px;
+transform:translateX(-4px) translateY(5px);
 }
 
-.payment-badge-discover {
-background:#ffffff;
-border-color:#dedede;
+/* APPLE PAY */
+
+.footer-payment-logo-item.apple-pay {
+width:72px;
+transform:translateX(-4px) translateY(5px);
 }
 
-.payment-badge-google-pay {
-background:#ffffff;
-border-color:#dedede;
-}
+/* GOOGLE PAY */
 
-.payment-badge-maestro {
-background:#ffffff;
-border-color:#dedede;
-}
-
-.payment-badge-mastercard {
-background:#202020;
-border-color:#333333;
-}
-
-.payment-badge-shop-pay {
-background:#5a31f4;
-border-color:#5a31f4;
-}
-
-.payment-badge-unionpay {
-background:#ffffff;
-border-color:#dedede;
-}
-
-.payment-badge-visa {
-background:#1434cb;
-border-color:#1434cb;
-}
-
-.payment-badge-paypal {
-background:#ffffff;
-border-color:#dedede;
-}
-
-.payment-badge-klarna {
-background:#ffb3c7;
-border-color:#ffb3c7;
-}
-
-/* =========================================
-OPTIONAL SVG HELPERS
-========================================= */
-
-.payment-logo-full {
-width:100%;
-height:100%;
-}
-
-.payment-logo-center {
-transform-origin:center;
-transform-box:fill-box;
-}
-
-.payment-badge svg,
-.payment-badge svg * {
-vector-effect:non-scaling-stroke;
+.footer-payment-logo-item.google-pay {
+width:76px;
+transform:
+translateX(-22px)
+translateY(5px)
+scale(.88);
 }
 
 /* =========================================
@@ -5239,42 +5169,42 @@ font-size:20px;
 }
 
 /* =========================================
-MOBILE PAYMENT METHODS
-CENTRED WRAPPED ROWS
+MOBILE PAYMENT LOGOS
 ========================================= */
 
-.footer-payment-section {
-gap:16px;
-margin-top:28px;
-padding-top:22px;
+.footer-payment-logo-strip {
+gap:10px;
+max-width:350px;
+margin-top:25px;
+margin-bottom:31px;
 }
 
-.footer-payment-methods {
-display:flex;
-align-items:center;
-justify-content:center;
-flex-wrap:wrap;
-gap:8px 7px;
-width:100%;
-max-width:347px;
-}
-
-.payment-badge {
-width:52px;
-height:34px;
-padding:4px 5px;
-border-radius:4px;
-}
-
-.payment-badge svg {
-width:100%;
-height:100%;
-max-width:44px;
+.footer-payment-logo-item img {
 max-height:25px;
 }
 
-.payment-badge.payment-wide svg {
-max-width:47px;
+.footer-payment-logo-item.visa {
+width:46px;
+}
+
+.footer-payment-logo-item.mastercard {
+width:34px;
+}
+
+.footer-payment-logo-item.amex {
+width:40px;
+}
+
+.footer-payment-logo-item.paypal {
+width:56px;
+}
+
+.footer-payment-logo-item.apple-pay {
+width:54px;
+}
+
+.footer-payment-logo-item.google-pay {
+width:56px;
 }
 
 /* =========================================
@@ -5444,29 +5374,40 @@ font-size:31px;
 }
 
 /* =========================================
-SMALL MOBILE PAYMENT METHODS
-KEEP SIX ACROSS WHERE SPACE ALLOWS
-AND CENTRE THE SHORT FINAL ROW
+SMALLEST MOBILE PAYMENT LOGOS
 ========================================= */
 
-.footer-payment-methods {
-display:flex;
-align-items:center;
-justify-content:center;
-flex-wrap:wrap;
+.footer-payment-logo-strip {
 gap:7px;
-width:100%;
-max-width:341px;
+max-width:320px;
 }
 
-.payment-badge {
+.footer-payment-logo-item img {
+max-height:23px;
+}
+
+.footer-payment-logo-item.visa {
+width:42px;
+}
+
+.footer-payment-logo-item.mastercard {
+width:31px;
+}
+
+.footer-payment-logo-item.amex {
+width:37px;
+}
+
+.footer-payment-logo-item.paypal {
 width:51px;
-height:33px;
 }
 
-.payment-badge svg {
-max-width:43px;
-max-height:24px;
+.footer-payment-logo-item.apple-pay {
+width:49px;
+}
+
+.footer-payment-logo-item.google-pay {
+width:56px;
 }
 
 .footer-copyright {
@@ -5872,6 +5813,7 @@ Contact Our Rooflight Team
 </div>
 
 </div>
+
 <main>
 
 <style>
@@ -6198,7 +6140,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
 data-product-size="400x1500"
@@ -6300,7 +6241,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card image-size-1000x1200 reveal reveal-scale reveal-delay-2"
 data-product-size="1000x1200"
@@ -6401,7 +6341,6 @@ View Size
 </div>
 
 </div>
-
 
 <div
 class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
@@ -7251,10 +7190,6 @@ class="tinted-options-section"
 id="tintedOptions"
 >
 
-<!-- =========================================
-TINTED & PRIVACY GLASS HEADER VISUAL
-========================================= -->
-
 <div
 class="engineered-visual-intro tinted-header-visual"
 aria-label="Tinted and privacy glass rooflight finishes"
@@ -7397,7 +7332,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-product-size="600x1500"
@@ -7499,7 +7433,6 @@ View Size
 
 </div>
 
-
 <div
 class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-product-size="600x900"
@@ -7600,7 +7533,6 @@ View Size
 </div>
 
 </div>
-
 
 <div
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
@@ -8078,392 +8010,60 @@ sales@factorytoughenedrooflights.co.uk
 </div>
 
 <!-- =========================================
-PAYMENT METHODS
-INLINE SVG - NO IMAGE FILES REQUIRED
+PAYMENT LOGOS
 ========================================= -->
 
 <div
-class="footer-payment-section"
+class="footer-payment-logo-strip"
 aria-label="Accepted payment methods"
 >
 
-<div class="footer-payment-methods">
-
-<!-- VISA -->
-
-<span
-class="payment-badge payment-badge-visa payment-wide"
-role="img"
-aria-label="Visa"
+<span class="footer-payment-logo-item visa">
+<img
+src="images/visa.png"
+alt="Visa"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<rect
-x="0"
-y="0"
-width="88"
-height="44"
-rx="3"
-fill="#1434CB"
-/>
-
-<text
-x="44"
-y="30"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="24"
-font-weight="900"
-font-style="italic"
-letter-spacing="-2"
->
-VISA
-</text>
-
-</svg>
-
 </span>
 
-<!-- MASTERCARD -->
-
-<span
-class="payment-badge payment-badge-mastercard"
-role="img"
-aria-label="Mastercard"
+<span class="footer-payment-logo-item mastercard">
+<img
+src="images/mastercard.png"
+alt="Mastercard"
 >
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<circle
-cx="29"
-cy="19"
-r="12"
-fill="#EB001B"
-/>
-
-<circle
-cx="43"
-cy="19"
-r="12"
-fill="#F79E1B"
-/>
-
-<path
-d="M36 9.3a12 12 0 0 1 0 19.4 12 12 0 0 1 0-19.4z"
-fill="#FF5F00"
-/>
-
-<text
-x="36"
-y="38"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="6.5"
-font-weight="700"
-letter-spacing="-.2"
->
-mastercard
-</text>
-
-</svg>
-
 </span>
 
-<!-- AMERICAN EXPRESS -->
-
-<span
-class="payment-badge payment-badge-amex"
-role="img"
-aria-label="American Express"
+<span class="footer-payment-logo-item amex">
+<img
+src="images/amex.png"
+alt="American Express"
 >
-
-<svg
-viewBox="0 0 72 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<rect
-x="0"
-y="0"
-width="72"
-height="44"
-rx="3"
-fill="#0877C9"
-/>
-
-<text
-x="36"
-y="18"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="15"
-font-weight="900"
-letter-spacing="-1"
->
-AM
-</text>
-
-<text
-x="36"
-y="34"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="15"
-font-weight="900"
-letter-spacing="-1"
->
-EX
-</text>
-
-</svg>
-
 </span>
 
-<!-- APPLE PAY -->
-
-<span
-class="payment-badge payment-badge-apple-pay payment-wide"
-role="img"
-aria-label="Apple Pay"
+<span class="footer-payment-logo-item paypal">
+<img
+src="images/paypal.png"
+alt="PayPal"
 >
-
-<svg
-viewBox="0 0 86 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-fill="#000000"
-d="M19.8 13.3c1.5-1.8 1.3-3.5 1.3-4.1-1.4.1-3.1 1-4.1 2.2-1 1.1-1.8 2.7-1.6 4.1 1.6.1 3.1-.7 4.4-2.2z"
-/>
-
-<path
-fill="#000000"
-d="M24.5 23.1c0-4.1 3.4-6.1 3.6-6.2-1.9-2.8-4.9-3.2-6-3.3-2.6-.3-5 1.5-6.3 1.5-1.3 0-3.3-1.5-5.4-1.4-2.8 0-5.3 1.6-6.7 4.1-2.9 5-.7 12.4 2 16.4 1.3 1.9 2.8 4 4.9 3.9 2-.1 2.8-1.3 5.2-1.3 2.4 0 3.1 1.3 5.2 1.2 2.2 0 3.5-1.9 4.7-3.8 1.5-2.2 2.1-4.3 2.1-4.4-.1 0-3.3-1.3-3.3-6.7z"
-/>
-
-<text
-x="35"
-y="29"
-fill="#111111"
-font-family="Arial, Helvetica, sans-serif"
-font-size="20"
-font-weight="700"
-letter-spacing="-1"
->
-Pay
-</text>
-
-</svg>
-
 </span>
 
-<!-- GOOGLE PAY -->
-
-<span
-class="payment-badge payment-badge-google-pay payment-wide"
-role="img"
-aria-label="Google Pay"
+<span class="footer-payment-logo-item apple-pay">
+<img
+src="images/apple-pay.png"
+alt="Apple Pay"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-d="M17 13.5c2.5 0 4.4.9 5.9 2.3l-2.4 2.3c-.9-.8-2.1-1.3-3.5-1.3-3 0-5.4 2.1-5.4 5.2s2.4 5.2 5.4 5.2c1.9 0 3-.8 3.7-1.5.6-.6 1-1.5 1.2-2.8H17v-3h8c.1.4.1.9.1 1.5 0 2.7-.7 4.8-2.4 6.4-1.7 1.7-3.8 2.6-6.7 2.6-4.8 0-8.9-3.9-8.9-8.8s4.1-8.1 8.9-8.1z"
-fill="#4285F4"
-/>
-
-<path
-d="M8.3 18.4l2.8 2c.8-2.2 2.9-3.6 5.9-3.6 1.4 0 2.6.5 3.5 1.3l2.4-2.3c-1.5-1.4-3.4-2.3-5.9-2.3-3.7 0-6.9 2.1-8.7 4.9z"
-fill="#EA4335"
-/>
-
-<path
-d="M17 30.4c2.8 0 5-.9 6.7-2.6l-2.6-2c-.9.6-2 1.4-4.1 1.4-2.9 0-5-1.8-5.9-4.1l-2.8 2.2c1.8 3 5 5.1 8.7 5.1z"
-fill="#34A853"
-/>
-
-<path
-d="M8.3 25.3l2.8-2.2c-.2-.6-.3-1.2-.3-1.8 0-.7.1-1.3.3-1.9l-2.8-2c-.7 1.2-1.1 2.6-1.1 3.9 0 1.4.4 2.8 1.1 4z"
-fill="#FBBC04"
-/>
-
-<text
-x="50"
-y="27"
-text-anchor="middle"
-fill="#5F6368"
-font-family="Arial, Helvetica, sans-serif"
-font-size="17"
-font-weight="500"
->
-Pay
-</text>
-
-</svg>
-
 </span>
 
-<!-- PAYPAL -->
-
-<span
-class="payment-badge payment-badge-paypal payment-wide"
-role="img"
-aria-label="PayPal"
+<span class="footer-payment-logo-item google-pay">
+<img
+src="images/google-pay.png"
+alt="Google Pay"
 >
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-d="M15 8h14c7 0 11 3.5 10 9.5-1.2 7-6.5 10.5-14 10.5h-4l-2 8H9z"
-fill="#003087"
-/>
-
-<path
-d="M22 12h10c5 0 7.5 2.4 6.8 6.3-.8 4.7-4.5 7.2-9.7 7.2h-5z"
-fill="#009CDE"
-opacity=".95"
-/>
-
-<text
-x="61"
-y="28"
-text-anchor="middle"
-fill="#003087"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="800"
-font-style="italic"
-letter-spacing="-.8"
->
-PayPal
-</text>
-
-</svg>
-
 </span>
-
-<!-- DISCOVER -->
-
-<span
-class="payment-badge payment-badge-discover payment-wide"
-role="img"
-aria-label="Discover"
->
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<text
-x="43"
-y="25"
-text-anchor="middle"
-fill="#202020"
-font-family="Arial, Helvetica, sans-serif"
-font-size="14"
-font-weight="800"
-letter-spacing="-.8"
->
-DISCOVER
-</text>
-
-<path
-d="M50 32c8-6 17-8 29-8v8z"
-fill="#F58220"
-/>
-
-</svg>
-
-</span>
-
-<!-- UNIONPAY -->
-
-<span
-class="payment-badge payment-badge-unionpay payment-wide"
-role="img"
-aria-label="UnionPay"
->
-
-<svg
-viewBox="0 0 88 44"
-xmlns="http://www.w3.org/2000/svg"
-aria-hidden="true"
->
-
-<path
-d="M12 7h22l-6 30H6z"
-fill="#E21836"
-/>
-
-<path
-d="M28 7h22l-6 30H22z"
-fill="#007B84"
-/>
-
-<path
-d="M44 7h22l-6 30H38z"
-fill="#00A6A6"
-/>
-
-<text
-x="38"
-y="20"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="8.5"
-font-weight="800"
->
-Union
-</text>
-
-<text
-x="38"
-y="29"
-text-anchor="middle"
-fill="#FFFFFF"
-font-family="Arial, Helvetica, sans-serif"
-font-size="8.5"
-font-weight="800"
->
-Pay
-</text>
-
-</svg>
-
-</span>
-
-</div>
 
 </div>
 
 </footer>
+
 <script>
 
 /* ===============================
@@ -8950,31 +8550,6 @@ element
 
 /* ===============================
 STANDARD + TINTED PRODUCT CARDS
-
-ORDER PAGE FLOW
-
-First click/tap:
-Selects the product card and retains the
-existing homepage highlight behaviour.
-
-Second click/tap on:
-- Product image
-- Product size title
-- View Size
-
-Opens order-page.html with the currently
-selected product configuration.
-
-The following are passed:
-
-width
-length
-size
-glazing
-finish
-price
-image
-source
 ================================ */
 
 const homepageProductCards =
@@ -8987,10 +8562,6 @@ document.querySelectorAll(
 let activeHomepageProductCard =
 null;
 
-
-/* ===============================
-PRODUCT CARD SIZE HELPER
-================================ */
 
 function getHomepageProductCardDimensions(
 card
@@ -9093,10 +8664,6 @@ length !== null
 }
 
 
-/* ===============================
-PRODUCT CARD GLAZING HELPER
-================================ */
-
 function getHomepageProductCardGlazing(
 card
 ) {
@@ -9132,20 +8699,6 @@ return glazing === "triple"
 
 }
 
-
-/* ===============================
-PRODUCT CARD FINISH HELPER
-
-Standard cards without data-finish are
-treated as clear.
-
-Tinted cards currently use:
-blue
-satin
-
-Future grey cards can use:
-data-finish="grey"
-================================ */
 
 function getHomepageProductCardFinish(
 card
@@ -9196,10 +8749,6 @@ return "clear";
 }
 
 
-/* ===============================
-PRODUCT CARD PRICE HELPER
-================================ */
-
 function getHomepageProductCardPrice(
 card
 ) {
@@ -9227,10 +8776,6 @@ selectedPrice ?? ""
 
 }
 
-
-/* ===============================
-PRODUCT CARD IMAGE HELPER
-================================ */
 
 function getHomepageProductCardImage(
 card
@@ -9261,10 +8806,6 @@ image.getAttribute(
 
 }
 
-
-/* ===============================
-BUILD ORDER PAGE URL
-================================ */
 
 function buildHomepageOrderPageUrl(
 card
@@ -9371,10 +8912,6 @@ parameters.toString()
 }
 
 
-/* ===============================
-OPEN SELECTED PRODUCT ORDER PAGE
-================================ */
-
 function openHomepageProductOrderPage(
 card
 ) {
@@ -9392,16 +8929,6 @@ card
 
 }
 
-
-/* ===============================
-CHECK WHETHER CLICK TARGET CAN
-OPEN THE ORDER PAGE
-
-Only these areas open on the second click:
-- Product image
-- Product size
-- View Size
-================================ */
 
 function isHomepageOrderActivationTarget(
 target
@@ -9422,10 +8949,6 @@ target.closest(
 
 }
 
-
-/* ===============================
-STOP PRODUCT CARD ATTENTION
-================================ */
 
 function stopHomepageProductAttention() {
 
@@ -9459,10 +8982,6 @@ null;
 
 }
 
-
-/* ===============================
-ACTIVATE PRODUCT CARD
-================================ */
 
 function activateHomepageProductCard(
 card
@@ -9514,10 +9033,6 @@ productLink.classList.add(
 }
 
 
-/* ===============================
-PRODUCT CARD CLICK / SECOND CLICK
-================================ */
-
 homepageProductCards.forEach(
 card => {
 
@@ -9525,15 +9040,6 @@ const productLink =
 card.querySelector(
 ".home-product-link"
 );
-
-
-/*
-The existing View Size anchor is retained
-in Index 3, but JavaScript now controls its
-destination so the first click can select
-the card rather than immediately leaving
-the homepage.
-*/
 
 if (
 productLink
@@ -9547,7 +9053,6 @@ card
 );
 
 }
-
 
 card.addEventListener(
 "click",
@@ -9575,12 +9080,6 @@ isHomepageOrderActivationTarget(
 event.target
 );
 
-
-/*
-Always prevent the existing View Size
-anchor from navigating on the first click.
-*/
-
 const clickedProductLink =
 event.target.closest(
 ".home-product-link"
@@ -9596,12 +9095,6 @@ event.preventDefault();
 
 event.stopPropagation();
 
-
-/*
-Second click on image / title / View Size:
-continue to order page.
-*/
-
 if (
 cardWasAlreadyActive &&
 canOpenOrderPage
@@ -9615,33 +9108,12 @@ return;
 
 }
 
-
-/*
-First click, or a click elsewhere inside
-the card:
-retain the existing card-selection effect.
-*/
-
 activateHomepageProductCard(
 card
 );
 
 }
 );
-
-
-/* ===============================
-PRODUCT CARD KEYBOARD SUPPORT
-
-Enter / Space first selects the card.
-
-When the card is already selected, Enter
-on the image/title card area opens the
-order page.
-
-The View Size anchor is handled separately
-below so it follows the same two-stage flow.
-================================ */
 
 card.addEventListener(
 "keydown",
@@ -9690,11 +9162,6 @@ card
 
 }
 );
-
-
-/* ===============================
-VIEW SIZE KEYBOARD SUPPORT
-================================ */
 
 if (
 productLink
@@ -9746,10 +9213,6 @@ card
 );
 
 
-/* ===============================
-CLICK OUTSIDE PRODUCT CARDS
-================================ */
-
 document.addEventListener(
 "click",
 event => {
@@ -9769,23 +9232,7 @@ stopHomepageProductAttention();
 
 
 /* ===============================
-HOMEPAGE PRODUCT INTRODUCTION
-
-Copy is controlled directly by Index 3.
-No JavaScript text override is used here.
-================================ */
-
-
-/* ===============================
 DELIVERY MASTER
-
-Postcodes.io provides postcode coordinates.
-Straight-line geographical distance is
-multiplied by 1.20 to provide an allowance
-for typical road mileage.
-
-Dispatch postcode:
-SL9 7BB
 ================================ */
 
 const DELIVERY_ORIGIN_POSTCODE =
@@ -9793,18 +9240,6 @@ const DELIVERY_ORIGIN_POSTCODE =
 
 const ROAD_DISTANCE_ALLOWANCE =
 1.20;
-
-
-/*
-STANDARD EXTRA LARGE DELIVERY SIZES
-
-All Extra Large listed sizes use
-postcode-based delivery pricing.
-
-XL1 = 600–800mm wide
-XL2 = 801–1199mm wide
-XL3 = 1200–1500mm wide
-*/
 
 const chargeableExtraLargeSizes =
 new Set([
@@ -9815,7 +9250,6 @@ new Set([
 "1500x1800",
 "1500x2500"
 ]);
-
 
 const deliveryRates = [
 
@@ -10309,17 +9743,6 @@ reason:null
 }
 
 
-/* ===============================
-HOMEPAGE PRODUCT SPECIFICATION LINES
-
-Standard/tinted product cards use:
-
-1. Inside Visible Glass Size
-2. Toughened Safety Glass specification
-3. Free Mainland UK Delivery OR
-Delivery Calculated By Postcode
-================================ */
-
 function updateHomepageProductSpecifications() {
 
 homepageProductCards.forEach(
@@ -10411,7 +9834,6 @@ delete card.dataset.deliveryBand;
 }
 
 updateHomepageProductSpecifications();
-
 
 window.calculateExtraLargeDelivery =
 calculateExtraLargeDelivery;
@@ -10628,25 +10050,6 @@ requestEngineeredShimmerCheck();
 
 /* ===============================
 PROFESSIONAL FITTING MANUAL SLIDESHOW
-
-Manual only:
-- No autoplay
-- Swipe left = next
-- Swipe right = previous
-- Mouse drag also supported
-- Loops continuously in both directions
-
-Images:
-1. hero-rooflight-1.png
-2. hero-rooflight-2.png
-3. hero-rooflight-7.png
-4. hero-rooflight-8.png
-
-Progress:
-1 = 25%
-2 = 50%
-3 = 75%
-4 = 100%
 ================================ */
 
 const fittingSlideshow =
@@ -10707,10 +10110,6 @@ const FITTING_SWIPE_THRESHOLD =
 45;
 
 
-/* ===============================
-FITTING SLIDESHOW INDEX HELPER
-================================ */
-
 function normalizeFittingSlideIndex(
 index
 ) {
@@ -10729,10 +10128,6 @@ fittingSlides.length;
 
 }
 
-
-/* ===============================
-FITTING PROGRESS BAR
-================================ */
 
 function updateFittingSlideshowProgress() {
 
@@ -10757,10 +10152,6 @@ fittingSlideshowProgress.style.width =
 
 }
 
-
-/* ===============================
-DISPLAY FITTING SLIDE
-================================ */
 
 function showFittingSlide(
 newIndex,
@@ -10802,12 +10193,6 @@ fittingSlides[
 normalizedIndex
 ];
 
-
-/*
-Remove all transitional states first so
-each swipe starts from a predictable state.
-*/
-
 fittingSlides.forEach(
 slide => {
 
@@ -10823,21 +10208,6 @@ slide.setAttribute(
 
 }
 );
-
-
-/*
-The existing Index 3 animation expects:
-
-active = visible/current
-previous = outgoing left position
-
-For a forward swipe the outgoing image is
-marked previous.
-
-For a backwards swipe the destination is
-briefly placed in the previous position,
-then promoted to active on the next frame.
-*/
 
 if (
 direction === "previous"
@@ -10899,10 +10269,6 @@ updateFittingSlideshowProgress();
 }
 
 
-/* ===============================
-FITTING NEXT / PREVIOUS
-================================ */
-
 function showNextFittingSlide() {
 
 showFittingSlide(
@@ -10921,10 +10287,6 @@ activeFittingSlideIndex - 1,
 
 }
 
-
-/* ===============================
-SWIPE DIRECTION CHECK
-================================ */
 
 function processFittingSwipe(
 startX,
@@ -10949,12 +10311,6 @@ Math.abs(
 verticalDistance
 );
 
-
-/*
-Ignore short movements and ordinary
-vertical page scrolling.
-*/
-
 if (
 absoluteHorizontalDistance <
 FITTING_SWIPE_THRESHOLD
@@ -10968,15 +10324,6 @@ absoluteVerticalDistance
 ) {
 return;
 }
-
-
-/*
-Finger travelling left:
-show next image.
-
-Finger travelling right:
-show previous image.
-*/
 
 if (
 horizontalDistance < 0
@@ -10992,10 +10339,6 @@ showPreviousFittingSlide();
 
 }
 
-
-/* ===============================
-TOUCH SWIPE
-================================ */
 
 if (
 fittingSlideshowViewport &&
@@ -11096,10 +10439,6 @@ passive:true
 );
 
 
-/* ===============================
-MOUSE DRAG
-================================ */
-
 fittingSlideshowViewport.addEventListener(
 "mousedown",
 event => {
@@ -11179,11 +10518,6 @@ fittingMouseEndY
 );
 
 
-/*
-Prevent the browser's native image-drag
-behaviour from fighting the gallery drag.
-*/
-
 fittingSlideshowViewport.addEventListener(
 "dragstart",
 event => {
@@ -11195,13 +10529,6 @@ event.preventDefault();
 
 }
 
-
-/* ===============================
-OPTIONAL KEYBOARD NAVIGATION
-
-Left / right arrows work when the fitting
-slideshow itself has keyboard focus.
-================================ */
 
 if (
 fittingSlideshow
@@ -11241,10 +10568,6 @@ showNextFittingSlide();
 
 }
 
-
-/* ===============================
-INITIAL FITTING SLIDESHOW STATE
-================================ */
 
 if (
 fittingSlides.length > 0
@@ -11309,15 +10632,6 @@ false;
 let customBuildPairRevealed =
 false;
 
-
-/* ===============================
-SYNCHRONISED CUSTOM ROOFLIGHT +
-BUILDER REVEAL
-
-The custom product visual and the
-Build A Custom Rooflight interface
-appear together as one order stage.
-================================ */
 
 function revealExistingOpeningRooflight() {
 
@@ -11470,17 +10784,6 @@ revealExistingOpeningRooflight();
 
 /* ===============================
 STANDARD + TINTED PRICE FORMATTING
-
-Numeric homepage product prices are
-structured as:
-
-£400. + small 00
-
-The decimal point belongs to the
-full-size main price.
-
-Only the two decimal digits use the
-smaller top-aligned styling from Index 1.
 ================================ */
 
 function formatProductPrice(
@@ -11581,20 +10884,6 @@ ${formattedDecimals}
 }
 
 
-/* ===============================
-INITIAL HOMEPAGE PRODUCT PRICES
-
-Reads the active Double / Triple value
-directly from each card's data attributes.
-
-This applies equally to:
-
-Clear standard cards
-Blue tinted cards
-Satin privacy cards
-Future grey tinted cards
-================================ */
-
 function initializeHomepageProductPrices() {
 
 homepageProductCards.forEach(
@@ -11636,10 +10925,6 @@ priceElement.innerHTML =
 
 initializeHomepageProductPrices();
 
-
-/* ===============================
-STANDARD + TINTED GLAZING CONTROLS
-================================ */
 
 homepageProductCards.forEach(
 card => {
@@ -11718,12 +11003,6 @@ glazing === "triple"
 
 }
 
-
-/*
-Refresh the stored View Size destination
-whenever Double / Triple is changed.
-*/
-
 if (
 productLink
 ) {
@@ -11782,10 +11061,6 @@ document.getElementById(
 );
 
 
-/* ===============================
-GENERIC NUMBER INPUT HELPER
-================================ */
-
 function getNumericInputValue(
 input
 ) {
@@ -11825,10 +11100,6 @@ return numericValue;
 
 }
 
-
-/* ===============================
-OPENING ASSISTANT ERROR STATE
-================================ */
 
 function hideOpeningError() {
 
@@ -11882,10 +11153,6 @@ openingInternalError.setAttribute(
 
 }
 
-
-/* ===============================
-OPENING ASSISTANT RECOMMENDATION
-================================ */
 
 function hideOpeningRecommendation() {
 
@@ -11950,21 +11217,8 @@ openingInternalRecommendation.setAttribute(
 
 }
 
-/*
-The opening assistant only calculates the
-recommended internal rooflight size.
-
-The custom rooflight visual and builder
-continue to be controlled by the shared
-scroll reveal above.
-*/
-
 }
 
-
-/* ===============================
-OPENING DIMENSION CALCULATION
-================================ */
 
 function validateInternalOpening() {
 
@@ -12161,10 +11415,6 @@ document.getElementById(
 );
 
 
-/* ===============================
-ONLINE SIZE LIMIT MESSAGE
-================================ */
-
 function setCalculatorSizeAlert(
 shouldShow
 ) {
@@ -12180,10 +11430,6 @@ calculatorSizeAlert.hidden =
 
 }
 
-
-/* ===============================
-CUSTOM PRICE VISIBILITY
-================================ */
 
 function hideCustomPriceBox() {
 
@@ -12212,10 +11458,6 @@ false;
 }
 
 
-/* ===============================
-CUSTOM BORDER
-================================ */
-
 function getCustomBorderSize() {
 
 if (
@@ -12242,20 +11484,6 @@ return 100;
 
 }
 
-
-/* ===============================
-CUSTOM GLAZING
-
-Supported values from Index 3:
-
-toughened-double
-toughened-triple
-laminated-double
-laminated-triple
-
-Legacy double/triple values remain
-supported for backwards compatibility.
-================================ */
 
 function getCustomGlazingDetails(
 glazing
@@ -12300,10 +11528,6 @@ isDouble:!isTriple
 }
 
 
-/* ===============================
-DIMENSION FORMATTING
-================================ */
-
 function formatRooflightDimension(
 value
 ) {
@@ -12332,10 +11556,6 @@ numericValue
 
 }
 
-
-/* ===============================
-WORKING-DAY DATE HELPER
-================================ */
 
 function addWorkingDays(
 numberOfWorkingDays
@@ -12383,24 +11603,6 @@ return deliveryDate;
 
 }
 
-
-/* ===============================
-ESTIMATED PRODUCTION LEAD TIME
-
-CLEAR
-Up to 1000 × 2500:
-4–6 working days
-
-Larger:
-6–8 working days
-
-BLUE / GREY / SATIN
-Up to 1000 × 2500:
-6–8 working days
-
-Larger:
-8–10 working days
-================================ */
 
 function getCustomLeadTime(
 width,
@@ -12470,13 +11672,6 @@ label:"Estimated 8–10 working days"
 }
 
 
-/* ===============================
-ESTIMATED DELIVERY DATE
-
-The upper end of the estimated production
-range is used for the displayed date.
-================================ */
-
 function getEstimatedDeliveryDate(
 workingDays
 ) {
@@ -12517,19 +11712,6 @@ workingDays
 
 }
 
-
-/* ===============================
-CUSTOM DELIVERY CLASSIFICATION
-
-The custom builder does not yet ask for a
-postcode, so it stores whether the selected
-size is free-delivery eligible or requires
-postcode-based delivery pricing.
-
-The same XL width band is then available
-to basket / checkout when the postcode
-stage is connected.
-================================ */
 
 function getCustomDeliveryBand(
 width,
@@ -12604,10 +11786,6 @@ return null;
 }
 
 
-/* ===============================
-CUSTOM ROOFLIGHT PRICE
-================================ */
-
 function calculatePrice() {
 
 if (
@@ -12634,14 +11812,6 @@ getNumericInputValue(
 customLengthInput
 );
 
-
-/* ===============================
-ONLINE MAXIMUM
-
-1500mm internal width
-2500mm internal length
-================================ */
-
 const widthAboveMaximum =
 width !== null &&
 width > 1500;
@@ -12657,11 +11827,6 @@ lengthAboveMaximum;
 setCalculatorSizeAlert(
 exceedsOnlineMaximum
 );
-
-
-/* ===============================
-VALID ONLINE DIMENSIONS
-================================ */
 
 const dimensionsComplete =
 width !== null &&
@@ -12684,11 +11849,6 @@ return;
 
 }
 
-
-/* ===============================
-SELECTED SPECIFICATION
-================================ */
-
 const glazing =
 customGlazingInput.value;
 
@@ -12702,11 +11862,6 @@ customFinishInput.value;
 
 const border =
 getCustomBorderSize();
-
-
-/* ===============================
-INTERNAL + EXTERNAL SIZE
-================================ */
 
 const externalWidth =
 width +
@@ -12725,24 +11880,6 @@ const area =
 width * length
 ) /
 1000000;
-
-
-/* ===============================
-CURRENT ONLINE PRICING LOGIC
-
-The existing Double / Triple online
-pricing structure is retained.
-
-Laminated Double currently follows the
-Double Glazed rate.
-
-Laminated Triple currently follows the
-Triple Glazed rate.
-
-Dedicated laminated pricing can be
-introduced separately without changing
-the four glazing option values.
-================================ */
 
 const baseRate =
 glazingDetails.isTriple
@@ -12772,11 +11909,6 @@ area * 45;
 price +=
 90;
 
-
-/* ===============================
-MINIMUM ONLINE PRICES
-================================ */
-
 if (
 price < 250 &&
 glazingDetails.isDouble
@@ -12802,11 +11934,6 @@ Math.round(
 price
 );
 
-
-/* ===============================
-LEAD TIME + DELIVERY ESTIMATE
-================================ */
-
 const leadTime =
 getCustomLeadTime(
 width,
@@ -12829,11 +11956,6 @@ customDeliveryBand
 ? "postcode"
 : "free";
 
-
-/* ===============================
-DISPLAY PRICE
-================================ */
-
 customPriceOutput.textContent =
 "£" +
 roundedPrice;
@@ -12843,11 +11965,6 @@ customPriceInternal.textContent =
 
 customPriceExternal.textContent =
 `${formatRooflightDimension(externalWidth)}mm × ${formatRooflightDimension(externalLength)}mm`;
-
-
-/* ===============================
-STORE CURRENT CONFIGURATION
-================================ */
 
 if (
 addCustomRooflightToOrder
@@ -12931,10 +12048,6 @@ showCustomPriceBox();
 }
 
 
-/* ===============================
-CUSTOM BUILDER INPUT EVENTS
-================================ */
-
 [
 customWidthInput,
 customLengthInput,
@@ -12965,13 +12078,6 @@ calculatePrice
 );
 
 
-/* ===============================
-ADD TO ORDER PLACEHOLDER
-
-Basket/order storage will connect here
-when the checkout stage is added.
-================================ */
-
 if (
 addCustomRooflightToOrder
 ) {
@@ -12987,10 +12093,6 @@ event.preventDefault();
 
 }
 
-
-/* ===============================
-INITIAL HOMEPAGE STATE
-================================ */
 
 updateEstimatedDeliveryDate(
 6
