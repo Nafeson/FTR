@@ -3138,19 +3138,30 @@ outline:none;
 
 /* ===============================
 CUSTOM PRICE RESULT
+ORDER-SUMMARY STYLE
 ================================ */
 
 .price-box {
+position:relative;
 margin-top:30px;
-padding:27px 30px;
-background:#18211d;
-border:1px solid rgba(255,255,255,.11);
+padding:0;
+overflow:hidden;
+background:
+linear-gradient(
+180deg,
+#161a18 0%,
+#111513 100%
+);
+border:1px solid rgba(255,255,255,.13);
 border-left:3px solid var(--orange);
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
-gap:28px;
-flex-wrap:wrap;
+border-radius:7px;
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:stretch;
+gap:0;
+box-shadow:
+0 18px 42px rgba(0,0,0,.19),
+inset 0 1px 0 rgba(255,255,255,.015);
 }
 
 .price-box[hidden] {
@@ -3161,10 +3172,11 @@ display:none !important;
 display:grid;
 align-content:start;
 min-width:0;
+padding:26px 29px;
 }
 
 .price-label {
-color:rgba(255,255,255,.50);
+color:rgba(255,255,255,.48);
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -3177,28 +3189,66 @@ font-weight:750;
 }
 
 .price {
+display:inline-flex;
+align-items:flex-end;
+justify-content:flex-start;
+width:max-content;
+max-width:100%;
 font-size:54px;
-line-height:.98;
+line-height:.88;
 font-weight:800;
 letter-spacing:-1.6px;
 color:var(--cream);
-margin-top:8px;
+margin-top:10px;
+white-space:nowrap;
+}
+
+.custom-price-whole {
+display:block;
+font:inherit;
+font-size:1em;
+font-weight:inherit;
+line-height:.88;
+letter-spacing:inherit;
+color:inherit;
+}
+
+.custom-price-pence {
+display:block;
+align-self:flex-end;
+margin:0 0 0 3px;
+padding:0;
+font-family:inherit;
+font-size:.36em;
+font-weight:800;
+line-height:1;
+letter-spacing:-.15px;
+color:inherit;
 }
 
 .custom-price-dimensions {
 display:grid;
-gap:5px;
-margin-top:16px;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:0;
+margin-top:21px;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .custom-price-dimension {
-display:flex;
-align-items:baseline;
-flex-wrap:wrap;
-gap:7px;
+display:grid;
+align-content:start;
+gap:5px;
+min-width:0;
+padding:12px 15px 12px 0;
 font-size:13px;
 line-height:1.35;
 letter-spacing:.1px;
+}
+
+.custom-price-dimension + .custom-price-dimension {
+padding-left:15px;
+border-left:1px solid rgba(255,255,255,.08);
 }
 
 .custom-price-dimension-label {
@@ -3217,12 +3267,13 @@ text-transform:uppercase;
 color:rgba(247,247,243,.86);
 font-size:13px;
 font-weight:650;
+overflow-wrap:anywhere;
 }
 
 .custom-price-meta {
 display:grid;
-gap:4px;
-margin-top:14px;
+gap:5px;
+margin-top:15px;
 color:rgba(255,255,255,.48);
 font-size:9px;
 font-weight:550;
@@ -3254,10 +3305,13 @@ font-weight:650;
 }
 
 .price-box .button {
+align-self:end;
 flex:0 0 auto;
-min-width:175px;
+min-width:205px;
+margin:26px 28px 26px 0;
 padding:15px 21px;
 font-size:10px;
+border-radius:6px;
 }
 
 small {
@@ -3721,7 +3775,7 @@ FOOTER COMPANY DETAILS
 .footer-company-details {
 display:grid;
 gap:8px;
-margin:0 0 28px;
+margin:0 0 10px;
 max-width:520px;
 }
 
@@ -3750,10 +3804,10 @@ object-fit:contain;
 
 .footer-right-glaze-name {
 display:block;
-color:var(--white);
-font-size:13px;
-font-weight:700;
-line-height:1.3;
+color:rgba(247,247,243,.48);
+font-size:11px;
+font-weight:400;
+line-height:1.45;
 }
 
 .footer-company-numbers {
@@ -3896,10 +3950,12 @@ letter-spacing:0;
 text-transform:none;
 }
 
-/* REMOVE GAP BETWEEN COLLECTION NOTE AND COMPANY DETAILS */
+/* =========================================
+COMPANY DETAILS POSITION
+========================================= */
 
 footer .footer-quick-links + .footer-company-details {
-margin-top:0;
+margin-top:34px;
 }
 
 /* =========================================
@@ -3915,7 +3971,7 @@ gap:clamp(12px,1.5vw,22px);
 width:100%;
 max-width:620px;
 margin:
-clamp(24px,2.8vw,34px)
+18px
 0
 clamp(28px,3vw,38px);
 }
@@ -4864,9 +4920,14 @@ padding:6px 7px;
 }
 
 .price-box {
-padding:22px 19px;
-gap:22px;
-align-items:flex-start;
+grid-template-columns:1fr;
+padding:0;
+gap:0;
+align-items:stretch;
+}
+
+.custom-price-summary {
+padding:22px 19px 18px;
 }
 
 .price {
@@ -4875,6 +4936,11 @@ font-size:45px;
 
 .custom-price-dimension {
 font-size:12px;
+padding-right:10px;
+}
+
+.custom-price-dimension + .custom-price-dimension {
+padding-left:10px;
 }
 
 .custom-price-dimension-value {
@@ -4882,8 +4948,10 @@ font-size:12px;
 }
 
 .price-box .button {
-width:100%;
+width:calc(100% - 38px);
 min-width:0;
+margin:0 19px 22px;
+border-radius:6px;
 }
 
 /* ===============================
@@ -5060,7 +5128,7 @@ MOBILE FOOTER DETAILS
 ========================================= */
 
 .footer-company-details {
-margin-bottom:24px;
+margin-bottom:8px;
 gap:7px;
 }
 
@@ -5084,7 +5152,10 @@ transform:translateX(-2.5px);
 }
 
 .footer-right-glaze-name {
-font-size:12px;
+font-size:10px;
+color:rgba(247,247,243,.48);
+font-weight:400;
+line-height:1.45;
 }
 
 .footer-company-numbers {
@@ -5154,10 +5225,8 @@ font-size:10.5px;
 line-height:1.5;
 }
 
-/* NO EXTRA GAP BELOW COLLECTION */
-
 footer .footer-quick-links + .footer-company-details {
-margin-top:0;
+margin-top:36px;
 }
 
 .footer-wordmark {
@@ -5171,7 +5240,7 @@ MOBILE PAYMENT LOGOS
 .footer-payment-logo-strip {
 gap:10px;
 max-width:350px;
-margin-top:25px;
+margin-top:16px;
 margin-bottom:31px;
 }
 
@@ -5481,7 +5550,8 @@ visibility:visible;
 transform:none;
 }
 
-.rooflight-slide {
+.rooflight-slide,
+.fitting-slide {
 transition:none;
 }
 }
@@ -5812,19 +5882,24 @@ Contact Our Rooflight Team
 <main>
 
 <style>
+
 /* =========================================
 HOMEPAGE LAYOUT / PRODUCT ORDER FLOW
 ========================================= */
 
 /* First standalone rooflight image */
 .first-rooflight-visual-section {
-padding-bottom:clamp(28px, 3.5vw, 55px) !important;
+padding-bottom:clamp(28px,3.5vw,55px) !important;
 }
 
-/* Order Online section */
+/* =========================================
+CHANGE 1
+MOVE ENTIRE ORDER DIRECT CONTENT DOWN
+========================================= */
+
 .buy-online-section {
-padding-top:clamp(6px, .8vw, 9px) !important;
-padding-bottom:clamp(34px, 4vw, 62px) !important;
+padding-top:clamp(30px,3.5vw,46px) !important;
+padding-bottom:clamp(34px,4vw,62px) !important;
 }
 
 /* Normal bold italic number 4 */
@@ -5877,7 +5952,16 @@ margin-bottom:36px;
 }
 
 /* =========================================
-PROFESSIONAL FITTING MANUAL SLIDESHOW
+CHANGE 2
+ORDER DIRECT BUTTON STYLE
+========================================= */
+
+.buy-online-section .hero-actions .button {
+border-radius:6px;
+}
+
+/* =========================================
+PROFESSIONAL FITTING SLIDESHOW
 ========================================= */
 
 .direct-section::before {
@@ -5937,44 +6021,17 @@ object-position:center;
 }
 
 /* =========================================
-FITTING SLIDESHOW PROGRESS
-========================================= */
-
-.fitting-slideshow-progress {
-position:absolute;
-top:0;
-left:0;
-right:0;
-z-index:8;
-height:3px;
-overflow:hidden;
-background:rgba(232,120,23,.14);
-pointer-events:none;
-}
-
-.fitting-slideshow-progress-fill {
-display:block;
-width:25%;
-height:100%;
-background:var(--orange);
-transform-origin:left center;
-transition:
-width .42s cubic-bezier(.18,.72,.28,1);
-box-shadow:
-0 0 7px rgba(232,120,23,.22);
-}
-
-/* =========================================
+CHANGE 6
 FITTING QUOTATION BUTTON SPACING
-MATCH OVERSIZED QUOTATION SPACING
+MATCH GAP BELOW BUTTON
 ========================================= */
 
 .direct-copy > .button {
-margin-top:1em;
+margin-top:48px;
 }
 
 /* =========================================
-HOMEPAGE CLOSING ALIGNMENT
+HOMEPAGE CLOSING ALIGNMENT / SPACING
 ========================================= */
 
 .homepage-closing-option {
@@ -5987,8 +6044,18 @@ text-align:center;
 }
 
 .homepage-closing-option p {
-margin-left:auto;
-margin-right:auto;
+max-width:860px;
+margin:22px auto 0;
+}
+
+/* =========================================
+CHANGE 7
+EQUAL GAP ABOVE / BELOW GET IN TOUCH
+========================================= */
+
+.homepage-closing-contact {
+margin-top:30px;
+margin-bottom:30px;
 }
 
 /* =========================================
@@ -6020,13 +6087,15 @@ margin-bottom:28px;
 aspect-ratio:4 / 3;
 }
 
-.fitting-slideshow-progress {
-height:2px;
+/* Exact mobile gap match:
+section bottom padding = 32px */
+.direct-copy > .button {
+margin-top:32px;
 }
 
 .footer-company-intro {
 font-size:10px;
-margin-top:40px;
+margin-top:0;
 margin-bottom:1px;
 }
 
@@ -6038,6 +6107,8 @@ MOBILE GET IN TOUCH BUTTON
 .homepage-closing-contact {
 width:60vw;
 max-width:60vw;
+margin-top:28px;
+margin-bottom:28px;
 }
 
 }
@@ -6652,6 +6723,15 @@ size and specification, or contact our team for larger architectural units.
 
 <div class="hero-actions">
 
+<!-- CHANGE 2 — NEW FIRST BUTTON -->
+
+<a
+href="order-page.html"
+class="button"
+>
+Order Your Rooflight
+</a>
+
 <a
 href="standard-sizes.html"
 class="button"
@@ -7003,6 +7083,11 @@ Glass Finish
 
 </div>
 
+<!-- =========================================
+CHANGE 3
+MADE-TO-ORDER PRICE / ORDER SUMMARY STYLE
+========================================= -->
+
 <div
 class="price-box"
 id="customPriceBox"
@@ -7020,7 +7105,8 @@ Made-To-Order Price
 class="price"
 id="price"
 >
-£0
+<span class="custom-price-whole">£0</span>
+<span class="custom-price-pence">.00</span>
 </div>
 
 <div class="custom-price-dimensions">
@@ -7081,7 +7167,7 @@ Tuesday 18 August 2026
 </div>
 
 <a
-href="#"
+href="order-page.html"
 class="button"
 id="addCustomRooflightToOrder"
 >
@@ -7171,8 +7257,10 @@ in summer, helping improve thermal efficiency and lower energy costs.
 
 <div class="engineered-card reveal reveal-scale reveal-delay-1">
 
+<!-- CHANGE 4 -->
+
 <h3>
-Leak Protected Design
+Weather Protective Design
 </h3>
 
 <p>
@@ -7686,6 +7774,8 @@ View All Sizes
 
 <!-- =========================================
 PROFESSIONAL FITTING SERVICES
+CHANGE 5 — TWO IMAGES ONLY
+CURRENT THIRD IMAGE → CURRENT FIRST IMAGE
 ========================================= -->
 
 <section
@@ -7701,54 +7791,16 @@ aria-roledescription="carousel"
 >
 
 <div
-class="fitting-slideshow-progress"
-aria-hidden="true"
->
-
-<span
-class="fitting-slideshow-progress-fill"
-id="fittingSlideshowProgress"
-></span>
-
-</div>
-
-<div
 class="fitting-slideshow-viewport"
 id="fittingSlideshowViewport"
 >
+
+<!-- FIRST: PREVIOUSLY THIRD IMAGE -->
 
 <div
 class="fitting-slide active"
 data-fitting-slide="0"
 aria-hidden="false"
->
-
-<img
-src="images/hero-rooflight-1.png"
-class="direct-visual-image"
-alt="Professionally installed frameless rooflight"
-/>
-
-</div>
-
-<div
-class="fitting-slide"
-data-fitting-slide="1"
-aria-hidden="true"
->
-
-<img
-src="images/hero-rooflight-2.png"
-class="direct-visual-image"
-alt="Frameless rooflight installation example"
-/>
-
-</div>
-
-<div
-class="fitting-slide"
-data-fitting-slide="2"
-aria-hidden="true"
 >
 
 <img
@@ -7759,16 +7811,18 @@ alt="Professional frameless rooflight fitting example"
 
 </div>
 
+<!-- SECOND: PREVIOUSLY FIRST IMAGE -->
+
 <div
 class="fitting-slide"
-data-fitting-slide="3"
+data-fitting-slide="1"
 aria-hidden="true"
 >
 
 <img
-src="images/hero-rooflight-8.png"
+src="images/hero-rooflight-1.png"
 class="direct-visual-image"
-alt="Completed frameless rooflight installation"
+alt="Professionally installed frameless rooflight"
 />
 
 </div>
@@ -7977,7 +8031,7 @@ Terms of Use
 
 <!-- =========================================
 FOOTER COMPANY DETAILS
-MOVED DIRECTLY BELOW TERMS OF USE
+CHANGES 8 + 9
 ========================================= -->
 
 <div class="footer-company-details">
@@ -8105,6 +8159,7 @@ MENU
 ================================ */
 
 function openMenu() {
+
 closeWhatsAppAction();
 
 const menuOverlay =
@@ -8112,30 +8167,41 @@ document.getElementById(
 "menuOverlay"
 );
 
-if (menuOverlay) {
+if (
+menuOverlay
+) {
+
 menuOverlay.classList.add(
 "active"
 );
+
 }
 
 document.body.style.overflow =
 "hidden";
+
 }
 
 function closeMenu() {
+
 const menuOverlay =
 document.getElementById(
 "menuOverlay"
 );
 
-if (menuOverlay) {
+if (
+menuOverlay
+) {
+
 menuOverlay.classList.remove(
 "active"
 );
+
 }
 
 document.body.style.overflow =
 "";
+
 }
 
 
@@ -8152,6 +8218,7 @@ const whatsappAction =
 document.getElementById(
 "whatsappAction"
 );
+
 
 function setWhatsAppState(
 shouldOpen
@@ -8176,16 +8243,22 @@ shouldOpen
 
 whatsappButton.setAttribute(
 "aria-expanded",
-String(shouldOpen)
+String(
+shouldOpen
+)
 );
 
 }
 
+
 function closeWhatsAppAction() {
+
 setWhatsAppState(
 false
 );
+
 }
+
 
 function toggleWhatsAppAction() {
 
@@ -8205,6 +8278,7 @@ setWhatsAppState(
 );
 
 }
+
 
 if (
 whatsappButton &&
@@ -8233,10 +8307,12 @@ event.stopPropagation();
 
 }
 
+
 document.addEventListener(
 "click",
 closeWhatsAppAction
 );
+
 
 document.addEventListener(
 "keydown",
@@ -8258,16 +8334,13 @@ closeMenu();
 
 /* ===============================
 HOMEPAGE CLOSING — GET IN TOUCH
-
-The closing homepage button returns the
-customer to the top of the page and then
-opens the existing WhatsApp contact control.
 ================================ */
 
 const homepageGetInTouch =
 document.getElementById(
 "homepageGetInTouch"
 );
+
 
 function openHomepageWhatsAppContact() {
 
@@ -8289,6 +8362,7 @@ preventScroll:true
 );
 
 }
+
 
 function returnToTopAndOpenWhatsApp() {
 
@@ -8322,6 +8396,7 @@ return;
 
 const scrollStartTime =
 performance.now();
+
 
 function waitForTop() {
 
@@ -8365,6 +8440,7 @@ waitForTop
 
 }
 
+
 if (
 homepageGetInTouch
 ) {
@@ -8396,6 +8472,7 @@ document.getElementById(
 
 let basketAnimationTimer =
 null;
+
 
 function animateBasketTotal() {
 
@@ -8443,6 +8520,7 @@ basketTotalText.classList.remove(
 
 }
 
+
 function updateBasketTotal(
 total
 ) {
@@ -8488,6 +8566,7 @@ animateBasketTotal();
 
 }
 
+
 window.setTimeout(
 () => {
 
@@ -8520,6 +8599,7 @@ document.querySelectorAll(
 ".reveal, .direct-image-reveal"
 )
 );
+
 
 if (
 reducedMotionQuery.matches ||
@@ -9867,6 +9947,7 @@ delete card.dataset.deliveryBand;
 
 }
 
+
 updateHomepageProductSpecifications();
 
 window.calculateExtraLargeDelivery =
@@ -9884,6 +9965,7 @@ const mobileFeatureIcons =
 document.getElementById(
 "mobileFeatureIcons"
 );
+
 
 if (
 mobileFeatureIcons
@@ -9954,6 +10036,7 @@ document.querySelectorAll(
 let engineeredShimmerFrame =
 null;
 
+
 function getVisiblePageTop() {
 
 const pageHeader =
@@ -9975,6 +10058,7 @@ pageHeader
 );
 
 }
+
 
 function checkEngineeredCardShimmers() {
 
@@ -10029,6 +10113,7 @@ item.classList.add(
 
 }
 
+
 function requestEngineeredShimmerCheck() {
 
 if (
@@ -10043,6 +10128,7 @@ checkEngineeredCardShimmers
 );
 
 }
+
 
 if (
 reducedMotionQuery.matches
@@ -10083,7 +10169,9 @@ requestEngineeredShimmerCheck();
 
 
 /* ===============================
-PROFESSIONAL FITTING MANUAL SLIDESHOW
+CHANGE 5
+PROFESSIONAL FITTING
+TWO-IMAGE SWIPE + 10 SECOND AUTO CHANGE
 ================================ */
 
 const fittingSlideshow =
@@ -10094,11 +10182,6 @@ document.getElementById(
 const fittingSlideshowViewport =
 document.getElementById(
 "fittingSlideshowViewport"
-);
-
-const fittingSlideshowProgress =
-document.getElementById(
-"fittingSlideshowProgress"
 );
 
 const fittingSlides =
@@ -10140,8 +10223,17 @@ let fittingMouseEndY =
 let fittingMouseDragging =
 false;
 
+let fittingAutoTimer =
+null;
+
+let fittingAutoStarted =
+false;
+
 const FITTING_SWIPE_THRESHOLD =
 45;
+
+const FITTING_AUTO_DELAY =
+10000;
 
 
 function normalizeFittingSlideIndex(
@@ -10159,30 +10251,6 @@ index +
 fittingSlides.length
 ) %
 fittingSlides.length;
-
-}
-
-
-function updateFittingSlideshowProgress() {
-
-if (
-!fittingSlideshowProgress ||
-fittingSlides.length === 0
-) {
-return;
-}
-
-const progress =
-(
-(
-activeFittingSlideIndex + 1
-) /
-fittingSlides.length
-) *
-100;
-
-fittingSlideshowProgress.style.width =
-`${progress}%`;
 
 }
 
@@ -10207,19 +10275,12 @@ if (
 normalizedIndex ===
 activeFittingSlideIndex
 ) {
-
-updateFittingSlideshowProgress();
-
 return;
-
 }
-
-const oldIndex =
-activeFittingSlideIndex;
 
 const oldSlide =
 fittingSlides[
-oldIndex
+activeFittingSlideIndex
 ];
 
 const newSlide =
@@ -10298,26 +10359,101 @@ newSlide.setAttribute(
 activeFittingSlideIndex =
 normalizedIndex;
 
-updateFittingSlideshowProgress();
-
 }
 
 
-function showNextFittingSlide() {
+function restartFittingAutoTimer() {
+
+if (
+fittingAutoTimer !== null
+) {
+
+window.clearInterval(
+fittingAutoTimer
+);
+
+fittingAutoTimer =
+null;
+
+}
+
+if (
+fittingSlides.length < 2
+) {
+return;
+}
+
+fittingAutoTimer =
+window.setInterval(
+() => {
 
 showFittingSlide(
 activeFittingSlideIndex + 1,
 "next"
 );
 
+},
+FITTING_AUTO_DELAY
+);
+
 }
 
-function showPreviousFittingSlide() {
+
+function startFittingAutoSlideshow() {
+
+if (
+fittingAutoStarted ||
+fittingSlides.length < 2
+) {
+return;
+}
+
+fittingAutoStarted =
+true;
+
+restartFittingAutoTimer();
+
+}
+
+
+function showNextFittingSlide(
+manualChange = false
+) {
+
+showFittingSlide(
+activeFittingSlideIndex + 1,
+"next"
+);
+
+if (
+manualChange &&
+fittingAutoStarted
+) {
+
+restartFittingAutoTimer();
+
+}
+
+}
+
+
+function showPreviousFittingSlide(
+manualChange = false
+) {
 
 showFittingSlide(
 activeFittingSlideIndex - 1,
 "previous"
 );
+
+if (
+manualChange &&
+fittingAutoStarted
+) {
+
+restartFittingAutoTimer();
+
+}
 
 }
 
@@ -10363,11 +10499,15 @@ if (
 horizontalDistance < 0
 ) {
 
-showNextFittingSlide();
+showNextFittingSlide(
+true
+);
 
 } else {
 
-showPreviousFittingSlide();
+showPreviousFittingSlide(
+true
+);
 
 }
 
@@ -10583,7 +10723,9 @@ event.key === "ArrowLeft"
 
 event.preventDefault();
 
-showPreviousFittingSlide();
+showPreviousFittingSlide(
+true
+);
 
 }
 
@@ -10593,7 +10735,9 @@ event.key === "ArrowRight"
 
 event.preventDefault();
 
-showNextFittingSlide();
+showNextFittingSlide(
+true
+);
 
 }
 
@@ -10636,7 +10780,56 @@ isActive
 }
 );
 
-updateFittingSlideshowProgress();
+}
+
+
+if (
+fittingSlideshow &&
+fittingSlides.length > 1
+) {
+
+if (
+!("IntersectionObserver" in window)
+) {
+
+startFittingAutoSlideshow();
+
+} else {
+
+const fittingAutoObserver =
+new IntersectionObserver(
+entries => {
+
+entries.forEach(
+entry => {
+
+if (
+!entry.isIntersecting
+) {
+return;
+}
+
+startFittingAutoSlideshow();
+
+fittingAutoObserver.unobserve(
+entry.target
+);
+
+}
+);
+
+},
+{
+threshold:.22,
+rootMargin:"0px 0px -6% 0px"
+}
+);
+
+fittingAutoObserver.observe(
+fittingSlideshow
+);
+
+}
 
 }
 
@@ -10702,6 +10895,7 @@ element.classList.add(
 
 }
 
+
 function revealHomepageCalculator() {
 
 if (
@@ -10733,6 +10927,7 @@ element.classList.add(
 
 }
 
+
 function revealCustomBuildPair() {
 
 if (
@@ -10749,6 +10944,7 @@ revealExistingOpeningRooflight();
 revealHomepageCalculator();
 
 }
+
 
 if (
 calculatorWrap &&
@@ -10957,6 +11153,7 @@ priceElement.innerHTML =
 
 }
 
+
 initializeHomepageProductPrices();
 
 
@@ -11160,6 +11357,7 @@ openingInternalError.setAttribute(
 
 }
 
+
 function showOpeningError(
 message
 ) {
@@ -11218,6 +11416,7 @@ openingInternalRecommendation.setAttribute(
 );
 
 }
+
 
 function showOpeningRecommendation(
 recommendedWidth,
@@ -11351,6 +11550,7 @@ return true;
 
 }
 
+
 if (
 existingOpeningAssistant &&
 openingInternalWidth &&
@@ -11448,6 +11648,19 @@ document.getElementById(
 "addCustomRooflightToOrder"
 );
 
+const HOMEPAGE_ORDER_STORAGE_KEY =
+"factoryToughenedRooflightsOrderV1";
+
+const HOMEPAGE_ORDER_FOCUS_KEY =
+"factoryToughenedRooflightsOrderFocusV1";
+
+let currentCustomRooflightOrder =
+null;
+
+
+/* ===============================
+CUSTOM BUILDER HELPERS
+================================ */
 
 function setCalculatorSizeAlert(
 shouldShow
@@ -11467,6 +11680,9 @@ calculatorSizeAlert.hidden =
 
 function hideCustomPriceBox() {
 
+currentCustomRooflightOrder =
+null;
+
 if (
 !customPriceBox
 ) {
@@ -11477,6 +11693,7 @@ customPriceBox.hidden =
 true;
 
 }
+
 
 function showCustomPriceBox() {
 
@@ -11562,6 +11779,49 @@ isDouble:!isTriple
 }
 
 
+function normalizeCustomFinish(
+finish
+) {
+
+const normalizedFinish =
+String(
+finish || ""
+)
+.trim()
+.toLowerCase();
+
+if (
+normalizedFinish.includes(
+"blue"
+)
+) {
+return "blue";
+}
+
+if (
+normalizedFinish.includes(
+"grey"
+) ||
+normalizedFinish.includes(
+"gray"
+)
+) {
+return "grey";
+}
+
+if (
+normalizedFinish.includes(
+"satin"
+)
+) {
+return "satin";
+}
+
+return "clear";
+
+}
+
+
 function formatRooflightDimension(
 value
 ) {
@@ -11590,6 +11850,89 @@ numericValue
 
 }
 
+
+/* =========================================
+CHANGE 3
+PRICE FORMAT — LARGE POUNDS / SMALL .00
+BOTTOM ALIGNED
+========================================= */
+
+function renderCustomMadeToOrderPrice(
+price
+) {
+
+if (
+!customPriceOutput
+) {
+return;
+}
+
+const numericPrice =
+Number(
+price
+);
+
+if (
+!Number.isFinite(
+numericPrice
+)
+) {
+
+customPriceOutput.innerHTML =
+`
+<span class="custom-price-whole">£0</span>
+<span class="custom-price-pence">.00</span>
+`;
+
+return;
+
+}
+
+const pounds =
+Math.trunc(
+numericPrice
+);
+
+const pence =
+Math.round(
+(
+numericPrice -
+pounds
+) *
+100
+);
+
+const formattedPounds =
+new Intl.NumberFormat(
+"en-GB",
+{
+maximumFractionDigits:0
+}
+).format(
+pounds
+);
+
+const formattedPence =
+String(
+pence
+)
+.padStart(
+2,
+"0"
+);
+
+customPriceOutput.innerHTML =
+`
+<span class="custom-price-whole">£${formattedPounds}</span>
+<span class="custom-price-pence">.${formattedPence}</span>
+`;
+
+}
+
+
+/* ===============================
+WORKING DAY CALCULATION
+================================ */
 
 function addWorkingDays(
 numberOfWorkingDays
@@ -11729,6 +12072,7 @@ deliveryDate
 
 }
 
+
 function updateEstimatedDeliveryDate(
 workingDays = 6
 ) {
@@ -11820,6 +12164,10 @@ return null;
 }
 
 
+/* ===============================
+CUSTOM PRICE CALCULATION
+================================ */
+
 function calculatePrice() {
 
 if (
@@ -11893,6 +12241,11 @@ glazing
 
 const finish =
 customFinishInput.value;
+
+const finishKey =
+normalizeCustomFinish(
+finish
+);
 
 const border =
 getCustomBorderSize();
@@ -11990,15 +12343,90 @@ customDeliveryBand
 ? "postcode"
 : "free";
 
-customPriceOutput.textContent =
-"£" +
-roundedPrice;
+
+renderCustomMadeToOrderPrice(
+roundedPrice
+);
+
 
 customPriceInternal.textContent =
 `${formatRooflightDimension(width)}mm × ${formatRooflightDimension(length)}mm`;
 
 customPriceExternal.textContent =
 `${formatRooflightDimension(externalWidth)}mm × ${formatRooflightDimension(externalLength)}mm`;
+
+
+/* Store the complete current custom configuration */
+
+currentCustomRooflightOrder = {
+
+width:width,
+length:length,
+
+internalWidth:width,
+internalLength:length,
+
+externalWidth:externalWidth,
+externalLength:externalLength,
+
+size:
+`${width}x${length}`,
+
+border:border,
+
+glazing:
+glazingDetails.configuration,
+
+glazingConfiguration:
+glazingDetails.configuration,
+
+type:
+glazingDetails.construction,
+
+glazingConstruction:
+glazingDetails.construction,
+
+finish:
+finishKey,
+
+tint:
+finishKey,
+
+finishLabel:
+finish,
+
+price:
+roundedPrice,
+
+unitPrice:
+roundedPrice,
+
+quantity:1,
+qty:1,
+
+lineTotal:
+roundedPrice,
+
+total:
+roundedPrice,
+
+leadTimeMinimum:
+leadTime.minimum,
+
+leadTimeMaximum:
+leadTime.maximum,
+
+leadTimeLabel:
+leadTime.label,
+
+deliveryType:
+customDeliveryType,
+
+deliveryBand:
+customDeliveryBand || ""
+
+};
+
 
 if (
 addCustomRooflightToOrder
@@ -12044,7 +12472,7 @@ addCustomRooflightToOrder.dataset.glazingConfiguration =
 glazingDetails.configuration;
 
 addCustomRooflightToOrder.dataset.finish =
-finish;
+finishKey;
 
 addCustomRooflightToOrder.dataset.leadTimeMinimum =
 String(
@@ -12081,6 +12509,499 @@ showCustomPriceBox();
 
 }
 
+
+/* ===============================
+CHANGE 3
+HOMEPAGE CUSTOM ORDER →
+SHARED ORDER-PAGE STORAGE
+================================ */
+
+function createCustomOrderId() {
+
+return (
+"custom-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(36)
+.slice(2,8)
+);
+
+}
+
+
+function getStoredHomepageOrder() {
+
+const fallbackOrder = {
+version:2,
+items:[],
+customItems:[]
+};
+
+try {
+
+const storedValue =
+window.localStorage.getItem(
+HOMEPAGE_ORDER_STORAGE_KEY
+);
+
+if (
+!storedValue
+) {
+return fallbackOrder;
+}
+
+const parsedValue =
+JSON.parse(
+storedValue
+);
+
+if (
+!parsedValue ||
+typeof parsedValue !== "object" ||
+Array.isArray(
+parsedValue
+)
+) {
+return fallbackOrder;
+}
+
+return {
+...parsedValue,
+version:2,
+items:
+Array.isArray(
+parsedValue.items
+)
+? parsedValue.items
+: [],
+customItems:
+Array.isArray(
+parsedValue.customItems
+)
+? parsedValue.customItems
+: []
+};
+
+} catch (
+error
+) {
+
+return fallbackOrder;
+
+}
+
+}
+
+
+function getStoredCustomItemWidth(
+item
+) {
+
+return Number(
+item?.internalWidth ??
+item?.width
+);
+
+}
+
+
+function getStoredCustomItemLength(
+item
+) {
+
+return Number(
+item?.internalLength ??
+item?.length
+);
+
+}
+
+
+function getStoredCustomItemQuantity(
+item
+) {
+
+const quantity =
+Number(
+item?.quantity ??
+item?.qty ??
+1
+);
+
+return Number.isFinite(
+quantity
+)
+? Math.max(
+1,
+Math.round(
+quantity
+)
+)
+: 1;
+
+}
+
+
+function customOrderItemsMatch(
+storedItem,
+newItem
+) {
+
+if (
+!storedItem ||
+!newItem
+) {
+return false;
+}
+
+const storedWidth =
+getStoredCustomItemWidth(
+storedItem
+);
+
+const storedLength =
+getStoredCustomItemLength(
+storedItem
+);
+
+const storedBorder =
+Number(
+storedItem.border
+);
+
+const storedType =
+String(
+storedItem.type ??
+storedItem.glazingConstruction ??
+""
+)
+.toLowerCase();
+
+const storedGlazing =
+String(
+storedItem.glazing ??
+storedItem.glazingConfiguration ??
+""
+)
+.toLowerCase();
+
+const storedFinish =
+normalizeCustomFinish(
+storedItem.finish ??
+storedItem.tint ??
+"clear"
+);
+
+return (
+storedWidth ===
+newItem.internalWidth
+&&
+storedLength ===
+newItem.internalLength
+&&
+storedBorder ===
+newItem.border
+&&
+storedType ===
+newItem.type
+&&
+storedGlazing ===
+newItem.glazing
+&&
+storedFinish ===
+newItem.finish
+);
+
+}
+
+
+function saveHomepageCustomOrder(
+customOrder
+) {
+
+const storedOrder =
+getStoredHomepageOrder();
+
+const customItems =
+storedOrder.customItems;
+
+const matchingIndex =
+customItems.findIndex(
+item =>
+customOrderItemsMatch(
+item,
+customOrder
+)
+);
+
+let targetItemId =
+customOrder.id;
+
+
+if (
+matchingIndex >= 0
+) {
+
+const existingItem =
+customItems[
+matchingIndex
+];
+
+const existingQuantity =
+getStoredCustomItemQuantity(
+existingItem
+);
+
+const newQuantity =
+existingQuantity + 1;
+
+const existingId =
+String(
+existingItem.id ??
+existingItem._id ??
+customOrder.id
+);
+
+customItems[
+matchingIndex
+] = {
+...existingItem,
+
+id:existingId,
+_id:existingId,
+
+source:
+existingItem.source ||
+"homepage-custom",
+
+isCustom:true,
+custom:true,
+
+width:
+customOrder.width,
+
+length:
+customOrder.length,
+
+internalWidth:
+customOrder.internalWidth,
+
+internalLength:
+customOrder.internalLength,
+
+externalWidth:
+customOrder.externalWidth,
+
+externalLength:
+customOrder.externalLength,
+
+size:
+customOrder.size,
+
+border:
+customOrder.border,
+
+type:
+customOrder.type,
+
+glazingConstruction:
+customOrder.glazingConstruction,
+
+glazing:
+customOrder.glazing,
+
+glazingConfiguration:
+customOrder.glazingConfiguration,
+
+finish:
+customOrder.finish,
+
+tint:
+customOrder.tint,
+
+finishLabel:
+customOrder.finishLabel,
+
+price:
+customOrder.price,
+
+unitPrice:
+customOrder.unitPrice,
+
+quantity:
+newQuantity,
+
+qty:
+newQuantity,
+
+lineTotal:
+customOrder.unitPrice *
+newQuantity,
+
+total:
+customOrder.unitPrice *
+newQuantity,
+
+leadTimeMinimum:
+customOrder.leadTimeMinimum,
+
+leadTimeMaximum:
+customOrder.leadTimeMaximum,
+
+leadTimeLabel:
+customOrder.leadTimeLabel,
+
+deliveryType:
+customOrder.deliveryType,
+
+deliveryBand:
+customOrder.deliveryBand
+
+};
+
+targetItemId =
+existingId;
+
+} else {
+
+customItems.push(
+customOrder
+);
+
+}
+
+
+storedOrder.version =
+2;
+
+storedOrder.customItems =
+customItems;
+
+
+try {
+
+window.localStorage.setItem(
+HOMEPAGE_ORDER_STORAGE_KEY,
+JSON.stringify(
+storedOrder
+)
+);
+
+} catch (
+error
+) {
+
+return null;
+
+}
+
+return targetItemId;
+
+}
+
+
+function openCustomOrderOnOrderPage(
+customItemId
+) {
+
+try {
+
+window.sessionStorage.setItem(
+HOMEPAGE_ORDER_FOCUS_KEY,
+JSON.stringify(
+{
+type:"custom",
+id:customItemId,
+center:true
+}
+)
+);
+
+} catch (
+error
+) {
+/* Continue to order page even if sessionStorage is unavailable. */
+}
+
+const parameters =
+new URLSearchParams();
+
+parameters.set(
+"source",
+"homepage-custom"
+);
+
+parameters.set(
+"focus",
+"custom-order-summary"
+);
+
+parameters.set(
+"customId",
+customItemId
+);
+
+if (
+currentCustomRooflightOrder
+) {
+
+parameters.set(
+"customWidth",
+String(
+currentCustomRooflightOrder.internalWidth
+)
+);
+
+parameters.set(
+"customLength",
+String(
+currentCustomRooflightOrder.internalLength
+)
+);
+
+parameters.set(
+"border",
+String(
+currentCustomRooflightOrder.border
+)
+);
+
+parameters.set(
+"type",
+currentCustomRooflightOrder.type
+);
+
+parameters.set(
+"glazing",
+currentCustomRooflightOrder.glazing
+);
+
+parameters.set(
+"finish",
+currentCustomRooflightOrder.finish
+);
+
+parameters.set(
+"price",
+String(
+currentCustomRooflightOrder.unitPrice
+)
+);
+
+}
+
+window.location.href =
+"order-page.html?" +
+parameters.toString() +
+"#orderSummary";
+
+}
+
+
+/* ===============================
+CUSTOM BUILDER EVENTS
+================================ */
 
 [
 customWidthInput,
@@ -12121,6 +13042,49 @@ addCustomRooflightToOrder.addEventListener(
 event => {
 
 event.preventDefault();
+
+calculatePrice();
+
+if (
+!currentCustomRooflightOrder
+) {
+return;
+}
+
+const customItemId =
+createCustomOrderId();
+
+const customOrderItem = {
+...currentCustomRooflightOrder,
+
+id:
+customItemId,
+
+_id:
+customItemId,
+
+source:
+"homepage-custom",
+
+isCustom:true,
+
+custom:true
+};
+
+const storedItemId =
+saveHomepageCustomOrder(
+customOrderItem
+);
+
+if (
+!storedItemId
+) {
+return;
+}
+
+openCustomOrderOnOrderPage(
+storedItemId
+);
 
 }
 );
