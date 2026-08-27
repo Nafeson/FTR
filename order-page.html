@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+Order
+Nathan Knight <nathank3290@gmail.com>	Thu, Aug 27, 2026 at 2:28 AM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -62,6 +66,9 @@ content="Configure and order a Factory Toughened Rooflights frameless flat roof 
 --gold:#b89a62;
 --gold-light:#e1c98f;
 --gold-dark:#6f5a34;
+
+--delivery-red:#985047;
+--delivery-red-bright:#b96357;
 
 --max:1320px;
 
@@ -139,7 +146,7 @@ sans-serif;
 
 
 /* =========================================
-EXACT HOMEPAGE TOP MOVING BANNER
+TOP MOVING BANNER
 ========================================= */
 
 .top-banner {
@@ -184,7 +191,7 @@ transform:translateX(-50%);
 
 
 /* =========================================
-EXACT HOMEPAGE HEADER
+HEADER
 ========================================= */
 
 header {
@@ -485,7 +492,7 @@ scale(1);
 
 
 /* =========================================
-EXACT HOMEPAGE MENU
+MENU
 ========================================= */
 
 .menu-overlay {
@@ -554,7 +561,7 @@ padding-left:10px;
 
 
 /* =========================================
-HOMEPAGE SCROLL REVEAL
+SCROLL REVEAL
 ========================================= */
 
 .reveal {
@@ -1250,6 +1257,14 @@ font-size:1em;
 font-weight:700;
 line-height:1.25;
 transform:none;
+}
+
+.product-assurance-item.delivery-calculated-assurance {
+color:var(--delivery-red-bright);
+}
+
+.product-assurance-item.delivery-calculated-assurance::before {
+color:var(--delivery-red-bright);
 }
 
 
@@ -2242,8 +2257,11 @@ ORDER ITEM LINE TOTAL / CONTROLS
 
 .order-summary-line-section {
 display:grid;
-grid-template-columns:minmax(0,1fr) auto;
-gap:20px;
+grid-template-columns:
+minmax(0,1fr)
+minmax(190px,.82fr)
+auto;
+gap:18px;
 align-items:center;
 margin-top:clamp(18px,2vw,24px);
 padding-top:clamp(15px,1.7vw,20px);
@@ -2374,6 +2392,113 @@ color:var(--orange-bright);
 transform:scale(.97);
 }
 
+
+/* =========================================
+CHANGE 5
+POSTCODE DELIVERY CONTROL
+========================================= */
+
+.order-summary-delivery {
+min-width:0;
+display:grid;
+grid-template-columns:minmax(0,1fr);
+gap:5px;
+}
+
+.order-summary-delivery-label {
+color:rgba(247,247,243,.38);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:7px;
+font-weight:800;
+line-height:1;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.order-summary-postcode {
+width:100%;
+height:38px;
+padding:0 11px;
+border:1px solid rgba(255,255,255,.16);
+border-radius:11px;
+background:
+linear-gradient(
+180deg,
+#121414,
+#0a0c0c
+);
+color:var(--cream);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:10px;
+font-weight:750;
+line-height:1;
+letter-spacing:.5px;
+text-transform:uppercase;
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
+}
+
+.order-summary-postcode::placeholder {
+color:rgba(247,247,243,.30);
+text-transform:none;
+font-weight:550;
+letter-spacing:.1px;
+}
+
+.order-summary-postcode:hover,
+.order-summary-postcode:focus {
+outline:none;
+border-color:rgba(232,120,23,.52);
+background:#0e1010;
+box-shadow:0 0 0 1px rgba(232,120,23,.035);
+}
+
+.order-summary-postcode.is-invalid {
+border-color:rgba(152,80,71,.78);
+}
+
+.order-summary-delivery-result {
+min-height:12px;
+color:rgba(247,247,243,.42);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:7.5px;
+font-weight:750;
+line-height:1.2;
+letter-spacing:.15px;
+}
+
+.order-summary-delivery-result.is-checking {
+color:rgba(247,247,243,.54);
+}
+
+.order-summary-delivery-result.is-free {
+color:var(--workshop-green-bright);
+}
+
+.order-summary-delivery-result.is-fee {
+color:var(--delivery-red-bright);
+}
+
+.order-summary-delivery-result.is-error {
+color:var(--delivery-red-bright);
+}
+
+
+/* =========================================
+ORDER LINE TOTAL
+========================================= */
+
 .order-summary-line-total {
 min-width:160px;
 text-align:right;
@@ -2422,7 +2547,7 @@ text-transform:lowercase;
 
 
 /* =========================================
-SOLID WHITE ORDER TOTAL
+ORDER TOTAL
 ========================================= */
 
 .order-summary-footer {
@@ -2504,7 +2629,7 @@ text-transform:lowercase;
 
 
 /* =========================================
-SOLID DARK METALLIC GREEN CHECKOUT
+CHECKOUT
 ========================================= */
 
 .checkout-now {
@@ -2568,7 +2693,7 @@ box-shadow:
 
 
 /* =========================================
-CUSTOM ROOFLIGHT HOMEPAGE-STYLE SECTION
+CUSTOM ROOFLIGHT SECTION
 ========================================= */
 
 .engineered-visual-intro {
@@ -2630,12 +2755,10 @@ position:relative;
 z-index:4;
 width:90%;
 max-width:980px;
-
 margin:
 clamp(22px,2.8vw,36px)
 auto
 clamp(5px,.7vw,8px);
-
 padding:0 clamp(10px,2vw,24px);
 text-align:center;
 }
@@ -3167,18 +3290,13 @@ border-left:0 !important;
 display:none !important;
 }
 
-
-/* =========================================
-CUSTOM ORDER SUMMARY
-========================================= */
-
 .custom-order-final-summary-section {
 margin-bottom:0;
 }
 
 
 /* =========================================
-HOMEPAGE FOLLOW-ON SECTIONS
+SECTION LABEL
 ========================================= */
 
 .section-label {
@@ -3209,7 +3327,7 @@ opacity:.85;
 
 
 /* =========================================
-FULL-WIDTH ORDER INFORMATION SEPARATOR
+ORDER INFORMATION SEPARATOR
 ========================================= */
 
 .order-information-separator {
@@ -3223,7 +3341,7 @@ background:rgba(255,255,255,.16);
 
 
 /* =========================================
-ORDER INFORMATION — EXPANDABLE SECTIONS
+ORDER INFORMATION
 ========================================= */
 
 .order-information-section {
@@ -3360,296 +3478,15 @@ line-height:1.65;
 
 
 /* =========================================
-PROFESSIONAL FITTING SERVICES
-========================================= */
-
-.direct-section {
-position:relative;
-overflow:hidden;
-padding:72px 6% 48px;
-background:
-linear-gradient(
-180deg,
-#0f1111 0%,
-#151818 100%
-);
-border-top:1px solid rgba(255,255,255,.08);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.direct-section::before {
-display:none;
-}
-
-.direct-visual-intro {
-position:relative;
-width:100vw;
-margin:
--72px
-0
-72px
-calc(50% - 50vw);
-overflow:hidden;
-background:#090a0a;
-border-bottom:1px solid rgba(255,255,255,.09);
-box-shadow:none;
-}
-
-.direct-visual-intro::after {
-content:"";
-position:absolute;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(
-180deg,
-transparent 72%,
-rgba(9,10,10,.20) 100%
-);
-}
-
-.direct-image-reveal {
-opacity:0;
-clip-path:inset(7% 0 7% 0);
-filter:
-blur(4px)
-brightness(.84)
-saturate(.88);
-transform:
-translateY(24px)
-scale(1.025);
-transition:
-opacity .95s ease,
-clip-path 1.05s cubic-bezier(.18,.72,.28,1),
-filter .95s ease,
-transform 1.05s cubic-bezier(.18,.72,.28,1);
-will-change:
-opacity,
-clip-path,
-filter,
-transform;
-}
-
-.direct-image-reveal.is-visible {
-opacity:1;
-clip-path:inset(0 0 0 0);
-filter:
-blur(0)
-brightness(1)
-saturate(1);
-transform:
-translateY(0)
-scale(1);
-}
-
-.direct-visual-image {
-display:block;
-width:100%;
-height:auto;
-aspect-ratio:16 / 9;
-object-fit:cover;
-object-position:center;
-}
-
-.direct-inner {
-position:relative;
-z-index:1;
-max-width:1120px;
-margin:0 auto;
-display:grid;
-grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
-gap:76px;
-align-items:start;
-}
-
-.direct-heading {
-margin:0;
-max-width:520px;
-font-family:
-"Bahnschrift",
-"Bahnschrift SemiCondensed",
-"Arial Narrow",
-"Aptos Display",
-"Inter",
-Arial,
-sans-serif;
-font-size:clamp(40px,5.5vw,70px);
-line-height:.97;
-letter-spacing:-2px;
-font-weight:750;
-color:var(--cream);
-}
-
-.direct-copy {
-max-width:700px;
-padding-top:3px;
-}
-
-.direct-copy p {
-margin:0 0 22px;
-font-size:18px;
-line-height:1.68;
-color:var(--muted);
-}
-
-.direct-copy p:last-of-type {
-margin-bottom:0;
-}
-
-.button {
-background:var(--orange);
-color:#10100f;
-border:1px solid var(--orange);
-padding:16px 25px;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:11px;
-font-weight:800;
-text-decoration:none;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-text-transform:uppercase;
-letter-spacing:1.15px;
-transition:
-transform .2s ease,
-background .2s ease,
-border-color .2s ease,
-color .2s ease;
-}
-
-.button:hover {
-transform:translateY(-1px);
-background:var(--orange-bright);
-border-color:var(--orange-bright);
-}
-
-
-/* =========================================
-PROFESSIONAL FITTING MANUAL SLIDESHOW
-========================================= */
-
-.fitting-slideshow {
-position:relative;
-}
-
-.fitting-slideshow-viewport {
-position:relative;
-width:100%;
-aspect-ratio:16 / 9;
-overflow:hidden;
-touch-action:pan-y;
-user-select:none;
--webkit-user-select:none;
-}
-
-.fitting-slide {
-position:absolute;
-inset:0;
-z-index:1;
-opacity:0;
-visibility:hidden;
-transform:translateX(6%);
-transition:
-opacity .52s ease,
-visibility .52s ease,
-transform .58s cubic-bezier(.18,.72,.28,1);
-pointer-events:none;
-}
-
-.fitting-slide.active {
-z-index:2;
-opacity:1;
-visibility:visible;
-transform:translateX(0);
-pointer-events:auto;
-}
-
-.fitting-slide.previous {
-z-index:1;
-opacity:0;
-visibility:visible;
-transform:translateX(-6%);
-}
-
-.fitting-slide .direct-visual-image {
-display:block;
-width:100%;
-height:100%;
-aspect-ratio:auto;
-object-fit:cover;
-object-position:center;
-}
-
-
-/* =========================================
-FITTING SLIDESHOW PROGRESS
-========================================= */
-
-.fitting-slideshow-progress {
-position:absolute;
-top:0;
-left:0;
-right:0;
-z-index:8;
-height:3px;
-overflow:hidden;
-background:rgba(232,120,23,.14);
-pointer-events:none;
-}
-
-.fitting-slideshow-progress-fill {
-display:block;
-width:25%;
-height:100%;
-background:var(--orange);
-transform-origin:left center;
-transition:
-width .42s cubic-bezier(.18,.72,.28,1);
-box-shadow:
-0 0 7px rgba(232,120,23,.22);
-}
-
-
-/* =========================================
-HOMEPAGE FOOTER
+CURRENT HOMEPAGE FOOTER
 ========================================= */
 
 footer {
 background:#090a0a;
 border-top:1px solid rgba(255,255,255,.10);
 color:rgba(247,247,243,.50);
-padding:0;
+padding:46px 6%;
 font-size:13px;
-}
-
-
-/* =========================================
-UPPER FOOTER SECTION
-========================================= */
-
-.footer-upper-section {
-padding:
-46px
-6%
-41px;
-background:#090a0a;
-}
-
-
-/* =========================================
-LOWER FOOTER SECTION
-========================================= */
-
-.footer-lower-section {
-padding:
-clamp(14px,1.5vw,19px)
-6%
-15px;
-background:#111313;
-border-top:1px solid rgba(255,255,255,.16);
 }
 
 .footer-wordmark {
@@ -3670,6 +3507,7 @@ linear-gradient(
 -webkit-background-clip:text;
 background-clip:text;
 -webkit-text-fill-color:transparent;
+filter:none;
 }
 
 .footer-wordmark .footer-wordmark-toughened {
@@ -3685,6 +3523,11 @@ linear-gradient(
 -webkit-background-clip:text;
 background-clip:text;
 -webkit-text-fill-color:transparent;
+filter:none;
+}
+
+.footer-wordmark .wordmark-bottom {
+color:#b6b8b7;
 }
 
 .footer-wordmark .footer-wordmark-rooflights {
@@ -3700,17 +3543,33 @@ linear-gradient(
 -webkit-background-clip:text;
 background-clip:text;
 -webkit-text-fill-color:transparent;
+filter:none;
 }
 
 .footer-wordmark .wordmark-domain {
 color:#9ea19f;
+font-size:.40em;
 -webkit-text-fill-color:#9ea19f;
 }
+
+footer p {
+margin:0 0 10px;
+line-height:1.6;
+}
+
+footer p:last-child {
+margin-bottom:0;
+}
+
+
+/* =========================================
+FOOTER COMPANY DETAILS
+========================================= */
 
 .footer-company-details {
 display:grid;
 gap:8px;
-margin:0;
+margin:0 0 10px;
 max-width:520px;
 }
 
@@ -3725,13 +3584,8 @@ line-height:1.6;
 display:flex;
 flex-direction:column;
 align-items:flex-start;
-gap:0;
+gap:10px;
 margin-top:2px;
-}
-
-.footer-right-glaze-brand {
-margin-top:8px;
-margin-bottom:4px;
 }
 
 .footer-right-glaze-logo {
@@ -3742,49 +3596,37 @@ max-width:110px;
 object-fit:contain;
 }
 
-
-/* =========================================
-REGISTERED ADDRESS / RIGHT GLAZE LTD
-========================================= */
-
-.footer-registered-address {
-display:grid;
-gap:2px;
-margin-top:0;
-color:rgba(247,247,243,.48);
-font-size:11px;
-line-height:1.45;
-}
-
-.footer-registered-company-name {
-color:inherit;
-font-size:inherit;
-font-weight:inherit;
-line-height:inherit;
-}
-
 .footer-company-numbers {
 display:grid;
 gap:2px;
-margin-top:15px;
+margin-top:-4px;
 color:rgba(247,247,243,.48);
 font-size:11px;
 line-height:1.45;
 }
 
+.footer-company-numbers span {
+display:block;
+}
 
-/* ANAMAX ADDRESS — REDUCED BY 15% */
 
-.footer-address {
+/* =========================================
+FOOTER ADDRESS
+========================================= */
+
+footer .footer-wordmark .footer-address {
 display:grid;
-margin-top:6px;
+gap:0;
+margin-top:12px;
+width:max-content;
+max-width:100%;
 font-family:
 "Aptos",
 "Inter",
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:8.67px;
+font-size:8.7px;
 font-weight:600;
 line-height:1.45;
 letter-spacing:.6px;
@@ -3792,30 +3634,78 @@ text-transform:uppercase;
 color:rgba(255,255,255,.72);
 }
 
-.footer-address span {
-color:rgba(255,255,255,.72) !important;
+footer .footer-wordmark .footer-address span {
+display:block;
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:8.7px;
+font-weight:600;
+line-height:1.45;
+letter-spacing:.6px;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
 }
 
-.footer-quick-links {
+
+/* =========================================
+FOOTER QUICK LINKS
+========================================= */
+
+footer .footer-quick-links {
 display:flex;
 flex-direction:column;
 align-items:flex-start;
 gap:15px;
 margin:30px 0 0;
 width:max-content;
+max-width:100%;
 }
 
-.footer-quick-links a {
+footer .footer-quick-links a {
+display:inline-block;
+width:max-content;
+max-width:100%;
 color:rgba(247,247,243,.96);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 font-size:13px;
 font-weight:500;
-text-decoration:underline;
+line-height:1.35;
+letter-spacing:.12px;
+text-decoration-line:underline;
+text-decoration-thickness:1px;
 text-underline-offset:3px;
+text-decoration-color:rgba(247,247,243,.68);
+text-transform:none;
+transition:
+color .18s ease,
+text-decoration-color .18s ease,
+transform .18s ease;
+}
+
+footer .footer-quick-links a:hover,
+footer .footer-quick-links a:focus {
+color:var(--orange-bright);
+text-decoration-color:var(--orange-bright);
+transform:translateX(2px);
+outline:none;
+}
+
+footer .footer-quick-links + .footer-company-details {
+margin-top:34px;
 }
 
 
 /* =========================================
-PAYMENT LOGOS — INDIVIDUAL POSITION CONTROLS
+PAYMENT LOGOS
 ========================================= */
 
 .footer-payment-logo-strip {
@@ -3827,7 +3717,7 @@ gap:clamp(12px,1.5vw,22px);
 width:100%;
 max-width:620px;
 margin:
-clamp(24px,2.8vw,34px)
+18px
 0
 clamp(28px,3vw,38px);
 }
@@ -3849,66 +3739,91 @@ object-fit:contain;
 object-position:center;
 }
 
-
-/* VISA */
 .footer-payment-logo-item.visa {
 width:64px;
 transform:translateX(0px) translateY(5px);
 }
 
-
-/* MASTERCARD */
 .footer-payment-logo-item.mastercard {
 width:46px;
 transform:translateX(1px) translateY(5px);
 }
 
-
-/* AMERICAN EXPRESS */
 .footer-payment-logo-item.amex {
 width:58px;
 transform:translateX(-3px) translateY(5px);
 }
 
-
-/* PAYPAL */
 .footer-payment-logo-item.paypal {
 width:76px;
 transform:translateX(-4px) translateY(5px);
 }
 
-
-/* APPLE PAY */
 .footer-payment-logo-item.apple-pay {
 width:72px;
 transform:translateX(-4px) translateY(5px);
 }
 
-
-/* GOOGLE PAY */
 .footer-payment-logo-item.google-pay {
 width:76px;
 transform:
 translateX(-22px)
-translateY(5px)
+translateY(7px)
 scale(.88);
 }
 
 
+/* =========================================
+FOOTER COPYRIGHT
+========================================= */
+
 .footer-copyright {
 display:flex;
 align-items:center;
+justify-content:flex-start;
 flex-wrap:wrap;
 gap:5px;
+width:100%;
+max-width:900px;
 margin:0;
 color:rgba(247,247,243,.48);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 font-size:10px;
+font-weight:400;
 line-height:1.55;
+letter-spacing:.05px;
+}
+
+.footer-copyright span {
+display:inline;
+}
+
+.footer-copyright-divider {
+color:rgba(247,247,243,.30);
+padding:0 1px;
 }
 
 .footer-copyright a {
 color:var(--white);
+font-family:inherit;
+font-size:inherit;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 text-decoration:none;
+overflow-wrap:anywhere;
+transition:color .18s ease;
+}
+
+.footer-copyright a:hover,
+.footer-copyright a:focus {
+color:var(--orange-bright);
+outline:none;
 }
 
 
@@ -3924,11 +3839,6 @@ font-size:20px;
 
 .address-line {
 font-size:9px;
-}
-
-.direct-inner {
-grid-template-columns:1fr;
-gap:32px;
 }
 
 }
@@ -3964,6 +3874,11 @@ grid-template-columns:minmax(130px,.7fr) minmax(190px,1.3fr);
 
 .order-summary-spec-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.order-summary-line-section {
+grid-template-columns:minmax(0,1fr) minmax(165px,.8fr) auto;
+gap:13px;
 }
 
 }
@@ -4046,10 +3961,6 @@ font-size:6.35px;
 letter-spacing:.8px;
 }
 
-.tint-wrap {
-padding-bottom:0;
-}
-
 .tint-selector {
 border-radius:12px 12px 0 0;
 }
@@ -4076,11 +3987,6 @@ font-size:clamp(17px,5vw,23px);
 letter-spacing:-.8px;
 }
 
-
-/* =========================================
-MOBILE ESTIMATED DELIVERY
-========================================= */
-
 .estimated-delivery-card {
 margin-top:10px;
 }
@@ -4097,11 +4003,6 @@ letter-spacing:-.15px;
 line-height:1;
 white-space:nowrap;
 }
-
-
-/* =========================================
-MOBILE PRODUCT HIGHLIGHTS
-========================================= */
 
 .product-assurance-panel {
 grid-template-columns:1fr;
@@ -4120,11 +4021,6 @@ font-size:1em;
 line-height:1.2;
 }
 
-
-/* =========================================
-MOBILE OPTIONS
-========================================= */
-
 .options-stack {
 gap:8px;
 margin-top:13px;
@@ -4136,11 +4032,6 @@ font-size:8px;
 letter-spacing:.75px;
 margin-bottom:5px;
 }
-
-
-/* =========================================
-MOBILE CUSTOM SIZE DROPDOWN
-========================================= */
 
 .size-dropdown-trigger {
 height:32px;
@@ -4372,12 +4263,8 @@ margin-top:4px;
 font-size:7.7px;
 }
 
-
-/* =========================================
-MOBILE ORDER LINE CONTROLS
-========================================= */
-
 .order-summary-line-section {
+grid-template-columns:minmax(0,1fr) auto;
 gap:10px;
 margin-top:14px;
 padding-top:12px;
@@ -4407,6 +4294,30 @@ padding:0 9px;
 border-radius:9px;
 font-size:5.8px;
 letter-spacing:.65px;
+}
+
+.order-summary-delivery {
+grid-column:1 / -1;
+grid-template-columns:minmax(0,145px) minmax(0,1fr);
+gap:8px;
+align-items:center;
+margin-top:2px;
+}
+
+.order-summary-delivery-label {
+display:none;
+}
+
+.order-summary-postcode {
+height:32px;
+padding:0 9px;
+border-radius:9px;
+font-size:8px;
+}
+
+.order-summary-delivery-result {
+min-height:0;
+font-size:6.5px;
 }
 
 .order-summary-line-total {
@@ -4508,12 +4419,10 @@ linear-gradient(
 .order-custom-preintro {
 width:91%;
 max-width:620px;
-
 margin:
 50px
 auto
 1px;
-
 padding:0 7px;
 }
 
@@ -4661,11 +4570,6 @@ padding:
 font-size:13px;
 }
 
-
-/* =========================================
-MOBILE FOLLOW-ON SECTIONS
-========================================= */
-
 .section-label {
 font-size:8px;
 letter-spacing:1.8px;
@@ -4676,39 +4580,11 @@ gap:8px;
 width:20px;
 }
 
-.direct-section {
-padding:80px 6% 32px;
-}
-
-.direct-visual-intro {
-margin:
--56px
-0
-44px
-calc(50% - 50vw);
-}
-
-.direct-heading {
-font-size:39px;
-}
-
-.direct-copy p {
-font-size:16px;
-}
-
-.fitting-slideshow-viewport {
-aspect-ratio:4 / 3;
-}
-
-.fitting-slideshow-progress {
-height:2px;
-}
-
 }
 
 
 /* =========================================
-MOBILE HOMEPAGE SECTION / HEADER
+MOBILE HEADER / FOOTER
 ========================================= */
 
 @media(max-width:560px) {
@@ -4791,15 +4667,72 @@ font-size:20.7px;
 padding:0 2.5%;
 }
 
+.footer-company-details {
+margin-bottom:8px;
+gap:7px;
+}
 
-/* =========================================
-MOBILE PAYMENT LOGOS
-========================================= */
+.footer-company-intro {
+font-size:10px;
+margin-top:0;
+margin-bottom:1px;
+}
+
+.footer-right-glaze {
+gap:9px;
+}
+
+.footer-right-glaze-logo {
+height:24px;
+max-width:95px;
+transform:translateX(-2.5px);
+}
+
+.footer-company-numbers {
+margin-top:-3px;
+font-size:10px;
+}
+
+footer .footer-wordmark .footer-address {
+gap:0;
+margin-top:10.5px;
+font-size:8.7px;
+font-weight:600;
+line-height:1.45;
+letter-spacing:.6px;
+}
+
+footer .footer-wordmark .footer-address span {
+font-size:8.7px;
+font-weight:600;
+line-height:1.45;
+letter-spacing:.6px;
+}
+
+footer .footer-quick-links {
+gap:13px;
+margin:27px 0 0;
+}
+
+footer .footer-quick-links a {
+font-size:12px;
+font-weight:500;
+line-height:1.35;
+letter-spacing:.12px;
+}
+
+footer .footer-quick-links + .footer-company-details {
+margin-top:36px;
+}
+
+.footer-wordmark {
+font-size:20px;
+}
 
 .footer-payment-logo-strip {
 gap:10px;
 max-width:350px;
-margin-top:25px;
+margin-top:16px;
 margin-bottom:31px;
 }
 
@@ -4831,37 +4764,32 @@ width:54px;
 width:56px;
 }
 
-.footer-company-intro {
-font-size:10px;
-margin-top:1.5px;
-margin-bottom:1px;
-}
-
-.footer-right-glaze-logo {
-height:24px;
-max-width:95px;
-transform:
-translateX(-2.5px)
-translateY(5px);
-}
-
-.footer-registered-address {
-font-size:10px;
-}
-
-.footer-company-numbers {
-font-size:10px;
-}
-
-.footer-wordmark {
-font-size:20px;
-}
-
 .footer-copyright {
 display:block;
+width:100%;
 max-width:350px;
+margin:0;
 font-size:8.5px;
 line-height:1.7;
+color:rgba(247,247,243,.48);
+}
+
+.footer-copyright span {
+display:inline;
+}
+
+.footer-copyright-divider {
+padding:0 2px;
+}
+
+.footer-copyright a {
+color:var(--white);
+font-family:inherit;
+font-size:inherit;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
+text-decoration:none;
 }
 
 }
@@ -4959,6 +4887,10 @@ padding-left:8px;
 padding-right:26px;
 }
 
+.order-summary-delivery {
+grid-template-columns:minmax(0,125px) minmax(0,1fr);
+}
+
 .order-custom-preintro {
 width:92%;
 margin-top:15px;
@@ -4987,11 +4919,6 @@ font-size:clamp(25.5px,7.395vw,34px);
 .custom-build-dropdown-trigger {
 height:46px;
 }
-
-
-/* =========================================
-SMALLEST MOBILE PAYMENT LOGOS
-========================================= */
 
 .footer-payment-logo-strip {
 gap:7px;
@@ -5080,16 +5007,9 @@ transition:none !important;
 }
 
 .reveal,
-.reveal.reveal-scale,
-.direct-image-reveal {
+.reveal.reveal-scale {
 opacity:1;
-clip-path:none;
-filter:none;
 transform:none;
-transition:none;
-}
-
-.fitting-slide {
 transition:none;
 }
 
@@ -5114,10 +5034,8 @@ TOP MOVING BANNER
 <span>British glass • British manufacturing</span>
 <span>Estimated production from 4 working days</span>
 <span>Factory insulated and ready for fitting</span>
-<span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
-<span>Free mainland UK delivery on listed sizes</span>
 <span>Collection available with prior booking</span>
 
 <span>Specialist British workshop for frameless rooflights</span>
@@ -5125,10 +5043,8 @@ TOP MOVING BANNER
 <span>British glass • British manufacturing</span>
 <span>Estimated production from 4 working days</span>
 <span>Factory insulated and ready for fitting</span>
-<span>20 year warranty on all units</span>
 <span>Expected 30+ year service life</span>
 <span>UKCA compliant • CE marked • building regs compliant</span>
-<span>Free mainland UK delivery on listed sizes</span>
 <span>Collection available with prior booking</span>
 
 </div>
@@ -5550,8 +5466,10 @@ id="glazingSpec"
 Triple Glazed
 </div>
 
-<div class="product-assurance-item">
-30 Year Service Life
+<div
+class="product-assurance-item delivery-calculated-assurance"
+>
+Delivery Calculated by Postcode
 </div>
 
 </div>
@@ -6018,6 +5936,7 @@ CUSTOM ROOFLIGHT SECTION
 
 <section
 class="engineered-visual-intro order-custom-rooflight-section"
+id="customRooflightSection"
 aria-label="Custom frameless rooflight"
 >
 
@@ -6055,7 +5974,10 @@ alt="Custom made frameless rooflight"
 </div>
 
 
-<div class="order-custom-build-wrap">
+<div
+class="order-custom-build-wrap"
+id="customRooflightBuilder"
+>
 
 <div class="order-custom-build-box reveal">
 
@@ -6124,8 +6046,6 @@ aria-label="Internal length in millimetres"
 
 </div>
 
-
-<!-- BORDER -->
 
 <div class="order-custom-field">
 
@@ -6214,8 +6134,6 @@ aria-selected="false"
 </div>
 
 
-<!-- GLAZING -->
-
 <div class="order-custom-field">
 
 <div
@@ -6291,8 +6209,6 @@ Triple Glazed
 </div>
 
 
-<!-- GLASS -->
-
 <div class="order-custom-field">
 
 <div
@@ -6367,8 +6283,6 @@ Laminated
 
 </div>
 
-
-<!-- GLASS FINISH -->
 
 <div class="order-custom-field">
 
@@ -6670,8 +6584,7 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div
-class="quantity-display"
+<div class="quantity-display"
 aria-live="polite"
 >
 
@@ -6801,10 +6714,6 @@ Checkout Now
 </section>
 
 
-<!-- =========================================
-FULL-WIDTH SEPARATOR
-========================================= -->
-
 <div
 class="order-information-separator"
 aria-hidden="true"
@@ -6812,6 +6721,7 @@ aria-hidden="true"
 
 
 <!-- =========================================
+CHANGE 4
 EXPANDABLE ORDER INFORMATION
 ========================================= -->
 
@@ -6828,7 +6738,7 @@ aria-label="Rooflight order information"
 <details class="order-information-item reveal">
 
 <summary>
-Installation Guidelines
+Delivery Terms &amp; Lead Times
 </summary>
 
 <div class="order-information-content">
@@ -6840,7 +6750,7 @@ Installation Guidelines
 <details class="order-information-item reveal reveal-delay-1">
 
 <summary>
-Technical Information
+Installation Guidelines
 </summary>
 
 <div class="order-information-content">
@@ -6852,7 +6762,7 @@ Technical Information
 <details class="order-information-item reveal reveal-delay-2">
 
 <summary>
-Delivery Terms &amp; Lead Times
+Technical Information
 </summary>
 
 <div class="order-information-content">
@@ -6861,137 +6771,17 @@ Delivery Terms &amp; Lead Times
 </details>
 
 
+<details class="order-information-item reveal reveal-delay-3">
+
+<summary>
+Ts &amp; Cs
+</summary>
+
+<div class="order-information-content">
 </div>
 
-</div>
+</details>
 
-</section>
-
-
-<!-- =========================================
-PROFESSIONAL FITTING SERVICES
-========================================= -->
-
-<section
-class="direct-section"
-id="specification-advice"
->
-
-<div
-class="direct-visual-intro direct-image-reveal fitting-slideshow"
-id="fittingSlideshow"
-aria-label="Professional rooflight fitting gallery"
-aria-roledescription="carousel"
->
-
-<div
-class="fitting-slideshow-progress"
-aria-hidden="true"
->
-
-<span
-class="fitting-slideshow-progress-fill"
-id="fittingSlideshowProgress"
-></span>
-
-</div>
-
-<div
-class="fitting-slideshow-viewport"
-id="fittingSlideshowViewport"
->
-
-<div
-class="fitting-slide active"
-data-fitting-slide="0"
-aria-hidden="false"
->
-
-<img
-src="images/hero-rooflight-1.png"
-class="direct-visual-image"
-alt="Professionally installed frameless rooflight"
->
-
-</div>
-
-<div
-class="fitting-slide"
-data-fitting-slide="1"
-aria-hidden="true"
->
-
-<img
-src="images/hero-rooflight-2.png"
-class="direct-visual-image"
-alt="Frameless rooflight installation example"
->
-
-</div>
-
-<div
-class="fitting-slide"
-data-fitting-slide="2"
-aria-hidden="true"
->
-
-<img
-src="images/hero-rooflight-7.png"
-class="direct-visual-image"
-alt="Professional frameless rooflight fitting example"
->
-
-</div>
-
-<div
-class="fitting-slide"
-data-fitting-slide="3"
-aria-hidden="true"
->
-
-<img
-src="images/hero-rooflight-8.png"
-class="direct-visual-image"
-alt="Completed frameless rooflight installation"
->
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="direct-inner">
-
-<div>
-
-<div class="section-label reveal">
-Professionally Installed
-</div>
-
-<h2 class="direct-heading reveal">
-Have Your Rooflights Professionally Installed With Our Fitting Services
-</h2>
-
-</div>
-
-
-<div class="direct-copy">
-
-<p>
-Let our experienced fitting team take care of everything, without the need to rely
-on third-party builders or installers. From delivery and safe lifting to positioning,
-sealing and final installation, every stage is professionally managed for a smooth,
-hassle-free service.
-</p>
-
-<a
-href="#"
-class="button"
->
-Request a Fitting Quotation
-</a>
 
 </div>
 
@@ -7004,47 +6794,33 @@ Request a Fitting Quotation
 
 
 <!-- =========================================
-FOOTER
+CHANGE 3
+CURRENT HOMEPAGE FOOTER
 ========================================= -->
 
 <footer id="contact">
 
-
-<!-- =========================================
-UPPER FOOTER
-========================================= -->
-
-<div class="footer-upper-section">
-
-
 <div class="wordmark footer-wordmark">
-
 
 <span class="footer-wordmark-factory">
 Factory
 </span>
 
-
 <span class="footer-wordmark-toughened">
 Toughened
 </span>
 
-
 <div class="wordmark-bottom">
-
 
 <span class="footer-wordmark-rooflights">
 Rooflights
 </span>
 
-
 <small class="wordmark-domain">
 .co.uk
 </small>
 
-
 </div>
-
 
 <div class="footer-address">
 
@@ -7066,7 +6842,6 @@ SL9 7BB
 
 </div>
 
-
 </div>
 
 
@@ -7085,7 +6860,7 @@ Return Policy
 </a>
 
 <a href="#">
-Warranty
+Cookies Policy
 </a>
 
 <a href="#">
@@ -7099,34 +6874,29 @@ Terms of Use
 </div>
 
 
-</div>
-
-
-<!-- =========================================
-LOWER FOOTER
-========================================= -->
-
-<div class="footer-lower-section">
-
-
 <div class="footer-company-details">
-
 
 <p class="footer-company-intro">
 Factory Toughened Rooflights is a trading name of:
 </p>
 
-
 <div class="footer-right-glaze">
 
+<div class="footer-right-glaze-brand">
 
-<div class="footer-registered-address">
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
+/>
 
-<span class="footer-registered-company-name">
-Right Glaze Ltd
-</span>
+</div>
 
 <div class="footer-company-numbers">
+
+<span>
+Right Glaze Ltd
+</span>
 
 <span>
 Company no. - 14336400
@@ -7137,18 +6907,6 @@ VAT no. - 487373544
 </span>
 
 </div>
-
-
-<div class="footer-right-glaze-brand">
-
-<img
-src="images/smallrglogo.png"
-class="footer-right-glaze-logo"
-alt="Right Glaze Ltd"
->
-
-</div>
-
 
 </div>
 
@@ -7166,25 +6924,21 @@ aria-hidden="true"
 |
 </span>
 
-<a href="mailto:sales@factorytoughenedrooflights.co.uk">
+<a
+href="mailto:sales@factorytoughenedrooflights.co.uk"
+>
 sales@factorytoughenedrooflights.co.uk
 </a>
 
 </div>
 
-
 </div>
 
-
-<!-- =========================================
-PAYMENT LOGOS
-========================================= -->
 
 <div
 class="footer-payment-logo-strip"
 aria-label="Accepted payment methods"
 >
-
 
 <span class="footer-payment-logo-item visa">
 <img
@@ -7193,14 +6947,12 @@ alt="Visa"
 >
 </span>
 
-
 <span class="footer-payment-logo-item mastercard">
 <img
 src="images/mastercard.png"
 alt="Mastercard"
 >
 </span>
-
 
 <span class="footer-payment-logo-item amex">
 <img
@@ -7209,14 +6961,12 @@ alt="American Express"
 >
 </span>
 
-
 <span class="footer-payment-logo-item paypal">
 <img
 src="images/paypal.png"
 alt="PayPal"
 >
 </span>
-
 
 <span class="footer-payment-logo-item apple-pay">
 <img
@@ -7225,7 +6975,6 @@ alt="Apple Pay"
 >
 </span>
 
-
 <span class="footer-payment-logo-item google-pay">
 <img
 src="images/google-pay.png"
@@ -7233,12 +6982,7 @@ alt="Google Pay"
 >
 </span>
 
-
 </div>
-
-
-</div>
-
 
 </footer>
 
@@ -7280,7 +7024,6 @@ event => {
 const now =
 Date.now();
 
-
 if (
 now -
 lastTouchEndTime <=
@@ -7290,7 +7033,6 @@ lastTouchEndTime <=
 event.preventDefault();
 
 }
-
 
 lastTouchEndTime =
 now;
@@ -7359,7 +7101,6 @@ event.metaKey
 return;
 
 }
-
 
 if (
 [
@@ -7564,7 +7305,6 @@ basketTotalText.classList.add(
 "is-updating"
 );
 
-
 if (
 basketAnimationTimer !==
 null
@@ -7575,7 +7315,6 @@ basketAnimationTimer
 );
 
 }
-
 
 basketAnimationTimer =
 setTimeout(
@@ -7612,7 +7351,6 @@ total
 :
 0;
 
-
 const formatted =
 new Intl.NumberFormat(
 "en-GB",
@@ -7624,17 +7362,14 @@ currency:"GBP"
 safeTotal
 );
 
-
 basketTotalText.textContent =
 formatted;
-
 
 basketTotalText.setAttribute(
 "aria-label",
 "Basket total " +
 formatted
 );
-
 
 if (
 animate
@@ -7886,13 +7621,9 @@ const TINT_IMAGE_PREFIX = {
 clear:"",
 blue:"blue-",
 grey:"grey-",
-satin:"satin"
+satin:"satin-"
 
 };
-
-
-TINT_IMAGE_PREFIX.satin =
-"satin-";
 
 
 const TINT_IMAGE_BASE_FALLBACKS = {
@@ -7967,51 +7698,36 @@ Number(
 basePrice
 ) || 0;
 
-
 const typeUplift =
-
 CONFIGURATION_UPLIFTS.type[
 type
 ]
-
 ||
-
 0;
 
-
 const tintUplift =
-
 CONFIGURATION_UPLIFTS.tint[
 tint
 ]
-
 ||
-
 0;
 
-
 const borderUplift =
-
 BORDER_PRICE_UPLIFTS[
 Number(
 border
 )
 ]
-
 ||
-
 0;
 
-
 let price =
-
 base *
 (
 1 +
 typeUplift +
 tintUplift
 );
-
 
 price *=
 (
@@ -8021,13 +7737,11 @@ customPremium
 )
 );
 
-
 price *=
 (
 1 +
 borderUplift
 );
-
 
 return roundToNearestFive(
 price
@@ -8049,7 +7763,6 @@ const PRODUCT_IMAGE_BASE_HOVER_SCALE =
 
 
 const PRODUCT_IMAGE_HOVER_RATIO =
-
 PRODUCT_IMAGE_BASE_HOVER_SCALE /
 PRODUCT_IMAGE_BASE_SCALE;
 
@@ -8091,10 +7804,6 @@ const PRODUCT_IMAGE_SCALE_ADJUSTMENTS = {
 
 };
 
-
-/* =========================================
-SIZE + FINISH IMAGE ADJUSTMENTS
-========================================= */
 
 const PRODUCT_IMAGE_FINISH_ADJUSTMENTS = {
 
@@ -8180,10 +7889,6 @@ left:0
 };
 
 
-/* =========================================
-PER-SIZE IMAGE ROTATION
-========================================= */
-
 const PRODUCT_IMAGE_ROTATIONS = {
 
 "300x1500":90,
@@ -8210,10 +7915,6 @@ const PRODUCT_IMAGE_ROTATIONS = {
 };
 
 
-/* =========================================
-PER-SIZE OBJECT FIT
-========================================= */
-
 const PRODUCT_IMAGE_OBJECT_FIT = {
 
 };
@@ -8225,6 +7926,10 @@ PERSISTENT ORDER
 
 const ORDER_STORAGE_KEY =
 "factoryToughenedRooflightsOrderV1";
+
+
+const HOMEPAGE_ORDER_FOCUS_KEY =
+"factoryToughenedRooflightsOrderFocusV1";
 
 
 const state = {
@@ -8247,7 +7952,9 @@ orderItems:[],
 
 customOrderItems:[],
 
-homepageImport:null
+homepageImport:null,
+
+deliveryPostcode:""
 
 };
 
@@ -8280,198 +7987,165 @@ document.getElementById(
 "sizeDropdown"
 );
 
-
 const sizeDropdownTrigger =
 document.getElementById(
 "sizeDropdownTrigger"
 );
-
 
 const sizeDropdownValue =
 document.getElementById(
 "sizeDropdownValue"
 );
 
-
 const sizeDropdownPanel =
 document.getElementById(
 "sizeDropdownPanel"
 );
-
 
 const sizeDropdownList =
 document.getElementById(
 "sizeDropdownList"
 );
 
-
 const unitSummarySection =
 document.getElementById(
 "unitSummarySection"
 );
-
 
 const productTitle =
 document.getElementById(
 "productTitle"
 );
 
-
 const productImage =
 document.getElementById(
 "productImage"
 );
-
 
 const productGlassSpec =
 document.getElementById(
 "productGlassSpec"
 );
 
-
 const glazingSpec =
 document.getElementById(
 "glazingSpec"
 );
-
 
 const estimatedDeliveryRange =
 document.getElementById(
 "estimatedDeliveryRange"
 );
 
-
 const internalSize =
 document.getElementById(
 "internalSize"
 );
-
 
 const externalSize =
 document.getElementById(
 "externalSize"
 );
 
-
 const unitPriceBlock =
 document.getElementById(
 "unitPriceBlock"
 );
-
 
 const unitPriceLine =
 document.getElementById(
 "unitPriceLine"
 );
 
-
 const vatLine =
 document.getElementById(
 "vatLine"
 );
-
 
 const priceWhole =
 document.getElementById(
 "priceWhole"
 );
 
-
 const pricePence =
 document.getElementById(
 "pricePence"
 );
-
 
 const totalPriceBlock =
 document.getElementById(
 "totalPriceBlock"
 );
 
-
 const totalPriceLine =
 document.getElementById(
 "totalPriceLine"
 );
-
 
 const totalPriceWhole =
 document.getElementById(
 "totalPriceWhole"
 );
 
-
 const totalPricePence =
 document.getElementById(
 "totalPricePence"
 );
-
 
 const quantityValue =
 document.getElementById(
 "quantityValue"
 );
 
-
 const quantityUnitLabel =
 document.getElementById(
 "quantityUnitLabel"
 );
-
 
 const quantityMinus =
 document.getElementById(
 "quantityMinus"
 );
 
-
 const quantityPlus =
 document.getElementById(
 "quantityPlus"
 );
-
 
 const addToOrder =
 document.getElementById(
 "addToOrder"
 );
 
-
 const addToOrderText =
 document.getElementById(
 "addToOrderText"
 );
-
 
 const glazedLabel =
 document.getElementById(
 "glazedLabel"
 );
 
-
 const tintCaption =
 document.getElementById(
 "tintCaption"
 );
-
 
 const orderSummarySection =
 document.getElementById(
 "orderSummarySection"
 );
 
-
 const orderSummaryItems =
 document.getElementById(
 "orderSummaryItems"
 );
 
-
 const orderSummaryTotal =
 document.getElementById(
 "orderSummaryTotal"
 );
-
 
 const customBuildDropdowns =
 Array.from(
@@ -8480,148 +8154,129 @@ document.querySelectorAll(
 )
 );
 
-
 const customInternalWidth =
 document.getElementById(
 "customInternalWidth"
 );
-
 
 const customInternalLength =
 document.getElementById(
 "customInternalLength"
 );
 
-
 const customUnitSummarySection =
 document.getElementById(
 "customUnitSummarySection"
 );
-
 
 const customPurchaseLayout =
 document.getElementById(
 "customPurchaseLayout"
 );
 
-
 const customPriceZone =
 document.getElementById(
 "customPriceZone"
 );
-
 
 const customDimensionsZone =
 document.getElementById(
 "customDimensionsZone"
 );
 
-
 const customUnitPriceBlock =
 document.getElementById(
 "customUnitPriceBlock"
 );
-
 
 const customPriceWhole =
 document.getElementById(
 "customPriceWhole"
 );
 
-
 const customPricePence =
 document.getElementById(
 "customPricePence"
 );
-
 
 const customVatLine =
 document.getElementById(
 "customVatLine"
 );
 
-
 const customTotalPriceBlock =
 document.getElementById(
 "customTotalPriceBlock"
 );
-
 
 const customTotalPriceWhole =
 document.getElementById(
 "customTotalPriceWhole"
 );
 
-
 const customTotalPricePence =
 document.getElementById(
 "customTotalPricePence"
 );
-
 
 const customInternalSize =
 document.getElementById(
 "customInternalSize"
 );
 
-
 const customExternalSize =
 document.getElementById(
 "customExternalSize"
 );
-
 
 const customQuantityMinus =
 document.getElementById(
 "customQuantityMinus"
 );
 
-
 const customQuantityPlus =
 document.getElementById(
 "customQuantityPlus"
 );
-
 
 const customQuantityValue =
 document.getElementById(
 "customQuantityValue"
 );
 
-
 const customQuantityUnitLabel =
 document.getElementById(
 "customQuantityUnitLabel"
 );
-
 
 const customAddToOrder =
 document.getElementById(
 "customAddToOrder"
 );
 
-
 const customAddToOrderText =
 document.getElementById(
 "customAddToOrderText"
 );
-
 
 const customOrderSummarySection =
 document.getElementById(
 "customOrderSummarySection"
 );
 
-
 const customOrderSummaryItems =
 document.getElementById(
 "customOrderSummaryItems"
 );
 
-
 const customOrderSummaryTotal =
 document.getElementById(
 "customOrderSummaryTotal"
+);
+
+const customRooflightBuilder =
+document.getElementById(
+"customRooflightBuilder"
 );
 
 
@@ -8631,7 +8286,6 @@ let imageTransitionToken =
 let imageFadeTimer =
 null;
 
-
 let displayedUnitPriceAmount =
 null;
 
@@ -8640,7 +8294,6 @@ let unitPriceTransitionToken =
 
 let unitPriceTransitionTimer =
 null;
-
 
 let displayedTotalAmount =
 null;
@@ -8657,10 +8310,8 @@ let totalVisibilityToken =
 let totalVisibilityTimer =
 null;
 
-
 let sizeDropdownKeyboardIndex =
 0;
-
 
 let addToOrderFeedbackTimer =
 null;
@@ -8668,17 +8319,14 @@ null;
 let addToOrderScrollTimer =
 null;
 
-
 let customAddToOrderFeedbackTimer =
 null;
 
 let customAddToOrderScrollTimer =
 null;
 
-
 let activeScrollFrame =
 null;
-
 
 let hasAnimatedEstimatedDelivery =
 false;
@@ -8705,23 +8353,19 @@ return;
 
 }
 
-
 const trigger =
 dropdown.querySelector(
 "[data-custom-build-dropdown-trigger]"
 );
-
 
 const wasOpen =
 dropdown.classList.contains(
 "is-open"
 );
 
-
 dropdown.classList.remove(
 "is-open"
 );
-
 
 if (
 trigger
@@ -8731,7 +8375,6 @@ trigger.setAttribute(
 "aria-expanded",
 "false"
 );
-
 
 if (
 returnFocus &&
@@ -8762,7 +8405,6 @@ return;
 
 }
 
-
 closeWhatsAppAction();
 
 closeSizeDropdown();
@@ -8771,17 +8413,14 @@ closeCustomBuildDropdowns(
 dropdown
 );
 
-
 const trigger =
 dropdown.querySelector(
 "[data-custom-build-dropdown-trigger]"
 );
 
-
 dropdown.classList.add(
 "is-open"
 );
-
 
 if (
 trigger
@@ -8808,7 +8447,6 @@ if (
 return;
 
 }
-
 
 if (
 dropdown.classList.contains(
@@ -8838,7 +8476,6 @@ value
 const setting =
 dropdown?.dataset.customSetting;
 
-
 if (
 setting ===
 "border"
@@ -8853,30 +8490,22 @@ return;
 
 }
 
-
 if (
 setting ===
 "glazing"
 ) {
 
 customState.glazing =
-
 value ===
 "triple"
-
 ?
-
 "triple"
-
 :
-
 "double";
-
 
 return;
 
 }
-
 
 if (
 setting ===
@@ -8884,23 +8513,16 @@ setting ===
 ) {
 
 customState.type =
-
 value ===
 "laminated"
-
 ?
-
 "laminated"
-
 :
-
 "toughened";
-
 
 return;
 
 }
-
 
 if (
 setting ===
@@ -8931,12 +8553,10 @@ return;
 
 }
 
-
 const valueElement =
 dropdown.querySelector(
 "[data-custom-build-dropdown-value]"
 );
-
 
 const options =
 Array.from(
@@ -8945,16 +8565,13 @@ dropdown.querySelectorAll(
 )
 );
 
-
 const label =
 option.dataset.label ||
 option.textContent.trim();
 
-
 const value =
 option.dataset.value ||
 "";
-
 
 if (
 valueElement
@@ -8965,10 +8582,8 @@ label;
 
 }
 
-
 dropdown.dataset.value =
 value;
-
 
 options.forEach(
 candidate => {
@@ -8977,12 +8592,10 @@ const selected =
 candidate ===
 option;
 
-
 candidate.classList.toggle(
 "is-selected",
 selected
 );
-
 
 candidate.setAttribute(
 "aria-selected",
@@ -8994,15 +8607,12 @@ selected
 }
 );
 
-
 applyCustomSetting(
 dropdown,
 value
 );
 
-
 closeCustomBuildDropdowns();
-
 
 updateCustomConfiguratorUI();
 
@@ -9017,14 +8627,12 @@ dropdown.querySelector(
 "[data-custom-build-dropdown-trigger]"
 );
 
-
 const options =
 Array.from(
 dropdown.querySelectorAll(
 "[data-custom-build-dropdown-option]"
 )
 );
-
 
 if (
 trigger
@@ -9042,7 +8650,6 @@ dropdown
 
 }
 );
-
 
 trigger.addEventListener(
 "keydown",
@@ -9064,7 +8671,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "ArrowDown"
@@ -9076,7 +8682,6 @@ openCustomBuildDropdown(
 dropdown
 );
 
-
 const selectedOption =
 options.find(
 option =>
@@ -9087,7 +8692,6 @@ option.classList.contains(
 ||
 options[0];
 
-
 selectedOption?.focus();
 
 }
@@ -9096,7 +8700,6 @@ selectedOption?.focus();
 );
 
 }
-
 
 options.forEach(
 (
@@ -9117,7 +8720,6 @@ option
 
 }
 );
-
 
 option.addEventListener(
 "keydown",
@@ -9141,7 +8743,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "ArrowUp"
@@ -9160,7 +8761,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "Home"
@@ -9173,7 +8773,6 @@ options[0]?.focus();
 return;
 
 }
-
 
 if (
 event.key ===
@@ -9189,7 +8788,6 @@ options.length - 1
 return;
 
 }
-
 
 if (
 event.key ===
@@ -9209,7 +8807,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "Escape"
@@ -9218,7 +8815,6 @@ event.key ===
 event.preventDefault();
 
 closeCustomBuildDropdowns();
-
 
 trigger?.focus();
 
@@ -9274,7 +8870,6 @@ finish ?? ""
 .trim()
 .toLowerCase();
 
-
 if (
 value === "blue" ||
 value === "blue tinted" ||
@@ -9284,7 +8879,6 @@ value === "blue-tinted"
 return "blue";
 
 }
-
 
 if (
 value === "grey" ||
@@ -9299,7 +8893,6 @@ return "grey";
 
 }
 
-
 if (
 value === "satin" ||
 value === "satin tinted" ||
@@ -9310,7 +8903,6 @@ value === "privacy"
 return "satin";
 
 }
-
 
 return "clear";
 
@@ -9454,13 +9046,11 @@ size
 Number
 );
 
-
 const increase =
 Number(
 border
 ) *
 2;
-
 
 return {
 
@@ -9498,7 +9088,6 @@ size,
 border
 );
 
-
 return `${dimensions.width}mm × ${dimensions.length}mm`;
 
 }
@@ -9530,14 +9119,12 @@ size,
 border
 );
 
-
 const area =
 (
 dimensions.width *
 dimensions.length
 ) /
 1000000;
-
 
 if (
 glazing ===
@@ -9553,11 +9140,9 @@ return "8mm Toughened Safety Glass";
 
 }
 
-
 return "6mm Toughened Safety Glass";
 
 }
-
 
 if (
 area >
@@ -9567,7 +9152,6 @@ area >
 return "8mm Toughened Safety Glass";
 
 }
-
 
 return "6mm Toughened Safety Glass";
 
@@ -9708,16 +9292,13 @@ hourCycle:"h23"
 }
 );
 
-
 const parts =
 formatter.formatToParts(
 new Date()
 );
 
-
 const values =
 {};
-
 
 parts.forEach(
 part => {
@@ -9736,7 +9317,6 @@ part.value;
 
 }
 );
-
 
 return {
 
@@ -9875,7 +9455,6 @@ l -
 ) +
 1;
 
-
 return createDateOnly(
 year,
 month,
@@ -9897,7 +9476,6 @@ month,
 1
 );
 
-
 while (
 date.getUTCDay() !==
 1
@@ -9910,7 +9488,6 @@ date,
 );
 
 }
-
 
 return date;
 
@@ -9931,14 +9508,12 @@ month,
 )
 );
 
-
 let date =
 createDateOnly(
 year,
 month,
 lastDay.getUTCDate()
 );
-
 
 while (
 date.getUTCDay() !==
@@ -9952,7 +9527,6 @@ date,
 );
 
 }
-
 
 return date;
 
@@ -9975,10 +9549,8 @@ year
 
 }
 
-
 const holidays =
 new Set();
-
 
 function addHoliday(
 date
@@ -9992,7 +9564,6 @@ date
 
 }
 
-
 const newYearsDay =
 createDateOnly(
 year,
@@ -10000,11 +9571,9 @@ year,
 1
 );
 
-
 addHoliday(
 newYearsDay
 );
-
 
 if (
 newYearsDay.getUTCDay() ===
@@ -10035,12 +9604,10 @@ year,
 
 }
 
-
 const easterSunday =
 getEasterSunday(
 year
 );
-
 
 addHoliday(
 addCalendarDays(
@@ -10049,14 +9616,12 @@ easterSunday,
 )
 );
 
-
 addHoliday(
 addCalendarDays(
 easterSunday,
 1
 )
 );
-
 
 addHoliday(
 firstMondayOfMonth(
@@ -10065,14 +9630,12 @@ year,
 )
 );
 
-
 addHoliday(
 lastMondayOfMonth(
 year,
 5
 )
 );
-
 
 addHoliday(
 lastMondayOfMonth(
@@ -10081,14 +9644,12 @@ year,
 )
 );
 
-
 const christmas =
 createDateOnly(
 year,
 12,
 25
 );
-
 
 const boxingDay =
 createDateOnly(
@@ -10097,16 +9658,13 @@ year,
 26
 );
 
-
 addHoliday(
 christmas
 );
 
-
 addHoliday(
 boxingDay
 );
-
 
 [
 christmas,
@@ -10117,7 +9675,6 @@ holiday => {
 
 const weekday =
 holiday.getUTCDay();
-
 
 if (
 weekday !==
@@ -10130,13 +9687,11 @@ return;
 
 }
 
-
 let substitute =
 addCalendarDays(
 holiday,
 1
 );
-
 
 while (
 substitute.getUTCDay() ===
@@ -10158,7 +9713,6 @@ substitute,
 
 }
 
-
 addHoliday(
 substitute
 );
@@ -10166,12 +9720,10 @@ substitute
 }
 );
 
-
 BANK_HOLIDAY_CACHE.set(
 year,
 holidays
 );
-
 
 return holidays;
 
@@ -10185,7 +9737,6 @@ date
 const weekday =
 date.getUTCDay();
 
-
 if (
 weekday ===
 0 ||
@@ -10197,12 +9748,10 @@ return false;
 
 }
 
-
 const holidays =
 getEnglandWalesBankHolidayKeys(
 date.getUTCFullYear()
 );
-
 
 return !holidays.has(
 dateKey(
@@ -10213,15 +9762,10 @@ date
 }
 
 
-/* =========================================
-12PM UK ORDER CUT-OFF
-========================================= */
-
 function getDeliveryCalculationStartDate() {
 
 const ukNow =
 getCurrentUKDateTimeParts();
-
 
 let startDate =
 createDateOnly(
@@ -10229,7 +9773,6 @@ ukNow.year,
 ukNow.month,
 ukNow.day
 );
-
 
 if (
 !isWorkingDay(
@@ -10252,11 +9795,9 @@ startDate
 )
 );
 
-
 return startDate;
 
 }
-
 
 if (
 ukNow.hour >=
@@ -10280,7 +9821,6 @@ startDate
 
 }
 
-
 return startDate;
 
 }
@@ -10296,10 +9836,8 @@ cloneDateOnly(
 startDate
 );
 
-
 let count =
 0;
-
 
 while (
 true
@@ -10314,7 +9852,6 @@ cursor
 count +=
 1;
 
-
 if (
 count ===
 workingDayNumber
@@ -10326,7 +9863,6 @@ return cursor;
 
 }
 
-
 cursor =
 addCalendarDays(
 cursor,
@@ -10337,10 +9873,6 @@ cursor,
 
 }
 
-
-/* =========================================
-LEAD TIME BY CONFIGURATION
-========================================= */
 
 function getCurrentLeadTime() {
 
@@ -10361,14 +9893,12 @@ max:8
 
 }
 
-
 return {
 min:8,
 max:10
 };
 
 }
-
 
 if (
 state.tint ===
@@ -10382,7 +9912,6 @@ max:6
 
 }
 
-
 if (
 state.tint ===
 "blue"
@@ -10394,7 +9923,6 @@ max:10
 };
 
 }
-
 
 return {
 min:6,
@@ -10412,7 +9940,6 @@ const mod100 =
 day %
 100;
 
-
 if (
 mod100 >=
 11 &&
@@ -10423,7 +9950,6 @@ mod100 <=
 return "th";
 
 }
-
 
 switch (
 day %
@@ -10467,13 +9993,11 @@ startDate.getUTCDate();
 const endDay =
 endDate.getUTCDate();
 
-
 const startMonth =
 startDate.getUTCMonth();
 
 const endMonth =
 endDate.getUTCMonth();
-
 
 if (
 startDate.getTime() ===
@@ -10487,7 +10011,6 @@ return (
 
 }
 
-
 if (
 startMonth ===
 endMonth
@@ -10500,7 +10023,6 @@ return (
 );
 
 }
-
 
 return (
 `${ordinalDay(startDay)} ` +
@@ -10523,14 +10045,11 @@ return;
 
 }
 
-
 estimatedDeliveryRange.classList.remove(
 "delivery-pop"
 );
 
-
 void estimatedDeliveryRange.offsetWidth;
-
 
 estimatedDeliveryRange.classList.add(
 "delivery-pop"
@@ -10549,14 +10068,11 @@ return;
 
 }
 
-
 const leadTime =
 getCurrentLeadTime();
 
-
 const calculationStart =
 getDeliveryCalculationStartDate();
-
 
 const earliestDelivery =
 getWorkingDayNumber(
@@ -10564,13 +10080,11 @@ calculationStart,
 leadTime.min
 );
 
-
 const latestDelivery =
 getWorkingDayNumber(
 calculationStart,
 leadTime.max
 );
-
 
 const nextDeliveryText =
 formatDeliveryRange(
@@ -10578,15 +10092,12 @@ earliestDelivery,
 latestDelivery
 );
 
-
 const deliveryChanged =
 estimatedDeliveryRange.textContent.trim() !==
 nextDeliveryText;
 
-
 estimatedDeliveryRange.textContent =
 nextDeliveryText;
-
 
 if (
 !hasAnimatedEstimatedDelivery ||
@@ -10595,11 +10106,749 @@ deliveryChanged
 
 animateEstimatedDelivery();
 
-
 hasAnimatedEstimatedDelivery =
 true;
 
 }
+
+}
+
+
+/* =========================================
+CHANGE 5
+POSTCODE DELIVERY CALCULATOR
+
+Replace these example bands with your final
+delivery pricing once confirmed.
+========================================= */
+
+const DELIVERY_ORIGIN_POSTCODE =
+"SL9 7BB";
+
+
+const ROAD_DISTANCE_ALLOWANCE =
+1.20;
+
+
+const DELIVERY_PRICE_BANDS = [
+
+{
+maxMiles:30,
+price:19.99
+},
+
+{
+maxMiles:60,
+price:39.99
+},
+
+{
+maxMiles:100,
+price:59.99
+},
+
+{
+maxMiles:150,
+price:79.99
+},
+
+{
+maxMiles:200,
+price:99.99
+},
+
+{
+maxMiles:Infinity,
+price:129.99
+}
+
+];
+
+
+let deliveryOriginPromise =
+null;
+
+
+let deliveryLookupToken =
+0;
+
+
+let deliveryLookupTimer =
+null;
+
+
+function normalizePostcode(
+postcode
+) {
+
+return String(
+postcode || ""
+)
+.trim()
+.toUpperCase()
+.replace(
+/\s+/g,
+""
+);
+
+}
+
+
+function formatPostcode(
+postcode
+) {
+
+const normalized =
+normalizePostcode(
+postcode
+);
+
+if (
+normalized.length <=
+3
+) {
+
+return normalized;
+
+}
+
+return (
+normalized.slice(
+0,
+-3
+) +
+" " +
+normalized.slice(
+-3
+)
+);
+
+}
+
+
+async function lookupPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+cleaned.length <
+5
+) {
+
+throw new Error(
+"Enter a valid postcode"
+);
+
+}
+
+const response =
+await fetch(
+"https://api.postcodes.io/postcodes/" +
+encodeURIComponent(
+cleaned
+)
+);
+
+if (
+!response.ok
+) {
+
+throw new Error(
+"Postcode not recognised"
+);
+
+}
+
+const data =
+await response.json();
+
+if (
+!data ||
+!data.result
+) {
+
+throw new Error(
+"Postcode not recognised"
+);
+
+}
+
+return data.result;
+
+}
+
+
+function degreesToRadians(
+degrees
+) {
+
+return degrees *
+(
+Math.PI /
+180
+);
+
+}
+
+
+function calculateGeographicalMiles(
+lat1,
+lon1,
+lat2,
+lon2
+) {
+
+const earthRadiusMiles =
+3958.7613;
+
+const latitudeDifference =
+degreesToRadians(
+lat2 -
+lat1
+);
+
+const longitudeDifference =
+degreesToRadians(
+lon2 -
+lon1
+);
+
+const firstLatitude =
+degreesToRadians(
+lat1
+);
+
+const secondLatitude =
+degreesToRadians(
+lat2
+);
+
+const a =
+Math.sin(
+latitudeDifference /
+2
+) ** 2
++
+Math.cos(
+firstLatitude
+)
+*
+Math.cos(
+secondLatitude
+)
+*
+Math.sin(
+longitudeDifference /
+2
+) ** 2;
+
+const c =
+2 *
+Math.atan2(
+Math.sqrt(
+a
+),
+Math.sqrt(
+1 -
+a
+)
+);
+
+return earthRadiusMiles *
+c;
+
+}
+
+
+function getDeliveryPriceForMiles(
+miles
+) {
+
+const safeMiles =
+Number(
+miles
+);
+
+for (
+const band
+of DELIVERY_PRICE_BANDS
+) {
+
+if (
+safeMiles <=
+band.maxMiles
+) {
+
+return Number(
+band.price
+) || 0;
+
+}
+
+}
+
+return 0;
+
+}
+
+
+async function getDeliveryOrigin() {
+
+if (
+!deliveryOriginPromise
+) {
+
+deliveryOriginPromise =
+lookupPostcode(
+DELIVERY_ORIGIN_POSTCODE
+);
+
+}
+
+return deliveryOriginPromise;
+
+}
+
+
+async function calculatePostcodeDelivery(
+postcode
+) {
+
+const [
+origin,
+destination
+] =
+await Promise.all([
+getDeliveryOrigin(),
+lookupPostcode(
+postcode
+)
+]);
+
+const straightLineMiles =
+calculateGeographicalMiles(
+origin.latitude,
+origin.longitude,
+destination.latitude,
+destination.longitude
+);
+
+const adjustedMiles =
+straightLineMiles *
+ROAD_DISTANCE_ALLOWANCE;
+
+return {
+
+postcode:
+formatPostcode(
+postcode
+),
+
+straightLineMiles:
+straightLineMiles,
+
+adjustedMiles:
+adjustedMiles,
+
+price:
+getDeliveryPriceForMiles(
+adjustedMiles
+)
+
+};
+
+}
+
+
+function getDeliveryResultText(
+item
+) {
+
+const postcode =
+String(
+item?.deliveryPostcode ||
+state.deliveryPostcode ||
+""
+).trim();
+
+if (
+!postcode
+) {
+
+return "Enter postcode";
+
+}
+
+const fee =
+Number(
+item?.deliveryFee
+);
+
+if (
+!Number.isFinite(
+fee
+)
+) {
+
+return "Enter postcode";
+
+}
+
+if (
+fee <=
+0
+) {
+
+return "Free Delivery";
+
+}
+
+return (
+"Delivery Fee " +
+formatMoney(
+fee
+)
+);
+
+}
+
+
+function getDeliveryResultClass(
+item
+) {
+
+const postcode =
+String(
+item?.deliveryPostcode ||
+state.deliveryPostcode ||
+""
+).trim();
+
+if (
+!postcode
+) {
+
+return "";
+
+}
+
+const fee =
+Number(
+item?.deliveryFee
+);
+
+if (
+!Number.isFinite(
+fee
+)
+) {
+
+return "";
+
+}
+
+return fee <=
+0
+?
+"is-free"
+:
+"is-fee";
+
+}
+
+
+function getItemDeliveryFee(
+item
+) {
+
+const fee =
+Number(
+item?.deliveryFee
+);
+
+return Number.isFinite(
+fee
+) &&
+fee >
+0
+?
+fee
+:
+0;
+
+}
+
+
+function updateAllDeliveryItems(
+postcode,
+fee
+) {
+
+const formattedPostcode =
+formatPostcode(
+postcode
+);
+
+state.deliveryPostcode =
+formattedPostcode;
+
+state.orderItems.forEach(
+item => {
+
+item.deliveryPostcode =
+formattedPostcode;
+
+item.deliveryFee =
+Number(
+fee
+) || 0;
+
+}
+);
+
+state.customOrderItems.forEach(
+item => {
+
+item.deliveryPostcode =
+formattedPostcode;
+
+item.deliveryFee =
+Number(
+fee
+) || 0;
+
+}
+);
+
+}
+
+
+function markDeliveryInputsChecking(
+postcode
+) {
+
+document
+.querySelectorAll(
+"[data-delivery-postcode-input]"
+)
+.forEach(
+input => {
+
+input.value =
+String(
+postcode || ""
+)
+.toUpperCase();
+
+input.classList.remove(
+"is-invalid"
+);
+
+}
+);
+
+document
+.querySelectorAll(
+"[data-delivery-result]"
+)
+.forEach(
+result => {
+
+result.textContent =
+"Checking...";
+
+result.className =
+"order-summary-delivery-result is-checking";
+
+}
+);
+
+}
+
+
+function markDeliveryInputsInvalid(
+message
+) {
+
+document
+.querySelectorAll(
+"[data-delivery-postcode-input]"
+)
+.forEach(
+input => {
+
+input.classList.add(
+"is-invalid"
+);
+
+}
+);
+
+document
+.querySelectorAll(
+"[data-delivery-result]"
+)
+.forEach(
+result => {
+
+result.textContent =
+message;
+
+result.className =
+"order-summary-delivery-result is-error";
+
+}
+);
+
+}
+
+
+async function applyDeliveryPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+cleaned.length <
+5
+) {
+
+markDeliveryInputsInvalid(
+"Enter a valid postcode"
+);
+
+return;
+
+}
+
+deliveryLookupToken +=
+1;
+
+const token =
+deliveryLookupToken;
+
+markDeliveryInputsChecking(
+cleaned
+);
+
+try {
+
+const result =
+await calculatePostcodeDelivery(
+cleaned
+);
+
+if (
+token !==
+deliveryLookupToken
+) {
+
+return;
+
+}
+
+updateAllDeliveryItems(
+result.postcode,
+result.price
+);
+
+state.basketTotal =
+calculateOrderTotal();
+
+saveOrderToStorage();
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+updateBasketTotal(
+state.basketTotal
+);
+
+}
+catch (
+error
+) {
+
+if (
+token !==
+deliveryLookupToken
+) {
+
+return;
+
+}
+
+markDeliveryInputsInvalid(
+error?.message ||
+"Postcode not recognised"
+);
+
+}
+
+}
+
+
+function scheduleDeliveryPostcodeLookup(
+postcode
+) {
+
+if (
+deliveryLookupTimer !==
+null
+) {
+
+clearTimeout(
+deliveryLookupTimer
+);
+
+}
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+cleaned.length <
+5
+) {
+
+return;
+
+}
+
+deliveryLookupTimer =
+setTimeout(
+() => {
+
+deliveryLookupTimer =
+null;
+
+applyDeliveryPostcode(
+cleaned
+);
+
+},
+550
+);
 
 }
 
@@ -10613,7 +10862,6 @@ function homepageImportMatchesCurrentSelection() {
 const imported =
 state.homepageImport;
 
-
 if (
 !imported
 ) {
@@ -10621,7 +10869,6 @@ if (
 return false;
 
 }
-
 
 return (
 
@@ -10650,7 +10897,6 @@ function homepageImageMatchesCurrentSelection() {
 const imported =
 state.homepageImport;
 
-
 if (
 !imported ||
 !imported.image
@@ -10659,7 +10905,6 @@ if (
 return false;
 
 }
-
 
 return (
 
@@ -10688,7 +10933,6 @@ normalizeTint(
 tint
 );
 
-
 if (
 normalizedTint ===
 "clear"
@@ -10698,28 +10942,19 @@ return baseFilename;
 
 }
 
-
 const usableBaseFilename =
-
 TINT_IMAGE_BASE_FALLBACKS[
 baseFilename
 ]
-
 ||
-
 baseFilename;
 
-
 const prefix =
-
 TINT_IMAGE_PREFIX[
 normalizedTint
 ]
-
 ||
-
 "";
-
 
 return `${prefix}${usableBaseFilename}`;
 
@@ -10738,12 +10973,10 @@ return state.homepageImport.image;
 
 }
 
-
 const product =
 PRODUCTS[
 state.size
 ];
-
 
 if (
 !product
@@ -10753,13 +10986,11 @@ return "";
 
 }
 
-
 const filename =
 getTintedProductFilename(
 product.image,
 state.tint
 );
-
 
 return (
 "images/product-cards/" +
@@ -10770,7 +11001,7 @@ filename
 
 
 /* =========================================
-PRODUCT IMAGE SCALE / ROTATION / POSITION
+PRODUCT IMAGE TRANSFORM
 ========================================= */
 
 function getProductImageFinishAdjustment() {
@@ -10779,7 +11010,6 @@ const sizeAdjustments =
 PRODUCT_IMAGE_FINISH_ADJUSTMENTS[
 state.size
 ];
-
 
 if (
 !sizeAdjustments
@@ -10792,12 +11022,10 @@ left:0
 
 }
 
-
 const finishAdjustment =
 sizeAdjustments[
 state.tint
 ];
-
 
 if (
 !finishAdjustment
@@ -10809,7 +11037,6 @@ left:0
 };
 
 }
-
 
 return {
 
@@ -10839,15 +11066,12 @@ state.size
 0
 );
 
-
 const finishAdjustment =
 getProductImageFinishAdjustment();
-
 
 const totalAdjustment =
 baseAdjustment +
 finishAdjustment.scale;
-
 
 return (
 
@@ -10888,31 +11112,22 @@ function updateProductImageTransform() {
 const scale =
 getProductImageScale();
 
-
 const hoverScale =
-
 scale *
 PRODUCT_IMAGE_HOVER_RATIO;
-
 
 const rotation =
 getProductImageRotation();
 
-
 const left =
 getProductImageLeft();
 
-
 const objectFit =
-
 PRODUCT_IMAGE_OBJECT_FIT[
 state.size
 ]
-
 ||
-
 "contain";
-
 
 productImage.style.setProperty(
 "--product-image-scale",
@@ -10921,7 +11136,6 @@ scale.toFixed(
 )
 );
 
-
 productImage.style.setProperty(
 "--product-image-hover-scale",
 hoverScale.toFixed(
@@ -10929,18 +11143,15 @@ hoverScale.toFixed(
 )
 );
 
-
 productImage.style.setProperty(
 "--product-image-rotation",
 `${rotation}deg`
 );
 
-
 productImage.style.setProperty(
 "--product-image-left",
 `${left}%`
 );
-
 
 productImage.style.objectFit =
 objectFit;
@@ -10966,18 +11177,14 @@ return;
 
 }
 
-
 productImage.alt =
 altText;
-
 
 imageTransitionToken +=
 1;
 
-
 const token =
 imageTransitionToken;
-
 
 if (
 imageFadeTimer !==
@@ -10993,7 +11200,6 @@ null;
 
 }
 
-
 if (
 !animate ||
 reducedMotionQuery.matches
@@ -11002,7 +11208,6 @@ reducedMotionQuery.matches
 productImage.classList.remove(
 "image-fade-out"
 );
-
 
 if (
 productImage.getAttribute(
@@ -11016,16 +11221,13 @@ imageSource;
 
 }
 
-
 return;
 
 }
 
-
 productImage.classList.add(
 "image-fade-out"
 );
-
 
 imageFadeTimer =
 setTimeout(
@@ -11040,14 +11242,12 @@ return;
 
 }
 
-
 const currentSource =
 productImage.getAttribute(
 "src"
 )
 ||
 "";
-
 
 if (
 currentSource ===
@@ -11075,10 +11275,8 @@ return;
 
 }
 
-
 const preloader =
 new Image();
-
 
 const reveal =
 () => {
@@ -11092,13 +11290,11 @@ return;
 
 }
 
-
 productImage.src =
 imageSource;
 
 productImage.alt =
 altText;
-
 
 requestAnimationFrame(
 () => {
@@ -11125,7 +11321,6 @@ productImage.classList.remove(
 
 };
 
-
 preloader.onload =
 reveal;
 
@@ -11134,7 +11329,6 @@ reveal;
 
 preloader.src =
 imageSource;
-
 
 },
 140
@@ -11154,7 +11348,6 @@ PRODUCTS[
 state.size
 ];
 
-
 if (
 !product
 ) {
@@ -11162,7 +11355,6 @@ if (
 return 0;
 
 }
-
 
 if (
 homepageImportMatchesCurrentSelection() &&
@@ -11177,14 +11369,12 @@ return state.homepageImport.price;
 
 }
 
-
 const base =
 Number(
 product[
 state.glazing
 ]
 );
-
 
 return calculateConfiguredPrice(
 base,
@@ -11206,7 +11396,6 @@ glazing
 
 const grouped =
 new Map();
-
 
 Object.entries(
 PRODUCTS
@@ -11231,7 +11420,6 @@ size
 Number
 );
 
-
 const area =
 (
 width *
@@ -11239,12 +11427,10 @@ length
 ) /
 1000000;
 
-
 const key =
 area.toFixed(
 6
 );
-
 
 if (
 !grouped.has(
@@ -11263,12 +11449,10 @@ count:0
 
 }
 
-
 const group =
 grouped.get(
 key
 );
-
 
 group.total +=
 Number(
@@ -11277,13 +11461,11 @@ glazing
 ]
 );
 
-
 group.count +=
 1;
 
 }
 );
-
 
 return Array.from(
 grouped.values()
@@ -11333,12 +11515,10 @@ length
 ) /
 1000000;
 
-
 const points =
 getStandardPricePoints(
 glazing
 );
-
 
 if (
 !points.length
@@ -11347,7 +11527,6 @@ if (
 return 0;
 
 }
-
 
 if (
 area <=
@@ -11358,12 +11537,10 @@ return points[0].price;
 
 }
 
-
 const lastPoint =
 points[
 points.length - 1
 ];
-
 
 if (
 area >=
@@ -11379,17 +11556,14 @@ return lastPoint.price;
 
 }
 
-
 const previousPoint =
 points[
 points.length - 2
 ];
 
-
 const areaDifference =
 lastPoint.area -
 previousPoint.area;
-
 
 if (
 areaDifference <=
@@ -11400,16 +11574,13 @@ return lastPoint.price;
 
 }
 
-
 const priceDifference =
 lastPoint.price -
 previousPoint.price;
 
-
 const slope =
 priceDifference /
 areaDifference;
-
 
 return Math.max(
 lastPoint.price,
@@ -11422,7 +11593,6 @@ slope
 );
 
 }
-
 
 for (
 let index = 1;
@@ -11437,12 +11607,10 @@ points[
 index
 ];
 
-
 const lower =
 points[
 index - 1
 ];
-
 
 if (
 area <=
@@ -11453,7 +11621,6 @@ const areaSpan =
 upper.area -
 lower.area;
 
-
 if (
 areaSpan <=
 0
@@ -11463,14 +11630,12 @@ return upper.price;
 
 }
 
-
 const position =
 (
 area -
 lower.area
 ) /
 areaSpan;
-
 
 return (
 lower.price +
@@ -11484,7 +11649,6 @@ position
 }
 
 }
-
 
 return lastPoint.price;
 
@@ -11530,14 +11694,12 @@ return 0;
 
 }
 
-
 const estimatedBase =
 estimateStandardBasePrice(
 customState.width,
 customState.length,
 customState.glazing
 );
-
 
 return calculateConfiguredPrice(
 estimatedBase,
@@ -11575,7 +11737,6 @@ value
 "."
 );
 
-
 return {
 
 whole:
@@ -11607,10 +11768,8 @@ moneyParts(
 value
 );
 
-
 priceWhole.textContent =
 parts.whole;
-
 
 pricePence.textContent =
 parts.pence;
@@ -11627,7 +11786,6 @@ Number(
 value
 );
 
-
 if (
 displayedUnitPriceAmount ===
 null
@@ -11637,15 +11795,12 @@ setUnitPriceText(
 numericPrice
 );
 
-
 displayedUnitPriceAmount =
 numericPrice;
-
 
 return;
 
 }
-
 
 if (
 displayedUnitPriceAmount ===
@@ -11656,14 +11811,11 @@ return;
 
 }
 
-
 unitPriceTransitionToken +=
 1;
 
-
 const token =
 unitPriceTransitionToken;
-
 
 if (
 unitPriceTransitionTimer !==
@@ -11679,7 +11831,6 @@ null;
 
 }
 
-
 if (
 reducedMotionQuery.matches
 ) {
@@ -11688,25 +11839,20 @@ setUnitPriceText(
 numericPrice
 );
 
-
 displayedUnitPriceAmount =
 numericPrice;
-
 
 unitPriceLine.classList.remove(
 "is-changing"
 );
 
-
 return;
 
 }
 
-
 unitPriceLine.classList.add(
 "is-changing"
 );
-
 
 unitPriceTransitionTimer =
 setTimeout(
@@ -11721,20 +11867,16 @@ return;
 
 }
 
-
 setUnitPriceText(
 numericPrice
 );
 
-
 displayedUnitPriceAmount =
 numericPrice;
-
 
 unitPriceLine.classList.remove(
 "is-changing"
 );
-
 
 },
 160
@@ -11756,10 +11898,8 @@ moneyParts(
 value
 );
 
-
 totalPriceWhole.textContent =
 parts.whole;
-
 
 totalPricePence.textContent =
 parts.pence;
@@ -11776,7 +11916,6 @@ Number(
 value
 );
 
-
 if (
 displayedTotalAmount ===
 numericTotal
@@ -11786,14 +11925,11 @@ return;
 
 }
 
-
 totalPriceTransitionToken +=
 1;
 
-
 const token =
 totalPriceTransitionToken;
-
 
 if (
 totalPriceTransitionTimer !==
@@ -11809,7 +11945,6 @@ null;
 
 }
 
-
 if (
 reducedMotionQuery.matches
 ) {
@@ -11818,25 +11953,20 @@ setTotalPriceText(
 numericTotal
 );
 
-
 displayedTotalAmount =
 numericTotal;
-
 
 totalPriceLine.classList.remove(
 "is-changing"
 );
 
-
 return;
 
 }
 
-
 totalPriceLine.classList.add(
 "is-changing"
 );
-
 
 totalPriceTransitionTimer =
 setTimeout(
@@ -11851,20 +11981,16 @@ return;
 
 }
 
-
 setTotalPriceText(
 numericTotal
 );
 
-
 displayedTotalAmount =
 numericTotal;
-
 
 totalPriceLine.classList.remove(
 "is-changing"
 );
-
 
 },
 160
@@ -11883,14 +12009,11 @@ Number(
 orderTotal
 );
 
-
 totalVisibilityToken +=
 1;
 
-
 const visibilityToken =
 totalVisibilityToken;
-
 
 if (
 totalVisibilityTimer !==
@@ -11906,7 +12029,6 @@ null;
 
 }
 
-
 if (
 !showTotal
 ) {
@@ -11914,10 +12036,8 @@ if (
 displayedTotalAmount =
 null;
 
-
 totalPriceTransitionToken +=
 1;
-
 
 if (
 totalPriceTransitionTimer !==
@@ -11933,17 +12053,14 @@ null;
 
 }
 
-
 totalPriceLine.classList.remove(
 "is-changing"
 );
-
 
 totalPriceBlock.setAttribute(
 "aria-hidden",
 "true"
 );
-
 
 if (
 totalPriceBlock.hidden
@@ -11957,7 +12074,6 @@ return;
 
 }
 
-
 if (
 reducedMotionQuery.matches
 ) {
@@ -11966,25 +12082,20 @@ totalPriceBlock.classList.remove(
 "is-visible"
 );
 
-
 totalPriceBlock.hidden =
 true;
-
 
 setTotalPriceText(
 numericTotal
 );
 
-
 return;
 
 }
 
-
 totalPriceBlock.classList.remove(
 "is-visible"
 );
-
 
 totalVisibilityTimer =
 setTimeout(
@@ -11999,31 +12110,25 @@ return;
 
 }
 
-
 totalPriceBlock.hidden =
 true;
-
 
 setTotalPriceText(
 numericTotal
 );
 
-
 },
 160
 );
-
 
 return;
 
 }
 
-
 totalPriceBlock.setAttribute(
 "aria-hidden",
 "false"
 );
-
 
 if (
 totalPriceBlock.hidden
@@ -12033,19 +12138,15 @@ setTotalPriceText(
 numericTotal
 );
 
-
 displayedTotalAmount =
 numericTotal;
-
 
 totalPriceBlock.hidden =
 false;
 
-
 totalPriceLine.classList.remove(
 "is-changing"
 );
-
 
 if (
 reducedMotionQuery.matches
@@ -12059,6 +12160,17 @@ return;
 
 }
 
+requestAnimationFrame(
+() => {
+
+if (
+visibilityToken !==
+totalVisibilityToken
+) {
+
+return;
+
+}
 
 requestAnimationFrame(
 () => {
@@ -12072,20 +12184,6 @@ return;
 
 }
 
-
-requestAnimationFrame(
-() => {
-
-if (
-visibilityToken !==
-totalVisibilityToken
-) {
-
-return;
-
-}
-
-
 totalPriceBlock.classList.add(
 "is-visible"
 );
@@ -12096,16 +12194,13 @@ totalPriceBlock.classList.add(
 }
 );
 
-
 return;
 
 }
 
-
 totalPriceBlock.classList.add(
 "is-visible"
 );
-
 
 if (
 displayedTotalAmount ===
@@ -12116,15 +12211,12 @@ setTotalPriceText(
 numericTotal
 );
 
-
 displayedTotalAmount =
 numericTotal;
-
 
 return;
 
 }
-
 
 animateTotalPriceValue(
 numericTotal
@@ -12134,7 +12226,7 @@ numericTotal
 
 
 /* =========================================
-MOVE INC. VAT BETWEEN UNIT + TOTAL
+MOVE INC. VAT
 ========================================= */
 
 function updateVatPosition() {
@@ -12148,7 +12240,6 @@ if (
 return;
 
 }
-
 
 if (
 state.quantity >
@@ -12198,10 +12289,8 @@ moneyParts(
 value
 );
 
-
 customPriceWhole.textContent =
 parts.whole;
-
 
 customPricePence.textContent =
 parts.pence;
@@ -12218,10 +12307,8 @@ moneyParts(
 value
 );
 
-
 customTotalPriceWhole.textContent =
 parts.whole;
-
 
 customTotalPricePence.textContent =
 parts.pence;
@@ -12240,7 +12327,6 @@ if (
 return;
 
 }
-
 
 if (
 customState.quantity >
@@ -12283,16 +12369,13 @@ function updateCustomConfiguratorUI() {
 const valid =
 customInputsAreValid();
 
-
 const widthHasValue =
 customInternalWidth.value.trim() !==
 "";
 
-
 const lengthHasValue =
 customInternalLength.value.trim() !==
 "";
-
 
 customInternalWidth.classList.toggle(
 "is-invalid",
@@ -12305,7 +12388,6 @@ customState.width <=
 )
 );
 
-
 customInternalLength.classList.toggle(
 "is-invalid",
 lengthHasValue &&
@@ -12315,9 +12397,7 @@ customState.length >=
 customState.length <=
 3000
 )
-)
-;
-
+);
 
 customInternalWidth.setAttribute(
 "aria-invalid",
@@ -12332,7 +12412,6 @@ customState.width <=
 )
 );
 
-
 customInternalLength.setAttribute(
 "aria-invalid",
 String(
@@ -12346,65 +12425,45 @@ customState.length <=
 )
 );
 
-
 customPurchaseLayout.classList.toggle(
 "is-incomplete",
 !valid
 );
 
-
 customPriceZone.hidden =
 !valid;
-
 
 customDimensionsZone.hidden =
 !valid;
 
-
 customAddToOrder.disabled =
 !valid;
-
 
 customQuantityValue.textContent =
 customState.quantity;
 
-
 customQuantityUnitLabel.textContent =
-
 customState.quantity ===
 1
-
 ?
-
 "Unit"
-
 :
-
 "Units";
-
 
 customQuantityMinus.disabled =
 customState.quantity <=
 1;
 
-
 customQuantityMinus.style.opacity =
-
 customState.quantity <=
 1
-
 ?
-
 ".36"
-
 :
-
 "1";
-
 
 customAddToOrderText.textContent =
 `Add ${customState.quantity} To Order`;
-
 
 if (
 !valid
@@ -12428,25 +12487,20 @@ return;
 
 }
 
-
 const price =
 selectedCustomPrice();
-
 
 const total =
 price *
 customState.quantity;
 
-
 setCustomUnitPriceText(
 price
 );
 
-
 setCustomTotalPriceText(
 total
 );
-
 
 customInternalSize.textContent =
 formatCustomDimension(
@@ -12454,20 +12508,17 @@ customState.width,
 customState.length
 );
 
-
 const external =
 getExternalDimensionsFor(
 `${customState.width}x${customState.length}`,
 customState.border
 );
 
-
 customExternalSize.textContent =
 formatCustomDimension(
 external.width,
 external.length
 );
-
 
 if (
 customState.quantity >
@@ -12481,7 +12532,6 @@ customTotalPriceBlock.setAttribute(
 "aria-hidden",
 "false"
 );
-
 
 requestAnimationFrame(
 () => {
@@ -12510,7 +12560,6 @@ customTotalPriceBlock.setAttribute(
 
 }
 
-
 updateCustomVatPosition();
 
 }
@@ -12529,10 +12578,8 @@ formatSize(
 selection.size
 );
 
-
 let tintText =
 "";
-
 
 if (
 selection.tint ===
@@ -12544,7 +12591,6 @@ tintText =
 
 }
 
-
 if (
 selection.tint ===
 "grey"
@@ -12554,7 +12600,6 @@ tintText =
 "Grey Tinted ";
 
 }
-
 
 if (
 selection.tint ===
@@ -12566,20 +12611,13 @@ tintText =
 
 }
 
-
 const glazingText =
-
 selection.glazing ===
 "triple"
-
 ?
-
 "Triple"
-
 :
-
 "Double";
-
 
 return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
@@ -12593,10 +12631,8 @@ selection
 const size =
 `${selection.width} × ${selection.length}mm`;
 
-
 let tintText =
 "";
-
 
 if (
 selection.tint ===
@@ -12608,7 +12644,6 @@ tintText =
 
 }
 
-
 if (
 selection.tint ===
 "grey"
@@ -12618,7 +12653,6 @@ tintText =
 "Grey Tinted ";
 
 }
-
 
 if (
 selection.tint ===
@@ -12630,20 +12664,13 @@ tintText =
 
 }
 
-
 const glazingText =
-
 selection.glazing ===
 "triple"
-
 ?
-
 "Triple"
-
 :
-
 "Double";
-
 
 return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
@@ -12660,7 +12687,7 @@ state
 
 
 /* =========================================
-SLIDING GLAZED LABEL
+SLIDING LABELS
 ========================================= */
 
 function updateGlazedAppearance() {
@@ -12673,7 +12700,6 @@ return;
 
 }
 
-
 glazedLabel.classList.toggle(
 "triple",
 state.glazing ===
@@ -12682,10 +12708,6 @@ state.glazing ===
 
 }
 
-
-/* =========================================
-SLIDING TINT LABEL
-========================================= */
 
 function updateTintAppearance() {
 
@@ -12700,10 +12722,8 @@ satin:3
 state.tint
 ];
 
-
 tintCaption.style.left =
 `${tintIndex * 25}%`;
-
 
 tintCaption.classList.toggle(
 "visible",
@@ -12723,24 +12743,20 @@ function updateQueryString() {
 const params =
 new URLSearchParams();
 
-
 params.set(
 "size",
 state.size
 );
-
 
 params.set(
 "glazing",
 state.glazing
 );
 
-
 params.set(
 "type",
 state.type
 );
-
 
 params.set(
 "border",
@@ -12749,12 +12765,10 @@ state.border
 )
 );
 
-
 params.set(
 "finish",
 state.tint
 );
-
 
 if (
 state.homepageImport &&
@@ -12766,7 +12780,6 @@ params.set(
 "source",
 "homepage"
 );
-
 
 if (
 homepageImportMatchesCurrentSelection() &&
@@ -12786,7 +12799,6 @@ state.homepageImport.price
 
 }
 
-
 if (
 homepageImageMatchesCurrentSelection()
 ) {
@@ -12800,7 +12812,6 @@ state.homepageImport.image
 
 }
 
-
 history.replaceState(
 {},
 "",
@@ -12811,7 +12822,7 @@ history.replaceState(
 
 
 /* =========================================
-CUSTOM SIZE DROPDOWN
+SIZE DROPDOWN
 ========================================= */
 
 function getSizeOptionButtons() {
@@ -12830,14 +12841,12 @@ function getSelectedSizeOptionIndex() {
 const options =
 getSizeOptionButtons();
 
-
 const selectedIndex =
 options.findIndex(
 button =>
 button.dataset.size ===
 state.size
 );
-
 
 return selectedIndex >=
 0
@@ -12852,7 +12861,6 @@ selectedIndex
 function populateSizes() {
 
 const orderedSizes =
-
 SIZE_DROPDOWN_ORDER
 .filter(
 size =>
@@ -12863,9 +12871,7 @@ size
 )
 );
 
-
 sizeDropdownList.innerHTML =
-
 orderedSizes
 .map(
 size => {
@@ -12888,7 +12894,6 @@ ${formatSizeDropdownValue(size)}
 .join(
 ""
 );
-
 
 getSizeOptionButtons()
 .forEach(
@@ -12920,25 +12925,20 @@ formatSizeDropdownValue(
 state.size
 );
 
-
 const options =
 getSizeOptionButtons();
-
 
 options.forEach(
 button => {
 
 const isSelected =
-
 button.dataset.size ===
 state.size;
-
 
 button.classList.toggle(
 "is-selected",
 isSelected
 );
-
 
 button.setAttribute(
 "aria-selected",
@@ -12953,10 +12953,6 @@ isSelected
 }
 
 
-/* =========================================
-SIZE DROPDOWN AVAILABLE HEIGHT
-========================================= */
-
 function updateSizeDropdownAvailableHeight() {
 
 if (
@@ -12969,28 +12965,19 @@ return;
 
 }
 
-
 const panelRect =
 sizeDropdownPanel.getBoundingClientRect();
-
 
 const summaryRect =
 unitSummarySection.getBoundingClientRect();
 
-
 const minimumHeight =
-
 window.innerWidth <=
 720
-
 ?
-
 218
-
 :
-
 286;
-
 
 const availableHeight =
 Math.max(
@@ -13002,16 +12989,11 @@ panelRect.top -
 )
 );
 
-
 sizeDropdownList.style.maxHeight =
 `${availableHeight}px`;
 
 }
 
-
-/* =========================================
-CURRENT SIZE POSITION
-========================================= */
 
 function positionCurrentSizeAtTop() {
 
@@ -13023,10 +13005,8 @@ return;
 
 }
 
-
 const options =
 getSizeOptionButtons();
-
 
 if (
 !options.length
@@ -13036,24 +13016,19 @@ return;
 
 }
 
-
 const selectedIndex =
 getSelectedSizeOptionIndex();
-
 
 const selectedOption =
 options[
 selectedIndex
 ];
 
-
 sizeDropdownKeyboardIndex =
 selectedIndex;
 
-
 sizeDropdownList.style.paddingBottom =
 "0px";
-
 
 const maximumScroll =
 Math.max(
@@ -13062,13 +13037,11 @@ sizeDropdownList.scrollHeight -
 sizeDropdownList.clientHeight
 );
 
-
 const desiredScroll =
 Math.min(
 selectedOption.offsetTop,
 maximumScroll
 );
-
 
 sizeDropdownList.scrollTop =
 desiredScroll;
@@ -13087,24 +13060,20 @@ return;
 
 }
 
-
 closeWhatsAppAction();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 sizeDropdown.classList.add(
 "is-open"
 );
-
 
 sizeDropdownTrigger.setAttribute(
 "aria-expanded",
 "true"
 );
 
-
 void sizeDropdownPanel.offsetHeight;
-
 
 updateSizeDropdownAvailableHeight();
 
@@ -13126,23 +13095,19 @@ return;
 
 }
 
-
 const wasOpen =
 sizeDropdown.classList.contains(
 "is-open"
 );
 
-
 sizeDropdown.classList.remove(
 "is-open"
 );
-
 
 sizeDropdownTrigger.setAttribute(
 "aria-expanded",
 "false"
 );
-
 
 if (
 returnFocus &&
@@ -13185,7 +13150,6 @@ normalizeSize(
 size
 );
 
-
 if (
 !PRODUCTS[
 newSize
@@ -13196,16 +13160,12 @@ return;
 
 }
 
-
 const sizeChanged =
-
 newSize !==
 state.size;
 
-
 state.size =
 newSize;
-
 
 if (
 sizeChanged
@@ -13216,11 +13176,9 @@ state.quantity =
 
 }
 
-
 closeSizeDropdown(
 true
 );
-
 
 updateUI(
 {
@@ -13239,7 +13197,6 @@ index
 const options =
 getSizeOptionButtons();
 
-
 if (
 !options.length
 ) {
@@ -13248,9 +13205,7 @@ return;
 
 }
 
-
 sizeDropdownKeyboardIndex =
-
 Math.max(
 0,
 Math.min(
@@ -13259,19 +13214,16 @@ options.length - 1
 )
 );
 
-
 const target =
 options[
 sizeDropdownKeyboardIndex
 ];
-
 
 target.focus(
 {
 preventScroll:true
 }
 );
-
 
 target.scrollIntoView(
 {
@@ -13305,7 +13257,6 @@ event.key ===
 
 event.preventDefault();
 
-
 if (
 !sizeDropdown.classList.contains(
 "is-open"
@@ -13316,13 +13267,11 @@ openSizeDropdown();
 
 }
 
-
 focusSizeDropdownOption(
 getSelectedSizeOptionIndex()
 );
 
 }
-
 
 if (
 event.key ===
@@ -13331,7 +13280,6 @@ event.key ===
 
 event.preventDefault();
 
-
 if (
 !sizeDropdown.classList.contains(
 "is-open"
@@ -13342,13 +13290,11 @@ openSizeDropdown();
 
 }
 
-
 focusSizeDropdownOption(
 getSelectedSizeOptionIndex()
 );
 
 }
-
 
 if (
 event.key ===
@@ -13372,7 +13318,6 @@ event => {
 const options =
 getSizeOptionButtons();
 
-
 if (
 !options.length
 ) {
@@ -13381,12 +13326,10 @@ return;
 
 }
 
-
 const activeIndex =
 options.indexOf(
 document.activeElement
 );
-
 
 if (
 activeIndex >=
@@ -13397,7 +13340,6 @@ sizeDropdownKeyboardIndex =
 activeIndex;
 
 }
-
 
 if (
 event.key ===
@@ -13414,7 +13356,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "ArrowUp"
@@ -13429,7 +13370,6 @@ sizeDropdownKeyboardIndex - 1
 return;
 
 }
-
 
 if (
 event.key ===
@@ -13446,7 +13386,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "End"
@@ -13462,7 +13401,6 @@ return;
 
 }
 
-
 if (
 event.key ===
 "Enter" ||
@@ -13472,7 +13410,6 @@ event.key ===
 
 const activeButton =
 document.activeElement;
-
 
 if (
 activeButton &&
@@ -13492,7 +13429,6 @@ activeButton.dataset.size
 return;
 
 }
-
 
 if (
 event.key ===
@@ -13552,6 +13488,10 @@ item.unitPrice
 Number(
 item.quantity
 )
+)
++
+getItemDeliveryFee(
+item
 );
 
 },
@@ -13577,6 +13517,10 @@ item.unitPrice
 Number(
 item.quantity
 )
+)
++
+getItemDeliveryFee(
+item
 );
 
 },
@@ -13610,12 +13554,10 @@ return null;
 
 }
 
-
 const size =
 normalizeSize(
 item.size
 );
-
 
 if (
 !PRODUCTS[
@@ -13627,9 +13569,7 @@ return null;
 
 }
 
-
 const glazing =
-
 [
 "double",
 "triple"
@@ -13637,18 +13577,12 @@ const glazing =
 .includes(
 item.glazing
 )
-
 ?
-
 item.glazing
-
 :
-
 "double";
 
-
 const type =
-
 [
 "toughened",
 "laminated"
@@ -13656,24 +13590,17 @@ const type =
 .includes(
 item.type
 )
-
 ?
-
 item.type
-
 :
-
 "toughened";
-
 
 const borderNumber =
 Number(
 item.border
 );
 
-
 const border =
-
 [
 100,
 125,
@@ -13682,21 +13609,15 @@ const border =
 .includes(
 borderNumber
 )
-
 ?
-
 borderNumber
-
 :
-
 100;
-
 
 const tint =
 normalizeTint(
 item.tint
 );
-
 
 const quantity =
 Math.max(
@@ -13711,12 +13632,10 @@ item.quantity
 )
 );
 
-
 const unitPrice =
 Number(
 item.unitPrice
 );
-
 
 if (
 !Number.isFinite(
@@ -13730,8 +13649,14 @@ return null;
 
 }
 
+const deliveryFee =
+Number(
+item.deliveryFee
+);
 
 return {
+
+...item,
 
 size:size,
 
@@ -13745,7 +13670,25 @@ tint:tint,
 
 quantity:quantity,
 
-unitPrice:unitPrice
+unitPrice:unitPrice,
+
+deliveryPostcode:
+String(
+item.deliveryPostcode ||
+""
+),
+
+deliveryFee:
+Number.isFinite(
+deliveryFee
+)
+?
+Math.max(
+0,
+deliveryFee
+)
+:
+0
 
 };
 
@@ -13766,22 +13709,21 @@ return null;
 
 }
 
-
 const width =
 Math.floor(
 Number(
-item.width
+item.width ??
+item.internalWidth
 )
 );
-
 
 const length =
 Math.floor(
 Number(
-item.length
+item.length ??
+item.internalLength
 )
 );
-
 
 if (
 !Number.isFinite(
@@ -13804,9 +13746,7 @@ return null;
 
 }
 
-
 const glazing =
-
 [
 "double",
 "triple"
@@ -13814,18 +13754,24 @@ const glazing =
 .includes(
 item.glazing
 )
-
 ?
-
 item.glazing
-
 :
-
-"double";
-
+(
+[
+"double",
+"triple"
+]
+.includes(
+item.glazingConfiguration
+)
+?
+item.glazingConfiguration
+:
+"double"
+);
 
 const type =
-
 [
 "toughened",
 "laminated"
@@ -13833,24 +13779,29 @@ const type =
 .includes(
 item.type
 )
-
 ?
-
 item.type
-
 :
-
-"toughened";
-
+(
+[
+"toughened",
+"laminated"
+]
+.includes(
+item.glazingConstruction
+)
+?
+item.glazingConstruction
+:
+"toughened"
+);
 
 const borderNumber =
 Number(
 item.border
 );
 
-
 const border =
-
 [
 100,
 125,
@@ -13859,21 +13810,16 @@ const border =
 .includes(
 borderNumber
 )
-
 ?
-
 borderNumber
-
 :
-
 100;
-
 
 const tint =
 normalizeTint(
-item.tint
+item.tint ??
+item.finish
 );
-
 
 const quantity =
 Math.max(
@@ -13882,18 +13828,18 @@ Math.min(
 999,
 Math.floor(
 Number(
-item.quantity
+item.quantity ??
+item.qty
 ) || 1
 )
 )
 );
 
-
 const unitPrice =
 Number(
-item.unitPrice
+item.unitPrice ??
+item.price
 );
-
 
 if (
 !Number.isFinite(
@@ -13907,24 +13853,75 @@ return null;
 
 }
 
+const itemId =
+String(
+item.id ??
+item._id ??
+""
+);
+
+const deliveryFee =
+Number(
+item.deliveryFee
+);
 
 return {
+
+...item,
+
+id:
+itemId,
+
+_id:
+itemId,
 
 width:width,
 
 length:length,
 
+internalWidth:width,
+
+internalLength:length,
+
 glazing:glazing,
 
+glazingConfiguration:glazing,
+
 type:type,
+
+glazingConstruction:type,
 
 border:border,
 
 tint:tint,
 
+finish:tint,
+
 quantity:quantity,
 
-unitPrice:unitPrice
+qty:quantity,
+
+unitPrice:unitPrice,
+
+price:unitPrice,
+
+deliveryPostcode:
+String(
+item.deliveryPostcode ||
+""
+),
+
+deliveryFee:
+Number.isFinite(
+deliveryFee
+)
+?
+Math.max(
+0,
+deliveryFee
+)
+:
+0
 
 };
 
@@ -13941,7 +13938,9 @@ JSON.stringify(
 {
 version:2,
 items:state.orderItems,
-customItems:state.customOrderItems
+customItems:state.customOrderItems,
+deliveryPostcode:
+state.deliveryPostcode
 }
 )
 );
@@ -13970,7 +13969,6 @@ localStorage.getItem(
 ORDER_STORAGE_KEY
 );
 
-
 if (
 !stored
 ) {
@@ -13981,6 +13979,9 @@ state.orderItems =
 state.customOrderItems =
 [];
 
+state.deliveryPostcode =
+"";
+
 state.basketTotal =
 0;
 
@@ -13988,25 +13989,18 @@ return;
 
 }
 
-
 const parsed =
 JSON.parse(
 stored
 );
 
-
 const rawItems =
-
 Array.isArray(
 parsed
 )
-
 ?
-
 parsed
-
 :
-
 (
 Array.isArray(
 parsed?.items
@@ -14017,21 +14011,14 @@ parsed.items
 []
 );
 
-
 const rawCustomItems =
-
 Array.isArray(
 parsed?.customItems
 )
-
 ?
-
 parsed.customItems
-
 :
-
 [];
-
 
 state.orderItems =
 rawItems
@@ -14042,7 +14029,6 @@ sanitizeStoredOrderItem
 Boolean
 );
 
-
 state.customOrderItems =
 rawCustomItems
 .map(
@@ -14052,6 +14038,13 @@ sanitizeStoredCustomOrderItem
 Boolean
 );
 
+state.deliveryPostcode =
+String(
+parsed?.deliveryPostcode ||
+state.orderItems[0]?.deliveryPostcode ||
+state.customOrderItems[0]?.deliveryPostcode ||
+""
+);
 
 state.basketTotal =
 calculateOrderTotal();
@@ -14067,9 +14060,11 @@ state.orderItems =
 state.customOrderItems =
 [];
 
+state.deliveryPostcode =
+"";
+
 state.basketTotal =
 0;
-
 
 console.warn(
 "Unable to restore saved order.",
@@ -14242,18 +14237,15 @@ return;
 
 }
 
-
 const numericTotal =
 Number(
 total
 ) || 0;
 
-
 element.textContent =
 formatMoney(
 numericTotal
 );
-
 
 element.classList.toggle(
 "is-four-figure",
@@ -14262,7 +14254,6 @@ numericTotal >=
 numericTotal <
 10000
 );
-
 
 element.classList.toggle(
 "is-five-figure",
@@ -14297,10 +14288,6 @@ total
 }
 
 
-/* =========================================
-NUMBER OF DIFFERENT ROOFLIGHT SIZES
-========================================= */
-
 function getDifferentOrderSizeCount() {
 
 return new Set(
@@ -14326,6 +14313,66 @@ item =>
 
 
 /* =========================================
+DELIVERY FIELD HTML
+========================================= */
+
+function buildDeliveryControlHTML(
+item,
+kind,
+index
+) {
+
+const postcode =
+String(
+item?.deliveryPostcode ||
+state.deliveryPostcode ||
+""
+);
+
+const resultText =
+getDeliveryResultText(
+item
+);
+
+const resultClass =
+getDeliveryResultClass(
+item
+);
+
+return `
+<div class="order-summary-delivery">
+
+<div class="order-summary-delivery-label">
+Delivery Postcode
+</div>
+
+<input
+type="text"
+class="order-summary-postcode"
+data-delivery-postcode-input
+data-delivery-kind="${escapeHTML(kind)}"
+data-delivery-index="${escapeHTML(index)}"
+value="${escapeHTML(postcode)}"
+placeholder="Enter postcode"
+autocomplete="postal-code"
+inputmode="text"
+aria-label="Delivery postcode"
+>
+
+<div
+class="order-summary-delivery-result ${escapeHTML(resultClass)}"
+data-delivery-result
+>
+${escapeHTML(resultText)}
+</div>
+
+</div>
+`;
+
+}
+
+
+/* =========================================
 RENDER STANDARD ORDER SUMMARY
 ========================================= */
 
@@ -14346,7 +14393,6 @@ return;
 
 }
 
-
 if (
 !state.orderItems.length
 ) {
@@ -14354,35 +14400,27 @@ if (
 orderSummaryItems.innerHTML =
 "";
 
-
 updateOrderSummaryTotalDisplay(
 0
 );
-
 
 orderSummarySection.classList.remove(
 "summary-enter"
 );
 
-
 orderSummarySection.hidden =
 true;
-
 
 return;
 
 }
 
-
 const wasHidden =
 orderSummarySection.hidden;
 
-
 const showLineTotals =
-
 getDifferentOrderSizeCount() >=
 2;
-
 
 orderSummaryItems.innerHTML =
 state.orderItems
@@ -14397,19 +14435,16 @@ buildTitleForSelection(
 item
 );
 
-
 const internal =
 formatDimension(
 item.size
 );
-
 
 const external =
 calculateExternalSizeFor(
 item.size,
 item.border
 );
-
 
 const topGlass =
 getTopGlassLabelFor(
@@ -14418,25 +14453,26 @@ item.border,
 item.glazing
 );
 
-
 const lineTotal =
-
+(
 Number(
 item.unitPrice
 ) *
 Number(
 item.quantity
+)
+)
++
+getItemDeliveryFee(
+item
 );
 
-
 const animateItem =
-
 animate &&
 !wasHidden &&
 !reducedMotionQuery.matches &&
 index ===
 focusOrderIndex;
-
 
 return `
 <div
@@ -14501,7 +14537,6 @@ ${escapeHTML(item.quantity)} × ${escapeHTML(title)}
 
 <div class="order-summary-line-controls">
 
-
 <div
 class="order-summary-quantity"
 aria-label="Adjust quantity"
@@ -14542,8 +14577,14 @@ aria-label="Remove this rooflight from the order"
 Remove
 </button>
 
-
 </div>
+
+
+${buildDeliveryControlHTML(
+item,
+"standard",
+index
+)}
 
 
 <div
@@ -14576,24 +14617,19 @@ inc. vat
 ""
 );
 
-
 state.basketTotal =
 calculateOrderTotal();
-
 
 updateOrderSummaryTotalDisplay(
 calculateStandardOrderTotal()
 );
 
-
 orderSummarySection.hidden =
 false;
-
 
 orderSummarySection.classList.remove(
 "summary-enter"
 );
-
 
 if (
 animate &&
@@ -14603,11 +14639,9 @@ wasHidden &&
 
 void orderSummarySection.offsetWidth;
 
-
 orderSummarySection.classList.add(
 "summary-enter"
 );
-
 
 setTimeout(
 () => {
@@ -14646,7 +14680,6 @@ return;
 
 }
 
-
 if (
 !state.customOrderItems.length
 ) {
@@ -14654,35 +14687,27 @@ if (
 customOrderSummaryItems.innerHTML =
 "";
 
-
 updateCustomOrderSummaryTotalDisplay(
 0
 );
-
 
 customOrderSummarySection.classList.remove(
 "summary-enter"
 );
 
-
 customOrderSummarySection.hidden =
 true;
-
 
 return;
 
 }
 
-
 const wasHidden =
 customOrderSummarySection.hidden;
 
-
 const showLineTotals =
-
 getDifferentCustomOrderSizeCount() >=
 2;
-
 
 customOrderSummaryItems.innerHTML =
 state.customOrderItems
@@ -14697,13 +14722,11 @@ buildCustomTitleForSelection(
 item
 );
 
-
 const internal =
 formatCustomDimension(
 item.width,
 item.length
 );
-
 
 const externalDimensions =
 getExternalDimensionsFor(
@@ -14711,13 +14734,11 @@ getExternalDimensionsFor(
 item.border
 );
 
-
 const external =
 formatCustomDimension(
 externalDimensions.width,
 externalDimensions.length
 );
-
 
 const topGlass =
 getTopGlassLabelFor(
@@ -14726,30 +14747,32 @@ item.border,
 item.glazing
 );
 
-
 const lineTotal =
-
+(
 Number(
 item.unitPrice
 ) *
 Number(
 item.quantity
+)
+)
++
+getItemDeliveryFee(
+item
 );
 
-
 const animateItem =
-
 animate &&
 !wasHidden &&
 !reducedMotionQuery.matches &&
 index ===
 focusOrderIndex;
 
-
 return `
 <div
 class="order-summary-item${animateItem ? " summary-item-enter" : ""}"
 data-custom-order-summary-item-index="${index}"
+data-custom-order-item-id="${escapeHTML(item.id || item._id || "")}"
 >
 
 <h3 class="order-summary-item-title">
@@ -14809,7 +14832,6 @@ ${escapeHTML(item.quantity)} × ${escapeHTML(title)}
 
 <div class="order-summary-line-controls">
 
-
 <div
 class="order-summary-quantity"
 aria-label="Adjust custom rooflight quantity"
@@ -14850,8 +14872,14 @@ aria-label="Remove this custom rooflight from the order"
 Remove
 </button>
 
-
 </div>
+
+
+${buildDeliveryControlHTML(
+item,
+"custom",
+index
+)}
 
 
 <div
@@ -14884,24 +14912,19 @@ inc. vat
 ""
 );
 
-
 state.basketTotal =
 calculateOrderTotal();
-
 
 updateCustomOrderSummaryTotalDisplay(
 calculateCustomOrderTotal()
 );
 
-
 customOrderSummarySection.hidden =
 false;
-
 
 customOrderSummarySection.classList.remove(
 "summary-enter"
 );
-
 
 if (
 animate &&
@@ -14911,11 +14934,9 @@ wasHidden &&
 
 void customOrderSummarySection.offsetWidth;
 
-
 customOrderSummarySection.classList.add(
 "summary-enter"
 );
-
 
 setTimeout(
 () => {
@@ -14942,16 +14963,13 @@ function commitOrderSummaryChange() {
 state.basketTotal =
 calculateOrderTotal();
 
-
 saveOrderToStorage();
-
 
 renderOrderSummary(
 {
 animate:false
 }
 );
-
 
 updateBasketTotal(
 state.basketTotal
@@ -14965,16 +14983,13 @@ function commitCustomOrderSummaryChange() {
 state.basketTotal =
 calculateOrderTotal();
 
-
 saveOrderToStorage();
-
 
 renderCustomOrderSummary(
 {
 animate:false
 }
 );
-
 
 updateBasketTotal(
 state.basketTotal
@@ -14984,7 +14999,7 @@ state.basketTotal
 
 
 /* =========================================
-CENTRE CONTENT
+SCROLL / CENTRE HELPERS
 ========================================= */
 
 function getElementViewportCentreTarget(
@@ -14993,7 +15008,6 @@ element
 
 const rect =
 element.getBoundingClientRect();
-
 
 return Math.max(
 0,
@@ -15012,6 +15026,37 @@ window.innerHeight /
 }
 
 
+function getElementViewportRatioTarget(
+element,
+ratio = .40
+) {
+
+if (
+!element
+) {
+
+return window.scrollY;
+
+}
+
+const rect =
+element.getBoundingClientRect();
+
+return Math.max(
+0,
+window.scrollY +
+rect.top -
+(
+window.innerHeight *
+Number(
+ratio
+)
+)
+);
+
+}
+
+
 function scrollElementToViewportCentre(
 element
 ) {
@@ -15023,7 +15068,6 @@ if (
 return;
 
 }
-
 
 window.scrollTo(
 {
@@ -15043,19 +15087,10 @@ reducedMotionQuery.matches
 }
 
 
-function animateElementToViewportCentre(
-element,
+function animateScrollToTarget(
+target,
 duration = 560
 ) {
-
-if (
-!element
-) {
-
-return;
-
-}
-
 
 if (
 activeScrollFrame !==
@@ -15071,13 +15106,6 @@ null;
 
 }
 
-
-const target =
-getElementViewportCentreTarget(
-element
-);
-
-
 if (
 reducedMotionQuery.matches
 ) {
@@ -15091,15 +15119,12 @@ return;
 
 }
 
-
 const start =
 window.scrollY;
-
 
 const distance =
 target -
 start;
-
 
 if (
 Math.abs(
@@ -15117,10 +15142,8 @@ return;
 
 }
 
-
 const startTime =
 performance.now();
-
 
 function easeInOutCubic(
 progress
@@ -15128,16 +15151,12 @@ progress
 
 return progress <
 .5
-
 ?
-
 4 *
 progress *
 progress *
 progress
-
 :
-
 1 -
 Math.pow(
 -2 *
@@ -15149,7 +15168,6 @@ progress +
 
 }
 
-
 function step(
 time
 ) {
@@ -15158,7 +15176,6 @@ const elapsed =
 time -
 startTime;
 
-
 const progress =
 Math.min(
 1,
@@ -15166,12 +15183,10 @@ elapsed /
 duration
 );
 
-
 const eased =
 easeInOutCubic(
 progress
 );
-
 
 window.scrollTo(
 0,
@@ -15179,7 +15194,6 @@ start +
 distance *
 eased
 );
-
 
 if (
 progress <
@@ -15201,7 +15215,6 @@ null;
 
 }
 
-
 activeScrollFrame =
 requestAnimationFrame(
 step
@@ -15210,8 +15223,56 @@ step
 }
 
 
+function animateElementToViewportCentre(
+element,
+duration = 560
+) {
+
+if (
+!element
+) {
+
+return;
+
+}
+
+animateScrollToTarget(
+getElementViewportCentreTarget(
+element
+),
+duration
+);
+
+}
+
+
+function animateElementToViewportRatio(
+element,
+ratio = .40,
+duration = 560
+) {
+
+if (
+!element
+) {
+
+return;
+
+}
+
+animateScrollToTarget(
+getElementViewportRatioTarget(
+element,
+ratio
+),
+duration
+);
+
+}
+
+
 /* =========================================
-CENTRE AFTER STANDARD REMOVE
+CENTRE AFTER REMOVE
 ========================================= */
 
 function centreAfterOrderItemRemoval(
@@ -15236,14 +15297,12 @@ return;
 
 }
 
-
 const remainingItems =
 Array.from(
 orderSummaryItems.querySelectorAll(
 ".order-summary-item"
 )
 );
-
 
 if (
 !remainingItems.length
@@ -15257,13 +15316,11 @@ return;
 
 }
 
-
 const targetIndex =
 Math.min(
 removedIndex,
 remainingItems.length - 1
 );
-
 
 scrollElementToViewportCentre(
 remainingItems[
@@ -15298,15 +15355,12 @@ return;
 
 }
 
-
 state.orderItems.splice(
 index,
 1
 );
 
-
 commitOrderSummaryChange();
-
 
 centreAfterOrderItemRemoval(
 index
@@ -15334,12 +15388,10 @@ return;
 
 }
 
-
 const item =
 state.orderItems[
 index
 ];
-
 
 const currentQuantity =
 Math.max(
@@ -15348,7 +15400,6 @@ Number(
 item.quantity
 ) || 1
 );
-
 
 const nextQuantity =
 Math.max(
@@ -15360,7 +15411,6 @@ change
 )
 );
 
-
 if (
 nextQuantity ===
 currentQuantity
@@ -15370,19 +15420,13 @@ return;
 
 }
 
-
 item.quantity =
 nextQuantity;
-
 
 commitOrderSummaryChange();
 
 }
 
-
-/* =========================================
-CENTRE AFTER CUSTOM REMOVE
-========================================= */
 
 function centreAfterCustomOrderItemRemoval(
 removedIndex
@@ -15406,14 +15450,12 @@ return;
 
 }
 
-
 const remainingItems =
 Array.from(
 customOrderSummaryItems.querySelectorAll(
 ".order-summary-item"
 )
 );
-
 
 if (
 !remainingItems.length
@@ -15427,13 +15469,11 @@ return;
 
 }
 
-
 const targetIndex =
 Math.min(
 removedIndex,
 remainingItems.length - 1
 );
-
 
 scrollElementToViewportCentre(
 remainingItems[
@@ -15468,15 +15508,12 @@ return;
 
 }
 
-
 state.customOrderItems.splice(
 index,
 1
 );
 
-
 commitCustomOrderSummaryChange();
-
 
 centreAfterCustomOrderItemRemoval(
 index
@@ -15504,12 +15541,10 @@ return;
 
 }
 
-
 const item =
 state.customOrderItems[
 index
 ];
-
 
 const currentQuantity =
 Math.max(
@@ -15518,7 +15553,6 @@ Number(
 item.quantity
 ) || 1
 );
-
 
 const nextQuantity =
 Math.max(
@@ -15530,7 +15564,6 @@ change
 )
 );
 
-
 if (
 nextQuantity ===
 currentQuantity
@@ -15540,10 +15573,8 @@ return;
 
 }
 
-
 item.quantity =
 nextQuantity;
-
 
 commitCustomOrderSummaryChange();
 
@@ -15551,7 +15582,7 @@ commitCustomOrderSummaryChange();
 
 
 /* =========================================
-STANDARD ORDER SUMMARY EVENTS
+ORDER SUMMARY EVENTS
 ========================================= */
 
 if (
@@ -15567,32 +15598,24 @@ event.target.closest(
 "[data-order-remove-index]"
 );
 
-
 if (
 removeButton
 ) {
 
-const index =
+removeOrderItem(
 Number(
 removeButton.dataset.orderRemoveIndex
+)
 );
-
-
-removeOrderItem(
-index
-);
-
 
 return;
 
 }
 
-
 const quantityButton =
 event.target.closest(
 "[data-order-quantity-action]"
 );
-
 
 if (
 !quantityButton
@@ -15602,16 +15625,13 @@ return;
 
 }
 
-
 const index =
 Number(
 quantityButton.dataset.orderIndex
 );
 
-
 const action =
 quantityButton.dataset.orderQuantityAction;
-
 
 if (
 action ===
@@ -15641,10 +15661,6 @@ index,
 
 }
 
-
-/* =========================================
-CUSTOM ORDER SUMMARY EVENTS
-========================================= */
 
 if (
 customOrderSummaryItems
@@ -15659,7 +15675,6 @@ event.target.closest(
 "[data-custom-order-remove-index]"
 );
 
-
 if (
 removeButton
 ) {
@@ -15670,17 +15685,14 @@ removeButton.dataset.customOrderRemoveIndex
 )
 );
 
-
 return;
 
 }
-
 
 const quantityButton =
 event.target.closest(
 "[data-custom-order-quantity-action]"
 );
-
 
 if (
 !quantityButton
@@ -15690,16 +15702,13 @@ return;
 
 }
 
-
 const index =
 Number(
 quantityButton.dataset.customOrderIndex
 );
 
-
 const action =
 quantityButton.dataset.customOrderQuantityAction;
-
 
 if (
 action ===
@@ -15728,6 +15737,117 @@ index,
 );
 
 }
+
+
+/* =========================================
+CHANGE 5
+POSTCODE INPUT EVENTS
+========================================= */
+
+document.addEventListener(
+"input",
+event => {
+
+const input =
+event.target.closest(
+"[data-delivery-postcode-input]"
+);
+
+if (
+!input
+) {
+
+return;
+
+}
+
+input.value =
+String(
+input.value ||
+""
+)
+.toUpperCase();
+
+document
+.querySelectorAll(
+"[data-delivery-postcode-input]"
+)
+.forEach(
+otherInput => {
+
+if (
+otherInput !==
+input
+) {
+
+otherInput.value =
+input.value;
+
+}
+
+}
+);
+
+scheduleDeliveryPostcodeLookup(
+input.value
+);
+
+}
+);
+
+
+document.addEventListener(
+"change",
+event => {
+
+const input =
+event.target.closest(
+"[data-delivery-postcode-input]"
+);
+
+if (
+!input
+) {
+
+return;
+
+}
+
+applyDeliveryPostcode(
+input.value
+);
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+const input =
+event.target.closest(
+"[data-delivery-postcode-input]"
+);
+
+if (
+!input ||
+event.key !==
+"Enter"
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+applyDeliveryPostcode(
+input.value
+);
+
+}
+);
 
 
 /* =========================================
@@ -15746,7 +15866,6 @@ PRODUCTS[
 state.size
 ];
 
-
 if (
 !product
 ) {
@@ -15755,48 +15874,34 @@ return;
 
 }
 
-
 const price =
 selectedPrice();
-
 
 const orderTotal =
 price *
 state.quantity;
 
-
 const title =
 buildTitle();
-
 
 const imageSource =
 selectedProductImage();
 
-
 const finishAlt =
-
 state.tint ===
 "clear"
-
 ?
-
 "clear"
-
 :
-
 `${state.tint} tinted`;
-
 
 productTitle.textContent =
 title;
 
-
 document.title =
 `${title} | Factory Toughened Rooflights`;
 
-
 updateProductImageTransform();
-
 
 setProductImage(
 imageSource,
@@ -15804,48 +15909,34 @@ imageSource,
 animateImage
 );
 
-
 updateSizeDropdownDisplay();
-
 
 productGlassSpec.textContent =
 getTopGlassLabel();
 
-
 glazingSpec.textContent =
-
 state.glazing ===
 "triple"
-
 ?
-
 "Triple Glazed"
-
 :
-
 "Double Glazed";
 
-
 updateEstimatedDelivery();
-
 
 internalSize.textContent =
 formatDimension(
 state.size
 );
 
-
 externalSize.textContent =
 calculateExternalSize();
-
 
 updateUnitPrice(
 price
 );
 
-
 updateVatPosition();
-
 
 updateTotalPrice(
 orderTotal,
@@ -15853,47 +15944,31 @@ state.quantity >
 1
 );
 
-
 quantityValue.textContent =
 state.quantity;
 
-
 quantityUnitLabel.textContent =
-
 state.quantity ===
 1
-
 ?
-
 "Unit"
-
 :
-
 "Units";
-
 
 addToOrderText.textContent =
 `Add ${state.quantity} To Order`;
-
 
 quantityMinus.disabled =
 state.quantity <=
 1;
 
-
 quantityMinus.style.opacity =
-
 state.quantity <=
 1
-
 ?
-
 ".36"
-
 :
-
 "1";
-
 
 document
 .querySelectorAll(
@@ -15911,7 +15986,6 @@ state.glazing
 }
 );
 
-
 document
 .querySelectorAll(
 "[data-type]"
@@ -15927,7 +16001,6 @@ state.type
 
 }
 );
-
 
 document
 .querySelectorAll(
@@ -15947,7 +16020,6 @@ state.border
 }
 );
 
-
 document
 .querySelectorAll(
 "[data-tint]"
@@ -15964,11 +16036,9 @@ state.tint
 }
 );
 
-
 updateGlazedAppearance();
 
 updateTintAppearance();
-
 
 if (
 updateUrl
@@ -15992,14 +16062,12 @@ new URLSearchParams(
 location.search
 );
 
-
 let size =
 normalizeSize(
 params.get(
 "size"
 )
 );
-
 
 if (
 !size
@@ -16012,14 +16080,12 @@ params.get(
 )
 );
 
-
 const length =
 Number(
 params.get(
 "length"
 )
 );
-
 
 if (
 Number.isFinite(
@@ -16038,7 +16104,6 @@ size =
 
 }
 
-
 const glazing =
 String(
 params.get(
@@ -16048,7 +16113,6 @@ params.get(
 ""
 )
 .toLowerCase();
-
 
 const type =
 String(
@@ -16060,14 +16124,12 @@ params.get(
 )
 .toLowerCase();
 
-
 const border =
 Number(
 params.get(
 "border"
 )
 );
-
 
 const tint =
 normalizeTint(
@@ -16080,7 +16142,6 @@ params.get(
 )
 );
 
-
 const source =
 String(
 params.get(
@@ -16090,7 +16151,6 @@ params.get(
 ""
 )
 .toLowerCase();
-
 
 const importedPriceRaw =
 String(
@@ -16102,7 +16162,6 @@ params.get(
 )
 .trim();
 
-
 const importedPriceNumber =
 Number(
 importedPriceRaw
@@ -16112,27 +16171,18 @@ importedPriceRaw
 )
 );
 
-
 const importedPrice =
-
 importedPriceRaw !==
 "" &&
-
 Number.isFinite(
 importedPriceNumber
 ) &&
-
 importedPriceNumber >
 0
-
 ?
-
 importedPriceNumber
-
 :
-
 null;
-
 
 const importedImage =
 String(
@@ -16142,7 +16192,6 @@ params.get(
 ||
 ""
 );
-
 
 if (
 size &&
@@ -16155,7 +16204,6 @@ state.size =
 size;
 
 }
-
 
 if (
 [
@@ -16171,7 +16219,6 @@ state.glazing =
 glazing;
 
 }
-
 
 if (
 [
@@ -16196,7 +16243,6 @@ state.type =
 "toughened";
 
 }
-
 
 if (
 [
@@ -16223,10 +16269,8 @@ state.border =
 
 }
 
-
 state.tint =
 tint;
-
 
 if (
 source ===
@@ -16282,11 +16326,11 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+
 closeCustomBuildDropdowns();
 
 state.glazing =
 button.dataset.glazing;
-
 
 updateUI();
 
@@ -16309,11 +16353,11 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+
 closeCustomBuildDropdowns();
 
 state.type =
 button.dataset.type;
-
 
 updateUI();
 
@@ -16336,13 +16380,13 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
+
 closeCustomBuildDropdowns();
 
 state.border =
 Number(
 button.dataset.border
 );
-
 
 updateUI();
 
@@ -16365,14 +16409,13 @@ button.addEventListener(
 () => {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 const tint =
 normalizeTint(
 button.dataset.tint
 );
-
 
 if (
 tint ===
@@ -16383,10 +16426,8 @@ return;
 
 }
 
-
 state.tint =
 tint;
-
 
 updateUI(
 {
@@ -16406,8 +16447,8 @@ quantityMinus.addEventListener(
 () => {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 if (
 state.quantity >
@@ -16415,7 +16456,6 @@ state.quantity >
 ) {
 
 state.quantity --;
-
 
 updateUI(
 {
@@ -16434,8 +16474,8 @@ quantityPlus.addEventListener(
 () => {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 if (
 state.quantity <
@@ -16443,7 +16483,6 @@ state.quantity <
 ) {
 
 state.quantity ++;
-
 
 updateUI(
 {
@@ -16476,7 +16515,6 @@ return;
 
 }
 
-
 input.addEventListener(
 "input",
 () => {
@@ -16487,21 +16525,15 @@ input.value.replace(
 ""
 );
 
-
 const numericValue =
 input.value ===
 ""
-
 ?
-
 null
-
 :
-
 Number(
 input.value
 );
-
 
 if (
 input ===
@@ -16518,7 +16550,6 @@ customState.length =
 numericValue;
 
 }
-
 
 updateCustomConfiguratorUI();
 
@@ -16538,8 +16569,8 @@ customQuantityMinus.addEventListener(
 () => {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 if (
 customState.quantity >
@@ -16547,7 +16578,6 @@ customState.quantity >
 ) {
 
 customState.quantity --;
-
 
 updateCustomConfiguratorUI();
 
@@ -16562,8 +16592,8 @@ customQuantityPlus.addEventListener(
 () => {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 if (
 customState.quantity <
@@ -16571,7 +16601,6 @@ customState.quantity <
 ) {
 
 customState.quantity ++;
-
 
 updateCustomConfiguratorUI();
 
@@ -16591,7 +16620,6 @@ event => {
 
 closeWhatsAppAction();
 
-
 if (
 sizeDropdown &&
 !sizeDropdown.contains(
@@ -16603,12 +16631,10 @@ closeSizeDropdown();
 
 }
 
-
 const clickedCustomDropdown =
 event.target.closest(
 "[data-custom-build-dropdown]"
 );
-
 
 if (
 !clickedCustomDropdown
@@ -16664,7 +16690,6 @@ addToOrderScrollTimer
 
 }
 
-
 addToOrderScrollTimer =
 setTimeout(
 () => {
@@ -16674,12 +16699,10 @@ orderSummaryItems.querySelector(
 `[data-order-summary-item-index="${index}"]`
 );
 
-
 animateElementToViewportCentre(
 target,
 560
 );
-
 
 addToOrderScrollTimer =
 null;
@@ -16706,7 +16729,6 @@ customAddToOrderScrollTimer
 
 }
 
-
 customAddToOrderScrollTimer =
 setTimeout(
 () => {
@@ -16716,12 +16738,10 @@ customOrderSummaryItems.querySelector(
 `[data-custom-order-summary-item-index="${index}"]`
 );
 
-
 animateElementToViewportCentre(
 target,
 560
 );
-
 
 customAddToOrderScrollTimer =
 null;
@@ -16734,18 +16754,17 @@ null;
 
 
 /* =========================================
-ADD STANDARD CONFIGURATION TO ORDER
+ADD STANDARD CONFIGURATION
 ========================================= */
 
 function addCurrentSelectionToOrder() {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 const unitPrice =
 selectedPrice();
-
 
 const newItem = {
 
@@ -16768,10 +16787,14 @@ quantity:
 state.quantity,
 
 unitPrice:
-unitPrice
+unitPrice,
+
+deliveryPostcode:
+state.deliveryPostcode,
+
+deliveryFee:0
 
 };
-
 
 const existingIndex =
 state.orderItems.findIndex(
@@ -16782,9 +16805,7 @@ newItem
 )
 );
 
-
 let targetIndex;
-
 
 if (
 existingIndex >=
@@ -16806,7 +16827,6 @@ newItem.quantity
 )
 );
 
-
 targetIndex =
 existingIndex;
 
@@ -16817,25 +16837,20 @@ state.orderItems.push(
 newItem
 );
 
-
 targetIndex =
 state.orderItems.length -
 1;
 
 }
 
-
 state.basketTotal =
 calculateOrderTotal();
 
-
 saveOrderToStorage();
-
 
 updateBasketTotal(
 state.basketTotal
 );
-
 
 renderOrderSummary(
 {
@@ -16845,10 +16860,8 @@ targetIndex
 }
 );
 
-
 state.quantity =
 1;
-
 
 updateUI(
 {
@@ -16856,7 +16869,6 @@ updateUrl:false,
 animateImage:false
 }
 );
-
 
 if (
 addToOrderFeedbackTimer !==
@@ -16869,10 +16881,8 @@ addToOrderFeedbackTimer
 
 }
 
-
 addToOrderText.textContent =
 "Added To Order ✓";
-
 
 addToOrderFeedbackTimer =
 setTimeout(
@@ -16881,7 +16891,6 @@ setTimeout(
 addToOrderText.textContent =
 "Add 1 To Order";
 
-
 addToOrderFeedbackTimer =
 null;
 
@@ -16889,10 +16898,19 @@ null;
 1100
 );
 
-
 scheduleStandardOrderFocus(
 targetIndex
 );
+
+if (
+state.deliveryPostcode
+) {
+
+applyDeliveryPostcode(
+state.deliveryPostcode
+);
+
+}
 
 }
 
@@ -16904,14 +16922,33 @@ addCurrentSelectionToOrder
 
 
 /* =========================================
-ADD CUSTOM CONFIGURATION TO ORDER
+ADD CUSTOM CONFIGURATION
 ========================================= */
+
+function createOrderCustomId() {
+
+return (
+"custom-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(
+36
+)
+.slice(
+2,
+8
+)
+);
+
+}
+
 
 function addCurrentCustomSelectionToOrder() {
 
 closeSizeDropdown();
-closeCustomBuildDropdowns();
 
+closeCustomBuildDropdowns();
 
 if (
 !customInputsAreValid()
@@ -16921,12 +16958,19 @@ return;
 
 }
 
-
 const unitPrice =
 selectedCustomPrice();
 
+const customId =
+createOrderCustomId();
 
 const newItem = {
+
+id:
+customId,
+
+_id:
+customId,
 
 width:
 customState.width,
@@ -16934,10 +16978,22 @@ customState.width,
 length:
 customState.length,
 
+internalWidth:
+customState.width,
+
+internalLength:
+customState.length,
+
 glazing:
 customState.glazing,
 
+glazingConfiguration:
+customState.glazing,
+
 type:
+customState.type,
+
+glazingConstruction:
 customState.type,
 
 border:
@@ -16946,14 +17002,34 @@ customState.border,
 tint:
 customState.tint,
 
+finish:
+customState.tint,
+
 quantity:
 customState.quantity,
 
+qty:
+customState.quantity,
+
 unitPrice:
-unitPrice
+unitPrice,
+
+price:
+unitPrice,
+
+source:
+"order-page-custom",
+
+isCustom:true,
+
+custom:true,
+
+deliveryPostcode:
+state.deliveryPostcode,
+
+deliveryFee:0
 
 };
-
 
 const existingIndex =
 state.customOrderItems.findIndex(
@@ -16964,9 +17040,7 @@ newItem
 )
 );
 
-
 let targetIndex;
-
 
 if (
 existingIndex >=
@@ -16988,6 +17062,12 @@ newItem.quantity
 )
 );
 
+state.customOrderItems[
+existingIndex
+].qty =
+state.customOrderItems[
+existingIndex
+].quantity;
 
 targetIndex =
 existingIndex;
@@ -16999,25 +17079,20 @@ state.customOrderItems.push(
 newItem
 );
 
-
 targetIndex =
 state.customOrderItems.length -
 1;
 
 }
 
-
 state.basketTotal =
 calculateOrderTotal();
 
-
 saveOrderToStorage();
-
 
 updateBasketTotal(
 state.basketTotal
 );
-
 
 renderCustomOrderSummary(
 {
@@ -17027,13 +17102,10 @@ targetIndex
 }
 );
 
-
 customState.quantity =
 1;
 
-
 updateCustomConfiguratorUI();
-
 
 if (
 customAddToOrderFeedbackTimer !==
@@ -17046,10 +17118,8 @@ customAddToOrderFeedbackTimer
 
 }
 
-
 customAddToOrderText.textContent =
 "Added To Order ✓";
-
 
 customAddToOrderFeedbackTimer =
 setTimeout(
@@ -17058,7 +17128,6 @@ setTimeout(
 customAddToOrderText.textContent =
 "Add 1 To Order";
 
-
 customAddToOrderFeedbackTimer =
 null;
 
@@ -17066,10 +17135,19 @@ null;
 1100
 );
 
-
 scheduleCustomOrderFocus(
 targetIndex
 );
+
+if (
+state.deliveryPostcode
+) {
+
+applyDeliveryPostcode(
+state.deliveryPostcode
+);
+
+}
 
 }
 
@@ -17078,6 +17156,391 @@ customAddToOrder.addEventListener(
 "click",
 addCurrentCustomSelectionToOrder
 );
+
+
+/* =========================================
+CHANGE 1
+HOMEPAGE CUSTOM ORDER ARRIVAL
+COMPLETES HOMEPAGE CHANGES 6 + 7
+========================================= */
+
+function readHomepageOrderFocusRequest() {
+
+const params =
+new URLSearchParams(
+location.search
+);
+
+let storedFocus =
+null;
+
+try {
+
+const stored =
+sessionStorage.getItem(
+HOMEPAGE_ORDER_FOCUS_KEY
+);
+
+if (
+stored
+) {
+
+const parsed =
+JSON.parse(
+stored
+);
+
+if (
+parsed &&
+typeof parsed ===
+"object"
+) {
+
+storedFocus =
+parsed;
+
+}
+
+}
+
+}
+catch (
+error
+) {
+
+storedFocus =
+null;
+
+}
+
+const source =
+String(
+storedFocus?.source ||
+params.get(
+"source"
+) ||
+""
+)
+.toLowerCase();
+
+const type =
+String(
+storedFocus?.type ||
+""
+)
+.toLowerCase();
+
+const focus =
+String(
+params.get(
+"focus"
+) ||
+""
+)
+.toLowerCase();
+
+const id =
+String(
+storedFocus?.id ||
+params.get(
+"customId"
+) ||
+""
+);
+
+const topRatioRaw =
+Number(
+storedFocus?.topRatio ??
+(
+Number(
+params.get(
+"top"
+)
+) /
+100
+)
+);
+
+const topRatio =
+Number.isFinite(
+topRatioRaw
+) &&
+topRatioRaw >
+0 &&
+topRatioRaw <
+1
+?
+topRatioRaw
+:
+.40;
+
+return {
+
+source:
+source,
+
+type:
+type,
+
+focus:
+focus,
+
+id:
+id,
+
+center:
+storedFocus?.center !==
+false,
+
+animate:
+storedFocus?.animate !==
+false,
+
+topRatio:
+topRatio
+
+};
+
+}
+
+
+function consumeHomepageOrderFocusRequest() {
+
+try {
+
+sessionStorage.removeItem(
+HOMEPAGE_ORDER_FOCUS_KEY
+);
+
+}
+catch (
+error
+) {
+/* No action required. */
+}
+
+const currentUrl =
+new URL(
+window.location.href
+);
+
+currentUrl.searchParams.delete(
+"focus"
+);
+
+currentUrl.searchParams.delete(
+"customId"
+);
+
+currentUrl.searchParams.delete(
+"top"
+);
+
+history.replaceState(
+{},
+"",
+currentUrl.pathname +
+(
+currentUrl.searchParams.toString()
+?
+"?" +
+currentUrl.searchParams.toString()
+:
+""
+)
++
+currentUrl.hash
+);
+
+}
+
+
+function findHomepageCustomOrderIndex(
+customItemId
+) {
+
+if (
+!customItemId
+) {
+
+return -1;
+
+}
+
+return state.customOrderItems.findIndex(
+item => {
+
+const itemId =
+String(
+item?.id ??
+item?._id ??
+""
+);
+
+return itemId ===
+String(
+customItemId
+);
+
+}
+);
+
+}
+
+
+function playHomepageCustomAddedFeedback() {
+
+if (
+!customAddToOrderText
+) {
+
+return;
+
+}
+
+if (
+customAddToOrderFeedbackTimer !==
+null
+) {
+
+clearTimeout(
+customAddToOrderFeedbackTimer
+);
+
+}
+
+customAddToOrderText.textContent =
+"Added To Order ✓";
+
+customAddToOrderFeedbackTimer =
+setTimeout(
+() => {
+
+customAddToOrderText.textContent =
+"Add 1 To Order";
+
+customAddToOrderFeedbackTimer =
+null;
+
+},
+1100
+);
+
+}
+
+
+function handleHomepageArrivalFocus() {
+
+const request =
+readHomepageOrderFocusRequest();
+
+const isCustomBuilderRequest =
+request.type ===
+"custom-builder" ||
+request.focus ===
+"custom-builder";
+
+if (
+isCustomBuilderRequest
+) {
+
+consumeHomepageOrderFocusRequest();
+
+requestAnimationFrame(
+() => {
+
+requestAnimationFrame(
+() => {
+
+animateElementToViewportRatio(
+customRooflightBuilder,
+request.topRatio,
+560
+);
+
+}
+);
+
+}
+);
+
+return;
+
+}
+
+const isHomepageCustomOrder =
+request.source ===
+"homepage-custom" ||
+request.type ===
+"custom" ||
+request.focus ===
+"custom-order-summary";
+
+if (
+!isHomepageCustomOrder
+) {
+
+return;
+
+}
+
+const targetIndex =
+findHomepageCustomOrderIndex(
+request.id
+);
+
+if (
+targetIndex <
+0
+) {
+
+return;
+
+}
+
+consumeHomepageOrderFocusRequest();
+
+renderCustomOrderSummary(
+{
+animate:
+request.animate,
+
+focusOrderIndex:
+targetIndex
+}
+);
+
+playHomepageCustomAddedFeedback();
+
+requestAnimationFrame(
+() => {
+
+requestAnimationFrame(
+() => {
+
+animateElementToViewportRatio(
+customRooflightBuilder,
+request.topRatio,
+560
+);
+
+}
+);
+
+}
+);
+
+if (
+request.center
+) {
+
+scheduleCustomOrderFocus(
+targetIndex
+);
+
+}
+
+}
 
 
 /* =========================================
@@ -17100,7 +17563,6 @@ deliveryRefreshTimer
 );
 
 }
-
 
 deliveryRefreshTimer =
 setInterval(
@@ -17142,7 +17604,7 @@ updateEstimatedDelivery();
 
 
 /* =========================================
-SYNC SAVED ORDER IF PAGE RETURNS FROM CACHE
+SYNC SAVED ORDER
 ========================================= */
 
 window.addEventListener(
@@ -17157,9 +17619,7 @@ return;
 
 }
 
-
 loadOrderFromStorage();
-
 
 renderOrderSummary(
 {
@@ -17167,13 +17627,11 @@ animate:false
 }
 );
 
-
 renderCustomOrderSummary(
 {
 animate:false
 }
 );
-
 
 updateBasketTotal(
 state.basketTotal,
@@ -17185,10 +17643,6 @@ animate:false
 }
 );
 
-
-/* =========================================
-SYNC ORDER BETWEEN OPEN TABS
-========================================= */
 
 window.addEventListener(
 "storage",
@@ -17203,9 +17657,7 @@ return;
 
 }
 
-
 loadOrderFromStorage();
-
 
 renderOrderSummary(
 {
@@ -17213,13 +17665,11 @@ animate:false
 }
 );
 
-
 renderCustomOrderSummary(
 {
 animate:false
 }
 );
-
 
 updateBasketTotal(
 state.basketTotal,
@@ -17233,13 +17683,13 @@ animate:false
 
 
 /* =========================================
-HOMEPAGE-STYLE SCROLL REVEAL
+SCROLL REVEALS
 ========================================= */
 
 const revealElements =
 Array.from(
 document.querySelectorAll(
-".reveal, .direct-image-reveal"
+".reveal"
 )
 );
 
@@ -17277,11 +17727,9 @@ return;
 
 }
 
-
 entry.target.classList.add(
 "is-visible"
 );
-
 
 revealObserver.unobserve(
 entry.target
@@ -17297,7 +17745,6 @@ rootMargin:"0px 0px -7% 0px"
 }
 );
 
-
 revealElements.forEach(
 element => {
 
@@ -17312,715 +17759,14 @@ element
 
 
 /* =========================================
-PROFESSIONAL FITTING MANUAL SLIDESHOW
-========================================= */
-
-const fittingSlideshow =
-document.getElementById(
-"fittingSlideshow"
-);
-
-
-const fittingSlideshowViewport =
-document.getElementById(
-"fittingSlideshowViewport"
-);
-
-
-const fittingSlideshowProgress =
-document.getElementById(
-"fittingSlideshowProgress"
-);
-
-
-const fittingSlides =
-fittingSlideshow
-?
-Array.from(
-fittingSlideshow.querySelectorAll(
-".fitting-slide"
-)
-)
-:
-[];
-
-
-let activeFittingSlideIndex =
-0;
-
-
-let fittingTouchStartX =
-0;
-
-let fittingTouchStartY =
-0;
-
-let fittingTouchEndX =
-0;
-
-let fittingTouchEndY =
-0;
-
-
-let fittingMouseStartX =
-0;
-
-let fittingMouseStartY =
-0;
-
-let fittingMouseEndX =
-0;
-
-let fittingMouseEndY =
-0;
-
-let fittingMouseDragging =
-false;
-
-
-const FITTING_SWIPE_THRESHOLD =
-45;
-
-
-/* =========================================
-FITTING SLIDESHOW INDEX HELPER
-========================================= */
-
-function normalizeFittingSlideIndex(
-index
-) {
-
-if (
-fittingSlides.length ===
-0
-) {
-
-return 0;
-
-}
-
-
-return (
-index +
-fittingSlides.length
-) %
-fittingSlides.length;
-
-}
-
-
-/* =========================================
-FITTING PROGRESS BAR
-========================================= */
-
-function updateFittingSlideshowProgress() {
-
-if (
-!fittingSlideshowProgress ||
-fittingSlides.length ===
-0
-) {
-
-return;
-
-}
-
-
-const progress =
-(
-(
-activeFittingSlideIndex +
-1
-) /
-fittingSlides.length
-) *
-100;
-
-
-fittingSlideshowProgress.style.width =
-`${progress}%`;
-
-}
-
-
-/* =========================================
-DISPLAY FITTING SLIDE
-========================================= */
-
-function showFittingSlide(
-newIndex,
-direction = "next"
-) {
-
-if (
-fittingSlides.length ===
-0
-) {
-
-return;
-
-}
-
-
-const normalizedIndex =
-normalizeFittingSlideIndex(
-newIndex
-);
-
-
-if (
-normalizedIndex ===
-activeFittingSlideIndex
-) {
-
-updateFittingSlideshowProgress();
-
-return;
-
-}
-
-
-const oldIndex =
-activeFittingSlideIndex;
-
-
-const oldSlide =
-fittingSlides[
-oldIndex
-];
-
-
-const newSlide =
-fittingSlides[
-normalizedIndex
-];
-
-
-fittingSlides.forEach(
-slide => {
-
-slide.classList.remove(
-"active",
-"previous"
-);
-
-
-slide.setAttribute(
-"aria-hidden",
-"true"
-);
-
-}
-);
-
-
-if (
-direction ===
-"previous"
-) {
-
-newSlide.classList.add(
-"previous"
-);
-
-
-void newSlide.offsetWidth;
-
-
-window.requestAnimationFrame(
-() => {
-
-newSlide.classList.remove(
-"previous"
-);
-
-
-newSlide.classList.add(
-"active"
-);
-
-
-newSlide.setAttribute(
-"aria-hidden",
-"false"
-);
-
-}
-);
-
-}
-else {
-
-if (
-oldSlide
-) {
-
-oldSlide.classList.add(
-"previous"
-);
-
-}
-
-
-newSlide.classList.add(
-"active"
-);
-
-
-newSlide.setAttribute(
-"aria-hidden",
-"false"
-);
-
-}
-
-
-activeFittingSlideIndex =
-normalizedIndex;
-
-
-updateFittingSlideshowProgress();
-
-}
-
-
-/* =========================================
-FITTING NEXT / PREVIOUS
-========================================= */
-
-function showNextFittingSlide() {
-
-showFittingSlide(
-activeFittingSlideIndex +
-1,
-"next"
-);
-
-}
-
-
-function showPreviousFittingSlide() {
-
-showFittingSlide(
-activeFittingSlideIndex -
-1,
-"previous"
-);
-
-}
-
-
-/* =========================================
-SWIPE DIRECTION CHECK
-========================================= */
-
-function processFittingSwipe(
-startX,
-startY,
-endX,
-endY
-) {
-
-const horizontalDistance =
-endX -
-startX;
-
-
-const verticalDistance =
-endY -
-startY;
-
-
-const absoluteHorizontalDistance =
-Math.abs(
-horizontalDistance
-);
-
-
-const absoluteVerticalDistance =
-Math.abs(
-verticalDistance
-);
-
-
-if (
-absoluteHorizontalDistance <
-FITTING_SWIPE_THRESHOLD
-) {
-
-return;
-
-}
-
-
-if (
-absoluteHorizontalDistance <=
-absoluteVerticalDistance
-) {
-
-return;
-
-}
-
-
-if (
-horizontalDistance <
-0
-) {
-
-showNextFittingSlide();
-
-}
-else {
-
-showPreviousFittingSlide();
-
-}
-
-}
-
-
-/* =========================================
-TOUCH / MOUSE FITTING SLIDESHOW
-========================================= */
-
-if (
-fittingSlideshowViewport &&
-fittingSlides.length >
-1
-) {
-
-fittingSlideshowViewport.addEventListener(
-"touchstart",
-event => {
-
-if (
-!event.touches ||
-event.touches.length !==
-1
-) {
-
-return;
-
-}
-
-
-const touch =
-event.touches[0];
-
-
-fittingTouchStartX =
-touch.clientX;
-
-
-fittingTouchStartY =
-touch.clientY;
-
-
-fittingTouchEndX =
-touch.clientX;
-
-
-fittingTouchEndY =
-touch.clientY;
-
-},
-{
-passive:true
-}
-);
-
-
-fittingSlideshowViewport.addEventListener(
-"touchmove",
-event => {
-
-if (
-!event.touches ||
-event.touches.length !==
-1
-) {
-
-return;
-
-}
-
-
-const touch =
-event.touches[0];
-
-
-fittingTouchEndX =
-touch.clientX;
-
-
-fittingTouchEndY =
-touch.clientY;
-
-},
-{
-passive:true
-}
-);
-
-
-fittingSlideshowViewport.addEventListener(
-"touchend",
-event => {
-
-if (
-event.changedTouches &&
-event.changedTouches.length >
-0
-) {
-
-const touch =
-event.changedTouches[0];
-
-
-fittingTouchEndX =
-touch.clientX;
-
-
-fittingTouchEndY =
-touch.clientY;
-
-}
-
-
-processFittingSwipe(
-fittingTouchStartX,
-fittingTouchStartY,
-fittingTouchEndX,
-fittingTouchEndY
-);
-
-},
-{
-passive:true
-}
-);
-
-
-fittingSlideshowViewport.addEventListener(
-"mousedown",
-event => {
-
-if (
-event.button !==
-0
-) {
-
-return;
-
-}
-
-
-fittingMouseDragging =
-true;
-
-
-fittingMouseStartX =
-event.clientX;
-
-
-fittingMouseStartY =
-event.clientY;
-
-
-fittingMouseEndX =
-event.clientX;
-
-
-fittingMouseEndY =
-event.clientY;
-
-}
-);
-
-
-window.addEventListener(
-"mousemove",
-event => {
-
-if (
-!fittingMouseDragging
-) {
-
-return;
-
-}
-
-
-fittingMouseEndX =
-event.clientX;
-
-
-fittingMouseEndY =
-event.clientY;
-
-}
-);
-
-
-window.addEventListener(
-"mouseup",
-event => {
-
-if (
-!fittingMouseDragging
-) {
-
-return;
-
-}
-
-
-fittingMouseDragging =
-false;
-
-
-fittingMouseEndX =
-event.clientX;
-
-
-fittingMouseEndY =
-event.clientY;
-
-
-processFittingSwipe(
-fittingMouseStartX,
-fittingMouseStartY,
-fittingMouseEndX,
-fittingMouseEndY
-);
-
-}
-);
-
-
-fittingSlideshowViewport.addEventListener(
-"dragstart",
-event => {
-
-event.preventDefault();
-
-}
-);
-
-}
-
-
-/* =========================================
-FITTING KEYBOARD NAVIGATION
-========================================= */
-
-if (
-fittingSlideshow
-) {
-
-fittingSlideshow.setAttribute(
-"tabindex",
-"0"
-);
-
-
-fittingSlideshow.addEventListener(
-"keydown",
-event => {
-
-if (
-event.key ===
-"ArrowLeft"
-) {
-
-event.preventDefault();
-
-
-showPreviousFittingSlide();
-
-}
-
-
-if (
-event.key ===
-"ArrowRight"
-) {
-
-event.preventDefault();
-
-
-showNextFittingSlide();
-
-}
-
-}
-);
-
-}
-
-
-/* =========================================
-INITIAL FITTING SLIDESHOW STATE
-========================================= */
-
-if (
-fittingSlides.length >
-0
-) {
-
-fittingSlides.forEach(
-(
-slide,
-index
-) => {
-
-const isActive =
-index ===
-activeFittingSlideIndex;
-
-
-slide.classList.toggle(
-"active",
-isActive
-);
-
-
-slide.classList.remove(
-"previous"
-);
-
-
-slide.setAttribute(
-"aria-hidden",
-isActive
-?
-"false"
-:
-"true"
-);
-
-}
-);
-
-
-updateFittingSlideshowProgress();
-
-}
-
-
-/* =========================================
 INITIALISE
 ========================================= */
 
 populateSizes();
 
-
 loadStateFromQuery();
 
-
 loadOrderFromStorage();
-
 
 updateUI(
 {
@@ -18029,9 +17775,7 @@ animateImage:false
 }
 );
 
-
 updateCustomConfiguratorUI();
-
 
 renderOrderSummary(
 {
@@ -18039,13 +17783,11 @@ animate:false
 }
 );
 
-
 renderCustomOrderSummary(
 {
 animate:false
 }
 );
-
 
 updateBasketTotal(
 state.basketTotal,
@@ -18054,8 +17796,15 @@ animate:false
 }
 );
 
-
 startDeliveryClock();
+
+
+/* =========================================
+CHANGE 1
+RUN HOMEPAGE ARRIVAL AFTER RESTORING ORDER
+========================================= */
+
+handleHomepageArrivalFocus();
 
 
 </script>
