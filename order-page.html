@@ -2248,16 +2248,14 @@ font-weight:800;
 
 
 /* =========================================
-ORDER ITEM LINE TOTAL / CONTROLS
+ORDER ITEM CONTROLS
 ========================================= */
 
 .order-summary-line-section {
 display:grid;
-grid-template-columns:
-minmax(0,1fr)
-minmax(190px,.82fr)
-auto;
-gap:18px;
+grid-template-columns:minmax(0,1fr) auto;
+column-gap:22px;
+row-gap:20px;
 align-items:center;
 margin-top:clamp(18px,2vw,24px);
 padding-top:clamp(15px,1.7vw,20px);
@@ -2390,36 +2388,47 @@ transform:scale(.97);
 
 
 /* =========================================
-CHANGE 5
-POSTCODE DELIVERY CONTROL
+DELIVERY POSTCODE / DELIVERY PRICE
 ========================================= */
 
 .order-summary-delivery {
-min-width:0;
+grid-column:1 / -1;
 display:grid;
-grid-template-columns:minmax(0,1fr);
-gap:5px;
+grid-template-columns:
+minmax(235px,.82fr)
+minmax(0,1.18fr);
+gap:clamp(18px,2.5vw,34px);
+align-items:end;
+min-width:0;
+}
+
+.order-summary-delivery-entry {
+min-width:0;
 }
 
 .order-summary-delivery-label {
-color:rgba(247,247,243,.38);
+display:block;
+margin:0 0 8px;
+color:rgba(247,247,243,.42);
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:7px;
+font-size:8px;
 font-weight:800;
 line-height:1;
-letter-spacing:1px;
+letter-spacing:1.1px;
 text-transform:uppercase;
 }
 
 .order-summary-postcode {
+display:block;
 width:100%;
-height:38px;
-padding:0 11px;
-border:1px solid rgba(255,255,255,.16);
-border-radius:11px;
+height:52px;
+padding:0 15px;
+border:1px solid rgba(255,255,255,.17);
+border-radius:14px;
+outline:0;
 background:
 linear-gradient(
 180deg,
@@ -2431,10 +2440,10 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:10px;
+font-size:13px;
 font-weight:750;
 line-height:1;
-letter-spacing:.5px;
+letter-spacing:.65px;
 text-transform:uppercase;
 transition:
 border-color .2s ease,
@@ -2443,51 +2452,159 @@ box-shadow .2s ease;
 }
 
 .order-summary-postcode::placeholder {
-color:rgba(247,247,243,.30);
-text-transform:none;
+color:rgba(247,247,243,.38);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 font-weight:550;
-letter-spacing:.1px;
+letter-spacing:.05px;
+text-transform:none;
+opacity:1;
 }
 
 .order-summary-postcode:hover,
 .order-summary-postcode:focus {
-outline:none;
 border-color:rgba(232,120,23,.52);
 background:#0e1010;
-box-shadow:0 0 0 1px rgba(232,120,23,.035);
+box-shadow:
+0 0 0 1px rgba(232,120,23,.035);
 }
 
 .order-summary-postcode.is-invalid {
-border-color:rgba(152,80,71,.78);
+border-color:rgba(152,80,71,.82);
+box-shadow:
+0 0 0 1px rgba(152,80,71,.07);
 }
 
 .order-summary-delivery-result {
-min-height:12px;
-color:rgba(247,247,243,.42);
+min-width:0;
+min-height:72px;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+opacity:0;
+visibility:hidden;
+transform:translateY(8px);
+}
+
+.order-summary-delivery-result.is-resolved {
+opacity:1;
+visibility:visible;
+transform:translateY(0);
+}
+
+.order-summary-delivery-price-label {
+margin-bottom:8px;
+color:rgba(242,138,40,.78);
 font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:7.5px;
-font-weight:750;
-line-height:1.2;
-letter-spacing:.15px;
+font-size:9px;
+font-weight:800;
+line-height:1;
+letter-spacing:1.45px;
+text-transform:uppercase;
 }
 
-.order-summary-delivery-result.is-checking {
-color:rgba(247,247,243,.54);
+.order-summary-delivery-price {
+display:flex;
+align-items:baseline;
+justify-content:flex-start;
+max-width:100%;
+white-space:nowrap;
+color:var(--orange-bright);
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(42.75px,4.655vw,63.65px);
+font-weight:850;
+line-height:.78;
+letter-spacing:-2.6px;
 }
 
-.order-summary-delivery-result.is-free {
-color:var(--workshop-green-bright);
+.order-summary-delivery-price-major {
+display:inline-flex;
+align-items:baseline;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 }
 
-.order-summary-delivery-result.is-fee {
-color:var(--delivery-red-bright);
+.order-summary-delivery-pound,
+.order-summary-delivery-whole,
+.order-summary-delivery-dot {
+display:inline;
+font-size:1em;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
 }
 
-.order-summary-delivery-result.is-error {
-color:var(--delivery-red-bright);
+.order-summary-delivery-pence {
+display:inline-block;
+margin-left:2px;
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+sans-serif;
+font-size:.35em;
+font-weight:inherit;
+line-height:1;
+letter-spacing:-.1px;
+}
+
+.order-summary-delivery-price.is-free {
+font-size:clamp(31px,3.5vw,48px);
+letter-spacing:-1.7px;
+}
+
+.order-summary-delivery-result.delivery-price-enter {
+animation:
+deliveryPriceSlowReveal
+1.5s
+linear
+both;
+}
+
+@keyframes deliveryPriceSlowReveal {
+
+0% {
+opacity:0;
+transform:translateY(12px);
+}
+
+42% {
+opacity:.24;
+transform:translateY(9px);
+}
+
+70% {
+opacity:.52;
+transform:translateY(6px);
+}
+
+86% {
+opacity:.78;
+transform:translateY(3px);
+}
+
+94% {
+opacity:.91;
+transform:translateY(1px);
+}
+
+100% {
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 
@@ -2565,6 +2682,58 @@ rgba(14,91,63,.06) 100%
 
 .order-summary-total-block {
 min-width:0;
+opacity:1;
+transform:translateY(0);
+transition:
+opacity .18s ease,
+transform .18s ease;
+}
+
+.order-summary-total-block.delivery-total-hidden {
+opacity:0;
+transform:translateY(5px);
+}
+
+.order-summary-total-block.delivery-total-enter {
+animation:
+deliveryOrderTotalSlowReveal
+1s
+linear
+both;
+}
+
+@keyframes deliveryOrderTotalSlowReveal {
+
+0% {
+opacity:0;
+transform:translateY(9px);
+}
+
+45% {
+opacity:.28;
+transform:translateY(6px);
+}
+
+72% {
+opacity:.60;
+transform:translateY(4px);
+}
+
+88% {
+opacity:.84;
+transform:translateY(2px);
+}
+
+96% {
+opacity:.94;
+transform:translateY(1px);
+}
+
+100% {
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 .order-summary-total-label {
@@ -3587,8 +3756,8 @@ margin-top:2px;
 .footer-right-glaze-logo {
 display:block;
 width:auto;
-height:28px;
-max-width:110px;
+height:25.2px;
+max-width:99px;
 object-fit:contain;
 }
 
@@ -3695,7 +3864,7 @@ transform:translateX(2px);
 outline:none;
 }
 
-footer .footer-quick-links + .footer-company-details {
+footer .footer-quick-links + .footer-payment-logo-strip {
 margin-top:34px;
 }
 
@@ -3870,11 +4039,6 @@ grid-template-columns:minmax(130px,.7fr) minmax(190px,1.3fr);
 
 .order-summary-spec-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.order-summary-line-section {
-grid-template-columns:minmax(0,1fr) minmax(165px,.8fr) auto;
-gap:13px;
 }
 
 }
@@ -4261,7 +4425,8 @@ font-size:7.7px;
 
 .order-summary-line-section {
 grid-template-columns:minmax(0,1fr) auto;
-gap:10px;
+column-gap:10px;
+row-gap:15px;
 margin-top:14px;
 padding-top:12px;
 }
@@ -4293,27 +4458,44 @@ letter-spacing:.65px;
 }
 
 .order-summary-delivery {
-grid-column:1 / -1;
 grid-template-columns:minmax(0,145px) minmax(0,1fr);
-gap:8px;
-align-items:center;
-margin-top:2px;
+gap:13px;
+align-items:end;
+margin-top:1px;
 }
 
 .order-summary-delivery-label {
-display:none;
+margin-bottom:6px;
+font-size:5.8px;
+letter-spacing:.75px;
 }
 
 .order-summary-postcode {
-height:32px;
+height:39px;
 padding:0 9px;
-border-radius:9px;
+border-radius:10px;
 font-size:8px;
+letter-spacing:.35px;
 }
 
 .order-summary-delivery-result {
-min-height:0;
+min-height:51px;
+}
+
+.order-summary-delivery-price-label {
+margin-bottom:6px;
 font-size:6.5px;
+letter-spacing:1px;
+}
+
+.order-summary-delivery-price {
+font-size:clamp(29.45px,8.455vw,37.05px);
+letter-spacing:-1.6px;
+}
+
+.order-summary-delivery-price.is-free {
+font-size:clamp(20px,5.8vw,27px);
+letter-spacing:-.9px;
 }
 
 .order-summary-line-total {
@@ -4679,8 +4861,8 @@ gap:9px;
 }
 
 .footer-right-glaze-logo {
-height:24px;
-max-width:95px;
+height:21.6px;
+max-width:85.5px;
 transform:translateX(-2.5px);
 }
 
@@ -4717,7 +4899,7 @@ line-height:1.35;
 letter-spacing:.12px;
 }
 
-footer .footer-quick-links + .footer-company-details {
+footer .footer-quick-links + .footer-payment-logo-strip {
 margin-top:36px;
 }
 
@@ -4728,7 +4910,6 @@ font-size:20px;
 .footer-payment-logo-strip {
 gap:10px;
 max-width:350px;
-margin-top:16px;
 margin-bottom:31px;
 }
 
@@ -4860,6 +5041,19 @@ padding-left:7px;
 padding-right:7px;
 }
 
+.order-summary-delivery {
+grid-template-columns:minmax(0,125px) minmax(0,1fr);
+gap:10px;
+}
+
+.order-summary-delivery-price {
+font-size:clamp(27.55px,7.98vw,34.2px);
+}
+
+.order-summary-delivery-price.is-free {
+font-size:clamp(18px,5.25vw,24px);
+}
+
 .order-summary-line-total {
 min-width:84px;
 }
@@ -4881,10 +5075,6 @@ font-size:7px;
 letter-spacing:.5px;
 padding-left:8px;
 padding-right:26px;
-}
-
-.order-summary-delivery {
-grid-template-columns:minmax(0,125px) minmax(0,1fr);
 }
 
 .order-custom-preintro {
@@ -4968,7 +5158,9 @@ scroll-behavior:auto;
 .basket-arrow,
 .estimated-delivery-date.delivery-pop,
 .order-final-summary-section.summary-enter,
-.order-summary-item.summary-item-enter {
+.order-summary-item.summary-item-enter,
+.order-summary-delivery-result.delivery-price-enter,
+.order-summary-total-block.delivery-total-enter {
 animation:none !important;
 }
 
@@ -4995,6 +5187,19 @@ transform:none !important;
 
 .total-price-block.is-visible {
 opacity:1;
+}
+
+.order-summary-total-block,
+.order-summary-total-block.delivery-total-hidden {
+transition:none !important;
+opacity:1 !important;
+transform:none !important;
+}
+
+.order-summary-delivery-result.is-resolved {
+opacity:1 !important;
+visibility:visible !important;
+transform:none !important;
 }
 
 .size-dropdown-panel,
@@ -6580,7 +6785,8 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div class="quantity-display"
+<div
+class="quantity-display"
 aria-live="polite"
 >
 
@@ -6717,7 +6923,6 @@ aria-hidden="true"
 
 
 <!-- =========================================
-CHANGE 4
 EXPANDABLE ORDER INFORMATION
 ========================================= -->
 
@@ -6790,7 +6995,6 @@ Ts &amp; Cs
 
 
 <!-- =========================================
-CHANGE 3
 CURRENT HOMEPAGE FOOTER
 ========================================= -->
 
@@ -6870,6 +7074,58 @@ Terms of Use
 </div>
 
 
+<!-- PAYMENT ROW MOVED ABOVE COMPANY DETAILS -->
+
+<div
+class="footer-payment-logo-strip"
+aria-label="Accepted payment methods"
+>
+
+<span class="footer-payment-logo-item visa">
+<img
+src="images/visa.png"
+alt="Visa"
+>
+</span>
+
+<span class="footer-payment-logo-item mastercard">
+<img
+src="images/mastercard.png"
+alt="Mastercard"
+>
+</span>
+
+<span class="footer-payment-logo-item amex">
+<img
+src="images/amex.png"
+alt="American Express"
+>
+</span>
+
+<span class="footer-payment-logo-item paypal">
+<img
+src="images/paypal.png"
+alt="PayPal"
+>
+</span>
+
+<span class="footer-payment-logo-item apple-pay">
+<img
+src="images/apple-pay.png"
+alt="Apple Pay"
+>
+</span>
+
+<span class="footer-payment-logo-item google-pay">
+<img
+src="images/google-pay.png"
+alt="Google Pay"
+>
+</span>
+
+</div>
+
+
 <div class="footer-company-details">
 
 <p class="footer-company-intro">
@@ -6927,56 +7183,6 @@ sales@factorytoughenedrooflights.co.uk
 </a>
 
 </div>
-
-</div>
-
-
-<div
-class="footer-payment-logo-strip"
-aria-label="Accepted payment methods"
->
-
-<span class="footer-payment-logo-item visa">
-<img
-src="images/visa.png"
-alt="Visa"
->
-</span>
-
-<span class="footer-payment-logo-item mastercard">
-<img
-src="images/mastercard.png"
-alt="Mastercard"
->
-</span>
-
-<span class="footer-payment-logo-item amex">
-<img
-src="images/amex.png"
-alt="American Express"
->
-</span>
-
-<span class="footer-payment-logo-item paypal">
-<img
-src="images/paypal.png"
-alt="PayPal"
->
-</span>
-
-<span class="footer-payment-logo-item apple-pay">
-<img
-src="images/apple-pay.png"
-alt="Apple Pay"
->
-</span>
-
-<span class="footer-payment-logo-item google-pay">
-<img
-src="images/google-pay.png"
-alt="Google Pay"
->
-</span>
 
 </div>
 
@@ -7950,7 +8156,11 @@ customOrderItems:[],
 
 homepageImport:null,
 
-deliveryPostcode:""
+deliveryPostcode:"",
+
+deliveryFee:null,
+
+deliveryResolved:false
 
 };
 
@@ -8326,6 +8536,15 @@ null;
 
 let hasAnimatedEstimatedDelivery =
 false;
+
+let deliveryAnimationToken =
+0;
+
+let deliveryResultTimer =
+null;
+
+let deliveryTotalTimer =
+null;
 
 
 /* =========================================
@@ -10111,11 +10330,17 @@ true;
 
 
 /* =========================================
-CHANGE 5
 POSTCODE DELIVERY CALCULATOR
 
-Replace these example bands with your final
-delivery pricing once confirmed.
+TEMPORARY STANDARD DELIVERY BANDS:
+0–19 miles FREE
+20–39 miles £15
+40–59 miles £35
+60–80 miles £45
+81+ miles £70
+
+EXTRA LARGE / OVERSIZED ITEMS ARE KEPT
+SEPARATE FROM THESE PLACEHOLDER BANDS.
 ========================================= */
 
 const DELIVERY_ORIGIN_POSTCODE =
@@ -10124,41 +10349,6 @@ const DELIVERY_ORIGIN_POSTCODE =
 
 const ROAD_DISTANCE_ALLOWANCE =
 1.20;
-
-
-const DELIVERY_PRICE_BANDS = [
-
-{
-maxMiles:30,
-price:19.99
-},
-
-{
-maxMiles:60,
-price:39.99
-},
-
-{
-maxMiles:100,
-price:59.99
-},
-
-{
-maxMiles:150,
-price:79.99
-},
-
-{
-maxMiles:200,
-price:99.99
-},
-
-{
-maxMiles:Infinity,
-price:129.99
-}
-
-];
 
 
 let deliveryOriginPromise =
@@ -10237,7 +10427,7 @@ cleaned.length <
 ) {
 
 throw new Error(
-"Enter a valid postcode"
+"Invalid postcode"
 );
 
 }
@@ -10361,37 +10551,226 @@ c;
 }
 
 
+/* =========================================
+TEMPORARY STANDARD DELIVERY BANDS
+========================================= */
+
 function getDeliveryPriceForMiles(
 miles
 ) {
 
 const safeMiles =
+Math.max(
+0,
 Number(
 miles
+) || 0
 );
 
-for (
-const band
-of DELIVERY_PRICE_BANDS
-) {
-
 if (
-safeMiles <=
-band.maxMiles
+safeMiles <
+20
 ) {
-
-return Number(
-band.price
-) || 0;
-
-}
-
-}
 
 return 0;
 
 }
 
+if (
+safeMiles <
+40
+) {
+
+return 15;
+
+}
+
+if (
+safeMiles <
+60
+) {
+
+return 35;
+
+}
+
+if (
+safeMiles <=
+80
+) {
+
+return 45;
+
+}
+
+return 70;
+
+}
+
+
+/* =========================================
+EXTRA LARGE DELIVERY PROTECTION
+========================================= */
+
+function isExtraLargeOrderItem(
+item
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return false;
+
+}
+
+if (
+item.isExtraLarge ===
+true ||
+item.extraLarge ===
+true ||
+item.isOversized ===
+true ||
+item.oversized ===
+true
+) {
+
+return true;
+
+}
+
+const category =
+String(
+item.deliveryCategory ??
+item.sizeCategory ??
+item.category ??
+item.productCategory ??
+""
+)
+.trim()
+.toLowerCase();
+
+return (
+category.includes(
+"extra large"
+) ||
+category.includes(
+"extra-large"
+) ||
+category.includes(
+"oversized"
+)
+);
+
+}
+
+
+function getExplicitExtraLargeDeliveryFee(
+item
+) {
+
+if (
+!isExtraLargeOrderItem(
+item
+)
+) {
+
+return null;
+
+}
+
+const candidates = [
+
+item.extraLargeDeliveryFee,
+item.oversizedDeliveryFee,
+item.deliveryFee
+
+];
+
+for (
+const candidate
+of candidates
+) {
+
+const numeric =
+Number(
+candidate
+);
+
+if (
+Number.isFinite(
+numeric
+) &&
+numeric >=
+0
+) {
+
+return numeric;
+
+}
+
+}
+
+return null;
+
+}
+
+
+function getExistingExtraLargeDeliveryFee() {
+
+const allItems = [
+
+...state.orderItems,
+...state.customOrderItems
+
+];
+
+for (
+const item
+of allItems
+) {
+
+const fee =
+getExplicitExtraLargeDeliveryFee(
+item
+);
+
+if (
+fee !==
+null
+) {
+
+return fee;
+
+}
+
+}
+
+return null;
+
+}
+
+
+function orderContainsExtraLargeItem() {
+
+return [
+
+...state.orderItems,
+...state.customOrderItems
+
+]
+.some(
+isExtraLargeOrderItem
+);
+
+}
+
+
+/* =========================================
+POSTCODE DISTANCE
+========================================= */
 
 async function getDeliveryOrigin() {
 
@@ -10461,110 +10840,23 @@ adjustedMiles
 }
 
 
-function getDeliveryResultText(
-item
-) {
+/* =========================================
+CURRENT DELIVERY FEE
+========================================= */
 
-const postcode =
-String(
-item?.deliveryPostcode ||
-state.deliveryPostcode ||
-""
-).trim();
+function getCurrentDeliveryFee() {
 
 if (
-!postcode
+!state.deliveryResolved
 ) {
 
-return "Enter postcode";
+return 0;
 
 }
 
 const fee =
 Number(
-item?.deliveryFee
-);
-
-if (
-!Number.isFinite(
-fee
-)
-) {
-
-return "Enter postcode";
-
-}
-
-if (
-fee <=
-0
-) {
-
-return "Free Delivery";
-
-}
-
-return (
-"Delivery Fee " +
-formatMoney(
-fee
-)
-);
-
-}
-
-
-function getDeliveryResultClass(
-item
-) {
-
-const postcode =
-String(
-item?.deliveryPostcode ||
-state.deliveryPostcode ||
-""
-).trim();
-
-if (
-!postcode
-) {
-
-return "";
-
-}
-
-const fee =
-Number(
-item?.deliveryFee
-);
-
-if (
-!Number.isFinite(
-fee
-)
-) {
-
-return "";
-
-}
-
-return fee <=
-0
-?
-"is-free"
-:
-"is-fee";
-
-}
-
-
-function getItemDeliveryFee(
-item
-) {
-
-const fee =
-Number(
-item?.deliveryFee
+state.deliveryFee
 );
 
 return Number.isFinite(
@@ -10580,6 +10872,47 @@ fee
 }
 
 
+function resolveApplicableDeliveryFee(
+standardDeliveryFee
+) {
+
+if (
+!orderContainsExtraLargeItem()
+) {
+
+return Number(
+standardDeliveryFee
+) || 0;
+
+}
+
+const existingExtraLargeFee =
+getExistingExtraLargeDeliveryFee();
+
+if (
+existingExtraLargeFee !==
+null
+) {
+
+return existingExtraLargeFee;
+
+}
+
+/*
+No standard postcode band is applied to an
+Extra Large / Oversized item where no existing
+XL delivery fee has been supplied.
+*/
+
+return null;
+
+}
+
+
+/* =========================================
+DELIVERY STATE
+========================================= */
+
 function updateAllDeliveryItems(
 postcode,
 fee
@@ -10593,19 +10926,67 @@ postcode
 state.deliveryPostcode =
 formattedPostcode;
 
+state.deliveryFee =
+fee ===
+null
+?
+null
+:
+Math.max(
+0,
+Number(
+fee
+) || 0
+);
+
+state.deliveryResolved =
+fee !==
+null;
+
+
 state.orderItems.forEach(
 item => {
 
 item.deliveryPostcode =
 formattedPostcode;
 
+if (
+isExtraLargeOrderItem(
+item
+)
+) {
+
+const existingFee =
+getExplicitExtraLargeDeliveryFee(
+item
+);
+
+if (
+existingFee !==
+null
+) {
+
 item.deliveryFee =
-Number(
-fee
-) || 0;
+existingFee;
+
+item.deliveryResolved =
+true;
+
+}
+
+return;
+
+}
+
+item.deliveryFee =
+state.deliveryFee;
+
+item.deliveryResolved =
+state.deliveryResolved;
 
 }
 );
+
 
 state.customOrderItems.forEach(
 item => {
@@ -10613,10 +10994,305 @@ item => {
 item.deliveryPostcode =
 formattedPostcode;
 
+if (
+isExtraLargeOrderItem(
+item
+)
+) {
+
+const existingFee =
+getExplicitExtraLargeDeliveryFee(
+item
+);
+
+if (
+existingFee !==
+null
+) {
+
 item.deliveryFee =
+existingFee;
+
+item.deliveryResolved =
+true;
+
+}
+
+return;
+
+}
+
+item.deliveryFee =
+state.deliveryFee;
+
+item.deliveryResolved =
+state.deliveryResolved;
+
+}
+);
+
+}
+
+
+/* =========================================
+DELIVERY DISPLAY HELPERS
+========================================= */
+
+function getDeliveryDisplayForItem(
+item
+) {
+
+const postcode =
+String(
+item?.deliveryPostcode ||
+state.deliveryPostcode ||
+""
+).trim();
+
+if (
+!postcode
+) {
+
+return {
+
+resolved:false,
+fee:null
+
+};
+
+}
+
+if (
+isExtraLargeOrderItem(
+item
+)
+) {
+
+const extraLargeFee =
+getExplicitExtraLargeDeliveryFee(
+item
+);
+
+return {
+
+resolved:
+extraLargeFee !==
+null,
+
+fee:
+extraLargeFee
+
+};
+
+}
+
+const itemFee =
+Number(
+item?.deliveryFee
+);
+
+if (
+item?.deliveryResolved ===
+true &&
+Number.isFinite(
+itemFee
+)
+) {
+
+return {
+
+resolved:true,
+fee:
+Math.max(
+0,
+itemFee
+)
+
+};
+
+}
+
+if (
+state.deliveryResolved &&
+Number.isFinite(
+Number(
+state.deliveryFee
+)
+)
+) {
+
+return {
+
+resolved:true,
+fee:
+Math.max(
+0,
+Number(
+state.deliveryFee
+)
+)
+
+};
+
+}
+
+return {
+
+resolved:false,
+fee:null
+
+};
+
+}
+
+
+function buildDeliveryPriceMarkup(
+fee
+) {
+
+const numericFee =
 Number(
 fee
-) || 0;
+);
+
+if (
+!Number.isFinite(
+numericFee
+)
+) {
+
+return "";
+
+}
+
+if (
+numericFee <=
+0
+) {
+
+return `
+<div class="order-summary-delivery-price is-free">
+FREE
+</div>
+`;
+
+}
+
+const parts =
+moneyParts(
+numericFee
+);
+
+return `
+<div class="order-summary-delivery-price">
+
+<span class="order-summary-delivery-price-major">
+
+<span class="order-summary-delivery-pound">£</span>
+
+<span class="order-summary-delivery-whole">
+${escapeHTML(parts.whole)}
+</span>
+
+<span class="order-summary-delivery-dot">.</span>
+
+</span>
+
+<span class="order-summary-delivery-pence">
+${escapeHTML(parts.pence)}
+</span>
+
+</div>
+`;
+
+}
+
+
+/* =========================================
+DELIVERY FIELD HTML
+========================================= */
+
+function buildDeliveryControlHTML(
+item,
+kind,
+index
+) {
+
+const postcode =
+String(
+item?.deliveryPostcode ||
+state.deliveryPostcode ||
+""
+);
+
+const deliveryDisplay =
+getDeliveryDisplayForItem(
+item
+);
+
+return `
+<div class="order-summary-delivery">
+
+<div class="order-summary-delivery-entry">
+
+<div class="order-summary-delivery-label">
+Delivery Postcode
+</div>
+
+<input
+type="text"
+class="order-summary-postcode"
+data-delivery-postcode-input
+data-delivery-kind="${escapeHTML(kind)}"
+data-delivery-index="${escapeHTML(index)}"
+value="${escapeHTML(postcode)}"
+placeholder="Enter delivery postcode"
+autocomplete="postal-code"
+inputmode="text"
+aria-label="Delivery postcode"
+>
+
+</div>
+
+
+<div
+class="order-summary-delivery-result${deliveryDisplay.resolved ? " is-resolved" : ""}"
+data-delivery-result
+>
+
+<div class="order-summary-delivery-price-label">
+Delivery:
+</div>
+
+${buildDeliveryPriceMarkup(
+deliveryDisplay.fee
+)}
+
+</div>
+
+</div>
+`;
+
+}
+
+
+/* =========================================
+DELIVERY INPUT VISUAL STATES
+========================================= */
+
+function clearDeliveryOutputVisuals() {
+
+document
+.querySelectorAll(
+"[data-delivery-result]"
+)
+.forEach(
+result => {
+
+result.classList.remove(
+"is-resolved",
+"delivery-price-enter"
+);
 
 }
 );
@@ -10648,28 +11324,12 @@ input.classList.remove(
 }
 );
 
-document
-.querySelectorAll(
-"[data-delivery-result]"
-)
-.forEach(
-result => {
-
-result.textContent =
-"Checking...";
-
-result.className =
-"order-summary-delivery-result is-checking";
-
-}
-);
+clearDeliveryOutputVisuals();
 
 }
 
 
-function markDeliveryInputsInvalid(
-message
-) {
+function markDeliveryInputsInvalid() {
 
 document
 .querySelectorAll(
@@ -10685,24 +11345,213 @@ input.classList.add(
 }
 );
 
-document
-.querySelectorAll(
-"[data-delivery-result]"
+clearDeliveryOutputVisuals();
+
+}
+
+
+/* =========================================
+DELIVERY / ORDER TOTAL ANIMATION
+========================================= */
+
+function getVisibleSummaryTotalBlocks() {
+
+return Array.from(
+document.querySelectorAll(
+".order-final-summary-section:not([hidden]) .order-summary-total-block"
 )
+);
+
+}
+
+
+function hideSummaryTotalsForDelivery() {
+
+getVisibleSummaryTotalBlocks()
 .forEach(
-result => {
+block => {
 
-result.textContent =
-message;
+block.classList.remove(
+"delivery-total-enter"
+);
 
-result.className =
-"order-summary-delivery-result is-error";
+block.classList.add(
+"delivery-total-hidden"
+);
 
 }
 );
 
 }
 
+
+function clearDeliveryAnimationTimers() {
+
+if (
+deliveryResultTimer !==
+null
+) {
+
+clearTimeout(
+deliveryResultTimer
+);
+
+deliveryResultTimer =
+null;
+
+}
+
+if (
+deliveryTotalTimer !==
+null
+) {
+
+clearTimeout(
+deliveryTotalTimer
+);
+
+deliveryTotalTimer =
+null;
+
+}
+
+}
+
+
+function playDeliveryResolutionAnimation() {
+
+deliveryAnimationToken +=
+1;
+
+const token =
+deliveryAnimationToken;
+
+clearDeliveryAnimationTimers();
+
+const totalBlocks =
+getVisibleSummaryTotalBlocks();
+
+if (
+reducedMotionQuery.matches
+) {
+
+totalBlocks.forEach(
+block => {
+
+block.classList.remove(
+"delivery-total-hidden",
+"delivery-total-enter"
+);
+
+}
+);
+
+return;
+
+}
+
+const deliveryResults =
+Array.from(
+document.querySelectorAll(
+".order-summary-delivery-result.is-resolved"
+)
+);
+
+deliveryResults.forEach(
+result => {
+
+result.classList.remove(
+"delivery-price-enter"
+);
+
+void result.offsetWidth;
+
+result.classList.add(
+"delivery-price-enter"
+);
+
+}
+);
+
+
+deliveryResultTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+deliveryAnimationToken
+) {
+
+return;
+
+}
+
+totalBlocks.forEach(
+block => {
+
+block.classList.remove(
+"delivery-total-hidden"
+);
+
+block.classList.remove(
+"delivery-total-enter"
+);
+
+void block.offsetWidth;
+
+block.classList.add(
+"delivery-total-enter"
+);
+
+}
+);
+
+
+deliveryTotalTimer =
+setTimeout(
+() => {
+
+if (
+token !==
+deliveryAnimationToken
+) {
+
+return;
+
+}
+
+totalBlocks.forEach(
+block => {
+
+block.classList.remove(
+"delivery-total-enter"
+);
+
+}
+);
+
+deliveryTotalTimer =
+null;
+
+},
+1050
+);
+
+
+deliveryResultTimer =
+null;
+
+},
+1500
+);
+
+}
+
+
+/* =========================================
+APPLY DELIVERY POSTCODE
+========================================= */
 
 async function applyDeliveryPostcode(
 postcode
@@ -10718,9 +11567,7 @@ cleaned.length <
 5
 ) {
 
-markDeliveryInputsInvalid(
-"Enter a valid postcode"
-);
+markDeliveryInputsInvalid();
 
 return;
 
@@ -10752,13 +11599,26 @@ return;
 
 }
 
-updateAllDeliveryItems(
-result.postcode,
+const applicableFee =
+resolveApplicableDeliveryFee(
 result.price
 );
 
-state.basketTotal =
-calculateOrderTotal();
+if (
+applicableFee ===
+null
+) {
+
+/*
+An Extra Large item exists but no explicit
+XL delivery fee is available in its saved data.
+Do not apply the temporary standard bands.
+*/
+
+updateAllDeliveryItems(
+result.postcode,
+null
+);
 
 saveOrderToStorage();
 
@@ -10774,9 +11634,49 @@ animate:false
 }
 );
 
+markDeliveryInputsInvalid();
+
+return;
+
+}
+
+
+hideSummaryTotalsForDelivery();
+
+
+updateAllDeliveryItems(
+result.postcode,
+applicableFee
+);
+
+
+state.basketTotal =
+calculateOrderTotal();
+
+
+saveOrderToStorage();
+
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+
 updateBasketTotal(
 state.basketTotal
 );
+
+
+playDeliveryResolutionAnimation();
 
 }
 catch (
@@ -10792,10 +11692,7 @@ return;
 
 }
 
-markDeliveryInputsInvalid(
-error?.message ||
-"Postcode not recognised"
-);
+markDeliveryInputsInvalid();
 
 }
 
@@ -13468,7 +14365,7 @@ positionCurrentSizeAtTop();
 PERSISTENT ORDER STORAGE
 ========================================= */
 
-function calculateStandardOrderTotal() {
+function calculateStandardProductSubtotal() {
 
 return state.orderItems.reduce(
 (
@@ -13484,10 +14381,6 @@ item.unitPrice
 Number(
 item.quantity
 )
-)
-+
-getItemDeliveryFee(
-item
 );
 
 },
@@ -13497,7 +14390,7 @@ item
 }
 
 
-function calculateCustomOrderTotal() {
+function calculateCustomProductSubtotal() {
 
 return state.customOrderItems.reduce(
 (
@@ -13513,10 +14406,6 @@ item.unitPrice
 Number(
 item.quantity
 )
-)
-+
-getItemDeliveryFee(
-item
 );
 
 },
@@ -13526,11 +14415,59 @@ item
 }
 
 
+function calculateStandardOrderTotal() {
+
+const subtotal =
+calculateStandardProductSubtotal();
+
+if (
+!state.orderItems.length
+) {
+
+return 0;
+
+}
+
+return subtotal +
+getCurrentDeliveryFee();
+
+}
+
+
+function calculateCustomOrderTotal() {
+
+const subtotal =
+calculateCustomProductSubtotal();
+
+if (
+!state.customOrderItems.length
+) {
+
+return 0;
+
+}
+
+return subtotal +
+getCurrentDeliveryFee();
+
+}
+
+
 function calculateOrderTotal() {
 
 return (
-calculateStandardOrderTotal() +
-calculateCustomOrderTotal()
+calculateStandardProductSubtotal() +
+calculateCustomProductSubtotal() +
+(
+(
+state.orderItems.length ||
+state.customOrderItems.length
+)
+?
+getCurrentDeliveryFee()
+:
+0
+)
 );
 
 }
@@ -13684,7 +14621,19 @@ Math.max(
 deliveryFee
 )
 :
-0
+null,
+
+deliveryResolved:
+item.deliveryResolved ===
+true ||
+(
+Boolean(
+item.deliveryPostcode
+) &&
+Number.isFinite(
+deliveryFee
+)
+)
 
 };
 
@@ -13917,7 +14866,19 @@ Math.max(
 deliveryFee
 )
 :
-0
+null,
+
+deliveryResolved:
+item.deliveryResolved ===
+true ||
+(
+Boolean(
+item.deliveryPostcode
+) &&
+Number.isFinite(
+deliveryFee
+)
+)
 
 };
 
@@ -13936,7 +14897,11 @@ version:2,
 items:state.orderItems,
 customItems:state.customOrderItems,
 deliveryPostcode:
-state.deliveryPostcode
+state.deliveryPostcode,
+deliveryFee:
+state.deliveryFee,
+deliveryResolved:
+state.deliveryResolved
 }
 )
 );
@@ -13977,6 +14942,12 @@ state.customOrderItems =
 
 state.deliveryPostcode =
 "";
+
+state.deliveryFee =
+null;
+
+state.deliveryResolved =
+false;
 
 state.basketTotal =
 0;
@@ -14042,6 +15013,75 @@ state.customOrderItems[0]?.deliveryPostcode ||
 ""
 );
 
+const storedDeliveryFee =
+Number(
+parsed?.deliveryFee
+);
+
+if (
+parsed?.deliveryResolved ===
+true &&
+Number.isFinite(
+storedDeliveryFee
+)
+) {
+
+state.deliveryFee =
+Math.max(
+0,
+storedDeliveryFee
+);
+
+state.deliveryResolved =
+true;
+
+}
+else {
+
+const firstResolvedItem =
+[
+...state.orderItems,
+...state.customOrderItems
+]
+.find(
+item =>
+item.deliveryResolved ===
+true &&
+Number.isFinite(
+Number(
+item.deliveryFee
+)
+)
+);
+
+if (
+firstResolvedItem
+) {
+
+state.deliveryFee =
+Math.max(
+0,
+Number(
+firstResolvedItem.deliveryFee
+)
+);
+
+state.deliveryResolved =
+true;
+
+}
+else {
+
+state.deliveryFee =
+null;
+
+state.deliveryResolved =
+false;
+
+}
+
+}
+
 state.basketTotal =
 calculateOrderTotal();
 
@@ -14058,6 +15098,12 @@ state.customOrderItems =
 
 state.deliveryPostcode =
 "";
+
+state.deliveryFee =
+null;
+
+state.deliveryResolved =
+false;
 
 state.basketTotal =
 0;
@@ -14309,66 +15355,6 @@ item =>
 
 
 /* =========================================
-DELIVERY FIELD HTML
-========================================= */
-
-function buildDeliveryControlHTML(
-item,
-kind,
-index
-) {
-
-const postcode =
-String(
-item?.deliveryPostcode ||
-state.deliveryPostcode ||
-""
-);
-
-const resultText =
-getDeliveryResultText(
-item
-);
-
-const resultClass =
-getDeliveryResultClass(
-item
-);
-
-return `
-<div class="order-summary-delivery">
-
-<div class="order-summary-delivery-label">
-Delivery Postcode
-</div>
-
-<input
-type="text"
-class="order-summary-postcode"
-data-delivery-postcode-input
-data-delivery-kind="${escapeHTML(kind)}"
-data-delivery-index="${escapeHTML(index)}"
-value="${escapeHTML(postcode)}"
-placeholder="Enter postcode"
-autocomplete="postal-code"
-inputmode="text"
-aria-label="Delivery postcode"
->
-
-<div
-class="order-summary-delivery-result ${escapeHTML(resultClass)}"
-data-delivery-result
->
-${escapeHTML(resultText)}
-</div>
-
-</div>
-`;
-
-}
-
-
-/* =========================================
 RENDER STANDARD ORDER SUMMARY
 ========================================= */
 
@@ -14450,17 +15436,11 @@ item.glazing
 );
 
 const lineTotal =
-(
 Number(
 item.unitPrice
 ) *
 Number(
 item.quantity
-)
-)
-+
-getItemDeliveryFee(
-item
 );
 
 const animateItem =
@@ -14576,13 +15556,6 @@ Remove
 </div>
 
 
-${buildDeliveryControlHTML(
-item,
-"standard",
-index
-)}
-
-
 <div
 class="order-summary-line-total"
 ${showLineTotals ? "" : "hidden"}
@@ -14601,6 +15574,13 @@ inc. vat
 </div>
 
 </div>
+
+
+${buildDeliveryControlHTML(
+item,
+"standard",
+index
+)}
 
 </div>
 
@@ -14744,17 +15724,11 @@ item.glazing
 );
 
 const lineTotal =
-(
 Number(
 item.unitPrice
 ) *
 Number(
 item.quantity
-)
-)
-+
-getItemDeliveryFee(
-item
 );
 
 const animateItem =
@@ -14871,13 +15845,6 @@ Remove
 </div>
 
 
-${buildDeliveryControlHTML(
-item,
-"custom",
-index
-)}
-
-
 <div
 class="order-summary-line-total"
 ${showLineTotals ? "" : "hidden"}
@@ -14896,6 +15863,13 @@ inc. vat
 </div>
 
 </div>
+
+
+${buildDeliveryControlHTML(
+item,
+"custom",
+index
+)}
 
 </div>
 
@@ -15572,6 +16546,9 @@ return;
 item.quantity =
 nextQuantity;
 
+item.qty =
+nextQuantity;
+
 commitCustomOrderSummaryChange();
 
 }
@@ -15736,7 +16713,6 @@ index,
 
 
 /* =========================================
-CHANGE 5
 POSTCODE INPUT EVENTS
 ========================================= */
 
@@ -15764,6 +16740,10 @@ input.value ||
 )
 .toUpperCase();
 
+input.classList.remove(
+"is-invalid"
+);
+
 document
 .querySelectorAll(
 "[data-delivery-postcode-input]"
@@ -15779,10 +16759,16 @@ input
 otherInput.value =
 input.value;
 
+otherInput.classList.remove(
+"is-invalid"
+);
+
 }
 
 }
 );
+
+clearDeliveryOutputVisuals();
 
 scheduleDeliveryPostcodeLookup(
 input.value
@@ -16788,7 +17774,15 @@ unitPrice,
 deliveryPostcode:
 state.deliveryPostcode,
 
-deliveryFee:0
+deliveryFee:
+state.deliveryResolved
+?
+state.deliveryFee
+:
+null,
+
+deliveryResolved:
+state.deliveryResolved
 
 };
 
@@ -16899,7 +17893,8 @@ targetIndex
 );
 
 if (
-state.deliveryPostcode
+state.deliveryPostcode &&
+state.deliveryResolved
 ) {
 
 applyDeliveryPostcode(
@@ -17023,7 +18018,15 @@ custom:true,
 deliveryPostcode:
 state.deliveryPostcode,
 
-deliveryFee:0
+deliveryFee:
+state.deliveryResolved
+?
+state.deliveryFee
+:
+null,
+
+deliveryResolved:
+state.deliveryResolved
 
 };
 
@@ -17136,7 +18139,8 @@ targetIndex
 );
 
 if (
-state.deliveryPostcode
+state.deliveryPostcode &&
+state.deliveryResolved
 ) {
 
 applyDeliveryPostcode(
@@ -17155,7 +18159,6 @@ addCurrentCustomSelectionToOrder
 
 
 /* =========================================
-CHANGE 1
 HOMEPAGE CUSTOM ORDER ARRIVAL
 COMPLETES HOMEPAGE CHANGES 6 + 7
 ========================================= */
@@ -17796,7 +18799,6 @@ startDeliveryClock();
 
 
 /* =========================================
-CHANGE 1
 RUN HOMEPAGE ARRIVAL AFTER RESTORING ORDER
 ========================================= */
 
