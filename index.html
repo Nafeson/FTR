@@ -1369,31 +1369,34 @@ transform:translateX(2px);
 }
 
 .home-product-link.is-encouraged {
-animation:viewSizeEncouragement 6.5s ease-in-out infinite;
+animation:viewSizeEncouragement 7s ease-in-out infinite;
 }
 
 @keyframes viewSizeEncouragement {
 0%,
-76%,
+16%,
 100% {
 transform:translateX(0);
 color:var(--orange-bright);
 border-color:rgba(232,120,23,.45);
 }
 
-82% {
+4% {
 transform:translateX(4px);
 color:var(--cream);
 border-color:var(--cream);
 }
 
-88% {
+8% {
 transform:translateX(1px);
 color:var(--orange-bright);
+border-color:rgba(232,120,23,.45);
 }
 
-93% {
+12% {
 transform:translateX(4px);
+color:var(--cream);
+border-color:var(--cream);
 }
 }
 
@@ -1665,7 +1668,7 @@ border-color:var(--cream);
 }
 
 .tinted-options-section .home-product-link.is-encouraged {
-animation:tintedViewSizeEncouragement 6.5s ease-in-out infinite;
+animation:tintedViewSizeEncouragement 7s ease-in-out infinite;
 }
 
 .tinted-options-section .range-cta-button {
@@ -1709,9 +1712,9 @@ TINTED PRODUCT IMAGE RESCALING
 }
 
 .tinted-options-section
-.home-product-card.image-size-600x900[data-finish="satin"] {
---home-image-transform:scale(.75);
---home-image-hover-transform:scale(.77);
+.home-product-card.image-size-800x800[data-finish="satin"] {
+--home-image-transform:scale(.88);
+--home-image-hover-transform:scale(.91);
 }
 
 .tinted-options-section
@@ -1722,26 +1725,29 @@ TINTED PRODUCT IMAGE RESCALING
 
 @keyframes tintedViewSizeEncouragement {
 0%,
-76%,
+16%,
 100% {
 transform:translateX(0);
 color:var(--tint-blue-bright);
 border-color:rgba(111,157,200,.50);
 }
 
-82% {
+4% {
 transform:translateX(4px);
 color:var(--cream);
 border-color:var(--cream);
 }
 
-88% {
+8% {
 transform:translateX(1px);
 color:var(--tint-blue-bright);
+border-color:rgba(111,157,200,.50);
 }
 
-93% {
+12% {
 transform:translateX(4px);
+color:var(--cream);
+border-color:var(--cream);
 }
 }
 
@@ -3802,14 +3808,6 @@ max-width:110px;
 object-fit:contain;
 }
 
-.footer-right-glaze-name {
-display:block;
-color:rgba(247,247,243,.48);
-font-size:11px;
-font-weight:400;
-line-height:1.45;
-}
-
 .footer-company-numbers {
 display:grid;
 gap:2px;
@@ -4028,13 +4026,13 @@ width:72px;
 transform:translateX(-4px) translateY(5px);
 }
 
-/* GOOGLE PAY */
+/* GOOGLE PAY — CHANGE 9 */
 
 .footer-payment-logo-item.google-pay {
 width:76px;
 transform:
 translateX(-22px)
-translateY(5px)
+translateY(7px)
 scale(.88);
 }
 
@@ -5151,13 +5149,6 @@ max-width:95px;
 transform:translateX(-2.5px);
 }
 
-.footer-right-glaze-name {
-font-size:10px;
-color:rgba(247,247,243,.48);
-font-weight:400;
-line-height:1.45;
-}
-
 .footer-company-numbers {
 margin-top:-3px;
 font-size:10px;
@@ -5507,6 +5498,7 @@ scroll-behavior:auto;
 .trust-item.shimmer-play::before,
 .engineered-card.shimmer-play::before,
 .home-product-link.is-encouraged,
+.home-product-link.view-size-auto-animate,
 .range-cta-button,
 .range-cta-button::before,
 .range-cta-button::after {
@@ -5893,8 +5885,7 @@ padding-bottom:clamp(28px,3.5vw,55px) !important;
 }
 
 /* =========================================
-CHANGE 1
-MOVE ENTIRE ORDER DIRECT CONTENT DOWN
+ORDER DIRECT CONTENT POSITION
 ========================================= */
 
 .buy-online-section {
@@ -5952,12 +5943,37 @@ margin-bottom:36px;
 }
 
 /* =========================================
-CHANGE 2
 ORDER DIRECT BUTTON STYLE
 ========================================= */
 
 .buy-online-section .hero-actions .button {
 border-radius:6px;
+}
+
+/* =========================================
+CHANGE 4
+VIEW SIZE — INITIAL SCROLL ANIMATION
+THEN ONCE EVERY 7 SECONDS
+========================================= */
+
+.home-product-link.view-size-auto-animate,
+.home-product-link.is-encouraged {
+animation:
+viewSizeEncouragement
+7s
+ease-in-out
+infinite;
+}
+
+.tinted-options-section
+.home-product-link.view-size-auto-animate,
+.tinted-options-section
+.home-product-link.is-encouraged {
+animation:
+tintedViewSizeEncouragement
+7s
+ease-in-out
+infinite;
 }
 
 /* =========================================
@@ -6021,9 +6037,7 @@ object-position:center;
 }
 
 /* =========================================
-CHANGE 6
 FITTING QUOTATION BUTTON SPACING
-MATCH GAP BELOW BUTTON
 ========================================= */
 
 .direct-copy > .button {
@@ -6031,31 +6045,192 @@ margin-top:48px;
 }
 
 /* =========================================
-HOMEPAGE CLOSING ALIGNMENT / SPACING
+CHANGE 1
+OVERSIZED ROOFLIGHT VISUAL / GREEN BACKDROP
+MATCH CUSTOM ROOFLIGHT SECTION
 ========================================= */
+
+.oversized-showcase-section {
+position:relative;
+overflow:hidden;
+padding:0;
+border:0;
+
+background:
+radial-gradient(
+ellipse 72% 38% at 50% 54%,
+rgba(31,92,66,.50) 0%,
+rgba(25,74,54,.40) 24%,
+rgba(18,51,39,.28) 47%,
+rgba(10,27,21,.13) 70%,
+transparent 90%
+),
+linear-gradient(
+180deg,
+#0b0e0d 0%,
+#0d1512 25%,
+#102119 43%,
+#12291f 54%,
+#102118 65%,
+#0d1512 79%,
+#0b0d0c 100%
+);
+}
+
+.oversized-showcase-section::after {
+content:"";
+position:absolute;
+inset:0;
+z-index:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.012) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.012) 1px,
+transparent 1px
+);
+background-size:52px 52px;
+opacity:.45;
+pointer-events:none;
+}
+
+.oversized-rooflight-visual {
+position:relative;
+z-index:2;
+width:100%;
+overflow:hidden;
+background:transparent;
+
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+
+transform:
+translateY(16px)
+scale(.99);
+
+transition:
+opacity .68s ease,
+visibility .68s ease,
+transform .75s cubic-bezier(.18,.72,.28,1);
+
+will-change:
+opacity,
+transform;
+}
+
+.oversized-rooflight-visual.is-revealed {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:
+translateY(0)
+scale(1);
+}
+
+.oversized-rooflight-visual .buy-rooflight-slideshow {
+margin:0;
+background:transparent;
+box-shadow:none;
+}
+
+.oversized-rooflight-visual .rooflight-slideshow-shell {
+width:100%;
+height:clamp(280px,38vw,500px);
+background:transparent;
+overflow:hidden;
+}
+
+.oversized-rooflight-visual .rooflight-slide {
+background:transparent;
+}
+
+.oversized-rooflight-visual .rooflight-slide img {
+display:block;
+width:100%;
+height:100%;
+object-fit:contain;
+object-position:center center;
+background:transparent;
+}
+
+.oversized-showcase-section .oversized-section {
+position:relative;
+z-index:2;
+background:transparent;
+padding:
+16px
+6%
+82px;
+}
+
+/* =========================================
+CHANGE 2
+HOMEPAGE CLOSING
+MATCH GAP ABOVE AND BELOW
+========================================= */
+
+.homepage-closing-section {
+position:relative;
+overflow:hidden;
+padding:
+52px
+6%;
+background:#090a0a;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.homepage-closing-inner {
+position:relative;
+z-index:2;
+max-width:1120px;
+margin:0 auto;
+}
 
 .homepage-closing-option {
 text-align:center;
 }
 
-.homepage-closing-option h3,
-.homepage-closing-option p {
+.homepage-closing-option h3 {
+margin:0;
 text-align:center;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+sans-serif;
+font-size:clamp(29px,3.3vw,43px);
+font-weight:750;
+line-height:1;
+letter-spacing:-.8px;
 }
 
 .homepage-closing-option p {
-max-width:860px;
+width:min(760px,88%);
+max-width:760px;
 margin:22px auto 0;
-}
+padding:0;
+text-align:center;
 
-/* =========================================
-CHANGE 7
-EQUAL GAP ABOVE / BELOW GET IN TOUCH
-========================================= */
+/*
+5% SMALLER THAN THE ORIGINAL
+17PX HOMEPAGE PARAGRAPH SIZE
+*/
+
+font-size:16.15px;
+line-height:1.62;
+color:var(--muted);
+}
 
 .homepage-closing-contact {
-margin-top:30px;
-margin-bottom:30px;
+margin:
+30px
+auto
+0;
 }
 
 /* =========================================
@@ -6087,10 +6262,50 @@ margin-bottom:28px;
 aspect-ratio:4 / 3;
 }
 
-/* Exact mobile gap match:
-section bottom padding = 32px */
 .direct-copy > .button {
 margin-top:32px;
+}
+
+/* =========================================
+MOBILE OVERSIZED VISUAL / GREEN BACKDROP
+========================================= */
+
+.oversized-showcase-section {
+background:
+radial-gradient(
+ellipse 95% 39% at 50% 55%,
+rgba(31,91,66,.55) 0%,
+rgba(24,71,52,.43) 25%,
+rgba(17,49,37,.29) 48%,
+rgba(10,27,21,.14) 71%,
+transparent 91%
+),
+linear-gradient(
+180deg,
+#0a0d0c 0%,
+#0d1512 25%,
+#10221a 44%,
+#132d22 54%,
+#10221a 65%,
+#0d1512 80%,
+#0a0c0b 100%
+);
+}
+
+.oversized-rooflight-visual .rooflight-slideshow-shell {
+height:250px;
+}
+
+.oversized-rooflight-visual .rooflight-slide img {
+transform:scale(1.08);
+transform-origin:center center;
+}
+
+.oversized-showcase-section .oversized-section {
+padding:
+10px
+6%
+30px;
 }
 
 .footer-company-intro {
@@ -6100,15 +6315,73 @@ margin-bottom:1px;
 }
 
 /* =========================================
-MOBILE GET IN TOUCH BUTTON
-3/5 OF SCREEN WIDTH
+MOBILE HOMEPAGE CLOSING
 ========================================= */
+
+.homepage-closing-section {
+padding:
+48px
+6%;
+}
+
+.homepage-closing-option h3 {
+font-size:30px;
+}
+
+.homepage-closing-option p {
+width:88%;
+max-width:690px;
+
+/*
+5% SMALLER THAN 16PX
+*/
+
+font-size:15.2px;
+line-height:1.6;
+margin-top:22px;
+}
 
 .homepage-closing-contact {
 width:60vw;
 max-width:60vw;
-margin-top:28px;
-margin-bottom:28px;
+margin:
+28px
+auto
+0;
+}
+
+}
+
+@media(max-width:390px) {
+
+.oversized-rooflight-visual .rooflight-slideshow-shell {
+height:230px;
+}
+
+.oversized-rooflight-visual .rooflight-slide img {
+transform:scale(1.07);
+}
+
+.homepage-closing-option p {
+width:86%;
+}
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+.home-product-link.view-size-auto-animate {
+animation:none !important;
+}
+
+.oversized-rooflight-visual {
+transition:none;
+}
+
+.oversized-rooflight-visual.is-revealed {
+opacity:1;
+visibility:visible;
+transform:none;
 }
 
 }
@@ -6116,6 +6389,9 @@ margin-bottom:28px;
 
 <!-- =========================================
 POPULAR / READY-TO-ORDER ROOFLIGHTS
+CHANGE 3 — NEW ORDER
+1000x1200 / 400x1500
+1500x1800 / 600x900
 ========================================= -->
 
 <section
@@ -6142,21 +6418,25 @@ Discover our range of brand-new frameless rooflights, manufactured here in the U
 
 <div class="home-popular-grid">
 
+<!-- =========================================
+TOP LEFT — 1000 x 1200
+========================================= -->
+
 <div
-class="home-product-card image-size-600x900 reveal reveal-scale"
-data-product-size="600x900"
+class="home-product-card image-size-1000x1200 reveal reveal-scale"
+data-product-size="1000x1200"
 data-finish="clear"
 data-default-glazing="double"
-data-double-price="250"
-data-triple-price="300"
+data-double-price="465"
+data-triple-price="560"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/small-rectangle.png"
-alt="600mm by 900mm frameless flat roof skylight"
+src="images/product-cards/medium-square.png"
+alt="1000mm by 1200mm frameless flat roof skylight"
 />
 
 </div>
@@ -6164,7 +6444,7 @@ alt="600mm by 900mm frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-600 × 900mm
+1000 × 1200mm
 </div>
 
 <div class="home-product-spec">
@@ -6213,7 +6493,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£250
+£465
 </span>
 
 <span class="home-price-decimals">
@@ -6242,6 +6522,10 @@ View Size
 </div>
 
 </div>
+
+<!-- =========================================
+TOP RIGHT — 400 x 1500
+========================================= -->
 
 <div
 class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
@@ -6344,109 +6628,12 @@ View Size
 
 </div>
 
-<div
-class="home-product-card image-size-1000x1200 reveal reveal-scale reveal-delay-2"
-data-product-size="1000x1200"
-data-finish="clear"
-data-default-glazing="double"
-data-double-price="465"
-data-triple-price="560"
-tabindex="0"
->
-
-<div class="home-product-image">
-
-<img
-src="images/product-cards/medium-square.png"
-alt="1000mm by 1200mm frameless flat roof skylight"
-/>
-
-</div>
-
-<div class="home-product-content">
-
-<div class="home-product-size">
-1000 × 1200mm
-</div>
-
-<div class="home-product-spec">
-<span>Inside Visible Glass Size</span>
-<span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
-</div>
-
-<div class="home-glazing-wrap">
-
-<div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
-</div>
-
-<div class="home-glazed-label">
-<span>Glazed</span>
-</div>
-
-</div>
-
-<div class="home-product-price-row">
-
-<div>
-
-<div class="home-product-price-label">
-FROM:
-</div>
-
-<div class="home-product-price">
-
-<span class="home-price-amount">
-
-<span class="home-price-main">
-£465
-</span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
-</div>
-
-</div>
-
-<a
-href="order-page.html"
-class="home-product-link"
->
-View Size
-</a>
-
-</div>
-
-</div>
-
-</div>
+<!-- =========================================
+BOTTOM LEFT — 1500 x 1800
+========================================= -->
 
 <div
-class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
+class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-2"
 data-product-size="1500x1800"
 data-finish="clear"
 data-default-glazing="double"
@@ -6517,6 +6704,111 @@ FROM:
 
 <span class="home-price-main">
 £880
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
+</div>
+
+</div>
+
+<a
+href="order-page.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================================
+BOTTOM RIGHT — 600 x 900
+========================================= -->
+
+<div
+class="home-product-card image-size-600x900 reveal reveal-scale reveal-delay-3"
+data-product-size="600x900"
+data-finish="clear"
+data-default-glazing="double"
+data-double-price="250"
+data-triple-price="300"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/small-rectangle.png"
+alt="600mm by 900mm frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+600 × 900mm
+</div>
+
+<div class="home-product-spec">
+<span>Inside Visible Glass Size</span>
+<span>6mm Toughened Safety Glass</span>
+<span>Free Mainland UK Delivery</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+FROM:
+</div>
+
+<div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£250
 </span>
 
 <span class="home-price-decimals">
@@ -6723,8 +7015,6 @@ size and specification, or contact our team for larger architectural units.
 
 <div class="hero-actions">
 
-<!-- CHANGE 2 — NEW FIRST BUTTON -->
-
 <a
 href="order-page.html"
 class="button"
@@ -6743,9 +7033,16 @@ Shop Standard Sizes
 or
 </span>
 
+<!-- =========================================
+CHANGE 5
+GO TO ORDER PAGE CUSTOM BUILDER
+40% VIEWPORT OFFSET INSTRUCTION
+========================================= -->
+
 <a
-href="#calculator"
+href="order-page.html?source=homepage-custom-builder&focus=custom-builder&viewportOffset=0.40"
 class="button"
+id="homepageBuildCustomRooflightButton"
 >
 Build A Custom Rooflight
 </a>
@@ -7083,11 +7380,6 @@ Glass Finish
 
 </div>
 
-<!-- =========================================
-CHANGE 3
-MADE-TO-ORDER PRICE / ORDER SUMMARY STYLE
-========================================= -->
-
 <div
 class="price-box"
 id="customPriceBox"
@@ -7257,8 +7549,6 @@ in summer, helping improve thermal efficiency and lower energy costs.
 
 <div class="engineered-card reveal reveal-scale reveal-delay-1">
 
-<!-- CHANGE 4 -->
-
 <h3>
 Weather Protective Design
 </h3>
@@ -7305,6 +7595,9 @@ for a durable, long-lasting finish that won’t peel, bubble or fade like window
 
 <!-- =========================================
 TINTED ROOFLIGHTS
+CHANGE 3
+BOTTOM LEFT = 800 x 1500 SATIN
+BOTTOM RIGHT = 800 x 800 SATIN
 ========================================= -->
 
 <section
@@ -7555,109 +7848,12 @@ View Size
 
 </div>
 
-<div
-class="home-product-card tinted-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
-data-product-size="600x900"
-data-finish="satin"
-data-default-glazing="double"
-data-double-price="325"
-data-triple-price="390"
-tabindex="0"
->
-
-<div class="home-product-image">
-
-<img
-src="images/product-cards/satin-small-rectangle.png"
-alt="600mm by 900mm satin privacy frameless flat roof skylight"
-/>
-
-</div>
-
-<div class="home-product-content">
-
-<div class="home-product-size">
-600 × 900mm
-</div>
-
-<div class="home-product-spec">
-<span>Inside Visible Glass Size</span>
-<span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
-</div>
-
-<div class="home-glazing-wrap">
-
-<div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
-</div>
-
-<div class="home-glazed-label">
-<span>Glazed</span>
-</div>
-
-</div>
-
-<div class="home-product-price-row">
-
-<div>
-
-<div class="home-product-price-label">
-FROM:
-</div>
-
-<div class="home-product-price">
-
-<span class="home-price-amount">
-
-<span class="home-price-main">
-£325
-</span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
-</div>
-
-</div>
-
-<a
-href="order-page.html"
-class="home-product-link"
->
-View Size
-</a>
-
-</div>
-
-</div>
-
-</div>
+<!-- =========================================
+BOTTOM LEFT — 800 x 1500 SATIN
+========================================= -->
 
 <div
-class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-3"
+class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-2"
 data-product-size="800x1500"
 data-finish="satin"
 data-default-glazing="double"
@@ -7757,6 +7953,111 @@ View Size
 
 </div>
 
+<!-- =========================================
+BOTTOM RIGHT — 800 x 800 SATIN
+========================================= -->
+
+<div
+class="home-product-card tinted-product-card image-size-800x800 reveal reveal-scale reveal-delay-3"
+data-product-size="800x800"
+data-finish="satin"
+data-default-glazing="double"
+data-double-price="375"
+data-triple-price="455"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/satin-large-square.png"
+alt="800mm by 800mm satin privacy frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+800 × 800mm
+</div>
+
+<div class="home-product-spec">
+<span>Inside Visible Glass Size</span>
+<span>6mm Toughened Safety Glass</span>
+<span>Free Mainland UK Delivery</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+FROM:
+</div>
+
+<div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£375
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
+</div>
+
+</div>
+
+<a
+href="order-page.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 <div class="home-popular-footer reveal">
@@ -7774,8 +8075,6 @@ View All Sizes
 
 <!-- =========================================
 PROFESSIONAL FITTING SERVICES
-CHANGE 5 — TWO IMAGES ONLY
-CURRENT THIRD IMAGE → CURRENT FIRST IMAGE
 ========================================= -->
 
 <section
@@ -7795,8 +8094,6 @@ class="fitting-slideshow-viewport"
 id="fittingSlideshowViewport"
 >
 
-<!-- FIRST: PREVIOUSLY THIRD IMAGE -->
-
 <div
 class="fitting-slide active"
 data-fitting-slide="0"
@@ -7810,8 +8107,6 @@ alt="Professional frameless rooflight fitting example"
 />
 
 </div>
-
-<!-- SECOND: PREVIOUSLY FIRST IMAGE -->
 
 <div
 class="fitting-slide"
@@ -7868,13 +8163,42 @@ Request a Fitting Quotation
 </section>
 
 <!-- =========================================
+CHANGE 1
 OVERSIZED ROOFLIGHTS
+GREEN BACKGROUND + IMAGE REVEAL
 ========================================= -->
 
 <section
 id="oversized"
-class="oversized-section"
+class="oversized-showcase-section"
 >
+
+<div
+class="oversized-rooflight-visual"
+id="oversizedRooflightVisual"
+aria-label="Oversized frameless rooflight"
+>
+
+<div class="buy-rooflight-slideshow static-rooflight-visual">
+
+<div class="rooflight-slideshow-shell">
+
+<div class="rooflight-slide active">
+
+<img
+src="images/oversized-rooflight.png"
+alt="Oversized frameless rooflight manufactured up to 5800mm"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="oversized-section">
 
 <div class="oversized reveal reveal-scale">
 
@@ -7903,10 +8227,13 @@ Request Oversized Quote
 
 </div>
 
+</div>
+
 </section>
 
 <!-- =========================================
 HOMEPAGE CLOSING
+CHANGE 2
 ========================================= -->
 
 <section
@@ -8030,8 +8357,9 @@ Terms of Use
 </div>
 
 <!-- =========================================
+CHANGE 8
 FOOTER COMPANY DETAILS
-CHANGES 8 + 9
+RIGHT GLAZE LTD MOVED INTO COMPANY NUMBERS
 ========================================= -->
 
 <div class="footer-company-details">
@@ -8052,11 +8380,11 @@ alt="Right Glaze Ltd"
 
 </div>
 
-<span class="footer-right-glaze-name">
+<div class="footer-company-numbers">
+
+<span>
 Right Glaze Ltd
 </span>
-
-<div class="footer-company-numbers">
 
 <span>
 Company no. - 14336400
@@ -8181,6 +8509,7 @@ document.body.style.overflow =
 "hidden";
 
 }
+
 
 function closeMenu() {
 
@@ -8329,6 +8658,16 @@ closeMenu();
 }
 
 }
+);
+
+
+/* ===============================
+MOTION PREFERENCE
+================================ */
+
+const reducedMotionQuery =
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
 );
 
 
@@ -8580,16 +8919,6 @@ updateBasketTotal(
 
 
 /* ===============================
-MOTION PREFERENCE
-================================ */
-
-const reducedMotionQuery =
-window.matchMedia(
-"(prefers-reduced-motion: reduce)"
-);
-
-
-/* ===============================
 STANDARD SCROLL REVEALS
 ================================ */
 
@@ -8663,6 +8992,83 @@ element
 
 
 /* ===============================
+CHANGE 1
+OVERSIZED ROOFLIGHT IMAGE REVEAL
+================================ */
+
+const oversizedRooflightVisual =
+document.getElementById(
+"oversizedRooflightVisual"
+);
+
+
+function revealOversizedRooflightVisual() {
+
+if (
+!oversizedRooflightVisual
+) {
+return;
+}
+
+oversizedRooflightVisual.classList.add(
+"is-revealed"
+);
+
+}
+
+
+if (
+oversizedRooflightVisual
+) {
+
+if (
+reducedMotionQuery.matches ||
+!("IntersectionObserver" in window)
+) {
+
+revealOversizedRooflightVisual();
+
+} else {
+
+const oversizedRooflightObserver =
+new IntersectionObserver(
+entries => {
+
+entries.forEach(
+entry => {
+
+if (
+!entry.isIntersecting
+) {
+return;
+}
+
+revealOversizedRooflightVisual();
+
+oversizedRooflightObserver.unobserve(
+entry.target
+);
+
+}
+);
+
+},
+{
+threshold:.08,
+rootMargin:"0px 0px -3% 0px"
+}
+);
+
+oversizedRooflightObserver.observe(
+oversizedRooflightVisual
+);
+
+}
+
+}
+
+
+/* ===============================
 STANDARD + TINTED PRODUCT CARDS
 ================================ */
 
@@ -8673,8 +9079,98 @@ document.querySelectorAll(
 )
 );
 
+const homepageViewSizeLinks =
+Array.from(
+document.querySelectorAll(
+".home-product-link"
+)
+);
+
 let activeHomepageProductCard =
 null;
+
+
+/* ===============================
+CHANGE 4
+VIEW SIZE BUTTON AUTO ANIMATION
+INITIAL VIEW + EVERY 7 SECONDS
+================================ */
+
+function activateViewSizeAutoAnimation(
+link
+) {
+
+if (
+!link
+) {
+return;
+}
+
+link.classList.add(
+"view-size-auto-animate"
+);
+
+}
+
+
+if (
+!reducedMotionQuery.matches
+) {
+
+if (
+!("IntersectionObserver" in window)
+) {
+
+homepageViewSizeLinks.forEach(
+activateViewSizeAutoAnimation
+);
+
+} else {
+
+const viewSizeAnimationObserver =
+new IntersectionObserver(
+entries => {
+
+entries.forEach(
+entry => {
+
+if (
+!entry.isIntersecting
+) {
+return;
+}
+
+activateViewSizeAutoAnimation(
+entry.target
+);
+
+viewSizeAnimationObserver.unobserve(
+entry.target
+);
+
+}
+);
+
+},
+{
+threshold:.25,
+rootMargin:"0px 0px -7% 0px"
+}
+);
+
+homepageViewSizeLinks.forEach(
+link => {
+
+viewSizeAnimationObserver.observe(
+link
+);
+
+}
+);
+
+}
+
+}
 
 
 function getHomepageProductCardDimensions(
@@ -10169,7 +10665,6 @@ requestEngineeredShimmerCheck();
 
 
 /* ===============================
-CHANGE 5
 PROFESSIONAL FITTING
 TWO-IMAGE SWIPE + 10 SECOND AUTO CHANGE
 ================================ */
@@ -11648,14 +12143,127 @@ document.getElementById(
 "addCustomRooflightToOrder"
 );
 
+const homepageBuildCustomRooflightButton =
+document.getElementById(
+"homepageBuildCustomRooflightButton"
+);
+
 const HOMEPAGE_ORDER_STORAGE_KEY =
 "factoryToughenedRooflightsOrderV1";
 
 const HOMEPAGE_ORDER_FOCUS_KEY =
 "factoryToughenedRooflightsOrderFocusV1";
 
+/*
+CHANGE 5 / 6 / 7
+SHARED CROSS-PAGE NAVIGATION INSTRUCTION
+*/
+
+const HOMEPAGE_ORDER_NAVIGATION_KEY =
+"factoryToughenedRooflightsOrderNavigationV1";
+
 let currentCustomRooflightOrder =
 null;
+
+
+/* ===============================
+CHANGE 5 / 6 / 7
+ORDER PAGE NAVIGATION INSTRUCTIONS
+================================ */
+
+function saveOrderPageNavigationInstruction(
+instruction
+) {
+
+try {
+
+window.sessionStorage.setItem(
+HOMEPAGE_ORDER_NAVIGATION_KEY,
+JSON.stringify(
+{
+...instruction,
+createdAt:
+Date.now()
+}
+)
+);
+
+return true;
+
+} catch (
+error
+) {
+
+return false;
+
+}
+
+}
+
+
+/* =========================================
+CHANGE 5
+BUILD A CUSTOM ROOFLIGHT BUTTON
+ORDER PAGE →
+CUSTOM BUILDER
+40% FROM TOP OF VIEWPORT
+========================================= */
+
+if (
+homepageBuildCustomRooflightButton
+) {
+
+homepageBuildCustomRooflightButton.addEventListener(
+"click",
+event => {
+
+event.preventDefault();
+
+saveOrderPageNavigationInstruction(
+{
+source:
+"homepage-custom-builder",
+
+action:
+"scroll-to-custom-builder",
+
+target:
+"custom-builder",
+
+viewportOffset:
+0.40,
+
+replayAnimations:
+false
+}
+);
+
+const parameters =
+new URLSearchParams();
+
+parameters.set(
+"source",
+"homepage-custom-builder"
+);
+
+parameters.set(
+"focus",
+"custom-builder"
+);
+
+parameters.set(
+"viewportOffset",
+"0.40"
+);
+
+window.location.href =
+"order-page.html?" +
+parameters.toString();
+
+}
+);
+
+}
 
 
 /* ===============================
@@ -11852,9 +12460,7 @@ numericValue
 
 
 /* =========================================
-CHANGE 3
 PRICE FORMAT — LARGE POUNDS / SMALL .00
-BOTTOM ALIGNED
 ========================================= */
 
 function renderCustomMadeToOrderPrice(
@@ -12356,8 +12962,6 @@ customPriceExternal.textContent =
 `${formatRooflightDimension(externalWidth)}mm × ${formatRooflightDimension(externalLength)}mm`;
 
 
-/* Store the complete current custom configuration */
-
 currentCustomRooflightOrder = {
 
 width:width,
@@ -12511,7 +13115,6 @@ showCustomPriceBox();
 
 
 /* ===============================
-CHANGE 3
 HOMEPAGE CUSTOM ORDER →
 SHARED ORDER-PAGE STORAGE
 ================================ */
@@ -12901,28 +13504,77 @@ return targetItemId;
 }
 
 
+/* =========================================
+CHANGE 6 + CHANGE 7
+HOMEPAGE ADD TO ORDER →
+ORDER PAGE CUSTOM ORDER SUMMARY
+
+SENDS:
+- CUSTOM ITEM ID
+- 40% VIEWPORT POSITION
+- SCROLL TARGET
+- REPLAY ANIMATION COMMAND
+========================================= */
+
 function openCustomOrderOnOrderPage(
 customItemId
 ) {
+
+const navigationInstruction = {
+
+source:
+"homepage-custom",
+
+action:
+"focus-custom-order-summary",
+
+target:
+"custom-order-summary",
+
+type:
+"custom",
+
+id:
+customItemId,
+
+customItemId:
+customItemId,
+
+center:
+true,
+
+viewportOffset:
+0.40,
+
+replayAnimations:
+true,
+
+replayTarget:
+"custom-order-summary"
+
+};
+
 
 try {
 
 window.sessionStorage.setItem(
 HOMEPAGE_ORDER_FOCUS_KEY,
 JSON.stringify(
-{
-type:"custom",
-id:customItemId,
-center:true
-}
+navigationInstruction
 )
 );
 
 } catch (
 error
 ) {
-/* Continue to order page even if sessionStorage is unavailable. */
+/* Continue if sessionStorage is unavailable. */
 }
+
+
+saveOrderPageNavigationInstruction(
+navigationInstruction
+);
+
 
 const parameters =
 new URLSearchParams();
@@ -12933,7 +13585,17 @@ parameters.set(
 );
 
 parameters.set(
+"arrival",
+"homepage-add-to-order"
+);
+
+parameters.set(
 "focus",
+"custom-order-summary"
+);
+
+parameters.set(
+"scroll",
 "custom-order-summary"
 );
 
@@ -12941,6 +13603,17 @@ parameters.set(
 "customId",
 customItemId
 );
+
+parameters.set(
+"viewportOffset",
+"0.40"
+);
+
+parameters.set(
+"replayAnimations",
+"1"
+);
+
 
 if (
 currentCustomRooflightOrder
@@ -12990,6 +13663,7 @@ currentCustomRooflightOrder.unitPrice
 );
 
 }
+
 
 window.location.href =
 "order-page.html?" +
