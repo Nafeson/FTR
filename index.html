@@ -1,7 +1,3 @@
-Gmail	Nathan Knight <rightglaze@gmail.com>
-Index
-Nathan Knight <nathank3290@gmail.com>	Fri, Aug 28, 2026 at 8:45 PM
-To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -508,6 +504,7 @@ scale(1);
 
 /* ===============================
 STATIC LEAD-TIME BANNER
+CHANGE 3 — CONTENT REDUCED 15%
 ================================ */
 
 .lead-time-banner {
@@ -538,8 +535,8 @@ line-height:1;
 }
 
 .lead-time-van {
-width:50px;
-height:24px;
+width:42.5px;
+height:20.4px;
 display:block;
 flex:0 0 auto;
 color:var(--steel-light);
@@ -549,15 +546,15 @@ filter:drop-shadow(0 2px 3px rgba(0,0,0,.55));
 .lead-time-feature {
 display:inline-flex;
 align-items:baseline;
-gap:5px;
+gap:4.25px;
 font-family:
 "Bahnschrift Condensed",
 "Arial Narrow",
 "Aptos",
 sans-serif;
-font-size:clamp(13px,1.5vw,18px);
+font-size:clamp(11.05px,1.275vw,15.3px);
 font-weight:800;
-letter-spacing:1.5px;
+letter-spacing:1.275px;
 line-height:1;
 text-transform:uppercase;
 padding:3px 1px 4px;
@@ -575,7 +572,7 @@ text-shadow:none;
 
 .lead-time-divider {
 color:rgba(255,255,255,.22);
-font-size:15px;
+font-size:12.75px;
 font-weight:400;
 }
 
@@ -589,9 +586,9 @@ font-family:
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:clamp(11px,1.35vw,15px);
+font-size:clamp(9.35px,1.1475vw,12.75px);
 font-weight:700;
-letter-spacing:1px;
+letter-spacing:.85px;
 line-height:1.15;
 text-transform:uppercase;
 color:rgba(247,247,243,.82);
@@ -1060,6 +1057,7 @@ object-position:center center;
 }
 
 .home-product-card.image-size-300x1500,
+.home-product-card.image-size-400x1200,
 .home-product-card.image-size-400x1500,
 .home-product-card.image-size-400x1800 {
 --home-image-transform:rotate(90deg) scale(1.30);
@@ -1140,7 +1138,8 @@ color:rgba(247,247,243,.76);
 font-weight:650;
 }
 
-.home-product-spec .delivery-chargeable {
+.home-product-spec .delivery-chargeable,
+.home-product-spec .product-delivery-chargeable {
 color:var(--orange-bright);
 font-weight:750;
 }
@@ -1715,10 +1714,13 @@ TINTED PRODUCT IMAGE RESCALING
 --home-image-hover-transform:scale(1.15);
 }
 
+/* CHANGE 2 — 400 × 1200 SATIN
+ROTATED TO MATCH 400 × 1500 CLEAR */
+
 .tinted-options-section
-.home-product-card.image-size-800x800[data-finish="satin"] {
---home-image-transform:scale(.88);
---home-image-hover-transform:scale(.91);
+.home-product-card.image-size-400x1200[data-finish="satin"] {
+--home-image-transform:rotate(90deg) scale(1.50);
+--home-image-hover-transform:rotate(90deg) scale(1.53);
 }
 
 .tinted-options-section
@@ -3213,6 +3215,19 @@ margin-top:10px;
 white-space:nowrap;
 }
 
+/* =========================================
+CHANGE 6
+MADE-TO-ORDER PRICE REDUCED BY 20%
+========================================= */
+
+#customPriceBox .price-label {
+font-size:6.4px;
+}
+
+#customPriceBox .price {
+font-size:43.2px;
+}
+
 .custom-price-whole {
 display:block;
 font:inherit;
@@ -3278,6 +3293,18 @@ color:rgba(247,247,243,.86);
 font-size:13px;
 font-weight:650;
 overflow-wrap:anywhere;
+}
+
+/* =========================================
+CHANGE 7
+COMPACT FOUR-DIGIT DIMENSIONS
+========================================= */
+
+.custom-price-dimension-value.is-compact-dimension {
+font-size:11px;
+letter-spacing:-.1px;
+white-space:nowrap;
+overflow-wrap:normal;
 }
 
 .custom-price-meta {
@@ -3780,7 +3807,6 @@ margin-bottom:0;
 
 /* =========================================
 FOOTER COMPANY DETAILS
-INDEX CHANGE 2
 ========================================= */
 
 .footer-company-details {
@@ -3820,7 +3846,6 @@ display:block;
 
 /* =========================================
 FOOTER ADDRESS
-REDUCED BY A FURTHER 15%
 ========================================= */
 
 footer .footer-wordmark .footer-address {
@@ -4214,23 +4239,23 @@ gap:5px;
 }
 
 .lead-time-van {
-width:40px;
-height:21px;
+width:34px;
+height:17.85px;
 }
 
 .lead-time-feature {
-font-size:11.5px;
-letter-spacing:.8px;
-gap:4px;
+font-size:9.775px;
+letter-spacing:.68px;
+gap:3.4px;
 }
 
 .lead-time-divider {
-font-size:10px;
+font-size:8.5px;
 }
 
 .lead-time-message {
-font-size:9.5px;
-letter-spacing:.45px;
+font-size:8.075px;
+letter-spacing:.38px;
 }
 
 .section-label {
@@ -4290,10 +4315,17 @@ height:104px;
 }
 
 .home-product-card.image-size-300x1500,
+.home-product-card.image-size-400x1200,
 .home-product-card.image-size-400x1500,
 .home-product-card.image-size-400x1800 {
 --home-image-transform:rotate(90deg) scale(1.38);
 --home-image-hover-transform:rotate(90deg) scale(1.41);
+}
+
+.tinted-options-section
+.home-product-card.image-size-400x1200[data-finish="satin"] {
+--home-image-transform:rotate(90deg) scale(1.50);
+--home-image-hover-transform:rotate(90deg) scale(1.53);
 }
 
 .home-product-size {
@@ -4925,8 +4957,10 @@ align-items:stretch;
 padding:22px 19px 18px;
 }
 
-.price {
-font-size:45px;
+/* CHANGE 6 — MOBILE 20% REDUCTION */
+
+#customPriceBox .price {
+font-size:36px;
 }
 
 .custom-price-dimension {
@@ -4940,6 +4974,14 @@ padding-left:10px;
 
 .custom-price-dimension-value {
 font-size:12px;
+}
+
+/* CHANGE 7 — MOBILE COMPACT DIMENSIONS */
+
+.custom-price-dimension-value.is-compact-dimension {
+font-size:10.25px;
+white-space:nowrap;
+overflow-wrap:normal;
 }
 
 .price-box .button {
@@ -5127,11 +5169,6 @@ margin-bottom:8px;
 gap:0;
 }
 
-/*
-KEEP CURRENT RIGHT GLAZE LOGO POSITION.
-DO NOT ALTER HORIZONTAL POSITION.
-*/
-
 .footer-right-glaze-brand {
 margin:11px 0;
 }
@@ -5149,7 +5186,6 @@ font-size:10px;
 
 /* =========================================
 MOBILE FOOTER ADDRESS
-REDUCED BY A FURTHER 15%
 ========================================= */
 
 footer .footer-wordmark .footer-address {
@@ -5305,9 +5341,9 @@ display:none;
 }
 
 .lead-time-message {
-width:100%;
+width:auto;
 justify-content:center;
-margin-top:2px;
+margin-top:0;
 }
 
 .mobile-feature-icons {
@@ -5394,8 +5430,10 @@ padding-top:27px;
 padding-bottom:22px;
 }
 
-.price {
-font-size:41px;
+/* CHANGE 6 — SMALLEST MOBILE */
+
+#customPriceBox .price {
+font-size:32.8px;
 }
 
 .custom-price-dimension {
@@ -5408,6 +5446,12 @@ font-size:8px;
 
 .custom-price-dimension-value {
 font-size:11px;
+}
+
+.custom-price-dimension-value.is-compact-dimension {
+font-size:9.4px;
+white-space:nowrap;
+overflow-wrap:normal;
 }
 
 .custom-price-meta {
@@ -5748,29 +5792,22 @@ stroke="currentColor"
 <span class="lead-time-feature">
 
 <span class="lead-time-fast">
-Fast
+Buy
 </span>
 
 <span class="lead-time-red">
-Lead Times
+Direct
 </span>
 
-</span>
-
-<span
-class="lead-time-divider"
-aria-hidden="true"
->
--
 </span>
 
 <span class="lead-time-message">
 
 <span
 class="lead-time-message-text"
-data-text="From 4 Working Days"
+data-text="Custom Sizes From 4 Working Days"
 >
-From 4 Working Days
+Custom Sizes From 4 Working Days
 </span>
 
 <span class="lead-time-star">*</span>
@@ -5872,7 +5909,6 @@ Contact Our Rooflight Team
 HOMEPAGE LAYOUT / PRODUCT ORDER FLOW
 ========================================= */
 
-/* First standalone rooflight image */
 .first-rooflight-visual-section {
 padding-bottom:clamp(28px,3.5vw,55px) !important;
 }
@@ -5886,13 +5922,11 @@ padding-top:clamp(30px,3.5vw,46px) !important;
 padding-bottom:clamp(34px,4vw,62px) !important;
 }
 
-/* Normal bold italic number 4 */
 .standard-lead-time-number {
 font-weight:800;
 font-style:italic;
 }
 
-/* Static homepage images retain the existing reveal behaviour */
 .static-rooflight-visual {
 width:100%;
 }
@@ -6037,9 +6071,8 @@ margin-top:48px;
 }
 
 /* =========================================
-INDEX CHANGE 3
-PROFESSIONAL FITTING → BLACK TRANSITION
-REMOVE BOTTOM DIVIDING LINE
+CHANGE 1
+PROFESSIONAL FITTING → OVERSIZED TRANSITION
 ========================================= */
 
 .direct-section {
@@ -6057,12 +6090,13 @@ linear-gradient(
 }
 
 /* =========================================
-INDEX CHANGE 4
-OVERSIZED ROOFLIGHT VISUAL / GREEN BACKDROP
+CHANGE 1
+OVERSIZED GREEN GRADIENT TOP FADE
 
-TOP APPROX. 30% OF THE IMAGE AREA REMAINS
-DARK, WITH THE GREEN ATMOSPHERE VISIBLE
-THROUGH THE LOWER APPROX. 70%.
+GREEN GRADIENT POSITION IS UNCHANGED.
+THE TOP NOW BLENDS FROM THE EXACT BLACK
+OF THE PRECEDING SECTION INTO THE EXISTING
+GREEN ATMOSPHERE MORE GRADUALLY.
 ========================================= */
 
 .oversized-showcase-section {
@@ -6072,6 +6106,19 @@ padding:0;
 border:0;
 
 background:
+
+linear-gradient(
+180deg,
+#090a0a 0%,
+rgba(9,10,10,.985) 6%,
+rgba(9,10,10,.94) 12%,
+rgba(9,10,10,.82) 18%,
+rgba(9,10,10,.62) 24%,
+rgba(9,10,10,.38) 30%,
+rgba(9,10,10,.16) 35%,
+rgba(9,10,10,0) 40%
+),
+
 radial-gradient(
 ellipse 94% 58% at 50% 36%,
 rgba(31,92,66,.58) 0%,
@@ -6080,6 +6127,7 @@ rgba(18,51,39,.32) 56%,
 rgba(10,27,21,.16) 78%,
 transparent 98%
 ),
+
 linear-gradient(
 180deg,
 #0b0e0d 0%,
@@ -6138,12 +6186,6 @@ opacity,
 transform;
 }
 
-/*
-Dark transition across the upper 30% of the
-oversized visual. The existing green section
-background then shows through underneath.
-*/
-
 .oversized-rooflight-visual::before {
 content:"";
 position:absolute;
@@ -6198,13 +6240,6 @@ object-fit:contain;
 object-position:center center;
 background:transparent;
 }
-
-/* =========================================
-INDEX CHANGE 1
-OVERSIZED SECTION BOTTOM PADDING
-REDUCED BY APPROX. 15%
-82PX → 70PX
-========================================= */
 
 .oversized-showcase-section .oversized-section {
 position:relative;
@@ -6301,12 +6336,25 @@ margin-top:32px;
 }
 
 /* =========================================
-MOBILE OVERSIZED VISUAL / GREEN BACKDROP
-INDEX CHANGE 4
+CHANGE 1 — MOBILE OVERSIZED FADE
+GREEN POSITION UNCHANGED
 ========================================= */
 
 .oversized-showcase-section {
 background:
+
+linear-gradient(
+180deg,
+#090a0a 0%,
+rgba(9,10,10,.99) 6%,
+rgba(9,10,10,.95) 12%,
+rgba(9,10,10,.84) 18%,
+rgba(9,10,10,.64) 24%,
+rgba(9,10,10,.40) 30%,
+rgba(9,10,10,.17) 35%,
+rgba(9,10,10,0) 40%
+),
+
 radial-gradient(
 ellipse 118% 60% at 50% 37%,
 rgba(31,91,66,.61) 0%,
@@ -6315,6 +6363,7 @@ rgba(17,49,37,.33) 57%,
 rgba(10,27,21,.16) 79%,
 transparent 98%
 ),
+
 linear-gradient(
 180deg,
 #0a0d0c 0%,
@@ -6335,12 +6384,6 @@ height:250px;
 transform:scale(1.08);
 transform-origin:center center;
 }
-
-/* =========================================
-INDEX CHANGE 1
-MOBILE BOTTOM PADDING REDUCED BY ~15%
-30PX → 26PX
-========================================= */
 
 .oversized-showcase-section .oversized-section {
 padding:
@@ -6474,7 +6517,7 @@ alt="1000mm by 1200mm frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6575,7 +6618,7 @@ alt="400mm by 1500mm frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -6777,7 +6820,7 @@ alt="600mm by 900mm frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -7435,7 +7478,6 @@ Estimated delivery
 class="custom-price-delivery-date"
 id="estimatedDeliveryDate"
 >
-Tuesday 18 August 2026
 </span>
 
 </div>
@@ -7512,20 +7554,9 @@ class="engineered-grid"
 id="engineeredGrid"
 >
 
+<!-- CHANGE 9 — WEATHER PROTECTIVE DESIGN MOVED FIRST -->
+
 <div class="engineered-card reveal reveal-scale">
-
-<h3>
-Low E Energy Saving Glass
-</h3>
-
-<p>
-Our Low E glass is designed to keep heat in during winter and reduce overheating
-in summer, helping improve thermal efficiency and lower energy costs.
-</p>
-
-</div>
-
-<div class="engineered-card reveal reveal-scale reveal-delay-1">
 
 <h3>
 Weather Protective Design
@@ -7536,6 +7567,19 @@ Our frameless rooflights are designed to overhang the upstand, helping shield th
 external seal and glass-to-upstand junction from direct weather exposure. This
 provides greater protection from rain and long-term weathering around the critical
 sealing areas.
+</p>
+
+</div>
+
+<div class="engineered-card reveal reveal-scale reveal-delay-1">
+
+<h3>
+Low E Energy Saving Glass
+</h3>
+
+<p>
+Our Low E glass is designed to keep heat in during winter and reduce overheating
+in summer, helping improve thermal efficiency and lower energy costs.
 </p>
 
 </div>
@@ -7645,7 +7689,7 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>8mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -7746,7 +7790,7 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>8mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -7847,7 +7891,7 @@ alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -7920,21 +7964,26 @@ View Size
 
 </div>
 
+<!-- =========================================
+CHANGE 2
+400 × 1200 SATIN REPLACES 800 × 800 SATIN
+========================================= -->
+
 <div
-class="home-product-card tinted-product-card image-size-800x800 reveal reveal-scale reveal-delay-3"
-data-product-size="800x800"
+class="home-product-card tinted-product-card image-size-400x1200 reveal reveal-scale reveal-delay-3"
+data-product-size="400x1200"
 data-finish="satin"
 data-default-glazing="double"
-data-double-price="375"
-data-triple-price="455"
+data-double-price="325"
+data-triple-price="395"
 tabindex="0"
 >
 
 <div class="home-product-image">
 
 <img
-src="images/product-cards/satin-large-square.png"
-alt="800mm by 800mm satin privacy frameless flat roof skylight"
+src="images/product-cards/satin-large-rectangle.png"
+alt="400mm by 1200mm satin privacy frameless flat roof skylight"
 />
 
 </div>
@@ -7942,13 +7991,13 @@ alt="800mm by 800mm satin privacy frameless flat roof skylight"
 <div class="home-product-content">
 
 <div class="home-product-size">
-800 × 800mm
+400 × 1200mm
 </div>
 
 <div class="home-product-spec">
 <span>Inside Visible Glass Size</span>
 <span>6mm Toughened Safety Glass</span>
-<span>Free Mainland UK Delivery</span>
+<span>Delivery Calculated By Postcode</span>
 </div>
 
 <div class="home-glazing-wrap">
@@ -7991,7 +8040,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£375
+£325
 </span>
 
 <span class="home-price-decimals">
@@ -8196,7 +8245,7 @@ id="homepageClosing"
 <div class="homepage-closing-option reveal">
 
 <h3>
-Need Some Help?
+Need Further Assistance?
 </h3>
 
 <p>
@@ -8295,12 +8344,6 @@ Terms of Use
 </a>
 
 </div>
-
-<!-- =========================================
-INDEX CHANGE 2
-RIGHT GLAZE LOGO MOVED BETWEEN VAT NUMBER
-AND COPYRIGHT / CONTACT LINE
-========================================= -->
 
 <div class="footer-company-details">
 
@@ -9569,6 +9612,12 @@ productLink.classList.add(
 }
 
 
+/* =========================================
+CHANGE 5
+VIEW SIZE OPENS IMMEDIATELY ON FIRST CLICK
+CARD BODY RETAINS EXISTING TWO-STEP BEHAVIOUR
+========================================= */
+
 homepageProductCards.forEach(
 card => {
 
@@ -9605,17 +9654,6 @@ clickedGlazingControl
 return;
 }
 
-const cardWasAlreadyActive =
-activeHomepageProductCard === card &&
-card.classList.contains(
-"is-selected"
-);
-
-const canOpenOrderPage =
-isHomepageOrderActivationTarget(
-event.target
-);
-
 const clickedProductLink =
 event.target.closest(
 ".home-product-link"
@@ -9627,7 +9665,26 @@ clickedProductLink
 
 event.preventDefault();
 
+event.stopPropagation();
+
+openHomepageProductOrderPage(
+card
+);
+
+return;
+
 }
+
+const cardWasAlreadyActive =
+activeHomepageProductCard === card &&
+card.classList.contains(
+"is-selected"
+);
+
+const canOpenOrderPage =
+isHomepageOrderActivationTarget(
+event.target
+);
 
 event.stopPropagation();
 
@@ -9718,25 +9775,7 @@ event.preventDefault();
 
 event.stopPropagation();
 
-const cardWasAlreadyActive =
-activeHomepageProductCard === card &&
-card.classList.contains(
-"is-selected"
-);
-
-if (
-cardWasAlreadyActive
-) {
-
 openHomepageProductOrderPage(
-card
-);
-
-return;
-
-}
-
-activateHomepageProductCard(
 card
 );
 
@@ -10279,6 +10318,12 @@ reason:null
 }
 
 
+/* =========================================
+CHANGE 4
+ALL VISIBLE HOMEPAGE PRODUCT CARDS SHOW
+DELIVERY CALCULATED BY POSTCODE
+========================================= */
+
 function updateHomepageProductSpecifications() {
 
 homepageProductCards.forEach(
@@ -10341,7 +10386,7 @@ size
 spec.innerHTML = `
 <span class="product-internal-size">Inside Visible Glass Size</span>
 <span class="product-glass-spec">${glassLine}</span>
-<span class="${chargeableDelivery ? "product-delivery-chargeable" : "product-delivery-free"}">${chargeableDelivery ? "Delivery Calculated By Postcode" : "Free Mainland UK Delivery"}</span>
+<span class="product-delivery-chargeable">Delivery Calculated By Postcode</span>
 `;
 
 card.dataset.deliveryType =
@@ -12367,6 +12412,46 @@ numericValue
 }
 
 
+/* =========================================
+CHANGE 7
+DIMENSION VALUE AUTO-COMPACTION
+========================================= */
+
+function renderCustomDimensionValue(
+element,
+width,
+length
+) {
+
+if (
+!element
+) {
+return;
+}
+
+element.textContent =
+`${formatRooflightDimension(width)}mm × ${formatRooflightDimension(length)}mm`;
+
+const requiresCompactDimension =
+Math.abs(
+Number(
+width
+)
+) >= 1000 ||
+Math.abs(
+Number(
+length
+)
+) >= 1000;
+
+element.classList.toggle(
+"is-compact-dimension",
+requiresCompactDimension
+);
+
+}
+
+
 function renderCustomMadeToOrderPrice(
 price
 ) {
@@ -12439,6 +12524,11 @@ customPriceOutput.innerHTML =
 
 }
 
+
+/* =========================================
+CHANGE 8
+4–6 WORKING DAY DELIVERY RANGE
+========================================= */
 
 function addWorkingDays(
 numberOfWorkingDays
@@ -12555,33 +12645,125 @@ label:"Estimated 8–10 working days"
 }
 
 
-function getEstimatedDeliveryDate(
-workingDays
+function getOrdinalSuffix(
+day
 ) {
 
-const deliveryDate =
+const numericDay =
+Number(
+day
+);
+
+const remainder100 =
+numericDay % 100;
+
+if (
+remainder100 >= 11 &&
+remainder100 <= 13
+) {
+return "th";
+}
+
+switch (
+numericDay % 10
+) {
+
+case 1:
+return "st";
+
+case 2:
+return "nd";
+
+case 3:
+return "rd";
+
+default:
+return "th";
+
+}
+
+}
+
+
+function formatEstimatedDeliveryRangeDate(
+date
+) {
+
+const weekdayNames = [
+"Sun",
+"Mon",
+"Tues",
+"Wed",
+"Thurs",
+"Fri",
+"Sat"
+];
+
+const monthNames = [
+"Jan",
+"Feb",
+"Mar",
+"Apr",
+"May",
+"Jun",
+"Jul",
+"Aug",
+"Sept",
+"Oct",
+"Nov",
+"Dec"
+];
+
+const day =
+date.getDate();
+
+return (
+weekdayNames[
+date.getDay()
+] +
+" " +
+day +
+getOrdinalSuffix(
+day
+) +
+" " +
+monthNames[
+date.getMonth()
+]
+);
+
+}
+
+
+function getEstimatedDeliveryRange(
+minimumWorkingDays = 4,
+maximumWorkingDays = 6
+) {
+
+const minimumDate =
 addWorkingDays(
-workingDays
+minimumWorkingDays
 );
 
-return new Intl.DateTimeFormat(
-"en-GB",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-).format(
-deliveryDate
+const maximumDate =
+addWorkingDays(
+maximumWorkingDays
+);
+
+return (
+formatEstimatedDeliveryRangeDate(
+minimumDate
+) +
+" - " +
+formatEstimatedDeliveryRangeDate(
+maximumDate
+)
 );
 
 }
 
 
-function updateEstimatedDeliveryDate(
-workingDays = 6
-) {
+function updateEstimatedDeliveryDate() {
 
 if (
 !estimatedDeliveryDate
@@ -12590,8 +12772,9 @@ return;
 }
 
 estimatedDeliveryDate.textContent =
-getEstimatedDeliveryDate(
-workingDays
+getEstimatedDeliveryRange(
+4,
+6
 );
 
 }
@@ -12830,9 +13013,9 @@ length,
 finish
 );
 
-updateEstimatedDeliveryDate(
-leadTime.maximum
-);
+/* CHANGE 8 — DISPLAY ALWAYS USES CURRENT DATE + 4–6 WORKING DAYS */
+
+updateEstimatedDeliveryDate();
 
 const customDeliveryBand =
 getCustomDeliveryBand(
@@ -12851,11 +13034,19 @@ roundedPrice
 );
 
 
-customPriceInternal.textContent =
-`${formatRooflightDimension(width)}mm × ${formatRooflightDimension(length)}mm`;
+/* CHANGE 7 */
 
-customPriceExternal.textContent =
-`${formatRooflightDimension(externalWidth)}mm × ${formatRooflightDimension(externalLength)}mm`;
+renderCustomDimensionValue(
+customPriceInternal,
+width,
+length
+);
+
+renderCustomDimensionValue(
+customPriceExternal,
+externalWidth,
+externalLength
+);
 
 
 currentCustomRooflightOrder = {
@@ -13641,9 +13832,9 @@ storedItemId
 }
 
 
-updateEstimatedDeliveryDate(
-6
-);
+/* CHANGE 8 — CURRENT DATE + 4–6 WORKING DAYS */
+
+updateEstimatedDeliveryDate();
 
 setCalculatorSizeAlert(
 false
