@@ -3776,21 +3776,21 @@ margin-bottom:0;
 
 /* =========================================
 FOOTER COMPANY DETAILS
+INDEX CHANGE 2
 ========================================= */
 
 .footer-company-details {
 display:grid;
-gap:8px;
+gap:0;
 margin:0 0 10px;
 max-width:520px;
 }
 
-.footer-right-glaze {
-display:flex;
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
-margin-top:2px;
+.footer-right-glaze-brand {
+display:block;
+width:max-content;
+max-width:100%;
+margin:12px 0;
 }
 
 .footer-right-glaze-logo {
@@ -3804,7 +3804,7 @@ object-fit:contain;
 .footer-company-numbers {
 display:grid;
 gap:2px;
-margin-top:-4px;
+margin-top:0;
 color:rgba(247,247,243,.48);
 font-size:11px;
 line-height:1.45;
@@ -4019,7 +4019,7 @@ width:72px;
 transform:translateX(-4px) translateY(5px);
 }
 
-/* GOOGLE PAY — CHANGE 9 */
+/* GOOGLE PAY */
 
 .footer-payment-logo-item.google-pay {
 width:76px;
@@ -5120,17 +5120,17 @@ MOBILE FOOTER DETAILS
 
 .footer-company-details {
 margin-bottom:8px;
-gap:7px;
-}
-
-.footer-right-glaze {
-gap:9px;
+gap:0;
 }
 
 /*
 KEEP CURRENT RIGHT GLAZE LOGO POSITION.
-DO NOT ALTER.
+DO NOT ALTER HORIZONTAL POSITION.
 */
+
+.footer-right-glaze-brand {
+margin:11px 0;
+}
 
 .footer-right-glaze-logo {
 height:24px;
@@ -5139,7 +5139,7 @@ transform:translateX(-2.5px);
 }
 
 .footer-company-numbers {
-margin-top:-3px;
+margin-top:0;
 font-size:10px;
 }
 
@@ -5940,7 +5940,6 @@ border-radius:6px;
 }
 
 /* =========================================
-CHANGE 4
 VIEW SIZE — INITIAL SCROLL ANIMATION
 THEN ONCE EVERY 7 SECONDS
 ========================================= */
@@ -6034,9 +6033,32 @@ margin-top:48px;
 }
 
 /* =========================================
-CHANGE 1
+INDEX CHANGE 3
+PROFESSIONAL FITTING → BLACK TRANSITION
+REMOVE BOTTOM DIVIDING LINE
+========================================= */
+
+.direct-section {
+border-bottom:0;
+background:
+linear-gradient(
+180deg,
+#0f1111 0%,
+#151818 52%,
+#141717 64%,
+#111313 74%,
+#0d0f0f 86%,
+#090a0a 100%
+);
+}
+
+/* =========================================
+INDEX CHANGE 4
 OVERSIZED ROOFLIGHT VISUAL / GREEN BACKDROP
-MATCH CUSTOM ROOFLIGHT SECTION
+
+TOP APPROX. 30% OF THE IMAGE AREA REMAINS
+DARK, WITH THE GREEN ATMOSPHERE VISIBLE
+THROUGH THE LOWER APPROX. 70%.
 ========================================= */
 
 .oversized-showcase-section {
@@ -6047,21 +6069,21 @@ border:0;
 
 background:
 radial-gradient(
-ellipse 72% 38% at 50% 54%,
-rgba(31,92,66,.50) 0%,
-rgba(25,74,54,.40) 24%,
-rgba(18,51,39,.28) 47%,
-rgba(10,27,21,.13) 70%,
-transparent 90%
+ellipse 94% 58% at 50% 36%,
+rgba(31,92,66,.58) 0%,
+rgba(25,74,54,.47) 30%,
+rgba(18,51,39,.32) 56%,
+rgba(10,27,21,.16) 78%,
+transparent 98%
 ),
 linear-gradient(
 180deg,
 #0b0e0d 0%,
-#0d1512 25%,
-#102119 43%,
-#12291f 54%,
-#102118 65%,
-#0d1512 79%,
+#0d1713 15%,
+#10241b 29%,
+#122d21 46%,
+#11291f 63%,
+#0e1b15 79%,
 #0b0d0c 100%
 );
 }
@@ -6089,6 +6111,7 @@ pointer-events:none;
 .oversized-rooflight-visual {
 position:relative;
 z-index:2;
+isolation:isolate;
 width:100%;
 overflow:hidden;
 background:transparent;
@@ -6111,6 +6134,30 @@ opacity,
 transform;
 }
 
+/*
+Dark transition across the upper 30% of the
+oversized visual. The existing green section
+background then shows through underneath.
+*/
+
+.oversized-rooflight-visual::before {
+content:"";
+position:absolute;
+inset:0;
+z-index:0;
+pointer-events:none;
+background:
+linear-gradient(
+180deg,
+rgba(9,10,10,1) 0%,
+rgba(9,10,10,.98) 14%,
+rgba(9,10,10,.88) 21%,
+rgba(9,10,10,.52) 27%,
+rgba(9,10,10,0) 31%,
+rgba(9,10,10,0) 100%
+);
+}
+
 .oversized-rooflight-visual.is-revealed {
 opacity:1;
 visibility:visible;
@@ -6121,6 +6168,8 @@ scale(1);
 }
 
 .oversized-rooflight-visual .buy-rooflight-slideshow {
+position:relative;
+z-index:1;
 margin:0;
 background:transparent;
 box-shadow:none;
@@ -6146,6 +6195,13 @@ object-position:center center;
 background:transparent;
 }
 
+/* =========================================
+INDEX CHANGE 1
+OVERSIZED SECTION BOTTOM PADDING
+REDUCED BY APPROX. 15%
+82PX → 70PX
+========================================= */
+
 .oversized-showcase-section .oversized-section {
 position:relative;
 z-index:2;
@@ -6153,14 +6209,11 @@ background:transparent;
 padding:
 16px
 6%
-82px;
+70px;
 }
 
 /* =========================================
 HOMEPAGE CLOSING
-CHANGE 2 + CHANGE 3
-REMOVE TOP SEPARATOR
-REDUCE TOP GAP BY APPROX. 15%
 ========================================= */
 
 .homepage-closing-section {
@@ -6207,11 +6260,6 @@ margin:22px auto 0;
 padding:0;
 text-align:center;
 
-/*
-5% SMALLER THAN THE ORIGINAL
-17PX HOMEPAGE PARAGRAPH SIZE
-*/
-
 font-size:16.15px;
 line-height:1.62;
 color:var(--muted);
@@ -6250,26 +6298,27 @@ margin-top:32px;
 
 /* =========================================
 MOBILE OVERSIZED VISUAL / GREEN BACKDROP
+INDEX CHANGE 4
 ========================================= */
 
 .oversized-showcase-section {
 background:
 radial-gradient(
-ellipse 95% 39% at 50% 55%,
-rgba(31,91,66,.55) 0%,
-rgba(24,71,52,.43) 25%,
-rgba(17,49,37,.29) 48%,
-rgba(10,27,21,.14) 71%,
-transparent 91%
+ellipse 118% 60% at 50% 37%,
+rgba(31,91,66,.61) 0%,
+rgba(24,71,52,.49) 31%,
+rgba(17,49,37,.33) 57%,
+rgba(10,27,21,.16) 79%,
+transparent 98%
 ),
 linear-gradient(
 180deg,
 #0a0d0c 0%,
-#0d1512 25%,
-#10221a 44%,
-#132d22 54%,
-#10221a 65%,
-#0d1512 80%,
+#0d1813 15%,
+#10261c 29%,
+#132f23 47%,
+#11291f 64%,
+#0e1a15 80%,
 #0a0c0b 100%
 );
 }
@@ -6283,11 +6332,17 @@ transform:scale(1.08);
 transform-origin:center center;
 }
 
+/* =========================================
+INDEX CHANGE 1
+MOBILE BOTTOM PADDING REDUCED BY ~15%
+30PX → 26PX
+========================================= */
+
 .oversized-showcase-section .oversized-section {
 padding:
 10px
 6%
-30px;
+26px;
 }
 
 /* =========================================
@@ -6308,11 +6363,6 @@ font-size:30px;
 .homepage-closing-option p {
 width:88%;
 max-width:690px;
-
-/*
-5% SMALLER THAN 16PX
-*/
-
 font-size:15.2px;
 line-height:1.6;
 margin-top:22px;
@@ -6366,9 +6416,6 @@ transform:none;
 
 <!-- =========================================
 POPULAR / READY-TO-ORDER ROOFLIGHTS
-CHANGE 3 — NEW ORDER
-1000x1200 / 400x1500
-1500x1800 / 600x900
 ========================================= -->
 
 <section
@@ -8245,19 +8292,13 @@ Terms of Use
 
 </div>
 
+<!-- =========================================
+INDEX CHANGE 2
+RIGHT GLAZE LOGO MOVED BETWEEN VAT NUMBER
+AND COPYRIGHT / CONTACT LINE
+========================================= -->
+
 <div class="footer-company-details">
-
-<div class="footer-right-glaze">
-
-<div class="footer-right-glaze-brand">
-
-<img
-src="images/smallrglogo.png"
-class="footer-right-glaze-logo"
-alt="Right Glaze Ltd"
-/>
-
-</div>
 
 <div class="footer-company-numbers">
 
@@ -8278,6 +8319,14 @@ VAT no. - 487373544
 </span>
 
 </div>
+
+<div class="footer-right-glaze-brand">
+
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
+/>
 
 </div>
 
@@ -8867,7 +8916,6 @@ element
 
 
 /* ===============================
-CHANGE 1
 OVERSIZED ROOFLIGHT IMAGE REVEAL
 ================================ */
 
@@ -8966,7 +9014,6 @@ null;
 
 
 /* ===============================
-CHANGE 4
 VIEW SIZE BUTTON AUTO ANIMATION
 INITIAL VIEW + EVERY 7 SECONDS
 ================================ */
@@ -12037,7 +12084,6 @@ null;
 
 
 /* ===============================
-CHANGE 5 / 6 / 7
 ORDER PAGE NAVIGATION INSTRUCTIONS
 ================================ */
 
