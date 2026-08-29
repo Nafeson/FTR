@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+Order
+Nathan Knight <nathank3290@gmail.com>	Sat, Aug 29, 2026 at 11:14 PM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -5966,7 +5970,7 @@ aria-live="polite"
 class="price-whole"
 id="priceWhole"
 >
-300
+270
 </span>
 
 <span class="price-dot">.</span>
@@ -6020,7 +6024,7 @@ aria-live="polite"
 class="total-price-whole"
 id="totalPriceWhole"
 >
-600
+540
 </span>
 
 <span class="total-price-dot">.</span>
@@ -6894,7 +6898,8 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div class="quantity-display"
+<div
+class="quantity-display"
 aria-live="polite"
 >
 
@@ -7754,176 +7759,120 @@ basketTotalText.classList.add(
 
 
 /* =========================================
-PRODUCT DATA
+PRODUCT PRESENTATION DATA
 ========================================= */
 
 const PRODUCTS = {
 
 "300x800":{
-double:195,
-triple:235,
 image:"ultra-narrow-rectangle.png"
 },
 
 "300x1000":{
-double:220,
-triple:270,
 image:"ultra-narrow-rectangle.png"
 },
 
 "300x1200":{
-double:235,
-triple:285,
 image:"narrow-tall-rectangle.png"
 },
 
 "300x1500":{
-double:270,
-triple:325,
 image:"narrow-long-rectangle.png"
 },
 
 "400x800":{
-double:215,
-triple:260,
 image:"small-rectangle.png"
 },
 
 "400x1000":{
-double:235,
-triple:285,
 image:"narrow-tall-rectangle.png"
 },
 
 "400x1200":{
-double:260,
-triple:315,
 image:"narrow-long-rectangle.png"
 },
 
 "400x1500":{
-double:310,
-triple:370,
 image:"narrow-long-rectangle.png"
 },
 
 "600x600":{
-double:220,
-triple:270,
 image:"small-square.png"
 },
 
 "600x900":{
-double:250,
-triple:300,
 image:"small-rectangle.png"
 },
 
 "600x1200":{
-double:310,
-triple:370,
 image:"large-rectangle.png"
 },
 
 "600x1500":{
-double:360,
-triple:430,
 image:"large-rectangle.png"
 },
 
 "600x2000":{
-double:455,
-triple:540,
 image:"large-rectangle.png"
 },
 
 "800x800":{
-double:290,
-triple:350,
 image:"medium-square.png"
 },
 
 "800x1000":{
-double:435,
-triple:520,
 image:"medium-square.png"
 },
 
 "800x1200":{
-double:395,
-triple:470,
 image:"medium-square.png"
 },
 
 "800x1500":{
-double:455,
-triple:545,
 image:"large-rectangle.png"
 },
 
 "800x2000":{
-double:560,
-triple:675,
 image:"large-rectangle.png"
 },
 
 "1000x1000":{
-double:420,
-triple:505,
 image:"large-square.png"
 },
 
 "1000x1200":{
-double:465,
-triple:560,
 image:"medium-square.png"
 },
 
 "1000x1500":{
-double:520,
-triple:625,
 image:"large-rectangle.png"
 },
 
 "1000x2000":{
-double:650,
-triple:780,
 image:"large-rectangle.png"
 },
 
 "1000x2500":{
-double:785,
-triple:945,
 image:"jumbo.png"
 },
 
 "1200x1200":{
-double:510,
-triple:615,
 image:"large-square.png"
 },
 
 "1500x1500":{
-double:760,
-triple:910,
 image:"large-square.png"
 },
 
 "1500x1800":{
-double:880,
-triple:1075,
 image:"jumbo.png"
 },
 
 "1500x2000":{
-double:980,
-triple:1180,
 image:"jumbo.png"
 },
 
 "1500x2500":{
-double:1225,
-triple:1475,
 image:"jumbo.png"
 }
 
@@ -7995,37 +7944,108 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 
 /* =========================================
-CONFIGURATION PRICING
+CUSTOMER-FACING PRICING MASTER
 ========================================= */
 
-const CONFIGURATION_UPLIFTS = {
+const ACTIVE_PRICE_CATEGORY =
+"normal";
 
-type:{
+
+const PRICE_CATEGORIES = {
+
+normal:{
+
+tripleClearToughened100:{
+
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
+
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+"600x2000":445,
+
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+"800x2000":515,
+
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+"1000x2000":625,
+"1000x2500":770,
+
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
+
+},
+
+adjustments:{
+
+glazing:{
+triple:0,
+double:-.17
+},
+
+glassType:{
 toughened:0,
 laminated:.20
 },
 
-tint:{
+finish:{
 clear:0,
 grey:.22,
 satin:.25,
 blue:.30
+},
+
+border:{
+100:0,
+125:.07,
+150:.15
+},
+
+customPremium:.04
+
+}
+
 }
 
 };
 
 
-const BORDER_PRICE_UPLIFTS = {
+function getActivePriceCategory() {
 
-100:0,
-125:.07,
-150:.15
+const category =
+PRICE_CATEGORIES[
+ACTIVE_PRICE_CATEGORY
+];
 
-};
+if (
+!category
+) {
 
+throw new Error(
+`Unknown price category: ${ACTIVE_PRICE_CATEGORY}`
+);
 
-const CUSTOM_PRICE_PREMIUM =
-.08;
+}
+
+return category;
+
+}
 
 
 function roundToNearestFive(
@@ -8044,7 +8064,8 @@ value
 
 
 function calculateConfiguredPrice(
-basePrice,
+tripleClearToughened100Price,
+glazing,
 type,
 tint,
 border,
@@ -8053,40 +8074,60 @@ customPremium = 0
 } = {}
 ) {
 
+const category =
+getActivePriceCategory();
+
+const adjustments =
+category.adjustments;
+
 const base =
 Number(
-basePrice
+tripleClearToughened100Price
 ) || 0;
 
-const typeUplift =
-CONFIGURATION_UPLIFTS.type[
+const glazingAdjustment =
+Number(
+adjustments.glazing?.[
+glazing
+]
+) || 0;
+
+const glassTypeAdjustment =
+Number(
+adjustments.glassType?.[
 type
 ]
-||
-0;
+) || 0;
 
-const tintUplift =
-CONFIGURATION_UPLIFTS.tint[
+const finishAdjustment =
+Number(
+adjustments.finish?.[
 tint
 ]
-||
-0;
+) || 0;
 
-const borderUplift =
-BORDER_PRICE_UPLIFTS[
+const borderAdjustment =
+Number(
+adjustments.border?.[
 Number(
 border
 )
 ]
-||
-0;
+) || 0;
 
-let price =
+const glazingBase =
 base *
 (
 1 +
-typeUplift +
-tintUplift
+glazingAdjustment
+);
+
+let price =
+glazingBase *
+(
+1 +
+glassTypeAdjustment +
+finishAdjustment
 );
 
 price *=
@@ -8100,11 +8141,398 @@ customPremium
 price *=
 (
 1 +
-borderUplift
+borderAdjustment
 );
 
 return roundToNearestFive(
 price
+);
+
+}
+
+
+/* =========================================
+STANDARD MASTER PRICE INTERPOLATION
+========================================= */
+
+function getStandardPricePoints() {
+
+const category =
+getActivePriceCategory();
+
+const grouped =
+new Map();
+
+SIZE_DROPDOWN_ORDER
+.forEach(
+size => {
+
+const anchorPrice =
+Number(
+category
+.tripleClearToughened100[
+size
+]
+);
+
+if (
+!Number.isFinite(
+anchorPrice
+)
+) {
+
+return;
+
+}
+
+const [
+width,
+length
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const area =
+(
+width *
+length
+) /
+1000000;
+
+const key =
+area.toFixed(
+6
+);
+
+if (
+!grouped.has(
+key
+)
+) {
+
+grouped.set(
+key,
+{
+area:area,
+total:0,
+count:0
+}
+);
+
+}
+
+const group =
+grouped.get(
+key
+);
+
+group.total +=
+anchorPrice;
+
+group.count +=
+1;
+
+}
+);
+
+return Array.from(
+grouped.values()
+)
+.map(
+group => {
+
+return {
+
+area:
+group.area,
+
+price:
+group.total /
+group.count
+
+};
+
+}
+)
+.sort(
+(
+first,
+second
+) =>
+first.area -
+second.area
+);
+
+}
+
+
+function estimateStandardBasePrice(
+width,
+length
+) {
+
+const area =
+(
+Number(
+width
+) *
+Number(
+length
+)
+) /
+1000000;
+
+const points =
+getStandardPricePoints();
+
+if (
+!points.length
+) {
+
+return 0;
+
+}
+
+if (
+area <=
+points[0].area
+) {
+
+return points[0].price;
+
+}
+
+const lastPoint =
+points[
+points.length - 1
+];
+
+if (
+area >=
+lastPoint.area
+) {
+
+if (
+points.length <
+2
+) {
+
+return lastPoint.price;
+
+}
+
+const previousPoint =
+points[
+points.length - 2
+];
+
+const areaDifference =
+lastPoint.area -
+previousPoint.area;
+
+if (
+areaDifference <=
+0
+) {
+
+return lastPoint.price;
+
+}
+
+const priceDifference =
+lastPoint.price -
+previousPoint.price;
+
+const slope =
+priceDifference /
+areaDifference;
+
+return Math.max(
+lastPoint.price,
+lastPoint.price +
+(
+area -
+lastPoint.area
+) *
+slope
+);
+
+}
+
+for (
+let index = 1;
+index <
+points.length;
+index +=
+1
+) {
+
+const upper =
+points[
+index
+];
+
+const lower =
+points[
+index - 1
+];
+
+if (
+area <=
+upper.area
+) {
+
+const areaSpan =
+upper.area -
+lower.area;
+
+if (
+areaSpan <=
+0
+) {
+
+return upper.price;
+
+}
+
+const position =
+(
+area -
+lower.area
+) /
+areaSpan;
+
+return (
+lower.price +
+(
+upper.price -
+lower.price
+) *
+position
+);
+
+}
+
+}
+
+return lastPoint.price;
+
+}
+
+
+function getTripleAnchorPriceForSize(
+size
+) {
+
+const category =
+getActivePriceCategory();
+
+const directPrice =
+Number(
+category
+.tripleClearToughened100[
+size
+]
+);
+
+if (
+Number.isFinite(
+directPrice
+)
+) {
+
+return directPrice;
+
+}
+
+const [
+width,
+length
+] =
+String(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+)
+) {
+
+return 0;
+
+}
+
+return estimateStandardBasePrice(
+width,
+length
+);
+
+}
+
+
+function calculateStandardPriceForSelection(
+selection
+) {
+
+const anchorPrice =
+getTripleAnchorPriceForSize(
+selection.size
+);
+
+return calculateConfiguredPrice(
+anchorPrice,
+selection.glazing,
+selection.type,
+selection.tint,
+selection.border
+);
+
+}
+
+
+function calculateCustomPriceForSelection(
+width,
+length,
+glazing,
+type,
+tint,
+border
+) {
+
+const category =
+getActivePriceCategory();
+
+const interpolatedAnchorPrice =
+estimateStandardBasePrice(
+width,
+length
+);
+
+return calculateConfiguredPrice(
+interpolatedAnchorPrice,
+glazing,
+type,
+tint,
+border,
+{
+customPremium:
+category.adjustments.customPremium
+}
 );
 
 }
@@ -11127,12 +11555,6 @@ return existingExtraLargeFee;
 
 }
 
-/*
-No standard postcode band is applied to an
-Extra Large / Oversized item where no existing
-XL delivery fee has been supplied.
-*/
-
 return null;
 
 }
@@ -12459,44 +12881,25 @@ STANDARD PRICE
 
 function selectedPrice() {
 
-const product =
-PRODUCTS[
-state.size
-];
-
 if (
-!product
+!PRODUCTS[
+state.size
+]
 ) {
 
 return 0;
 
 }
 
-if (
-homepageImportMatchesCurrentSelection() &&
-Number.isFinite(
-state.homepageImport.price
-) &&
-state.homepageImport.price >
-0
-) {
+/*
+Homepage-import prices are intentionally not used
+as the Order Page pricing source. The imported
+image/configuration behaviour is retained, while
+the active Order Page category remains authoritative.
+*/
 
-return state.homepageImport.price;
-
-}
-
-const base =
-Number(
-product[
-state.glazing
-]
-);
-
-return calculateConfiguredPrice(
-base,
-state.type,
-state.tint,
-state.border
+return calculateStandardPriceForSelection(
+state
 );
 
 }
@@ -12505,271 +12908,6 @@ state.border
 /* =========================================
 CUSTOM PRICE ESTIMATION
 ========================================= */
-
-function getStandardPricePoints(
-glazing
-) {
-
-const grouped =
-new Map();
-
-Object.entries(
-PRODUCTS
-)
-.forEach(
-(
-[
-size,
-product
-]
-) => {
-
-const [
-width,
-length
-] =
-size
-.split(
-"x"
-)
-.map(
-Number
-);
-
-const area =
-(
-width *
-length
-) /
-1000000;
-
-const key =
-area.toFixed(
-6
-);
-
-if (
-!grouped.has(
-key
-)
-) {
-
-grouped.set(
-key,
-{
-area:area,
-total:0,
-count:0
-}
-);
-
-}
-
-const group =
-grouped.get(
-key
-);
-
-group.total +=
-Number(
-product[
-glazing
-]
-);
-
-group.count +=
-1;
-
-}
-);
-
-return Array.from(
-grouped.values()
-)
-.map(
-group => {
-
-return {
-
-area:
-group.area,
-
-price:
-group.total /
-group.count
-
-};
-
-}
-)
-.sort(
-(
-first,
-second
-) =>
-first.area -
-second.area
-);
-
-}
-
-
-function estimateStandardBasePrice(
-width,
-length,
-glazing
-) {
-
-const area =
-(
-Number(
-width
-) *
-Number(
-length
-)
-) /
-1000000;
-
-const points =
-getStandardPricePoints(
-glazing
-);
-
-if (
-!points.length
-) {
-
-return 0;
-
-}
-
-if (
-area <=
-points[0].area
-) {
-
-return points[0].price;
-
-}
-
-const lastPoint =
-points[
-points.length - 1
-];
-
-if (
-area >=
-lastPoint.area
-) {
-
-if (
-points.length <
-2
-) {
-
-return lastPoint.price;
-
-}
-
-const previousPoint =
-points[
-points.length - 2
-];
-
-const areaDifference =
-lastPoint.area -
-previousPoint.area;
-
-if (
-areaDifference <=
-0
-) {
-
-return lastPoint.price;
-
-}
-
-const priceDifference =
-lastPoint.price -
-previousPoint.price;
-
-const slope =
-priceDifference /
-areaDifference;
-
-return Math.max(
-lastPoint.price,
-lastPoint.price +
-(
-area -
-lastPoint.area
-) *
-slope
-);
-
-}
-
-for (
-let index = 1;
-index <
-points.length;
-index +=
-1
-) {
-
-const upper =
-points[
-index
-];
-
-const lower =
-points[
-index - 1
-];
-
-if (
-area <=
-upper.area
-) {
-
-const areaSpan =
-upper.area -
-lower.area;
-
-if (
-areaSpan <=
-0
-) {
-
-return upper.price;
-
-}
-
-const position =
-(
-area -
-lower.area
-) /
-areaSpan;
-
-return (
-lower.price +
-(
-upper.price -
-lower.price
-) *
-position
-);
-
-}
-
-}
-
-return lastPoint.price;
-
-}
-
 
 function customInputsAreValid() {
 
@@ -12810,22 +12948,13 @@ return 0;
 
 }
 
-const estimatedBase =
-estimateStandardBasePrice(
+return calculateCustomPriceForSelection(
 customState.width,
 customState.length,
-customState.glazing
-);
-
-return calculateConfiguredPrice(
-estimatedBase,
+customState.glazing,
 customState.type,
 customState.tint,
-customState.border,
-{
-customPremium:
-CUSTOM_PRICE_PREMIUM
-}
+customState.border
 );
 
 }
@@ -14793,8 +14922,14 @@ item.quantity
 );
 
 const unitPrice =
-Number(
-item.unitPrice
+calculateStandardPriceForSelection(
+{
+size:size,
+glazing:glazing,
+type:type,
+border:border,
+tint:tint
+}
 );
 
 if (
@@ -14831,6 +14966,9 @@ tint:tint,
 quantity:quantity,
 
 unitPrice:unitPrice,
+
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 
 deliveryPostcode:
 String(
@@ -15008,9 +15146,13 @@ item.qty
 );
 
 const unitPrice =
-Number(
-item.unitPrice ??
-item.price
+calculateCustomPriceForSelection(
+width,
+length,
+glazing,
+type,
+tint,
+border
 );
 
 if (
@@ -15077,6 +15219,9 @@ unitPrice:unitPrice,
 
 price:unitPrice,
 
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
+
 deliveryPostcode:
 String(
 item.deliveryPostcode ||
@@ -15121,6 +15266,8 @@ ORDER_STORAGE_KEY,
 JSON.stringify(
 {
 version:2,
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 items:state.orderItems,
 customItems:state.customOrderItems,
 deliveryPostcode:
@@ -18000,6 +18147,9 @@ state.quantity,
 unitPrice:
 unitPrice,
 
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
+
 deliveryPostcode:
 state.deliveryPostcode,
 
@@ -18236,6 +18386,9 @@ unitPrice,
 
 price:
 unitPrice,
+
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 
 source:
 "order-page-custom",
@@ -18564,7 +18717,6 @@ HOMEPAGE_ORDER_FOCUS_KEY
 catch (
 error
 ) {
-/* No action required. */
 }
 
 const currentUrl =
