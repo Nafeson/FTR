@@ -245,6 +245,14 @@ padding-bottom:2px;
 text-transform:lowercase;
 }
 
+.header-wordmark-link {
+display:block;
+width:max-content;
+max-width:100%;
+color:inherit;
+text-decoration:none;
+}
+
 .address-line {
 font-size:12px;
 line-height:1.45;
@@ -1256,11 +1264,11 @@ transform:none;
 }
 
 .product-assurance-item.delivery-calculated-assurance {
-color:var(--delivery-red-bright);
+color:var(--white);
 }
 
 .product-assurance-item.delivery-calculated-assurance::before {
-color:var(--delivery-red-bright);
+color:var(--white);
 }
 
 
@@ -3441,6 +3449,13 @@ CUSTOM UNIT SUMMARY
 margin-top:clamp(38px,4.5vw,62px);
 }
 
+.custom-purchase-layout:not(.is-incomplete) {
+grid-template-columns:
+var(--custom-summary-price-column,minmax(200px,.82fr))
+minmax(0,1.12fr)
+minmax(0,1.38fr);
+}
+
 .custom-purchase-layout.is-incomplete {
 grid-template-columns:1fr;
 }
@@ -3643,7 +3658,8 @@ line-height:1.65;
 
 
 /* =========================================
-CURRENT HOMEPAGE FOOTER
+FACTORY TOUGHENED ROOFLIGHTS
+MASTER FOOTER
 ========================================= */
 
 footer {
@@ -3656,7 +3672,22 @@ font-size:13px;
 
 .footer-wordmark {
 margin-bottom:22px;
-color:var(--steel);
+color:#9ca3a1;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+line-height:.91;
+font-weight:850;
+letter-spacing:2.8px;
+font-size:24px;
+text-transform:uppercase;
+width:max-content;
+max-width:100%;
 }
 
 .footer-wordmark .footer-wordmark-factory {
@@ -3692,6 +3723,11 @@ filter:none;
 }
 
 .footer-wordmark .wordmark-bottom {
+display:flex;
+align-items:flex-end;
+gap:0;
+white-space:nowrap;
+width:max-content;
 color:#b6b8b7;
 }
 
@@ -3714,70 +3750,14 @@ filter:none;
 .footer-wordmark .wordmark-domain {
 color:#9ea19f;
 font-size:.40em;
+font-weight:700;
+letter-spacing:.15px;
+line-height:1;
+margin-left:1px;
+padding-bottom:2px;
+text-transform:lowercase;
 -webkit-text-fill-color:#9ea19f;
 }
-
-footer p {
-margin:0 0 10px;
-line-height:1.6;
-}
-
-footer p:last-child {
-margin-bottom:0;
-}
-
-
-/* =========================================
-FOOTER COMPANY DETAILS
-========================================= */
-
-.footer-company-details {
-display:grid;
-gap:8px;
-margin:0 0 10px;
-max-width:520px;
-}
-
-.footer-company-intro {
-margin:0;
-color:rgba(247,247,243,.50);
-font-size:11px;
-line-height:1.6;
-}
-
-.footer-right-glaze {
-display:flex;
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
-margin-top:2px;
-}
-
-.footer-right-glaze-logo {
-display:block;
-width:auto;
-height:25.2px;
-max-width:99px;
-object-fit:contain;
-}
-
-.footer-company-numbers {
-display:grid;
-gap:2px;
-margin-top:-4px;
-color:rgba(247,247,243,.48);
-font-size:11px;
-line-height:1.45;
-}
-
-.footer-company-numbers span {
-display:block;
-}
-
-
-/* =========================================
-FOOTER ADDRESS
-========================================= */
 
 footer .footer-wordmark .footer-address {
 display:grid;
@@ -3815,10 +3795,14 @@ text-transform:uppercase;
 color:rgba(255,255,255,.72);
 }
 
+footer p {
+margin:0 0 10px;
+line-height:1.6;
+}
 
-/* =========================================
-FOOTER QUICK LINKS
-========================================= */
+footer p:last-child {
+margin-bottom:0;
+}
 
 footer .footer-quick-links {
 display:flex;
@@ -3858,20 +3842,116 @@ transform .18s ease;
 
 footer .footer-quick-links a:hover,
 footer .footer-quick-links a:focus {
-color:var(--orange-bright);
-text-decoration-color:var(--orange-bright);
+color:#f28a28;
+text-decoration-color:#f28a28;
 transform:translateX(2px);
 outline:none;
 }
 
-footer .footer-quick-links + .footer-payment-logo-strip {
+footer .footer-quick-links .footer-collection {
+display:block;
+margin:12px 0 0;
+color:rgba(247,247,243,.50);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:11px;
+font-weight:400;
+line-height:1.5;
+letter-spacing:0;
+text-transform:none;
+}
+
+.footer-company-details {
+display:grid;
+gap:0;
+margin:0 0 10px;
+max-width:520px;
+}
+
+footer .footer-quick-links + .footer-company-details {
 margin-top:34px;
 }
 
+.footer-company-numbers {
+display:grid;
+gap:2px;
+margin-top:0;
+color:rgba(247,247,243,.48);
+font-size:11px;
+line-height:1.45;
+}
 
-/* =========================================
-PAYMENT LOGOS
-========================================= */
+.footer-company-numbers span {
+display:block;
+}
+
+.footer-right-glaze-brand {
+display:block;
+width:max-content;
+max-width:100%;
+margin:12px 0;
+}
+
+.footer-right-glaze-logo {
+display:block;
+width:auto;
+height:28px;
+max-width:110px;
+object-fit:contain;
+}
+
+.footer-copyright {
+display:flex;
+align-items:center;
+justify-content:flex-start;
+flex-wrap:wrap;
+gap:5px;
+width:100%;
+max-width:900px;
+margin:0;
+color:rgba(247,247,243,.48);
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:10px;
+font-weight:400;
+line-height:1.55;
+letter-spacing:.05px;
+}
+
+.footer-copyright span {
+display:inline;
+}
+
+.footer-copyright-divider {
+color:rgba(247,247,243,.30);
+padding:0 1px;
+}
+
+.footer-copyright a {
+color:#f7f7f3;
+font-family:inherit;
+font-size:inherit;
+font-weight:inherit;
+line-height:inherit;
+letter-spacing:inherit;
+text-decoration:none;
+overflow-wrap:anywhere;
+transition:color .18s ease;
+}
+
+.footer-copyright a:hover,
+.footer-copyright a:focus {
+color:#f28a28;
+outline:none;
+}
 
 .footer-payment-logo-strip {
 display:flex;
@@ -3906,89 +3986,45 @@ object-position:center;
 
 .footer-payment-logo-item.visa {
 width:64px;
-transform:translateX(0px) translateY(5px);
+transform:
+translateX(0px)
+translateY(5px);
 }
 
 .footer-payment-logo-item.mastercard {
 width:46px;
-transform:translateX(1px) translateY(5px);
+transform:
+translateX(4px)
+translateY(5px);
 }
 
 .footer-payment-logo-item.amex {
 width:58px;
-transform:translateX(-3px) translateY(5px);
+transform:
+translateX(2px)
+translateY(5px);
 }
 
 .footer-payment-logo-item.paypal {
 width:76px;
-transform:translateX(-4px) translateY(5px);
+transform:
+translateX(3px)
+translateY(5px);
 }
 
 .footer-payment-logo-item.apple-pay {
 width:72px;
-transform:translateX(-4px) translateY(5px);
+transform:
+translateX(5px)
+translateY(5px);
 }
 
 .footer-payment-logo-item.google-pay {
 width:76px;
 transform:
-translateX(-22px)
-translateY(7px)
+translateX(-9px)
+translateY(5px)
 scale(.88);
-}
-
-
-/* =========================================
-FOOTER COPYRIGHT
-========================================= */
-
-.footer-copyright {
-display:flex;
-align-items:center;
-justify-content:flex-start;
-flex-wrap:wrap;
-gap:5px;
-width:100%;
-max-width:900px;
-margin:0;
-color:rgba(247,247,243,.48);
-font-family:
-"Aptos",
-"Inter",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:10px;
-font-weight:400;
-line-height:1.55;
-letter-spacing:.05px;
-}
-
-.footer-copyright span {
-display:inline;
-}
-
-.footer-copyright-divider {
-color:rgba(247,247,243,.30);
-padding:0 1px;
-}
-
-.footer-copyright a {
-color:var(--white);
-font-family:inherit;
-font-size:inherit;
-font-weight:inherit;
-line-height:inherit;
-letter-spacing:inherit;
-text-decoration:none;
-overflow-wrap:anywhere;
-transition:color .18s ease;
-}
-
-.footer-copyright a:hover,
-.footer-copyright a:focus {
-color:var(--orange-bright);
-outline:none;
 }
 
 
@@ -4027,6 +4063,13 @@ grid-template-columns:
 minmax(170px,.78fr)
 minmax(245px,1.08fr)
 minmax(310px,1.34fr);
+}
+
+.custom-purchase-layout:not(.is-incomplete) {
+grid-template-columns:
+var(--custom-summary-price-column,minmax(170px,.78fr))
+minmax(0,1.08fr)
+minmax(0,1.34fr);
 }
 
 .purchase-zone {
@@ -4260,6 +4303,12 @@ width:22px;
 
 .purchase-layout {
 grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+}
+
+.custom-purchase-layout:not(.is-incomplete) {
+grid-template-columns:
+var(--custom-summary-price-column,minmax(0,.82fr))
+minmax(0,1fr);
 }
 
 .purchase-zone {
@@ -4762,7 +4811,7 @@ width:20px;
 
 
 /* =========================================
-MOBILE HEADER / FOOTER
+MOBILE HEADER / MASTER FOOTER
 ========================================= */
 
 @media(max-width:560px) {
@@ -4847,17 +4896,11 @@ padding:0 2.5%;
 
 .footer-company-details {
 margin-bottom:8px;
-gap:7px;
+gap:0;
 }
 
-.footer-company-intro {
-font-size:10px;
-margin-top:0;
-margin-bottom:1px;
-}
-
-.footer-right-glaze {
-gap:9px;
+.footer-right-glaze-brand {
+margin:11px 0;
 }
 
 .footer-right-glaze-logo {
@@ -4867,24 +4910,40 @@ transform:translateX(-2.5px);
 }
 
 .footer-company-numbers {
-margin-top:-3px;
+margin-top:0;
 font-size:10px;
 }
 
 footer .footer-wordmark .footer-address {
 gap:0;
 margin-top:10.5px;
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 font-size:8.7px;
 font-weight:600;
 line-height:1.45;
 letter-spacing:.6px;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
 }
 
 footer .footer-wordmark .footer-address span {
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
 font-size:8.7px;
 font-weight:600;
 line-height:1.45;
 letter-spacing:.6px;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
 }
 
 footer .footer-quick-links {
@@ -4897,9 +4956,18 @@ font-size:12px;
 font-weight:500;
 line-height:1.35;
 letter-spacing:.12px;
+text-decoration-line:underline;
+text-decoration-thickness:1px;
+text-underline-offset:3px;
 }
 
-footer .footer-quick-links + .footer-payment-logo-strip {
+footer .footer-quick-links .footer-collection {
+margin-top:11px;
+font-size:10.5px;
+line-height:1.5;
+}
+
+footer .footer-quick-links + .footer-company-details {
 margin-top:36px;
 }
 
@@ -4907,9 +4975,14 @@ margin-top:36px;
 font-size:20px;
 }
 
+.footer-wordmark .wordmark-domain {
+padding-bottom:1px;
+}
+
 .footer-payment-logo-strip {
 gap:10px;
 max-width:350px;
+margin-top:16px;
 margin-bottom:31px;
 }
 
@@ -4960,7 +5033,7 @@ padding:0 2px;
 }
 
 .footer-copyright a {
-color:var(--white);
+color:#f7f7f3;
 font-family:inherit;
 font-size:inherit;
 font-weight:inherit;
@@ -5261,7 +5334,11 @@ HEADER
 
 <div class="wordmark-wrap">
 
-<div class="wordmark">
+<a
+href="index.html"
+class="wordmark header-wordmark-link"
+aria-label="Factory Toughened Rooflights homepage"
+>
 
 Factory
 
@@ -5279,7 +5356,7 @@ Rooflights
 
 </div>
 
-</div>
+</a>
 
 </div>
 
@@ -5427,24 +5504,53 @@ aria-label="Close menu"
 
 <div class="menu-links">
 
-<a href="standard-sizes.html" onclick="closeMenu()">
+<a
+href="index.html"
+onclick="closeMenu()"
+>
+Home
+</a>
+
+<a
+href="standard-sizes.html"
+onclick="closeMenu()"
+>
 Standard Sizes
 </a>
 
-<a href="index.html#calculator" onclick="closeMenu()">
+<a
+href="order-page.html"
+onclick="closeMenu()"
+>
+Order Your Rooflight
+</a>
+
+<a
+href="#customRooflightBuilder"
+id="orderPageBuildRooflightMenuLink"
+>
 Build A Rooflight
 </a>
 
-<a href="index.html#oversized" onclick="closeMenu()">
+<a
+href="index.html#oversized"
+onclick="closeMenu()"
+>
 Oversized Rooflights
 </a>
 
-<a href="index.html#specification-advice" onclick="closeMenu()">
-Specification Advice
+<a
+href="installation-guide.html"
+onclick="closeMenu()"
+>
+Installation Guide
 </a>
 
-<a href="contact.html" onclick="closeMenu()">
-Contact Our Rooflight Team
+<a
+href="contact.html"
+onclick="closeMenu()"
+>
+Contact Our Team
 </a>
 
 </div>
@@ -5826,7 +5932,10 @@ Unit Summary
 </div>
 
 
-<div class="purchase-layout">
+<div
+class="purchase-layout"
+id="unitPurchaseLayout"
+>
 
 
 <div class="purchase-zone purchase-price-zone">
@@ -6785,8 +6894,7 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div
-class="quantity-display"
+<div class="quantity-display"
 aria-live="polite"
 >
 
@@ -6995,7 +7103,7 @@ Ts &amp; Cs
 
 
 <!-- =========================================
-CURRENT HOMEPAGE FOOTER
+MASTER FOOTER
 ========================================= -->
 
 <footer id="contact">
@@ -7074,7 +7182,63 @@ Terms of Use
 </div>
 
 
-<!-- PAYMENT ROW MOVED ABOVE COMPANY DETAILS -->
+<div class="footer-company-details">
+
+<div class="footer-company-numbers">
+
+<span>
+Factory Toughened Rooflights is a trading name of:
+</span>
+
+<span>
+Right Glaze Ltd
+</span>
+
+<span>
+Company no. - 14336400
+</span>
+
+<span>
+VAT no. - 487373544
+</span>
+
+</div>
+
+
+<div class="footer-right-glaze-brand">
+
+<img
+src="images/smallrglogo.png"
+class="footer-right-glaze-logo"
+alt="Right Glaze Ltd"
+/>
+
+</div>
+
+
+<div class="footer-copyright">
+
+<span>
+© 2026 Factory Toughened Rooflights. All Rights Reserved
+</span>
+
+<span
+class="footer-copyright-divider"
+aria-hidden="true"
+>
+|
+</span>
+
+<a
+href="mailto:sales@factorytoughenedrooflights.co.uk"
+>
+sales@factorytoughenedrooflights.co.uk
+</a>
+
+</div>
+
+</div>
+
 
 <div
 class="footer-payment-logo-strip"
@@ -7122,67 +7286,6 @@ src="images/google-pay.png"
 alt="Google Pay"
 >
 </span>
-
-</div>
-
-
-<div class="footer-company-details">
-
-<p class="footer-company-intro">
-Factory Toughened Rooflights is a trading name of:
-</p>
-
-<div class="footer-right-glaze">
-
-<div class="footer-right-glaze-brand">
-
-<img
-src="images/smallrglogo.png"
-class="footer-right-glaze-logo"
-alt="Right Glaze Ltd"
-/>
-
-</div>
-
-<div class="footer-company-numbers">
-
-<span>
-Right Glaze Ltd
-</span>
-
-<span>
-Company no. - 14336400
-</span>
-
-<span>
-VAT no. - 487373544
-</span>
-
-</div>
-
-</div>
-
-
-<div class="footer-copyright">
-
-<span>
-© 2026 Factory Toughened Rooflights. All Rights Reserved
-</span>
-
-<span
-class="footer-copyright-divider"
-aria-hidden="true"
->
-|
-</span>
-
-<a
-href="mailto:sales@factorytoughenedrooflights.co.uk"
->
-sales@factorytoughenedrooflights.co.uk
-</a>
-
-</div>
 
 </div>
 
@@ -7375,6 +7478,61 @@ menuOverlay.classList.remove(
 
 document.body.style.overflow =
 "";
+
+}
+
+
+const orderPageBuildRooflightMenuLink =
+document.getElementById(
+"orderPageBuildRooflightMenuLink"
+);
+
+
+if (
+orderPageBuildRooflightMenuLink
+) {
+
+orderPageBuildRooflightMenuLink.addEventListener(
+"click",
+event => {
+
+event.preventDefault();
+
+closeMenu();
+
+const target =
+document.getElementById(
+"customRooflightBuilder"
+);
+
+if (
+!target
+) {
+
+return;
+
+}
+
+window.requestAnimationFrame(
+() => {
+
+window.requestAnimationFrame(
+() => {
+
+animateElementToViewportRatio(
+target,
+.30,
+560
+);
+
+}
+);
+
+}
+);
+
+}
+);
 
 }
 
@@ -8218,6 +8376,11 @@ document.getElementById(
 "unitSummarySection"
 );
 
+const unitPurchaseLayout =
+document.getElementById(
+"unitPurchaseLayout"
+);
+
 const productTitle =
 document.getElementById(
 "productTitle"
@@ -8545,6 +8708,72 @@ null;
 
 let deliveryTotalTimer =
 null;
+
+
+/* =========================================
+CUSTOM SUMMARY COLUMN MATCHING
+========================================= */
+
+function syncCustomSummaryPriceColumn() {
+
+if (
+!unitPurchaseLayout ||
+!customPurchaseLayout
+) {
+
+return;
+
+}
+
+const standardPriceZone =
+unitPurchaseLayout.querySelector(
+".purchase-price-zone"
+);
+
+if (
+!standardPriceZone
+) {
+
+return;
+
+}
+
+const standardPriceWidth =
+standardPriceZone
+.getBoundingClientRect()
+.width;
+
+if (
+!Number.isFinite(
+standardPriceWidth
+) ||
+standardPriceWidth <=
+0
+) {
+
+return;
+
+}
+
+customPurchaseLayout.style.setProperty(
+"--custom-summary-price-column",
+`${standardPriceWidth}px`
+);
+
+}
+
+
+function requestCustomSummaryColumnSync() {
+
+window.requestAnimationFrame(
+() => {
+
+syncCustomSummaryPriceColumn();
+
+}
+);
+
+}
 
 
 /* =========================================
@@ -11609,12 +11838,6 @@ applicableFee ===
 null
 ) {
 
-/*
-An Extra Large item exists but no explicit
-XL delivery fee is available in its saved data.
-Do not apply the temporary standard bands.
-*/
-
 updateAllDeliveryItems(
 result.postcode,
 null
@@ -13323,6 +13546,8 @@ customPurchaseLayout.classList.toggle(
 !valid
 );
 
+requestCustomSummaryColumnSync();
+
 customPriceZone.hidden =
 !valid;
 
@@ -14356,6 +14581,8 @@ updateSizeDropdownAvailableHeight();
 positionCurrentSizeAtTop();
 
 }
+
+requestCustomSummaryColumnSync();
 
 }
 );
@@ -17022,6 +17249,8 @@ updateGlazedAppearance();
 
 updateTintAppearance();
 
+requestCustomSummaryColumnSync();
+
 if (
 updateUrl
 ) {
@@ -18247,6 +18476,14 @@ params.get(
 ""
 );
 
+const viewportOffsetRaw =
+Number(
+storedFocus?.viewportOffset ??
+params.get(
+"viewportOffset"
+)
+);
+
 const topRatioRaw =
 Number(
 storedFocus?.topRatio ??
@@ -18262,6 +18499,17 @@ params.get(
 
 const topRatio =
 Number.isFinite(
+viewportOffsetRaw
+) &&
+viewportOffsetRaw >
+0 &&
+viewportOffsetRaw <
+1
+?
+viewportOffsetRaw
+:
+(
+Number.isFinite(
 topRatioRaw
 ) &&
 topRatioRaw >
@@ -18271,7 +18519,8 @@ topRatioRaw <
 ?
 topRatioRaw
 :
-.40;
+.40
+);
 
 return {
 
@@ -18333,6 +18582,10 @@ currentUrl.searchParams.delete(
 
 currentUrl.searchParams.delete(
 "top"
+);
+
+currentUrl.searchParams.delete(
+"viewportOffset"
 );
 
 history.replaceState(
@@ -18639,6 +18892,8 @@ animate:false
 }
 );
 
+requestCustomSummaryColumnSync();
+
 }
 );
 
@@ -18676,6 +18931,8 @@ state.basketTotal,
 animate:false
 }
 );
+
+requestCustomSummaryColumnSync();
 
 }
 );
@@ -18794,6 +19051,8 @@ state.basketTotal,
 animate:false
 }
 );
+
+requestCustomSummaryColumnSync();
 
 startDeliveryClock();
 
