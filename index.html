@@ -233,6 +233,28 @@ display:grid;
 gap:9px;
 }
 
+/* =========================================
+CHANGE 3
+HEADER WORDMARK HOMEPAGE LINK
+========================================= */
+
+.header-home-link {
+display:block;
+width:max-content;
+max-width:100%;
+color:inherit;
+text-decoration:none;
+}
+
+.header-home-link:visited {
+color:inherit;
+}
+
+.header-home-link:focus-visible {
+outline:1px solid rgba(232,120,23,.65);
+outline-offset:6px;
+}
+
 .wordmark {
 line-height:.91;
 font-weight:850;
@@ -783,7 +805,10 @@ font-family:
 "Arial Narrow",
 "Aptos Display",
 sans-serif;
-font-size:clamp(31px,5vw,62px);
+
+/* CHANGE 5 — MENU TEXT REDUCED 10% */
+font-size:clamp(27.9px,4.5vw,55.8px);
+
 font-weight:750;
 line-height:1;
 letter-spacing:-1.2px;
@@ -1139,7 +1164,6 @@ font-weight:650;
 }
 
 /* =========================================
-CHANGE 2
 DELIVERY CALCULATED BY POSTCODE — NOT BOLD
 ========================================= */
 
@@ -5489,6 +5513,13 @@ transition:none;
 
 <div class="wordmark-wrap">
 
+<a
+href="index.html"
+class="header-home-link"
+id="headerHomeLink"
+aria-label="Factory Toughened Rooflights homepage"
+>
+
 <div class="wordmark">
 Factory
 <span>Toughened</span>
@@ -5499,6 +5530,8 @@ Rooflights
 </div>
 
 </div>
+
+</a>
 
 </div>
 
@@ -5724,7 +5757,19 @@ aria-label="Close menu"
 
 </div>
 
+<!-- =========================================
+CHANGE 4
+UPDATED MENU ORDER
+========================================= -->
+
 <div class="menu-links">
+
+<a
+href="index.html"
+onclick="closeMenu()"
+>
+Home
+</a>
 
 <a
 href="standard-sizes.html"
@@ -5734,8 +5779,15 @@ Standard Sizes
 </a>
 
 <a
-href="#calculator"
+href="order-page.html"
 onclick="closeMenu()"
+>
+Order Your Rooflight
+</a>
+
+<a
+href="order-page.html?source=homepage-menu-custom-builder&focus=custom-builder&viewportOffset=0.30"
+id="menuBuildRooflightLink"
 >
 Build A Rooflight
 </a>
@@ -5748,17 +5800,17 @@ Oversized Rooflights
 </a>
 
 <a
-href="#specification-advice"
+href="installation-guide.html"
 onclick="closeMenu()"
 >
-Specification Advice
+Installation Guide
 </a>
 
 <a
 href="contact.html"
 onclick="closeMenu()"
 >
-Contact Our Rooflight Team
+Contact Our Team
 </a>
 
 </div>
@@ -5915,6 +5967,11 @@ linear-gradient(
 );
 }
 
+/* =========================================
+CHANGE 2
+OVERSIZED GREEN ATMOSPHERE VISIBLE HIGHER
+========================================= */
+
 .oversized-showcase-section {
 position:relative;
 overflow:hidden;
@@ -5926,13 +5983,13 @@ background:
 linear-gradient(
 180deg,
 #090a0a 0%,
-rgba(9,10,10,.985) 6%,
-rgba(9,10,10,.94) 12%,
-rgba(9,10,10,.82) 18%,
-rgba(9,10,10,.62) 24%,
-rgba(9,10,10,.38) 30%,
-rgba(9,10,10,.16) 35%,
-rgba(9,10,10,0) 40%
+rgba(9,10,10,.985) 5%,
+rgba(9,10,10,.94) 10%,
+rgba(9,10,10,.82) 15%,
+rgba(9,10,10,.62) 20%,
+rgba(9,10,10,.38) 24%,
+rgba(9,10,10,.16) 28%,
+rgba(9,10,10,0) 32%
 ),
 
 radial-gradient(
@@ -6012,10 +6069,10 @@ background:
 linear-gradient(
 180deg,
 rgba(9,10,10,1) 0%,
-rgba(9,10,10,.98) 14%,
-rgba(9,10,10,.88) 21%,
-rgba(9,10,10,.52) 27%,
-rgba(9,10,10,0) 31%,
+rgba(9,10,10,.92) 7%,
+rgba(9,10,10,.65) 13%,
+rgba(9,10,10,.28) 18%,
+rgba(9,10,10,0) 23%,
 rgba(9,10,10,0) 100%
 );
 }
@@ -6116,11 +6173,30 @@ line-height:1.62;
 color:var(--muted);
 }
 
-.homepage-closing-contact {
+/* =========================================
+CHANGE 1
+CLOSING ACTION BUTTONS
+========================================= */
+
+.homepage-closing-actions {
+display:grid;
+gap:9px;
+width:225px;
+max-width:100%;
 margin:
 30px
 auto
 0;
+}
+
+.homepage-closing-actions .button {
+width:100%;
+min-width:0;
+border-radius:6px;
+}
+
+.homepage-closing-contact {
+margin:0;
 }
 
 @media(max-width:560px) {
@@ -6147,19 +6223,24 @@ aspect-ratio:4 / 3;
 margin-top:32px;
 }
 
+/* =========================================
+CHANGE 2 — MOBILE
+OVERSIZED GREEN ATMOSPHERE VISIBLE HIGHER
+========================================= */
+
 .oversized-showcase-section {
 background:
 
 linear-gradient(
 180deg,
 #090a0a 0%,
-rgba(9,10,10,.99) 6%,
-rgba(9,10,10,.95) 12%,
-rgba(9,10,10,.84) 18%,
-rgba(9,10,10,.64) 24%,
-rgba(9,10,10,.40) 30%,
-rgba(9,10,10,.17) 35%,
-rgba(9,10,10,0) 40%
+rgba(9,10,10,.99) 5%,
+rgba(9,10,10,.95) 10%,
+rgba(9,10,10,.84) 15%,
+rgba(9,10,10,.64) 20%,
+rgba(9,10,10,.40) 24%,
+rgba(9,10,10,.17) 28%,
+rgba(9,10,10,0) 32%
 ),
 
 radial-gradient(
@@ -6218,7 +6299,7 @@ line-height:1.6;
 margin-top:22px;
 }
 
-.homepage-closing-contact {
+.homepage-closing-actions {
 width:60vw;
 max-width:60vw;
 margin:
@@ -6918,7 +6999,13 @@ Enter your roof opening's internal dimensions
 <div class="existing-opening-dimensions">
 
 <div class="existing-opening-field">
-<label for="openingInternalWidth">Max Width</label>
+
+<!-- CHANGE 6 -->
+
+<label for="openingInternalWidth">
+Max Width (mm)
+</label>
+
 <input
 id="openingInternalWidth"
 name="openingInternalWidth"
@@ -6930,10 +7017,17 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
+
 </div>
 
 <div class="existing-opening-field">
-<label for="openingInternalLength">Max Length</label>
+
+<!-- CHANGE 6 -->
+
+<label for="openingInternalLength">
+Max Length (mm)
+</label>
+
 <input
 id="openingInternalLength"
 name="openingInternalLength"
@@ -6945,6 +7039,7 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
+
 </div>
 
 </div>
@@ -7020,7 +7115,13 @@ without compromising on specification or finish.
 <div class="calc-grid reveal reveal-delay-2">
 
 <div class="calc-field">
-<label for="width">Internal Width</label>
+
+<!-- CHANGE 7 -->
+
+<label for="width">
+Internal Width (mm)
+</label>
+
 <input
 id="width"
 type="number"
@@ -7031,10 +7132,17 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
+
 </div>
 
 <div class="calc-field">
-<label for="length">Internal Length</label>
+
+<!-- CHANGE 7 -->
+
+<label for="length">
+Internal Length (mm)
+</label>
+
 <input
 id="length"
 type="number"
@@ -7045,6 +7153,7 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
+
 </div>
 
 <div class="calc-field">
@@ -7737,6 +7846,13 @@ Speak directly with our rooflight team for help with specifications,
 sizing, delivery, installation or anything else you need before ordering:
 </p>
 
+<!-- =========================================
+CHANGE 1
+TWO MATCHING CLOSING BUTTONS
+========================================= -->
+
+<div class="homepage-closing-actions">
+
 <button
 type="button"
 class="button secondary homepage-closing-contact"
@@ -7744,6 +7860,15 @@ id="homepageGetInTouch"
 >
 Get In Touch
 </button>
+
+<a
+href="standard-sizes.html"
+class="button homepage-closing-shop"
+>
+Shop Rooflights Now
+</a>
+
+</div>
 
 </div>
 
@@ -11545,6 +11670,16 @@ document.getElementById(
 "homepageBuildCustomRooflightButton"
 );
 
+const menuBuildRooflightLink =
+document.getElementById(
+"menuBuildRooflightLink"
+);
+
+const headerHomeLink =
+document.getElementById(
+"headerHomeLink"
+);
+
 const HOMEPAGE_ORDER_STORAGE_KEY =
 "factoryToughenedRooflightsOrderV1";
 
@@ -11554,9 +11689,244 @@ const HOMEPAGE_ORDER_FOCUS_KEY =
 const HOMEPAGE_ORDER_NAVIGATION_KEY =
 "factoryToughenedRooflightsOrderNavigationV1";
 
+/* =========================================
+CHANGE 3
+HOMEPAGE CALCULATOR REFRESH PERSISTENCE
+========================================= */
+
+const HOMEPAGE_CALCULATOR_STATE_KEY =
+"factoryToughenedRooflightsHomepageCalculatorStateV1";
+
 let currentCustomRooflightOrder =
 null;
 
+
+/* ===============================
+CHANGE 3
+SAVE + RESTORE HOMEPAGE INPUT STATE
+================================ */
+
+function saveHomepageCalculatorState() {
+
+const state = {
+
+openingInternalWidth:
+openingInternalWidth
+? openingInternalWidth.value
+: "",
+
+openingInternalLength:
+openingInternalLength
+? openingInternalLength.value
+: "",
+
+width:
+customWidthInput
+? customWidthInput.value
+: "",
+
+length:
+customLengthInput
+? customLengthInput.value
+: "",
+
+border:
+customBorderInput
+? customBorderInput.value
+: "100",
+
+glazing:
+customGlazingInput
+? customGlazingInput.value
+: "toughened-double",
+
+finish:
+customFinishInput
+? customFinishInput.value
+: "Clear"
+
+};
+
+
+try {
+
+window.sessionStorage.setItem(
+HOMEPAGE_CALCULATOR_STATE_KEY,
+JSON.stringify(
+state
+)
+);
+
+return true;
+
+} catch (
+error
+) {
+
+return false;
+
+}
+
+}
+
+
+function getStoredHomepageCalculatorState() {
+
+try {
+
+const storedValue =
+window.sessionStorage.getItem(
+HOMEPAGE_CALCULATOR_STATE_KEY
+);
+
+if (
+!storedValue
+) {
+return null;
+}
+
+const parsedValue =
+JSON.parse(
+storedValue
+);
+
+if (
+!parsedValue ||
+typeof parsedValue !== "object" ||
+Array.isArray(
+parsedValue
+)
+) {
+return null;
+}
+
+return parsedValue;
+
+} catch (
+error
+) {
+
+return null;
+
+}
+
+}
+
+
+function restoreInputValue(
+element,
+value
+) {
+
+if (
+!element ||
+value === undefined ||
+value === null
+) {
+return;
+}
+
+element.value =
+String(
+value
+);
+
+}
+
+
+function restoreSelectValue(
+element,
+value
+) {
+
+if (
+!element ||
+value === undefined ||
+value === null
+) {
+return;
+}
+
+const normalizedValue =
+String(
+value
+);
+
+const matchingOption =
+Array.from(
+element.options
+).some(
+option =>
+option.value ===
+normalizedValue
+);
+
+if (
+matchingOption
+) {
+
+element.value =
+normalizedValue;
+
+}
+
+}
+
+
+function restoreHomepageCalculatorState() {
+
+const state =
+getStoredHomepageCalculatorState();
+
+if (
+!state
+) {
+return false;
+}
+
+restoreInputValue(
+openingInternalWidth,
+state.openingInternalWidth
+);
+
+restoreInputValue(
+openingInternalLength,
+state.openingInternalLength
+);
+
+restoreInputValue(
+customWidthInput,
+state.width
+);
+
+restoreInputValue(
+customLengthInput,
+state.length
+);
+
+restoreSelectValue(
+customBorderInput,
+state.border
+);
+
+restoreSelectValue(
+customGlazingInput,
+state.glazing
+);
+
+restoreSelectValue(
+customFinishInput,
+state.finish
+);
+
+return true;
+
+}
+
+
+/* ===============================
+ORDER PAGE NAVIGATION INSTRUCTIONS
+================================ */
 
 function saveOrderPageNavigationInstruction(
 instruction
@@ -11584,6 +11954,92 @@ error
 return false;
 
 }
+
+}
+
+
+/* =========================================
+CHANGE 3
+SAVE STATE BEFORE HOMEPAGE LOGO RELOAD
+========================================= */
+
+if (
+headerHomeLink
+) {
+
+headerHomeLink.addEventListener(
+"click",
+() => {
+
+saveHomepageCalculatorState();
+
+}
+);
+
+}
+
+
+/* =========================================
+CHANGE 4
+BUILD A ROOFLIGHT MENU NAVIGATION
+30% VIEWPORT OFFSET
+========================================= */
+
+if (
+menuBuildRooflightLink
+) {
+
+menuBuildRooflightLink.addEventListener(
+"click",
+event => {
+
+event.preventDefault();
+
+closeMenu();
+
+saveOrderPageNavigationInstruction(
+{
+source:
+"homepage-menu-custom-builder",
+
+action:
+"scroll-to-custom-builder",
+
+target:
+"custom-builder",
+
+viewportOffset:
+0.30,
+
+replayAnimations:
+false
+}
+);
+
+const parameters =
+new URLSearchParams();
+
+parameters.set(
+"source",
+"homepage-menu-custom-builder"
+);
+
+parameters.set(
+"focus",
+"custom-builder"
+);
+
+parameters.set(
+"viewportOffset",
+"0.30"
+);
+
+window.location.href =
+"order-page.html?" +
+parameters.toString();
+
+}
+);
 
 }
 
@@ -13151,6 +13607,43 @@ parameters.toString() +
 }
 
 
+/* =========================================
+CHANGE 3
+SAVE HOMEPAGE CALCULATOR STATE AS IT CHANGES
+========================================= */
+
+[
+openingInternalWidth,
+openingInternalLength,
+customWidthInput,
+customLengthInput,
+customBorderInput,
+customGlazingInput,
+customFinishInput
+]
+.forEach(
+element => {
+
+if (
+!element
+) {
+return;
+}
+
+element.addEventListener(
+"input",
+saveHomepageCalculatorState
+);
+
+element.addEventListener(
+"change",
+saveHomepageCalculatorState
+);
+
+}
+);
+
+
 [
 customWidthInput,
 customLengthInput,
@@ -13192,6 +13685,8 @@ event => {
 event.preventDefault();
 
 calculatePrice();
+
+saveHomepageCalculatorState();
 
 if (
 !currentCustomRooflightOrder
@@ -13240,6 +13735,11 @@ storedItemId
 }
 
 
+/* =========================================
+CHANGE 3
+RESTORE VALUES AFTER HOMEPAGE RELOAD
+========================================= */
+
 updateEstimatedDeliveryDate();
 
 setCalculatorSizeAlert(
@@ -13247,6 +13747,10 @@ false
 );
 
 hideCustomPriceBox();
+
+restoreHomepageCalculatorState();
+
+validateInternalOpening();
 
 calculatePrice();
 
