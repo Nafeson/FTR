@@ -504,7 +504,7 @@ scale(1);
 
 /* ===============================
 STATIC LEAD-TIME BANNER
-CHANGE 3 — CONTENT REDUCED 15%
+CHANGE 1 — CONTENT INCREASED 10%
 ================================ */
 
 .lead-time-banner {
@@ -529,14 +529,14 @@ justify-items:center;
 display:flex;
 justify-content:center;
 align-items:center;
-gap:11px;
+gap:12.1px;
 flex-wrap:wrap;
 line-height:1;
 }
 
 .lead-time-van {
-width:42.5px;
-height:20.4px;
+width:46.75px;
+height:22.44px;
 display:block;
 flex:0 0 auto;
 color:var(--steel-light);
@@ -546,15 +546,15 @@ filter:drop-shadow(0 2px 3px rgba(0,0,0,.55));
 .lead-time-feature {
 display:inline-flex;
 align-items:baseline;
-gap:4.25px;
+gap:4.675px;
 font-family:
 "Bahnschrift Condensed",
 "Arial Narrow",
 "Aptos",
 sans-serif;
-font-size:clamp(11.05px,1.275vw,15.3px);
+font-size:clamp(12.155px,1.4025vw,16.83px);
 font-weight:800;
-letter-spacing:1.275px;
+letter-spacing:1.4025px;
 line-height:1;
 text-transform:uppercase;
 padding:3px 1px 4px;
@@ -572,7 +572,7 @@ text-shadow:none;
 
 .lead-time-divider {
 color:rgba(255,255,255,.22);
-font-size:12.75px;
+font-size:14.025px;
 font-weight:400;
 }
 
@@ -586,9 +586,9 @@ font-family:
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:clamp(9.35px,1.1475vw,12.75px);
+font-size:clamp(10.285px,1.26225vw,14.025px);
 font-weight:700;
-letter-spacing:.85px;
+letter-spacing:.935px;
 line-height:1.15;
 text-transform:uppercase;
 color:rgba(247,247,243,.82);
@@ -1139,14 +1139,14 @@ font-weight:650;
 }
 
 /* =========================================
-CHANGE 1
-DELIVERY CALCULATED BY POSTCODE — WHITE
+CHANGE 2
+DELIVERY CALCULATED BY POSTCODE — NOT BOLD
 ========================================= */
 
 .home-product-spec .delivery-chargeable,
 .home-product-spec .product-delivery-chargeable {
 color:var(--cream);
-font-weight:750;
+font-weight:400;
 }
 
 .home-product-spec .product-lead-time,
@@ -1718,9 +1718,6 @@ TINTED PRODUCT IMAGE RESCALING
 --home-image-transform:scale(1.12);
 --home-image-hover-transform:scale(1.15);
 }
-
-/* CHANGE 2 — 400 × 1200 SATIN
-ROTATED TO MATCH 400 × 1500 CLEAR */
 
 .tinted-options-section
 .home-product-card.image-size-400x1200[data-finish="satin"] {
@@ -3220,11 +3217,6 @@ margin-top:10px;
 white-space:nowrap;
 }
 
-/* =========================================
-CHANGE 6
-MADE-TO-ORDER PRICE REDUCED BY 20%
-========================================= */
-
 #customPriceBox .price-label {
 font-size:6.4px;
 }
@@ -3299,11 +3291,6 @@ font-size:13px;
 font-weight:650;
 overflow-wrap:anywhere;
 }
-
-/* =========================================
-CHANGE 7
-COMPACT FOUR-DIGIT DIMENSIONS
-========================================= */
 
 .custom-price-dimension-value.is-compact-dimension {
 font-size:11px;
@@ -3738,11 +3725,6 @@ margin-bottom:22px;
 color:var(--steel);
 }
 
-/* =========================================
-FOOTER WORDMARK
-MONOCHROME VERSION OF ORIGINAL GRADIENT
-========================================= */
-
 .footer-wordmark .footer-wordmark-factory {
 display:block;
 color:#b6b8b7;
@@ -3810,10 +3792,6 @@ footer p:last-child {
 margin-bottom:0;
 }
 
-/* =========================================
-FOOTER COMPANY DETAILS
-========================================= */
-
 .footer-company-details {
 display:grid;
 gap:0;
@@ -3848,10 +3826,6 @@ line-height:1.45;
 .footer-company-numbers span {
 display:block;
 }
-
-/* =========================================
-FOOTER ADDRESS
-========================================= */
 
 footer .footer-wordmark .footer-address {
 display:grid;
@@ -3889,10 +3863,6 @@ text-transform:uppercase;
 color:rgba(255,255,255,.72);
 }
 
-/* =========================================
-FOOTER COLLECTION NOTE
-========================================= */
-
 footer .footer-collection {
 display:block;
 margin-top:12px;
@@ -3909,10 +3879,6 @@ line-height:1.5;
 letter-spacing:0;
 text-transform:none;
 }
-
-/* =========================================
-FOOTER QUICK LINKS
-========================================= */
 
 footer .footer-quick-links {
 display:flex;
@@ -3975,17 +3941,9 @@ letter-spacing:0;
 text-transform:none;
 }
 
-/* =========================================
-COMPANY DETAILS POSITION
-========================================= */
-
 footer .footer-quick-links + .footer-company-details {
 margin-top:34px;
 }
-
-/* =========================================
-PAYMENT LOGOS — INDIVIDUAL POSITION CONTROLS
-========================================= */
 
 .footer-payment-logo-strip {
 display:flex;
@@ -4018,42 +3976,30 @@ object-fit:contain;
 object-position:center;
 }
 
-/* VISA */
-
 .footer-payment-logo-item.visa {
 width:64px;
 transform:translateX(0px) translateY(5px);
 }
-
-/* MASTERCARD */
 
 .footer-payment-logo-item.mastercard {
 width:46px;
 transform:translateX(1px) translateY(5px);
 }
 
-/* AMERICAN EXPRESS */
-
 .footer-payment-logo-item.amex {
 width:58px;
 transform:translateX(-3px) translateY(5px);
 }
-
-/* PAYPAL */
 
 .footer-payment-logo-item.paypal {
 width:76px;
 transform:translateX(-4px) translateY(5px);
 }
 
-/* APPLE PAY */
-
 .footer-payment-logo-item.apple-pay {
 width:72px;
 transform:translateX(-4px) translateY(5px);
 }
-
-/* GOOGLE PAY */
 
 .footer-payment-logo-item.google-pay {
 width:76px;
@@ -4062,10 +4008,6 @@ translateX(-22px)
 translateY(7px)
 scale(.88);
 }
-
-/* =========================================
-FOOTER COPYRIGHT / EMAIL
-========================================= */
 
 .footer-copyright {
 display:flex;
@@ -4240,27 +4182,27 @@ padding:9px 4%;
 }
 
 .lead-time-main {
-gap:5px;
+gap:5.5px;
 }
 
 .lead-time-van {
-width:34px;
-height:17.85px;
+width:37.4px;
+height:19.635px;
 }
 
 .lead-time-feature {
-font-size:9.775px;
-letter-spacing:.68px;
-gap:3.4px;
+font-size:10.7525px;
+letter-spacing:.748px;
+gap:3.74px;
 }
 
 .lead-time-divider {
-font-size:8.5px;
+font-size:9.35px;
 }
 
 .lead-time-message {
-font-size:8.075px;
-letter-spacing:.38px;
+font-size:8.8825px;
+letter-spacing:.418px;
 }
 
 .section-label {
@@ -4431,10 +4373,6 @@ padding-right:2.5%;
 padding:0 2.5%;
 }
 
-/* ===============================
-MOBILE FEATURE ICONS
-================================ */
-
 .mobile-feature-icons {
 display:grid;
 grid-template-columns:repeat(5,minmax(0,1fr));
@@ -4555,10 +4493,6 @@ text-shadow:none;
 overflow-wrap:anywhere;
 }
 
-/* ===============================
-MOBILE PRODUCT SECTION
-================================ */
-
 .opening-section {
 padding:37px 0 58px;
 }
@@ -4592,10 +4526,6 @@ color:var(--muted);
 opacity:1;
 transform:none;
 }
-
-/* ===============================
-MOBILE DEDICATED TEAM
-================================ */
 
 .direct-section {
 padding:80px 6% 32px;
@@ -4638,10 +4568,6 @@ margin-top:26px;
 font-size:8.5px;
 min-height:46px;
 }
-
-/* ===============================
-MOBILE WORKSHOP TRUST
-================================ */
 
 .workshop-trust-section {
 padding:50px 6% 54px;
@@ -4686,10 +4612,6 @@ font-size:8px;
 line-height:1.45;
 }
 
-/* ===============================
-MOBILE TRUST
-================================ */
-
 .trust-zone {
 padding:50px 6% 58px;
 }
@@ -4711,10 +4633,6 @@ font-size:1.22em;
 vertical-align:-.03em;
 }
 
-/* ===============================
-MOBILE TRANSITIONS
-================================ */
-
 .order-transition,
 .section-transition {
 padding:50px 6% 48px;
@@ -4735,10 +4653,6 @@ font-size:39px;
 .section-transition p {
 font-size:15px;
 }
-
-/* ===============================
-MOBILE BESPOKE + BUILD
-================================ */
 
 .existing-opening-section,
 .bespoke-build-section {
@@ -4962,8 +4876,6 @@ align-items:stretch;
 padding:22px 19px 18px;
 }
 
-/* CHANGE 6 — MOBILE 20% REDUCTION */
-
 #customPriceBox .price {
 font-size:36px;
 }
@@ -4981,8 +4893,6 @@ padding-left:10px;
 font-size:12px;
 }
 
-/* CHANGE 7 — MOBILE COMPACT DIMENSIONS */
-
 .custom-price-dimension-value.is-compact-dimension {
 font-size:10.25px;
 white-space:nowrap;
@@ -4995,10 +4905,6 @@ min-width:0;
 margin:0 19px 22px;
 border-radius:6px;
 }
-
-/* ===============================
-MOBILE ORDER ONLINE
-================================ */
 
 .buy-online-section {
 padding:27px 6% 58px;
@@ -5043,10 +4949,6 @@ align-self:flex-start;
 padding-left:2px;
 }
 
-/* ===============================
-MOBILE CALCULATOR / ENGINEERED
-================================ */
-
 .calculator-wrap {
 padding:30px 6% 60px;
 }
@@ -5075,10 +4977,6 @@ padding:24px 20px;
 .oversized {
 padding:30px 23px;
 }
-
-/* ===============================
-MOBILE FINAL SPEC ADVICE
-================================ */
 
 .spec-advice-section {
 padding:52px 6% 58px;
@@ -5118,10 +5016,6 @@ width:100%;
 padding:13px 15px;
 font-size:9px;
 }
-
-/* =========================================
-MOBILE HOMEPAGE CLOSING BLOCK
-========================================= */
 
 .comfort-section {
 padding:46px 6% 50px;
@@ -5165,10 +5059,6 @@ padding:14px 15px;
 font-size:9px;
 }
 
-/* =========================================
-MOBILE FOOTER DETAILS
-========================================= */
-
 .footer-company-details {
 margin-bottom:8px;
 gap:0;
@@ -5188,10 +5078,6 @@ transform:translateX(-2.5px);
 margin-top:0;
 font-size:10px;
 }
-
-/* =========================================
-MOBILE FOOTER ADDRESS
-========================================= */
 
 footer .footer-wordmark .footer-address {
 gap:0;
@@ -5225,10 +5111,6 @@ text-transform:uppercase;
 color:rgba(255,255,255,.72);
 }
 
-/* =========================================
-MOBILE FOOTER QUICK LINKS
-========================================= */
-
 footer .footer-quick-links {
 gap:13px;
 margin:27px 0 0;
@@ -5257,10 +5139,6 @@ margin-top:36px;
 .footer-wordmark {
 font-size:20px;
 }
-
-/* =========================================
-MOBILE PAYMENT LOGOS
-========================================= */
 
 .footer-payment-logo-strip {
 gap:10px;
@@ -5296,10 +5174,6 @@ width:54px;
 .footer-payment-logo-item.google-pay {
 width:56px;
 }
-
-/* =========================================
-MOBILE COPYRIGHT / CONTACT LINE
-========================================= */
 
 .footer-copyright {
 display:block;
@@ -5435,8 +5309,6 @@ padding-top:27px;
 padding-bottom:22px;
 }
 
-/* CHANGE 6 — SMALLEST MOBILE */
-
 #customPriceBox .price {
 font-size:32.8px;
 }
@@ -5470,10 +5342,6 @@ font-size:33px;
 .spec-advice-heading {
 font-size:31px;
 }
-
-/* =========================================
-SMALLEST MOBILE PAYMENT LOGOS
-========================================= */
 
 .footer-payment-logo-strip {
 gap:7px;
@@ -5518,10 +5386,6 @@ font-size:inherit;
 color:var(--white);
 }
 }
-
-/* ===============================
-REDUCED MOTION
-================================ */
 
 @media(prefers-reduced-motion:reduce) {
 
@@ -5660,11 +5524,6 @@ aria-expanded="false"
 >
 📱
 </button>
-
-<!--
-REPLACE 447000000000 WITH THE WHATSAPP BUSINESS NUMBER.
-Use the UK country code without the leading zero.
--->
 
 <a
 id="whatsappAction"
@@ -5910,17 +5769,9 @@ Contact Our Rooflight Team
 
 <style>
 
-/* =========================================
-HOMEPAGE LAYOUT / PRODUCT ORDER FLOW
-========================================= */
-
 .first-rooflight-visual-section {
 padding-bottom:clamp(28px,3.5vw,55px) !important;
 }
-
-/* =========================================
-ORDER DIRECT CONTENT POSITION
-========================================= */
 
 .buy-online-section {
 padding-top:clamp(30px,3.5vw,46px) !important;
@@ -5946,10 +5797,6 @@ width:100%;
 height:auto;
 }
 
-/* =========================================
-HOMEPAGE PRODUCT INTRODUCTION
-========================================= */
-
 .home-workshop-intro {
 position:relative;
 z-index:3;
@@ -5966,26 +5813,13 @@ line-height:1.65;
 color:var(--muted);
 }
 
-/* =========================================
-TINTED HEADER IMAGE SPACING
-========================================= */
-
 .tinted-options-section .tinted-header-visual {
 margin-bottom:36px;
 }
 
-/* =========================================
-ORDER DIRECT BUTTON STYLE
-========================================= */
-
 .buy-online-section .hero-actions .button {
 border-radius:6px;
 }
-
-/* =========================================
-VIEW SIZE — INITIAL SCROLL ANIMATION
-THEN ONCE EVERY 7 SECONDS
-========================================= */
 
 .home-product-link.view-size-auto-animate,
 .home-product-link.is-encouraged {
@@ -6006,10 +5840,6 @@ tintedViewSizeEncouragement
 ease-in-out
 infinite;
 }
-
-/* =========================================
-PROFESSIONAL FITTING SLIDESHOW
-========================================= */
 
 .direct-section::before {
 display:none !important;
@@ -6067,17 +5897,9 @@ object-fit:cover;
 object-position:center;
 }
 
-/* =========================================
-FITTING QUOTATION BUTTON SPACING
-========================================= */
-
 .direct-copy > .button {
 margin-top:48px;
 }
-
-/* =========================================
-PROFESSIONAL FITTING → OVERSIZED TRANSITION
-========================================= */
 
 .direct-section {
 border-bottom:0;
@@ -6092,17 +5914,6 @@ linear-gradient(
 #090a0a 100%
 );
 }
-
-/* =========================================
-CHANGE 3
-OVERSIZED GREEN ATMOSPHERE MOVED UP
-
-THE EXISTING BLACK → GREEN FADE BEHAVIOUR
-IS PRESERVED. ONLY THE GREEN RADIAL
-ATMOSPHERE HAS BEEN POSITIONED HIGHER SO
-IT BEGINS DEVELOPING BEHIND THE OVERSIZED
-ROOFLIGHT IMAGE.
-========================================= */
 
 .oversized-showcase-section {
 position:relative;
@@ -6256,10 +6067,6 @@ padding:
 70px;
 }
 
-/* =========================================
-HOMEPAGE CLOSING
-========================================= */
-
 .homepage-closing-section {
 position:relative;
 overflow:hidden;
@@ -6340,11 +6147,6 @@ aspect-ratio:4 / 3;
 margin-top:32px;
 }
 
-/* =========================================
-CHANGE 3 — MOBILE
-GREEN ATMOSPHERE MOVED UP
-========================================= */
-
 .oversized-showcase-section {
 background:
 
@@ -6396,10 +6198,6 @@ padding:
 6%
 4px;
 }
-
-/* =========================================
-MOBILE HOMEPAGE CLOSING
-========================================= */
 
 .homepage-closing-section {
 padding:
@@ -6464,11 +6262,8 @@ transform:none;
 }
 
 }
-</style>
 
-<!-- =========================================
-POPULAR / READY-TO-ORDER ROOFLIGHTS
-========================================= -->
+</style>
 
 <section
 class="home-popular-section"
@@ -6918,30 +6713,17 @@ aria-label="Rooflight features"
 >
 
 <div class="mobile-feature-item">
-
-<svg
-viewBox="0 0 48 48"
-aria-hidden="true"
->
+<svg viewBox="0 0 48 48" aria-hidden="true">
 <rect x="7" y="10" width="28" height="26" rx="2"></rect>
 <rect x="13" y="5" width="28" height="26" rx="2"></rect>
 <path d="M20 18h14"></path>
 <path d="M27 11v14"></path>
 </svg>
-
-<span>
-Double or<br>
-Triple Glazed
-</span>
-
+<span>Double or<br>Triple Glazed</span>
 </div>
 
 <div class="mobile-feature-item">
-
-<svg
-viewBox="0 0 48 48"
-aria-hidden="true"
->
+<svg viewBox="0 0 48 48" aria-hidden="true">
 <circle cx="24" cy="24" r="7"></circle>
 <path d="M24 5v7"></path>
 <path d="M24 36v7"></path>
@@ -6953,65 +6735,33 @@ aria-hidden="true"
 <path d="M15.5 32.5l-5 5"></path>
 <path d="M17 24l4 4 10-10"></path>
 </svg>
-
-<span>
-UV<br>
-Protection
-</span>
-
+<span>UV<br>Protection</span>
 </div>
 
 <div class="mobile-feature-item">
-
-<svg
-viewBox="0 0 48 48"
-aria-hidden="true"
->
+<svg viewBox="0 0 48 48" aria-hidden="true">
 <path d="M24 5l14 6v10c0 10-5.8 17.2-14 22-8.2-4.8-14-12-14-22V11z"></path>
 <path d="M18 24l4 4 8-9"></path>
 </svg>
-
-<span>
-Safety<br>
-Glass
-</span>
-
+<span>Safety<br>Glass</span>
 </div>
 
 <div class="mobile-feature-item">
-
-<svg
-viewBox="0 0 48 48"
-aria-hidden="true"
->
+<svg viewBox="0 0 48 48" aria-hidden="true">
 <path d="M31 7c-11 2-19 10-19 20 0 7 5 12 12 12 10 0 17-9 17-22 0-4-.5-7-1-10-3 7-8 12-15 16"></path>
 <path d="M12 42c5-10 12-17 23-23"></path>
 </svg>
-
-<span>
-Energy<br>
-Efficient
-</span>
-
+<span>Energy<br>Efficient</span>
 </div>
 
 <div class="mobile-feature-item">
-
-<svg
-viewBox="0 0 48 48"
-aria-hidden="true"
->
+<svg viewBox="0 0 48 48" aria-hidden="true">
 <path d="M7 27h8l10 8V13l-10 8H7z"></path>
 <path d="M31 20c3 2 3 6 0 8"></path>
 <path d="M35 15c7 5 7 13 0 18"></path>
 <path d="M39 10l-4 28"></path>
 </svg>
-
-<span>
-Noise<br>
-Reduction
-</span>
-
+<span>Noise<br>Reduction</span>
 </div>
 
 </div>
@@ -7023,23 +6773,15 @@ class="engineered-visual-intro first-rooflight-visual-section"
 aria-label="Frameless rooflight product image"
 >
 
-<div
-class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
->
-
+<div class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale">
 <div class="rooflight-slideshow-shell">
-
 <div class="rooflight-slide active">
-
 <img
 src="images/hero-rooflight-5.png"
 alt="Brand new frameless rooflight manufactured ready for installation"
 />
-
 </div>
-
 </div>
-
 </div>
 
 </section>
@@ -7067,17 +6809,11 @@ size and specification, or contact our team for larger architectural units.
 
 <div class="hero-actions">
 
-<a
-href="order-page.html"
-class="button"
->
+<a href="order-page.html" class="button">
 Order Your Rooflight
 </a>
 
-<a
-href="standard-sizes.html"
-class="button"
->
+<a href="standard-sizes.html" class="button">
 Shop Standard Sizes
 </a>
 
@@ -7093,19 +6829,9 @@ id="homepageBuildCustomRooflightButton"
 Build A Custom Rooflight
 </a>
 
-<a
-href="#oversized"
-class="button secondary oversized-button"
->
-
-<span>
-Oversized Rooflights
-</span>
-
-<span class="button-size-note">
-+4.5 m²
-</span>
-
+<a href="#oversized" class="button secondary oversized-button">
+<span>Oversized Rooflights</span>
+<span class="button-size-note">+4.5 m²</span>
 </a>
 
 </div>
@@ -7158,9 +6884,7 @@ architecture rather than an added frame.
 
 </section>
 
-<section
-class="section-transition existing-opening-section bespoke-build-section"
->
+<section class="section-transition existing-opening-section bespoke-build-section">
 
 <div class="section-transition-inner">
 
@@ -7194,11 +6918,7 @@ Enter your roof opening's internal dimensions
 <div class="existing-opening-dimensions">
 
 <div class="existing-opening-field">
-
-<label for="openingInternalWidth">
-Max Width
-</label>
-
+<label for="openingInternalWidth">Max Width</label>
 <input
 id="openingInternalWidth"
 name="openingInternalWidth"
@@ -7210,15 +6930,10 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
-
 </div>
 
 <div class="existing-opening-field">
-
-<label for="openingInternalLength">
-Max Length
-</label>
-
+<label for="openingInternalLength">Max Length</label>
 <input
 id="openingInternalLength"
 name="openingInternalLength"
@@ -7230,7 +6945,6 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
-
 </div>
 
 </div>
@@ -7264,23 +6978,15 @@ class="existing-opening-rooflight-visual"
 aria-label="Custom frameless rooflight image"
 >
 
-<div
-class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
->
-
+<div class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale">
 <div class="rooflight-slideshow-shell">
-
 <div class="rooflight-slide active">
-
 <img
 src="images/custom-rooflight-1.png"
 alt="Custom made frameless rooflight"
 />
-
 </div>
-
 </div>
-
 </div>
 
 </div>
@@ -7314,11 +7020,7 @@ without compromising on specification or finish.
 <div class="calc-grid reveal reveal-delay-2">
 
 <div class="calc-field">
-
-<label for="width">
-Internal Width
-</label>
-
+<label for="width">Internal Width</label>
 <input
 id="width"
 type="number"
@@ -7329,15 +7031,10 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
-
 </div>
 
 <div class="calc-field">
-
-<label for="length">
-Internal Length
-</label>
-
+<label for="length">Internal Length</label>
 <input
 id="length"
 type="number"
@@ -7348,21 +7045,15 @@ step="1"
 placeholder="e.g. 1000"
 autocomplete="off"
 />
-
 </div>
 
 <div class="calc-field">
-
-<label for="border">
-Border
-</label>
-
+<label for="border">Border</label>
 <select id="border">
 <option value="100" selected>100mm Standard</option>
 <option value="125">125mm</option>
 <option value="150">150mm</option>
 </select>
-
 </div>
 
 <div class="calc-field">
@@ -7373,20 +7064,11 @@ id="calculatorSizeAlert"
 aria-live="polite"
 hidden
 >
-
-<a href="#contact">
-Contact us
-</a>
-
-<span>
-to discuss this size
-</span>
-
+<a href="#contact">Contact us</a>
+<span>to discuss this size</span>
 </div>
 
-<label for="glazing">
-Glazing
-</label>
+<label for="glazing">Glazing</label>
 
 <select id="glazing">
 <option value="toughened-double" selected>Toughened Double Glazed</option>
@@ -7399,9 +7081,7 @@ Glazing
 
 <div class="calc-field">
 
-<label for="finish">
-Glass Finish
-</label>
+<label for="finish">Glass Finish</label>
 
 <select id="finish">
 <option>Clear</option>
@@ -7427,10 +7107,7 @@ hidden
 Made-To-Order Price
 </div>
 
-<div
-class="price"
-id="price"
->
+<div class="price" id="price">
 <span class="custom-price-whole">£0</span>
 <span class="custom-price-pence">.00</span>
 </div>
@@ -7438,31 +7115,13 @@ id="price"
 <div class="custom-price-dimensions">
 
 <div class="custom-price-dimension">
-
-<span class="custom-price-dimension-label">
-Internal
-</span>
-
-<span
-class="custom-price-dimension-value"
-id="customPriceInternal"
->
-</span>
-
+<span class="custom-price-dimension-label">Internal</span>
+<span class="custom-price-dimension-value" id="customPriceInternal"></span>
 </div>
 
 <div class="custom-price-dimension">
-
-<span class="custom-price-dimension-label">
-External
-</span>
-
-<span
-class="custom-price-dimension-value"
-id="customPriceExternal"
->
-</span>
-
+<span class="custom-price-dimension-label">External</span>
+<span class="custom-price-dimension-value" id="customPriceExternal"></span>
 </div>
 
 </div>
@@ -7474,17 +7133,8 @@ Inc. VAT
 </div>
 
 <div class="custom-price-delivery">
-
-<span class="custom-price-delivery-label">
-Estimated delivery
-</span>
-
-<span
-class="custom-price-delivery-date"
-id="estimatedDeliveryDate"
->
-</span>
-
+<span class="custom-price-delivery-label">Estimated delivery</span>
+<span class="custom-price-delivery-date" id="estimatedDeliveryDate"></span>
 </div>
 
 </div>
@@ -7512,23 +7162,15 @@ class="engineered-visual-intro"
 aria-label="Frameless rooflight product image"
 >
 
-<div
-class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
->
-
+<div class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale">
 <div class="rooflight-slideshow-shell">
-
 <div class="rooflight-slide active">
-
 <img
 src="images/hero-rooflight-4.png"
 alt="Finished frameless rooflight manufactured and prepared for installation"
 />
-
 </div>
-
 </div>
-
 </div>
 
 </section>
@@ -7554,10 +7196,7 @@ long-term performance.
 
 </div>
 
-<div
-class="engineered-grid"
-id="engineeredGrid"
->
+<div class="engineered-grid" id="engineeredGrid">
 
 <div class="engineered-card reveal reveal-scale">
 
@@ -7628,23 +7267,15 @@ class="engineered-visual-intro tinted-header-visual"
 aria-label="Tinted and privacy glass rooflight finishes"
 >
 
-<div
-class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale"
->
-
+<div class="buy-rooflight-slideshow static-rooflight-visual reveal reveal-scale">
 <div class="rooflight-slideshow-shell">
-
 <div class="rooflight-slide active">
-
 <img
 src="images/hero-rooflight-6.png"
 alt="Tinted and privacy glass frameless rooflight finish options"
 />
-
 </div>
-
 </div>
-
 </div>
 
 </div>
@@ -7675,12 +7306,10 @@ tabindex="0"
 >
 
 <div class="home-product-image">
-
 <img
 src="images/product-cards/blue-large-square.png"
 alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 />
-
 </div>
 
 <div class="home-product-content">
@@ -7698,22 +7327,8 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
 <div class="home-glazed-label">
@@ -7725,37 +7340,20 @@ Triple
 <div class="home-product-price-row">
 
 <div>
-
-<div class="home-product-price-label">
-FROM:
-</div>
+<div class="home-product-price-label">FROM:</div>
 
 <div class="home-product-price">
-
 <span class="home-price-amount">
-
-<span class="home-price-main">
-£435
+<span class="home-price-main">£435</span>
+<span class="home-price-decimals">.00</span>
 </span>
 
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
+<span class="home-vat-note">inc. vat</span>
 </div>
 
 </div>
 
-<a
-href="order-page.html"
-class="home-product-link"
->
+<a href="order-page.html" class="home-product-link">
 View Size
 </a>
 
@@ -7776,12 +7374,10 @@ tabindex="0"
 >
 
 <div class="home-product-image">
-
 <img
 src="images/product-cards/blue-large-rectangle.png"
 alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 />
-
 </div>
 
 <div class="home-product-content">
@@ -7799,22 +7395,8 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
 <div class="home-glazed-label">
@@ -7827,36 +7409,19 @@ Triple
 
 <div>
 
-<div class="home-product-price-label">
-FROM:
-</div>
+<div class="home-product-price-label">FROM:</div>
 
 <div class="home-product-price">
-
 <span class="home-price-amount">
-
-<span class="home-price-main">
-£470
+<span class="home-price-main">£470</span>
+<span class="home-price-decimals">.00</span>
 </span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
+<span class="home-vat-note">inc. vat</span>
 </div>
 
 </div>
 
-<a
-href="order-page.html"
-class="home-product-link"
->
+<a href="order-page.html" class="home-product-link">
 View Size
 </a>
 
@@ -7877,12 +7442,10 @@ tabindex="0"
 >
 
 <div class="home-product-image">
-
 <img
 src="images/product-cards/satin-large-rectangle.png"
 alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 />
-
 </div>
 
 <div class="home-product-content">
@@ -7900,22 +7463,8 @@ alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
 <div class="home-glazed-label">
@@ -7928,36 +7477,19 @@ Triple
 
 <div>
 
-<div class="home-product-price-label">
-FROM:
-</div>
+<div class="home-product-price-label">FROM:</div>
 
 <div class="home-product-price">
-
 <span class="home-price-amount">
-
-<span class="home-price-main">
-£590
+<span class="home-price-main">£590</span>
+<span class="home-price-decimals">.00</span>
 </span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
+<span class="home-vat-note">inc. vat</span>
 </div>
 
 </div>
 
-<a
-href="order-page.html"
-class="home-product-link"
->
+<a href="order-page.html" class="home-product-link">
 View Size
 </a>
 
@@ -7966,12 +7498,6 @@ View Size
 </div>
 
 </div>
-
-<!-- =========================================
-CHANGE 2
-400 × 1200 SATIN
-CORRECT ORDER-PAGE IMAGE ASSET
-========================================= -->
 
 <div
 class="home-product-card tinted-product-card image-size-400x1200 reveal reveal-scale reveal-delay-3"
@@ -7984,12 +7510,10 @@ tabindex="0"
 >
 
 <div class="home-product-image">
-
 <img
 src="images/product-cards/satin-narrow-long-rectangle.png"
 alt="400mm by 1200mm satin privacy frameless flat roof skylight"
 />
-
 </div>
 
 <div class="home-product-content">
@@ -8007,22 +7531,8 @@ alt="400mm by 1200mm satin privacy frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-
-<button
-type="button"
-class="active"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-data-glazing="triple"
->
-Triple
-</button>
-
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
 <div class="home-glazed-label">
@@ -8035,36 +7545,19 @@ Triple
 
 <div>
 
-<div class="home-product-price-label">
-FROM:
-</div>
+<div class="home-product-price-label">FROM:</div>
 
 <div class="home-product-price">
-
 <span class="home-price-amount">
-
-<span class="home-price-main">
-£325
+<span class="home-price-main">£325</span>
+<span class="home-price-decimals">.00</span>
 </span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
+<span class="home-vat-note">inc. vat</span>
 </div>
 
 </div>
 
-<a
-href="order-page.html"
-class="home-product-link"
->
+<a href="order-page.html" class="home-product-link">
 View Size
 </a>
 
@@ -8077,14 +7570,9 @@ View Size
 </div>
 
 <div class="home-popular-footer reveal">
-
-<a
-href="standard-sizes.html"
-class="button secondary range-cta-button"
->
+<a href="standard-sizes.html" class="button secondary range-cta-button">
 View All Sizes
 </a>
-
 </div>
 
 </section>
@@ -8111,13 +7599,11 @@ class="fitting-slide active"
 data-fitting-slide="0"
 aria-hidden="false"
 >
-
 <img
 src="images/hero-rooflight-7.png"
 class="direct-visual-image"
 alt="Professional frameless rooflight fitting example"
 />
-
 </div>
 
 <div
@@ -8125,13 +7611,11 @@ class="fitting-slide"
 data-fitting-slide="1"
 aria-hidden="true"
 >
-
 <img
 src="images/hero-rooflight-1.png"
 class="direct-visual-image"
 alt="Professionally installed frameless rooflight"
 />
-
 </div>
 
 </div>
@@ -8161,10 +7645,7 @@ sealing and final installation, every stage is professionally managed for a smoo
 hassle-free service.
 </p>
 
-<a
-href="#"
-class="button"
->
+<a href="#" class="button">
 Request a Fitting Quotation
 </a>
 
@@ -8217,17 +7698,16 @@ Oversized Rooflights Up To 5800mm
 </h2>
 
 <p>
-Need something beyond the listed online range? We can quote oversized custom
-frameless rooflights up to approximately 5800mm, with the glass specification,
-estimated production lead time and specialist delivery requirements considered
-individually. Larger blue, grey and satin specifications are typically estimated
-at 8–10 working days.
+Need something beyond the listed online range? We can manufacture oversized custom
+frameless rooflights up to approximately 5800mm, giving you greater flexibility for
+larger openings and more ambitious architectural projects. Each oversized unit is
+made to order by our specialist glazing teams, with the dimensions, overall size,
+handling requirements and delivery arrangements considered individually to ensure
+the rooflight is manufactured and supplied appropriately for your project. Get in
+touch today for a no obligation quote.
 </p>
 
-<a
-href="#contact"
-class="button"
->
+<a href="#contact" class="button">
 Request Oversized Quote
 </a>
 
@@ -8300,52 +7780,22 @@ Rooflights
 </div>
 
 <div class="footer-address">
-
-<span>
-Anamax Group Estate
-</span>
-
-<span>
-Oxford Road, Denham
-</span>
-
-<span>
-Buckinghamshire
-</span>
-
-<span>
-SL9 7BB
-</span>
-
+<span>Anamax Group Estate</span>
+<span>Oxford Road, Denham</span>
+<span>Buckinghamshire</span>
+<span>SL9 7BB</span>
 </div>
 
 </div>
 
 <div class="footer-quick-links">
 
-<a href="#">
-Shipping
-</a>
-
-<a href="#">
-Fitting &amp; Installation
-</a>
-
-<a href="#">
-Return Policy
-</a>
-
-<a href="#">
-Cookies Policy
-</a>
-
-<a href="#">
-Contact Us
-</a>
-
-<a href="#">
-Terms of Use
-</a>
+<a href="#">Shipping</a>
+<a href="#">Fitting &amp; Installation</a>
+<a href="#">Return Policy</a>
+<a href="#">Cookies Policy</a>
+<a href="#">Contact Us</a>
+<a href="#">Terms of Use</a>
 
 </div>
 
@@ -8410,45 +7860,27 @@ aria-label="Accepted payment methods"
 >
 
 <span class="footer-payment-logo-item visa">
-<img
-src="images/visa.png"
-alt="Visa"
->
+<img src="images/visa.png" alt="Visa">
 </span>
 
 <span class="footer-payment-logo-item mastercard">
-<img
-src="images/mastercard.png"
-alt="Mastercard"
->
+<img src="images/mastercard.png" alt="Mastercard">
 </span>
 
 <span class="footer-payment-logo-item amex">
-<img
-src="images/amex.png"
-alt="American Express"
->
+<img src="images/amex.png" alt="American Express">
 </span>
 
 <span class="footer-payment-logo-item paypal">
-<img
-src="images/paypal.png"
-alt="PayPal"
->
+<img src="images/paypal.png" alt="PayPal">
 </span>
 
 <span class="footer-payment-logo-item apple-pay">
-<img
-src="images/apple-pay.png"
-alt="Apple Pay"
->
+<img src="images/apple-pay.png" alt="Apple Pay">
 </span>
 
 <span class="footer-payment-logo-item google-pay">
-<img
-src="images/google-pay.png"
-alt="Google Pay"
->
+<img src="images/google-pay.png" alt="Google Pay">
 </span>
 
 </div>
@@ -9066,7 +8498,6 @@ null;
 
 /* ===============================
 VIEW SIZE BUTTON AUTO ANIMATION
-INITIAL VIEW + EVERY 7 SECONDS
 ================================ */
 
 function activateViewSizeAutoAnimation(
@@ -9615,12 +9046,6 @@ productLink.classList.add(
 
 }
 
-
-/* =========================================
-CHANGE 5
-VIEW SIZE OPENS IMMEDIATELY ON FIRST CLICK
-CARD BODY RETAINS EXISTING TWO-STEP BEHAVIOUR
-========================================= */
 
 homepageProductCards.forEach(
 card => {
@@ -10322,11 +9747,9 @@ reason:null
 }
 
 
-/* =========================================
-CHANGE 4
-ALL VISIBLE HOMEPAGE PRODUCT CARDS SHOW
-DELIVERY CALCULATED BY POSTCODE
-========================================= */
+/* ===============================
+PRODUCT SPECIFICATIONS
+================================ */
 
 function updateHomepageProductSpecifications() {
 
@@ -10641,7 +10064,6 @@ requestEngineeredShimmerCheck();
 
 /* ===============================
 PROFESSIONAL FITTING
-TWO-IMAGE SWIPE + 10 SECOND AUTO CHANGE
 ================================ */
 
 const fittingSlideshow =
@@ -12136,10 +11558,6 @@ let currentCustomRooflightOrder =
 null;
 
 
-/* ===============================
-ORDER PAGE NAVIGATION INSTRUCTIONS
-================================ */
-
 function saveOrderPageNavigationInstruction(
 instruction
 ) {
@@ -12416,11 +11834,6 @@ numericValue
 }
 
 
-/* =========================================
-CHANGE 7
-DIMENSION VALUE AUTO-COMPACTION
-========================================= */
-
 function renderCustomDimensionValue(
 element,
 width,
@@ -12528,11 +11941,6 @@ customPriceOutput.innerHTML =
 
 }
 
-
-/* =========================================
-CHANGE 8
-4–6 WORKING DAY DELIVERY RANGE
-========================================= */
 
 function addWorkingDays(
 numberOfWorkingDays
@@ -13017,8 +12425,6 @@ length,
 finish
 );
 
-/* CHANGE 8 — DISPLAY ALWAYS USES CURRENT DATE + 4–6 WORKING DAYS */
-
 updateEstimatedDeliveryDate();
 
 const customDeliveryBand =
@@ -13037,8 +12443,6 @@ renderCustomMadeToOrderPrice(
 roundedPrice
 );
 
-
-/* CHANGE 7 */
 
 renderCustomDimensionValue(
 customPriceInternal,
@@ -13835,8 +13239,6 @@ storedItemId
 
 }
 
-
-/* CHANGE 8 — CURRENT DATE + 4–6 WORKING DAYS */
 
 updateEstimatedDeliveryDate();
 
