@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+Standard
+Nathan Knight <nathank3290@gmail.com>	Sat, Aug 29, 2026 at 11:22 PM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -684,12 +688,6 @@ filter:brightness(1.035);
 STANDARD SIZE PRODUCT IMAGE SCALING
 ========================================= */
 
-/*
-600 × 900 matches the homepage treatment.
-400 × 800 uses the same image category,
-but is reduced by a further 10%.
-*/
-
 .product-card.image-size-600x900 .image-wrap img {
 object-fit:cover;
 object-position:center center;
@@ -702,50 +700,27 @@ object-position:center center;
 --image-transform:scale(.72);
 }
 
-/*
-Narrow long category.
-
-400 × 1500 matches the homepage scaling.
-The related 300 × 1500 and 400 × 1800
-cards use the same visual treatment.
-*/
-
 .product-card.image-size-300x1500,
 .product-card.image-size-400x1500,
 .product-card.image-size-400x1800 {
 --image-transform:rotate(90deg) scale(1.50);
 }
 
-/* 800 × 800 */
 .product-card.image-size-800x800 {
 --image-transform:scale(1.10);
 }
-
-/*
-800 × 1200 now uses the same image source
-as the 800 × 800 category, with a further
-7% increase in visual scale.
-*/
 
 .product-card.image-size-800x1200 {
 --image-transform:scale(1.17);
 }
 
-/* 800 × 1500 */
 .product-card.image-size-800x1500 {
 --image-transform:scale(1.07);
 }
 
-/* 1000 × 1000 */
 .product-card.image-size-1000x1000 {
 --image-transform:scale(1.10);
 }
-
-/*
-1000 × 1500,
-1000 × 1800,
-1000 × 2000
-*/
 
 .product-card.image-size-1000x1500,
 .product-card.image-size-1000x1800,
@@ -753,7 +728,6 @@ as the 800 × 800 category, with a further
 --image-transform:scale(1.07);
 }
 
-/* 1500 × 1500 */
 .product-card.image-size-1500x1500 {
 --image-transform:scale(1.15);
 }
@@ -799,13 +773,15 @@ line-height:1.3;
 margin-bottom:13px;
 }
 
+/* Normal standard-size cards */
+.spec-line .delivery-standard {
+color:#ffffff;
+}
+
+/* Extra Large remains orange */
 .spec-line .delivery-chargeable {
 color:var(--sunset);
 font-weight:900;
-}
-
-.spec-line .delivery-free {
-color:rgba(255,255,255,.78);
 }
 
 .toggle {
@@ -886,32 +862,101 @@ gap:14px;
 margin-top:auto;
 }
 
+/* =========================================
+HOMEPAGE-MATCHING PRODUCT CARD PRICE
+========================================= */
+
 .price-label {
-color:var(--muted);
-font-size:11px;
+color:rgba(255,255,255,.42);
+font-size:8px;
+font-weight:700;
+letter-spacing:1.35px;
 text-transform:uppercase;
-letter-spacing:.7px;
-font-weight:900;
-margin-bottom:3px;
+margin-bottom:4px;
 }
 
 .price {
-font-size:27px;
-font-weight:950;
+display:flex;
+align-items:center;
+gap:5px;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:29px;
 line-height:1;
+font-weight:800;
+letter-spacing:-.7px;
+color:#f1f0e9;
+white-space:nowrap;
+}
+
+.standard-price-amount {
+display:inline-flex;
+align-items:flex-start;
+justify-content:flex-start;
+line-height:1;
+white-space:nowrap;
+}
+
+.standard-price-main {
+display:block;
+position:relative;
+font:inherit;
+font-size:1em;
+font-weight:inherit;
+line-height:1;
+letter-spacing:inherit;
+color:inherit;
+}
+
+.standard-price-decimal-point {
+display:inline;
+}
+
+.standard-price-decimals {
+display:block;
+position:static;
+margin:0 0 0 1px;
+padding:0;
+font-family:inherit;
+font-size:.43em;
+font-weight:800;
+line-height:1;
+letter-spacing:-.15px;
+color:inherit;
+transform:translateY(.10em);
+vertical-align:initial;
 }
 
 .vat-note {
-font-size:9px;
-color:rgba(255,255,255,.58);
-font-weight:400;
-margin-left:5px;
+display:block;
+position:static;
+align-self:center;
+margin:0;
+font-size:8px;
+font-weight:500;
+line-height:1;
+letter-spacing:.1px;
+color:rgba(255,255,255,.46);
 white-space:nowrap;
 text-transform:lowercase;
-letter-spacing:.1px;
-vertical-align:middle;
-position:relative;
-top:-1px;
+vertical-align:initial;
+}
+
+.price.is-changing {
+opacity:.58;
+transform:translateY(1px);
+}
+
+.price {
+transition:
+opacity .16s ease,
+transform .16s ease;
 }
 
 .view-link {
@@ -1377,14 +1422,40 @@ font-size:8px;
 }
 
 .price {
-font-size:20px;
+font-size:22px;
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:3px;
+}
+
+.standard-price-amount {
+display:inline-flex;
+align-items:flex-start;
+line-height:1;
+}
+
+.standard-price-main {
+line-height:1;
+}
+
+.standard-price-decimals {
+position:static;
+margin-left:.5px;
+padding:0;
+font-size:.45em;
+line-height:1;
+letter-spacing:-.1px;
+transform:translateY(.28em);
 }
 
 .vat-note {
-font-size:7px;
+position:static;
+align-self:flex-start;
 display:block;
-margin-left:0;
-margin-top:3px;
+margin:0;
+font-size:7px;
+line-height:1;
 }
 
 .view-link {
@@ -1464,6 +1535,10 @@ scroll-behavior:auto;
 .ticker,
 .popular-section::before {
 animation:none;
+}
+
+.price {
+transition:none;
 }
 }
 </style>
@@ -1873,180 +1948,409 @@ SL9 7BB
 <script>
 
 /* =========================================
-ROOFLIGHT PRICES
+CUSTOMER-FACING PRICING SYSTEM
 ========================================= */
 
-const prices = {
+const ACTIVE_PRICE_CATEGORY =
+"normal";
 
-/* SMALL SIZES */
 
-"300x800": {
-double:195,
-triple:230
+const PRICE_CATEGORIES = {
+
+normal:{
+
+tripleClearToughened100:{
+
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
+
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+
+/* provisional missing size */
+"400x1800":370,
+
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+
+/* provisional missing size */
+"600x1800":425,
+
+"600x2000":445,
+
+/* provisional missing size */
+"600x2500":525,
+
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+
+/* provisional missing size */
+"800x1800":485,
+
+"800x2000":515,
+
+/* provisional missing size */
+"800x2500":590,
+
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+
+/* provisional missing size */
+"1000x1800":565,
+
+"1000x2000":625,
+"1000x2500":770,
+
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
+
 },
 
-"300x1000": {
-double:220,
-triple:255
+adjustments:{
+
+glazing:{
+triple:0,
+double:-0.17
 },
 
-"300x1200": {
-double:245,
-triple:290
+glassType:{
+toughened:0,
+laminated:0.20
 },
 
-"400x800": {
-double:215,
-triple:255
+finish:{
+clear:0,
+grey:0.22,
+satin:0.25,
+blue:0.30
 },
 
-"400x1000": {
-double:235,
-triple:280
-},
+border:{
+100:0,
+125:0.07,
+150:0.15
+}
 
-"400x1200": {
-double:260,
-triple:310
-},
+}
 
-"600x600": {
-double:220,
-triple:270
-},
-
-"600x900": {
-double:250,
-triple:300
-},
-
-/* MEDIUM SIZES */
-
-"300x1500": {
-double:280,
-triple:335
-},
-
-"400x1500": {
-double:310,
-triple:370
-},
-
-"400x1800": {
-double:345,
-triple:410
-},
-
-"600x1200": {
-double:310,
-triple:370
-},
-
-"600x1500": {
-double:360,
-triple:430
-},
-
-"800x800": {
-double:290,
-triple:350
-},
-
-"800x1000": {
-double:335,
-triple:400
-},
-
-"800x1200": {
-double:395,
-triple:470
-},
-
-"800x1500": {
-double:455,
-triple:545
-},
-
-"1000x1000": {
-double:420,
-triple:505
-},
-
-/* LARGE SIZES */
-
-"600x1800": {
-double:420,
-triple:500
-},
-
-"600x2000": {
-double:455,
-triple:540
-},
-
-"800x1800": {
-double:520,
-triple:625
-},
-
-"800x2000": {
-double:560,
-triple:675
-},
-
-"1000x1200": {
-double:465,
-triple:560
-},
-
-"1000x1500": {
-double:520,
-triple:625
-},
-
-"1000x1800": {
-double:590,
-triple:710
-},
-
-"1000x2000": {
-double:650,
-triple:780
-},
-
-/* EXTRA LARGE SIZES */
-
-"600x2500": {
-double:560,
-triple:675
-},
-
-"800x2500": {
-double:650,
-triple:780
-},
-
-"1000x2500": {
-double:785,
-triple:945
-},
-
-"1500x1500": {
-double:760,
-triple:910
-},
-
-"1500x1800": {
-double:880,
-triple:1075
-},
-
-"1500x2500": {
-double:1225,
-triple:1475
 }
 
 };
+
+
+function getActivePriceCategory() {
+
+const category =
+PRICE_CATEGORIES[
+ACTIVE_PRICE_CATEGORY
+];
+
+if (
+!category
+) {
+
+throw new Error(
+`Unknown active price category: ${ACTIVE_PRICE_CATEGORY}`
+);
+
+}
+
+return category;
+
+}
+
+
+function roundToNearestFive(
+value
+) {
+
+return Math.round(
+Number(
+value
+) /
+5
+) *
+5;
+
+}
+
+
+function normalizeGlazing(
+glazing
+) {
+
+return String(
+glazing || ""
+)
+.trim()
+.toLowerCase() ===
+"triple"
+?
+"triple"
+:
+"double";
+
+}
+
+
+function normalizeGlassType(
+glassType
+) {
+
+return String(
+glassType || ""
+)
+.trim()
+.toLowerCase() ===
+"laminated"
+?
+"laminated"
+:
+"toughened";
+
+}
+
+
+function normalizeFinish(
+finish
+) {
+
+const normalized =
+String(
+finish || ""
+)
+.trim()
+.toLowerCase();
+
+if (
+normalized ===
+"blue" ||
+normalized ===
+"blue tinted" ||
+normalized ===
+"blue-tinted"
+) {
+
+return "blue";
+
+}
+
+if (
+normalized ===
+"grey" ||
+normalized ===
+"gray" ||
+normalized ===
+"grey tinted" ||
+normalized ===
+"grey-tinted" ||
+normalized ===
+"gray tinted" ||
+normalized ===
+"gray-tinted"
+) {
+
+return "grey";
+
+}
+
+if (
+normalized ===
+"satin" ||
+normalized ===
+"satin tinted" ||
+normalized ===
+"satin-tinted" ||
+normalized ===
+"privacy"
+) {
+
+return "satin";
+
+}
+
+return "clear";
+
+}
+
+
+function normalizeBorder(
+border
+) {
+
+const numeric =
+Number(
+border
+);
+
+return [
+100,
+125,
+150
+]
+.includes(
+numeric
+)
+?
+numeric
+:
+100;
+
+}
+
+
+function getMasterPrice(
+size
+) {
+
+const category =
+getActivePriceCategory();
+
+const masterPrice =
+Number(
+category
+.tripleClearToughened100[
+size
+]
+);
+
+return Number.isFinite(
+masterPrice
+)
+?
+masterPrice
+:
+null;
+
+}
+
+
+function calculateConfiguredProductPrice(
+size,
+{
+glazing = "double",
+glassType = "toughened",
+finish = "clear",
+border = 100
+} = {}
+) {
+
+const category =
+getActivePriceCategory();
+
+const masterPrice =
+getMasterPrice(
+size
+);
+
+if (
+masterPrice ===
+null
+) {
+
+return null;
+
+}
+
+const normalizedGlazing =
+normalizeGlazing(
+glazing
+);
+
+const normalizedGlassType =
+normalizeGlassType(
+glassType
+);
+
+const normalizedFinish =
+normalizeFinish(
+finish
+);
+
+const normalizedBorder =
+normalizeBorder(
+border
+);
+
+const glazingAdjustment =
+Number(
+category
+.adjustments
+.glazing[
+normalizedGlazing
+]
+) || 0;
+
+const glassTypeAdjustment =
+Number(
+category
+.adjustments
+.glassType[
+normalizedGlassType
+]
+) || 0;
+
+const finishAdjustment =
+Number(
+category
+.adjustments
+.finish[
+normalizedFinish
+]
+) || 0;
+
+const borderAdjustment =
+Number(
+category
+.adjustments
+.border[
+normalizedBorder
+]
+) || 0;
+
+
+const glazingBase =
+masterPrice *
+(
+1 +
+glazingAdjustment
+);
+
+
+const configuredBeforeBorder =
+glazingBase *
+(
+1 +
+glassTypeAdjustment +
+finishAdjustment
+);
+
+
+const configuredPrice =
+configuredBeforeBorder *
+(
+1 +
+borderAdjustment
+);
+
+
+return roundToNearestFive(
+configuredPrice
+);
+
+}
+
 
 /* =========================================
 PRODUCT IMAGES
@@ -2169,29 +2473,11 @@ const extraLargeSizes = [
 EXTRA LARGE DELIVERY MASTER
 ========================================= */
 
-/*
-Postcodes.io provides postcode coordinates.
-
-We calculate the straight-line geographical
-distance and then add 20% to provide an
-allowance for typical road mileage.
-
-Dispatch postcode:
-SL9 7BB
-*/
-
 const DELIVERY_ORIGIN_POSTCODE =
 "SL9 7BB";
 
 const ROAD_DISTANCE_ALLOWANCE =
 1.20;
-
-/*
-Every size in the Extra Large category
-requires postcode-based delivery pricing.
-
-Delivery band is determined by WIDTH only.
-*/
 
 const chargeableExtraLargeSizes =
 new Set([
@@ -2202,14 +2488,6 @@ new Set([
 "1500x1800",
 "1500x2500"
 ]);
-
-/*
-XL WIDTH BANDS
-
-XL1 = 600–800mm
-XL2 = 801–1199mm
-XL3 = 1200–1500mm
-*/
 
 const deliveryRates = [
 
@@ -2254,7 +2532,9 @@ XL3:275
 GENERAL HELPERS
 ========================================= */
 
-function formatSize(size) {
+function formatSize(
+size
+) {
 
 return size.replace(
 "x",
@@ -2263,27 +2543,43 @@ return size.replace(
 
 }
 
-function getTopGlass(size) {
+
+function getTopGlass(
+size
+) {
 
 const [
 width,
 length
 ] =
 size
-.split("x")
-.map(Number);
+.split(
+"x"
+)
+.map(
+Number
+);
 
 const area =
-(width * length) /
+(
+width *
+length
+) /
 1000000;
 
-if (area > 3.4) {
+if (
+area >
+3.4
+) {
 
 return "10mm Toughened Safety Glass";
 
 }
 
-if (area > 2.0) {
+if (
+area >
+2.0
+) {
 
 return "8mm Toughened Safety Glass";
 
@@ -2293,11 +2589,419 @@ return "6mm Toughened Safety Glass";
 
 }
 
+
+/* =========================================
+PRODUCT CARD CONFIGURATION
+========================================= */
+
+function getCardConfiguration(
+card
+) {
+
+if (
+!card
+) {
+
+return null;
+
+}
+
+const activeGlazingButton =
+card.querySelector(
+".toggle button.active"
+);
+
+return {
+
+size:
+String(
+card.dataset.size ||
+""
+),
+
+glazing:
+normalizeGlazing(
+activeGlazingButton
+?
+activeGlazingButton.dataset.glazing
+:
+card.dataset.glazing
+),
+
+glassType:
+normalizeGlassType(
+card.dataset.glassType ||
+"toughened"
+),
+
+finish:
+normalizeFinish(
+card.dataset.finish ||
+"clear"
+),
+
+border:
+normalizeBorder(
+card.dataset.border ||
+100
+)
+
+};
+
+}
+
+
+function calculateCardPrice(
+card
+) {
+
+const configuration =
+getCardConfiguration(
+card
+);
+
+if (
+!configuration
+) {
+
+return null;
+
+}
+
+return calculateConfiguredProductPrice(
+configuration.size,
+configuration
+);
+
+}
+
+
+/* =========================================
+HOMEPAGE-MATCHING PRICE DISPLAY
+========================================= */
+
+function getPriceParts(
+price
+) {
+
+const numericPrice =
+Number(
+price
+);
+
+if (
+!Number.isFinite(
+numericPrice
+)
+) {
+
+return {
+whole:"TBC",
+pence:"00"
+};
+
+}
+
+const whole =
+Math.trunc(
+numericPrice
+);
+
+const pence =
+Math.round(
+(
+numericPrice -
+whole
+) *
+100
+);
+
+return {
+
+whole:
+new Intl.NumberFormat(
+"en-GB",
+{
+maximumFractionDigits:0
+}
+).format(
+whole
+),
+
+pence:
+String(
+pence
+)
+.padStart(
+2,
+"0"
+)
+
+};
+
+}
+
+
+function buildPriceMarkup(
+price
+) {
+
+const parts =
+getPriceParts(
+price
+);
+
+return `
+<span class="standard-price-amount">
+
+<span class="standard-price-main">
+£<span class="standard-price-whole">${parts.whole}</span><span class="standard-price-decimal-point">.</span>
+</span>
+
+<span class="standard-price-decimals">
+${parts.pence}
+</span>
+
+</span>
+
+<span class="vat-note">
+inc. vat
+</span>
+`;
+
+}
+
+
+function updateCardPriceDisplay(
+card,
+price
+) {
+
+const priceElement =
+card?.querySelector(
+".price"
+);
+
+if (
+!priceElement
+) {
+
+return;
+
+}
+
+const parts =
+getPriceParts(
+price
+);
+
+const wholeElement =
+priceElement.querySelector(
+".standard-price-whole"
+);
+
+const penceElement =
+priceElement.querySelector(
+".standard-price-decimals"
+);
+
+if (
+!wholeElement ||
+!penceElement
+) {
+
+priceElement.innerHTML =
+buildPriceMarkup(
+price
+);
+
+return;
+
+}
+
+priceElement.classList.add(
+"is-changing"
+);
+
+window.setTimeout(
+() => {
+
+wholeElement.textContent =
+parts.whole;
+
+penceElement.textContent =
+parts.pence;
+
+priceElement.classList.remove(
+"is-changing"
+);
+
+},
+90
+);
+
+}
+
+
+/* =========================================
+ORDER PAGE LINK
+========================================= */
+
+function buildOrderPageUrl(
+card
+) {
+
+const configuration =
+getCardConfiguration(
+card
+);
+
+if (
+!configuration
+) {
+
+return "order-page.html";
+
+}
+
+const [
+width,
+length
+] =
+configuration.size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const price =
+calculateConfiguredProductPrice(
+configuration.size,
+configuration
+);
+
+const imageFile =
+productImages[
+configuration.size
+]
+||
+"medium-rectangle.png";
+
+const imagePath =
+"images/product-cards/" +
+imageFile;
+
+const params =
+new URLSearchParams();
+
+params.set(
+"width",
+String(
+width
+)
+);
+
+params.set(
+"length",
+String(
+length
+)
+);
+
+params.set(
+"size",
+configuration.size
+);
+
+params.set(
+"glazing",
+configuration.glazing
+);
+
+params.set(
+"type",
+configuration.glassType
+);
+
+params.set(
+"border",
+String(
+configuration.border
+)
+);
+
+params.set(
+"finish",
+configuration.finish
+);
+
+if (
+Number.isFinite(
+price
+)
+) {
+
+params.set(
+"price",
+String(
+price
+)
+);
+
+}
+
+params.set(
+"image",
+imagePath
+);
+
+params.set(
+"source",
+"standard-sizes"
+);
+
+return (
+"order-page.html?" +
+params.toString()
+);
+
+}
+
+
+function updateCardOrderLink(
+card
+) {
+
+const link =
+card?.querySelector(
+".view-link"
+);
+
+if (
+!link
+) {
+
+return;
+
+}
+
+link.href =
+buildOrderPageUrl(
+card
+);
+
+}
+
+
 /* =========================================
 DELIVERY HELPERS
 ========================================= */
 
-function isChargeableDeliverySize(size) {
+function isChargeableDeliverySize(
+size
+) {
 
 return chargeableExtraLargeSizes.has(
 size
@@ -2305,10 +3009,15 @@ size
 
 }
 
-function getXLDeliveryBand(size) {
+
+function getXLDeliveryBand(
+size
+) {
 
 if (
-!isChargeableDeliverySize(size)
+!isChargeableDeliverySize(
+size
+)
 ) {
 
 return null;
@@ -2319,12 +3028,18 @@ const [
 width
 ] =
 size
-.split("x")
-.map(Number);
+.split(
+"x"
+)
+.map(
+Number
+);
 
 if (
-width >= 600 &&
-width <= 800
+width >=
+600 &&
+width <=
+800
 ) {
 
 return "XL1";
@@ -2332,8 +3047,10 @@ return "XL1";
 }
 
 if (
-width >= 801 &&
-width <= 1199
+width >=
+801 &&
+width <=
+1199
 ) {
 
 return "XL2";
@@ -2341,8 +3058,10 @@ return "XL2";
 }
 
 if (
-width >= 1200 &&
-width <= 1500
+width >=
+1200 &&
+width <=
+1500
 ) {
 
 return "XL3";
@@ -2353,27 +3072,33 @@ return null;
 
 }
 
-function getDeliveryCardLine(size) {
+
+function getDeliveryCardLine(
+size
+) {
 
 if (
-isChargeableDeliverySize(size)
+isChargeableDeliverySize(
+size
+)
 ) {
 
 return `
 <span class="delivery-chargeable">
-Delivery Calculated By Postcode
+Delivery Calculated by Postcode
 </span>
 `;
 
 }
 
 return `
-<span class="delivery-free">
-Free Mainland UK Delivery
+<span class="delivery-standard">
+Delivery Calculated by Postcode
 </span>
 `;
 
 }
+
 
 function getDeliveryRate(
 adjustedMiles,
@@ -2392,7 +3117,9 @@ rateBand.maxMiles
 
 return {
 requiresQuote:false,
-price:rateBand[band],
+price:rateBand[
+band
+],
 maxMiles:rateBand.maxMiles
 };
 
@@ -2408,14 +3135,19 @@ maxMiles:null
 
 }
 
+
 function degreesToRadians(
 degrees
 ) {
 
 return degrees *
-(Math.PI / 180);
+(
+Math.PI /
+180
+);
 
 }
+
 
 function calculateGeographicalMiles(
 lat1,
@@ -2429,12 +3161,14 @@ const earthRadiusMiles =
 
 const latitudeDifference =
 degreesToRadians(
-lat2 - lat1
+lat2 -
+lat1
 );
 
 const longitudeDifference =
 degreesToRadians(
-lon2 - lon1
+lon2 -
+lon1
 );
 
 const firstLatitude =
@@ -2449,7 +3183,8 @@ lat2
 
 const a =
 Math.sin(
-latitudeDifference / 2
+latitudeDifference /
+2
 ) ** 2
 +
 Math.cos(
@@ -2461,26 +3196,37 @@ secondLatitude
 )
 *
 Math.sin(
-longitudeDifference / 2
+longitudeDifference /
+2
 ) ** 2;
 
 const c =
 2 *
 Math.atan2(
-Math.sqrt(a),
-Math.sqrt(1 - a)
+Math.sqrt(
+a
+),
+Math.sqrt(
+1 -
+a
+)
 );
 
-return earthRadiusMiles * c;
+return earthRadiusMiles *
+c;
 
 }
+
 
 async function lookupPostcode(
 postcode
 ) {
 
 const cleanedPostcode =
-String(postcode || "")
+String(
+postcode ||
+""
+)
 .trim()
 .toUpperCase();
 
@@ -2530,13 +3276,16 @@ return data.result;
 
 }
 
+
 async function calculateExtraLargeDelivery(
 size,
 postcode
 ) {
 
 if (
-!isChargeableDeliverySize(size)
+!isChargeableDeliverySize(
+size
+)
 ) {
 
 return {
@@ -2589,7 +3338,8 @@ postcode
 
 const destinationCountry =
 String(
-destination.country || ""
+destination.country ||
+""
 )
 .trim();
 
@@ -2662,20 +3412,25 @@ reason:null
 
 }
 
+
 /* =========================================
 PRODUCT CARD CREATION
 ========================================= */
 
-function createCard(size) {
-
-const data =
-prices[size];
+function createCard(
+size
+) {
 
 const topGlass =
-getTopGlass(size);
+getTopGlass(
+size
+);
 
 const imageFile =
-productImages[size] ||
+productImages[
+size
+]
+||
 "medium-rectangle.png";
 
 const imagePath =
@@ -2699,12 +3454,31 @@ size;
 card.dataset.size =
 size;
 
+card.dataset.glazing =
+"double";
+
+card.dataset.glassType =
+"toughened";
+
+card.dataset.finish =
+"clear";
+
+card.dataset.border =
+"100";
+
 card.dataset.deliveryType =
-isChargeableDeliverySize(size)
+isChargeableDeliverySize(
+size
+)
 ?
 "postcode"
 :
-"free";
+"postcode";
+
+const initialPrice =
+calculateCardPrice(
+card
+);
 
 card.innerHTML = `
 <div class="image-wrap">
@@ -2734,6 +3508,7 @@ ${deliveryLine}
 <button
 type="button"
 class="active"
+data-glazing="double"
 onclick="setGlazing(this,'${size}','double')"
 >
 Double
@@ -2741,6 +3516,7 @@ Double
 
 <button
 type="button"
+data-glazing="triple"
 onclick="setGlazing(this,'${size}','triple')"
 >
 Triple
@@ -2760,8 +3536,12 @@ Triple
 FROM
 </div>
 
-<div class="price">
-£${data.double}<span class="vat-note">inc. vat</span>
+<div
+class="price"
+aria-live="polite"
+aria-label="Price including VAT"
+>
+${buildPriceMarkup(initialPrice)}
 </div>
 
 </div>
@@ -2779,9 +3559,14 @@ View →
 </div>
 `;
 
+updateCardOrderLink(
+card
+);
+
 return card;
 
 }
+
 
 /* =========================================
 GLAZING SWITCHER
@@ -2798,13 +3583,28 @@ button.closest(
 ".product-card"
 );
 
-const price =
-prices[size][glazing];
+if (
+!card ||
+card.dataset.size !==
+size
+) {
+
+return;
+
+}
+
+const normalizedGlazing =
+normalizeGlazing(
+glazing
+);
 
 const glazedLabel =
 card.querySelector(
 ".glazed-label"
 );
+
+card.dataset.glazing =
+normalizedGlazing;
 
 card
 .querySelectorAll(
@@ -2813,16 +3613,18 @@ card
 .forEach(
 item => {
 
-item.classList.remove(
-"active"
+item.classList.toggle(
+"active",
+item ===
+button
 );
 
 }
 );
 
-button.classList.add(
-"active"
-);
+if (
+glazedLabel
+) {
 
 glazedLabel.classList.remove(
 "double",
@@ -2830,19 +3632,116 @@ glazedLabel.classList.remove(
 );
 
 glazedLabel.classList.add(
+normalizedGlazing
+);
+
+}
+
+const price =
+calculateCardPrice(
+card
+);
+
+updateCardPriceDisplay(
+card,
+price
+);
+
+updateCardOrderLink(
+card
+);
+
+}
+
+
+/* =========================================
+FUTURE CARD CONFIGURATION SUPPORT
+========================================= */
+
+function setProductCardConfiguration(
+card,
+{
+glazing,
+glassType,
+finish,
+border
+} = {}
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+if (
+glazing !==
+undefined
+) {
+
+card.dataset.glazing =
+normalizeGlazing(
 glazing
 );
 
-card
-.querySelector(
-".price"
-)
-.innerHTML =
-"£" +
-price +
-'<span class="vat-note">inc. vat</span>';
+}
+
+if (
+glassType !==
+undefined
+) {
+
+card.dataset.glassType =
+normalizeGlassType(
+glassType
+);
 
 }
+
+if (
+finish !==
+undefined
+) {
+
+card.dataset.finish =
+normalizeFinish(
+finish
+);
+
+}
+
+if (
+border !==
+undefined
+) {
+
+card.dataset.border =
+String(
+normalizeBorder(
+border
+)
+);
+
+}
+
+const price =
+calculateCardPrice(
+card
+);
+
+updateCardPriceDisplay(
+card,
+price
+);
+
+updateCardOrderLink(
+card
+);
+
+}
+
 
 /* =========================================
 RENDER PRODUCT GRIDS
@@ -2871,6 +3770,7 @@ size
 );
 
 }
+
 
 function renderCards() {
 
@@ -2901,6 +3801,7 @@ extraLargeSizes
 
 }
 
+
 /* =========================================
 EXTRA LARGE DELIVERY CHECKER
 ========================================= */
@@ -2925,7 +3826,8 @@ type
 ) {
 
 result.classList.add(
-"is-" + type
+"is-" +
+type
 );
 
 }
@@ -2959,6 +3861,7 @@ ${copy}
 `;
 
 }
+
 
 async function checkExtraLargeDelivery() {
 
@@ -3107,6 +4010,7 @@ originalButtonText;
 
 }
 
+
 /* =========================================
 MENU
 ========================================= */
@@ -3127,6 +4031,7 @@ document.body.style.overflow =
 
 }
 
+
 function closeMenu() {
 
 document
@@ -3143,9 +4048,165 @@ document.body.style.overflow =
 
 }
 
+
+/* =========================================
+PRICING VALIDATION
+========================================= */
+
+function validatePricingCoverage() {
+
+const allExistingSizes =
+Array.from(
+new Set([
+...popularSizes,
+...smallSizes,
+...mediumSizes,
+...largeSizes,
+...extraLargeSizes
+])
+);
+
+const missingPrices =
+allExistingSizes.filter(
+size =>
+getMasterPrice(
+size
+) ===
+null
+);
+
+if (
+missingPrices.length
+) {
+
+console.error(
+"Missing NORMAL master prices:",
+missingPrices
+);
+
+}
+else {
+
+console.info(
+"All Standard Sizes cards have NORMAL master pricing."
+);
+
+}
+
+}
+
+
+function runPricingChecks() {
+
+const tests = [
+
+{
+size:"600x600",
+configuration:{
+glazing:"triple",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:200
+},
+
+{
+size:"600x900",
+configuration:{
+glazing:"triple",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:270
+},
+
+{
+size:"600x900",
+configuration:{
+glazing:"double",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:225
+},
+
+{
+size:"800x1200",
+configuration:{
+glazing:"triple",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:400
+},
+
+{
+size:"1000x1000",
+configuration:{
+glazing:"triple",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:340
+},
+
+{
+size:"1500x2500",
+configuration:{
+glazing:"triple",
+glassType:"toughened",
+finish:"clear",
+border:100
+},
+expected:1655
+}
+
+];
+
+tests.forEach(
+test => {
+
+const result =
+calculateConfiguredProductPrice(
+test.size,
+test.configuration
+);
+
+if (
+result !==
+test.expected
+) {
+
+console.error(
+"Pricing check failed:",
+test.size,
+test.configuration,
+"Expected:",
+test.expected,
+"Received:",
+result
+);
+
+}
+
+}
+);
+
+}
+
+
 /* =========================================
 INITIALISE
 ========================================= */
+
+validatePricingCoverage();
+
+runPricingChecks();
 
 renderCards();
 
@@ -3182,6 +4243,12 @@ checkExtraLargeDelivery();
 
 window.calculateExtraLargeDelivery =
 calculateExtraLargeDelivery;
+
+window.calculateConfiguredProductPrice =
+calculateConfiguredProductPrice;
+
+window.setProductCardConfiguration =
+setProductCardConfiguration;
 
 </script>
 
