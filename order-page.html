@@ -2398,7 +2398,7 @@ transform:scale(.97);
 /* =========================================
 CHANGE 1
 DELIVERY POSTCODE + INLINE DELIVERY PRICE
-MATCHES QUANTITY + REMOVE CONTROL WIDTH
+SLIGHTLY WIDER THAN QUANTITY + REMOVE GROUP
 ========================================= */
 
 .order-summary-delivery {
@@ -2411,7 +2411,7 @@ max-width:100%;
 .order-summary-delivery-entry {
 width:min(
 100%,
-var(--order-line-controls-width,430px)
+var(--order-line-controls-width,470px)
 );
 max-width:100%;
 min-width:0;
@@ -2428,7 +2428,7 @@ max-width:100%;
 display:block;
 width:100%;
 height:52px;
-padding:0 122px 0 15px;
+padding:0 104px 0 15px;
 border:1px solid rgba(255,255,255,.17);
 border-radius:14px;
 outline:0;
@@ -4107,13 +4107,13 @@ max-width:100%;
 .order-summary-delivery-entry {
 width:min(
 100%,
-var(--order-line-controls-width,250px)
+var(--order-line-controls-width,275px)
 );
 }
 
 .order-summary-postcode {
 height:39px;
-padding:0 86px 0 9px;
+padding:0 66px 0 9px;
 border-radius:10px;
 font-size:8.8px;
 letter-spacing:.35px;
@@ -4552,12 +4552,12 @@ padding-right:7px;
 .order-summary-delivery-entry {
 width:min(
 100%,
-var(--order-line-controls-width,230px)
+var(--order-line-controls-width,250px)
 );
 }
 
 .order-summary-postcode {
-padding-right:79px;
+padding-right:62px;
 }
 
 .order-summary-delivery-inline-price {
@@ -6293,8 +6293,7 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div
-class="quantity-display"
+<div class="quantity-display"
 aria-live="polite"
 >
 
@@ -8079,7 +8078,8 @@ syncCustomSummaryPriceColumn();
 
 /* =========================================
 CHANGE 1
-MATCH DELIVERY FIELD TO QUANTITY + REMOVE
+SLIGHTLY WIDEN DELIVERY FIELD BEYOND
+QUANTITY + REMOVE CONTROL GROUP
 ========================================= */
 
 function syncOrderSummaryDeliveryWidths() {
@@ -8129,16 +8129,31 @@ const measuredWidth =
 removeRect.right -
 quantityRect.left;
 
-const maximumWidth =
+const extraWidth =
+Math.min(
+40,
+Math.max(
+18,
+measuredWidth *
+.10
+)
+);
+
+const desiredWidth =
+measuredWidth +
+extraWidth;
+
+const availableWidth =
 Math.max(
 0,
-sectionRect.width
+sectionRect.right -
+quantityRect.left
 );
 
 const usableWidth =
 Math.min(
-measuredWidth,
-maximumWidth
+desiredWidth,
+availableWidth
 );
 
 if (
