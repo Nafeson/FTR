@@ -100,6 +100,143 @@ max-width:100%;
 }
 
 /* =========================================
+DESKTOP ACCESS BLOCKER
+========================================= */
+
+.desktop-access-blocker {
+display:none;
+position:fixed;
+inset:0;
+z-index:2147483647;
+width:100%;
+height:100%;
+min-height:100dvh;
+padding:clamp(24px,5vw,72px);
+align-items:center;
+justify-content:center;
+background:
+linear-gradient(
+180deg,
+rgba(9,10,10,.995) 0%,
+rgba(13,15,15,.995) 100%
+);
+color:var(--cream);
+text-align:center;
+overflow:hidden;
+overscroll-behavior:none;
+touch-action:none;
+pointer-events:auto;
+}
+
+.desktop-access-blocker::before {
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+rgba(255,255,255,.018) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.018) 1px,
+transparent 1px
+);
+background-size:48px 48px;
+opacity:.42;
+pointer-events:none;
+}
+
+.desktop-access-blocker::after {
+content:"";
+position:absolute;
+left:50%;
+top:0;
+width:min(620px,72vw);
+height:2px;
+background:var(--orange);
+transform:translateX(-50%);
+box-shadow:0 0 24px rgba(232,120,23,.18);
+pointer-events:none;
+}
+
+.desktop-access-blocker-panel {
+position:relative;
+z-index:1;
+width:min(680px,100%);
+padding:
+clamp(34px,5vw,58px)
+clamp(24px,5vw,54px);
+border:1px solid rgba(255,255,255,.12);
+border-top:2px solid var(--orange);
+background:
+linear-gradient(
+145deg,
+rgba(21,24,24,.97) 0%,
+rgba(12,14,14,.985) 58%,
+rgba(9,10,10,.995) 100%
+);
+box-shadow:
+0 32px 90px rgba(0,0,0,.45),
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.desktop-access-blocker-panel::before {
+content:"";
+display:block;
+width:42px;
+height:1px;
+margin:
+0
+auto
+clamp(20px,2.5vw,28px);
+background:var(--orange);
+}
+
+.desktop-access-blocker h1 {
+margin:0;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:clamp(34px,4.6vw,58px);
+font-weight:800;
+line-height:.98;
+letter-spacing:-1.35px;
+color:var(--cream);
+}
+
+.desktop-access-blocker p {
+max-width:520px;
+margin:
+clamp(18px,2.4vw,26px)
+auto
+0;
+font-size:clamp(14px,1.4vw,17px);
+font-weight:500;
+line-height:1.65;
+color:var(--muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+html,
+body {
+overflow:hidden !important;
+overscroll-behavior:none;
+}
+
+.desktop-access-blocker {
+display:flex;
+}
+
+}
+
+/* =========================================
 TYPOGRAPHIC LANGUAGE
 ========================================= */
 
@@ -5483,6 +5620,30 @@ transition:none;
 
 <body>
 
+<div
+class="desktop-access-blocker"
+id="desktopAccessBlocker"
+role="dialog"
+aria-modal="true"
+aria-labelledby="desktopAccessBlockerTitle"
+aria-hidden="false"
+tabindex="-1"
+>
+
+<div class="desktop-access-blocker-panel">
+
+<h1 id="desktopAccessBlockerTitle">
+Mobile Access Only
+</h1>
+
+<p>
+Please visit Factory Toughened Rooflights using a mobile device.
+</p>
+
+</div>
+
+</div>
+
 <div class="top-banner">
 <div class="ticker">
 
@@ -8201,6 +8362,309 @@ const reducedMotionQuery =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
 );
+
+
+/* =========================================
+DESKTOP ACCESS RESTRICTION
+========================================= */
+
+const DESKTOP_ACCESS_MEDIA_QUERY =
+"(hover: hover) and (pointer: fine)";
+
+const desktopAccessMediaQuery =
+window.matchMedia(
+DESKTOP_ACCESS_MEDIA_QUERY
+);
+
+const desktopAccessBlocker =
+document.getElementById(
+"desktopAccessBlocker"
+);
+
+const desktopAccessInertedElements =
+new Set();
+
+let desktopAccessBlockingActive =
+false;
+
+
+function getDesktopAccessBackgroundElements() {
+
+return Array.from(
+document.body.children
+).filter(
+element =>
+element !==
+desktopAccessBlocker &&
+element.tagName !==
+"SCRIPT"
+);
+
+}
+
+
+function setDesktopAccessBackgroundInert(
+shouldBlock
+) {
+
+getDesktopAccessBackgroundElements()
+.forEach(
+element => {
+
+if (
+shouldBlock
+) {
+
+if (
+!element.inert
+) {
+
+element.inert =
+true;
+
+desktopAccessInertedElements.add(
+element
+);
+
+}
+
+return;
+
+}
+
+if (
+desktopAccessInertedElements.has(
+element
+)
+) {
+
+element.inert =
+false;
+
+desktopAccessInertedElements.delete(
+element
+);
+
+}
+
+}
+);
+
+}
+
+
+function focusDesktopAccessBlocker() {
+
+if (
+!desktopAccessBlockingActive ||
+!desktopAccessBlocker
+) {
+return;
+}
+
+window.requestAnimationFrame(
+() => {
+
+if (
+!desktopAccessBlockingActive ||
+!desktopAccessBlocker
+) {
+return;
+}
+
+desktopAccessBlocker.focus(
+{
+preventScroll:true
+}
+);
+
+}
+);
+
+}
+
+
+function setDesktopAccessBlocked(
+shouldBlock
+) {
+
+const nextBlockedState =
+Boolean(
+shouldBlock
+);
+
+desktopAccessBlockingActive =
+nextBlockedState;
+
+if (
+!desktopAccessBlocker
+) {
+return;
+}
+
+desktopAccessBlocker.setAttribute(
+"aria-hidden",
+nextBlockedState
+? "false"
+: "true"
+);
+
+setDesktopAccessBackgroundInert(
+nextBlockedState
+);
+
+if (
+nextBlockedState
+) {
+
+closeWhatsAppAction();
+
+closeMenu();
+
+focusDesktopAccessBlocker();
+
+}
+
+}
+
+
+function handleDesktopAccessMediaChange(
+event
+) {
+
+setDesktopAccessBlocked(
+event.matches
+);
+
+}
+
+
+if (
+desktopAccessBlocker
+) {
+
+document.addEventListener(
+"focusin",
+event => {
+
+if (
+!desktopAccessBlockingActive ||
+desktopAccessBlocker.contains(
+event.target
+)
+) {
+return;
+}
+
+focusDesktopAccessBlocker();
+
+},
+true
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+!desktopAccessBlockingActive ||
+event.key !==
+"Tab"
+) {
+return;
+}
+
+event.preventDefault();
+
+focusDesktopAccessBlocker();
+
+},
+true
+);
+
+
+const desktopAccessBodyObserver =
+new MutationObserver(
+mutations => {
+
+if (
+!desktopAccessBlockingActive
+) {
+return;
+}
+
+mutations.forEach(
+mutation => {
+
+mutation.addedNodes.forEach(
+node => {
+
+if (
+!(
+node instanceof Element
+) ||
+node ===
+desktopAccessBlocker ||
+node.tagName ===
+"SCRIPT"
+) {
+return;
+}
+
+if (
+!node.inert
+) {
+
+node.inert =
+true;
+
+desktopAccessInertedElements.add(
+node
+);
+
+}
+
+}
+);
+
+}
+);
+
+}
+);
+
+desktopAccessBodyObserver.observe(
+document.body,
+{
+childList:true
+}
+);
+
+
+if (
+typeof desktopAccessMediaQuery.addEventListener ===
+"function"
+) {
+
+desktopAccessMediaQuery.addEventListener(
+"change",
+handleDesktopAccessMediaChange
+);
+
+} else {
+
+desktopAccessMediaQuery.addListener(
+handleDesktopAccessMediaChange
+);
+
+}
+
+setDesktopAccessBlocked(
+desktopAccessMediaQuery.matches
+);
+
+}
 
 
 /* ===============================
