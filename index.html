@@ -426,6 +426,17 @@ padding-bottom:2px;
 text-transform:lowercase;
 }
 
+/* =========================================
+CHANGE 1
+HEADER + FOOTER .CO.UK MOVED LEFT 1PX
+AND DOWN 1PX
+========================================= */
+
+.header-home-link .wordmark-domain,
+.footer-wordmark .wordmark-domain {
+transform:translate(-1px,1px);
+}
+
 .address-line {
 font-size:12px;
 line-height:1.45;
@@ -663,7 +674,8 @@ scale(1);
 
 /* ===============================
 STATIC LEAD-TIME BANNER
-CHANGE 1 — CONTENT INCREASED 10%
+CHANGE 5 — BUY DIRECT + VAN
+INCREASED 12%
 ================================ */
 
 .lead-time-banner {
@@ -694,8 +706,8 @@ line-height:1;
 }
 
 .lead-time-van {
-width:46.75px;
-height:22.44px;
+width:52.36px;
+height:25.13px;
 display:block;
 flex:0 0 auto;
 color:var(--steel-light);
@@ -711,7 +723,7 @@ font-family:
 "Arial Narrow",
 "Aptos",
 sans-serif;
-font-size:clamp(12.155px,1.4025vw,16.83px);
+font-size:clamp(13.614px,1.5708vw,18.85px);
 font-weight:800;
 letter-spacing:1.4025px;
 line-height:1;
@@ -1880,10 +1892,15 @@ TINTED PRODUCT IMAGE RESCALING
 --home-image-hover-transform:scale(1.15);
 }
 
+/* =========================================
+CHANGE 3
+SATIN 400 x 1200 PRODUCT IMAGE +10%
+========================================= */
+
 .tinted-options-section
 .home-product-card.image-size-400x1200[data-finish="satin"] {
---home-image-transform:rotate(90deg) scale(1.50);
---home-image-hover-transform:rotate(90deg) scale(1.53);
+--home-image-transform:rotate(90deg) scale(1.65);
+--home-image-hover-transform:rotate(90deg) scale(1.683);
 }
 
 .tinted-options-section
@@ -4346,13 +4363,19 @@ padding:9px 4%;
 gap:5.5px;
 }
 
+/* =========================================
+CHANGE 5 — MOBILE
+BUY DIRECT + VAN +12%
+CUSTOM SIZE TEXT UNCHANGED
+========================================= */
+
 .lead-time-van {
-width:37.4px;
-height:19.635px;
+width:41.888px;
+height:21.991px;
 }
 
 .lead-time-feature {
-font-size:10.7525px;
+font-size:12.043px;
 letter-spacing:.748px;
 gap:3.74px;
 }
@@ -4430,10 +4453,15 @@ height:104px;
 --home-image-hover-transform:rotate(90deg) scale(1.41);
 }
 
+/* =========================================
+CHANGE 3 — MOBILE
+SATIN 400 x 1200 IMAGE +10%
+========================================= */
+
 .tinted-options-section
 .home-product-card.image-size-400x1200[data-finish="satin"] {
---home-image-transform:rotate(90deg) scale(1.50);
---home-image-hover-transform:rotate(90deg) scale(1.53);
+--home-image-transform:rotate(90deg) scale(1.65);
+--home-image-hover-transform:rotate(90deg) scale(1.683);
 }
 
 .home-product-size {
@@ -5918,11 +5946,6 @@ aria-label="Close menu"
 
 </div>
 
-<!-- =========================================
-CHANGE 4
-UPDATED MENU ORDER
-========================================= -->
-
 <div class="menu-links">
 
 <a
@@ -6128,11 +6151,6 @@ linear-gradient(
 );
 }
 
-/* =========================================
-CHANGE 2
-OVERSIZED GREEN ATMOSPHERE VISIBLE HIGHER
-========================================= */
-
 .oversized-showcase-section {
 position:relative;
 overflow:hidden;
@@ -6334,11 +6352,6 @@ line-height:1.62;
 color:var(--muted);
 }
 
-/* =========================================
-CHANGE 1
-CLOSING ACTION BUTTONS
-========================================= */
-
 .homepage-closing-actions {
 display:grid;
 gap:9px;
@@ -6383,11 +6396,6 @@ aspect-ratio:4 / 3;
 .direct-copy > .button {
 margin-top:32px;
 }
-
-/* =========================================
-CHANGE 2 — MOBILE
-OVERSIZED GREEN ATMOSPHERE VISIBLE HIGHER
-========================================= */
 
 .oversized-showcase-section {
 background:
@@ -6535,7 +6543,7 @@ Discover our range of brand-new frameless rooflights, manufactured here in the U
 class="home-product-card image-size-1000x1200 reveal reveal-scale"
 data-product-size="1000x1200"
 data-finish="clear"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="345"
 data-triple-price="415"
 tabindex="0"
@@ -6568,7 +6576,6 @@ alt="1000mm by 1200mm frameless flat roof skylight"
 
 <button
 type="button"
-class="active"
 data-glazing="double"
 >
 Double
@@ -6576,6 +6583,7 @@ Double
 
 <button
 type="button"
+class="active"
 data-glazing="triple"
 >
 Triple
@@ -6583,7 +6591,7 @@ Triple
 
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -6602,7 +6610,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£345
+£415
 </span>
 
 <span class="home-price-decimals">
@@ -6636,7 +6644,7 @@ View Size
 class="home-product-card image-size-400x1500 reveal reveal-scale reveal-delay-1"
 data-product-size="400x1500"
 data-finish="clear"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="280"
 data-triple-price="335"
 tabindex="0"
@@ -6669,7 +6677,6 @@ alt="400mm by 1500mm frameless flat roof skylight"
 
 <button
 type="button"
-class="active"
 data-glazing="double"
 >
 Double
@@ -6677,6 +6684,7 @@ Double
 
 <button
 type="button"
+class="active"
 data-glazing="triple"
 >
 Triple
@@ -6684,7 +6692,7 @@ Triple
 
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -6703,7 +6711,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£280
+£335
 </span>
 
 <span class="home-price-decimals">
@@ -6737,7 +6745,7 @@ View Size
 class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-2"
 data-product-size="1500x1800"
 data-finish="clear"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="890"
 data-triple-price="1075"
 tabindex="0"
@@ -6770,7 +6778,6 @@ alt="1500mm by 1800mm frameless flat roof skylight"
 
 <button
 type="button"
-class="active"
 data-glazing="double"
 >
 Double
@@ -6778,6 +6785,7 @@ Double
 
 <button
 type="button"
+class="active"
 data-glazing="triple"
 >
 Triple
@@ -6785,7 +6793,7 @@ Triple
 
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -6804,7 +6812,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£890
+£1075
 </span>
 
 <span class="home-price-decimals">
@@ -6838,7 +6846,7 @@ View Size
 class="home-product-card image-size-600x900 reveal reveal-scale reveal-delay-3"
 data-product-size="600x900"
 data-finish="clear"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="225"
 data-triple-price="270"
 tabindex="0"
@@ -6871,7 +6879,6 @@ alt="600mm by 900mm frameless flat roof skylight"
 
 <button
 type="button"
-class="active"
 data-glazing="double"
 >
 Double
@@ -6879,6 +6886,7 @@ Double
 
 <button
 type="button"
+class="active"
 data-glazing="triple"
 >
 Triple
@@ -6886,7 +6894,7 @@ Triple
 
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -6905,7 +6913,7 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£225
+£270
 </span>
 
 <span class="home-price-decimals">
@@ -7161,8 +7169,6 @@ Enter your roof opening's internal dimensions
 
 <div class="existing-opening-field">
 
-<!-- CHANGE 6 -->
-
 <label for="openingInternalWidth">
 Max Width (mm)
 </label>
@@ -7182,8 +7188,6 @@ autocomplete="off"
 </div>
 
 <div class="existing-opening-field">
-
-<!-- CHANGE 6 -->
 
 <label for="openingInternalLength">
 Max Length (mm)
@@ -7277,8 +7281,6 @@ without compromising on specification or finish.
 
 <div class="calc-field">
 
-<!-- CHANGE 7 -->
-
 <label for="width">
 Internal Width (mm)
 </label>
@@ -7287,7 +7289,7 @@ Internal Width (mm)
 id="width"
 type="number"
 inputmode="numeric"
-min="300"
+min="290"
 max="1500"
 step="1"
 placeholder="e.g. 1000"
@@ -7298,8 +7300,6 @@ autocomplete="off"
 
 <div class="calc-field">
 
-<!-- CHANGE 7 -->
-
 <label for="length">
 Internal Length (mm)
 </label>
@@ -7308,7 +7308,7 @@ Internal Length (mm)
 id="length"
 type="number"
 inputmode="numeric"
-min="300"
+min="290"
 max="2500"
 step="1"
 placeholder="e.g. 1000"
@@ -7569,7 +7569,7 @@ Tinted &amp; Privacy Glass
 class="home-product-card tinted-product-card image-size-800x1000 reveal reveal-scale"
 data-product-size="800x1000"
 data-finish="blue"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="405"
 data-triple-price="490"
 tabindex="0"
@@ -7597,11 +7597,11 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+<button type="button" data-glazing="double">Double</button>
+<button type="button" class="active" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -7614,7 +7614,7 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£405</span>
+<span class="home-price-main">£490</span>
 <span class="home-price-decimals">.00</span>
 </span>
 
@@ -7637,7 +7637,7 @@ View Size
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-product-size="600x1500"
 data-finish="blue"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="425"
 data-triple-price="515"
 tabindex="0"
@@ -7665,11 +7665,11 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+<button type="button" data-glazing="double">Double</button>
+<button type="button" class="active" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -7683,7 +7683,7 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£425</span>
+<span class="home-price-main">£515</span>
 <span class="home-price-decimals">.00</span>
 </span>
 <span class="home-vat-note">inc. vat</span>
@@ -7705,7 +7705,7 @@ View Size
 class="home-product-card tinted-product-card image-size-800x1500 reveal reveal-scale reveal-delay-2"
 data-product-size="800x1500"
 data-finish="satin"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="460"
 data-triple-price="555"
 tabindex="0"
@@ -7733,11 +7733,11 @@ alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+<button type="button" data-glazing="double">Double</button>
+<button type="button" class="active" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -7751,7 +7751,7 @@ alt="800mm by 1500mm satin privacy frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£460</span>
+<span class="home-price-main">£555</span>
 <span class="home-price-decimals">.00</span>
 </span>
 <span class="home-vat-note">inc. vat</span>
@@ -7773,7 +7773,7 @@ View Size
 class="home-product-card tinted-product-card image-size-400x1200 reveal reveal-scale reveal-delay-3"
 data-product-size="400x1200"
 data-finish="satin"
-data-default-glazing="double"
+data-default-glazing="triple"
 data-double-price="325"
 data-triple-price="395"
 tabindex="0"
@@ -7801,11 +7801,11 @@ alt="400mm by 1200mm satin privacy frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" class="active" data-glazing="double">Double</button>
-<button type="button" data-glazing="triple">Triple</button>
+<button type="button" data-glazing="double">Double</button>
+<button type="button" class="active" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label">
+<div class="home-glazed-label triple">
 <span>Glazed</span>
 </div>
 
@@ -7819,7 +7819,7 @@ alt="400mm by 1200mm satin privacy frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£325</span>
+<span class="home-price-main">£395</span>
 <span class="home-price-decimals">.00</span>
 </span>
 <span class="home-vat-note">inc. vat</span>
@@ -8006,11 +8006,6 @@ Need Further Assistance?
 Speak directly with our rooflight team for help with specifications,
 sizing, delivery, installation or anything else you need before ordering:
 </p>
-
-<!-- =========================================
-CHANGE 1
-TWO MATCHING CLOSING BUTTONS
-========================================= -->
 
 <div class="homepage-closing-actions">
 
@@ -9274,7 +9269,7 @@ card
 if (
 !card
 ) {
-return "double";
+return "triple";
 }
 
 const activeGlazingButton =
@@ -9285,20 +9280,32 @@ card.querySelector(
 if (
 !activeGlazingButton
 ) {
-return "double";
+
+const defaultGlazing =
+String(
+card.dataset.defaultGlazing ||
+"triple"
+)
+.trim()
+.toLowerCase();
+
+return defaultGlazing === "double"
+? "double"
+: "triple";
+
 }
 
 const glazing =
 String(
 activeGlazingButton.dataset.glazing ||
-"double"
+"triple"
 )
 .trim()
 .toLowerCase();
 
-return glazing === "triple"
-? "triple"
-: "double";
+return glazing === "double"
+? "double"
+: "triple";
 
 }
 
@@ -11619,7 +11626,10 @@ card.querySelector(
 const glazing =
 activeGlazingButton
 ? activeGlazingButton.dataset.glazing
-: "double";
+: (
+card.dataset.defaultGlazing ||
+"triple"
+);
 
 const selectedPrice =
 glazing === "triple"
@@ -12153,11 +12163,6 @@ const HOMEPAGE_ORDER_FOCUS_KEY =
 const HOMEPAGE_ORDER_NAVIGATION_KEY =
 "factoryToughenedRooflightsOrderNavigationV1";
 
-/* =========================================
-CHANGE 3
-HOMEPAGE CALCULATOR REFRESH PERSISTENCE
-========================================= */
-
 const HOMEPAGE_CALCULATOR_STATE_KEY =
 "factoryToughenedRooflightsHomepageCalculatorStateV1";
 
@@ -12166,7 +12171,6 @@ null;
 
 
 /* ===============================
-CHANGE 3
 SAVE + RESTORE HOMEPAGE INPUT STATE
 ================================ */
 
@@ -12422,11 +12426,6 @@ return false;
 }
 
 
-/* =========================================
-CHANGE 3
-SAVE STATE BEFORE HOMEPAGE LOGO RELOAD
-========================================= */
-
 if (
 headerHomeLink
 ) {
@@ -12442,12 +12441,6 @@ saveHomepageCalculatorState();
 
 }
 
-
-/* =========================================
-CHANGE 4
-BUILD A ROOFLIGHT MENU NAVIGATION
-30% VIEWPORT OFFSET
-========================================= */
 
 if (
 menuBuildRooflightLink
@@ -12862,108 +12855,1023 @@ customPriceOutput.innerHTML =
 }
 
 
-function addWorkingDays(
-numberOfWorkingDays
+/* =========================================
+CHANGE 2
+LATEST CUSTOM CALCULATOR PRICING
+========================================= */
+
+const CUSTOM_CALCULATOR_SOURCE_PRICES = {
+
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
+"300x2000":365,
+
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+"400x1800":375,
+"400x2000":395,
+
+"500x2000":425,
+"500x2500":455,
+
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+"600x1800":410,
+"600x2000":445,
+"600x2500":625,
+
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+"800x1800":460,
+"800x2000":515,
+"800x2500":655,
+
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+"1000x1800":585,
+"1000x2000":625,
+"1000x2500":770,
+
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
+
+};
+
+const CUSTOM_CALCULATOR_MIN_WIDTH =
+290;
+
+const CUSTOM_CALCULATOR_MAX_WIDTH =
+1500;
+
+const CUSTOM_CALCULATOR_MIN_LENGTH =
+290;
+
+const CUSTOM_CALCULATOR_MAX_LENGTH =
+2500;
+
+const CUSTOM_CALCULATOR_LONG_LENGTH =
+2000;
+
+const CUSTOM_CALCULATOR_LONG_MIN_WIDTH =
+500;
+
+const CUSTOM_CALCULATOR_BASE_UPLIFT =
+1.05;
+
+const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
+1.05;
+
+
+function customInputsAreValid() {
+
+const width =
+getNumericInputValue(
+customWidthInput
+);
+
+const length =
+getNumericInputValue(
+customLengthInput
+);
+
+if (
+width === null ||
+length === null
+) {
+return false;
+}
+
+if (
+width <
+CUSTOM_CALCULATOR_MIN_WIDTH ||
+width >
+CUSTOM_CALCULATOR_MAX_WIDTH
+) {
+return false;
+}
+
+if (
+length <
+CUSTOM_CALCULATOR_MIN_LENGTH ||
+length >
+CUSTOM_CALCULATOR_MAX_LENGTH
+) {
+return false;
+}
+
+if (
+length >
+CUSTOM_CALCULATOR_LONG_LENGTH &&
+width <
+CUSTOM_CALCULATOR_LONG_MIN_WIDTH
+) {
+return false;
+}
+
+return true;
+
+}
+
+
+function getInterpolatedCustomSourcePrice(
+width,
+length
 ) {
 
-const deliveryDate =
-new Date();
+const exactKey =
+`${width}x${length}`;
 
-deliveryDate.setHours(
+if (
+Object.prototype.hasOwnProperty.call(
+CUSTOM_CALCULATOR_SOURCE_PRICES,
+exactKey
+)
+) {
+
+return Number(
+CUSTOM_CALCULATOR_SOURCE_PRICES[
+exactKey
+]
+);
+
+}
+
+const widthRange =
+CUSTOM_CALCULATOR_MAX_WIDTH -
+CUSTOM_CALCULATOR_MIN_WIDTH;
+
+const lengthRange =
+CUSTOM_CALCULATOR_MAX_LENGTH -
+CUSTOM_CALCULATOR_MIN_LENGTH;
+
+const candidates =
+Object.entries(
+CUSTOM_CALCULATOR_SOURCE_PRICES
+)
+.map(
+(
+[
+size,
+price
+]
+) => {
+
+const [
+anchorWidth,
+anchorLength
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const normalizedWidthDistance =
+(
+width -
+anchorWidth
+) /
+widthRange;
+
+const normalizedLengthDistance =
+(
+length -
+anchorLength
+) /
+lengthRange;
+
+const distanceSquared =
+(
+normalizedWidthDistance *
+normalizedWidthDistance
+) +
+(
+normalizedLengthDistance *
+normalizedLengthDistance
+);
+
+return {
+price:
+Number(
+price
+),
+distanceSquared:
+distanceSquared
+};
+
+}
+)
+.sort(
+(
+a,
+b
+) =>
+a.distanceSquared -
+b.distanceSquared
+)
+.slice(
+0,
+6
+);
+
+let weightedPrice =
+0;
+
+let totalWeight =
+0;
+
+for (
+const candidate
+of candidates
+) {
+
+if (
+candidate.distanceSquared ===
+0
+) {
+
+return candidate.price;
+
+}
+
+const weight =
+1 /
+candidate.distanceSquared;
+
+weightedPrice +=
+candidate.price *
+weight;
+
+totalWeight +=
+weight;
+
+}
+
+if (
+totalWeight <=
+0
+) {
+return null;
+}
+
+return weightedPrice /
+totalWeight;
+
+}
+
+
+function roundCustomPriceToNearestFive(
+price
+) {
+
+const numericPrice =
+Number(
+price
+);
+
+if (
+!Number.isFinite(
+numericPrice
+)
+) {
+return null;
+}
+
+return Math.round(
+numericPrice /
+5
+) *
+5;
+
+}
+
+
+function calculateConfiguredCustomPrice(
+width,
+length,
+glazingDetails,
+finishKey,
+border
+) {
+
+let basePrice =
+getInterpolatedCustomSourcePrice(
+width,
+length
+);
+
+if (
+!Number.isFinite(
+basePrice
+)
+) {
+return null;
+}
+
+basePrice *=
+CUSTOM_CALCULATOR_BASE_UPLIFT;
+
+if (
+width >= 290 &&
+width <= 500 &&
+length >= 2000
+) {
+
+basePrice *=
+CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT;
+
+}
+
+const glazingAdjustment =
+glazingDetails.isDouble
+? -0.17
+: 0;
+
+const glassTypeAdjustment =
+glazingDetails.isLaminated
+? 0.20
+: 0;
+
+const finishAdjustments = {
+clear:0,
+grey:0.22,
+satin:0.25,
+blue:0.30
+};
+
+const borderAdjustments = {
+100:0,
+125:0.07,
+150:0.15
+};
+
+const finishAdjustment =
+finishAdjustments[
+finishKey
+] ?? 0;
+
+const borderAdjustment =
+borderAdjustments[
+border
+] ?? 0;
+
+const glazingBase =
+basePrice *
+(
+1 +
+glazingAdjustment
+);
+
+let price =
+glazingBase *
+(
+1 +
+glassTypeAdjustment +
+finishAdjustment
+);
+
+price *=
+(
+1 +
+borderAdjustment
+);
+
+return roundCustomPriceToNearestFive(
+price
+);
+
+}
+
+
+/* =========================================
+CHANGE 2
+LATEST ESTIMATED DELIVERY LOGIC
+========================================= */
+
+const UK_TIME_ZONE =
+"Europe/London";
+
+
+function getUkDateTimeParts(
+date = new Date()
+) {
+
+const parts =
+new Intl.DateTimeFormat(
+"en-GB",
+{
+timeZone:
+UK_TIME_ZONE,
+year:"numeric",
+month:"2-digit",
+day:"2-digit",
+hour:"2-digit",
+minute:"2-digit",
+hourCycle:"h23"
+}
+)
+.formatToParts(
+date
+);
+
+const values = {};
+
+parts.forEach(
+part => {
+
+if (
+part.type !==
+"literal"
+) {
+
+values[
+part.type
+] =
+Number(
+part.value
+);
+
+}
+
+}
+);
+
+return values;
+
+}
+
+
+function createUtcCalendarDate(
+year,
+month,
+day
+) {
+
+return new Date(
+Date.UTC(
+year,
+month - 1,
+day,
 12,
 0,
 0,
 0
+)
 );
 
-let workingDaysRemaining =
-Number(
-numberOfWorkingDays
-);
+}
 
-while (
-workingDaysRemaining > 0
+
+function addUtcCalendarDays(
+date,
+days
 ) {
 
-deliveryDate.setDate(
-deliveryDate.getDate() + 1
+const nextDate =
+new Date(
+date.getTime()
 );
 
-const dayOfWeek =
-deliveryDate.getDay();
+nextDate.setUTCDate(
+nextDate.getUTCDate() +
+days
+);
+
+return nextDate;
+
+}
+
+
+function getUtcDateKey(
+date
+) {
+
+return [
+date.getUTCFullYear(),
+String(
+date.getUTCMonth() + 1
+).padStart(
+2,
+"0"
+),
+String(
+date.getUTCDate()
+).padStart(
+2,
+"0"
+)
+].join(
+"-"
+);
+
+}
+
+
+function getNthWeekdayOfMonth(
+year,
+month,
+weekday,
+occurrence
+) {
+
+const firstDay =
+createUtcCalendarDate(
+year,
+month,
+1
+);
+
+const offset =
+(
+weekday -
+firstDay.getUTCDay() +
+7
+) %
+7;
+
+return createUtcCalendarDate(
+year,
+month,
+1 +
+offset +
+(
+occurrence - 1
+) *
+7
+);
+
+}
+
+
+function getLastWeekdayOfMonth(
+year,
+month,
+weekday
+) {
+
+const finalDay =
+createUtcCalendarDate(
+year,
+month + 1,
+0
+);
+
+const offset =
+(
+finalDay.getUTCDay() -
+weekday +
+7
+) %
+7;
+
+return createUtcCalendarDate(
+year,
+month,
+finalDay.getUTCDate() -
+offset
+);
+
+}
+
+
+function getEasterSunday(
+year
+) {
+
+const a =
+year % 19;
+
+const b =
+Math.floor(
+year / 100
+);
+
+const c =
+year % 100;
+
+const d =
+Math.floor(
+b / 4
+);
+
+const e =
+b % 4;
+
+const f =
+Math.floor(
+(
+b + 8
+) /
+25
+);
+
+const g =
+Math.floor(
+(
+b -
+f +
+1
+) /
+3
+);
+
+const h =
+(
+19 * a +
+b -
+d -
+g +
+15
+) %
+30;
+
+const i =
+Math.floor(
+c / 4
+);
+
+const k =
+c % 4;
+
+const l =
+(
+32 +
+2 * e +
+2 * i -
+h -
+k
+) %
+7;
+
+const m =
+Math.floor(
+(
+a +
+11 * h +
+22 * l
+) /
+451
+);
+
+const month =
+Math.floor(
+(
+h +
+l -
+7 * m +
+114
+) /
+31
+);
+
+const day =
+(
+(
+h +
+l -
+7 * m +
+114
+) %
+31
+) +
+1;
+
+return createUtcCalendarDate(
+year,
+month,
+day
+);
+
+}
+
+
+function getEnglandWalesBankHolidayKeys(
+year
+) {
+
+const holidays =
+new Set();
+
+
+function addHoliday(
+date
+) {
+
+holidays.add(
+getUtcDateKey(
+date
+)
+);
+
+}
+
+
+const newYearsDay =
+createUtcCalendarDate(
+year,
+1,
+1
+);
+
+addHoliday(
+newYearsDay
+);
 
 if (
-dayOfWeek !== 0 &&
-dayOfWeek !== 6
+newYearsDay.getUTCDay() === 6
 ) {
 
-workingDaysRemaining -=
+addHoliday(
+createUtcCalendarDate(
+year,
+1,
+3
+)
+);
+
+}
+
+if (
+newYearsDay.getUTCDay() === 0
+) {
+
+addHoliday(
+createUtcCalendarDate(
+year,
+1,
+2
+)
+);
+
+}
+
+
+const easterSunday =
+getEasterSunday(
+year
+);
+
+addHoliday(
+addUtcCalendarDays(
+easterSunday,
+-2
+)
+);
+
+addHoliday(
+addUtcCalendarDays(
+easterSunday,
+1
+)
+);
+
+
+addHoliday(
+getNthWeekdayOfMonth(
+year,
+5,
+1,
+1
+)
+);
+
+addHoliday(
+getLastWeekdayOfMonth(
+year,
+5,
+1
+)
+);
+
+addHoliday(
+getLastWeekdayOfMonth(
+year,
+8,
+1
+)
+);
+
+
+const christmasDay =
+createUtcCalendarDate(
+year,
+12,
+25
+);
+
+const boxingDay =
+createUtcCalendarDate(
+year,
+12,
+26
+);
+
+addHoliday(
+christmasDay
+);
+
+addHoliday(
+boxingDay
+);
+
+const christmasWeekday =
+christmasDay.getUTCDay();
+
+if (
+christmasWeekday === 5
+) {
+
+addHoliday(
+createUtcCalendarDate(
+year,
+12,
+28
+)
+);
+
+} else if (
+christmasWeekday === 6
+) {
+
+addHoliday(
+createUtcCalendarDate(
+year,
+12,
+27
+)
+);
+
+addHoliday(
+createUtcCalendarDate(
+year,
+12,
+28
+)
+);
+
+} else if (
+christmasWeekday === 0
+) {
+
+addHoliday(
+createUtcCalendarDate(
+year,
+12,
+27
+)
+);
+
+}
+
+return holidays;
+
+}
+
+
+function isEstimatedDeliveryWorkingDay(
+date
+) {
+
+const weekday =
+date.getUTCDay();
+
+if (
+weekday === 0 ||
+weekday === 6
+) {
+return false;
+}
+
+const holidayKeys =
+getEnglandWalesBankHolidayKeys(
+date.getUTCFullYear()
+);
+
+return !holidayKeys.has(
+getUtcDateKey(
+date
+)
+);
+
+}
+
+
+function getEstimatedDeliveryStartDate() {
+
+const ukNow =
+getUkDateTimeParts();
+
+let currentDate =
+createUtcCalendarDate(
+ukNow.year,
+ukNow.month,
+ukNow.day
+);
+
+const beforeNoon =
+ukNow.hour < 12;
+
+if (
+beforeNoon &&
+isEstimatedDeliveryWorkingDay(
+currentDate
+)
+) {
+
+return currentDate;
+
+}
+
+do {
+
+currentDate =
+addUtcCalendarDays(
+currentDate,
+1
+);
+
+} while (
+!isEstimatedDeliveryWorkingDay(
+currentDate
+)
+);
+
+return currentDate;
+
+}
+
+
+function getEstimatedDeliveryWorkingDay(
+workingDayNumber
+) {
+
+let currentDate =
+getEstimatedDeliveryStartDate();
+
+let countedWorkingDays =
+1;
+
+while (
+countedWorkingDays <
+workingDayNumber
+) {
+
+currentDate =
+addUtcCalendarDays(
+currentDate,
+1
+);
+
+if (
+isEstimatedDeliveryWorkingDay(
+currentDate
+)
+) {
+
+countedWorkingDays +=
 1;
 
 }
 
 }
 
-return deliveryDate;
+return currentDate;
 
 }
 
 
 function getCustomLeadTime(
-width,
-length,
-finish
+glazingDetails,
+finishKey
 ) {
 
-const normalizedFinish =
-String(
-finish ?? ""
-)
-.trim()
-.toLowerCase();
-
-const isClear =
-normalizedFinish === "clear";
-
-const isStandardLeadTimeSize =
-width <= 1000 &&
-length <= 2500;
-
 if (
-isClear &&
-isStandardLeadTimeSize
+glazingDetails.isLaminated
 ) {
 
-return {
-minimum:4,
-maximum:6,
-label:"Estimated 4–6 working days"
-};
-
-}
-
 if (
-isClear &&
-!isStandardLeadTimeSize
+finishKey ===
+"clear"
 ) {
 
 return {
 minimum:6,
 maximum:8,
-label:"Estimated 6–8 working days"
-};
-
-}
-
-if (
-!isClear &&
-isStandardLeadTimeSize
-) {
-
-return {
-minimum:6,
-maximum:8,
-label:"Estimated 6–8 working days"
+label:
+"Estimated 6–8 working days"
 };
 
 }
@@ -12971,7 +13879,47 @@ label:"Estimated 6–8 working days"
 return {
 minimum:8,
 maximum:10,
-label:"Estimated 8–10 working days"
+label:
+"Estimated 8–10 working days"
+};
+
+}
+
+if (
+finishKey ===
+"blue"
+) {
+
+return {
+minimum:8,
+maximum:10,
+label:
+"Estimated 8–10 working days"
+};
+
+}
+
+if (
+finishKey ===
+"grey" ||
+finishKey ===
+"satin"
+) {
+
+return {
+minimum:6,
+maximum:8,
+label:
+"Estimated 6–8 working days"
+};
+
+}
+
+return {
+minimum:4,
+maximum:6,
+label:
+"Estimated 4–6 working days"
 };
 
 }
@@ -13047,11 +13995,11 @@ const monthNames = [
 ];
 
 const day =
-date.getDate();
+date.getUTCDate();
 
 return (
 weekdayNames[
-date.getDay()
+date.getUTCDay()
 ] +
 " " +
 day +
@@ -13060,7 +14008,7 @@ day
 ) +
 " " +
 monthNames[
-date.getMonth()
+date.getUTCMonth()
 ]
 );
 
@@ -13073,12 +14021,12 @@ maximumWorkingDays = 6
 ) {
 
 const minimumDate =
-addWorkingDays(
+getEstimatedDeliveryWorkingDay(
 minimumWorkingDays
 );
 
 const maximumDate =
-addWorkingDays(
+getEstimatedDeliveryWorkingDay(
 maximumWorkingDays
 );
 
@@ -13095,7 +14043,9 @@ maximumDate
 }
 
 
-function updateEstimatedDeliveryDate() {
+function updateEstimatedDeliveryDate(
+leadTime = null
+) {
 
 if (
 !estimatedDeliveryDate
@@ -13103,14 +14053,47 @@ if (
 return;
 }
 
-estimatedDeliveryDate.textContent =
-getEstimatedDeliveryRange(
-4,
-6
+let resolvedLeadTime =
+leadTime;
+
+if (
+!resolvedLeadTime
+) {
+
+const glazingDetails =
+getCustomGlazingDetails(
+customGlazingInput
+? customGlazingInput.value
+: "toughened-double"
+);
+
+const finishKey =
+normalizeCustomFinish(
+customFinishInput
+? customFinishInput.value
+: "Clear"
+);
+
+resolvedLeadTime =
+getCustomLeadTime(
+glazingDetails,
+finishKey
 );
 
 }
 
+estimatedDeliveryDate.textContent =
+getEstimatedDeliveryRange(
+resolvedLeadTime.minimum,
+resolvedLeadTime.maximum
+);
+
+}
+
+
+/* ===============================
+EXISTING CUSTOM DELIVERY BAND
+================================ */
 
 function getCustomDeliveryBand(
 width,
@@ -13185,6 +14168,11 @@ return null;
 }
 
 
+/* =========================================
+CHANGE 2
+CALCULATE PRICE USING LATEST PRICING
+========================================= */
+
 function calculatePrice() {
 
 if (
@@ -13213,33 +14201,33 @@ customLengthInput
 
 const widthAboveMaximum =
 width !== null &&
-width > 1500;
+width >
+CUSTOM_CALCULATOR_MAX_WIDTH;
 
 const lengthAboveMaximum =
 length !== null &&
-length > 2500;
+length >
+CUSTOM_CALCULATOR_MAX_LENGTH;
+
+const narrowLengthAboveMaximum =
+width !== null &&
+length !== null &&
+width <
+CUSTOM_CALCULATOR_LONG_MIN_WIDTH &&
+length >
+CUSTOM_CALCULATOR_LONG_LENGTH;
 
 const exceedsOnlineMaximum =
 widthAboveMaximum ||
-lengthAboveMaximum;
+lengthAboveMaximum ||
+narrowLengthAboveMaximum;
 
 setCalculatorSizeAlert(
 exceedsOnlineMaximum
 );
 
-const dimensionsComplete =
-width !== null &&
-length !== null;
-
-const dimensionsValid =
-dimensionsComplete &&
-width >= 300 &&
-width <= 1500 &&
-length >= 300 &&
-length <= 2500;
-
 if (
-!dimensionsValid
+!customInputsAreValid()
 ) {
 
 hideCustomPriceBox();
@@ -13279,73 +14267,36 @@ length +
 border * 2
 );
 
-const area =
-(
-width * length
-) /
-1000000;
-
-const baseRate =
-glazingDetails.isTriple
-? 375
-: 290;
-
-let price =
-area *
-baseRate;
-
-const normalizedFinish =
-String(
-finish
-)
-.trim()
-.toLowerCase();
-
-if (
-normalizedFinish !== "clear"
-) {
-
-price +=
-area * 45;
-
-}
-
-price +=
-90;
-
-if (
-price < 250 &&
-glazingDetails.isDouble
-) {
-
-price =
-250;
-
-}
-
-if (
-price < 300 &&
-glazingDetails.isTriple
-) {
-
-price =
-300;
-
-}
-
 const roundedPrice =
-Math.round(
-price
+calculateConfiguredCustomPrice(
+width,
+length,
+glazingDetails,
+finishKey,
+border
 );
+
+if (
+!Number.isFinite(
+roundedPrice
+)
+) {
+
+hideCustomPriceBox();
+
+return;
+
+}
 
 const leadTime =
 getCustomLeadTime(
-width,
-length,
-finish
+glazingDetails,
+finishKey
 );
 
-updateEstimatedDeliveryDate();
+updateEstimatedDeliveryDate(
+leadTime
+);
 
 const customDeliveryBand =
 getCustomDeliveryBand(
@@ -14072,7 +15023,6 @@ parameters.toString() +
 
 
 /* =========================================
-CHANGE 3
 SAVE HOMEPAGE CALCULATOR STATE AS IT CHANGES
 ========================================= */
 
@@ -14200,7 +15150,6 @@ storedItemId
 
 
 /* =========================================
-CHANGE 3
 RESTORE VALUES AFTER HOMEPAGE RELOAD
 ========================================= */
 
