@@ -11357,8 +11357,275 @@ getBasketEstimatedDeliveryText();
 }
 
 /* =========================================
+OP1 END — PASTE OP2 DIRECTLY BELOW
+========================================= */
+/* =========================================
+OP2
+DELIVERY / BASKET / CUSTOM CALCULATOR
+CONTINUATION
+
+PASTE DIRECTLY UNDER OP1.
+DO NOT ADD ANOTHER <script> TAG.
+========================================= */
+
+
+/* =========================================
+OP2 ESTIMATED DELIVERY MASTER
+
+These function declarations intentionally
+take control of the estimated-delivery
+behaviour from this point onward.
+
+They reuse the working-day/date helpers
+already contained in OP1, so no date/time
+constants are redeclared here.
+
+LEAD TIMES:
+
+TOUGHENED CLEAR
+4–6 working days
+
+TOUGHENED GREY / SATIN
+6–8 working days
+
+TOUGHENED BLUE
+8–10 working days
+
+LAMINATED CLEAR
+6–8 working days
+
+LAMINATED BLUE / GREY / SATIN
+8–10 working days
+========================================= */
+
+function getLeadTimeForSelection(
+selection
+) {
+
+const type =
+selection?.type ===
+"laminated"
+?
+"laminated"
+:
+"toughened";
+
+const tint =
+normalizeTint(
+selection?.tint ??
+selection?.finish
+);
+
+if (
+type ===
+"laminated"
+) {
+
+if (
+tint ===
+"clear"
+) {
+
+return {
+min:6,
+max:8
+};
+
+}
+
+return {
+min:8,
+max:10
+};
+
+}
+
+if (
+tint ===
+"clear"
+) {
+
+return {
+min:4,
+max:6
+};
+
+}
+
+if (
+tint ===
+"blue"
+) {
+
+return {
+min:8,
+max:10
+};
+
+}
+
+return {
+min:6,
+max:8
+};
+
+}
+
+
+function getCurrentLeadTime() {
+
+return getLeadTimeForSelection(
+state
+);
+
+}
+
+
+function getBasketLeadTime() {
+
+const basketItems =
+getAllBasketItems();
+
+if (
+!basketItems.length
+) {
+
+return getCurrentLeadTime();
+
+}
+
+return basketItems.reduce(
+(
+current,
+item
+) => {
+
+const leadTime =
+getLeadTimeForSelection(
+item
+);
+
+return {
+
+min:
+Math.max(
+current.min,
+leadTime.min
+),
+
+max:
+Math.max(
+current.max,
+leadTime.max
+)
+
+};
+
+},
+{
+min:0,
+max:0
+}
+);
+
+}
+
+
+function getBasketEstimatedDeliveryText() {
+
+const deliveryText =
+getEstimatedDeliveryTextForLeadTime(
+getBasketLeadTime()
+);
+
+return (
+deliveryText.replace(
+" - ",
+" to "
+) +
+"."
+);
+
+}
+
+
+function updateEstimatedDelivery() {
+
+if (
+estimatedDeliveryRange
+) {
+
+const nextDeliveryText =
+getEstimatedDeliveryTextForLeadTime(
+getCurrentLeadTime()
+);
+
+const deliveryChanged =
+estimatedDeliveryRange.textContent.trim() !==
+nextDeliveryText;
+
+estimatedDeliveryRange.textContent =
+nextDeliveryText;
+
+if (
+!hasAnimatedEstimatedDelivery ||
+deliveryChanged
+) {
+
+animateEstimatedDelivery();
+
+hasAnimatedEstimatedDelivery =
+true;
+
+}
+
+}
+
+const basketEstimatedDeliveryRange =
+document.querySelector(
+"[data-basket-estimated-delivery-range]"
+);
+
+if (
+basketEstimatedDeliveryRange
+) {
+
+basketEstimatedDeliveryRange.textContent =
+getBasketEstimatedDeliveryText();
+
+}
+
+}
+
+
+/* =========================================
 AUTHORITATIVE POSTCODE DELIVERY PRICING
-CUSTOM ITEMS TEMPORARILY CONTRIBUTE £0
+
+ORIGIN:
+SL9 7BB
+
+DISTANCE:
+Straight-line postcode distance × 1.20
+then rounded UP to the next whole mile.
+
+MAXIMUM DELIVERY DISTANCES:
+
+SMALL:
+400 adjusted miles
+
+MEDIUM:
+400 adjusted miles
+
+LARGE:
+400 adjusted miles
+
+EXTRA LARGE:
+200 adjusted miles
+
+Existing final delivery price bands are
+extended to those maximum distances.
+
+CUSTOM CALCULATOR ITEMS ARE INCLUDED.
 ========================================= */
 
 const DELIVERY_ORIGIN_POSTCODE =
@@ -11366,6 +11633,7 @@ const DELIVERY_ORIGIN_POSTCODE =
 
 const ROAD_DISTANCE_ALLOWANCE =
 1.20;
+
 
 const DELIVERY_SIZE_CATEGORIES = {
 
@@ -11424,11 +11692,26 @@ extraLarge:[
 
 };
 
+
+/* =========================================
+DELIVERY PRICES
+
+The previous 151–250 band becomes:
+
+Small / Medium / Large:
+151–400 miles
+
+Extra Large:
+151–200 miles
+========================================= */
+
 const DELIVERY_PRICING = {
 
 small:{
 
 additionalUnit:15,
+
+maxDeliveryMiles:400,
 
 bands:[
 
@@ -11448,7 +11731,7 @@ price:45
 },
 
 {
-maxMiles:250,
+maxMiles:400,
 price:70
 }
 
@@ -11459,6 +11742,8 @@ price:70
 medium:{
 
 additionalUnit:15,
+
+maxDeliveryMiles:400,
 
 bands:[
 
@@ -11478,7 +11763,7 @@ price:50
 },
 
 {
-maxMiles:250,
+maxMiles:400,
 price:75
 }
 
@@ -11489,6 +11774,8 @@ price:75
 large:{
 
 additionalUnit:25,
+
+maxDeliveryMiles:400,
 
 bands:[
 
@@ -11508,7 +11795,7 @@ price:55
 },
 
 {
-maxMiles:250,
+maxMiles:400,
 price:85
 }
 
@@ -11519,6 +11806,8 @@ price:85
 extraLarge:{
 
 additionalUnit:65,
+
+maxDeliveryMiles:200,
 
 bands:[
 
@@ -11538,7 +11827,7 @@ price:85
 },
 
 {
-maxMiles:250,
+maxMiles:200,
 price:115
 }
 
@@ -11547,6 +11836,7 @@ price:115
 }
 
 };
+
 
 const DELIVERY_CATEGORY_RANK = {
 
@@ -11557,8 +11847,10 @@ extraLarge:3
 
 };
 
+
 const DELIVERY_SIZE_CATEGORY_LOOKUP =
 new Map();
+
 
 Object.entries(
 DELIVERY_SIZE_CATEGORIES
@@ -11586,6 +11878,11 @@ category
 
 }
 );
+
+
+/* =========================================
+DELIVERY CATEGORY HELPERS
+========================================= */
 
 function normalizeDeliveryCategory(
 category
@@ -11643,6 +11940,7 @@ return null;
 
 }
 
+
 function getDeliveryCategoryForSize(
 size
 ) {
@@ -11658,6 +11956,7 @@ null
 );
 
 }
+
 
 function getDeliveryCategoryRank(
 category
@@ -11681,6 +11980,209 @@ normalized
 ];
 
 }
+
+
+function getDeliveryMaximumMilesForCategory(
+category
+) {
+
+const normalizedCategory =
+normalizeDeliveryCategory(
+category
+);
+
+const maximum =
+Number(
+DELIVERY_PRICING[
+normalizedCategory
+]?.maxDeliveryMiles
+);
+
+return Number.isFinite(
+maximum
+)
+?
+maximum
+:
+0;
+
+}
+
+
+/* =========================================
+CUSTOM CALCULATOR DELIVERY CATEGORY
+
+Custom dimensions are matched to the
+SMALLEST existing delivery category capable
+of containing that physical size.
+
+Width and length are normalised so that
+orientation does not artificially change
+the delivery category.
+
+Examples:
+
+500 × 800 = Small
+500 × 1000 = Medium
+500 × 1200 = Medium
+500 × 1800 = Large
+500 × 2000 = Large
+500 × 2500 = Extra Large
+777 × 1333 = Medium
+1000 × 1100 = Large
+1200 × 1200 = Extra Large
+========================================= */
+
+function getNormalisedDeliveryDimensions(
+width,
+length
+) {
+
+const first =
+Number(
+width
+);
+
+const second =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+first
+) ||
+!Number.isFinite(
+second
+)
+) {
+
+return null;
+
+}
+
+return {
+
+width:
+Math.min(
+first,
+second
+),
+
+length:
+Math.max(
+first,
+second
+)
+
+};
+
+}
+
+
+function getDeliveryCategoryForCustomDimensions(
+width,
+length
+) {
+
+const customDimensions =
+getNormalisedDeliveryDimensions(
+width,
+length
+);
+
+if (
+!customDimensions
+) {
+
+return null;
+
+}
+
+const orderedCategories = [
+
+"small",
+"medium",
+"large",
+"extraLarge"
+
+];
+
+for (
+const category
+of orderedCategories
+) {
+
+const referenceSizes =
+DELIVERY_SIZE_CATEGORIES[
+category
+] || [];
+
+const hasAccommodatingSize =
+referenceSizes.some(
+size => {
+
+const [
+referenceWidthRaw,
+referenceLengthRaw
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const referenceDimensions =
+getNormalisedDeliveryDimensions(
+referenceWidthRaw,
+referenceLengthRaw
+);
+
+if (
+!referenceDimensions
+) {
+
+return false;
+
+}
+
+return (
+
+referenceDimensions.width >=
+customDimensions.width &&
+
+referenceDimensions.length >=
+customDimensions.length
+
+);
+
+}
+);
+
+if (
+hasAccommodatingSize
+) {
+
+return category;
+
+}
+
+}
+
+/*
+Any valid calculator dimension beyond the
+existing Large envelopes is treated as
+Extra Large.
+*/
+
+return "extraLarge";
+
+}
+
 
 function isCustomDeliveryItem(
 item
@@ -11718,6 +12220,7 @@ item.source ||
 
 }
 
+
 function getDeliveryCategoryForItem(
 item
 ) {
@@ -11725,13 +12228,25 @@ item
 if (
 !item ||
 typeof item !==
-"object" ||
+"object"
+) {
+
+return null;
+
+}
+
+if (
 isCustomDeliveryItem(
 item
 )
 ) {
 
-return null;
+return getDeliveryCategoryForCustomDimensions(
+item.width ??
+item.internalWidth,
+item.length ??
+item.internalLength
+);
 
 }
 
@@ -11740,6 +12255,7 @@ item.size
 );
 
 }
+
 
 function getAllBasketItems() {
 
@@ -11751,6 +12267,14 @@ return [
 ];
 
 }
+
+
+/* =========================================
+EXPAND BASKET ITEMS INTO PHYSICAL UNITS
+
+IMPORTANT:
+Custom calculator items are now included.
+========================================= */
 
 function expandOrderItemsIntoUnits(
 items
@@ -11770,16 +12294,6 @@ items
 )
 .forEach(
 item => {
-
-if (
-isCustomDeliveryItem(
-item
-)
-) {
-
-return;
-
-}
 
 const category =
 getDeliveryCategoryForItem(
@@ -11832,6 +12346,11 @@ return units;
 
 }
 
+
+/* =========================================
+DELIVERY BASE PRICE
+========================================= */
+
 function getBaseDeliveryPrice(
 category,
 chargeableMiles
@@ -11865,6 +12384,17 @@ chargeableMiles
 )
 );
 
+if (
+miles >
+Number(
+pricing.maxDeliveryMiles
+)
+) {
+
+return null;
+
+}
+
 for (
 const band
 of pricing.bands
@@ -11886,6 +12416,7 @@ band.price
 return null;
 
 }
+
 
 function getAdditionalUnitPriceForCategory(
 category
@@ -11916,24 +12447,29 @@ additionalPrice
 
 }
 
+
+/* =========================================
+ONE BASE UNIT + ADDITIONAL UNIT LOGIC
+========================================= */
+
 function calculateDeliveryCombinationForBaseUnit(
-standardUnits,
+units,
 baseUnitIndex,
 chargeableMiles
 ) {
 
 if (
 !Array.isArray(
-standardUnits
+units
 ) ||
-!standardUnits.length ||
+!units.length ||
 !Number.isInteger(
 baseUnitIndex
 ) ||
 baseUnitIndex <
 0 ||
 baseUnitIndex >=
-standardUnits.length
+units.length
 ) {
 
 return null;
@@ -11941,7 +12477,7 @@ return null;
 }
 
 const baseUnit =
-standardUnits[
+units[
 baseUnitIndex
 ];
 
@@ -11975,7 +12511,7 @@ return null;
 }
 
 const additionalUnitsTotal =
-standardUnits.reduce(
+units.reduce(
 (
 total,
 unit,
@@ -12024,16 +12560,24 @@ additionalUnitsTotal
 
 }
 
+
+/* =========================================
+CHOOSE MOST EXPENSIVE VALID BASE COMBINATION
+
+If two candidates create the same total,
+the higher BASE delivery charge wins.
+========================================= */
+
 function getMostExpensiveDeliveryCombination(
-standardUnits,
+units,
 chargeableMiles
 ) {
 
 if (
 !Array.isArray(
-standardUnits
+units
 ) ||
-!standardUnits.length
+!units.length
 ) {
 
 return null;
@@ -12043,7 +12587,7 @@ return null;
 let mostExpensiveCombination =
 null;
 
-standardUnits.forEach(
+units.forEach(
 (
 unit,
 index
@@ -12051,7 +12595,7 @@ index
 
 const combination =
 calculateDeliveryCombinationForBaseUnit(
-standardUnits,
+units,
 index,
 chargeableMiles
 );
@@ -12096,15 +12640,31 @@ return mostExpensiveCombination;
 
 }
 
+
+/* =========================================
+EXTRA LARGE SPLIT LOGIC
+
+If Extra Large and non-Extra-Large units
+are mixed, there are TWO delivery groups:
+
+1. Extra Large group
+2. Small / Medium / Large group
+
+Each group receives its own base charge.
+
+This applies equally to standard and
+custom calculator rooflights.
+========================================= */
+
 function getStandardDeliveryGroups(
-standardUnits
+units
 ) {
 
 if (
 !Array.isArray(
-standardUnits
+units
 ) ||
-!standardUnits.length
+!units.length
 ) {
 
 return [];
@@ -12112,7 +12672,7 @@ return [];
 }
 
 const extraLargeUnits =
-standardUnits.filter(
+units.filter(
 unit =>
 normalizeDeliveryCategory(
 unit?.category
@@ -12121,7 +12681,7 @@ unit?.category
 );
 
 const nonExtraLargeUnits =
-standardUnits.filter(
+units.filter(
 unit =>
 normalizeDeliveryCategory(
 unit?.category
@@ -12154,12 +12714,120 @@ return [
 
 {
 name:"combined",
-units:standardUnits
+units:units
 }
 
 ];
 
 }
+
+
+/* =========================================
+DISTANCE-LIMIT CHECK
+========================================= */
+
+function getDeliveryLimitFailure(
+units,
+chargeableMiles
+) {
+
+if (
+!Array.isArray(
+units
+) ||
+!units.length
+) {
+
+return null;
+
+}
+
+const miles =
+Math.max(
+0,
+Math.ceil(
+Number(
+chargeableMiles
+) || 0
+)
+);
+
+const failingUnit =
+units.find(
+unit => {
+
+const maximumMiles =
+getDeliveryMaximumMilesForCategory(
+unit.category
+);
+
+return (
+maximumMiles >
+0 &&
+miles >
+maximumMiles
+);
+
+}
+);
+
+if (
+!failingUnit
+) {
+
+return null;
+
+}
+
+const category =
+normalizeDeliveryCategory(
+failingUnit.category
+);
+
+const maximumMiles =
+getDeliveryMaximumMilesForCategory(
+category
+);
+
+if (
+category ===
+"extraLarge"
+) {
+
+return {
+
+category:
+category,
+
+maximumMiles:
+maximumMiles,
+
+reason:
+"Delivery quotation required for Extra Large rooflights over 200 adjusted miles."
+
+};
+
+}
+
+return {
+
+category:
+category,
+
+maximumMiles:
+maximumMiles,
+
+reason:
+"Delivery quotation required for destinations over 400 adjusted miles."
+
+};
+
+}
+
+
+/* =========================================
+COMPLETE BASKET DELIVERY CALCULATION
+========================================= */
 
 function calculateBasketDelivery(
 items,
@@ -12179,13 +12847,13 @@ Math.ceil(
 safeAdjustedMiles
 );
 
-const standardUnits =
+const units =
 expandOrderItemsIntoUnits(
 items
 );
 
 if (
-!standardUnits.length
+!units.length
 ) {
 
 return {
@@ -12222,9 +12890,15 @@ reason:null
 
 }
 
+
+const distanceFailure =
+getDeliveryLimitFailure(
+units,
+chargeableMiles
+);
+
 if (
-chargeableMiles >
-250
+distanceFailure
 ) {
 
 return {
@@ -12250,23 +12924,25 @@ additionalUnitPrice:null,
 additionalUnitsTotal:null,
 
 unitCount:
-standardUnits.length,
+units.length,
 
 groupCount:null,
 
 groups:[],
 
 reason:
-"Delivery quotation required for destinations over 250 adjusted miles."
+distanceFailure.reason
 
 };
 
 }
 
+
 const deliveryGroups =
 getStandardDeliveryGroups(
-standardUnits
+units
 );
+
 
 const groupResults =
 deliveryGroups.map(
@@ -12302,6 +12978,7 @@ combination
 }
 );
 
+
 if (
 groupResults.some(
 result =>
@@ -12332,7 +13009,7 @@ additionalUnitPrice:null,
 additionalUnitsTotal:null,
 
 unitCount:
-standardUnits.length,
+units.length,
 
 groupCount:null,
 
@@ -12344,6 +13021,7 @@ reason:
 };
 
 }
+
 
 const totalPrice =
 groupResults.reduce(
@@ -12361,6 +13039,7 @@ group.combination.price
 0
 );
 
+
 const totalBasePrice =
 groupResults.reduce(
 (
@@ -12376,6 +13055,7 @@ group.combination.basePrice
 },
 0
 );
+
 
 const totalAdditionalUnits =
 groupResults.reduce(
@@ -12393,6 +13073,7 @@ group.combination.additionalUnitsTotal
 0
 );
 
+
 const singleGroup =
 groupResults.length ===
 1
@@ -12400,6 +13081,7 @@ groupResults.length ===
 groupResults[0]
 :
 null;
+
 
 return {
 
@@ -12437,7 +13119,7 @@ additionalUnitsTotal:
 totalAdditionalUnits,
 
 unitCount:
-standardUnits.length,
+units.length,
 
 groupCount:
 groupResults.length,
@@ -12477,6 +13159,16 @@ reason:null
 
 }
 
+
+/* =========================================
+PER-ITEM DELIVERY CONTRIBUTION
+
+Allows both the standard and custom order
+summaries to display the portion of the
+basket delivery charge belonging to that
+specific line.
+========================================= */
+
 function getResolvedDeliveryContributionForItem(
 targetItem
 ) {
@@ -12487,16 +13179,6 @@ state.deliveryRequiresQuote
 ) {
 
 return null;
-
-}
-
-if (
-isCustomDeliveryItem(
-targetItem
-)
-) {
-
-return 0;
 
 }
 
@@ -12517,13 +13199,13 @@ state.deliveryFee
 
 }
 
-const standardUnits =
+const units =
 expandOrderItemsIntoUnits(
-state.orderItems
+getAllBasketItems()
 );
 
 if (
-!standardUnits.length
+!units.length
 ) {
 
 return 0;
@@ -12532,7 +13214,7 @@ return 0;
 
 const deliveryGroups =
 getStandardDeliveryGroups(
-standardUnits
+units
 );
 
 let contribution =
@@ -12597,6 +13279,11 @@ return contribution;
 
 }
 
+
+/* =========================================
+POSTCODE LOOKUP / DISTANCE
+========================================= */
+
 let deliveryOriginPromise =
 null;
 
@@ -12605,6 +13292,7 @@ let deliveryLookupToken =
 
 let deliveryLookupTimer =
 null;
+
 
 function normalizePostcode(
 postcode
@@ -12621,6 +13309,7 @@ postcode || ""
 );
 
 }
+
 
 function formatPostcode(
 postcode
@@ -12652,6 +13341,7 @@ normalized.slice(
 );
 
 }
+
 
 async function lookupPostcode(
 postcode
@@ -12709,6 +13399,7 @@ return data.result;
 
 }
 
+
 function degreesToRadians(
 degrees
 ) {
@@ -12720,6 +13411,7 @@ Math.PI /
 );
 
 }
+
 
 function calculateGeographicalMiles(
 lat1,
@@ -12789,6 +13481,7 @@ c;
 
 }
 
+
 async function getDeliveryOrigin() {
 
 if (
@@ -12805,6 +13498,7 @@ DELIVERY_ORIGIN_POSTCODE
 return deliveryOriginPromise;
 
 }
+
 
 async function calculatePostcodeDelivery(
 postcode
@@ -12862,6 +13556,11 @@ delivery
 
 }
 
+
+/* =========================================
+CURRENT DELIVERY STATE
+========================================= */
+
 function getCurrentDeliveryFee() {
 
 if (
@@ -12891,6 +13590,7 @@ fee
 0;
 
 }
+
 
 function setDeliveryPending(
 postcode
@@ -12943,6 +13643,11 @@ false;
 
 }
 
+
+/* =========================================
+APPLY RESOLVED DELIVERY TO ALL ITEMS
+========================================= */
+
 function updateAllDeliveryItems(
 postcode,
 delivery
@@ -12966,8 +13671,10 @@ Number(
 delivery?.price
 );
 
+
 state.deliveryPostcode =
 formattedPostcode;
+
 
 state.deliveryFee =
 (
@@ -12984,14 +13691,17 @@ fee
 :
 null;
 
+
 state.deliveryResolved =
 !requiresQuote &&
 Number.isFinite(
 fee
 );
 
+
 state.deliveryRequiresQuote =
 requiresQuote;
+
 
 state.deliveryQuoteReason =
 requiresQuote
@@ -13002,6 +13712,7 @@ delivery?.reason ||
 )
 :
 "";
+
 
 state.deliveryAdjustedMiles =
 Number.isFinite(
@@ -13016,6 +13727,7 @@ delivery.adjustedMiles
 :
 null;
 
+
 state.deliveryChargeableMiles =
 Number.isFinite(
 Number(
@@ -13028,6 +13740,7 @@ delivery.chargeableMiles
 )
 :
 null;
+
 
 state.orderItems.forEach(
 item => {
@@ -13052,8 +13765,15 @@ state.deliveryRequiresQuote;
 }
 );
 
+
 state.customOrderItems.forEach(
 item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForCustomDimensions(
+item.width,
+item.length
+);
 
 item.deliveryPostcode =
 formattedPostcode;
@@ -13071,6 +13791,11 @@ state.deliveryRequiresQuote;
 );
 
 }
+
+
+/* =========================================
+DELIVERY DISPLAY PER ORDER ITEM
+========================================= */
 
 function getDeliveryDisplayForItem(
 item
@@ -13171,6 +13896,7 @@ fee:null
 
 }
 
+
 function buildDeliveryInlineMarkup(
 deliveryDisplay
 ) {
@@ -13232,6 +13958,7 @@ formattedFee
 `;
 
 }
+
 
 function buildDeliveryControlHTML(
 item,
@@ -13298,6 +14025,11 @@ deliveryDisplay
 
 }
 
+
+/* =========================================
+DELIVERY UI RESET / ANIMATIONS
+========================================= */
+
 function clearDeliveryOutputVisuals() {
 
 document
@@ -13346,6 +14078,7 @@ output.setAttribute(
 
 }
 
+
 function markDeliveryInputsChecking(
 postcode
 ) {
@@ -13376,6 +14109,7 @@ updateBasketDrawerSummaryOnly();
 
 }
 
+
 function markDeliveryInputsInvalid() {
 
 document
@@ -13398,6 +14132,7 @@ updateBasketDrawerSummaryOnly();
 
 }
 
+
 function getVisibleSummaryTotalBlocks() {
 
 return Array.from(
@@ -13407,6 +14142,7 @@ document.querySelectorAll(
 );
 
 }
+
 
 function hideSummaryTotalsForDelivery() {
 
@@ -13427,6 +14163,7 @@ block.classList.add(
 
 }
 
+
 function showSummaryTotalsImmediately() {
 
 getVisibleSummaryTotalBlocks()
@@ -13442,6 +14179,7 @@ block.classList.remove(
 );
 
 }
+
 
 function clearDeliveryAnimationTimers() {
 
@@ -13474,6 +14212,7 @@ null;
 }
 
 }
+
 
 function playDeliveryResolutionAnimation() {
 
@@ -13593,6 +14332,11 @@ null;
 
 }
 
+
+/* =========================================
+CHECKOUT AVAILABILITY
+========================================= */
+
 function basketContainsUnpricedCustomItem() {
 
 return state.customOrderItems.some(
@@ -13616,6 +14360,7 @@ price <=
 );
 
 }
+
 
 function updateCheckoutAvailability() {
 
@@ -13689,6 +14434,7 @@ checkout.removeAttribute(
 
 }
 
+
 document.addEventListener(
 "click",
 event => {
@@ -13710,6 +14456,11 @@ event.preventDefault();
 
 }
 );
+
+
+/* =========================================
+REFRESH BASKET TOTALS
+========================================= */
 
 function refreshDisplayedBasketTotals(
 {
@@ -13753,6 +14504,11 @@ updateCheckoutAvailability();
 updateBasketDrawerSummaryOnly();
 
 }
+
+
+/* =========================================
+APPLY POSTCODE
+========================================= */
 
 async function applyDeliveryPostcode(
 postcode,
@@ -13873,6 +14629,8 @@ updateCheckoutAvailability();
 
 requestOrderSummaryDeliveryWidthSync();
 
+updateEstimatedDelivery();
+
 if (
 animate
 ) {
@@ -13942,6 +14700,7 @@ requestOrderSummaryDeliveryWidthSync();
 
 }
 
+
 function scheduleDeliveryPostcodeLookup(
 postcode
 ) {
@@ -13988,6 +14747,11 @@ cleaned
 
 }
 
+
+/* =========================================
+RECALCULATE DELIVERY AFTER BASKET CHANGE
+========================================= */
+
 function recalculateResolvedDelivery(
 {
 animate = false
@@ -14021,6 +14785,8 @@ animateBasket:false
 
 renderBasketDrawer();
 
+updateEstimatedDelivery();
+
 return Promise.resolve();
 
 }
@@ -14049,6 +14815,8 @@ animateBasket:false
 
 renderBasketDrawer();
 
+updateEstimatedDelivery();
+
 return Promise.resolve();
 
 }
@@ -14062,6 +14830,11 @@ animate
 );
 
 }
+
+
+/* =========================================
+HOMEPAGE IMPORT MATCHING
+========================================= */
 
 function homepageImportMatchesCurrentSelection() {
 
@@ -14097,6 +14870,7 @@ state.tint
 
 }
 
+
 function homepageImageMatchesCurrentSelection() {
 
 const imported =
@@ -14122,6 +14896,7 @@ state.tint
 );
 
 }
+
 
 function getTintedProductFilename(
 baseFilename,
@@ -14160,6 +14935,7 @@ return `${prefix}${usableBaseFilename}`;
 
 }
 
+
 function selectedProductImage() {
 
 if (
@@ -14197,6 +14973,7 @@ filename
 );
 
 }
+
 
 function getProductImageFinishAdjustment() {
 
@@ -14248,6 +15025,7 @@ finishAdjustment.left
 
 }
 
+
 function getProductImageScale() {
 
 const baseAdjustment =
@@ -14279,11 +15057,13 @@ totalAdjustment /
 
 }
 
+
 function getProductImageLeft() {
 
 return getProductImageFinishAdjustment().left;
 
 }
+
 
 function getProductImageRotation() {
 
@@ -14296,6 +15076,7 @@ state.size
 );
 
 }
+
 
 function updateProductImageTransform() {
 
@@ -14347,6 +15128,7 @@ productImage.style.objectFit =
 objectFit;
 
 }
+
 
 function setProductImage(
 imageSource,
@@ -14521,6 +15303,11 @@ imageSource;
 
 }
 
+
+/* =========================================
+STANDARD SELECTED PRICE
+========================================= */
+
 function selectedPrice() {
 
 if (
@@ -14539,39 +15326,10 @@ state
 
 }
 
-function customInputsAreValid() {
 
-return (
-
-Number.isFinite(
-customState.width
-) &&
-
-Number.isFinite(
-customState.length
-) &&
-
-customState.width >=
-290 &&
-
-customState.width <=
-1500 &&
-
-customState.length >=
-290 &&
-
-customState.length <=
-3000
-
-);
-
-}
-
-function selectedCustomPrice() {
-
-return null;
-
-}
+/* =========================================
+MONEY DISPLAY
+========================================= */
 
 function moneyParts(
 value
@@ -14608,6 +15366,7 @@ pence
 
 }
 
+
 function setUnitPriceText(
 value
 ) {
@@ -14624,6 +15383,7 @@ pricePence.textContent =
 parts.pence;
 
 }
+
 
 function updateUnitPrice(
 value
@@ -14732,6 +15492,7 @@ unitPriceLine.classList.remove(
 
 }
 
+
 function setTotalPriceText(
 value
 ) {
@@ -14748,6 +15509,7 @@ totalPricePence.textContent =
 parts.pence;
 
 }
+
 
 function animateTotalPriceValue(
 value
@@ -14839,6 +15601,7 @@ totalPriceLine.classList.remove(
 );
 
 }
+
 
 function updateTotalPrice(
 orderTotal,
@@ -15065,6 +15828,7 @@ numericTotal
 
 }
 
+
 function updateVatPosition() {
 
 if (
@@ -15110,6 +15874,11 @@ vatLine
 }
 
 }
+
+
+/* =========================================
+CUSTOM PRICE DISPLAY RESET
+========================================= */
 
 function clearCustomPriceDisplay() {
 
@@ -15169,138 +15938,10 @@ customTotalPriceBlock.setAttribute(
 
 }
 
-function updateCustomConfiguratorUI() {
 
-const valid =
-customInputsAreValid();
-
-const widthHasValue =
-customInternalWidth.value.trim() !==
-"";
-
-const lengthHasValue =
-customInternalLength.value.trim() !==
-"";
-
-customInternalWidth.classList.toggle(
-"is-invalid",
-widthHasValue &&
-!(
-customState.width >=
-290 &&
-customState.width <=
-1500
-)
-);
-
-customInternalLength.classList.toggle(
-"is-invalid",
-lengthHasValue &&
-!(
-customState.length >=
-290 &&
-customState.length <=
-3000
-)
-);
-
-customInternalWidth.setAttribute(
-"aria-invalid",
-String(
-widthHasValue &&
-!(
-customState.width >=
-290 &&
-customState.width <=
-1500
-)
-)
-);
-
-customInternalLength.setAttribute(
-"aria-invalid",
-String(
-lengthHasValue &&
-!(
-customState.length >=
-290 &&
-customState.length <=
-3000
-)
-)
-);
-
-customPurchaseLayout.classList.toggle(
-"is-incomplete",
-!valid
-);
-
-requestCustomSummaryColumnSync();
-
-customPriceZone.hidden =
-!valid;
-
-customDimensionsZone.hidden =
-!valid;
-
-customAddToOrder.disabled =
-true;
-
-customQuantityValue.textContent =
-customState.quantity;
-
-customQuantityUnitLabel.textContent =
-customState.quantity ===
-1
-?
-"Unit"
-:
-"Units";
-
-customQuantityMinus.disabled =
-customState.quantity <=
-1;
-
-customQuantityMinus.style.opacity =
-customState.quantity <=
-1
-?
-".36"
-:
-"1";
-
-customAddToOrderText.textContent =
-`Add ${customState.quantity} To Order`;
-
-clearCustomPriceDisplay();
-
-if (
-!valid
-) {
-
-return;
-
-}
-
-customInternalSize.textContent =
-formatCustomDimension(
-customState.width,
-customState.length
-);
-
-const external =
-getExternalDimensionsFor(
-`${customState.width}x${customState.length}`,
-customState.border
-);
-
-customExternalSize.textContent =
-formatCustomDimension(
-external.width,
-external.length
-);
-
-}
+/* =========================================
+TITLE BUILDERS
+========================================= */
 
 function buildTitleForSelection(
 selection
@@ -15356,6 +15997,7 @@ return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
 }
 
+
 function buildCustomTitleForSelection(
 selection
 ) {
@@ -15407,6 +16049,7 @@ selection.glazing ===
 return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
 }
+
 
 function buildBasketDrawerDescriptionForSelection(
 selection
@@ -15460,6 +16103,7 @@ return (
 
 }
 
+
 function buildTitle() {
 
 return buildTitleForSelection(
@@ -15467,6 +16111,7 @@ state
 );
 
 }
+
 
 function updateGlazedAppearance() {
 
@@ -15485,6 +16130,7 @@ state.glazing ===
 );
 
 }
+
 
 function updateTintAppearance() {
 
@@ -15509,6 +16155,11 @@ state.tint !==
 );
 
 }
+
+
+/* =========================================
+QUERY STRING
+========================================= */
 
 function updateQueryString() {
 
@@ -15592,6 +16243,11 @@ history.replaceState(
 
 }
 
+
+/* =========================================
+SIZE DROPDOWN
+========================================= */
+
 function getSizeOptionButtons() {
 
 return Array.from(
@@ -15601,6 +16257,7 @@ sizeDropdownList.querySelectorAll(
 );
 
 }
+
 
 function getSelectedSizeOptionIndex() {
 
@@ -15622,6 +16279,7 @@ selectedIndex
 0;
 
 }
+
 
 function populateSizes() {
 
@@ -15682,6 +16340,7 @@ button.dataset.size
 
 }
 
+
 function updateSizeDropdownDisplay() {
 
 sizeDropdownValue.textContent =
@@ -15715,6 +16374,7 @@ isSelected
 );
 
 }
+
 
 function updateSizeDropdownAvailableHeight() {
 
@@ -15756,6 +16416,7 @@ sizeDropdownList.style.maxHeight =
 `${availableHeight}px`;
 
 }
+
 
 function positionCurrentSizeAtTop() {
 
@@ -15810,6 +16471,7 @@ desiredScroll;
 
 }
 
+
 function openSizeDropdown() {
 
 if (
@@ -15841,6 +16503,7 @@ updateSizeDropdownAvailableHeight();
 positionCurrentSizeAtTop();
 
 }
+
 
 function closeSizeDropdown(
 returnFocus = false
@@ -15880,6 +16543,7 @@ sizeDropdownTrigger.focus();
 
 }
 
+
 function toggleSizeDropdown() {
 
 if (
@@ -15898,6 +16562,7 @@ openSizeDropdown();
 }
 
 }
+
 
 function selectSizeFromDropdown(
 size
@@ -15947,6 +16612,7 @@ sizeChanged
 
 }
 
+
 function focusSizeDropdownOption(
 index
 ) {
@@ -15990,6 +16656,7 @@ block:"nearest"
 
 }
 
+
 sizeDropdownTrigger.addEventListener(
 "click",
 event => {
@@ -16000,6 +16667,7 @@ toggleSizeDropdown();
 
 }
 );
+
 
 sizeDropdownTrigger.addEventListener(
 "keydown",
@@ -16064,6 +16732,7 @@ closeSizeDropdown();
 
 }
 );
+
 
 sizeDropdownList.addEventListener(
 "keydown",
@@ -16200,6 +16869,7 @@ true
 }
 );
 
+
 window.addEventListener(
 "resize",
 () => {
@@ -16224,6 +16894,11 @@ requestOrderSummaryDeliveryWidthSync();
 }
 );
 
+
+/* =========================================
+ORDER TOTALS
+========================================= */
+
 function calculateStandardProductSubtotal() {
 
 return state.orderItems.reduce(
@@ -16247,6 +16922,7 @@ item.quantity
 );
 
 }
+
 
 function calculateCustomProductSubtotal() {
 
@@ -16289,6 +16965,7 @@ item.qty
 
 }
 
+
 function calculateStandardOrderTotal() {
 
 if (
@@ -16303,6 +16980,7 @@ return calculateOrderTotal();
 
 }
 
+
 function calculateCustomOrderTotal() {
 
 if (
@@ -16316,6 +16994,7 @@ return 0;
 return calculateOrderTotal();
 
 }
+
 
 function calculateOrderTotal() {
 
@@ -16336,6 +17015,11 @@ getCurrentDeliveryFee()
 );
 
 }
+
+
+/* =========================================
+STORAGE SANITISING
+========================================= */
 
 function sanitizeStoredOrderItem(
 item
@@ -16494,6 +17178,19 @@ deliveryRequiresQuote:false
 
 }
 
+
+/* =========================================
+CUSTOM STORED ORDER SANITISING
+
+Order-page calculator items are now retained.
+
+Their price is recalculated from the current
+calculator master when loaded.
+
+Older imported custom items may retain their
+stored unit price.
+========================================= */
+
 function sanitizeStoredCustomOrderItem(
 item
 ) {
@@ -16502,18 +17199,6 @@ if (
 !item ||
 typeof item !==
 "object"
-) {
-
-return null;
-
-}
-
-if (
-String(
-item.source ||
-""
-).toLowerCase() ===
-"order-page-custom"
 ) {
 
 return null;
@@ -16537,38 +17222,10 @@ item.internalLength
 );
 
 if (
-!Number.isFinite(
-width
-) ||
-!Number.isFinite(
+!customDimensionsAreValid(
+width,
 length
-) ||
-width <
-290 ||
-width >
-1500 ||
-length <
-290 ||
-length >
-3000
-) {
-
-return null;
-
-}
-
-const storedUnitPrice =
-Number(
-item.unitPrice ??
-item.price
-);
-
-if (
-!Number.isFinite(
-storedUnitPrice
-) ||
-storedUnitPrice <=
-0
+)
 ) {
 
 return null;
@@ -16664,12 +17321,64 @@ item.qty
 )
 );
 
-const itemId =
+const source =
+String(
+item.source ||
+""
+).toLowerCase();
+
+let storedUnitPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+if (
+source ===
+"order-page-custom"
+) {
+
+storedUnitPrice =
+calculateCustomPriceForSelection(
+{
+width:width,
+length:length,
+glazing:glazing,
+type:type,
+border:border,
+tint:tint
+}
+);
+
+}
+
+if (
+!Number.isFinite(
+storedUnitPrice
+) ||
+storedUnitPrice <=
+0
+) {
+
+return null;
+
+}
+
+let itemId =
 String(
 item.id ??
 item._id ??
 ""
 );
+
+if (
+!itemId
+) {
+
+itemId =
+createCustomOrderItemId();
+
+}
 
 return {
 
@@ -16680,6 +17389,14 @@ itemId,
 
 _id:
 itemId,
+
+source:
+source ||
+"custom",
+
+isCustom:true,
+
+custom:true,
 
 width:width,
 
@@ -16713,6 +17430,12 @@ storedUnitPrice,
 price:
 storedUnitPrice,
 
+deliveryCategory:
+getDeliveryCategoryForCustomDimensions(
+width,
+length
+),
+
 deliveryPostcode:
 String(
 item.deliveryPostcode ||
@@ -16728,6 +17451,11 @@ deliveryRequiresQuote:false
 };
 
 }
+
+
+/* =========================================
+SAVE / LOAD
+========================================= */
 
 function saveOrderToStorage() {
 
@@ -16786,6 +17514,7 @@ error
 }
 
 }
+
 
 function loadOrderFromStorage() {
 
@@ -16908,6 +17637,11 @@ error
 
 }
 
+
+/* =========================================
+DISPLAY NAMES
+========================================= */
+
 function getGlazingDisplayName(
 glazing
 ) {
@@ -16921,6 +17655,7 @@ return glazing ===
 
 }
 
+
 function getTypeDisplayName(
 type
 ) {
@@ -16933,6 +17668,7 @@ return type ===
 "Toughened";
 
 }
+
 
 function getTintDisplayName(
 tint
@@ -16957,6 +17693,7 @@ return "Clear";
 }
 
 }
+
 
 function orderItemsMatch(
 first,
@@ -16994,6 +17731,58 @@ second.unitPrice
 );
 
 }
+
+
+function customOrderItemsMatch(
+first,
+second
+) {
+
+return (
+
+Number(
+first.width
+) ===
+Number(
+second.width
+) &&
+
+Number(
+first.length
+) ===
+Number(
+second.length
+) &&
+
+first.glazing ===
+second.glazing &&
+
+first.type ===
+second.type &&
+
+Number(
+first.border
+) ===
+Number(
+second.border
+) &&
+
+first.tint ===
+second.tint &&
+
+Number(
+first.unitPrice ??
+first.price
+) ===
+Number(
+second.unitPrice ??
+second.price
+)
+
+);
+
+}
+
 
 function updateSummaryTotalDisplay(
 element,
@@ -17034,6 +17823,7 @@ numericTotal >=
 
 }
 
+
 function updateOrderSummaryTotalDisplay(
 total
 ) {
@@ -17044,6 +17834,7 @@ total
 );
 
 }
+
 
 function updateCustomOrderSummaryTotalDisplay(
 total
@@ -17056,6 +17847,7 @@ total
 
 }
 
+
 function getDifferentOrderSizeCount() {
 
 return new Set(
@@ -17067,6 +17859,7 @@ item.size
 
 }
 
+
 function getDifferentCustomOrderSizeCount() {
 
 return new Set(
@@ -17077,6 +17870,11 @@ item =>
 ).size;
 
 }
+
+
+/* =========================================
+BASKET DRAWER HELPERS
+========================================= */
 
 function getBasketDrawerUnitCount() {
 
@@ -17104,6 +17902,7 @@ item?.qty
 
 }
 
+
 function getBasketDrawerProductSubtotal() {
 
 return (
@@ -17112,6 +17911,7 @@ calculateCustomProductSubtotal()
 );
 
 }
+
 
 function getBasketDrawerDeliveryPresentation() {
 
@@ -17126,15 +17926,21 @@ state.deliveryRequiresQuote
 ) {
 
 return {
+
 status:
 state.deliveryQuoteReason ||
 "Delivery quotation required.",
+
 charge:
 "Quotation Required",
+
 chargeClass:
 "is-quote",
+
 showEstimatedDelivery:false,
+
 estimatedDelivery:""
+
 };
 
 }
@@ -17157,12 +17963,14 @@ state.deliveryFee
 );
 
 return {
+
 status:
 postcode
 ?
 `Delivery calculated for ${postcode}.`
 :
 "Delivery calculated.",
+
 charge:
 fee ===
 0
@@ -17172,6 +17980,7 @@ fee ===
 formatMoney(
 fee
 ),
+
 chargeClass:
 fee ===
 0
@@ -17179,9 +17988,12 @@ fee ===
 "is-free"
 :
 "",
+
 showEstimatedDelivery:true,
+
 estimatedDelivery:
 getBasketEstimatedDeliveryText()
+
 };
 
 }
@@ -17191,30 +18003,43 @@ postcode
 ) {
 
 return {
+
 status:
 "Checking delivery for this postcode.",
+
 charge:
 "Calculated by postcode",
+
 chargeClass:
 "",
+
 showEstimatedDelivery:false,
+
 estimatedDelivery:""
+
 };
 
 }
 
 return {
+
 status:
 "Enter your delivery postcode to calculate delivery.",
+
 charge:
 "Calculated by postcode",
+
 chargeClass:
 "",
+
 showEstimatedDelivery:false,
+
 estimatedDelivery:""
+
 };
 
 }
+
 
 function getBasketDrawerItemKey(
 item,
@@ -17273,6 +18098,11 @@ index
 );
 
 }
+
+
+/* =========================================
+BASKET ITEM MARKUP
+========================================= */
 
 function buildBasketDrawerItemHTML(
 item,
@@ -17566,6 +18396,11 @@ Remove
 
 }
 
+
+/* =========================================
+BASKET DELIVERY CARD
+========================================= */
+
 function buildBasketDrawerDeliveryHTML() {
 
 const delivery =
@@ -17637,6 +18472,7 @@ ${escapeHTML(delivery.estimatedDelivery)}
 `;
 
 }
+
 
 function buildBasketDrawerFooterHTML() {
 
@@ -17733,6 +18569,11 @@ Checkout Now
 `;
 
 }
+
+
+/* =========================================
+RENDER BASKET DRAWER
+========================================= */
 
 function renderBasketDrawer() {
 
@@ -17836,6 +18677,7 @@ buildBasketDrawerFooterHTML();
 updateCheckoutAvailability();
 
 }
+
 
 function updateBasketDrawerSummaryOnly() {
 
@@ -17996,6 +18838,11 @@ updateCheckoutAvailability();
 
 }
 
+
+/* =========================================
+BASKET ITEM EXPAND / COLLAPSE
+========================================= */
+
 function toggleBasketDrawerItem(
 toggleButton
 ) {
@@ -18119,6 +18966,11 @@ itemKey
 
 }
 
+
+/* =========================================
+BASKET DRAWER MODAL HELPERS
+========================================= */
+
 function getBasketBackgroundElements() {
 
 if (
@@ -18143,6 +18995,7 @@ element.tagName !==
 
 }
 
+
 function setBasketBackgroundInert(
 shouldBeInert
 ) {
@@ -18158,6 +19011,7 @@ shouldBeInert;
 );
 
 }
+
 
 function lockBasketPageScroll() {
 
@@ -18211,6 +19065,7 @@ document.body.style.overflow =
 "hidden";
 
 }
+
 
 function unlockBasketPageScroll() {
 
@@ -18273,6 +19128,7 @@ null;
 
 }
 
+
 function getBasketDrawerFocusableElements() {
 
 if (
@@ -18309,6 +19165,7 @@ null;
 );
 
 }
+
 
 function openBasketDrawer() {
 
@@ -18395,6 +19252,7 @@ preventScroll:true
 
 }
 
+
 function closeBasketDrawer(
 {
 restoreFocus = true
@@ -18477,6 +19335,11 @@ null;
 
 }
 
+
+/* =========================================
+BASKET MUTATIONS
+========================================= */
+
 function commitBasketDrawerMutation() {
 
 const postcodeToRecalculate =
@@ -18511,6 +19374,8 @@ state.basketTotal
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestOrderSummaryDeliveryWidthSync();
 
 if (
@@ -18530,6 +19395,7 @@ animate:false
 }
 
 }
+
 
 function adjustBasketDrawerItemQuantity(
 kind,
@@ -18614,6 +19480,7 @@ commitBasketDrawerMutation();
 
 }
 
+
 function removeBasketDrawerItem(
 kind,
 index
@@ -18666,6 +19533,11 @@ commitBasketDrawerMutation();
 
 }
 
+
+/* =========================================
+BASKET DRAWER EVENTS
+========================================= */
+
 if (
 basketButton
 ) {
@@ -18684,6 +19556,7 @@ openBasketDrawer();
 );
 
 }
+
 
 if (
 basketDrawerLayer
@@ -18792,6 +19665,7 @@ return;
 }
 );
 
+
 basketDrawerLayer.addEventListener(
 "input",
 event => {
@@ -18863,6 +19737,7 @@ input.value
 }
 );
 
+
 basketDrawerLayer.addEventListener(
 "change",
 event => {
@@ -18886,6 +19761,7 @@ input.value
 
 }
 );
+
 
 basketDrawerLayer.addEventListener(
 "keydown",
@@ -18915,6 +19791,7 @@ input.value
 
 }
 
+
 if (
 basketDrawerClose
 ) {
@@ -18933,6 +19810,7 @@ closeBasketDrawer();
 );
 
 }
+
 
 document.addEventListener(
 "keydown",
@@ -19024,6 +19902,11 @@ first.focus();
 
 }
 );
+
+
+/* =========================================
+STANDARD ORDER SUMMARY
+========================================= */
 
 function renderOrderSummary(
 {
@@ -19313,6 +20196,11 @@ orderSummarySection.classList.remove(
 }
 
 }
+
+
+/* =========================================
+CUSTOM ORDER SUMMARY
+========================================= */
 
 function renderCustomOrderSummary(
 {
@@ -19629,6 +20517,11 @@ customOrderSummarySection.classList.remove(
 
 }
 
+
+/* =========================================
+SUMMARY CHANGES
+========================================= */
+
 function commitOrderSummaryChange() {
 
 const postcodeToRecalculate =
@@ -19663,6 +20556,8 @@ state.basketTotal
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestOrderSummaryDeliveryWidthSync();
 
 if (
@@ -19678,6 +20573,7 @@ animate:false
 }
 
 }
+
 
 function commitCustomOrderSummaryChange() {
 
@@ -19713,6 +20609,8 @@ state.basketTotal
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestOrderSummaryDeliveryWidthSync();
 
 if (
@@ -19728,6 +20626,11 @@ animate:false
 }
 
 }
+
+
+/* =========================================
+SCROLL HELPERS
+========================================= */
 
 function getElementViewportCentreTarget(
 element
@@ -19751,6 +20654,7 @@ window.innerHeight /
 );
 
 }
+
 
 function getElementViewportRatioTarget(
 element,
@@ -19782,6 +20686,7 @@ ratio
 
 }
 
+
 function scrollElementToViewportCentre(
 element
 ) {
@@ -19810,6 +20715,7 @@ reducedMotionQuery.matches
 );
 
 }
+
 
 function animateScrollToTarget(
 target,
@@ -19946,6 +20852,7 @@ step
 
 }
 
+
 function animateElementToViewportCentre(
 element,
 duration = 560
@@ -19967,6 +20874,7 @@ duration
 );
 
 }
+
 
 function animateElementToViewportRatio(
 element,
@@ -19991,6 +20899,11 @@ duration
 );
 
 }
+
+
+/* =========================================
+STANDARD ITEM REMOVE / QUANTITY
+========================================= */
 
 function centreAfterOrderItemRemoval(
 removedIndex
@@ -20053,6 +20966,7 @@ targetIndex
 
 }
 
+
 function removeOrderItem(
 index
 ) {
@@ -20083,6 +20997,7 @@ index
 );
 
 }
+
 
 function adjustOrderItemQuantity(
 index,
@@ -20141,6 +21056,11 @@ nextQuantity;
 commitOrderSummaryChange();
 
 }
+
+
+/* =========================================
+CUSTOM ITEM REMOVE / QUANTITY
+========================================= */
 
 function centreAfterCustomOrderItemRemoval(
 removedIndex
@@ -20203,6 +21123,7 @@ targetIndex
 
 }
 
+
 function removeCustomOrderItem(
 index
 ) {
@@ -20233,6 +21154,7 @@ index
 );
 
 }
+
 
 function adjustCustomOrderItemQuantity(
 index,
@@ -20294,6 +21216,11 @@ nextQuantity;
 commitCustomOrderSummaryChange();
 
 }
+
+
+/* =========================================
+SUMMARY ITEM EVENTS
+========================================= */
 
 if (
 orderSummaryItems
@@ -20371,6 +21298,7 @@ index,
 
 }
 
+
 if (
 customOrderSummaryItems
 ) {
@@ -20447,6 +21375,11 @@ index,
 
 }
 
+
+/* =========================================
+POSTCODE RESULT REOPEN
+========================================= */
+
 function reopenDeliveryPostcodeInput(
 resultBox
 ) {
@@ -20489,6 +21422,7 @@ input.select();
 
 }
 
+
 document.addEventListener(
 "click",
 event => {
@@ -20514,6 +21448,7 @@ resultBox
 
 }
 );
+
 
 document.addEventListener(
 "keydown",
@@ -20546,6 +21481,11 @@ resultBox
 
 }
 );
+
+
+/* =========================================
+ORDER SUMMARY POSTCODE EVENTS
+========================================= */
 
 document.addEventListener(
 "input",
@@ -20641,6 +21581,7 @@ input.value
 }
 );
 
+
 document.addEventListener(
 "change",
 event => {
@@ -20664,6 +21605,7 @@ input.value
 
 }
 );
+
 
 document.addEventListener(
 "keydown",
@@ -20692,6 +21634,11 @@ input.value
 
 }
 );
+
+
+/* =========================================
+MAIN STANDARD CONFIGURATOR UI
+========================================= */
 
 function updateUI(
 {
@@ -20890,6 +21837,11 @@ updateQueryString();
 }
 
 }
+
+
+/* =========================================
+LOAD STANDARD CONFIG FROM QUERY
+========================================= */
 
 function loadStateFromQuery() {
 
@@ -21145,6 +22097,11 @@ importedImage
 
 }
 
+
+/* =========================================
+STANDARD CONFIGURATOR EVENTS
+========================================= */
+
 document
 .querySelectorAll(
 "[data-glazing]"
@@ -21171,6 +22128,7 @@ updateUI();
 }
 );
 
+
 document
 .querySelectorAll(
 "[data-type]"
@@ -21196,6 +22154,7 @@ updateUI();
 
 }
 );
+
 
 document
 .querySelectorAll(
@@ -21224,6 +22183,7 @@ updateUI();
 
 }
 );
+
 
 document
 .querySelectorAll(
@@ -21269,6 +22229,7 @@ animateImage:true
 }
 );
 
+
 quantityMinus.addEventListener(
 "click",
 () => {
@@ -21295,6 +22256,7 @@ updateUrl:false
 }
 );
 
+
 quantityPlus.addEventListener(
 "click",
 () => {
@@ -21320,6 +22282,11 @@ updateUrl:false
 
 }
 );
+
+
+/* =========================================
+CUSTOM DIMENSION INPUT EVENTS
+========================================= */
 
 [
 customInternalWidth,
@@ -21380,6 +22347,7 @@ updateCustomConfiguratorUI();
 }
 );
 
+
 customQuantityMinus.addEventListener(
 "click",
 () => {
@@ -21402,6 +22370,7 @@ updateCustomConfiguratorUI();
 }
 );
 
+
 customQuantityPlus.addEventListener(
 "click",
 () => {
@@ -21423,6 +22392,11 @@ updateCustomConfiguratorUI();
 
 }
 );
+
+
+/* =========================================
+GLOBAL CLICK / ESCAPE
+========================================= */
 
 document.addEventListener(
 "click",
@@ -21465,6 +22439,7 @@ closeCustomBuildDropdowns();
 }
 );
 
+
 document.addEventListener(
 "keydown",
 event => {
@@ -21494,6 +22469,11 @@ closeMenu();
 
 }
 );
+
+
+/* =========================================
+ORDER FOCUS HELPERS
+========================================= */
 
 function scheduleStandardOrderFocus(
 index
@@ -21533,6 +22513,7 @@ null;
 
 }
 
+
 function scheduleCustomOrderFocus(
 index
 ) {
@@ -21570,6 +22551,11 @@ null;
 );
 
 }
+
+
+/* =========================================
+ADD STANDARD SELECTION
+========================================= */
 
 function addCurrentSelectionToOrder() {
 
@@ -21703,6 +22689,8 @@ renderBasketDrawer();
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestOrderSummaryDeliveryWidthSync();
 
 state.quantity =
@@ -21761,10 +22749,53 @@ animate:false
 
 }
 
+
 addToOrder.addEventListener(
 "click",
 addCurrentSelectionToOrder
 );
+
+
+/* =========================================
+CUSTOM ORDER ITEM ID
+========================================= */
+
+function createCustomOrderItemId() {
+
+if (
+window.crypto &&
+typeof window.crypto.randomUUID ===
+"function"
+) {
+
+return window.crypto.randomUUID();
+
+}
+
+return (
+"custom-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(
+36
+)
+.slice(
+2,
+10
+)
+);
+
+}
+
+
+/* =========================================
+ADD CUSTOM CALCULATOR SELECTION
+
+This is the point where custom calculator
+items now enter the SAME basket and delivery
+system as standard rooflights.
+========================================= */
 
 function addCurrentCustomSelectionToOrder() {
 
@@ -21792,12 +22823,288 @@ return;
 
 }
 
+const itemId =
+createCustomOrderItemId();
+
+const newItem = {
+
+id:
+itemId,
+
+_id:
+itemId,
+
+source:
+"order-page-custom",
+
+isCustom:true,
+
+custom:true,
+
+width:
+Number(
+customState.width
+),
+
+length:
+Number(
+customState.length
+),
+
+internalWidth:
+Number(
+customState.width
+),
+
+internalLength:
+Number(
+customState.length
+),
+
+glazing:
+customState.glazing,
+
+glazingConfiguration:
+customState.glazing,
+
+type:
+customState.type,
+
+glazingConstruction:
+customState.type,
+
+border:
+Number(
+customState.border
+),
+
+tint:
+customState.tint,
+
+finish:
+customState.tint,
+
+quantity:
+Number(
+customState.quantity
+),
+
+qty:
+Number(
+customState.quantity
+),
+
+unitPrice:
+Number(
+unitPrice
+),
+
+price:
+Number(
+unitPrice
+),
+
+priceCategory:
+"custom-cheap",
+
+deliveryCategory:
+getDeliveryCategoryForCustomDimensions(
+customState.width,
+customState.length
+),
+
+deliveryPostcode:
+state.deliveryPostcode,
+
+deliveryFee:null,
+
+deliveryResolved:false,
+
+deliveryRequiresQuote:false
+
+};
+
+
+const existingIndex =
+state.customOrderItems.findIndex(
+item =>
+customOrderItemsMatch(
+item,
+newItem
+)
+);
+
+
+let targetIndex;
+
+
+if (
+existingIndex >=
+0
+) {
+
+const existingItem =
+state.customOrderItems[
+existingIndex
+];
+
+const nextQuantity =
+Math.min(
+999,
+Number(
+existingItem.quantity ??
+existingItem.qty
+) +
+Number(
+newItem.quantity
+)
+);
+
+existingItem.quantity =
+nextQuantity;
+
+existingItem.qty =
+nextQuantity;
+
+existingItem.deliveryCategory =
+getDeliveryCategoryForCustomDimensions(
+existingItem.width,
+existingItem.length
+);
+
+targetIndex =
+existingIndex;
+
 }
+else {
+
+state.customOrderItems.push(
+newItem
+);
+
+targetIndex =
+state.customOrderItems.length -
+1;
+
+}
+
+
+const postcodeToRecalculate =
+state.deliveryPostcode;
+
+
+setDeliveryPending(
+postcodeToRecalculate
+);
+
+
+state.basketTotal =
+calculateOrderTotal();
+
+
+saveOrderToStorage();
+
+
+updateBasketTotal(
+state.basketTotal
+);
+
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+
+renderCustomOrderSummary(
+{
+animate:true,
+focusOrderIndex:
+targetIndex
+}
+);
+
+
+renderBasketDrawer();
+
+
+updateCheckoutAvailability();
+
+
+updateEstimatedDelivery();
+
+
+requestOrderSummaryDeliveryWidthSync();
+
+
+customState.quantity =
+1;
+
+
+updateCustomConfiguratorUI();
+
+
+if (
+customAddToOrderFeedbackTimer !==
+null
+) {
+
+clearTimeout(
+customAddToOrderFeedbackTimer
+);
+
+}
+
+
+customAddToOrderText.textContent =
+"Added To Order ✓";
+
+
+customAddToOrderFeedbackTimer =
+setTimeout(
+() => {
+
+customAddToOrderText.textContent =
+"Add 1 To Order";
+
+customAddToOrderFeedbackTimer =
+null;
+
+},
+1100
+);
+
+
+scheduleCustomOrderFocus(
+targetIndex
+);
+
+
+if (
+postcodeToRecalculate
+) {
+
+recalculateResolvedDelivery(
+{
+animate:false
+}
+);
+
+}
+
+}
+
 
 customAddToOrder.addEventListener(
 "click",
 addCurrentCustomSelectionToOrder
 );
+
+
+/* =========================================
+HOMEPAGE ARRIVAL FOCUS
+========================================= */
 
 function readHomepageOrderFocusRequest() {
 
@@ -21958,6 +23265,7 @@ topRatio
 
 }
 
+
 function consumeHomepageOrderFocusRequest() {
 
 try {
@@ -22011,6 +23319,7 @@ currentUrl.hash
 
 }
 
+
 function findHomepageCustomOrderIndex(
 customItemId
 ) {
@@ -22042,6 +23351,7 @@ customItemId
 );
 
 }
+
 
 function playHomepageCustomAddedFeedback() {
 
@@ -22082,6 +23392,7 @@ null;
 );
 
 }
+
 
 function handleHomepageArrivalFocus() {
 
@@ -22198,8 +23509,14 @@ targetIndex
 
 }
 
+
+/* =========================================
+ESTIMATED DELIVERY CLOCK
+========================================= */
+
 let deliveryRefreshTimer =
 null;
+
 
 function startDeliveryClock() {
 
@@ -22226,6 +23543,7 @@ updateEstimatedDelivery();
 
 }
 
+
 window.addEventListener(
 "focus",
 () => {
@@ -22234,6 +23552,7 @@ updateEstimatedDelivery();
 
 }
 );
+
 
 document.addEventListener(
 "visibilitychange",
@@ -22249,6 +23568,11 @@ updateEstimatedDelivery();
 
 }
 );
+
+
+/* =========================================
+PAGE RESTORE / STORAGE SYNC
+========================================= */
 
 window.addEventListener(
 "pageshow",
@@ -22287,6 +23611,8 @@ animate:false
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestCustomSummaryColumnSync();
 
 requestOrderSummaryDeliveryWidthSync();
@@ -22305,6 +23631,7 @@ animate:false
 
 }
 );
+
 
 window.addEventListener(
 "storage",
@@ -22344,6 +23671,8 @@ animate:false
 
 updateCheckoutAvailability();
 
+updateEstimatedDelivery();
+
 requestCustomSummaryColumnSync();
 
 requestOrderSummaryDeliveryWidthSync();
@@ -22362,6 +23691,11 @@ animate:false
 
 }
 );
+
+
+/* =========================================
+SCROLL REVEAL
+========================================= */
 
 const revealElements =
 Array.from(
@@ -22433,6 +23767,11 @@ element
 
 }
 
+
+/* =========================================
+STANDARD PRICE VALIDATION
+========================================= */
+
 function validatePricingConfiguration() {
 
 if (
@@ -22487,6 +23826,11 @@ missingPrices
 
 }
 
+
+/* =========================================
+DELIVERY VALIDATION
+========================================= */
+
 function validateDeliveryConfiguration() {
 
 const selectableSizes =
@@ -22519,6 +23863,104 @@ unmappedSelectableSizes
 
 }
 
+
+/*
+Custom size category checks.
+*/
+
+const customCategoryChecks = [
+
+{
+width:500,
+length:800,
+expected:"small"
+},
+
+{
+width:500,
+length:1000,
+expected:"medium"
+},
+
+{
+width:500,
+length:1200,
+expected:"medium"
+},
+
+{
+width:500,
+length:1800,
+expected:"large"
+},
+
+{
+width:500,
+length:2000,
+expected:"large"
+},
+
+{
+width:500,
+length:2500,
+expected:"extraLarge"
+},
+
+{
+width:777,
+length:1333,
+expected:"medium"
+},
+
+{
+width:1000,
+length:1100,
+expected:"large"
+},
+
+{
+width:1200,
+length:1200,
+expected:"extraLarge"
+}
+
+];
+
+
+customCategoryChecks.forEach(
+check => {
+
+const actual =
+getDeliveryCategoryForCustomDimensions(
+check.width,
+check.length
+);
+
+if (
+actual !==
+check.expected
+) {
+
+console.warn(
+"Custom delivery category validation failed:",
+check,
+actual
+);
+
+}
+
+}
+);
+
+
+/*
+Two Medium custom units at 300 miles:
+
+Medium base = £75
+Additional Medium = £15
+Total = £90
+*/
+
 const customOnlyDelivery =
 calculateBasketDelivery(
 [
@@ -22537,15 +23979,26 @@ quantity:2
 if (
 customOnlyDelivery.requiresQuote ||
 customOnlyDelivery.price !==
-0
+90
 ) {
 
 console.warn(
-"Custom-only temporary delivery validation failed:",
+"Custom-only delivery validation failed:",
 customOnlyDelivery
 );
 
 }
+
+
+/*
+One Small standard +
+ten Medium custom at 34 miles.
+
+Best combination:
+Medium base £30
+remaining 10 units × £15
+= £180
+*/
 
 const mixedDelivery =
 calculateBasketDelivery(
@@ -22569,7 +24022,7 @@ quantity:10
 if (
 mixedDelivery.requiresQuote ||
 mixedDelivery.price !==
-25
+180
 ) {
 
 console.warn(
@@ -22578,6 +24031,13 @@ mixedDelivery
 );
 
 }
+
+
+/*
+Mixed Extra Large + Small:
+two separate delivery groups.
+£55 + £25 = £80.
+*/
 
 const mixedAdditionalRateDelivery =
 calculateBasketDelivery(
@@ -22612,6 +24072,11 @@ mixedAdditionalRateDelivery
 );
 
 }
+
+
+/*
+Small + Medium + Large.
+*/
 
 const threeCategoryDelivery =
 calculateBasketDelivery(
@@ -22653,6 +24118,12 @@ threeCategoryDelivery
 
 }
 
+
+/*
+Three Small units:
+£25 + £15 + £15 = £55.
+*/
+
 const threeSmallUnitsDelivery =
 calculateBasketDelivery(
 [
@@ -22682,6 +24153,12 @@ threeSmallUnitsDelivery
 );
 
 }
+
+
+/*
+Large + Extra Large:
+£35 + £55 = £90.
+*/
 
 const largeExtraLargeDelivery =
 calculateBasketDelivery(
@@ -22716,6 +24193,14 @@ largeExtraLargeDelivery
 );
 
 }
+
+
+/*
+2 XL + Large + Small:
+XL group = £55 + £65
+non-XL group = £35 + £15
+total = £170
+*/
 
 const groupedAdditionalDelivery =
 calculateBasketDelivery(
@@ -22755,6 +24240,11 @@ groupedAdditionalDelivery
 
 }
 
+
+/*
+Band checks.
+*/
+
 const boundaryChecks = [
 
 {
@@ -22770,12 +24260,31 @@ expected:70
 },
 
 {
+category:"small",
+miles:400,
+expected:70
+},
+
+{
+category:"medium",
+miles:400,
+expected:75
+},
+
+{
+category:"large",
+miles:400,
+expected:85
+},
+
+{
 category:"extraLarge",
-miles:250,
+miles:200,
 expected:115
 }
 
 ];
+
 
 boundaryChecks.forEach(
 check => {
@@ -22802,11 +24311,17 @@ actual
 }
 );
 
-const overDistance =
+
+/*
+Small / Medium / Large remain available
+at 251–400 miles.
+*/
+
+const standardAt251 =
 calculateBasketDelivery(
 [
 {
-size:"1500x2500",
+size:"1000x1500",
 quantity:1
 }
 ],
@@ -22814,37 +24329,143 @@ quantity:1
 );
 
 if (
-overDistance.requiresQuote !==
+standardAt251.requiresQuote ||
+standardAt251.price !==
+85
+) {
+
+console.warn(
+"251-mile Large delivery validation failed:",
+standardAt251
+);
+
+}
+
+
+/*
+Large at exactly 400 miles is allowed.
+*/
+
+const standardAt400 =
+calculateBasketDelivery(
+[
+{
+size:"1000x1500",
+quantity:1
+}
+],
+400
+);
+
+if (
+standardAt400.requiresQuote ||
+standardAt400.price !==
+85
+) {
+
+console.warn(
+"400-mile Large delivery validation failed:",
+standardAt400
+);
+
+}
+
+
+/*
+Large at 401 miles requires quotation.
+*/
+
+const standardAt401 =
+calculateBasketDelivery(
+[
+{
+size:"1000x1500",
+quantity:1
+}
+],
+401
+);
+
+if (
+standardAt401.requiresQuote !==
 true
 ) {
 
 console.warn(
-"251-mile standard delivery validation failed."
+"401-mile delivery limit validation failed."
+);
+
+}
+
+
+/*
+Extra Large at 200 allowed.
+*/
+
+const extraLargeAt200 =
+calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:1
+}
+],
+200
+);
+
+if (
+extraLargeAt200.requiresQuote ||
+extraLargeAt200.price !==
+115
+) {
+
+console.warn(
+"200-mile Extra Large delivery validation failed:",
+extraLargeAt200
+);
+
+}
+
+
+/*
+Extra Large at 201 requires quotation.
+*/
+
+const extraLargeAt201 =
+calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:1
+}
+],
+201
+);
+
+if (
+extraLargeAt201.requiresQuote !==
+true
+) {
+
+console.warn(
+"201-mile Extra Large delivery limit validation failed."
 );
 
 }
 
 }
 
+
 /* =========================================
 CUSTOM ROOFLIGHT CALCULATOR PRICING
-PASTE IMMEDIATELY ABOVE: populateSizes();
+
+YOUR MANUALLY ADDED CALCULATOR PRICING
+IS RETAINED HERE.
+
+TRIPLE GLAZED
+CLEAR / TOUGHENED
+100MM BORDER SOURCE PRICES.
 ========================================= */
-
-/*
-AUTHORITATIVE TRIPLE GLAZED
-CLEAR / TOUGHENED / 100MM BORDER
-SOURCE PRICES.
-
-The four calculator-only anchor sizes:
-300x2000
-400x2000
-500x2000
-500x2500
-
-exist ONLY here and are NOT added to the
-standard-size dropdown.
-*/
 
 const CUSTOM_CALCULATOR_SOURCE_PRICES = {
 
@@ -22911,11 +24532,6 @@ const CUSTOM_CALCULATOR_MIN_LENGTH =
 const CUSTOM_CALCULATOR_MAX_LENGTH =
 2500;
 
-/*
-Lengths OVER 2000mm require
-a minimum width of 500mm.
-*/
-
 const CUSTOM_CALCULATOR_LONG_LENGTH =
 2000;
 
@@ -22925,13 +24541,6 @@ const CUSTOM_CALCULATOR_LONG_MIN_WIDTH =
 
 /* =========================================
 CUSTOM CALCULATOR PRICE UPLIFTS
-
-1. Every custom calculator price = +5%.
-
-2. A further +5% applies where:
-width = 290mm to 500mm inclusive
-AND
-length = 2000mm or more.
 ========================================= */
 
 const CUSTOM_CALCULATOR_BASE_UPLIFT =
@@ -22942,7 +24551,7 @@ const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
 
 
 /* =========================================
-PREPARE PRICING ANCHOR POINTS
+CUSTOM CALCULATOR PRICE POINTS
 ========================================= */
 
 const CUSTOM_CALCULATOR_PRICE_POINTS =
@@ -22990,26 +24599,34 @@ price
 
 /* =========================================
 CUSTOM DIMENSION VALIDATION
+
+NO ERROR MESSAGE / POPUP.
+
+INVALID DIMENSIONS SIMPLY KEEP
+ADD TO ORDER DISABLED.
 ========================================= */
 
-function customInputsAreValid() {
+function customDimensionsAreValid(
+width,
+length
+) {
 
-const width =
+const safeWidth =
 Number(
-customState.width
+width
 );
 
-const length =
+const safeLength =
 Number(
-customState.length
+length
 );
 
 if (
 !Number.isFinite(
-width
+safeWidth
 ) ||
 !Number.isFinite(
-length
+safeLength
 )
 ) {
 
@@ -23018,9 +24635,9 @@ return false;
 }
 
 if (
-width <
+safeWidth <
 CUSTOM_CALCULATOR_MIN_WIDTH ||
-width >
+safeWidth >
 CUSTOM_CALCULATOR_MAX_WIDTH
 ) {
 
@@ -23029,9 +24646,9 @@ return false;
 }
 
 if (
-length <
+safeLength <
 CUSTOM_CALCULATOR_MIN_LENGTH ||
-length >
+safeLength >
 CUSTOM_CALCULATOR_MAX_LENGTH
 ) {
 
@@ -23040,18 +24657,16 @@ return false;
 }
 
 /*
-IMPORTANT:
+Exactly 2000mm is permitted below 500mm width.
 
-Length can be exactly 2000mm at widths below 500mm.
-
-Only lengths GREATER than 2000mm require
-a minimum width of 500mm.
+Only lengths GREATER THAN 2000mm require
+a minimum 500mm width.
 */
 
 if (
-length >
+safeLength >
 CUSTOM_CALCULATOR_LONG_LENGTH &&
-width <
+safeWidth <
 CUSTOM_CALCULATOR_LONG_MIN_WIDTH
 ) {
 
@@ -23064,14 +24679,18 @@ return true;
 }
 
 
+function customInputsAreValid() {
+
+return customDimensionsAreValid(
+customState.width,
+customState.length
+);
+
+}
+
+
 /* =========================================
-CALCULATOR SOURCE PRICE INTERPOLATION
-
-Exact supplied sizes always use their exact
-authoritative anchor price.
-
-Sizes between anchors are calculated from
-the surrounding/nearest pricing points.
+CUSTOM PRICE INTERPOLATION
 ========================================= */
 
 function getInterpolatedCustomSourcePrice(
@@ -23104,7 +24723,7 @@ return null;
 
 
 /*
-Always protect exact anchor prices first.
+Protect exact supplied anchor prices.
 */
 
 const exactSize =
@@ -23127,12 +24746,7 @@ exactSize
 
 
 /*
-Use the nearest six established pricing
-anchors for an arbitrary custom dimension.
-
-Distances are normalised against the overall
-calculator width/length ranges so width and
-length both influence the interpolation.
+Use the nearest six established anchors.
 */
 
 const widthRange =
@@ -23201,7 +24815,6 @@ second.distanceSquared
 6
 );
 
-
 let weightedPrice =
 0;
 
@@ -23228,7 +24841,6 @@ weight;
 }
 );
 
-
 if (
 !Number.isFinite(
 weightedPrice
@@ -23253,7 +24865,7 @@ totalWeight
 
 
 /* =========================================
-APPLY CUSTOM CALCULATOR UPLIFTS
+CUSTOM BASE PRICE + UPLIFTS
 ========================================= */
 
 function getCustomTripleClearToughened100Price(
@@ -23279,22 +24891,8 @@ return null;
 
 }
 
-
-/*
-ALL custom calculator prices +5%.
-*/
-
 price *=
 CUSTOM_CALCULATOR_BASE_UPLIFT;
-
-
-/*
-Further +5%:
-
-Width 290mm - 500mm inclusive
-AND
-Length 2000mm or greater.
-*/
 
 if (
 Number(
@@ -23322,32 +24920,18 @@ return price;
 
 
 /* =========================================
-FINAL CONFIGURED CUSTOM PRICE
-
-Uses the SAME existing Order Page adjustments:
-
-Triple = base
-Double = -17%
-
-Toughened = base
-Laminated = +20%
-
-Clear = base
-Grey = +22%
-Satin = +25%
-Blue = +30%
-
-100mm = base
-125mm = +7%
-150mm = +15%
-
-Final result rounded to nearest £5.
+CALCULATE ANY CUSTOM SELECTION
 ========================================= */
 
-function selectedCustomPrice() {
+function calculateCustomPriceForSelection(
+selection
+) {
 
 if (
-!customInputsAreValid()
+!customDimensionsAreValid(
+selection?.width,
+selection?.length
+)
 ) {
 
 return null;
@@ -23356,8 +24940,8 @@ return null;
 
 const tripleClearToughened100Price =
 getCustomTripleClearToughened100Price(
-customState.width,
-customState.length
+selection.width,
+selection.length
 );
 
 if (
@@ -23374,20 +24958,54 @@ return null;
 
 return calculateConfiguredPrice(
 tripleClearToughened100Price,
+selection.glazing,
+selection.type,
+selection.tint,
+selection.border
+);
+
+}
+
+
+function selectedCustomPrice() {
+
+return calculateCustomPriceForSelection(
+{
+width:
+customState.width,
+
+length:
+customState.length,
+
+glazing:
 customState.glazing,
+
+type:
 customState.type,
+
+tint:
 customState.tint,
+
+border:
 customState.border
+}
 );
 
 }
 
 
 /* =========================================
-CUSTOM CALCULATOR PRICE DISPLAY
+CUSTOM CALCULATOR UI
 
-Overrides the current temporary blank-price
-version of updateCustomConfiguratorUI().
+VALID CUSTOM SIZES NOW ENABLE
+ADD TO ORDER.
+
+Once added, the item becomes part of:
+- postcode delivery calculation
+- distance category logic
+- delivery totals
+- basket totals
+- estimated delivery calculations
 ========================================= */
 
 function updateCustomConfiguratorUI() {
@@ -23416,7 +25034,7 @@ unitPrice
 
 
 /*
-No popup/error message for rejected dimensions.
+No warning or popup for invalid dimensions.
 */
 
 customInternalWidth.classList.remove(
@@ -23456,6 +25074,7 @@ customDimensionsZone.hidden =
 customQuantityValue.textContent =
 customState.quantity;
 
+
 customQuantityUnitLabel.textContent =
 customState.quantity ===
 1
@@ -23468,6 +25087,7 @@ customState.quantity ===
 customQuantityMinus.disabled =
 customState.quantity <=
 1;
+
 
 customQuantityMinus.style.opacity =
 customState.quantity <=
@@ -23483,18 +25103,11 @@ customAddToOrderText.textContent =
 
 
 /*
-PRICING ONLY STAGE:
-
-Keep Add To Order disabled until we add
-the calculator delivery/basket logic next.
-
-This prevents a custom rooflight entering
-the basket before its delivery category
-has been calculated correctly.
+VALID PRICE = ADD TO ORDER ENABLED.
 */
 
 customAddToOrder.disabled =
-true;
+!hasPrice;
 
 
 if (
@@ -23509,7 +25122,7 @@ return;
 
 
 /* =========================================
-DIMENSIONS
+CUSTOM DIMENSIONS
 ========================================= */
 
 customInternalSize.textContent =
@@ -23534,7 +25147,7 @@ external.length
 
 
 /* =========================================
-UNIT PRICE DISPLAY
+CUSTOM UNIT PRICE
 ========================================= */
 
 const unitPriceParts =
@@ -23545,6 +25158,7 @@ unitPrice
 
 customPriceWhole.textContent =
 unitPriceParts.whole;
+
 
 customPricePence.textContent =
 unitPriceParts.pence;
@@ -23562,6 +25176,11 @@ customUnitPriceLineElement
 
 customUnitPriceLineElement.style.visibility =
 "visible";
+
+customUnitPriceLineElement.setAttribute(
+"aria-label",
+`Custom unit price ${formatMoney(unitPrice)} including VAT`
+);
 
 const pound =
 customUnitPriceLineElement.querySelector(
@@ -23597,12 +25216,13 @@ dot.textContent =
 customVatLine.textContent =
 "inc. vat";
 
+
 customVatLine.style.visibility =
 "visible";
 
 
 /* =========================================
-QUANTITY TOTAL
+CUSTOM QUANTITY TOTAL
 ========================================= */
 
 if (
@@ -23622,6 +25242,7 @@ totalPrice
 
 customTotalPriceWhole.textContent =
 totalPriceParts.whole;
+
 
 customTotalPricePence.textContent =
 totalPriceParts.pence;
@@ -23660,23 +25281,21 @@ totalDot.textContent =
 customTotalPriceBlock.style.visibility =
 "visible";
 
+
 customTotalPriceBlock.hidden =
 false;
+
 
 customTotalPriceBlock.setAttribute(
 "aria-hidden",
 "false"
 );
 
+
 customTotalPriceBlock.classList.add(
 "is-visible"
 );
 
-
-/*
-Match the standard summary layout:
-VAT line sits beneath the total when quantity > 1.
-*/
 
 if (
 customVatLine.parentElement !==
@@ -23696,18 +25315,16 @@ customTotalPriceBlock.classList.remove(
 "is-visible"
 );
 
+
 customTotalPriceBlock.hidden =
 true;
+
 
 customTotalPriceBlock.setAttribute(
 "aria-hidden",
 "true"
 );
 
-
-/*
-VAT goes back beneath Unit Price for quantity 1.
-*/
 
 if (
 customVatLine.parentElement !==
@@ -23726,7 +25343,7 @@ customVatLine
 
 
 /* =========================================
-CALCULATOR PRICE CHECKS
+CUSTOM CALCULATOR PRICE CHECKS
 ========================================= */
 
 function validateCustomCalculatorPricing() {
@@ -23814,20 +25431,176 @@ result
 Dimension-rule checks.
 */
 
+const dimensionTests = [
+
+{
+width:290,
+length:2000,
+expected:true
+},
+
+{
+width:499,
+length:2000,
+expected:true
+},
+
+{
+width:499,
+length:2001,
+expected:false
+},
+
+{
+width:500,
+length:2001,
+expected:true
+},
+
+{
+width:1500,
+length:2500,
+expected:true
+},
+
+{
+width:1501,
+length:2000,
+expected:false
+},
+
+{
+width:500,
+length:2501,
+expected:false
+}
+
+];
+
+
+dimensionTests.forEach(
+test => {
+
+const actual =
+customDimensionsAreValid(
+test.width,
+test.length
+);
+
 if (
-!customInputsAreValid
+actual !==
+test.expected
 ) {
 
 console.warn(
-"Custom calculator validation unavailable."
+"Custom calculator dimension check failed:",
+test,
+actual
 );
 
 }
 
 }
+);
 
+}
+
+
+/* =========================================
+CUSTOM ESTIMATED DELIVERY VALIDATION
+========================================= */
+
+function validateCustomLeadTimes() {
+
+const checks = [
+
+{
+type:"toughened",
+tint:"clear",
+min:4,
+max:6
+},
+
+{
+type:"toughened",
+tint:"grey",
+min:6,
+max:8
+},
+
+{
+type:"toughened",
+tint:"satin",
+min:6,
+max:8
+},
+
+{
+type:"toughened",
+tint:"blue",
+min:8,
+max:10
+},
+
+{
+type:"laminated",
+tint:"clear",
+min:6,
+max:8
+},
+
+{
+type:"laminated",
+tint:"blue",
+min:8,
+max:10
+}
+
+];
+
+
+checks.forEach(
+check => {
+
+const result =
+getLeadTimeForSelection(
+check
+);
+
+if (
+result.min !==
+check.min ||
+result.max !==
+check.max
+) {
+
+console.warn(
+"Custom lead-time validation failed:",
+check,
+result
+);
+
+}
+
+}
+);
+
+}
+
+
+/* =========================================
+INITIALISE PAGE
+
+IMPORTANT:
+The custom pricing constants above must
+exist before loadOrderFromStorage() runs
+because stored custom calculator items can
+be repriced during sanitisation.
+========================================= */
 
 validateCustomCalculatorPricing();
+
+validateCustomLeadTimes();
 
 populateSizes();
 
@@ -23870,6 +25643,8 @@ animate:false
 );
 
 updateCheckoutAvailability();
+
+updateEstimatedDelivery();
 
 requestCustomSummaryColumnSync();
 
