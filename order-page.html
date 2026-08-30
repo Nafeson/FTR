@@ -12022,13 +12022,13 @@ the delivery category.
 
 Examples:
 
-500 × 800 = Small
-500 × 1000 = Medium
-500 × 1200 = Medium
-500 × 1800 = Large
-500 × 2000 = Large
-500 × 2500 = Extra Large
-777 × 1333 = Medium
+500 × 800   = Small
+500 × 1000  = Medium
+500 × 1200  = Medium
+500 × 1800  = Large
+500 × 2000  = Large
+500 × 2500  = Extra Large
+777 × 1333  = Medium
 1000 × 1100 = Large
 1200 × 1200 = Extra Large
 ========================================= */
@@ -24541,6 +24541,17 @@ const CUSTOM_CALCULATOR_LONG_MIN_WIDTH =
 
 /* =========================================
 CUSTOM CALCULATOR PRICE UPLIFTS
+
+EXISTING:
++5% across all calculator prices.
+
+EXISTING NARROW / LONG:
+A further +5% for widths 290–500mm
+inclusive with lengths 2000mm and above.
+
+NEW LENGTH PRICE ADJUSTMENT:
+Less than 1500mm length = further +20%.
+1500mm length and above = further +7%.
 ========================================= */
 
 const CUSTOM_CALCULATOR_BASE_UPLIFT =
@@ -24548,6 +24559,12 @@ const CUSTOM_CALCULATOR_BASE_UPLIFT =
 
 const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
 1.05;
+
+const CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT =
+1.20;
+
+const CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT =
+1.07;
 
 
 /* =========================================
@@ -24891,8 +24908,19 @@ return null;
 
 }
 
+
+/*
+Existing global calculator uplift.
+*/
+
 price *=
 CUSTOM_CALCULATOR_BASE_UPLIFT;
+
+
+/*
+Existing extra uplift for narrow / long
+calculator sizes.
+*/
 
 if (
 Number(
@@ -24913,6 +24941,36 @@ price *=
 CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT;
 
 }
+
+
+/*
+NEW LENGTH-BASED CALCULATOR PRICE UPLIFT.
+
+Less than 1500mm:
+further +20%.
+
+1500mm and above:
+further +7%.
+*/
+
+if (
+Number(
+length
+) <
+1500
+) {
+
+price *=
+CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT;
+
+}
+else {
+
+price *=
+CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT;
+
+}
+
 
 return price;
 
@@ -25353,43 +25411,43 @@ const tests = [
 {
 width:300,
 length:800,
-expected:225
+expected:270
 },
 
 {
 width:300,
 length:2000,
-expected:400
+expected:430
 },
 
 {
 width:400,
 length:2000,
-expected:435
+expected:465
 },
 
 {
 width:500,
 length:2000,
-expected:470
+expected:500
 },
 
 {
 width:500,
 length:2500,
-expected:500
+expected:535
 },
 
 {
 width:600,
 length:900,
-expected:285
+expected:340
 },
 
 {
 width:1000,
 length:1000,
-expected:355
+expected:430
 }
 
 ];
@@ -25672,3 +25730,4 @@ applyDesktopAccessRestriction();
 
 </body>
 </html>
+```
