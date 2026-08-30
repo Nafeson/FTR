@@ -1,3 +1,7 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+(no subject)
+Nathan Knight <nathank3290@gmail.com>	Sun, Aug 30, 2026 at 2:51 AM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -2397,8 +2401,8 @@ transform:scale(.97);
 
 /* =========================================
 CHANGE 1
-DELIVERY POSTCODE / DELIVERY RESULT
-MATCHES QUANTITY + REMOVE WIDTH
+DELIVERY POSTCODE + DELIVERY RESULT
+ACCEPTED POSTCODE REMAINS VISIBLE
 ========================================= */
 
 .order-summary-delivery {
@@ -2451,11 +2455,18 @@ text-transform:uppercase;
 transition:
 border-color .2s ease,
 background .2s ease,
-box-shadow .2s ease;
+box-shadow .2s ease,
+padding-right .2s ease;
 }
 
-.order-summary-postcode.is-resolved-hidden {
-display:none;
+.order-summary-postcode-wrap.has-delivery-result
+.order-summary-postcode {
+padding-right:105px;
+}
+
+.order-summary-postcode-wrap.has-delivery-quote
+.order-summary-postcode {
+padding-right:185px;
 }
 
 .order-summary-postcode::placeholder {
@@ -2488,18 +2499,25 @@ box-shadow:
 }
 
 .order-summary-delivery-inline-price {
-width:100%;
-height:52px;
+position:absolute;
+top:1px;
+right:1px;
+z-index:2;
+width:auto;
+max-width:62%;
+height:50px;
 margin:0;
-padding:0 15px;
-border:1px solid rgba(255,255,255,.17);
-border-radius:14px;
+padding:0 14px 0 12px;
+border:0;
+border-left:1px solid rgba(255,255,255,.11);
+border-radius:0 13px 13px 0;
 outline:0;
 background:
 linear-gradient(
-180deg,
-#121414,
-#0a0c0c
+90deg,
+rgba(10,12,12,.72) 0%,
+#0a0c0c 32%,
+#0a0c0c 100%
 );
 color:var(--orange-bright);
 font-family:
@@ -2517,20 +2535,21 @@ display:none;
 align-items:center;
 justify-content:flex-end;
 cursor:text;
-box-shadow:
-inset 0 1px 0 rgba(255,255,255,.015);
+box-shadow:none;
 transition:
-border-color .2s ease,
 background .2s ease,
-box-shadow .2s ease;
+color .2s ease;
 }
 
 .order-summary-delivery-inline-price:hover,
 .order-summary-delivery-inline-price:focus-visible {
-border-color:rgba(232,120,23,.52);
-background:#0e1010;
-box-shadow:
-0 0 0 1px rgba(232,120,23,.035);
+background:
+linear-gradient(
+90deg,
+rgba(14,16,16,.80) 0%,
+#0e1010 32%,
+#0e1010 100%
+);
 }
 
 .order-summary-delivery-inline-price.is-resolved {
@@ -2538,6 +2557,7 @@ display:flex;
 }
 
 .order-summary-delivery-inline-price.is-quote-required {
+max-width:70%;
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -3642,82 +3662,117 @@ line-height:1.65;
 
 
 /* =========================================
-SIMPLE ORDER PAGE FOOTER
+CHANGE 2
+INDEX FOOTER — ISOLATED FOR ORDER PAGE
+WORDMARK + ADDRESS ONLY
 ========================================= */
 
-.order-simple-footer {
+.order-index-footer {
 position:relative;
 width:100%;
-padding:
-clamp(28px,3.4vw,42px)
-6%;
+padding:46px 6%;
 background:#090a0a;
 border-top:1px solid rgba(255,255,255,.10);
+color:rgba(247,247,243,.50);
+font-size:13px;
 }
 
-.order-simple-footer-inner {
+.order-index-footer-inner {
 width:100%;
 max-width:1180px;
 margin:0 auto;
 display:flex;
-align-items:center;
+align-items:flex-start;
 justify-content:space-between;
-gap:36px;
+gap:40px;
 }
 
-.order-simple-footer-logo {
+.order-index-footer-home {
 display:block;
 width:max-content;
-max-width:52%;
+max-width:60%;
 color:inherit;
 text-decoration:none;
 }
 
-.order-simple-footer-wordmark {
-width:max-content;
-max-width:100%;
-font-family:
-"Bahnschrift",
-"Bahnschrift SemiCondensed",
-"Arial Narrow",
-"Aptos Display",
-"Inter",
-Arial,
-sans-serif;
-font-size:clamp(17px,1.9vw,24px);
-font-weight:850;
-line-height:.91;
-letter-spacing:2.5px;
-text-transform:uppercase;
-color:#f1f0e9;
+.order-index-footer .footer-wordmark {
+margin:0;
+color:var(--steel);
 }
 
-.order-simple-footer-wordmark > span {
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-factory {
 display:block;
-color:#c6cbc8;
+color:#b6b8b7;
+background:
+linear-gradient(
+180deg,
+#e0e1e0 0%,
+#b8bab9 46%,
+#8e9190 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
 }
 
-.order-simple-footer-wordmark-bottom {
-display:flex;
-align-items:flex-end;
-width:max-content;
-max-width:100%;
-white-space:nowrap;
-color:#f1f0e9;
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-toughened {
+display:block;
+color:#f2f2f0;
+background:
+linear-gradient(
+180deg,
+#ffffff 0%,
+#f0f0ee 45%,
+#cfd1cf 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
 }
 
-.order-simple-footer-domain {
-margin-left:1px;
-padding-bottom:2px;
+.order-index-footer
+.footer-wordmark
+.wordmark-bottom {
+color:#b6b8b7;
+}
+
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-rooflights {
+display:block;
+color:#b6b8b7;
+background:
+linear-gradient(
+180deg,
+#e0e1e0 0%,
+#b8bab9 46%,
+#8e9190 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
+}
+
+.order-index-footer
+.footer-wordmark
+.wordmark-domain {
+color:#9ea19f;
 font-size:.40em;
-font-weight:700;
-line-height:1;
-letter-spacing:.15px;
-text-transform:lowercase;
-color:#9da39f;
+-webkit-text-fill-color:#9ea19f;
 }
 
-.order-simple-footer-address {
+.order-index-footer-address {
+display:grid;
+gap:0;
+width:max-content;
+max-width:40%;
 margin:0;
 font-style:normal;
 font-family:
@@ -3726,13 +3781,17 @@ font-family:
 "Segoe UI",
 Arial,
 sans-serif;
-font-size:11px;
+font-size:8.7px;
 font-weight:600;
-line-height:1.55;
-letter-spacing:.55px;
+line-height:1.45;
+letter-spacing:.6px;
 text-align:right;
 text-transform:uppercase;
-color:rgba(247,247,243,.62);
+color:rgba(255,255,255,.72);
+}
+
+.order-index-footer-address span {
+display:block;
 }
 
 
@@ -4235,14 +4294,28 @@ font-size:8.8px;
 letter-spacing:.35px;
 }
 
+.order-summary-postcode-wrap.has-delivery-result
+.order-summary-postcode {
+padding-right:67px;
+}
+
+.order-summary-postcode-wrap.has-delivery-quote
+.order-summary-postcode {
+padding-right:125px;
+}
+
 .order-summary-delivery-inline-price {
-height:39px;
-padding:0 9px;
-border-radius:10px;
+top:1px;
+right:1px;
+height:37px;
+padding:0 8px;
+border-radius:0 9px 9px 0;
 font-size:8.8px;
+max-width:58%;
 }
 
 .order-summary-delivery-inline-price.is-quote-required {
+max-width:72%;
 font-size:6.2px;
 line-height:1.05;
 white-space:nowrap;
@@ -4515,7 +4588,7 @@ width:20px;
 
 
 /* =========================================
-MOBILE HEADER / FOOTER
+MOBILE HEADER / INDEX FOOTER
 ========================================= */
 
 @media(max-width:560px) {
@@ -4598,23 +4671,22 @@ font-size:20.7px;
 padding:0 2.5%;
 }
 
-.order-simple-footer {
-padding:25px 5.5%;
+.order-index-footer {
+padding:34px 5.5%;
 }
 
-.order-simple-footer-inner {
+.order-index-footer-inner {
 gap:18px;
 }
 
-.order-simple-footer-wordmark {
-font-size:15px;
-letter-spacing:1.55px;
+.order-index-footer .footer-wordmark {
+font-size:20px;
 }
 
-.order-simple-footer-address {
-font-size:7.6px;
-line-height:1.55;
-letter-spacing:.34px;
+.order-index-footer-address {
+font-size:8.1px;
+line-height:1.45;
+letter-spacing:.46px;
 }
 
 }
@@ -4696,9 +4768,19 @@ padding-left:8px;
 padding-right:8px;
 }
 
+.order-summary-postcode-wrap.has-delivery-result
+.order-summary-postcode {
+padding-right:64px;
+}
+
+.order-summary-postcode-wrap.has-delivery-quote
+.order-summary-postcode {
+padding-right:118px;
+}
+
 .order-summary-delivery-inline-price {
-padding-left:8px;
-padding-right:8px;
+padding-left:7px;
+padding-right:7px;
 font-size:8.5px;
 }
 
@@ -4758,23 +4840,23 @@ font-size:clamp(25.5px,7.395vw,34px);
 height:46px;
 }
 
-.order-simple-footer {
+.order-index-footer {
 padding-left:5%;
 padding-right:5%;
 }
 
-.order-simple-footer-inner {
+.order-index-footer-inner {
 gap:12px;
 }
 
-.order-simple-footer-wordmark {
-font-size:13.4px;
-letter-spacing:1.35px;
+.order-index-footer .footer-wordmark {
+font-size:18px;
+letter-spacing:2px;
 }
 
-.order-simple-footer-address {
-font-size:6.7px;
-letter-spacing:.26px;
+.order-index-footer-address {
+font-size:7.2px;
+letter-spacing:.32px;
 }
 
 }
@@ -6657,32 +6739,41 @@ Ts &amp; Cs
 
 
 <!-- =========================================
-SIMPLE ORDER PAGE FOOTER
+CHANGE 2
+ISOLATED INDEX FOOTER
+WORDMARK + ADDRESS ONLY
 ========================================= -->
 
-<footer class="order-simple-footer">
+<footer
+class="order-index-footer"
+id="contact"
+>
 
-<div class="order-simple-footer-inner">
+<div class="order-index-footer-inner">
 
 <a
 href="index.html"
-class="order-simple-footer-logo"
+class="order-index-footer-home"
 aria-label="Factory Toughened Rooflights homepage"
 >
 
-<div class="order-simple-footer-wordmark">
+<div class="wordmark footer-wordmark">
 
+<span class="footer-wordmark-factory">
 Factory
+</span>
 
-<span>
+<span class="footer-wordmark-toughened">
 Toughened
 </span>
 
-<div class="order-simple-footer-wordmark-bottom">
+<div class="wordmark-bottom">
 
+<span class="footer-wordmark-rooflights">
 Rooflights
+</span>
 
-<small class="order-simple-footer-domain">
+<small class="wordmark-domain">
 .co.uk
 </small>
 
@@ -6693,12 +6784,12 @@ Rooflights
 </a>
 
 
-<address class="order-simple-footer-address">
+<address class="order-index-footer-address">
 
-Anamax Group Estate<br>
-Oxford Road, Denham<br>
-Buckinghamshire<br>
-SL9 7BB
+<span>Anamax Group Estate</span>
+<span>Oxford Road, Denham</span>
+<span>Buckinghamshire</span>
+<span>SL9 7BB</span>
 
 </address>
 
@@ -11617,7 +11708,11 @@ formattedFee
 
 
 /* =========================================
+CHANGE 1
 DELIVERY FIELD HTML
+
+THE POSTCODE INPUT IS NEVER HIDDEN.
+ONLY THE PLACEHOLDER DISAPPEARS NATURALLY.
 ========================================= */
 
 function buildDeliveryControlHTML(
@@ -11638,10 +11733,17 @@ getDeliveryDisplayForItem(
 item
 );
 
-const resolvedInputClass =
+const resolvedWrapClass =
 deliveryDisplay.resolved
 ?
-" is-resolved-hidden"
+" has-delivery-result"
+:
+"";
+
+const quoteWrapClass =
+deliveryDisplay.requiresQuote
+?
+" has-delivery-quote"
 :
 "";
 
@@ -11650,11 +11752,11 @@ return `
 
 <div class="order-summary-delivery-entry">
 
-<div class="order-summary-postcode-wrap">
+<div class="order-summary-postcode-wrap${resolvedWrapClass}${quoteWrapClass}">
 
 <input
 type="text"
-class="order-summary-postcode${resolvedInputClass}"
+class="order-summary-postcode"
 data-delivery-postcode-input
 data-delivery-kind="${escapeHTML(kind)}"
 data-delivery-index="${escapeHTML(index)}"
@@ -11687,13 +11789,14 @@ function clearDeliveryOutputVisuals() {
 
 document
 .querySelectorAll(
-"[data-delivery-postcode-input]"
+".order-summary-postcode-wrap"
 )
 .forEach(
-input => {
+wrap => {
 
-input.classList.remove(
-"is-resolved-hidden"
+wrap.classList.remove(
+"has-delivery-result",
+"has-delivery-quote"
 );
 
 }
@@ -11750,8 +11853,7 @@ postcode || ""
 .toUpperCase();
 
 input.classList.remove(
-"is-invalid",
-"is-resolved-hidden"
+"is-invalid"
 );
 
 }
@@ -11770,10 +11872,6 @@ document
 )
 .forEach(
 input => {
-
-input.classList.remove(
-"is-resolved-hidden"
-);
 
 input.classList.add(
 "is-invalid"
@@ -17194,8 +17292,7 @@ otherInput.value =
 input.value;
 
 otherInput.classList.remove(
-"is-invalid",
-"is-resolved-hidden"
+"is-invalid"
 );
 
 }
