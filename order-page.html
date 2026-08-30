@@ -954,6 +954,11 @@ display:block;
 margin-top:3px;
 }
 
+/* =========================================
+CHANGE 2
+WHITE BUT SUBTLE BASKET SEPARATOR
+========================================= */
+
 .basket-drawer-item-expand-strip {
 position:relative;
 width:100%;
@@ -964,8 +969,8 @@ display:flex;
 align-items:center;
 justify-content:center;
 border:0;
-border-top:1px solid rgba(255,255,255,.075);
-border-bottom:1px solid rgba(255,255,255,.075);
+border-top:1px solid rgba(255,255,255,.24);
+border-bottom:1px solid rgba(255,255,255,.24);
 background:#0a0b0b;
 color:#ffffff;
 cursor:pointer;
@@ -976,7 +981,7 @@ border-color .2s ease;
 
 .basket-drawer-item-expand-strip:hover {
 background:#101212;
-border-color:rgba(232,120,23,.25);
+border-color:rgba(255,255,255,.34);
 }
 
 .basket-drawer-item-expand-arrow {
@@ -5956,11 +5961,6 @@ transition:none !important;
 
 <body>
 
-<!-- =========================================
-ORDER PAGE CHANGE 2
-DESKTOP ACCESS BLOCKER
-========================================= -->
-
 <div
 class="desktop-access-blocker"
 id="desktopAccessBlocker"
@@ -5983,10 +5983,6 @@ Please visit Factory Toughened Rooflights using a mobile device.
 </div>
 
 </div>
-
-<!-- =========================================
-TOP MOVING BANNER
-========================================= -->
 
 <div class="top-banner">
 
@@ -6013,10 +6009,6 @@ TOP MOVING BANNER
 </div>
 
 </div>
-
-<!-- =========================================
-HEADER
-========================================= -->
 
 <header>
 
@@ -6128,10 +6120,6 @@ title="Menu"
 
 </header>
 
-<!-- =========================================
-MENU
-========================================= -->
-
 <div
 id="menuOverlay"
 class="menu-overlay"
@@ -6203,10 +6191,6 @@ Build A Rooflight
 </div>
 
 </div>
-
-<!-- =========================================
-BASKET DRAWER
-========================================= -->
 
 <div
 class="basket-drawer-layer"
@@ -6281,10 +6265,6 @@ id="basketDrawerFooter"
 </div>
 
 <main>
-
-<!-- =========================================
-ORDER CONFIGURATOR
-========================================= -->
 
 <section class="order-page">
 
@@ -6590,10 +6570,6 @@ data-border="150"
 
 </div>
 
-<!-- =========================================
-UNIT SUMMARY
-========================================= -->
-
 <div
 class="order-purchase-section"
 id="unitSummarySection"
@@ -6820,10 +6796,6 @@ aria-hidden="true"
 
 </div>
 
-<!-- =========================================
-ORDER SUMMARY
-========================================= -->
-
 <div
 class="order-purchase-section order-final-summary-section"
 id="orderSummarySection"
@@ -6884,10 +6856,6 @@ Checkout Now
 </div>
 
 </section>
-
-<!-- =========================================
-CUSTOM ROOFLIGHT SECTION
-========================================= -->
 
 <section
 class="engineered-visual-intro order-custom-rooflight-section"
@@ -7325,10 +7293,6 @@ Satin Tinted
 
 </div>
 
-<!-- =========================================
-CUSTOM UNIT SUMMARY
-========================================= -->
-
 <div
 class="order-purchase-section custom-unit-summary-section"
 id="customUnitSummarySection"
@@ -7553,10 +7517,6 @@ aria-hidden="true"
 </div>
 
 </div>
-
-<!-- =========================================
-CUSTOM ORDER SUMMARY
-========================================= -->
 
 <div
 class="order-purchase-section order-final-summary-section custom-order-final-summary-section"
@@ -11895,9 +11855,207 @@ additionalPrice
 }
 
 /* =========================================
+CHANGE 1
+CALCULATE A DELIVERY TOTAL FOR EACH
+POSSIBLE PHYSICAL BASE UNIT
+========================================= */
+
+function calculateDeliveryCombinationForBaseUnit(
+standardUnits,
+baseUnitIndex,
+chargeableMiles
+) {
+
+if (
+!Array.isArray(
+standardUnits
+) ||
+!standardUnits.length ||
+!Number.isInteger(
+baseUnitIndex
+) ||
+baseUnitIndex <
+0 ||
+baseUnitIndex >=
+standardUnits.length
+) {
+
+return null;
+
+}
+
+const baseUnit =
+standardUnits[
+baseUnitIndex
+];
+
+const baseCategory =
+normalizeDeliveryCategory(
+baseUnit?.category
+);
+
+if (
+!baseCategory
+) {
+
+return null;
+
+}
+
+const basePrice =
+getBaseDeliveryPrice(
+baseCategory,
+chargeableMiles
+);
+
+if (
+!Number.isFinite(
+basePrice
+)
+) {
+
+return null;
+
+}
+
+const additionalUnitsTotal =
+standardUnits.reduce(
+(
+total,
+unit,
+index
+) => {
+
+if (
+index ===
+baseUnitIndex
+) {
+
+return total;
+
+}
+
+return (
+total +
+getAdditionalUnitPriceForCategory(
+unit.category
+)
+);
+
+},
+0
+);
+
+return {
+
+baseUnitIndex:
+baseUnitIndex,
+
+baseCategory:
+baseCategory,
+
+basePrice:
+basePrice,
+
+additionalUnitsTotal:
+additionalUnitsTotal,
+
+price:
+basePrice +
+additionalUnitsTotal
+
+};
+
+}
+
+/* =========================================
+CHANGE 1
+ALWAYS SELECT THE MOST EXPENSIVE VALID
+DELIVERY COMBINATION ACROSS THE BASKET
+========================================= */
+
+function getMostExpensiveDeliveryCombination(
+standardUnits,
+chargeableMiles
+) {
+
+if (
+!Array.isArray(
+standardUnits
+) ||
+!standardUnits.length
+) {
+
+return null;
+
+}
+
+let mostExpensiveCombination =
+null;
+
+standardUnits.forEach(
+(
+unit,
+index
+) => {
+
+const combination =
+calculateDeliveryCombinationForBaseUnit(
+standardUnits,
+index,
+chargeableMiles
+);
+
+if (
+!combination
+) {
+
+return;
+
+}
+
+if (
+!mostExpensiveCombination ||
+combination.price >
+mostExpensiveCombination.price
+) {
+
+mostExpensiveCombination =
+combination;
+
+return;
+
+}
+
+/*
+If two combinations produce exactly the same total,
+prefer the higher base charge. If that also ties,
+the first physical unit remains the base unit.
+*/
+
+if (
+combination.price ===
+mostExpensiveCombination.price &&
+combination.basePrice >
+mostExpensiveCombination.basePrice
+) {
+
+mostExpensiveCombination =
+combination;
+
+}
+
+}
+);
+
+return mostExpensiveCombination;
+
+}
+
+/* =========================================
 COMPLETE-BASKET DELIVERY
-ONE BASE CHARGE + EACH REMAINING UNIT'S
-OWN CATEGORY-SPECIFIC ADDITIONAL RATE
+MOST EXPENSIVE VALID BASE/ADDITIONAL
+COMBINATION IS ALWAYS USED
 ========================================= */
 
 function calculateBasketDelivery(
@@ -11941,6 +12099,8 @@ safeAdjustedMiles,
 
 baseCategory:null,
 
+baseUnitIndex:null,
+
 basePrice:0,
 
 additionalUnitPrice:0,
@@ -11974,6 +12134,8 @@ safeAdjustedMiles,
 
 baseCategory:null,
 
+baseUnitIndex:null,
+
 additionalUnitPrice:null,
 
 reason:
@@ -11983,39 +12145,14 @@ reason:
 
 }
 
-let largestCategory =
-standardUnits[0].category;
-
-standardUnits.forEach(
-unit => {
-
-if (
-getDeliveryCategoryRank(
-unit.category
-) >
-getDeliveryCategoryRank(
-largestCategory
-)
-) {
-
-largestCategory =
-unit.category;
-
-}
-
-}
-);
-
-const basePrice =
-getBaseDeliveryPrice(
-largestCategory,
+const combination =
+getMostExpensiveDeliveryCombination(
+standardUnits,
 chargeableMiles
 );
 
 if (
-!Number.isFinite(
-basePrice
-)
+!combination
 ) {
 
 return {
@@ -12030,8 +12167,9 @@ chargeableMiles,
 adjustedMiles:
 safeAdjustedMiles,
 
-baseCategory:
-largestCategory,
+baseCategory:null,
+
+baseUnitIndex:null,
 
 additionalUnitPrice:null,
 
@@ -12042,52 +12180,12 @@ reason:
 
 }
 
-const baseUnitIndex =
-standardUnits.findIndex(
-unit =>
-normalizeDeliveryCategory(
-unit.category
-) ===
-normalizeDeliveryCategory(
-largestCategory
-)
-);
-
-const additionalUnitsTotal =
-standardUnits.reduce(
-(
-total,
-unit,
-index
-) => {
-
-if (
-index ===
-baseUnitIndex
-) {
-
-return total;
-
-}
-
-return (
-total +
-getAdditionalUnitPriceForCategory(
-unit.category
-)
-);
-
-},
-0
-);
-
 return {
 
 requiresQuote:false,
 
 price:
-basePrice +
-additionalUnitsTotal,
+combination.price,
 
 chargeableMiles:
 chargeableMiles,
@@ -12096,15 +12194,18 @@ adjustedMiles:
 safeAdjustedMiles,
 
 baseCategory:
-largestCategory,
+combination.baseCategory,
+
+baseUnitIndex:
+combination.baseUnitIndex,
 
 basePrice:
-basePrice,
+combination.basePrice,
 
 additionalUnitPrice:null,
 
 additionalUnitsTotal:
-additionalUnitsTotal,
+combination.additionalUnitsTotal,
 
 unitCount:
 standardUnits.length,
@@ -12118,8 +12219,9 @@ reason:null
 /* =========================================
 CHANGE 1
 PER-LINE DELIVERY CONTRIBUTION
-VISIBLE LINE CHARGES EXACTLY MATCH THE
-COMPLETE BASKET DELIVERY TOTAL
+USES THE SAME MOST-EXPENSIVE COMBINATION
+SO VISIBLE LINE CHARGES EXACTLY RECONCILE
+WITH THE BASKET DELIVERY TOTAL
 ========================================= */
 
 function getResolvedDeliveryContributionForItem(
@@ -12175,39 +12277,14 @@ return 0;
 
 }
 
-let largestCategory =
-standardUnits[0].category;
-
-standardUnits.forEach(
-unit => {
-
-if (
-getDeliveryCategoryRank(
-unit.category
-) >
-getDeliveryCategoryRank(
-largestCategory
-)
-) {
-
-largestCategory =
-unit.category;
-
-}
-
-}
-);
-
-const basePrice =
-getBaseDeliveryPrice(
-largestCategory,
+const combination =
+getMostExpensiveDeliveryCombination(
+standardUnits,
 chargeableMiles
 );
 
 if (
-!Number.isFinite(
-basePrice
-)
+!combination
 ) {
 
 return Number(
@@ -12216,92 +12293,45 @@ state.deliveryFee
 
 }
 
-let baseUnitAssigned =
-false;
-
-for (
-const item
-of state.orderItems
-) {
-
-const category =
-getDeliveryCategoryForItem(
-item
-);
-
-if (
-!category
-) {
-
-continue;
-
-}
-
-const quantity =
-Math.max(
-1,
-Math.min(
-999,
-Math.floor(
-Number(
-item?.quantity ??
-item?.qty
-) || 1
-)
-)
-);
-
-const additionalUnitPrice =
-getAdditionalUnitPriceForCategory(
-category
-);
-
-let lineDeliveryContribution =
+let contribution =
 0;
 
-if (
-!baseUnitAssigned &&
-category ===
-largestCategory
-) {
-
-baseUnitAssigned =
-true;
-
-lineDeliveryContribution =
-basePrice +
+standardUnits.forEach(
 (
-Math.max(
-0,
-quantity -
-1
-) *
-additionalUnitPrice
-);
-
-}
-else {
-
-lineDeliveryContribution =
-quantity *
-additionalUnitPrice;
-
-}
+unit,
+index
+) => {
 
 if (
-item ===
+unit.item !==
 targetItem
 ) {
 
-return lineDeliveryContribution;
+return;
 
 }
 
+if (
+index ===
+combination.baseUnitIndex
+) {
+
+contribution +=
+combination.basePrice;
+
+return;
+
 }
 
-return Number(
-state.deliveryFee
-) || 0;
+contribution +=
+getAdditionalUnitPriceForCategory(
+unit.category
+);
+
+}
+);
+
+return contribution;
 
 }
 
@@ -22287,8 +22317,21 @@ mixedDelivery
 
 }
 
-/* EXTRA LARGE + SMALL:
-£55 BASE + £15 SMALL ADDITIONAL = £70 */
+/*
+EXTRA LARGE + SMALL
+
+Option A:
+Extra Large base £55
++ Small additional £15
+= £70
+
+Option B:
+Small base £25
++ Extra Large additional £65
+= £90
+
+MOST EXPENSIVE = £90
+*/
 
 const mixedAdditionalRateDelivery =
 calculateBasketDelivery(
@@ -22307,23 +22350,37 @@ quantity:1
 
 if (
 mixedAdditionalRateDelivery.requiresQuote ||
+mixedAdditionalRateDelivery.baseCategory !==
+"small" ||
 mixedAdditionalRateDelivery.basePrice !==
-55 ||
+25 ||
 mixedAdditionalRateDelivery.additionalUnitsTotal !==
-15 ||
+65 ||
 mixedAdditionalRateDelivery.price !==
-70
+90
 ) {
 
 console.warn(
-"Category-specific mixed delivery validation failed:",
+"Most-expensive mixed delivery validation failed:",
 mixedAdditionalRateDelivery
 );
 
 }
 
-/* LARGE + SMALL + MEDIUM:
-£35 BASE + £15 + £15 = £65 */
+/*
+LARGE + SMALL + MEDIUM
+
+Large base:
+£35 + £15 + £15 = £65
+
+Small base:
+£25 + £25 + £15 = £65
+
+Medium base:
+£30 + £25 + £15 = £70
+
+MOST EXPENSIVE = £70
+*/
 
 const threeCategoryDelivery =
 calculateBasketDelivery(
@@ -22346,23 +22403,27 @@ quantity:1
 
 if (
 threeCategoryDelivery.requiresQuote ||
+threeCategoryDelivery.baseCategory !==
+"medium" ||
 threeCategoryDelivery.basePrice !==
-35 ||
-threeCategoryDelivery.additionalUnitsTotal !==
 30 ||
+threeCategoryDelivery.additionalUnitsTotal !==
+40 ||
 threeCategoryDelivery.price !==
-65
+70
 ) {
 
 console.warn(
-"Three-category delivery validation failed:",
+"Most-expensive three-category delivery validation failed:",
 threeCategoryDelivery
 );
 
 }
 
-/* THREE SMALL UNITS:
-£25 BASE + £15 + £15 = £55 */
+/*
+THREE SMALL UNITS:
+£25 BASE + £15 + £15 = £55
+*/
 
 const threeSmallUnitsDelivery =
 calculateBasketDelivery(
@@ -22388,6 +22449,52 @@ threeSmallUnitsDelivery.price !==
 console.warn(
 "Multiple-small-unit delivery validation failed:",
 threeSmallUnitsDelivery
+);
+
+}
+
+/*
+EXTRA LARGE + LARGE
+
+Extra Large base:
+£55 + £25 = £80
+
+Large base:
+£35 + £65 = £100
+
+MOST EXPENSIVE = £100
+*/
+
+const largeExtraLargeDelivery =
+calculateBasketDelivery(
+[
+{
+size:"1000x1500",
+quantity:1
+},
+{
+size:"1500x2500",
+quantity:1
+}
+],
+34
+);
+
+if (
+largeExtraLargeDelivery.requiresQuote ||
+largeExtraLargeDelivery.baseCategory !==
+"large" ||
+largeExtraLargeDelivery.basePrice !==
+35 ||
+largeExtraLargeDelivery.additionalUnitsTotal !==
+65 ||
+largeExtraLargeDelivery.price !==
+100
+) {
+
+console.warn(
+"Large/Extra-Large most-expensive delivery validation failed:",
+largeExtraLargeDelivery
 );
 
 }
