@@ -22826,6 +22826,1009 @@ console.warn(
 
 }
 
+/* =========================================
+CUSTOM ROOFLIGHT CALCULATOR PRICING
+PASTE IMMEDIATELY ABOVE: populateSizes();
+========================================= */
+
+/*
+AUTHORITATIVE TRIPLE GLAZED
+CLEAR / TOUGHENED / 100MM BORDER
+SOURCE PRICES.
+
+The four calculator-only anchor sizes:
+300x2000
+400x2000
+500x2000
+500x2500
+
+exist ONLY here and are NOT added to the
+standard-size dropdown.
+*/
+
+const CUSTOM_CALCULATOR_SOURCE_PRICES = {
+
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
+"300x2000":365,
+
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+"400x1800":375,
+"400x2000":395,
+
+"500x2000":425,
+"500x2500":455,
+
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+"600x1800":410,
+"600x2000":445,
+"600x2500":625,
+
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+"800x1800":460,
+"800x2000":515,
+"800x2500":655,
+
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+"1000x1800":585,
+"1000x2000":625,
+"1000x2500":770,
+
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
+
+};
+
+
+/* =========================================
+CUSTOM CALCULATOR LIMITS
+========================================= */
+
+const CUSTOM_CALCULATOR_MIN_WIDTH =
+290;
+
+const CUSTOM_CALCULATOR_MAX_WIDTH =
+1500;
+
+const CUSTOM_CALCULATOR_MIN_LENGTH =
+290;
+
+const CUSTOM_CALCULATOR_MAX_LENGTH =
+2500;
+
+/*
+Lengths OVER 2000mm require
+a minimum width of 500mm.
+*/
+
+const CUSTOM_CALCULATOR_LONG_LENGTH =
+2000;
+
+const CUSTOM_CALCULATOR_LONG_MIN_WIDTH =
+500;
+
+
+/* =========================================
+CUSTOM CALCULATOR PRICE UPLIFTS
+
+1. Every custom calculator price = +5%.
+
+2. A further +5% applies where:
+width = 290mm to 500mm inclusive
+AND
+length = 2000mm or more.
+========================================= */
+
+const CUSTOM_CALCULATOR_BASE_UPLIFT =
+1.05;
+
+const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
+1.05;
+
+
+/* =========================================
+PREPARE PRICING ANCHOR POINTS
+========================================= */
+
+const CUSTOM_CALCULATOR_PRICE_POINTS =
+Object.entries(
+CUSTOM_CALCULATOR_SOURCE_PRICES
+)
+.map(
+(
+[
+size,
+price
+]
+) => {
+
+const [
+width,
+length
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+return {
+
+width:
+width,
+
+length:
+length,
+
+price:
+Number(
+price
+)
+
+};
+
+}
+);
+
+
+/* =========================================
+CUSTOM DIMENSION VALIDATION
+========================================= */
+
+function customInputsAreValid() {
+
+const width =
+Number(
+customState.width
+);
+
+const length =
+Number(
+customState.length
+);
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+)
+) {
+
+return false;
+
+}
+
+if (
+width <
+CUSTOM_CALCULATOR_MIN_WIDTH ||
+width >
+CUSTOM_CALCULATOR_MAX_WIDTH
+) {
+
+return false;
+
+}
+
+if (
+length <
+CUSTOM_CALCULATOR_MIN_LENGTH ||
+length >
+CUSTOM_CALCULATOR_MAX_LENGTH
+) {
+
+return false;
+
+}
+
+/*
+IMPORTANT:
+
+Length can be exactly 2000mm at widths below 500mm.
+
+Only lengths GREATER than 2000mm require
+a minimum width of 500mm.
+*/
+
+if (
+length >
+CUSTOM_CALCULATOR_LONG_LENGTH &&
+width <
+CUSTOM_CALCULATOR_LONG_MIN_WIDTH
+) {
+
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* =========================================
+CALCULATOR SOURCE PRICE INTERPOLATION
+
+Exact supplied sizes always use their exact
+authoritative anchor price.
+
+Sizes between anchors are calculated from
+the surrounding/nearest pricing points.
+========================================= */
+
+function getInterpolatedCustomSourcePrice(
+width,
+length
+) {
+
+const safeWidth =
+Number(
+width
+);
+
+const safeLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+safeWidth
+) ||
+!Number.isFinite(
+safeLength
+)
+) {
+
+return null;
+
+}
+
+
+/*
+Always protect exact anchor prices first.
+*/
+
+const exactSize =
+`${safeWidth}x${safeLength}`;
+
+if (
+Object.prototype.hasOwnProperty.call(
+CUSTOM_CALCULATOR_SOURCE_PRICES,
+exactSize
+)
+) {
+
+return Number(
+CUSTOM_CALCULATOR_SOURCE_PRICES[
+exactSize
+]
+);
+
+}
+
+
+/*
+Use the nearest six established pricing
+anchors for an arbitrary custom dimension.
+
+Distances are normalised against the overall
+calculator width/length ranges so width and
+length both influence the interpolation.
+*/
+
+const widthRange =
+CUSTOM_CALCULATOR_MAX_WIDTH -
+CUSTOM_CALCULATOR_MIN_WIDTH;
+
+const lengthRange =
+CUSTOM_CALCULATOR_MAX_LENGTH -
+CUSTOM_CALCULATOR_MIN_LENGTH;
+
+const nearestPoints =
+CUSTOM_CALCULATOR_PRICE_POINTS
+.map(
+point => {
+
+const widthDifference =
+(
+safeWidth -
+point.width
+) /
+widthRange;
+
+const lengthDifference =
+(
+safeLength -
+point.length
+) /
+lengthRange;
+
+const distanceSquared =
+(
+widthDifference *
+widthDifference
+) +
+(
+lengthDifference *
+lengthDifference
+);
+
+return {
+
+...point,
+
+distanceSquared:
+distanceSquared
+
+};
+
+}
+)
+.sort(
+(
+first,
+second
+) => {
+
+return (
+first.distanceSquared -
+second.distanceSquared
+);
+
+}
+)
+.slice(
+0,
+6
+);
+
+
+let weightedPrice =
+0;
+
+let totalWeight =
+0;
+
+nearestPoints.forEach(
+point => {
+
+const weight =
+1 /
+Math.max(
+0.000001,
+point.distanceSquared
+);
+
+weightedPrice +=
+point.price *
+weight;
+
+totalWeight +=
+weight;
+
+}
+);
+
+
+if (
+!Number.isFinite(
+weightedPrice
+) ||
+!Number.isFinite(
+totalWeight
+) ||
+totalWeight <=
+0
+) {
+
+return null;
+
+}
+
+return (
+weightedPrice /
+totalWeight
+);
+
+}
+
+
+/* =========================================
+APPLY CUSTOM CALCULATOR UPLIFTS
+========================================= */
+
+function getCustomTripleClearToughened100Price(
+width,
+length
+) {
+
+let price =
+getInterpolatedCustomSourcePrice(
+width,
+length
+);
+
+if (
+!Number.isFinite(
+price
+) ||
+price <=
+0
+) {
+
+return null;
+
+}
+
+
+/*
+ALL custom calculator prices +5%.
+*/
+
+price *=
+CUSTOM_CALCULATOR_BASE_UPLIFT;
+
+
+/*
+Further +5%:
+
+Width 290mm - 500mm inclusive
+AND
+Length 2000mm or greater.
+*/
+
+if (
+Number(
+width
+) >=
+290 &&
+Number(
+width
+) <=
+500 &&
+Number(
+length
+) >=
+2000
+) {
+
+price *=
+CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT;
+
+}
+
+return price;
+
+}
+
+
+/* =========================================
+FINAL CONFIGURED CUSTOM PRICE
+
+Uses the SAME existing Order Page adjustments:
+
+Triple = base
+Double = -17%
+
+Toughened = base
+Laminated = +20%
+
+Clear = base
+Grey = +22%
+Satin = +25%
+Blue = +30%
+
+100mm = base
+125mm = +7%
+150mm = +15%
+
+Final result rounded to nearest £5.
+========================================= */
+
+function selectedCustomPrice() {
+
+if (
+!customInputsAreValid()
+) {
+
+return null;
+
+}
+
+const tripleClearToughened100Price =
+getCustomTripleClearToughened100Price(
+customState.width,
+customState.length
+);
+
+if (
+!Number.isFinite(
+tripleClearToughened100Price
+) ||
+tripleClearToughened100Price <=
+0
+) {
+
+return null;
+
+}
+
+return calculateConfiguredPrice(
+tripleClearToughened100Price,
+customState.glazing,
+customState.type,
+customState.tint,
+customState.border
+);
+
+}
+
+
+/* =========================================
+CUSTOM CALCULATOR PRICE DISPLAY
+
+Overrides the current temporary blank-price
+version of updateCustomConfiguratorUI().
+========================================= */
+
+function updateCustomConfiguratorUI() {
+
+const valid =
+customInputsAreValid();
+
+const unitPrice =
+valid
+?
+selectedCustomPrice()
+:
+null;
+
+const hasPrice =
+valid &&
+Number.isFinite(
+Number(
+unitPrice
+)
+) &&
+Number(
+unitPrice
+) >
+0;
+
+
+/*
+No popup/error message for rejected dimensions.
+*/
+
+customInternalWidth.classList.remove(
+"is-invalid"
+);
+
+customInternalLength.classList.remove(
+"is-invalid"
+);
+
+customInternalWidth.setAttribute(
+"aria-invalid",
+"false"
+);
+
+customInternalLength.setAttribute(
+"aria-invalid",
+"false"
+);
+
+
+customPurchaseLayout.classList.toggle(
+"is-incomplete",
+!hasPrice
+);
+
+requestCustomSummaryColumnSync();
+
+
+customPriceZone.hidden =
+!hasPrice;
+
+customDimensionsZone.hidden =
+!hasPrice;
+
+
+customQuantityValue.textContent =
+customState.quantity;
+
+customQuantityUnitLabel.textContent =
+customState.quantity ===
+1
+?
+"Unit"
+:
+"Units";
+
+
+customQuantityMinus.disabled =
+customState.quantity <=
+1;
+
+customQuantityMinus.style.opacity =
+customState.quantity <=
+1
+?
+".36"
+:
+"1";
+
+
+customAddToOrderText.textContent =
+`Add ${customState.quantity} To Order`;
+
+
+/*
+PRICING ONLY STAGE:
+
+Keep Add To Order disabled until we add
+the calculator delivery/basket logic next.
+
+This prevents a custom rooflight entering
+the basket before its delivery category
+has been calculated correctly.
+*/
+
+customAddToOrder.disabled =
+true;
+
+
+if (
+!hasPrice
+) {
+
+clearCustomPriceDisplay();
+
+return;
+
+}
+
+
+/* =========================================
+DIMENSIONS
+========================================= */
+
+customInternalSize.textContent =
+formatCustomDimension(
+customState.width,
+customState.length
+);
+
+
+const external =
+getExternalDimensionsFor(
+`${customState.width}x${customState.length}`,
+customState.border
+);
+
+
+customExternalSize.textContent =
+formatCustomDimension(
+external.width,
+external.length
+);
+
+
+/* =========================================
+UNIT PRICE DISPLAY
+========================================= */
+
+const unitPriceParts =
+moneyParts(
+unitPrice
+);
+
+
+customPriceWhole.textContent =
+unitPriceParts.whole;
+
+customPricePence.textContent =
+unitPriceParts.pence;
+
+
+const customUnitPriceLineElement =
+document.getElementById(
+"customUnitPriceLine"
+);
+
+
+if (
+customUnitPriceLineElement
+) {
+
+customUnitPriceLineElement.style.visibility =
+"visible";
+
+const pound =
+customUnitPriceLineElement.querySelector(
+".price-pound"
+);
+
+const dot =
+customUnitPriceLineElement.querySelector(
+".price-dot"
+);
+
+if (
+pound
+) {
+
+pound.textContent =
+"£";
+
+}
+
+if (
+dot
+) {
+
+dot.textContent =
+".";
+
+}
+
+}
+
+
+customVatLine.textContent =
+"inc. vat";
+
+customVatLine.style.visibility =
+"visible";
+
+
+/* =========================================
+QUANTITY TOTAL
+========================================= */
+
+if (
+customState.quantity >
+1
+) {
+
+const totalPrice =
+unitPrice *
+customState.quantity;
+
+const totalPriceParts =
+moneyParts(
+totalPrice
+);
+
+
+customTotalPriceWhole.textContent =
+totalPriceParts.whole;
+
+customTotalPricePence.textContent =
+totalPriceParts.pence;
+
+
+const totalPound =
+customTotalPriceBlock.querySelector(
+".total-price-pound"
+);
+
+const totalDot =
+customTotalPriceBlock.querySelector(
+".price-dot"
+);
+
+
+if (
+totalPound
+) {
+
+totalPound.textContent =
+"£";
+
+}
+
+if (
+totalDot
+) {
+
+totalDot.textContent =
+".";
+
+}
+
+
+customTotalPriceBlock.style.visibility =
+"visible";
+
+customTotalPriceBlock.hidden =
+false;
+
+customTotalPriceBlock.setAttribute(
+"aria-hidden",
+"false"
+);
+
+customTotalPriceBlock.classList.add(
+"is-visible"
+);
+
+
+/*
+Match the standard summary layout:
+VAT line sits beneath the total when quantity > 1.
+*/
+
+if (
+customVatLine.parentElement !==
+customTotalPriceBlock
+) {
+
+customTotalPriceBlock.appendChild(
+customVatLine
+);
+
+}
+
+}
+else {
+
+customTotalPriceBlock.classList.remove(
+"is-visible"
+);
+
+customTotalPriceBlock.hidden =
+true;
+
+customTotalPriceBlock.setAttribute(
+"aria-hidden",
+"true"
+);
+
+
+/*
+VAT goes back beneath Unit Price for quantity 1.
+*/
+
+if (
+customVatLine.parentElement !==
+customUnitPriceBlock
+) {
+
+customUnitPriceBlock.appendChild(
+customVatLine
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================
+CALCULATOR PRICE CHECKS
+========================================= */
+
+function validateCustomCalculatorPricing() {
+
+const tests = [
+
+{
+width:300,
+length:800,
+expected:225
+},
+
+{
+width:300,
+length:2000,
+expected:400
+},
+
+{
+width:400,
+length:2000,
+expected:435
+},
+
+{
+width:500,
+length:2000,
+expected:470
+},
+
+{
+width:500,
+length:2500,
+expected:500
+},
+
+{
+width:600,
+length:900,
+expected:285
+},
+
+{
+width:1000,
+length:1000,
+expected:355
+}
+
+];
+
+
+tests.forEach(
+test => {
+
+const result =
+calculateConfiguredPrice(
+getCustomTripleClearToughened100Price(
+test.width,
+test.length
+),
+"triple",
+"toughened",
+"clear",
+100
+);
+
+if (
+result !==
+test.expected
+) {
+
+console.warn(
+"Custom calculator price check failed:",
+test,
+result
+);
+
+}
+
+}
+);
+
+
+/*
+Dimension-rule checks.
+*/
+
+if (
+!customInputsAreValid
+) {
+
+console.warn(
+"Custom calculator validation unavailable."
+);
+
+}
+
+}
+
+
+validateCustomCalculatorPricing();
+
 populateSizes();
 
 validatePricingConfiguration();
