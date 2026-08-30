@@ -2397,8 +2397,8 @@ transform:scale(.97);
 
 /* =========================================
 CHANGE 1
-DELIVERY POSTCODE + INLINE DELIVERY PRICE
-SLIGHTLY WIDER THAN QUANTITY + REMOVE GROUP
+DELIVERY POSTCODE / DELIVERY RESULT
+MATCHES QUANTITY + REMOVE WIDTH
 ========================================= */
 
 .order-summary-delivery {
@@ -2411,7 +2411,7 @@ max-width:100%;
 .order-summary-delivery-entry {
 width:min(
 100%,
-var(--order-line-controls-width,470px)
+var(--order-line-controls-width,430px)
 );
 max-width:100%;
 min-width:0;
@@ -2428,7 +2428,7 @@ max-width:100%;
 display:block;
 width:100%;
 height:52px;
-padding:0 104px 0 15px;
+padding:0 15px;
 border:1px solid rgba(255,255,255,.17);
 border-radius:14px;
 outline:0;
@@ -2452,6 +2452,10 @@ transition:
 border-color .2s ease,
 background .2s ease,
 box-shadow .2s ease;
+}
+
+.order-summary-postcode.is-resolved-hidden {
+display:none;
 }
 
 .order-summary-postcode::placeholder {
@@ -2484,13 +2488,19 @@ box-shadow:
 }
 
 .order-summary-delivery-inline-price {
-position:absolute;
-right:15px;
-top:50%;
-z-index:2;
-display:block;
-max-width:58%;
-overflow:hidden;
+width:100%;
+height:52px;
+margin:0;
+padding:0 15px;
+border:1px solid rgba(255,255,255,.17);
+border-radius:14px;
+outline:0;
+background:
+linear-gradient(
+180deg,
+#121414,
+#0a0c0c
+);
 color:var(--orange-bright);
 font-family:
 "Bahnschrift",
@@ -2503,20 +2513,31 @@ line-height:1;
 letter-spacing:-.15px;
 text-align:right;
 white-space:nowrap;
-text-overflow:ellipsis;
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-transform:translateY(-50%);
+display:none;
+align-items:center;
+justify-content:flex-end;
+cursor:text;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.015);
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
+}
+
+.order-summary-delivery-inline-price:hover,
+.order-summary-delivery-inline-price:focus-visible {
+border-color:rgba(232,120,23,.52);
+background:#0e1010;
+box-shadow:
+0 0 0 1px rgba(232,120,23,.035);
 }
 
 .order-summary-delivery-inline-price.is-resolved {
-opacity:1;
-visibility:visible;
+display:flex;
 }
 
 .order-summary-delivery-inline-price.is-quote-required {
-max-width:60%;
 font-family:
 "Bahnschrift",
 "Aptos",
@@ -2541,21 +2562,21 @@ both;
 0% {
 opacity:0;
 transform:
-translateY(-38%)
-scale(.92);
+translateY(7px)
+scale(.96);
 }
 
 55% {
 opacity:1;
 transform:
-translateY(-54%)
-scale(1.025);
+translateY(-1px)
+scale(1.015);
 }
 
 100% {
 opacity:1;
 transform:
-translateY(-50%)
+translateY(0)
 scale(1);
 }
 
@@ -3621,6 +3642,101 @@ line-height:1.65;
 
 
 /* =========================================
+SIMPLE ORDER PAGE FOOTER
+========================================= */
+
+.order-simple-footer {
+position:relative;
+width:100%;
+padding:
+clamp(28px,3.4vw,42px)
+6%;
+background:#090a0a;
+border-top:1px solid rgba(255,255,255,.10);
+}
+
+.order-simple-footer-inner {
+width:100%;
+max-width:1180px;
+margin:0 auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:36px;
+}
+
+.order-simple-footer-logo {
+display:block;
+width:max-content;
+max-width:52%;
+color:inherit;
+text-decoration:none;
+}
+
+.order-simple-footer-wordmark {
+width:max-content;
+max-width:100%;
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+font-size:clamp(17px,1.9vw,24px);
+font-weight:850;
+line-height:.91;
+letter-spacing:2.5px;
+text-transform:uppercase;
+color:#f1f0e9;
+}
+
+.order-simple-footer-wordmark > span {
+display:block;
+color:#c6cbc8;
+}
+
+.order-simple-footer-wordmark-bottom {
+display:flex;
+align-items:flex-end;
+width:max-content;
+max-width:100%;
+white-space:nowrap;
+color:#f1f0e9;
+}
+
+.order-simple-footer-domain {
+margin-left:1px;
+padding-bottom:2px;
+font-size:.40em;
+font-weight:700;
+line-height:1;
+letter-spacing:.15px;
+text-transform:lowercase;
+color:#9da39f;
+}
+
+.order-simple-footer-address {
+margin:0;
+font-style:normal;
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:11px;
+font-weight:600;
+line-height:1.55;
+letter-spacing:.55px;
+text-align:right;
+text-transform:uppercase;
+color:rgba(247,247,243,.62);
+}
+
+
+/* =========================================
 TABLET
 ========================================= */
 
@@ -4113,23 +4229,23 @@ var(--order-line-controls-width,275px)
 
 .order-summary-postcode {
 height:39px;
-padding:0 66px 0 9px;
+padding:0 9px;
 border-radius:10px;
 font-size:8.8px;
 letter-spacing:.35px;
 }
 
 .order-summary-delivery-inline-price {
-right:9px;
+height:39px;
+padding:0 9px;
+border-radius:10px;
 font-size:8.8px;
-max-width:52%;
 }
 
 .order-summary-delivery-inline-price.is-quote-required {
-max-width:57%;
 font-size:6.2px;
 line-height:1.05;
-white-space:normal;
+white-space:nowrap;
 }
 
 .order-summary-line-total {
@@ -4399,7 +4515,7 @@ width:20px;
 
 
 /* =========================================
-MOBILE HEADER
+MOBILE HEADER / FOOTER
 ========================================= */
 
 @media(max-width:560px) {
@@ -4482,6 +4598,25 @@ font-size:20.7px;
 padding:0 2.5%;
 }
 
+.order-simple-footer {
+padding:25px 5.5%;
+}
+
+.order-simple-footer-inner {
+gap:18px;
+}
+
+.order-simple-footer-wordmark {
+font-size:15px;
+letter-spacing:1.55px;
+}
+
+.order-simple-footer-address {
+font-size:7.6px;
+line-height:1.55;
+letter-spacing:.34px;
+}
+
 }
 
 
@@ -4557,11 +4692,13 @@ var(--order-line-controls-width,250px)
 }
 
 .order-summary-postcode {
-padding-right:62px;
+padding-left:8px;
+padding-right:8px;
 }
 
 .order-summary-delivery-inline-price {
-right:8px;
+padding-left:8px;
+padding-right:8px;
 font-size:8.5px;
 }
 
@@ -4619,6 +4756,25 @@ font-size:clamp(25.5px,7.395vw,34px);
 .order-custom-input,
 .custom-build-dropdown-trigger {
 height:46px;
+}
+
+.order-simple-footer {
+padding-left:5%;
+padding-right:5%;
+}
+
+.order-simple-footer-inner {
+gap:12px;
+}
+
+.order-simple-footer-wordmark {
+font-size:13.4px;
+letter-spacing:1.35px;
+}
+
+.order-simple-footer-address {
+font-size:6.7px;
+letter-spacing:.26px;
 }
 
 }
@@ -4679,9 +4835,7 @@ transform:none !important;
 }
 
 .order-summary-delivery-inline-price.is-resolved {
-opacity:1 !important;
-visibility:visible !important;
-transform:translateY(-50%) !important;
+transform:none !important;
 }
 
 .size-dropdown-panel,
@@ -6293,7 +6447,8 @@ aria-label="Decrease custom rooflight quantity"
 </button>
 
 
-<div class="quantity-display"
+<div
+class="quantity-display"
 aria-live="polite"
 >
 
@@ -6499,6 +6654,57 @@ Ts &amp; Cs
 
 
 </main>
+
+
+<!-- =========================================
+SIMPLE ORDER PAGE FOOTER
+========================================= -->
+
+<footer class="order-simple-footer">
+
+<div class="order-simple-footer-inner">
+
+<a
+href="index.html"
+class="order-simple-footer-logo"
+aria-label="Factory Toughened Rooflights homepage"
+>
+
+<div class="order-simple-footer-wordmark">
+
+Factory
+
+<span>
+Toughened
+</span>
+
+<div class="order-simple-footer-wordmark-bottom">
+
+Rooflights
+
+<small class="order-simple-footer-domain">
+.co.uk
+</small>
+
+</div>
+
+</div>
+
+</a>
+
+
+<address class="order-simple-footer-address">
+
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
+
+</address>
+
+</div>
+
+</footer>
 
 
 <script>
@@ -8078,7 +8284,7 @@ syncCustomSummaryPriceColumn();
 
 /* =========================================
 CHANGE 1
-SLIGHTLY WIDEN DELIVERY FIELD BEYOND
+MATCH DELIVERY FIELD EXACTLY TO
 QUANTITY + REMOVE CONTROL GROUP
 ========================================= */
 
@@ -8126,22 +8332,11 @@ const sectionRect =
 section.getBoundingClientRect();
 
 const measuredWidth =
-removeRect.right -
-quantityRect.left;
-
-const extraWidth =
-Math.min(
-40,
 Math.max(
-18,
-measuredWidth *
-.10
-)
+0,
+removeRect.right -
+quantityRect.left
 );
-
-const desiredWidth =
-measuredWidth +
-extraWidth;
 
 const availableWidth =
 Math.max(
@@ -8152,7 +8347,7 @@ quantityRect.left
 
 const usableWidth =
 Math.min(
-desiredWidth,
+measuredWidth,
 availableWidth
 );
 
@@ -10575,12 +10770,6 @@ items
 );
 
 
-/*
-No standard-size units means delivery is
-temporarily resolved at £0 for custom items.
-Custom items cannot cause quotation status.
-*/
-
 if (
 !standardUnits.length
 ) {
@@ -10611,11 +10800,6 @@ reason:null
 
 }
 
-
-/*
-The 250-mile limit still applies normally when
-the basket contains standard-size rooflights.
-*/
 
 if (
 chargeableMiles >
@@ -11375,11 +11559,14 @@ if (
 ) {
 
 return `
-<span
+<button
+type="button"
 class="order-summary-delivery-inline-price"
 data-delivery-inline-price
+data-delivery-result-box
 aria-hidden="true"
-></span>
+tabindex="-1"
+></button>
 `;
 
 }
@@ -11390,30 +11577,40 @@ deliveryDisplay.requiresQuote
 ) {
 
 return `
-<span
+<button
+type="button"
 class="order-summary-delivery-inline-price is-resolved is-quote-required"
 data-delivery-inline-price
-aria-hidden="true"
+data-delivery-result-box
+aria-hidden="false"
+aria-label="Delivery quotation required. Select to change postcode."
 >
 Delivery Quotation Required
-</span>
+</button>
 `;
 
 }
 
 
-return `
-<span
-class="order-summary-delivery-inline-price is-resolved"
-data-delivery-inline-price
-aria-hidden="true"
->
-+${escapeHTML(
+const formattedFee =
 formatMoney(
 deliveryDisplay.fee
-)
+);
+
+
+return `
+<button
+type="button"
+class="order-summary-delivery-inline-price is-resolved"
+data-delivery-inline-price
+data-delivery-result-box
+aria-hidden="false"
+aria-label="Delivery charge ${escapeHTML(formattedFee)}. Select to change postcode."
+>
++${escapeHTML(
+formattedFee
 )}
-</span>
+</button>
 `;
 
 }
@@ -11441,6 +11638,13 @@ getDeliveryDisplayForItem(
 item
 );
 
+const resolvedInputClass =
+deliveryDisplay.resolved
+?
+" is-resolved-hidden"
+:
+"";
+
 return `
 <div class="order-summary-delivery">
 
@@ -11450,7 +11654,7 @@ return `
 
 <input
 type="text"
-class="order-summary-postcode"
+class="order-summary-postcode${resolvedInputClass}"
 data-delivery-postcode-input
 data-delivery-kind="${escapeHTML(kind)}"
 data-delivery-index="${escapeHTML(index)}"
@@ -11483,6 +11687,21 @@ function clearDeliveryOutputVisuals() {
 
 document
 .querySelectorAll(
+"[data-delivery-postcode-input]"
+)
+.forEach(
+input => {
+
+input.classList.remove(
+"is-resolved-hidden"
+);
+
+}
+);
+
+
+document
+.querySelectorAll(
 "[data-delivery-inline-price]"
 )
 .forEach(
@@ -11496,6 +11715,16 @@ output.classList.remove(
 
 output.textContent =
 "";
+
+output.setAttribute(
+"aria-hidden",
+"true"
+);
+
+output.setAttribute(
+"tabindex",
+"-1"
+);
 
 }
 );
@@ -11521,7 +11750,8 @@ postcode || ""
 .toUpperCase();
 
 input.classList.remove(
-"is-invalid"
+"is-invalid",
+"is-resolved-hidden"
 );
 
 }
@@ -11540,6 +11770,10 @@ document
 )
 .forEach(
 input => {
+
+input.classList.remove(
+"is-resolved-hidden"
+);
 
 input.classList.add(
 "is-invalid"
@@ -12770,11 +13004,6 @@ state
 
 /* =========================================
 CUSTOM PRODUCT PRICE RESET
-
-NO INTERPOLATION.
-NO PREMIUM.
-NO CONFIGURATION UPLIFTS.
-NO ZERO-PRICE FALLBACK.
 ========================================= */
 
 function customInputsAreValid() {
@@ -13511,13 +13740,6 @@ customPriceZone.hidden =
 
 customDimensionsZone.hidden =
 !valid;
-
-
-/*
-Custom calculator pricing is intentionally blank.
-The custom item cannot be added until a new
-pricing system is supplied.
-*/
 
 customAddToOrder.disabled =
 true;
@@ -14781,14 +15003,6 @@ typeof item !==
 return null;
 
 }
-
-
-/*
-Old Order Page custom-calculator items used the
-retired interpolation system and are not restored.
-This prevents stale calculator prices remaining
-purchasable after the reset.
-*/
 
 if (
 String(
@@ -16830,8 +17044,111 @@ index,
 
 
 /* =========================================
-POSTCODE INPUT EVENTS
+POSTCODE INPUT / RESULT EVENTS
 ========================================= */
+
+function reopenDeliveryPostcodeInput(
+resultBox
+) {
+
+if (
+!resultBox
+) {
+
+return;
+
+}
+
+const entry =
+resultBox.closest(
+".order-summary-delivery-entry"
+);
+
+clearDeliveryOutputVisuals();
+
+const input =
+entry?.querySelector(
+"[data-delivery-postcode-input]"
+);
+
+if (
+input
+) {
+
+window.requestAnimationFrame(
+() => {
+
+input.focus();
+
+input.select();
+
+}
+);
+
+}
+
+}
+
+
+document.addEventListener(
+"click",
+event => {
+
+const resultBox =
+event.target.closest(
+"[data-delivery-result-box].is-resolved"
+);
+
+if (
+!resultBox
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+reopenDeliveryPostcodeInput(
+resultBox
+);
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+const resultBox =
+event.target.closest(
+"[data-delivery-result-box].is-resolved"
+);
+
+if (
+!resultBox ||
+!(
+event.key ===
+"Enter" ||
+event.key ===
+" "
+)
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+reopenDeliveryPostcodeInput(
+resultBox
+);
+
+}
+);
+
 
 document.addEventListener(
 "input",
@@ -16877,7 +17194,8 @@ otherInput.value =
 input.value;
 
 otherInput.classList.remove(
-"is-invalid"
+"is-invalid",
+"is-resolved-hidden"
 );
 
 }
@@ -18073,9 +18391,6 @@ addCurrentSelectionToOrder
 
 /* =========================================
 CUSTOM ADD-TO-ORDER
-
-INTENTIONALLY DISABLED UNTIL NEW CUSTOM
-PRODUCT PRICING IS SUPPLIED.
 ========================================= */
 
 function addCurrentCustomSelectionToOrder() {
@@ -18871,12 +19186,6 @@ unmappedSelectableSizes
 }
 
 
-/*
-Custom-only delivery must resolve to zero and
-must never require quotation merely because
-the custom size has no standard category.
-*/
-
 const customOnlyDelivery =
 calculateBasketDelivery(
 [
@@ -18906,10 +19215,6 @@ customOnlyDelivery
 
 }
 
-
-/*
-Mixed order ignores custom units.
-*/
 
 const mixedDelivery =
 calculateBasketDelivery(
@@ -18944,10 +19249,6 @@ mixedDelivery
 
 }
 
-
-/*
-Standard delivery boundary validation.
-*/
 
 const boundaryChecks = [
 
