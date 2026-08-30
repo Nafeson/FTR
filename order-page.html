@@ -954,11 +954,6 @@ display:block;
 margin-top:3px;
 }
 
-/* =========================================
-CHANGE 2
-WHITE BUT SUBTLE BASKET SEPARATOR
-========================================= */
-
 .basket-drawer-item-expand-strip {
 position:relative;
 width:100%;
@@ -1334,12 +1329,6 @@ margin-top:9px;
 padding-top:9px;
 border-top:1px solid rgba(255,255,255,.08);
 }
-
-/* =========================================
-CHANGE 4
-BASKET ESTIMATED DELIVERY
-SECOND ROW IN EXISTING DELIVERY RESULT AREA
-========================================= */
 
 .basket-drawer-estimated-delivery-row {
 display:grid;
@@ -8303,6 +8292,10 @@ image:"narrow-long-rectangle.png"
 image:"narrow-long-rectangle.png"
 },
 
+"400x1800":{
+image:"narrow-long-rectangle.png"
+},
+
 "600x600":{
 image:"small-square.png"
 },
@@ -8319,8 +8312,16 @@ image:"large-rectangle.png"
 image:"large-rectangle.png"
 },
 
+"600x1800":{
+image:"large-rectangle.png"
+},
+
 "600x2000":{
 image:"large-rectangle.png"
+},
+
+"600x2500":{
+image:"jumbo.png"
 },
 
 "800x800":{
@@ -8339,8 +8340,16 @@ image:"medium-square.png"
 image:"large-rectangle.png"
 },
 
+"800x1800":{
+image:"large-rectangle.png"
+},
+
 "800x2000":{
 image:"large-rectangle.png"
+},
+
+"800x2500":{
+image:"jumbo.png"
 },
 
 "1000x1000":{
@@ -8352,6 +8361,10 @@ image:"medium-square.png"
 },
 
 "1000x1500":{
+image:"large-rectangle.png"
+},
+
+"1000x1800":{
 image:"large-rectangle.png"
 },
 
@@ -8396,22 +8409,28 @@ const SIZE_DROPDOWN_ORDER = [
 "400x1000",
 "400x1200",
 "400x1500",
+"400x1800",
 
 "600x600",
 "600x900",
 "600x1200",
 "600x1500",
+"600x1800",
 "600x2000",
+"600x2500",
 
 "800x800",
 "800x1000",
 "800x1200",
 "800x1500",
+"800x1800",
 "800x2000",
+"800x2500",
 
 "1000x1000",
 "1000x1200",
 "1000x1500",
+"1000x1800",
 "1000x2000",
 "1000x2500",
 
@@ -8456,22 +8475,28 @@ tripleClearToughened100:{
 "400x1000":265,
 "400x1200":315,
 "400x1500":335,
+"400x1800":375,
 
 "600x600":200,
 "600x900":270,
 "600x1200":365,
 "600x1500":395,
+"600x1800":410,
 "600x2000":445,
+"600x2500":625,
 
 "800x800":325,
 "800x1000":375,
 "800x1200":400,
 "800x1500":445,
+"800x1800":460,
 "800x2000":515,
+"800x2500":655,
 
 "1000x1000":340,
 "1000x1200":415,
 "1000x1500":475,
+"1000x1800":585,
 "1000x2000":625,
 "1000x2500":770,
 
@@ -10203,6 +10228,23 @@ state.border
 
 }
 
+/* =========================================
+TOP-PANE THICKNESS
+
+DOUBLE:
+BASED ON EXTERNAL TOP-PANE AREA
+< 1.70m² = 6mm
+>= 1.70m² = 8mm
+
+TRIPLE:
+6mm AS STANDARD
+8mm FROM THE 2.50m² INTERNAL LARGE-RANGE
+THRESHOLD, BEGINNING AT 1000 × 2500 AND
+APPLICABLE LARGER STANDARD SIZES.
+
+THE SAME RULE APPLIES TO BLUE TINT.
+========================================= */
+
 function getTopGlassLabelFor(
 size,
 border,
@@ -10215,10 +10257,31 @@ size,
 border
 );
 
-const area =
+const externalArea =
 (
 dimensions.width *
 dimensions.length
+) /
+1000000;
+
+const [
+internalWidth,
+internalLength
+] =
+String(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const internalArea =
+(
+internalWidth *
+internalLength
 ) /
 1000000;
 
@@ -10228,7 +10291,7 @@ glazing ===
 ) {
 
 if (
-area >=
+externalArea >=
 1.70
 ) {
 
@@ -10241,8 +10304,8 @@ return "6mm Toughened Safety Glass";
 }
 
 if (
-area >
-2.00
+internalArea >=
+2.50
 ) {
 
 return "8mm Toughened Safety Glass";
@@ -11824,11 +11887,6 @@ return null;
 
 }
 
-/* =========================================
-CHANGE 1
-CATEGORY-SPECIFIC ADDITIONAL UNIT PRICE
-========================================= */
-
 function getAdditionalUnitPriceForCategory(
 category
 ) {
@@ -11857,12 +11915,6 @@ additionalPrice
 0;
 
 }
-
-/* =========================================
-CHANGE 1
-CALCULATE A DELIVERY TOTAL FOR EACH
-POSSIBLE PHYSICAL BASE UNIT WITHIN A GROUP
-========================================= */
 
 function calculateDeliveryCombinationForBaseUnit(
 standardUnits,
@@ -11972,12 +12024,6 @@ additionalUnitsTotal
 
 }
 
-/* =========================================
-CHANGE 1
-SELECT THE MOST EXPENSIVE VALID COMBINATION
-WITHIN THE RELEVANT DELIVERY GROUP
-========================================= */
-
 function getMostExpensiveDeliveryCombination(
 standardUnits,
 chargeableMiles
@@ -12031,12 +12077,6 @@ return;
 
 }
 
-/*
-If two combinations produce exactly the same total,
-prefer the higher base charge. If that also ties,
-the first physical unit remains the base unit.
-*/
-
 if (
 combination.price ===
 mostExpensiveCombination.price &&
@@ -12055,19 +12095,6 @@ combination;
 return mostExpensiveCombination;
 
 }
-
-/* =========================================
-CHANGE 1
-EXTRA LARGE / NON-EXTRA-LARGE GROUPING
-
-NORMAL RULE:
-ONE BASE CHARGE ACROSS ALL STANDARD UNITS.
-
-EXCEPTION:
-IF EXTRA LARGE AND NON-EXTRA-LARGE UNITS ARE
-BOTH PRESENT, THEY BECOME TWO DELIVERY GROUPS
-AND EACH GROUP RECEIVES ONE BASE CHARGE.
-========================================= */
 
 function getStandardDeliveryGroups(
 standardUnits
@@ -12133,19 +12160,6 @@ units:standardUnits
 ];
 
 }
-
-/* =========================================
-COMPLETE-BASKET DELIVERY
-
-ONE MOST-EXPENSIVE BASE COMBINATION NORMALLY.
-
-WHEN EXTRA LARGE + NON-EXTRA-LARGE ARE BOTH
-PRESENT:
-- EXTRA LARGE GROUP GETS ONE BASE CHARGE
-- NON-EXTRA-LARGE GROUP GETS ONE BASE CHARGE
-- FURTHER UNITS USE THEIR OWN CATEGORY'S
-ADDITIONAL-UNIT RATE
-========================================= */
 
 function calculateBasketDelivery(
 items,
@@ -12462,15 +12476,6 @@ reason:null
 };
 
 }
-
-/* =========================================
-CHANGE 1
-PER-LINE DELIVERY CONTRIBUTION
-
-USES THE SAME DELIVERY GROUPING AS THE
-COMPLETE BASKET SO THE VISIBLE LINE CHARGES
-EXACTLY RECONCILE WITH THE BASKET TOTAL.
-========================================= */
 
 function getResolvedDeliveryContributionForItem(
 targetItem
@@ -22574,18 +22579,6 @@ mixedDelivery
 
 }
 
-/*
-EXTRA LARGE + SMALL
-
-Extra Large group:
-£55 base
-
-Non-Extra-Large group:
-£25 Small base
-
-TOTAL = £80
-*/
-
 const mixedAdditionalRateDelivery =
 calculateBasketDelivery(
 [
@@ -22619,21 +22612,6 @@ mixedAdditionalRateDelivery
 );
 
 }
-
-/*
-LARGE + SMALL + MEDIUM
-
-Large base:
-£35 + £15 + £15 = £65
-
-Small base:
-£25 + £25 + £15 = £65
-
-Medium base:
-£30 + £25 + £15 = £70
-
-MOST EXPENSIVE = £70
-*/
 
 const threeCategoryDelivery =
 calculateBasketDelivery(
@@ -22675,11 +22653,6 @@ threeCategoryDelivery
 
 }
 
-/*
-THREE SMALL UNITS:
-£25 BASE + £15 + £15 = £55
-*/
-
 const threeSmallUnitsDelivery =
 calculateBasketDelivery(
 [
@@ -22709,18 +22682,6 @@ threeSmallUnitsDelivery
 );
 
 }
-
-/*
-EXTRA LARGE + LARGE
-
-Extra Large group:
-£55 base
-
-Non-Extra-Large Large group:
-£35 base
-
-TOTAL = £90
-*/
 
 const largeExtraLargeDelivery =
 calculateBasketDelivery(
@@ -22755,18 +22716,6 @@ largeExtraLargeDelivery
 );
 
 }
-
-/*
-TWO EXTRA LARGE + LARGE + SMALL
-
-Extra Large group:
-£55 base + £65 additional = £120
-
-Non-Extra-Large group:
-Large base £35 + Small additional £15 = £50
-
-TOTAL = £170
-*/
 
 const groupedAdditionalDelivery =
 calculateBasketDelivery(
