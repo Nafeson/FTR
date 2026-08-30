@@ -4722,6 +4722,8 @@ text-decoration:none;
 .order-index-footer .footer-wordmark {
 margin:0;
 color:var(--steel);
+transform:scale(.93);
+transform-origin:left top;
 }
 
 .order-index-footer
@@ -4812,6 +4814,8 @@ letter-spacing:.6px;
 text-align:right;
 text-transform:uppercase;
 color:rgba(255,255,255,.72);
+transform:scale(.93);
+transform-origin:right top;
 }
 
 .order-index-footer-address span {
@@ -11857,7 +11861,7 @@ additionalPrice
 /* =========================================
 CHANGE 1
 CALCULATE A DELIVERY TOTAL FOR EACH
-POSSIBLE PHYSICAL BASE UNIT
+POSSIBLE PHYSICAL BASE UNIT WITHIN A GROUP
 ========================================= */
 
 function calculateDeliveryCombinationForBaseUnit(
@@ -11970,8 +11974,8 @@ additionalUnitsTotal
 
 /* =========================================
 CHANGE 1
-ALWAYS SELECT THE MOST EXPENSIVE VALID
-DELIVERY COMBINATION ACROSS THE BASKET
+SELECT THE MOST EXPENSIVE VALID COMBINATION
+WITHIN THE RELEVANT DELIVERY GROUP
 ========================================= */
 
 function getMostExpensiveDeliveryCombination(
@@ -12053,9 +12057,94 @@ return mostExpensiveCombination;
 }
 
 /* =========================================
+CHANGE 1
+EXTRA LARGE / NON-EXTRA-LARGE GROUPING
+
+NORMAL RULE:
+ONE BASE CHARGE ACROSS ALL STANDARD UNITS.
+
+EXCEPTION:
+IF EXTRA LARGE AND NON-EXTRA-LARGE UNITS ARE
+BOTH PRESENT, THEY BECOME TWO DELIVERY GROUPS
+AND EACH GROUP RECEIVES ONE BASE CHARGE.
+========================================= */
+
+function getStandardDeliveryGroups(
+standardUnits
+) {
+
+if (
+!Array.isArray(
+standardUnits
+) ||
+!standardUnits.length
+) {
+
+return [];
+
+}
+
+const extraLargeUnits =
+standardUnits.filter(
+unit =>
+normalizeDeliveryCategory(
+unit?.category
+) ===
+"extraLarge"
+);
+
+const nonExtraLargeUnits =
+standardUnits.filter(
+unit =>
+normalizeDeliveryCategory(
+unit?.category
+) !==
+"extraLarge"
+);
+
+if (
+extraLargeUnits.length &&
+nonExtraLargeUnits.length
+) {
+
+return [
+
+{
+name:"extraLarge",
+units:extraLargeUnits
+},
+
+{
+name:"nonExtraLarge",
+units:nonExtraLargeUnits
+}
+
+];
+
+}
+
+return [
+
+{
+name:"combined",
+units:standardUnits
+}
+
+];
+
+}
+
+/* =========================================
 COMPLETE-BASKET DELIVERY
-MOST EXPENSIVE VALID BASE/ADDITIONAL
-COMBINATION IS ALWAYS USED
+
+ONE MOST-EXPENSIVE BASE COMBINATION NORMALLY.
+
+WHEN EXTRA LARGE + NON-EXTRA-LARGE ARE BOTH
+PRESENT:
+- EXTRA LARGE GROUP GETS ONE BASE CHARGE
+- NON-EXTRA-LARGE GROUP GETS ONE BASE CHARGE
+- FURTHER UNITS USE THEIR OWN CATEGORY'S
+ADDITIONAL-UNIT RATE
 ========================================= */
 
 function calculateBasketDelivery(
@@ -12109,6 +12198,10 @@ additionalUnitsTotal:0,
 
 unitCount:0,
 
+groupCount:0,
+
+groups:[],
+
 reason:null
 
 };
@@ -12136,7 +12229,18 @@ baseCategory:null,
 
 baseUnitIndex:null,
 
+basePrice:null,
+
 additionalUnitPrice:null,
+
+additionalUnitsTotal:null,
+
+unitCount:
+standardUnits.length,
+
+groupCount:null,
+
+groups:[],
 
 reason:
 "Delivery quotation required for destinations over 250 adjusted miles."
@@ -12145,14 +12249,50 @@ reason:
 
 }
 
+const deliveryGroups =
+getStandardDeliveryGroups(
+standardUnits
+);
+
+const groupResults =
+deliveryGroups.map(
+group => {
+
 const combination =
 getMostExpensiveDeliveryCombination(
-standardUnits,
+group.units,
 chargeableMiles
 );
 
 if (
 !combination
+) {
+
+return null;
+
+}
+
+return {
+
+name:
+group.name,
+
+units:
+group.units,
+
+combination:
+combination
+
+};
+
+}
+);
+
+if (
+groupResults.some(
+result =>
+!result
+)
 ) {
 
 return {
@@ -12171,7 +12311,18 @@ baseCategory:null,
 
 baseUnitIndex:null,
 
+basePrice:null,
+
 additionalUnitPrice:null,
+
+additionalUnitsTotal:null,
+
+unitCount:
+standardUnits.length,
+
+groupCount:null,
+
+groups:[],
 
 reason:
 "Delivery quotation required."
@@ -12180,12 +12331,68 @@ reason:
 
 }
 
+const totalPrice =
+groupResults.reduce(
+(
+total,
+group
+) => {
+
+return (
+total +
+group.combination.price
+);
+
+},
+0
+);
+
+const totalBasePrice =
+groupResults.reduce(
+(
+total,
+group
+) => {
+
+return (
+total +
+group.combination.basePrice
+);
+
+},
+0
+);
+
+const totalAdditionalUnits =
+groupResults.reduce(
+(
+total,
+group
+) => {
+
+return (
+total +
+group.combination.additionalUnitsTotal
+);
+
+},
+0
+);
+
+const singleGroup =
+groupResults.length ===
+1
+?
+groupResults[0]
+:
+null;
+
 return {
 
 requiresQuote:false,
 
 price:
-combination.price,
+totalPrice,
 
 chargeableMiles:
 chargeableMiles,
@@ -12194,21 +12401,61 @@ adjustedMiles:
 safeAdjustedMiles,
 
 baseCategory:
-combination.baseCategory,
+singleGroup
+?
+singleGroup.combination.baseCategory
+:
+null,
 
 baseUnitIndex:
-combination.baseUnitIndex,
+singleGroup
+?
+singleGroup.combination.baseUnitIndex
+:
+null,
 
 basePrice:
-combination.basePrice,
+totalBasePrice,
 
 additionalUnitPrice:null,
 
 additionalUnitsTotal:
-combination.additionalUnitsTotal,
+totalAdditionalUnits,
 
 unitCount:
 standardUnits.length,
+
+groupCount:
+groupResults.length,
+
+groups:
+groupResults.map(
+group => {
+
+return {
+
+name:
+group.name,
+
+baseCategory:
+group.combination.baseCategory,
+
+basePrice:
+group.combination.basePrice,
+
+additionalUnitsTotal:
+group.combination.additionalUnitsTotal,
+
+price:
+group.combination.price,
+
+unitCount:
+group.units.length
+
+};
+
+}
+),
 
 reason:null
 
@@ -12219,9 +12466,10 @@ reason:null
 /* =========================================
 CHANGE 1
 PER-LINE DELIVERY CONTRIBUTION
-USES THE SAME MOST-EXPENSIVE COMBINATION
-SO VISIBLE LINE CHARGES EXACTLY RECONCILE
-WITH THE BASKET DELIVERY TOTAL
+
+USES THE SAME DELIVERY GROUPING AS THE
+COMPLETE BASKET SO THE VISIBLE LINE CHARGES
+EXACTLY RECONCILE WITH THE BASKET TOTAL.
 ========================================= */
 
 function getResolvedDeliveryContributionForItem(
@@ -12277,9 +12525,20 @@ return 0;
 
 }
 
+const deliveryGroups =
+getStandardDeliveryGroups(
+standardUnits
+);
+
+let contribution =
+0;
+
+deliveryGroups.forEach(
+group => {
+
 const combination =
 getMostExpensiveDeliveryCombination(
-standardUnits,
+group.units,
 chargeableMiles
 );
 
@@ -12287,16 +12546,11 @@ if (
 !combination
 ) {
 
-return Number(
-state.deliveryFee
-) || 0;
+return;
 
 }
 
-let contribution =
-0;
-
-standardUnits.forEach(
+group.units.forEach(
 (
 unit,
 index
@@ -12326,6 +12580,9 @@ return;
 contribution +=
 getAdditionalUnitPriceForCategory(
 unit.category
+);
+
+}
 );
 
 }
@@ -22320,17 +22577,13 @@ mixedDelivery
 /*
 EXTRA LARGE + SMALL
 
-Option A:
-Extra Large base £55
-+ Small additional £15
-= £70
+Extra Large group:
+£55 base
 
-Option B:
-Small base £25
-+ Extra Large additional £65
-= £90
+Non-Extra-Large group:
+£25 Small base
 
-MOST EXPENSIVE = £90
+TOTAL = £80
 */
 
 const mixedAdditionalRateDelivery =
@@ -22350,18 +22603,18 @@ quantity:1
 
 if (
 mixedAdditionalRateDelivery.requiresQuote ||
-mixedAdditionalRateDelivery.baseCategory !==
-"small" ||
+mixedAdditionalRateDelivery.groupCount !==
+2 ||
 mixedAdditionalRateDelivery.basePrice !==
-25 ||
+80 ||
 mixedAdditionalRateDelivery.additionalUnitsTotal !==
-65 ||
+0 ||
 mixedAdditionalRateDelivery.price !==
-90
+80
 ) {
 
 console.warn(
-"Most-expensive mixed delivery validation failed:",
+"Extra-Large/non-Extra-Large split delivery validation failed:",
 mixedAdditionalRateDelivery
 );
 
@@ -22403,6 +22656,8 @@ quantity:1
 
 if (
 threeCategoryDelivery.requiresQuote ||
+threeCategoryDelivery.groupCount !==
+1 ||
 threeCategoryDelivery.baseCategory !==
 "medium" ||
 threeCategoryDelivery.basePrice !==
@@ -22438,6 +22693,8 @@ quantity:3
 
 if (
 threeSmallUnitsDelivery.requiresQuote ||
+threeSmallUnitsDelivery.groupCount !==
+1 ||
 threeSmallUnitsDelivery.basePrice !==
 25 ||
 threeSmallUnitsDelivery.additionalUnitsTotal !==
@@ -22456,13 +22713,13 @@ threeSmallUnitsDelivery
 /*
 EXTRA LARGE + LARGE
 
-Extra Large base:
-£55 + £25 = £80
+Extra Large group:
+£55 base
 
-Large base:
-£35 + £65 = £100
+Non-Extra-Large Large group:
+£35 base
 
-MOST EXPENSIVE = £100
+TOTAL = £90
 */
 
 const largeExtraLargeDelivery =
@@ -22482,19 +22739,69 @@ quantity:1
 
 if (
 largeExtraLargeDelivery.requiresQuote ||
-largeExtraLargeDelivery.baseCategory !==
-"large" ||
+largeExtraLargeDelivery.groupCount !==
+2 ||
 largeExtraLargeDelivery.basePrice !==
-35 ||
+90 ||
 largeExtraLargeDelivery.additionalUnitsTotal !==
-65 ||
+0 ||
 largeExtraLargeDelivery.price !==
-100
+90
 ) {
 
 console.warn(
-"Large/Extra-Large most-expensive delivery validation failed:",
+"Large/Extra-Large split delivery validation failed:",
 largeExtraLargeDelivery
+);
+
+}
+
+/*
+TWO EXTRA LARGE + LARGE + SMALL
+
+Extra Large group:
+£55 base + £65 additional = £120
+
+Non-Extra-Large group:
+Large base £35 + Small additional £15 = £50
+
+TOTAL = £170
+*/
+
+const groupedAdditionalDelivery =
+calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:2
+},
+{
+size:"1000x1500",
+quantity:1
+},
+{
+size:"600x900",
+quantity:1
+}
+],
+34
+);
+
+if (
+groupedAdditionalDelivery.requiresQuote ||
+groupedAdditionalDelivery.groupCount !==
+2 ||
+groupedAdditionalDelivery.basePrice !==
+90 ||
+groupedAdditionalDelivery.additionalUnitsTotal !==
+80 ||
+groupedAdditionalDelivery.price !==
+170
+) {
+
+console.warn(
+"Grouped additional-unit delivery validation failed:",
+groupedAdditionalDelivery
 );
 
 }
