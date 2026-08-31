@@ -1512,7 +1512,7 @@ letter-spacing:-.7px;
 .basket-drawer-vat {
 margin:-3px 0 10px;
 color:rgba(247,247,243,.38);
-font-size:6px;
+font-size:6.9px;
 font-weight:500;
 text-align:right;
 text-transform:lowercase;
@@ -11357,9 +11357,6 @@ getBasketEstimatedDeliveryText();
 }
 
 /* =========================================
-OP1 END — PASTE OP2 DIRECTLY BELOW
-========================================= */
-/* =========================================
 OP2
 DELIVERY / BASKET / CUSTOM CALCULATOR
 CONTINUATION
@@ -12022,13 +12019,13 @@ the delivery category.
 
 Examples:
 
-500 × 800   = Small
-500 × 1000  = Medium
-500 × 1200  = Medium
-500 × 1800  = Large
-500 × 2000  = Large
-500 × 2500  = Extra Large
-777 × 1333  = Medium
+500 × 800 = Small
+500 × 1000 = Medium
+500 × 1200 = Medium
+500 × 1800 = Large
+500 × 2000 = Large
+500 × 2500 = Extra Large
+777 × 1333 = Medium
 1000 × 1100 = Large
 1200 × 1200 = Extra Large
 ========================================= */
@@ -13282,6 +13279,17 @@ return contribution;
 
 /* =========================================
 POSTCODE LOOKUP / DISTANCE
+
+CHANGE 1:
+A lookup is only started once the user has
+typed a COMPLETE UK postcode.
+
+This prevents longer postcodes such as
+EC1V 2NX from being looked up prematurely
+at EC1V 2 while the user is still typing.
+
+The same logic is shared by the main Order
+Summary and Basket postcode inputs.
 ========================================= */
 
 let deliveryOriginPromise =
@@ -13343,6 +13351,82 @@ normalized.slice(
 }
 
 
+/* =========================================
+COMPLETE UK POSTCODE CHECK
+
+Supported standard UK formats include:
+
+A9 9AA
+A99 9AA
+A9A 9AA
+AA9 9AA
+AA99 9AA
+AA9A 9AA
+
+Examples:
+SL9 7BB
+EC1V 2NX
+SW1A 1AA
+
+Postcodes.io remains the final authority
+for whether the completed postcode exists.
+========================================= */
+
+function isCompleteUKPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!cleaned
+) {
+
+return false;
+
+}
+
+return /^(?:GIR0AA|[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2})$/.test(
+cleaned
+);
+
+}
+
+
+/* =========================================
+INVALIDATE ANY OLD POSTCODE LOOKUP
+
+If the user changes the text while a
+previous request is waiting or in flight,
+that old result must not be allowed to
+replace the newer input state.
+========================================= */
+
+function invalidateDeliveryLookup() {
+
+deliveryLookupToken +=
+1;
+
+if (
+deliveryLookupTimer !==
+null
+) {
+
+clearTimeout(
+deliveryLookupTimer
+);
+
+deliveryLookupTimer =
+null;
+
+}
+
+}
+
+
 async function lookupPostcode(
 postcode
 ) {
@@ -13353,8 +13437,9 @@ postcode
 );
 
 if (
-cleaned.length <
-5
+!isCompleteUKPostcode(
+cleaned
+)
 ) {
 
 throw new Error(
@@ -14508,6 +14593,13 @@ updateBasketDrawerSummaryOnly();
 
 /* =========================================
 APPLY POSTCODE
+
+CHANGE 1:
+Do not attempt a lookup merely because
+five characters have been entered.
+
+The postcode must have a complete UK
+postcode structure first.
 ========================================= */
 
 async function applyDeliveryPostcode(
@@ -14523,9 +14615,12 @@ postcode
 );
 
 if (
-cleaned.length <
-5
+!isCompleteUKPostcode(
+cleaned
+)
 ) {
+
+invalidateDeliveryLookup();
 
 setDeliveryPending(
 cleaned
@@ -14553,6 +14648,20 @@ deliveryLookupToken +=
 
 const token =
 deliveryLookupToken;
+
+if (
+deliveryLookupTimer !==
+null
+) {
+
+clearTimeout(
+deliveryLookupTimer
+);
+
+deliveryLookupTimer =
+null;
+
+}
 
 setDeliveryPending(
 cleaned
@@ -14701,6 +14810,13 @@ requestOrderSummaryDeliveryWidthSync();
 }
 
 
+/* =========================================
+DEBOUNCED POSTCODE LOOKUP
+
+Only a structurally complete postcode is
+allowed to start the 550ms lookup timer.
+========================================= */
+
 function scheduleDeliveryPostcodeLookup(
 postcode
 ) {
@@ -14714,6 +14830,9 @@ clearTimeout(
 deliveryLookupTimer
 );
 
+deliveryLookupTimer =
+null;
+
 }
 
 const cleaned =
@@ -14722,8 +14841,9 @@ postcode
 );
 
 if (
-cleaned.length <
-5
+!isCompleteUKPostcode(
+cleaned
+)
 ) {
 
 return;
@@ -17913,6 +18033,22 @@ calculateCustomProductSubtotal()
 }
 
 
+/* =========================================
+BASKET DELIVERY PRESENTATION
+
+When no postcode has been entered the
+helper/status row is now completely hidden.
+
+This removes:
+
+"Enter your delivery postcode to calculate
+delivery."
+
+and
+
+"Calculated by postcode"
+========================================= */
+
 function getBasketDrawerDeliveryPresentation() {
 
 const postcode =
@@ -17936,6 +18072,8 @@ charge:
 
 chargeClass:
 "is-quote",
+
+showDeliveryResult:true,
 
 showEstimatedDelivery:false,
 
@@ -17989,6 +18127,8 @@ fee ===
 :
 "",
 
+showDeliveryResult:true,
+
 showEstimatedDelivery:true,
 
 estimatedDelivery:
@@ -18013,6 +18153,8 @@ charge:
 chargeClass:
 "",
 
+showDeliveryResult:true,
+
 showEstimatedDelivery:false,
 
 estimatedDelivery:""
@@ -18023,14 +18165,13 @@ estimatedDelivery:""
 
 return {
 
-status:
-"Enter your delivery postcode to calculate delivery.",
+status:"",
 
-charge:
-"Calculated by postcode",
+charge:"",
 
-chargeClass:
-"",
+chargeClass:"",
+
+showDeliveryResult:false,
 
 showEstimatedDelivery:false,
 
@@ -18431,7 +18572,11 @@ inputmode="text"
 aria-label="Delivery postcode"
 >
 
-<div class="basket-drawer-delivery-result">
+<div
+class="basket-drawer-delivery-result"
+data-basket-delivery-result
+${delivery.showDeliveryResult ? "" : "hidden"}
+>
 
 <div
 class="basket-drawer-delivery-status"
@@ -18704,6 +18849,11 @@ basketDrawerLayer.querySelector(
 "[data-basket-final-total]"
 );
 
+const deliveryResultElement =
+basketDrawerLayer.querySelector(
+"[data-basket-delivery-result]"
+);
+
 const deliveryStatusElement =
 basketDrawerLayer.querySelector(
 "[data-basket-delivery-status]"
@@ -18760,6 +18910,15 @@ finalTotalElement.textContent =
 formatMoney(
 calculateOrderTotal()
 );
+
+}
+
+if (
+deliveryResultElement
+) {
+
+deliveryResultElement.hidden =
+!delivery.showDeliveryResult;
 
 }
 
@@ -19536,6 +19695,10 @@ commitBasketDrawerMutation();
 
 /* =========================================
 BASKET DRAWER EVENTS
+
+CHANGE 1:
+Every edit invalidates any older postcode
+lookup before the new typed value is used.
 ========================================= */
 
 if (
@@ -19693,6 +19856,8 @@ input.value ||
 input.classList.remove(
 "is-invalid"
 );
+
+invalidateDeliveryLookup();
 
 document
 .querySelectorAll(
@@ -21485,6 +21650,10 @@ resultBox
 
 /* =========================================
 ORDER SUMMARY POSTCODE EVENTS
+
+CHANGE 1:
+The same complete-postcode typing logic
+used by the Basket is used here.
 ========================================= */
 
 document.addEventListener(
@@ -21514,6 +21683,8 @@ input.value ||
 input.classList.remove(
 "is-invalid"
 );
+
+invalidateDeliveryLookup();
 
 document
 .querySelectorAll(
@@ -24453,6 +24624,78 @@ console.warn(
 
 }
 
+
+/*
+CHANGE 1 POSTCODE VALIDATION CHECKS.
+
+These confirm that longer London postcodes
+are treated as incomplete until the final
+characters have actually been typed.
+*/
+
+const postcodeCompletenessChecks = [
+
+{
+postcode:"EC1V 2NX",
+expected:true
+},
+
+{
+postcode:"EC1V2NX",
+expected:true
+},
+
+{
+postcode:"EC1V 2",
+expected:false
+},
+
+{
+postcode:"EC1V 2N",
+expected:false
+},
+
+{
+postcode:"SL9 7BB",
+expected:true
+},
+
+{
+postcode:"SW1A 1AA",
+expected:true
+},
+
+{
+postcode:"M1 1AE",
+expected:true
+}
+
+];
+
+postcodeCompletenessChecks.forEach(
+check => {
+
+const actual =
+isCompleteUKPostcode(
+check.postcode
+);
+
+if (
+actual !==
+check.expected
+) {
+
+console.warn(
+"Postcode completeness validation failed:",
+check,
+actual
+);
+
+}
+
+}
+);
+
 }
 
 
@@ -25730,4 +25973,3 @@ applyDesktopAccessRestriction();
 
 </body>
 </html>
-```
