@@ -1265,7 +1265,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:6.2px;
+font-size:6.82px;
 font-weight:800;
 line-height:1;
 letter-spacing:.8px;
@@ -1337,7 +1337,7 @@ display:none !important;
 .basket-drawer-estimated-delivery-label {
 min-width:0;
 color:rgba(247,247,243,.53);
-font-size:7px;
+font-size:7.7px;
 font-weight:650;
 line-height:1.3;
 overflow-wrap:anywhere;
@@ -1349,7 +1349,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+font-size:8.8px;
 font-weight:850;
 line-height:1.2;
 text-align:right;
@@ -1359,7 +1359,7 @@ white-space:nowrap;
 .basket-drawer-delivery-status {
 min-width:0;
 color:rgba(247,247,243,.53);
-font-size:7px;
+font-size:7.7px;
 font-weight:650;
 line-height:1.3;
 overflow-wrap:anywhere;
@@ -1371,7 +1371,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8px;
+font-size:8.8px;
 font-weight:850;
 line-height:1.2;
 text-align:right;
@@ -1472,6 +1472,16 @@ font-weight:800;
 line-height:1.2;
 text-align:right;
 white-space:nowrap;
+}
+
+/* CHANGE 5 — PRODUCT SUBTOTAL / DELIVERY +10% */
+
+.basket-drawer-total-row:not(.final) span {
+font-size:7.04px;
+}
+
+.basket-drawer-total-row:not(.final) strong {
+font-size:8.8px;
 }
 
 .basket-drawer-total-row.delivery strong {
@@ -7772,112 +7782,13 @@ View Size
 
 </div>
 
-<div
-class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-2"
-data-product-size="1500x1800"
-data-finish="clear"
-data-default-glazing="triple"
-data-double-price="890"
-data-triple-price="1075"
-tabindex="0"
->
-
-<div class="home-product-image">
-
-<img
-src="images/product-cards/jumbo.png"
-alt="1500mm by 1800mm frameless flat roof skylight"
-/>
-
-</div>
-
-<div class="home-product-content">
-
-<div class="home-product-size">
-1500 × 1800mm
-</div>
-
-<div class="home-product-spec">
-<span>Inside Visible Glass Size</span>
-<span>8mm Toughened Safety Glass</span>
-<span>Delivery Calculated By Postcode</span>
-</div>
-
-<div class="home-glazing-wrap">
-
-<div class="home-glazing-toggle">
-
-<button
-type="button"
-data-glazing="double"
->
-Double
-</button>
-
-<button
-type="button"
-class="active"
-data-glazing="triple"
->
-Triple
-</button>
-
-</div>
-
-<div class="home-glazed-label triple">
-<span>Glazed</span>
-</div>
-
-</div>
-
-<div class="home-product-price-row">
-
-<div>
-
-<div class="home-product-price-label">
-FROM:
-</div>
-
-<div class="home-product-price">
-
-<span class="home-price-amount">
-
-<span class="home-price-main">
-£1075
-</span>
-
-<span class="home-price-decimals">
-.00
-</span>
-
-</span>
-
-<span class="home-vat-note">
-inc. vat
-</span>
-
-</div>
-
-</div>
-
-<a
-href="order-page.html"
-class="home-product-link"
->
-View Size
-</a>
-
-</div>
-
-</div>
-
-</div>
+<!-- CHANGE 6 — 600 x 900 MOVED ABOVE 1500 x 1800 + DOUBLE DEFAULT -->
 
 <div
-class="home-product-card image-size-600x900 reveal reveal-scale reveal-delay-3"
+class="home-product-card image-size-600x900 reveal reveal-scale reveal-delay-2"
 data-product-size="600x900"
 data-finish="clear"
-data-default-glazing="triple"
+data-default-glazing="double"
 data-double-price="225"
 data-triple-price="270"
 tabindex="0"
@@ -7910,6 +7821,7 @@ alt="600mm by 900mm frameless flat roof skylight"
 
 <button
 type="button"
+class="active"
 data-glazing="double"
 >
 Double
@@ -7917,7 +7829,6 @@ Double
 
 <button
 type="button"
-class="active"
 data-glazing="triple"
 >
 Triple
@@ -7925,7 +7836,7 @@ Triple
 
 </div>
 
-<div class="home-glazed-label triple">
+<div class="home-glazed-label">
 <span>Glazed</span>
 </div>
 
@@ -7944,7 +7855,108 @@ FROM:
 <span class="home-price-amount">
 
 <span class="home-price-main">
-£270
+£225
+</span>
+
+<span class="home-price-decimals">
+.00
+</span>
+
+</span>
+
+<span class="home-vat-note">
+inc. vat
+</span>
+
+</div>
+
+</div>
+
+<a
+href="order-page.html"
+class="home-product-link"
+>
+View Size
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="home-product-card image-size-1500x1800 reveal reveal-scale reveal-delay-3"
+data-product-size="1500x1800"
+data-finish="clear"
+data-default-glazing="double"
+data-double-price="890"
+data-triple-price="1075"
+tabindex="0"
+>
+
+<div class="home-product-image">
+
+<img
+src="images/product-cards/jumbo.png"
+alt="1500mm by 1800mm frameless flat roof skylight"
+/>
+
+</div>
+
+<div class="home-product-content">
+
+<div class="home-product-size">
+1500 × 1800mm
+</div>
+
+<div class="home-product-spec">
+<span>Inside Visible Glass Size</span>
+<span>8mm Toughened Safety Glass</span>
+<span>Delivery Calculated By Postcode</span>
+</div>
+
+<div class="home-glazing-wrap">
+
+<div class="home-glazing-toggle">
+
+<button
+type="button"
+class="active"
+data-glazing="double"
+>
+Double
+</button>
+
+<button
+type="button"
+data-glazing="triple"
+>
+Triple
+</button>
+
+</div>
+
+<div class="home-glazed-label">
+<span>Glazed</span>
+</div>
+
+</div>
+
+<div class="home-product-price-row">
+
+<div>
+
+<div class="home-product-price-label">
+FROM:
+</div>
+
+<div class="home-product-price">
+
+<span class="home-price-amount">
+
+<span class="home-price-main">
+£890
 </span>
 
 <span class="home-price-decimals">
@@ -8596,11 +8608,13 @@ Tinted &amp; Privacy Glass
 
 <div class="home-popular-grid">
 
+<!-- CHANGE 6 — BLUE 800 x 1000 DOUBLE DEFAULT -->
+
 <div
 class="home-product-card tinted-product-card image-size-800x1000 reveal reveal-scale"
 data-product-size="800x1000"
 data-finish="blue"
-data-default-glazing="triple"
+data-default-glazing="double"
 data-double-price="405"
 data-triple-price="490"
 tabindex="0"
@@ -8628,11 +8642,11 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" data-glazing="double">Double</button>
-<button type="button" class="active" data-glazing="triple">Triple</button>
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label triple">
+<div class="home-glazed-label">
 <span>Glazed</span>
 </div>
 
@@ -8645,7 +8659,7 @@ alt="800mm by 1000mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£490</span>
+<span class="home-price-main">£405</span>
 <span class="home-price-decimals">.00</span>
 </span>
 
@@ -8664,11 +8678,13 @@ View Size
 
 </div>
 
+<!-- CHANGE 6 — BLUE 600 x 1500 DOUBLE DEFAULT -->
+
 <div
 class="home-product-card tinted-product-card image-size-600x1500 reveal reveal-scale reveal-delay-1"
 data-product-size="600x1500"
 data-finish="blue"
-data-default-glazing="triple"
+data-default-glazing="double"
 data-double-price="425"
 data-triple-price="515"
 tabindex="0"
@@ -8696,11 +8712,11 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 <div class="home-glazing-wrap">
 
 <div class="home-glazing-toggle">
-<button type="button" data-glazing="double">Double</button>
-<button type="button" class="active" data-glazing="triple">Triple</button>
+<button type="button" class="active" data-glazing="double">Double</button>
+<button type="button" data-glazing="triple">Triple</button>
 </div>
 
-<div class="home-glazed-label triple">
+<div class="home-glazed-label">
 <span>Glazed</span>
 </div>
 
@@ -8714,7 +8730,7 @@ alt="600mm by 1500mm blue tinted frameless flat roof skylight"
 
 <div class="home-product-price">
 <span class="home-price-amount">
-<span class="home-price-main">£515</span>
+<span class="home-price-main">£425</span>
 <span class="home-price-decimals">.00</span>
 </span>
 <span class="home-vat-note">inc. vat</span>
@@ -9209,6 +9225,46 @@ const prefersReducedMotion =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
 ).matches;
+
+
+/* =========================================
+CHANGE 7
+DISABLE DOUBLE-TAP TO ZOOM
+
+Keeps normal scrolling and pinch behaviour,
+while disabling browser double-tap zoom across
+the homepage and basket interface.
+========================================= */
+
+const homepageTouchActionStyle =
+document.createElement(
+"style"
+);
+
+homepageTouchActionStyle.textContent = `
+html,
+body,
+header,
+main,
+section,
+footer,
+.menu-overlay,
+.basket-drawer-layer,
+.basket-drawer-panel,
+.basket-drawer-body,
+.basket-drawer-footer,
+button,
+a,
+input,
+select,
+label {
+touch-action:manipulation;
+}
+`;
+
+document.head.appendChild(
+homepageTouchActionStyle
+);
 
 
 /* =========================================
@@ -10211,14 +10267,16 @@ card.querySelectorAll(
 )
 );
 
-let activeGlazingButton =
-card.querySelector(
-".home-glazing-toggle button.active"
-);
-
 const defaultGlazing =
 card.dataset.defaultGlazing ||
 "triple";
+
+let activeGlazingButton =
+glazingButtons.find(
+(button) =>
+button.dataset.glazing ===
+defaultGlazing
+);
 
 if (
 !activeGlazingButton
@@ -10227,8 +10285,9 @@ if (
 activeGlazingButton =
 glazingButtons.find(
 (button) =>
-button.dataset.glazing ===
-defaultGlazing
+button.classList.contains(
+"active"
+)
 ) ||
 glazingButtons.find(
 (button) =>
@@ -10237,20 +10296,16 @@ button.dataset.glazing ===
 ) ||
 glazingButtons[0];
 
-if (
-activeGlazingButton
-) {
-
-activeGlazingButton.classList.add(
-"active"
-);
-
-}
-
 }
 
 glazingButtons.forEach(
 (button) => {
+
+button.classList.toggle(
+"active",
+button ===
+activeGlazingButton
+);
 
 button.addEventListener(
 "click",
@@ -10656,6 +10711,11 @@ document.querySelector(
 ".existing-opening-rooflight-visual"
 );
 
+const homepageCalculator =
+document.getElementById(
+"homepageCalculator"
+);
+
 function hideOpeningRecommendation() {
 
 if (
@@ -10676,15 +10736,14 @@ true;
 
 }
 
-if (
-existingOpeningRooflightVisual
-) {
+/*
+CHANGE 3:
+Do not hide the custom rooflight visual
+when the opening assistant has no result.
 
-existingOpeningRooflightVisual.classList.remove(
-"is-revealed"
-);
-
-}
+The visual is now independently revealed
+with the calculator section.
+*/
 
 }
 
@@ -10777,16 +10836,6 @@ openingInternalRecommendation.classList.add(
 }
 );
 
-if (
-existingOpeningRooflightVisual
-) {
-
-existingOpeningRooflightVisual.classList.add(
-"is-revealed"
-);
-
-}
-
 }
 
 [
@@ -10818,8 +10867,100 @@ updateExistingOpeningRecommendation
 
 
 /* =========================================
+CHANGE 3
+RESTORE CUSTOM ROOFLIGHT IMAGE +
+HOMEPAGE CALCULATOR VISIBILITY
+========================================= */
+
+function revealHomepageCustomBuildArea() {
+
+if (
+existingOpeningRooflightVisual
+) {
+
+existingOpeningRooflightVisual.classList.add(
+"is-revealed"
+);
+
+}
+
+if (
+homepageCalculator
+) {
+
+homepageCalculator.classList.add(
+"is-visible"
+);
+
+}
+
+}
+
+if (
+prefersReducedMotion ||
+!("IntersectionObserver" in window)
+) {
+
+revealHomepageCustomBuildArea();
+
+}
+else {
+
+const homepageCustomBuildTarget =
+existingOpeningRooflightVisual ||
+homepageCalculator;
+
+if (
+homepageCustomBuildTarget
+) {
+
+const homepageCustomBuildObserver =
+new IntersectionObserver(
+(entries,observer) => {
+
+entries.forEach(
+(entry) => {
+
+if (
+!entry.isIntersecting
+) {
+
+return;
+
+}
+
+revealHomepageCustomBuildArea();
+
+observer.disconnect();
+
+}
+);
+
+},
+{
+threshold:.05,
+rootMargin:
+"0px 0px 8% 0px"
+}
+);
+
+homepageCustomBuildObserver.observe(
+homepageCustomBuildTarget
+);
+
+}
+else {
+
+revealHomepageCustomBuildArea();
+
+}
+
+}
+
+
+/* =========================================
 CUSTOM CALCULATOR
-LATEST PRICING MASTER
+LATEST HOMEPAGE PRICING MASTER
 ========================================= */
 
 const CUSTOM_CALCULATOR_SOURCE_PRICES = {
@@ -10893,12 +11034,6 @@ const CUSTOM_CALCULATOR_BASE_UPLIFT =
 
 const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
 1.05;
-
-const CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT =
-1.20;
-
-const CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT =
-1.07;
 
 const CUSTOM_CALCULATOR_GLAZING_ADJUSTMENTS = {
 triple:0,
@@ -11222,6 +11357,19 @@ return null;
 
 }
 
+/*
+HOMEPAGE MASTER PRICING:
+
+1. Source / interpolated price.
+2. Global 5% uplift.
+3. Narrow / long 5% uplift when
+width is 290–500mm and length
+is 2000mm or greater.
+
+No Order Page 20% / 7% length
+uplifts are applied on the homepage.
+*/
+
 price *=
 CUSTOM_CALCULATOR_BASE_UPLIFT;
 
@@ -11242,24 +11390,6 @@ length
 
 price *=
 CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT;
-
-}
-
-if (
-Number(
-length
-) <
-1500
-) {
-
-price *=
-CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT;
-
-}
-else {
-
-price *=
-CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT;
 
 }
 
@@ -11634,10 +11764,6 @@ function getEasterSunday(
 year
 ) {
 
-/*
-Anonymous Gregorian algorithm.
-*/
-
 const a =
 year %
 19;
@@ -11860,11 +11986,6 @@ easterSunday,
 )
 );
 
-/*
-Early May Bank Holiday:
-first Monday in May.
-*/
-
 holidays.add(
 getCalendarKey(
 getNthWeekdayOfMonth(
@@ -11876,11 +11997,6 @@ year,
 )
 );
 
-/*
-Spring Bank Holiday:
-last Monday in May.
-*/
-
 holidays.add(
 getCalendarKey(
 getLastWeekdayOfMonth(
@@ -11891,11 +12007,6 @@ year,
 )
 );
 
-/*
-Summer Bank Holiday:
-last Monday in August.
-*/
-
 holidays.add(
 getCalendarKey(
 getLastWeekdayOfMonth(
@@ -11905,12 +12016,6 @@ year,
 )
 )
 );
-
-/*
-Reserve weekday Christmas /
-Boxing Day dates first so weekend
-substitutes cannot collide.
-*/
 
 const christmas =
 makeCalendarDate(
@@ -12007,11 +12112,6 @@ substitute
 
 }
 );
-
-/*
-Recent exceptional England/Wales
-bank holidays.
-*/
 
 if (
 year ===
@@ -12821,6 +12921,16 @@ finish
 const params =
 new URLSearchParams();
 
+const glazingDetails =
+getCustomGlazingDetails(
+glazing
+);
+
+const finishKey =
+getCustomFinishKey(
+finish
+);
+
 params.set(
 "source",
 "homepage-custom-calculator"
@@ -12865,10 +12975,29 @@ glazing
 );
 
 params.set(
-"finish",
-getCustomFinishKey(
-finish
+"glazingValue",
+String(
+glazing
 )
+);
+
+params.set(
+"type",
+glazingDetails.isLaminated
+? "laminated"
+: "toughened"
+);
+
+params.set(
+"glazingConstruction",
+glazingDetails.isLaminated
+? "laminated"
+: "toughened"
+);
+
+params.set(
+"finish",
+finishKey
 );
 
 return (
@@ -13097,7 +13226,6 @@ calculatePrice
 /* =========================================
 CUSTOM CALCULATOR ADD TO ORDER
 
-IMPORTANT:
 Homepage calculator does NOT directly
 write an order item.
 
@@ -13230,7 +13358,8 @@ if (
 
 return {
 version:5,
-items:[]
+items:[],
+customItems:[]
 };
 
 }
@@ -13267,7 +13396,8 @@ catch (error) {
 
 return {
 version:5,
-items:[]
+items:[],
+customItems:[]
 };
 
 }
@@ -13362,6 +13492,130 @@ items:
 payload.items,
 key:"items"
 };
+
+}
+
+function getCustomOrderItemCollection(
+payload
+) {
+
+if (
+!payload ||
+typeof payload !==
+"object" ||
+Array.isArray(
+payload
+)
+) {
+
+return {
+items:[],
+key:"customItems"
+};
+
+}
+
+if (
+Array.isArray(
+payload.customItems
+)
+) {
+
+return {
+items:
+payload.customItems,
+key:"customItems"
+};
+
+}
+
+payload.customItems = [];
+
+return {
+items:
+payload.customItems,
+key:"customItems"
+};
+
+}
+
+function getHomepageBasketEntries(
+payload
+) {
+
+const entries = [];
+
+const standardCollection =
+getOrderItemCollection(
+payload
+);
+
+standardCollection.items.forEach(
+(item,index) => {
+
+entries.push({
+item,
+kind:"standard",
+sourceIndex:index
+});
+
+}
+);
+
+const customCollection =
+getCustomOrderItemCollection(
+payload
+);
+
+customCollection.items.forEach(
+(item,index) => {
+
+entries.push({
+item,
+kind:"custom",
+sourceIndex:index
+});
+
+}
+);
+
+return entries;
+
+}
+
+function getHomepageBasketItems(
+payload
+) {
+
+return getHomepageBasketEntries(
+payload
+)
+.map(
+(entry) =>
+entry.item
+);
+
+}
+
+function getMutableBasketCollection(
+payload,
+kind
+) {
+
+if (
+kind ===
+"custom"
+) {
+
+return getCustomOrderItemCollection(
+payload
+).items;
+
+}
+
+return getOrderItemCollection(
+payload
+).items;
 
 }
 
@@ -13743,7 +13997,7 @@ sizeString
 
 const matches =
 sizeString.match(
-/(\d{3,4})\s*[x×]\s*(\d{3,4})/i
+/(\d{3,4})\s*(?:mm)?\s*[x×]\s*(\d{3,4})/i
 );
 
 if (
@@ -13818,6 +14072,7 @@ item,
 [
 "glazing",
 "glazingType",
+"glazingConfiguration",
 "glazingConstruction"
 ]
 ) ||
@@ -13858,8 +14113,10 @@ String(
 getNestedValue(
 item,
 [
+"type",
 "glassType",
 "construction",
+"glazingConstruction",
 "glazing",
 "glazingType"
 ]
@@ -13939,6 +14196,77 @@ return type ===
 
 }
 
+
+/* =========================================
+CHANGE 1 / CHANGE 2
+BASKET SIZE FORMATTING
+========================================= */
+
+function getItemTitleSizeText(
+item
+) {
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+if (
+dimensions.width >
+0 &&
+dimensions.length >
+0
+) {
+
+return (
+`${dimensions.width} x ${dimensions.length}mm`
+);
+
+}
+
+let stored =
+String(
+getNestedValue(
+item,
+[
+"size",
+"productSize",
+"internalSize",
+"dimensions"
+]
+) ||
+"Custom Size"
+);
+
+if (
+stored ===
+"Custom Size"
+) {
+
+return stored;
+
+}
+
+stored =
+stored
+.replace(
+/mm/gi,
+""
+)
+.replace(
+(/[×x]/g),
+" x "
+)
+.replace(
+(/\s+/g),
+" "
+)
+.trim();
+
+return `${stored}mm`;
+
+}
+
 function getItemInternalSizeText(
 item
 ) {
@@ -13956,7 +14284,7 @@ dimensions.length >
 ) {
 
 return (
-`${dimensions.width} × ${dimensions.length}mm`
+`${dimensions.width}mm × ${dimensions.length}mm`
 );
 
 }
@@ -13980,28 +14308,9 @@ stored
 
 }
 
-function getItemExternalSizeText(
+function getItemExternalDimensions(
 item
 ) {
-
-const stored =
-getNestedValue(
-item,
-[
-"externalSize",
-"externalDimensions"
-]
-);
-
-if (
-stored
-) {
-
-return String(
-stored
-);
-
-}
 
 const dimensions =
 normalizeItemDimensions(
@@ -14020,13 +14329,192 @@ dimensions.length >
 0
 ) {
 
+return {
+width:
+dimensions.width +
+border *
+2,
+length:
+dimensions.length +
+border *
+2
+};
+
+}
+
+return {
+width:0,
+length:0
+};
+
+}
+
+function getItemExternalSizeText(
+item
+) {
+
+const stored =
+getNestedValue(
+item,
+[
+"externalSize",
+"externalDimensions"
+]
+);
+
+const externalDimensions =
+getItemExternalDimensions(
+item
+);
+
+if (
+externalDimensions.width >
+0 &&
+externalDimensions.length >
+0
+) {
+
 return (
-`${dimensions.width + border * 2} × ${dimensions.length + border * 2}mm`
+`${externalDimensions.width}mm × ${externalDimensions.length}mm`
+);
+
+}
+
+if (
+stored
+) {
+
+return String(
+stored
 );
 
 }
 
 return "—";
+
+}
+
+function getItemTopGlassLabel(
+item
+) {
+
+const storedTopGlass =
+getNestedValue(
+item,
+[
+"topGlass",
+"topGlassLabel",
+"topGlassSpec",
+"topPane",
+"topPaneLabel",
+"topPaneSpec"
+]
+);
+
+if (
+storedTopGlass
+) {
+
+return String(
+storedTopGlass
+);
+
+}
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+const externalDimensions =
+getItemExternalDimensions(
+item
+);
+
+if (
+dimensions.width <=
+0 ||
+dimensions.length <=
+0 ||
+externalDimensions.width <=
+0 ||
+externalDimensions.length <=
+0
+) {
+
+return "6mm Toughened Safety Glass";
+
+}
+
+const glazing =
+getItemGlazing(
+item
+);
+
+const externalArea =
+(
+externalDimensions.width /
+1000
+) *
+(
+externalDimensions.length /
+1000
+);
+
+let thickness =
+6;
+
+if (
+glazing ===
+"double"
+) {
+
+thickness =
+externalArea >=
+1.70
+? 8
+: 6;
+
+}
+else {
+
+thickness =
+externalArea >
+2.00
+? 8
+: 6;
+
+}
+
+return (
+`${thickness}mm Toughened Safety Glass`
+);
+
+}
+
+function getBasketItemDescription(
+item
+) {
+
+const glazing =
+getItemGlazing(
+item
+);
+
+const finish =
+getItemFinish(
+item
+);
+
+const finishPrefix =
+finish ===
+"clear"
+? ""
+: `${formatFinishName(finish)} `;
+
+return (
+`${finishPrefix}${formatGlazingName(glazing)} Frameless Skylight`
+);
 
 }
 
@@ -14440,6 +14928,28 @@ return "extraLarge";
 function getItemDeliveryCategory(
 item
 ) {
+
+const storedCategory =
+String(
+getNestedValue(
+item,
+[
+"deliveryCategory"
+]
+) ||
+""
+);
+
+if (
+Object.prototype.hasOwnProperty.call(
+DELIVERY_CATEGORY_CONFIG,
+storedCategory
+)
+) {
+
+return storedCategory;
+
+}
 
 const dimensions =
 normalizeItemDimensions(
@@ -15345,12 +15855,15 @@ total;
 
 
 /* =========================================
+CHANGE 1 + CHANGE 2
 BASKET ITEM RENDER
 ========================================= */
 
 function createBasketItemMarkup(
 item,
-index
+renderIndex,
+kind,
+sourceIndex
 ) {
 
 const quantity =
@@ -15366,6 +15879,11 @@ item
 const lineTotal =
 unitPrice *
 quantity;
+
+const titleSize =
+getItemTitleSizeText(
+item
+);
 
 const internalSize =
 getItemInternalSizeText(
@@ -15397,27 +15915,36 @@ getItemBorder(
 item
 );
 
+const topGlass =
+getItemTopGlassLabel(
+item
+);
+
 const titleDescription =
-`${formatGlassTypeName(glassType)} ${formatGlazingName(glazing)}`;
+getBasketItemDescription(
+item
+);
 
 return `
 <article
 class="basket-drawer-item"
-data-basket-item-index="${index}"
+data-basket-item-index="${renderIndex}"
+data-basket-item-kind="${escapeHomepageHtml(kind)}"
+data-basket-source-index="${sourceIndex}"
 >
 
 <button
 type="button"
 class="basket-drawer-item-head"
-data-basket-toggle-item="${index}"
+data-basket-toggle-item="${renderIndex}"
 aria-expanded="false"
 >
 
 <span class="basket-drawer-item-title">
 
 <span class="basket-drawer-item-title-size-line">
-<span class="basket-drawer-item-title-quantity">${quantity} ×</span>
-${escapeHomepageHtml(internalSize)}
+<span class="basket-drawer-item-title-quantity">${quantity}x</span>
+${escapeHomepageHtml(titleSize)}
 </span>
 
 <span class="basket-drawer-item-title-description">
@@ -15431,7 +15958,7 @@ ${escapeHomepageHtml(titleDescription)}
 <button
 type="button"
 class="basket-drawer-item-expand-strip"
-data-basket-toggle-item="${index}"
+data-basket-toggle-item="${renderIndex}"
 aria-label="Show rooflight details"
 aria-expanded="false"
 >
@@ -15445,21 +15972,11 @@ aria-hidden="true"
 
 <div
 class="basket-drawer-item-collapse"
-data-basket-item-collapse="${index}"
+data-basket-item-collapse="${renderIndex}"
 hidden
 >
 
 <div class="basket-drawer-item-specs">
-
-<div class="basket-drawer-item-spec">
-<span>Internal Size</span>
-<strong>${escapeHomepageHtml(internalSize)}</strong>
-</div>
-
-<div class="basket-drawer-item-spec">
-<span>External Size</span>
-<strong>${escapeHomepageHtml(externalSize)}</strong>
-</div>
 
 <div class="basket-drawer-item-spec">
 <span>Glazing</span>
@@ -15467,8 +15984,13 @@ hidden
 </div>
 
 <div class="basket-drawer-item-spec">
-<span>Glass Type</span>
+<span>Glass Construction</span>
 <strong>${escapeHomepageHtml(formatGlassTypeName(glassType))}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Border</span>
+<strong>${escapeHomepageHtml(`${border}mm`)}</strong>
 </div>
 
 <div class="basket-drawer-item-spec">
@@ -15477,8 +15999,18 @@ hidden
 </div>
 
 <div class="basket-drawer-item-spec">
-<span>Border</span>
-<strong>${escapeHomepageHtml(`${border}mm`)}</strong>
+<span>Internal</span>
+<strong>${escapeHomepageHtml(internalSize)}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>External</span>
+<strong>${escapeHomepageHtml(externalSize)}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Top Glass</span>
+<strong>${escapeHomepageHtml(topGlass)}</strong>
 </div>
 
 <div class="basket-drawer-item-spec unit-price">
@@ -15514,7 +16046,8 @@ ${escapeHomepageHtml(formatBasketMoney(lineTotal))}
 
 <button
 type="button"
-data-basket-decrease="${index}"
+data-basket-decrease="${sourceIndex}"
+data-basket-kind="${escapeHomepageHtml(kind)}"
 aria-label="Decrease quantity"
 ${quantity <= 1 ? "disabled" : ""}
 >
@@ -15527,7 +16060,8 @@ ${quantity}
 
 <button
 type="button"
-data-basket-increase="${index}"
+data-basket-increase="${sourceIndex}"
+data-basket-kind="${escapeHomepageHtml(kind)}"
 aria-label="Increase quantity"
 >
 +
@@ -15538,7 +16072,8 @@ aria-label="Increase quantity"
 <button
 type="button"
 class="basket-drawer-remove"
-data-basket-remove="${index}"
+data-basket-remove="${sourceIndex}"
+data-basket-kind="${escapeHomepageHtml(kind)}"
 >
 Remove
 </button>
@@ -15569,6 +16104,7 @@ error:""
 
 
 /* =========================================
+CHANGE 4
 BASKET FOOTER RENDER
 ========================================= */
 
@@ -15583,7 +16119,7 @@ items
 );
 
 let statusText =
-"Enter your delivery postcode to calculate delivery.";
+"-";
 
 let chargeText =
 "—";
@@ -15620,7 +16156,7 @@ currentHomepageDelivery.quote
 
 statusText =
 postcode
-? `Delivery calculated for ${escapeHomepageHtml(postcode)}.`
+? `Delivery calculated for ${postcode}.`
 : "Delivery requires quotation.";
 
 chargeText =
@@ -15638,7 +16174,7 @@ currentHomepageDelivery.amount
 ) {
 
 statusText =
-`Delivery calculated for ${escapeHomepageHtml(postcode)}.`;
+`Delivery calculated for ${postcode}.`;
 
 chargeText =
 currentHomepageDelivery.amount ===
@@ -15659,6 +16195,16 @@ chargeClass =
 }
 
 }
+
+const showEstimatedDelivery =
+Boolean(
+estimatedDelivery
+) &&
+currentHomepageDelivery.valid &&
+!currentHomepageDelivery.quote &&
+Number.isFinite(
+currentHomepageDelivery.amount
+);
 
 return `
 <div class="basket-drawer-delivery">
@@ -15683,7 +16229,7 @@ value="${escapeHomepageHtml(postcode)}"
 <div class="basket-drawer-delivery-result">
 
 <div class="basket-drawer-delivery-status">
-${statusText}
+${escapeHomepageHtml(statusText)}
 </div>
 
 <div class="basket-drawer-delivery-charge ${chargeClass}">
@@ -15694,7 +16240,7 @@ ${escapeHomepageHtml(chargeText)}
 
 <div
 class="basket-drawer-estimated-delivery-row"
-${estimatedDelivery ? "" : "hidden"}
+${showEstimatedDelivery ? "" : "hidden"}
 >
 
 <div class="basket-drawer-estimated-delivery-label">
@@ -15809,13 +16355,16 @@ function renderHomepageBasket() {
 const payload =
 readHomepageOrderPayload();
 
-const collection =
-getOrderItemCollection(
+const entries =
+getHomepageBasketEntries(
 payload
 );
 
 const items =
-collection.items;
+entries.map(
+(entry) =>
+entry.item
+);
 
 const unitCount =
 getBasketUnitCount(
@@ -15871,6 +16420,8 @@ Add a configured rooflight to continue.
 type="button"
 class="checkout-now basket-drawer-checkout is-disabled"
 disabled
+aria-disabled="true"
+tabindex="-1"
 >
 Checkout Now
 </button>
@@ -15883,12 +16434,14 @@ return;
 basketDrawerBody.innerHTML = `
 <div class="basket-drawer-items">
 
-${items
+${entries
 .map(
-(item,index) =>
+(entry,renderIndex) =>
 createBasketItemMarkup(
-item,
-index
+entry.item,
+renderIndex,
+entry.kind,
+entry.sourceIndex
 )
 )
 .join(
@@ -16014,6 +16567,8 @@ button.addEventListener(
 () => {
 
 changeBasketItemQuantity(
+button.dataset.basketKind ||
+"standard",
 Number(
 button.dataset.basketIncrease
 ),
@@ -16038,6 +16593,8 @@ button.addEventListener(
 () => {
 
 changeBasketItemQuantity(
+button.dataset.basketKind ||
+"standard",
 Number(
 button.dataset.basketDecrease
 ),
@@ -16062,6 +16619,8 @@ button.addEventListener(
 () => {
 
 removeBasketItem(
+button.dataset.basketKind ||
+"standard",
 Number(
 button.dataset.basketRemove
 )
@@ -16076,6 +16635,7 @@ button.dataset.basketRemove
 }
 
 function changeBasketItemQuantity(
+kind,
 index,
 difference
 ) {
@@ -16084,12 +16644,13 @@ const payload =
 readHomepageOrderPayload();
 
 const collection =
-getOrderItemCollection(
-payload
+getMutableBasketCollection(
+payload,
+kind
 );
 
 const item =
-collection.items[
+collection[
 index
 ];
 
@@ -16134,9 +16695,29 @@ error:""
 
 renderHomepageBasket();
 
+const storedPostcode =
+readStoredDeliveryPostcode(
+payload
+);
+
+if (
+storedPostcode &&
+normalizePostcode(
+storedPostcode
+).length >=
+5
+) {
+
+calculateBasketDeliveryForPostcode(
+storedPostcode
+);
+
+}
+
 }
 
 function removeBasketItem(
+kind,
 index
 ) {
 
@@ -16144,22 +16725,23 @@ const payload =
 readHomepageOrderPayload();
 
 const collection =
-getOrderItemCollection(
-payload
+getMutableBasketCollection(
+payload,
+kind
 );
 
 if (
 index <
 0 ||
 index >=
-collection.items.length
+collection.length
 ) {
 
 return;
 
 }
 
-collection.items.splice(
+collection.splice(
 index,
 1
 );
@@ -16179,6 +16761,31 @@ error:""
 };
 
 renderHomepageBasket();
+
+const remainingItems =
+getHomepageBasketItems(
+payload
+);
+
+const storedPostcode =
+readStoredDeliveryPostcode(
+payload
+);
+
+if (
+remainingItems.length &&
+storedPostcode &&
+normalizePostcode(
+storedPostcode
+).length >=
+5
+) {
+
+calculateBasketDeliveryForPostcode(
+storedPostcode
+);
+
+}
 
 }
 
@@ -16218,10 +16825,6 @@ formatPostcode(
 postcodeInput.value
 );
 
-postcodeDebounce =
-window.setTimeout(
-() => {
-
 if (
 normalizePostcode(
 formatted
@@ -16238,6 +16841,19 @@ amount:null,
 miles:null,
 error:""
 };
+
+}
+
+postcodeDebounce =
+window.setTimeout(
+() => {
+
+if (
+normalizePostcode(
+formatted
+).length <
+5
+) {
 
 renderHomepageBasket();
 return;
@@ -16258,6 +16874,60 @@ formatted
 postcodeInput.addEventListener(
 "change",
 () => {
+
+const formatted =
+formatPostcode(
+postcodeInput.value
+);
+
+postcodeInput.value =
+formatted;
+
+if (
+normalizePostcode(
+formatted
+).length >=
+5
+) {
+
+calculateBasketDeliveryForPostcode(
+formatted
+);
+
+}
+else {
+
+currentHomepageDelivery = {
+postcode:formatted,
+loading:false,
+valid:false,
+quote:false,
+amount:null,
+miles:null,
+error:""
+};
+
+renderHomepageBasket();
+
+}
+
+}
+);
+
+postcodeInput.addEventListener(
+"keydown",
+(event) => {
+
+if (
+event.key !==
+"Enter"
+) {
+
+return;
+
+}
+
+event.preventDefault();
 
 const formatted =
 formatPostcode(
@@ -16314,13 +16984,10 @@ try {
 const payload =
 readHomepageOrderPayload();
 
-const collection =
-getOrderItemCollection(
+const items =
+getHomepageBasketItems(
 payload
 );
-
-const items =
-collection.items;
 
 const [
 originCoordinates,
@@ -16448,6 +17115,10 @@ return;
 
 }
 
+closeMenu();
+
+closeWhatsappAction();
+
 lastBasketFocusedElement =
 document.activeElement;
 
@@ -16485,21 +17156,28 @@ window.setTimeout(
 () => {
 
 if (
-basketDrawerPanel
+basketDrawerClose
 ) {
 
 try {
 
-basketDrawerPanel.focus({
+basketDrawerClose.focus({
 preventScroll:true
 });
 
 }
 catch (error) {
 
-basketDrawerPanel.focus();
+basketDrawerClose.focus();
 
 }
+
+}
+else if (
+basketDrawerPanel
+) {
+
+basketDrawerPanel.focus();
 
 }
 
@@ -16568,6 +17246,8 @@ basketButton.classList.remove(
 );
 
 }
+
+applyDesktopAccessRestriction();
 
 if (
 lastBasketFocusedElement &&
@@ -16655,13 +17335,13 @@ function refreshHomepageBasket() {
 const payload =
 readHomepageOrderPayload();
 
-const collection =
-getOrderItemCollection(
+const items =
+getHomepageBasketItems(
 payload
 );
 
 updateBasketHeaderTotal(
-collection.items
+items
 );
 
 if (
@@ -16704,6 +17384,8 @@ refreshHomepageBasket();
 restoreHomepageCalculatorState();
 
 updateExistingOpeningRecommendation();
+
+revealHomepageCustomBuildArea();
 
 calculatePrice();
 
@@ -16776,6 +17458,8 @@ FINAL INITIALISATION
 
 requestAnimationFrame(
 () => {
+
+revealHomepageCustomBuildArea();
 
 calculatePrice();
 
