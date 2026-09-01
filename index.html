@@ -51,6 +51,8 @@ WORKSHOP / DIRECT-ORDER DESIGN SYSTEM
 --workshop-green-bright:#286449;
 --workshop-green-dark:#0c1e17;
 
+--cosmic-green-light:#8ce1be;
+
 --whatsapp:#25d366;
 
 --gold:#b89a62;
@@ -1265,7 +1267,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:6.82px;
+font-size:6.2px;
 font-weight:800;
 line-height:1;
 letter-spacing:.8px;
@@ -1337,7 +1339,7 @@ display:none !important;
 .basket-drawer-estimated-delivery-label {
 min-width:0;
 color:rgba(247,247,243,.53);
-font-size:7.7px;
+font-size:7px;
 font-weight:650;
 line-height:1.3;
 overflow-wrap:anywhere;
@@ -1349,7 +1351,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8.8px;
+font-size:8px;
 font-weight:850;
 line-height:1.2;
 text-align:right;
@@ -1359,7 +1361,7 @@ white-space:nowrap;
 .basket-drawer-delivery-status {
 min-width:0;
 color:rgba(247,247,243,.53);
-font-size:7.7px;
+font-size:7px;
 font-weight:650;
 line-height:1.3;
 overflow-wrap:anywhere;
@@ -1371,7 +1373,7 @@ font-family:
 "Bahnschrift",
 "Aptos",
 sans-serif;
-font-size:8.8px;
+font-size:8px;
 font-weight:850;
 line-height:1.2;
 text-align:right;
@@ -1379,7 +1381,7 @@ white-space:nowrap;
 }
 
 .basket-drawer-delivery-charge.is-free {
-color:#8ce1be;
+color:var(--cosmic-green-light);
 }
 
 .basket-drawer-delivery-charge.is-quote {
@@ -1474,16 +1476,6 @@ text-align:right;
 white-space:nowrap;
 }
 
-/* CHANGE 5 — PRODUCT SUBTOTAL / DELIVERY +10% */
-
-.basket-drawer-total-row:not(.final) span {
-font-size:7.04px;
-}
-
-.basket-drawer-total-row:not(.final) strong {
-font-size:8.8px;
-}
-
 .basket-drawer-total-row.delivery strong {
 color:var(--orange-bright);
 }
@@ -1514,80 +1506,10 @@ letter-spacing:-.7px;
 .basket-drawer-vat {
 margin:-3px 0 10px;
 color:rgba(247,247,243,.38);
-font-size:6px;
+font-size:6.9px;
 font-weight:500;
 text-align:right;
 text-transform:lowercase;
-}
-
-.checkout-now {
-position:relative;
-overflow:hidden;
-width:100%;
-min-height:64px;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:0 45px 0 22px;
-border:1px solid rgba(103,166,140,.58);
-border-radius:18px;
-background:#176149;
-color:#f4faf7;
-font-family:
-"Bahnschrift",
-"Aptos",
-sans-serif;
-font-size:clamp(10px,1vw,13px);
-font-weight:900;
-letter-spacing:1.15px;
-line-height:1;
-text-decoration:none;
-text-align:center;
-text-transform:uppercase;
-text-shadow:none;
-box-shadow:
-0 12px 27px rgba(0,0,0,.24);
-transition:
-transform .2s ease,
-background .2s ease,
-border-color .2s ease,
-box-shadow .2s ease,
-opacity .2s ease;
-cursor:pointer;
-}
-
-.checkout-now::after {
-content:"→";
-position:absolute;
-right:18px;
-top:50%;
-transform:translateY(-50%);
-font-family:
-"Aptos",
-"Segoe UI Symbol",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:20px;
-font-weight:600;
-line-height:1;
-}
-
-.checkout-now:hover:not(:disabled):not(.is-disabled) {
-transform:translateY(-1px);
-background:#1a6d51;
-border-color:rgba(122,186,158,.72);
-box-shadow:
-0 15px 31px rgba(0,0,0,.27);
-}
-
-.checkout-now.is-disabled,
-.checkout-now:disabled {
-opacity:.38;
-cursor:not-allowed;
-pointer-events:none;
-transform:none;
-box-shadow:none;
 }
 
 .basket-drawer-checkout {
@@ -1686,6 +1608,81 @@ padding-right:8px;
 font-size:20px;
 }
 
+}
+
+/* =========================================
+CHECKOUT
+ORDER PAGE MATCHED
+========================================= */
+
+.checkout-now {
+position:relative;
+overflow:hidden;
+width:100%;
+min-height:64px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 45px 0 22px;
+border:1px solid rgba(103,166,140,.58);
+border-radius:18px;
+background:#176149;
+color:#f4faf7;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:clamp(10px,1vw,13px);
+font-weight:900;
+letter-spacing:1.15px;
+line-height:1;
+text-decoration:none;
+text-align:center;
+text-transform:uppercase;
+text-shadow:none;
+box-shadow:
+0 12px 27px rgba(0,0,0,.24);
+transition:
+transform .2s ease,
+background .2s ease,
+border-color .2s ease,
+box-shadow .2s ease,
+opacity .2s ease;
+cursor:pointer;
+}
+
+.checkout-now::after {
+content:"→";
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+font-family:
+"Aptos",
+"Segoe UI Symbol",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:20px;
+font-weight:600;
+line-height:1;
+}
+
+.checkout-now:hover:not(:disabled):not(.is-disabled) {
+transform:translateY(-1px);
+background:#1a6d51;
+border-color:rgba(122,186,158,.72);
+box-shadow:
+0 15px 31px rgba(0,0,0,.27);
+}
+
+.checkout-now.is-disabled,
+.checkout-now:disabled {
+opacity:.38;
+cursor:not-allowed;
+pointer-events:none;
+transform:none;
+box-shadow:none;
 }
 
 /* ===============================
@@ -5319,6 +5316,22 @@ translate(-50%,0)
 scale(1);
 }
 
+/* ORDER PAGE MATCHED MOBILE CHECKOUT */
+
+.checkout-now {
+min-height:52px;
+border-radius:14px;
+padding-left:12px;
+padding-right:29px;
+font-size:7.5px;
+letter-spacing:.7px;
+}
+
+.checkout-now::after {
+right:10px;
+font-size:14px;
+}
+
 .wordmark-domain {
 font-size:.40em;
 padding-bottom:1px;
@@ -6350,6 +6363,15 @@ text-decoration:none;
 
 @media(max-width:390px) {
 
+/* ORDER PAGE MATCHED NARROW MOBILE CHECKOUT */
+
+.checkout-now {
+font-size:7px;
+letter-spacing:.5px;
+padding-left:8px;
+padding-right:26px;
+}
+
 .home-popular-grid {
 grid-template-columns:1fr;
 }
@@ -6740,8 +6762,8 @@ class="header-icon-button"
 id="basketButton"
 aria-label="View basket and checkout"
 title="Basket and checkout"
-aria-controls="basketDrawerLayer"
 aria-expanded="false"
+aria-controls="basketDrawerLayer"
 >
 💳
 </button>
@@ -8041,7 +8063,7 @@ aria-label="Rooflight features"
 
 <div class="mobile-feature-item">
 <svg viewBox="0 0 48 48" aria-hidden="true">
-<path d="M31 7c-11 2-19 10-19 20 0 7 5 12 12 12 10 0 17-9 17-22 0-4-.5-7-1-10-3 7-8 12-15 16"></path>
+<path d="M31 7c-11 2-19 10-19 20 0 7 5 12 12 12 10 0 17-9 17-22 0-4-.5-7-1-10-3 7-8 12-15 15-16"></path>
 <path d="M12 42c5-10 12-17 23-23"></path>
 </svg>
 <span>Energy<br>Efficient</span>
@@ -13332,11 +13354,26 @@ document.querySelector(
 "[data-basket-drawer-backdrop]"
 );
 
+let basketDrawerIsOpen =
+false;
+
+let basketDrawerScrollY =
+0;
+
+let basketDrawerPreviousBodyStyles =
+null;
+
 let lastBasketFocusedElement =
 null;
 
+const basketDrawerExpandedItems =
+new Set();
+
 let basketDeliveryRequestId =
 0;
+
+let basketDeliveryLookupTimer =
+null;
 
 
 /* =========================================
@@ -13679,6 +13716,9 @@ quantity
 )
 );
 
+let quantityWasSet =
+false;
+
 if (
 Object.prototype.hasOwnProperty.call(
 item,
@@ -13688,7 +13728,9 @@ item,
 
 item.quantity =
 safeQuantity;
-return;
+
+quantityWasSet =
+true;
 
 }
 
@@ -13701,7 +13743,9 @@ item,
 
 item.qty =
 safeQuantity;
-return;
+
+quantityWasSet =
+true;
 
 }
 
@@ -13714,12 +13758,35 @@ item,
 
 item.count =
 safeQuantity;
-return;
+
+quantityWasSet =
+true;
 
 }
 
+if (
+Object.prototype.hasOwnProperty.call(
+item,
+"totalUnitsQty"
+)
+) {
+
+item.totalUnitsQty =
+safeQuantity;
+
+quantityWasSet =
+true;
+
+}
+
+if (
+!quantityWasSet
+) {
+
 item.quantity =
 safeQuantity;
+
+}
 
 }
 
@@ -14598,6 +14665,7 @@ maximumFractionDigits:2
 
 /* =========================================
 CURRENT DELIVERY MASTER
+MATCHES ORDER PAGE BASKET
 ========================================= */
 
 const DELIVERY_ORIGIN_POSTCODE =
@@ -15028,9 +15096,42 @@ return band
 
 }
 
+function getDeliveryAdditionalUnitPrice(
+category
+) {
+
+const config =
+DELIVERY_CATEGORY_CONFIG[
+category
+];
+
+if (
+!config
+) {
+
+return 0;
+
+}
+
+const value =
+Number(
+config.additionalUnit
+);
+
+return Number.isFinite(
+value
+)
+? value
+: 0;
+
+}
+
 
 /* =========================================
 POSTCODE / DISTANCE HELPERS
+
+Only structurally COMPLETE UK postcodes
+can automatically begin a delivery lookup.
 ========================================= */
 
 function normalizePostcode(
@@ -15081,6 +15182,29 @@ normalized.slice(
 
 }
 
+function isCompleteUKPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!cleaned
+) {
+
+return false;
+
+}
+
+return /^(?:GIR0AA|[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2})$/.test(
+cleaned
+);
+
+}
+
 async function fetchPostcodeCoordinates(
 postcode
 ) {
@@ -15091,7 +15215,9 @@ postcode
 );
 
 if (
-!normalized
+!isCompleteUKPostcode(
+normalized
+)
 ) {
 
 throw new Error(
@@ -15175,13 +15301,13 @@ Math.PI /
 
 }
 
-function calculateHaversineMiles(
+function calculateStraightLineMiles(
 first,
 second
 ) {
 
-const earthRadiusKm =
-6371;
+const earthRadiusMiles =
+3958.7613;
 
 const latitudeDifference =
 degreesToRadians(
@@ -15235,17 +15361,9 @@ a
 )
 );
 
-const straightLineKm =
-earthRadiusKm *
-c;
-
-const estimatedRoadKm =
-straightLineKm *
-ROAD_DISTANCE_ALLOWANCE;
-
-return Math.ceil(
-estimatedRoadKm *
-0.621371
+return (
+earthRadiusMiles *
+c
 );
 
 }
@@ -15272,79 +15390,342 @@ return deliveryOriginCoordinatesPromise;
 
 
 /* =========================================
-DELIVERY GROUP PRICING
+ORDER PAGE MATCHED DELIVERY GROUP PRICING
+
+Each physical unit is expanded separately.
+
+For each delivery group:
+- one unit receives the base charge
+- every other unit uses ITS OWN category's
+additional-unit charge
+- every possible base unit is tested
+- the most expensive valid combination wins
+
+Extra Large and non-Extra-Large units are
+split into separate delivery groups.
 ========================================= */
 
-function createDeliveryGroupPrice(
-items,
-category,
-miles
+function expandHomepageDeliveryItemsIntoUnits(
+items
 ) {
 
-const config =
-DELIVERY_CATEGORY_CONFIG[
-category
-];
+const units = [];
 
-if (
-!config
-) {
-
-return {
-quote:true,
-amount:null
-};
-
-}
-
-const base =
-getDeliveryBaseForDistance(
-category,
-miles
-);
-
-if (
-base ===
-null
-) {
-
-return {
-quote:true,
-amount:null
-};
-
-}
-
-let totalUnits =
-0;
-
-items.forEach(
+(
+Array.isArray(
+items
+)
+? items
+: []
+)
+.forEach(
 (item) => {
 
-totalUnits +=
-getItemQuantity(
+const category =
+getItemDeliveryCategory(
 item
 );
 
+if (
+!category
+) {
+
+return;
+
+}
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+getItemQuantity(
+item
+)
+) || 1
+)
+)
+);
+
+for (
+let index = 0;
+index <
+quantity;
+index +=
+1
+) {
+
+units.push({
+item,
+category
+});
+
+}
+
 }
 );
 
-totalUnits =
-Math.max(
-1,
-totalUnits
+return units;
+
+}
+
+function calculateHomepageDeliveryCombinationForBaseUnit(
+units,
+baseIndex,
+miles
+) {
+
+if (
+!Array.isArray(
+units
+) ||
+!units.length ||
+!Number.isInteger(
+baseIndex
+) ||
+baseIndex <
+0 ||
+baseIndex >=
+units.length
+) {
+
+return null;
+
+}
+
+const baseUnit =
+units[
+baseIndex
+];
+
+const baseCategory =
+baseUnit.category;
+
+const basePrice =
+getDeliveryBaseForDistance(
+baseCategory,
+miles
+);
+
+if (
+!Number.isFinite(
+basePrice
+)
+) {
+
+return null;
+
+}
+
+const additionalUnitsTotal =
+units.reduce(
+(total,unit,index) => {
+
+if (
+index ===
+baseIndex
+) {
+
+return total;
+
+}
+
+return (
+total +
+getDeliveryAdditionalUnitPrice(
+unit.category
+)
+);
+
+},
+0
 );
 
 return {
-quote:false,
-amount:
-base +
-Math.max(
-0,
-totalUnits -
-1
-) *
-config.additionalUnit
+baseIndex,
+baseCategory,
+basePrice,
+additionalUnitsTotal,
+price:
+basePrice +
+additionalUnitsTotal
+};
+
+}
+
+function getMostExpensiveHomepageDeliveryCombination(
+units,
+miles
+) {
+
+if (
+!Array.isArray(
+units
+) ||
+!units.length
+) {
+
+return null;
+
+}
+
+let mostExpensive =
+null;
+
+units.forEach(
+(unit,index) => {
+
+const combination =
+calculateHomepageDeliveryCombinationForBaseUnit(
+units,
+index,
+miles
+);
+
+if (
+!combination
+) {
+
+return;
+
+}
+
+if (
+!mostExpensive ||
+combination.price >
+mostExpensive.price
+) {
+
+mostExpensive =
+combination;
+
+return;
+
+}
+
+if (
+combination.price ===
+mostExpensive.price &&
+combination.basePrice >
+mostExpensive.basePrice
+) {
+
+mostExpensive =
+combination;
+
+}
+
+}
+);
+
+return mostExpensive;
+
+}
+
+function getHomepageDeliveryGroups(
+units
+) {
+
+if (
+!Array.isArray(
+units
+) ||
+!units.length
+) {
+
+return [];
+
+}
+
+const extraLargeUnits =
+units.filter(
+(unit) =>
+unit.category ===
+"extraLarge"
+);
+
+const nonExtraLargeUnits =
+units.filter(
+(unit) =>
+unit.category !==
+"extraLarge"
+);
+
+if (
+extraLargeUnits.length &&
+nonExtraLargeUnits.length
+) {
+
+return [
+{
+name:"extraLarge",
+units:extraLargeUnits
+},
+{
+name:"nonExtraLarge",
+units:nonExtraLargeUnits
+}
+];
+
+}
+
+return [
+{
+name:"combined",
+units
+}
+];
+
+}
+
+function getHomepageDeliveryLimitFailure(
+units,
+miles
+) {
+
+const failingUnit =
+units.find(
+(unit) => {
+
+const config =
+DELIVERY_CATEGORY_CONFIG[
+unit.category
+];
+
+return (
+config &&
+miles >
+config.maxMiles
+);
+
+}
+);
+
+if (
+!failingUnit
+) {
+
+return null;
+
+}
+
+if (
+failingUnit.category ===
+"extraLarge"
+) {
+
+return {
+reason:
+"Delivery quotation required for Extra Large rooflights over 200 adjusted miles."
+};
+
+}
+
+return {
+reason:
+"Delivery quotation required for destinations over 400 adjusted miles."
 };
 
 }
@@ -15354,172 +15735,116 @@ items,
 miles
 ) {
 
+const chargeableMiles =
+Math.max(
+0,
+Math.ceil(
+Number(
+miles
+) || 0
+)
+);
+
+const units =
+expandHomepageDeliveryItemsIntoUnits(
+items
+);
+
 if (
-!items.length
+!units.length
 ) {
 
 return {
 quote:false,
 amount:0,
-miles
+miles:chargeableMiles,
+reason:""
 };
 
 }
 
-const extraLargeItems = [];
-
-const nonExtraLargeItems = [];
-
-items.forEach(
-(item) => {
-
-const category =
-getItemDeliveryCategory(
-item
+const limitFailure =
+getHomepageDeliveryLimitFailure(
+units,
+chargeableMiles
 );
 
 if (
-category ===
-"extraLarge"
-) {
-
-extraLargeItems.push(
-item
-);
-
-}
-else {
-
-nonExtraLargeItems.push(
-item
-);
-
-}
-
-}
-);
-
-if (
-extraLargeItems.length &&
-miles >
-DELIVERY_CATEGORY_CONFIG
-.extraLarge
-.maxMiles
+limitFailure
 ) {
 
 return {
 quote:true,
 amount:null,
-miles
+miles:chargeableMiles,
+reason:
+limitFailure.reason
 };
 
 }
 
+const groups =
+getHomepageDeliveryGroups(
+units
+);
+
+const groupResults =
+groups.map(
+(group) => {
+
+const combination =
+getMostExpensiveHomepageDeliveryCombination(
+group.units,
+chargeableMiles
+);
+
 if (
-nonExtraLargeItems.length &&
-miles >
-400
+!combination
+) {
+
+return null;
+
+}
+
+return {
+name:
+group.name,
+combination
+};
+
+}
+);
+
+if (
+groupResults.some(
+(result) =>
+!result
+)
 ) {
 
 return {
 quote:true,
 amount:null,
-miles
+miles:chargeableMiles,
+reason:
+"Delivery quotation required."
 };
 
 }
 
-let amount =
-0;
-
-if (
-extraLargeItems.length
-) {
-
-const extraLargeResult =
-createDeliveryGroupPrice(
-extraLargeItems,
-"extraLarge",
-miles
+const amount =
+groupResults.reduce(
+(total,result) =>
+total +
+result.combination.price,
+0
 );
-
-if (
-extraLargeResult.quote
-) {
-
-return {
-quote:true,
-amount:null,
-miles
-};
-
-}
-
-amount +=
-extraLargeResult.amount;
-
-}
-
-if (
-nonExtraLargeItems.length
-) {
-
-let highestCategory =
-"small";
-
-nonExtraLargeItems.forEach(
-(item) => {
-
-const category =
-getItemDeliveryCategory(
-item
-);
-
-if (
-DELIVERY_CATEGORY_RANK[
-category
-] >
-DELIVERY_CATEGORY_RANK[
-highestCategory
-]
-) {
-
-highestCategory =
-category;
-
-}
-
-}
-);
-
-const nonExtraLargeResult =
-createDeliveryGroupPrice(
-nonExtraLargeItems,
-highestCategory,
-miles
-);
-
-if (
-nonExtraLargeResult.quote
-) {
-
-return {
-quote:true,
-amount:null,
-miles
-};
-
-}
-
-amount +=
-nonExtraLargeResult.amount;
-
-}
 
 return {
 quote:false,
 amount,
-miles
+miles:chargeableMiles,
+reason:""
 };
 
 }
@@ -15623,10 +15948,51 @@ return "";
 
 }
 
-return formatEstimatedDeliveryRange(
+return (
+formatEstimatedDeliveryRange(
 leadTime.minimum,
 leadTime.maximum
+) +
+"."
 );
+
+}
+
+
+/* =========================================
+BASKET DELIVERY STATE
+========================================= */
+
+let currentHomepageDelivery = {
+postcode:"",
+loading:false,
+valid:false,
+quote:false,
+amount:null,
+adjustedMiles:null,
+miles:null,
+reason:"",
+error:""
+};
+
+function createPendingHomepageDeliveryState(
+postcode = ""
+) {
+
+return {
+postcode:
+formatPostcode(
+postcode
+),
+loading:false,
+valid:false,
+quote:false,
+amount:null,
+adjustedMiles:null,
+miles:null,
+reason:"",
+error:""
+};
 
 }
 
@@ -15648,8 +16014,22 @@ payload
 )
 ) {
 
+if (
+Object.prototype.hasOwnProperty.call(
+payload,
+"deliveryPostcode"
+)
+) {
+
+return payload.deliveryPostcode
+? formatPostcode(
+payload.deliveryPostcode
+)
+: "";
+
+}
+
 const candidates = [
-payload.deliveryPostcode,
 payload.postcode,
 payload.shippingPostcode
 ];
@@ -15706,36 +16086,283 @@ postcode
 
 try {
 
+if (
+formatted
+) {
+
 localStorage.setItem(
 HOMEPAGE_DELIVERY_POSTCODE_KEY,
 formatted
 );
 
 }
+else {
+
+localStorage.removeItem(
+HOMEPAGE_DELIVERY_POSTCODE_KEY
+);
+
+}
+
+}
 catch (error) {
 
 }
 
-const payload =
-readHomepageOrderPayload();
+}
+
+function loadHomepageDeliveryStateFromPayload(
+payload
+) {
+
+const postcode =
+readStoredDeliveryPostcode(
+payload
+);
 
 if (
-payload &&
-typeof payload ===
-"object" &&
-!Array.isArray(
+!payload ||
+typeof payload !==
+"object" ||
+Array.isArray(
 payload
 )
 ) {
 
+currentHomepageDelivery =
+createPendingHomepageDeliveryState(
+postcode
+);
+
+return;
+
+}
+
+const requiresQuote =
+payload.deliveryRequiresQuote ===
+true;
+
+const deliveryFee =
+Number(
+payload.deliveryFee
+);
+
+const resolved =
+payload.deliveryResolved ===
+true &&
+Number.isFinite(
+deliveryFee
+);
+
+const adjustedMiles =
+Number(
+payload.deliveryAdjustedMiles
+);
+
+const chargeableMiles =
+Number(
+payload.deliveryChargeableMiles
+);
+
+if (
+requiresQuote
+) {
+
+currentHomepageDelivery = {
+postcode,
+loading:false,
+valid:true,
+quote:true,
+amount:null,
+adjustedMiles:
+Number.isFinite(
+adjustedMiles
+)
+? adjustedMiles
+: null,
+miles:
+Number.isFinite(
+chargeableMiles
+)
+? chargeableMiles
+: null,
+reason:
+String(
+payload.deliveryQuoteReason ||
+"Delivery quotation required."
+),
+error:""
+};
+
+return;
+
+}
+
+if (
+resolved
+) {
+
+currentHomepageDelivery = {
+postcode,
+loading:false,
+valid:true,
+quote:false,
+amount:
+Math.max(
+0,
+deliveryFee
+),
+adjustedMiles:
+Number.isFinite(
+adjustedMiles
+)
+? adjustedMiles
+: null,
+miles:
+Number.isFinite(
+chargeableMiles
+)
+? chargeableMiles
+: null,
+reason:"",
+error:""
+};
+
+return;
+
+}
+
+currentHomepageDelivery =
+createPendingHomepageDeliveryState(
+postcode
+);
+
+}
+
+function persistHomepageDeliveryState() {
+
+const payload =
+readHomepageOrderPayload();
+
+const formattedPostcode =
+formatPostcode(
+currentHomepageDelivery.postcode
+);
+
+const deliveryResolved =
+currentHomepageDelivery.valid &&
+!currentHomepageDelivery.quote &&
+Number.isFinite(
+Number(
+currentHomepageDelivery.amount
+)
+);
+
+const deliveryRequiresQuote =
+currentHomepageDelivery.valid &&
+currentHomepageDelivery.quote;
+
+const deliveryFee =
+deliveryResolved
+?
+Math.max(
+0,
+Number(
+currentHomepageDelivery.amount
+)
+)
+:
+null;
+
+saveStoredDeliveryPostcode(
+formattedPostcode
+);
+
+if (
+!payload ||
+typeof payload !==
+"object" ||
+Array.isArray(
+payload
+)
+) {
+
+return;
+
+}
+
 payload.deliveryPostcode =
-formatted;
+formattedPostcode;
+
+payload.deliveryFee =
+deliveryFee;
+
+payload.deliveryResolved =
+deliveryResolved;
+
+payload.deliveryRequiresQuote =
+deliveryRequiresQuote;
+
+payload.deliveryQuoteReason =
+deliveryRequiresQuote
+?
+String(
+currentHomepageDelivery.reason ||
+"Delivery quotation required."
+)
+:
+"";
+
+payload.deliveryAdjustedMiles =
+Number.isFinite(
+Number(
+currentHomepageDelivery.adjustedMiles
+)
+)
+?
+Number(
+currentHomepageDelivery.adjustedMiles
+)
+:
+null;
+
+payload.deliveryChargeableMiles =
+Number.isFinite(
+Number(
+currentHomepageDelivery.miles
+)
+)
+?
+Number(
+currentHomepageDelivery.miles
+)
+:
+null;
+
+getHomepageBasketEntries(
+payload
+)
+.forEach(
+(entry) => {
+
+entry.item.deliveryPostcode =
+formattedPostcode;
+
+entry.item.deliveryFee =
+deliveryFee;
+
+entry.item.deliveryResolved =
+deliveryResolved;
+
+entry.item.deliveryRequiresQuote =
+deliveryRequiresQuote;
+
+}
+);
 
 writeHomepageOrderPayload(
 payload
 );
-
-}
 
 }
 
@@ -15774,9 +16401,48 @@ item
 
 }
 
+function getHomepageResolvedDeliveryAmount() {
+
+if (
+!currentHomepageDelivery.valid ||
+currentHomepageDelivery.quote ||
+!Number.isFinite(
+Number(
+currentHomepageDelivery.amount
+)
+)
+) {
+
+return 0;
+
+}
+
+return Math.max(
+0,
+Number(
+currentHomepageDelivery.amount
+)
+);
+
+}
+
+function getHomepageBasketFinalTotal(
+items
+) {
+
+return (
+getBasketProductSubtotal(
+items
+) +
+getHomepageResolvedDeliveryAmount()
+);
+
+}
+
 
 /* =========================================
 BASKET HEADER TOTAL
+MATCHES ORDER PAGE TOTAL BEHAVIOUR
 ========================================= */
 
 let previousBasketHeaderTotal =
@@ -15795,7 +16461,7 @@ return;
 }
 
 const total =
-getBasketProductSubtotal(
+getHomepageBasketFinalTotal(
 items
 );
 
@@ -15811,7 +16477,7 @@ basketTotalText.setAttribute(
 
 basketTotalText.classList.toggle(
 "is-visible",
-total >
+items.length >
 0
 );
 
@@ -15855,7 +16521,79 @@ total;
 
 
 /* =========================================
-CHANGE 1 + CHANGE 2
+BASKET ITEM EXPANDED STATE
+========================================= */
+
+function getHomepageBasketItemKey(
+item,
+kind,
+sourceIndex
+) {
+
+if (
+kind ===
+"custom"
+) {
+
+const customId =
+String(
+item?.id ??
+item?._id ??
+""
+);
+
+if (
+customId
+) {
+
+return `custom:${customId}`;
+
+}
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+return [
+"custom",
+dimensions.width,
+dimensions.length,
+getItemGlazing(item),
+getItemGlassType(item),
+getItemBorder(item),
+getItemFinish(item),
+getItemUnitPrice(item),
+sourceIndex
+].join(
+":"
+);
+
+}
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+return [
+"standard",
+dimensions.width,
+dimensions.length,
+getItemGlazing(item),
+getItemGlassType(item),
+getItemBorder(item),
+getItemFinish(item),
+getItemUnitPrice(item),
+sourceIndex
+].join(
+":"
+);
+
+}
+
+
+/* =========================================
 BASKET ITEM RENDER
 ========================================= */
 
@@ -15925,19 +16663,36 @@ getBasketItemDescription(
 item
 );
 
+const itemKey =
+getHomepageBasketItemKey(
+item,
+kind,
+sourceIndex
+);
+
+const expanded =
+basketDrawerExpandedItems.has(
+itemKey
+);
+
+const collapseId =
+`homepageBasketItemCollapse-${renderIndex}`;
+
 return `
 <article
-class="basket-drawer-item"
+class="basket-drawer-item${expanded ? " is-expanded" : ""}"
 data-basket-item-index="${renderIndex}"
 data-basket-item-kind="${escapeHomepageHtml(kind)}"
 data-basket-source-index="${sourceIndex}"
+data-basket-item-key="${escapeHomepageHtml(itemKey)}"
 >
 
 <button
 type="button"
 class="basket-drawer-item-head"
 data-basket-toggle-item="${renderIndex}"
-aria-expanded="false"
+aria-expanded="${expanded ? "true" : "false"}"
+aria-controls="${escapeHomepageHtml(collapseId)}"
 >
 
 <span class="basket-drawer-item-title">
@@ -15959,8 +16714,9 @@ ${escapeHomepageHtml(titleDescription)}
 type="button"
 class="basket-drawer-item-expand-strip"
 data-basket-toggle-item="${renderIndex}"
-aria-label="Show rooflight details"
-aria-expanded="false"
+aria-label="${expanded ? "Collapse" : "Expand"} full unit summary"
+aria-expanded="${expanded ? "true" : "false"}"
+aria-controls="${escapeHomepageHtml(collapseId)}"
 >
 
 <span
@@ -15972,8 +16728,10 @@ aria-hidden="true"
 
 <div
 class="basket-drawer-item-collapse"
+id="${escapeHomepageHtml(collapseId)}"
 data-basket-item-collapse="${renderIndex}"
-hidden
+aria-hidden="${expanded ? "false" : "true"}"
+${expanded ? "" : "hidden"}
 >
 
 <div class="basket-drawer-item-specs">
@@ -16042,7 +16800,10 @@ ${escapeHomepageHtml(formatBasketMoney(lineTotal))}
 
 <div class="basket-drawer-item-controls">
 
-<div class="basket-drawer-quantity">
+<div
+class="basket-drawer-quantity"
+aria-label="Adjust basket item quantity"
+>
 
 <button
 type="button"
@@ -16074,6 +16835,7 @@ type="button"
 class="basket-drawer-remove"
 data-basket-remove="${sourceIndex}"
 data-basket-kind="${escapeHomepageHtml(kind)}"
+aria-label="Remove this rooflight from the basket"
 >
 Remove
 </button>
@@ -16089,121 +16851,160 @@ Remove
 
 
 /* =========================================
-BASKET DELIVERY STATE
+BASKET DELIVERY PRESENTATION
+
+When the postcode field is completely blank
+there is NO explanatory/result row beneath it.
+
+This matches the updated Order Page basket.
 ========================================= */
 
-let currentHomepageDelivery = {
-postcode:"",
-loading:false,
-valid:false,
-quote:false,
-amount:null,
-miles:null,
-error:""
-};
-
-
-/* =========================================
-CHANGE 4
-BASKET FOOTER RENDER
-========================================= */
-
-function createBasketDeliveryMarkup(
-items,
-postcode
+function getHomepageBasketDeliveryPresentation(
+items
 ) {
+
+const postcode =
+String(
+currentHomepageDelivery.postcode ||
+""
+).trim();
 
 const estimatedDelivery =
 getBasketEstimatedDeliveryText(
 items
 );
 
-let statusText =
-"-";
-
-let chargeText =
-"—";
-
-let chargeClass =
-"";
-
 if (
-currentHomepageDelivery.loading
-) {
-
-statusText =
-"Calculating delivery…";
-
-chargeText =
-"…";
-
-}
-else if (
-currentHomepageDelivery.error
-) {
-
-statusText =
-currentHomepageDelivery.error;
-
-chargeText =
-"—";
-
-}
-else if (
 currentHomepageDelivery.valid &&
 currentHomepageDelivery.quote
 ) {
 
-statusText =
-postcode
-? `Delivery calculated for ${postcode}.`
-: "Delivery requires quotation.";
-
-chargeText =
-"Contact us for delivery";
-
-chargeClass =
-"is-quote";
+return {
+status:
+currentHomepageDelivery.reason ||
+"Delivery quotation required.",
+charge:
+"Quotation Required",
+chargeClass:
+"is-quote",
+showDeliveryResult:true,
+showEstimatedDelivery:false,
+estimatedDelivery:""
+};
 
 }
-else if (
+
+if (
 currentHomepageDelivery.valid &&
 Number.isFinite(
+Number(
 currentHomepageDelivery.amount
+)
 )
 ) {
 
-statusText =
-`Delivery calculated for ${postcode}.`;
+const amount =
+Math.max(
+0,
+Number(
+currentHomepageDelivery.amount
+)
+);
 
-chargeText =
-currentHomepageDelivery.amount ===
+return {
+status:
+postcode
+? `Delivery calculated for ${postcode}.`
+: "Delivery calculated.",
+charge:
+amount ===
 0
 ? "FREE"
 : formatBasketMoney(
-currentHomepageDelivery.amount
-);
-
-if (
-currentHomepageDelivery.amount ===
+amount
+),
+chargeClass:
+amount ===
 0
-) {
-
-chargeClass =
-"is-free";
-
-}
-
-}
-
-const showEstimatedDelivery =
+? "is-free"
+: "",
+showDeliveryResult:true,
+showEstimatedDelivery:
 Boolean(
 estimatedDelivery
-) &&
-currentHomepageDelivery.valid &&
-!currentHomepageDelivery.quote &&
-Number.isFinite(
-currentHomepageDelivery.amount
+),
+estimatedDelivery
+};
+
+}
+
+if (
+currentHomepageDelivery.error
+) {
+
+return {
+status:
+currentHomepageDelivery.error,
+charge:"",
+chargeClass:"",
+showDeliveryResult:true,
+showEstimatedDelivery:false,
+estimatedDelivery:""
+};
+
+}
+
+if (
+currentHomepageDelivery.loading ||
+postcode
+) {
+
+return {
+status:
+"Checking delivery for this postcode.",
+charge:
+"Calculated by postcode",
+chargeClass:"",
+showDeliveryResult:true,
+showEstimatedDelivery:false,
+estimatedDelivery:""
+};
+
+}
+
+return {
+status:"",
+charge:"",
+chargeClass:"",
+showDeliveryResult:false,
+showEstimatedDelivery:false,
+estimatedDelivery:""
+};
+
+}
+
+
+/* =========================================
+BASKET DELIVERY CARD
+
+LATEST CHANGE:
+Estimated Delivery* becomes:
+Estimated Delivery
+========================================= */
+
+function createBasketDeliveryMarkup(
+items
+) {
+
+const delivery =
+getHomepageBasketDeliveryPresentation(
+items
+);
+
+const postcode =
+String(
+currentHomepageDelivery.postcode ||
+""
 );
 
 return `
@@ -16219,36 +17020,51 @@ Delivery Postcode
 <input
 class="basket-drawer-postcode${currentHomepageDelivery.error ? " is-invalid" : ""}"
 id="basketDrawerPostcode"
+data-basket-delivery-postcode-input
 type="text"
 inputmode="text"
 autocomplete="postal-code"
-placeholder="Enter postcode"
+placeholder="Enter delivery postcode"
 value="${escapeHomepageHtml(postcode)}"
 >
 
-<div class="basket-drawer-delivery-result">
+<div
+class="basket-drawer-delivery-result"
+data-basket-delivery-result
+${delivery.showDeliveryResult ? "" : "hidden"}
+>
 
-<div class="basket-drawer-delivery-status">
-${escapeHomepageHtml(statusText)}
+<div
+class="basket-drawer-delivery-status"
+data-basket-delivery-status
+>
+${escapeHomepageHtml(delivery.status)}
 </div>
 
-<div class="basket-drawer-delivery-charge ${chargeClass}">
-${escapeHomepageHtml(chargeText)}
+<div
+class="basket-drawer-delivery-charge ${escapeHomepageHtml(delivery.chargeClass)}"
+data-basket-delivery-charge
+>
+${escapeHomepageHtml(delivery.charge)}
 </div>
 
 </div>
 
 <div
 class="basket-drawer-estimated-delivery-row"
-${showEstimatedDelivery ? "" : "hidden"}
+data-basket-estimated-delivery-row
+${delivery.showEstimatedDelivery ? "" : "hidden"}
 >
 
 <div class="basket-drawer-estimated-delivery-label">
-Estimated Delivery*
+Estimated Delivery
 </div>
 
-<div class="basket-drawer-estimated-delivery-date">
-${escapeHomepageHtml(estimatedDelivery)}
+<div
+class="basket-drawer-estimated-delivery-date"
+data-basket-estimated-delivery-range
+>
+${escapeHomepageHtml(delivery.estimatedDelivery)}
 </div>
 
 </div>
@@ -16257,6 +17073,134 @@ ${escapeHomepageHtml(estimatedDelivery)}
 `;
 
 }
+
+
+/* =========================================
+BASKET CHECKOUT AVAILABILITY
+========================================= */
+
+function homepageBasketContainsUnpricedItem(
+items
+) {
+
+return items.some(
+(item) => {
+
+const price =
+Number(
+getItemUnitPrice(
+item
+)
+);
+
+return (
+!Number.isFinite(
+price
+) ||
+price <=
+0
+);
+
+}
+);
+
+}
+
+function homepageBasketCheckoutIsAvailable(
+items
+) {
+
+const hasItems =
+items.length >
+0;
+
+const deliveryFullyPriced =
+currentHomepageDelivery.valid &&
+!currentHomepageDelivery.quote &&
+Number.isFinite(
+Number(
+currentHomepageDelivery.amount
+)
+);
+
+const containsUnpricedItem =
+homepageBasketContainsUnpricedItem(
+items
+);
+
+return (
+hasItems &&
+deliveryFullyPriced &&
+!containsUnpricedItem
+);
+
+}
+
+function updateHomepageBasketCheckoutAvailability(
+items
+) {
+
+const available =
+homepageBasketCheckoutIsAvailable(
+items
+);
+
+document
+.querySelectorAll(
+".basket-drawer-checkout"
+)
+.forEach(
+(button) => {
+
+button.classList.toggle(
+"is-disabled",
+!available
+);
+
+button.setAttribute(
+"aria-disabled",
+String(
+!available
+)
+);
+
+if (
+button instanceof
+HTMLButtonElement
+) {
+
+button.disabled =
+!available;
+
+}
+
+if (
+available
+) {
+
+button.removeAttribute(
+"tabindex"
+);
+
+}
+else {
+
+button.setAttribute(
+"tabindex",
+"-1"
+);
+
+}
+
+}
+);
+
+}
+
+
+/* =========================================
+BASKET TOTALS MARKUP
+========================================= */
 
 function createBasketTotalsMarkup(
 items
@@ -16267,79 +17211,59 @@ getBasketProductSubtotal(
 items
 );
 
-const deliveryAmount =
-currentHomepageDelivery.valid &&
-!currentHomepageDelivery.quote &&
-Number.isFinite(
-currentHomepageDelivery.amount
-)
-? currentHomepageDelivery.amount
-: null;
-
-const finalTotal =
-deliveryAmount ===
-null
-? subtotal
-: subtotal +
-deliveryAmount;
-
-let deliveryDisplay =
-"Enter postcode";
-
-if (
-currentHomepageDelivery.loading
-) {
-
-deliveryDisplay =
-"Calculating…";
-
-}
-else if (
-currentHomepageDelivery.valid &&
-currentHomepageDelivery.quote
-) {
-
-deliveryDisplay =
-"Quote required";
-
-}
-else if (
-deliveryAmount !==
-null
-) {
-
-deliveryDisplay =
-deliveryAmount ===
-0
-? "FREE"
-: formatBasketMoney(
-deliveryAmount
+const delivery =
+getHomepageBasketDeliveryPresentation(
+items
 );
 
-}
+const finalTotal =
+getHomepageBasketFinalTotal(
+items
+);
 
 return `
 <div class="basket-drawer-total-table">
 
 <div class="basket-drawer-total-row">
-<span>Product Subtotal</span>
-<strong>${escapeHomepageHtml(formatBasketMoney(subtotal))}</strong>
+
+<span>
+Product Subtotal
+</span>
+
+<strong data-basket-subtotal>
+${escapeHomepageHtml(formatBasketMoney(subtotal))}
+</strong>
+
 </div>
 
 <div class="basket-drawer-total-row delivery">
-<span>Delivery</span>
-<strong>${escapeHomepageHtml(deliveryDisplay)}</strong>
+
+<span>
+Delivery
+</span>
+
+<strong data-basket-footer-delivery>
+${escapeHomepageHtml(delivery.charge)}
+</strong>
+
 </div>
 
 <div class="basket-drawer-total-row final">
-<span>Order Total</span>
-<strong>${escapeHomepageHtml(formatBasketMoney(finalTotal))}</strong>
+
+<span>
+Order Total
+</span>
+
+<strong data-basket-final-total>
+${escapeHomepageHtml(formatBasketMoney(finalTotal))}
+</strong>
+
 </div>
 
 </div>
 
 <div class="basket-drawer-vat">
-All prices include VAT
+inc. vat
 </div>
 `;
 
@@ -16397,6 +17321,8 @@ if (
 !items.length
 ) {
 
+basketDrawerExpandedItems.clear();
+
 basketDrawerBody.innerHTML = `
 <div class="basket-drawer-empty">
 
@@ -16451,15 +17377,14 @@ entry.sourceIndex
 </div>
 `;
 
-const storedPostcode =
-readStoredDeliveryPostcode(
-payload
+const checkoutAvailable =
+homepageBasketCheckoutIsAvailable(
+items
 );
 
 basketDrawerFooter.innerHTML =
 createBasketDeliveryMarkup(
-items,
-storedPostcode
+items
 ) +
 createBasketTotalsMarkup(
 items
@@ -16467,8 +17392,11 @@ items
 `
 <button
 type="button"
-class="checkout-now basket-drawer-checkout"
+class="checkout-now basket-drawer-checkout${checkoutAvailable ? "" : " is-disabled"}"
 id="basketDrawerCheckout"
+${checkoutAvailable ? "" : "disabled"}
+aria-disabled="${checkoutAvailable ? "false" : "true"}"
+${checkoutAvailable ? "" : 'tabindex="-1"'}
 >
 Checkout Now
 </button>
@@ -16479,6 +17407,198 @@ attachBasketDrawerItemEvents();
 attachBasketDeliveryEvents();
 
 attachBasketCheckoutEvent();
+
+updateHomepageBasketCheckoutAvailability(
+items
+);
+
+}
+
+
+/* =========================================
+UPDATE BASKET DELIVERY / TOTALS WITHOUT
+RENDERING THE POSTCODE INPUT
+
+This is important while manually typing:
+the input keeps focus and is not replaced.
+========================================= */
+
+function updateHomepageBasketDeliverySummaryOnly() {
+
+if (
+!basketDrawerLayer
+) {
+
+return;
+
+}
+
+const payload =
+readHomepageOrderPayload();
+
+const items =
+getHomepageBasketItems(
+payload
+);
+
+const delivery =
+getHomepageBasketDeliveryPresentation(
+items
+);
+
+const subtotalElement =
+basketDrawerLayer.querySelector(
+"[data-basket-subtotal]"
+);
+
+const deliveryFooterElement =
+basketDrawerLayer.querySelector(
+"[data-basket-footer-delivery]"
+);
+
+const finalTotalElement =
+basketDrawerLayer.querySelector(
+"[data-basket-final-total]"
+);
+
+const deliveryResultElement =
+basketDrawerLayer.querySelector(
+"[data-basket-delivery-result]"
+);
+
+const deliveryStatusElement =
+basketDrawerLayer.querySelector(
+"[data-basket-delivery-status]"
+);
+
+const deliveryChargeElement =
+basketDrawerLayer.querySelector(
+"[data-basket-delivery-charge]"
+);
+
+const estimatedDeliveryRow =
+basketDrawerLayer.querySelector(
+"[data-basket-estimated-delivery-row]"
+);
+
+const estimatedDeliveryRange =
+basketDrawerLayer.querySelector(
+"[data-basket-estimated-delivery-range]"
+);
+
+if (
+subtotalElement
+) {
+
+subtotalElement.textContent =
+formatBasketMoney(
+getBasketProductSubtotal(
+items
+)
+);
+
+}
+
+if (
+deliveryFooterElement
+) {
+
+deliveryFooterElement.textContent =
+delivery.charge;
+
+}
+
+if (
+finalTotalElement
+) {
+
+finalTotalElement.textContent =
+formatBasketMoney(
+getHomepageBasketFinalTotal(
+items
+)
+);
+
+}
+
+if (
+deliveryResultElement
+) {
+
+deliveryResultElement.hidden =
+!delivery.showDeliveryResult;
+
+}
+
+if (
+deliveryStatusElement
+) {
+
+deliveryStatusElement.textContent =
+delivery.status;
+
+}
+
+if (
+deliveryChargeElement
+) {
+
+deliveryChargeElement.textContent =
+delivery.charge;
+
+deliveryChargeElement.classList.toggle(
+"is-free",
+delivery.chargeClass ===
+"is-free"
+);
+
+deliveryChargeElement.classList.toggle(
+"is-quote",
+delivery.chargeClass ===
+"is-quote"
+);
+
+}
+
+if (
+estimatedDeliveryRow
+) {
+
+estimatedDeliveryRow.hidden =
+!delivery.showEstimatedDelivery;
+
+}
+
+if (
+estimatedDeliveryRange
+) {
+
+estimatedDeliveryRange.textContent =
+delivery.estimatedDelivery;
+
+}
+
+if (
+basketDrawerCount
+) {
+
+const unitCount =
+getBasketUnitCount(
+items
+);
+
+basketDrawerCount.textContent =
+`${unitCount} ${unitCount === 1 ? "unit" : "units"}`;
+
+}
+
+updateBasketHeaderTotal(
+items
+);
+
+updateHomepageBasketCheckoutAvailability(
+items
+);
 
 }
 
@@ -16525,12 +17645,24 @@ return;
 }
 
 const expanded =
-item.classList.toggle(
+!item.classList.contains(
 "is-expanded"
+);
+
+item.classList.toggle(
+"is-expanded",
+expanded
 );
 
 collapse.hidden =
 !expanded;
+
+collapse.setAttribute(
+"aria-hidden",
+String(
+!expanded
+)
+);
 
 document
 .querySelectorAll(
@@ -16546,8 +17678,52 @@ expanded
 : "false"
 );
 
+if (
+toggle.classList.contains(
+"basket-drawer-item-expand-strip"
+)
+) {
+
+toggle.setAttribute(
+"aria-label",
+expanded
+? "Collapse full unit summary"
+: "Expand full unit summary"
+);
+
+}
+
 }
 );
+
+const itemKey =
+String(
+item.dataset.basketItemKey ||
+""
+);
+
+if (
+itemKey
+) {
+
+if (
+expanded
+) {
+
+basketDrawerExpandedItems.add(
+itemKey
+);
+
+}
+else {
+
+basketDrawerExpandedItems.delete(
+itemKey
+);
+
+}
+
+}
 
 }
 );
@@ -16634,6 +17810,38 @@ button.dataset.basketRemove
 
 }
 
+function invalidateHomepageDeliveryLookup() {
+
+basketDeliveryRequestId +=
+1;
+
+if (
+basketDeliveryLookupTimer !==
+null
+) {
+
+window.clearTimeout(
+basketDeliveryLookupTimer
+);
+
+basketDeliveryLookupTimer =
+null;
+
+}
+
+}
+
+function setHomepageDeliveryPending(
+postcode
+) {
+
+currentHomepageDelivery =
+createPendingHomepageDeliveryState(
+postcode
+);
+
+}
+
 function changeBasketItemQuantity(
 kind,
 index,
@@ -16670,9 +17878,21 @@ item
 const nextQuantity =
 Math.max(
 1,
+Math.min(
+999,
 currentQuantity +
 difference
+)
 );
+
+if (
+nextQuantity ===
+currentQuantity
+) {
+
+return;
+
+}
 
 setItemQuantity(
 item,
@@ -16683,33 +17903,33 @@ writeHomepageOrderPayload(
 payload
 );
 
-currentHomepageDelivery = {
-postcode:"",
-loading:false,
-valid:false,
-quote:false,
-amount:null,
-miles:null,
-error:""
-};
-
-renderHomepageBasket();
+invalidateHomepageDeliveryLookup();
 
 const storedPostcode =
 readStoredDeliveryPostcode(
 payload
 );
 
+setHomepageDeliveryPending(
+storedPostcode
+);
+
+persistHomepageDeliveryState();
+
+renderHomepageBasket();
+
 if (
 storedPostcode &&
-normalizePostcode(
+isCompleteUKPostcode(
 storedPostcode
-).length >=
-5
+)
 ) {
 
 calculateBasketDeliveryForPostcode(
-storedPostcode
+storedPostcode,
+{
+animateLoading:false
+}
 );
 
 }
@@ -16741,6 +17961,22 @@ return;
 
 }
 
+const removedItem =
+collection[
+index
+];
+
+const removedKey =
+getHomepageBasketItemKey(
+removedItem,
+kind,
+index
+);
+
+basketDrawerExpandedItems.delete(
+removedKey
+);
+
 collection.splice(
 index,
 1
@@ -16750,39 +17986,42 @@ writeHomepageOrderPayload(
 payload
 );
 
-currentHomepageDelivery = {
-postcode:"",
-loading:false,
-valid:false,
-quote:false,
-amount:null,
-miles:null,
-error:""
-};
-
-renderHomepageBasket();
-
-const remainingItems =
-getHomepageBasketItems(
-payload
-);
+invalidateHomepageDeliveryLookup();
 
 const storedPostcode =
 readStoredDeliveryPostcode(
 payload
 );
 
+setHomepageDeliveryPending(
+storedPostcode
+);
+
+persistHomepageDeliveryState();
+
+renderHomepageBasket();
+
+const remainingPayload =
+readHomepageOrderPayload();
+
+const remainingItems =
+getHomepageBasketItems(
+remainingPayload
+);
+
 if (
 remainingItems.length &&
 storedPostcode &&
-normalizePostcode(
+isCompleteUKPostcode(
 storedPostcode
-).length >=
-5
+)
 ) {
 
 calculateBasketDeliveryForPostcode(
-storedPostcode
+storedPostcode,
+{
+animateLoading:false
+}
 );
 
 }
@@ -16791,8 +18030,67 @@ storedPostcode
 
 
 /* =========================================
-POSTCODE DELIVERY CALCULATION
+POSTCODE DELIVERY EVENTS
+
+Matches Order Page behaviour:
+
+- typing does NOT re-render the input
+- incomplete postcode does NOT trigger lookup
+- complete postcode starts 550ms debounce
+- paste works
+- manual typing works
+- Enter / change works once complete
 ========================================= */
+
+function scheduleHomepageDeliveryPostcodeLookup(
+postcode
+) {
+
+if (
+basketDeliveryLookupTimer !==
+null
+) {
+
+window.clearTimeout(
+basketDeliveryLookupTimer
+);
+
+basketDeliveryLookupTimer =
+null;
+
+}
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!isCompleteUKPostcode(
+cleaned
+)
+) {
+
+return;
+
+}
+
+basketDeliveryLookupTimer =
+window.setTimeout(
+() => {
+
+basketDeliveryLookupTimer =
+null;
+
+calculateBasketDeliveryForPostcode(
+cleaned
+);
+
+},
+550
+);
+
+}
 
 function attachBasketDeliveryEvents() {
 
@@ -16809,63 +18107,32 @@ return;
 
 }
 
-let postcodeDebounce =
-null;
-
 postcodeInput.addEventListener(
 "input",
 () => {
 
-window.clearTimeout(
-postcodeDebounce
+postcodeInput.value =
+String(
+postcodeInput.value ||
+""
+).toUpperCase();
+
+postcodeInput.classList.remove(
+"is-invalid"
 );
 
-const formatted =
-formatPostcode(
+invalidateHomepageDeliveryLookup();
+
+setHomepageDeliveryPending(
 postcodeInput.value
 );
 
-if (
-normalizePostcode(
-formatted
-).length <
-5
-) {
+persistHomepageDeliveryState();
 
-currentHomepageDelivery = {
-postcode:formatted,
-loading:false,
-valid:false,
-quote:false,
-amount:null,
-miles:null,
-error:""
-};
+updateHomepageBasketDeliverySummaryOnly();
 
-}
-
-postcodeDebounce =
-window.setTimeout(
-() => {
-
-if (
-normalizePostcode(
-formatted
-).length <
-5
-) {
-
-renderHomepageBasket();
-return;
-
-}
-
-calculateBasketDeliveryForPostcode(
-formatted
-);
-
-},
-450
+scheduleHomepageDeliveryPostcodeLookup(
+postcodeInput.value
 );
 
 }
@@ -16883,33 +18150,53 @@ postcodeInput.value
 postcodeInput.value =
 formatted;
 
+postcodeInput.classList.remove(
+"is-invalid"
+);
+
+invalidateHomepageDeliveryLookup();
+
 if (
-normalizePostcode(
-formatted
-).length >=
-5
+!formatted
 ) {
+
+setHomepageDeliveryPending(
+""
+);
+
+persistHomepageDeliveryState();
+
+updateHomepageBasketDeliverySummaryOnly();
+
+return;
+
+}
+
+if (
+!isCompleteUKPostcode(
+formatted
+)
+) {
+
+setHomepageDeliveryPending(
+formatted
+);
+
+persistHomepageDeliveryState();
+
+postcodeInput.classList.add(
+"is-invalid"
+);
+
+updateHomepageBasketDeliverySummaryOnly();
+
+return;
+
+}
 
 calculateBasketDeliveryForPostcode(
 formatted
 );
-
-}
-else {
-
-currentHomepageDelivery = {
-postcode:formatted,
-loading:false,
-valid:false,
-quote:false,
-amount:null,
-miles:null,
-error:""
-};
-
-renderHomepageBasket();
-
-}
 
 }
 );
@@ -16937,34 +18224,94 @@ postcodeInput.value
 postcodeInput.value =
 formatted;
 
+postcodeInput.classList.remove(
+"is-invalid"
+);
+
+invalidateHomepageDeliveryLookup();
+
 if (
-normalizePostcode(
-formatted
-).length >=
-5
+!formatted
 ) {
+
+setHomepageDeliveryPending(
+""
+);
+
+persistHomepageDeliveryState();
+
+updateHomepageBasketDeliverySummaryOnly();
+
+return;
+
+}
+
+if (
+!isCompleteUKPostcode(
+formatted
+)
+) {
+
+setHomepageDeliveryPending(
+formatted
+);
+
+persistHomepageDeliveryState();
+
+postcodeInput.classList.add(
+"is-invalid"
+);
+
+updateHomepageBasketDeliverySummaryOnly();
+
+return;
+
+}
 
 calculateBasketDeliveryForPostcode(
 formatted
 );
 
 }
-
-}
 );
 
 }
 
+
+/* =========================================
+POSTCODE DELIVERY CALCULATION
+========================================= */
+
 async function calculateBasketDeliveryForPostcode(
-postcode
+postcode,
+{
+animateLoading = true
+} = {}
 ) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!isCompleteUKPostcode(
+cleaned
+)
+) {
+
+return;
+
+}
+
+invalidateHomepageDeliveryLookup();
 
 const requestId =
 ++basketDeliveryRequestId;
 
 const formattedPostcode =
 formatPostcode(
-postcode
+cleaned
 );
 
 currentHomepageDelivery = {
@@ -16973,11 +18320,21 @@ loading:true,
 valid:false,
 quote:false,
 amount:null,
+adjustedMiles:null,
 miles:null,
+reason:"",
 error:""
 };
 
-renderHomepageBasket();
+persistHomepageDeliveryState();
+
+if (
+animateLoading
+) {
+
+updateHomepageBasketDeliverySummaryOnly();
+
+}
 
 try {
 
@@ -17009,16 +18366,25 @@ return;
 
 }
 
-const miles =
-calculateHaversineMiles(
+const straightLineMiles =
+calculateStraightLineMiles(
 originCoordinates,
 destinationCoordinates
+);
+
+const adjustedMiles =
+straightLineMiles *
+ROAD_DISTANCE_ALLOWANCE;
+
+const chargeableMiles =
+Math.ceil(
+adjustedMiles
 );
 
 const delivery =
 calculateHomepageDelivery(
 items,
-miles
+chargeableMiles
 );
 
 currentHomepageDelivery = {
@@ -17029,13 +18395,16 @@ quote:
 delivery.quote,
 amount:
 delivery.amount,
-miles,
+adjustedMiles,
+miles:
+delivery.miles,
+reason:
+delivery.reason ||
+"",
 error:""
 };
 
-saveStoredDeliveryPostcode(
-formattedPostcode
-);
+persistHomepageDeliveryState();
 
 renderHomepageBasket();
 
@@ -17057,12 +18426,31 @@ loading:false,
 valid:false,
 quote:false,
 amount:null,
+adjustedMiles:null,
 miles:null,
+reason:"",
 error:
 "Please check the postcode and try again."
 };
 
+persistHomepageDeliveryState();
+
 renderHomepageBasket();
+
+const invalidInput =
+document.getElementById(
+"basketDrawerPostcode"
+);
+
+if (
+invalidInput
+) {
+
+invalidInput.classList.add(
+"is-invalid"
+);
+
+}
 
 }
 
@@ -17090,7 +18478,27 @@ return;
 
 checkoutButton.addEventListener(
 "click",
-() => {
+(event) => {
+
+const payload =
+readHomepageOrderPayload();
+
+const items =
+getHomepageBasketItems(
+payload
+);
+
+if (
+!homepageBasketCheckoutIsAvailable(
+items
+)
+) {
+
+event.preventDefault();
+
+return;
+
+}
 
 window.location.href =
 "order-page.html?source=homepage-basket&focus=checkout";
@@ -17102,13 +18510,232 @@ window.location.href =
 
 
 /* =========================================
-OPEN / CLOSE BASKET DRAWER
+BASKET DRAWER MODAL / PAGE LOCK
+MATCHES ORDER PAGE BEHAVIOUR
 ========================================= */
 
-function openBasketDrawer() {
+function getHomepageBasketBackgroundElements() {
 
 if (
 !basketDrawerLayer
+) {
+
+return [];
+
+}
+
+const desktopBlocker =
+document.getElementById(
+"desktopAccessBlocker"
+);
+
+return Array.from(
+document.body.children
+).filter(
+(element) =>
+element !==
+basketDrawerLayer &&
+element !==
+desktopBlocker &&
+element.tagName !==
+"SCRIPT"
+);
+
+}
+
+function setHomepageBasketBackgroundInert(
+shouldBeInert
+) {
+
+getHomepageBasketBackgroundElements()
+.forEach(
+(element) => {
+
+element.inert =
+shouldBeInert;
+
+}
+);
+
+}
+
+function lockHomepageBasketPageScroll() {
+
+basketDrawerScrollY =
+window.scrollY ||
+document.documentElement.scrollTop ||
+0;
+
+basketDrawerPreviousBodyStyles = {
+position:
+document.body.style.position,
+top:
+document.body.style.top,
+left:
+document.body.style.left,
+right:
+document.body.style.right,
+width:
+document.body.style.width,
+overflow:
+document.body.style.overflow
+};
+
+document.body.classList.add(
+"basket-drawer-open"
+);
+
+document.body.style.position =
+"fixed";
+
+document.body.style.top =
+`-${basketDrawerScrollY}px`;
+
+document.body.style.left =
+"0";
+
+document.body.style.right =
+"0";
+
+document.body.style.width =
+"100%";
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+function unlockHomepageBasketPageScroll() {
+
+document.body.classList.remove(
+"basket-drawer-open"
+);
+
+if (
+basketDrawerPreviousBodyStyles
+) {
+
+document.body.style.position =
+basketDrawerPreviousBodyStyles.position;
+
+document.body.style.top =
+basketDrawerPreviousBodyStyles.top;
+
+document.body.style.left =
+basketDrawerPreviousBodyStyles.left;
+
+document.body.style.right =
+basketDrawerPreviousBodyStyles.right;
+
+document.body.style.width =
+basketDrawerPreviousBodyStyles.width;
+
+document.body.style.overflow =
+basketDrawerPreviousBodyStyles.overflow;
+
+}
+else {
+
+document.body.style.position =
+"";
+
+document.body.style.top =
+"";
+
+document.body.style.left =
+"";
+
+document.body.style.right =
+"";
+
+document.body.style.width =
+"";
+
+document.body.style.overflow =
+"";
+
+}
+
+window.scrollTo(
+0,
+basketDrawerScrollY
+);
+
+basketDrawerPreviousBodyStyles =
+null;
+
+}
+
+function getHomepageBasketFocusableElements() {
+
+if (
+!basketDrawerPanel
+) {
+
+return [];
+
+}
+
+return Array.from(
+basketDrawerPanel.querySelectorAll(
+[
+"button:not([disabled])",
+"input:not([disabled])",
+"select:not([disabled])",
+"textarea:not([disabled])",
+"a[href]",
+"[tabindex]:not([tabindex='-1'])"
+].join(
+","
+)
+)
+).filter(
+(element) => {
+
+return (
+!element.hasAttribute(
+"hidden"
+) &&
+element.offsetParent !==
+null
+);
+
+}
+);
+
+}
+
+
+/* =========================================
+OPEN / CLOSE BASKET DRAWER
+========================================= */
+
+function openBasketDrawer(
+event
+) {
+
+if (
+event
+) {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+}
+
+if (
+!basketDrawerLayer ||
+!basketDrawerPanel ||
+!basketButton
+) {
+
+return;
+
+}
+
+if (
+basketDrawerIsOpen
 ) {
 
 return;
@@ -17119,10 +18746,26 @@ closeMenu();
 
 closeWhatsappAction();
 
+const payload =
+readHomepageOrderPayload();
+
+loadHomepageDeliveryStateFromPayload(
+payload
+);
+
 lastBasketFocusedElement =
 document.activeElement;
 
 renderHomepageBasket();
+
+basketDrawerIsOpen =
+true;
+
+lockHomepageBasketPageScroll();
+
+setHomepageBasketBackgroundInert(
+true
+);
 
 basketDrawerLayer.classList.add(
 "is-open"
@@ -17133,26 +18776,12 @@ basketDrawerLayer.setAttribute(
 "false"
 );
 
-document.body.classList.add(
-"basket-drawer-open"
-);
-
-if (
-basketButton
-) {
-
 basketButton.setAttribute(
 "aria-expanded",
 "true"
 );
 
-basketButton.classList.add(
-"is-selected"
-);
-
-}
-
-window.setTimeout(
+window.requestAnimationFrame(
 () => {
 
 if (
@@ -17173,20 +18802,16 @@ basketDrawerClose.focus();
 }
 
 }
-else if (
-basketDrawerPanel
-) {
+else {
 
-basketDrawerPanel.focus();
+basketDrawerPanel.focus({
+preventScroll:true
+});
 
 }
 
-},
-30
+}
 );
-
-const payload =
-readHomepageOrderPayload();
 
 const storedPostcode =
 readStoredDeliveryPostcode(
@@ -17195,29 +18820,44 @@ payload
 
 if (
 storedPostcode &&
-normalizePostcode(
+isCompleteUKPostcode(
 storedPostcode
-).length >=
-5
+) &&
+!(
+currentHomepageDelivery.valid &&
+!currentHomepageDelivery.loading
+)
 ) {
 
 calculateBasketDeliveryForPostcode(
-storedPostcode
+storedPostcode,
+{
+animateLoading:false
+}
 );
 
 }
 
 }
 
-function closeBasketDrawer() {
+function closeBasketDrawer(
+{
+restoreFocus = true
+} = {}
+) {
 
 if (
-!basketDrawerLayer
+!basketDrawerLayer ||
+!basketButton ||
+!basketDrawerIsOpen
 ) {
 
 return;
 
 }
+
+basketDrawerIsOpen =
+false;
 
 basketDrawerLayer.classList.remove(
 "is-open"
@@ -17228,32 +18868,38 @@ basketDrawerLayer.setAttribute(
 "true"
 );
 
-document.body.classList.remove(
-"basket-drawer-open"
-);
-
-if (
-basketButton
-) {
-
 basketButton.setAttribute(
 "aria-expanded",
 "false"
 );
 
-basketButton.classList.remove(
-"is-selected"
+setHomepageBasketBackgroundInert(
+false
 );
 
-}
+unlockHomepageBasketPageScroll();
 
 applyDesktopAccessRestriction();
 
 if (
+restoreFocus &&
 lastBasketFocusedElement &&
 typeof lastBasketFocusedElement.focus ===
 "function"
 ) {
+
+window.requestAnimationFrame(
+() => {
+
+if (
+!document.contains(
+lastBasketFocusedElement
+)
+) {
+
+return;
+
+}
 
 try {
 
@@ -17269,6 +18915,12 @@ lastBasketFocusedElement.focus();
 }
 
 }
+);
+
+}
+
+lastBasketFocusedElement =
+null;
 
 }
 
@@ -17289,7 +18941,15 @@ basketDrawerClose
 
 basketDrawerClose.addEventListener(
 "click",
-closeBasketDrawer
+(event) => {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+closeBasketDrawer();
+
+}
 );
 
 }
@@ -17300,25 +18960,105 @@ basketDrawerBackdrop
 
 basketDrawerBackdrop.addEventListener(
 "click",
-closeBasketDrawer
+(event) => {
+
+event.preventDefault();
+
+closeBasketDrawer();
+
+}
 );
 
 }
+
+
+/* =========================================
+BASKET KEYBOARD FOCUS TRAP
+========================================= */
 
 document.addEventListener(
 "keydown",
 (event) => {
 
 if (
-event.key ===
-"Escape" &&
-basketDrawerLayer &&
-basketDrawerLayer.classList.contains(
-"is-open"
-)
+!basketDrawerIsOpen
 ) {
 
+return;
+
+}
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
 closeBasketDrawer();
+
+return;
+
+}
+
+if (
+event.key !==
+"Tab"
+) {
+
+return;
+
+}
+
+const focusableElements =
+getHomepageBasketFocusableElements();
+
+if (
+!focusableElements.length
+) {
+
+event.preventDefault();
+
+basketDrawerPanel?.focus({
+preventScroll:true
+});
+
+return;
+
+}
+
+const first =
+focusableElements[0];
+
+const last =
+focusableElements[
+focusableElements.length -
+1
+];
+
+if (
+event.shiftKey &&
+document.activeElement ===
+first
+) {
+
+event.preventDefault();
+
+last.focus();
+
+return;
+
+}
+
+if (
+!event.shiftKey &&
+document.activeElement ===
+last
+) {
+
+event.preventDefault();
+
+first.focus();
 
 }
 
@@ -17334,6 +19074,10 @@ function refreshHomepageBasket() {
 
 const payload =
 readHomepageOrderPayload();
+
+loadHomepageDeliveryStateFromPayload(
+payload
+);
 
 const items =
 getHomepageBasketItems(
@@ -17436,10 +19180,7 @@ headerHomeLink.addEventListener(
 closeWhatsappAction();
 
 if (
-basketDrawerLayer &&
-basketDrawerLayer.classList.contains(
-"is-open"
-)
+basketDrawerIsOpen
 ) {
 
 closeBasketDrawer();
