@@ -7200,6 +7200,16 @@ object-position:center;
 margin-top:48px;
 }
 
+/* =========================================
+INDEX CHANGE 3
+SLIGHTLY CURVED QUOTATION BUTTONS
+========================================= */
+
+#specification-advice .direct-copy > .button,
+.oversized-showcase-section .direct-copy > .button {
+border-radius:6px;
+}
+
 .direct-section {
 border-bottom:0;
 background:
@@ -7356,14 +7366,24 @@ object-position:center center;
 background:transparent;
 }
 
+/* =========================================
+INDEX CHANGE 3
+OVERSIZED CONTENT NOW MATCHES FITTING LAYOUT
+========================================= */
+
 .oversized-showcase-section .oversized-section {
 position:relative;
 z-index:2;
 background:transparent;
 padding:
-16px
+72px
 6%
-70px;
+48px;
+}
+
+.oversized-showcase-section .oversized-direct-inner {
+position:relative;
+z-index:2;
 }
 
 .homepage-closing-section {
@@ -7505,11 +7525,13 @@ transform:scale(1.08);
 transform-origin:center center;
 }
 
+/* INDEX CHANGE 3 — MATCH FITTING CONTENT SPACING */
+
 .oversized-showcase-section .oversized-section {
 padding:
-10px
+44px
 6%
-4px;
+32px;
 }
 
 .homepage-closing-section {
@@ -9024,17 +9046,28 @@ alt="Oversized frameless rooflight manufactured up to 5800mm"
 
 </div>
 
+<!-- =========================================
+INDEX CHANGE 3
+OVERSIZED SECTION MATCHED TO FITTING SECTION
+========================================= -->
+
 <div class="oversized-section">
 
-<div class="oversized reveal reveal-scale">
+<div class="direct-inner oversized-direct-inner reveal reveal-scale">
+
+<div>
 
 <div class="section-label">
 Specialist Manufacture
 </div>
 
-<h2>
+<h2 class="direct-heading">
 Oversized Rooflights Up To 5800mm
 </h2>
+
+</div>
+
+<div class="direct-copy">
 
 <p>
 Need something beyond the listed online range? We can manufacture oversized custom
@@ -9049,6 +9082,8 @@ touch today for a no obligation quote.
 <a href="#contact" class="button">
 Request Oversized Quote
 </a>
+
+</div>
 
 </div>
 
@@ -10368,6 +10403,346 @@ card
 }
 
 initializeHomepageProductPrices();
+
+
+/* =========================================
+INDEX CHANGE 1
+PRODUCT CARD IMAGE / SIZE TWO-STAGE CLICK
+
+First click:
+- highlights/selects the card only
+
+Once highlighted:
+- clicking the product image or size text
+opens the exact same configured URL as
+the existing View Size link
+
+The View Size link itself remains a normal
+single-click link.
+========================================= */
+
+const homepageProductCardSelectionStyle =
+document.createElement(
+"style"
+);
+
+homepageProductCardSelectionStyle.textContent = `
+
+.home-product-card.is-homepage-selected::before {
+opacity:1;
+transform:scaleY(1);
+}
+
+.home-product-card.is-homepage-selected {
+transform:translateY(-3px);
+border-color:rgba(232,120,23,.36);
+background:#191b1b;
+box-shadow:
+0 20px 38px rgba(0,0,0,.28);
+z-index:4;
+}
+
+.home-product-card.is-homepage-selected
+.home-product-size {
+color:var(--orange-bright);
+}
+
+.home-product-card.is-homepage-selected
+.home-product-image img {
+transform:var(--home-image-hover-transform);
+filter:contrast(1.015);
+}
+
+.tinted-options-section
+.home-product-card.is-homepage-selected {
+border-color:rgba(111,157,200,.54);
+background:
+linear-gradient(
+180deg,
+#172230 0%,
+#131c26 100%
+);
+box-shadow:
+0 20px 38px rgba(0,0,0,.30),
+0 0 0 1px rgba(41,77,115,.07);
+}
+
+.tinted-options-section
+.home-product-card.is-homepage-selected
+.home-product-size {
+color:var(--tint-blue-light);
+}
+
+@media(max-width:560px) {
+
+.home-product-card.is-homepage-selected {
+transform:translateY(-2px);
+}
+
+}
+
+`;
+
+document.head.appendChild(
+homepageProductCardSelectionStyle
+);
+
+const homepageSelectableProductCards =
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+);
+
+function clearHomepageProductCardSelection(
+exceptCard = null
+) {
+
+homepageSelectableProductCards.forEach(
+(card) => {
+
+if (
+card ===
+exceptCard
+) {
+
+return;
+
+}
+
+card.classList.remove(
+"is-homepage-selected"
+);
+
+card.setAttribute(
+"aria-selected",
+"false"
+);
+
+}
+);
+
+}
+
+function selectHomepageProductCard(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+clearHomepageProductCardSelection(
+card
+);
+
+card.classList.add(
+"is-homepage-selected"
+);
+
+card.setAttribute(
+"aria-selected",
+"true"
+);
+
+}
+
+function navigateFromHomepageProductCard(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const productLink =
+card.querySelector(
+".home-product-link"
+);
+
+if (
+!productLink
+) {
+
+return;
+
+}
+
+const destination =
+productLink.href;
+
+if (
+!destination
+) {
+
+return;
+
+}
+
+window.location.href =
+destination;
+
+}
+
+function handleHomepageProductImageOrSizeClick(
+event,
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+event.stopPropagation();
+
+const alreadySelected =
+card.classList.contains(
+"is-homepage-selected"
+);
+
+if (
+!alreadySelected
+) {
+
+selectHomepageProductCard(
+card
+);
+
+try {
+
+card.focus({
+preventScroll:true
+});
+
+}
+catch (error) {
+
+card.focus();
+
+}
+
+return;
+
+}
+
+navigateFromHomepageProductCard(
+card
+);
+
+}
+
+homepageSelectableProductCards.forEach(
+(card) => {
+
+card.setAttribute(
+"aria-selected",
+"false"
+);
+
+const productImage =
+card.querySelector(
+".home-product-image"
+);
+
+const productSize =
+card.querySelector(
+".home-product-size"
+);
+
+if (
+productImage
+) {
+
+productImage.addEventListener(
+"click",
+(event) => {
+
+handleHomepageProductImageOrSizeClick(
+event,
+card
+);
+
+}
+);
+
+}
+
+if (
+productSize
+) {
+
+productSize.addEventListener(
+"click",
+(event) => {
+
+handleHomepageProductImageOrSizeClick(
+event,
+card
+);
+
+}
+);
+
+}
+
+/*
+Clicking a non-interactive part of the card
+continues to act as the first-stage highlight.
+
+Buttons and the View Size link retain their
+existing independent behaviour.
+*/
+
+card.addEventListener(
+"click",
+(event) => {
+
+if (
+event.target.closest(
+"a, button, input, select, textarea, label"
+)
+) {
+
+return;
+
+}
+
+if (
+event.target.closest(
+".home-product-image"
+) ||
+event.target.closest(
+".home-product-size"
+)
+) {
+
+return;
+
+}
+
+selectHomepageProductCard(
+card
+);
+
+}
+);
+
+}
+);
 
 
 /* =========================================
