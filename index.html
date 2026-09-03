@@ -7204,15 +7204,20 @@ border-radius:6px;
 /* =========================================
 LOWER HOMEPAGE STRUCTURAL WRAPPER
 
-The previous shared gradient has been removed
-from this wrapper.
-
-The Professional Fitting section now retains
+The Professional Fitting section retains
 its own dark background.
 
-The specialist oversized gradient begins
-inside the Oversized section itself, 12px
-below the top of the oversized rooflight image.
+Its bottom padding is removed so the dark
+background ends immediately at the bottom
+of the Request A Fitting Quotation button.
+
+The same spacing is transferred to the top
+of the Oversized section so the oversized
+rooflight image remains in the same position.
+
+The green / grey specialist background
+therefore begins immediately beneath the
+Request A Fitting Quotation button.
 ========================================= */
 
 .lower-showcase-background-zone {
@@ -7263,23 +7268,31 @@ linear-gradient(
 );
 }
 
+#specification-advice {
+padding-bottom:0;
+}
+
 /* =========================================
 OVERSIZED BACKGROUND
 
-The green / grey oversized background begins
-12px below the top edge of the
-oversized-rooflight.png visual.
+The green / grey oversized background now
+begins directly underneath the bottom of the
+Request A Fitting Quotation button.
 
-Adjust only the two top:12px values below
-to move the complete oversized background
-higher or lower.
+The previous 48px fitting-section bottom
+spacing has been moved to the top of this
+section so the oversized rooflight image
+retains its existing vertical position.
 ========================================= */
 
 .oversized-showcase-section {
 position:relative;
 isolation:isolate;
 overflow:hidden;
-padding:0;
+padding:
+48px
+0
+0;
 border:0;
 background:#090a0a;
 }
@@ -7288,7 +7301,7 @@ background:#090a0a;
 content:"";
 position:absolute;
 z-index:0;
-top:12px;
+top:0;
 left:0;
 right:0;
 bottom:0;
@@ -7333,7 +7346,7 @@ linear-gradient(
 content:"";
 position:absolute;
 z-index:0;
-top:12px;
+top:0;
 left:0;
 right:0;
 bottom:0;
@@ -7549,7 +7562,15 @@ margin-top:32px;
 
 /* =========================================
 OVERSIZED BACKGROUND — MOBILE
+
+The original 32px fitting-section bottom
+spacing is transferred to the top of the
+Oversized section.
 ========================================= */
+
+.oversized-showcase-section {
+padding-top:32px;
+}
 
 .oversized-showcase-section::before {
 
