@@ -7202,18 +7202,17 @@ border-radius:6px;
 }
 
 /* =========================================
-LOWER HOMEPAGE SHARED BACKGROUND
+LOWER HOMEPAGE STRUCTURAL WRAPPER
 
-The background is now independent of the
-Oversized section itself.
+The previous shared gradient has been removed
+from this wrapper.
 
-It spans the Professional Fitting section,
-its slideshow, the oversized rooflight image
-and the oversized content section.
+The Professional Fitting section now retains
+its own dark background.
 
-The background can therefore be repositioned
-or reshaped here without being constrained
-by the Oversized section's vertical bounds.
+The specialist oversized gradient begins
+inside the Oversized section itself, 12px
+below the top of the oversized rooflight image.
 ========================================= */
 
 .lower-showcase-background-zone {
@@ -7223,11 +7222,76 @@ overflow:hidden;
 background:#090a0a;
 }
 
-.lower-showcase-background-zone::before {
+.lower-showcase-background-zone::before,
+.lower-showcase-background-zone::after {
+display:none;
+}
+
+.lower-showcase-background-zone >
+.direct-section {
+position:relative;
+z-index:1;
+background:
+linear-gradient(
+180deg,
+#0f1111 0%,
+#151818 52%,
+#141717 64%,
+#111313 74%,
+#0d0f0f 86%,
+#090a0a 100%
+);
+}
+
+.lower-showcase-background-zone >
+.oversized-showcase-section {
+position:relative;
+z-index:1;
+}
+
+.direct-section {
+border-bottom:0;
+background:
+linear-gradient(
+180deg,
+#0f1111 0%,
+#151818 52%,
+#141717 64%,
+#111313 74%,
+#0d0f0f 86%,
+#090a0a 100%
+);
+}
+
+/* =========================================
+OVERSIZED BACKGROUND
+
+The green / grey oversized background begins
+12px below the top edge of the
+oversized-rooflight.png visual.
+
+Adjust only the two top:12px values below
+to move the complete oversized background
+higher or lower.
+========================================= */
+
+.oversized-showcase-section {
+position:relative;
+isolation:isolate;
+overflow:hidden;
+padding:0;
+border:0;
+background:#090a0a;
+}
+
+.oversized-showcase-section::before {
 content:"";
 position:absolute;
 z-index:0;
-inset:0;
+top:12px;
+left:0;
+right:0;
+bottom:0;
 pointer-events:none;
 
 background:
@@ -7245,7 +7309,7 @@ rgba(9,10,10,0) 32%
 ),
 
 radial-gradient(
-ellipse 94% 58% at 50% 56%,
+ellipse 94% 58% at 50% 24%,
 rgba(31,92,66,.58) 0%,
 rgba(25,74,54,.47) 30%,
 rgba(18,51,39,.32) 56%,
@@ -7265,11 +7329,14 @@ linear-gradient(
 );
 }
 
-.lower-showcase-background-zone::after {
+.oversized-showcase-section::after {
 content:"";
 position:absolute;
-inset:0;
 z-index:0;
+top:12px;
+left:0;
+right:0;
+bottom:0;
 background-image:
 linear-gradient(
 rgba(255,255,255,.012) 1px,
@@ -7283,33 +7350,6 @@ transparent 1px
 background-size:52px 52px;
 opacity:.45;
 pointer-events:none;
-}
-
-.lower-showcase-background-zone >
-.direct-section,
-.lower-showcase-background-zone >
-.oversized-showcase-section {
-position:relative;
-z-index:1;
-background:transparent;
-}
-
-.direct-section {
-border-bottom:0;
-background:transparent;
-}
-
-/* =========================================
-OVERSIZED
-BACKGROUND NOW PROVIDED BY SHARED WRAPPER
-========================================= */
-
-.oversized-showcase-section {
-position:relative;
-overflow:hidden;
-padding:0;
-border:0;
-background:transparent;
 }
 
 .oversized-rooflight-visual {
@@ -7507,9 +7547,11 @@ aspect-ratio:4 / 3;
 margin-top:32px;
 }
 
-/* SHARED LOWER BACKGROUND — MOBILE */
+/* =========================================
+OVERSIZED BACKGROUND — MOBILE
+========================================= */
 
-.lower-showcase-background-zone::before {
+.oversized-showcase-section::before {
 
 background:
 
@@ -7526,7 +7568,7 @@ rgba(9,10,10,0) 32%
 ),
 
 radial-gradient(
-ellipse 118% 60% at 50% 57%,
+ellipse 118% 60% at 50% 25%,
 rgba(31,91,66,.61) 0%,
 rgba(24,71,52,.49) 31%,
 rgba(17,49,37,.33) 57%,
@@ -8959,13 +9001,6 @@ View All Sizes
 </div>
 
 </section>
-
-<!-- =========================================
-SHARED LOWER HOMEPAGE BACKGROUND ZONE
-
-The visual background is deliberately outside
-the individual fitting and oversized sections.
-========================================= -->
 
 <div class="lower-showcase-background-zone">
 
