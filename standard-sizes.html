@@ -1,36 +1,47 @@
+Gmail	Nathan Knight <rightglaze@gmail.com>
+Standard
+Nathan Knight <nathank3290@gmail.com>	Fri, Sep 4, 2026 at 12:23 PM
+To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <title>Standard Frameless Rooflight Sizes | Factory Toughened Rooflights</title>
-
-<meta
-name="description"
-content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times, free mainland UK delivery on eligible sizes and postcode-based delivery pricing on Extra Large units."
-/>
-
+<meta name="description" content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times, free mainland UK delivery on eligible sizes and postcode-based delivery pricing on Extra Large units." />
 <style>
 :root {
---orange:#f57c00;
+--orange:#e87817;
+--orange-bright:#f28a28;
+--orange-soft:#b75a12;
+--catalogue-orange:#f57c00;
 --sunset:#ff9a2f;
---black:#050505;
+--red-orange:#ff431c;
+--black:#090a0a;
+--dark:#0d0f0f;
+--dark-2:#111313;
+--panel:#151818;
+--panel-raised:#191c1c;
+--graphite:#242828;
+--graphite-light:#303535;
+--steel:#9ca3a1;
+--steel-light:#c9cecb;
+--steel-dark:#686f6d;
+--cream:#f1f0e9;
+--white:#f7f7f3;
+--muted:#b7bbb8;
+--muted-soft:#8f9692;
+--line:rgba(216,221,217,.14);
+--line-strong:rgba(216,221,217,.24);
 --navy:#102a44;
 --purple:#1b1028;
 --purple-dark:#100918;
---white:#ffffff;
---muted:#d8d8d8;
---red-orange:#ff431c;
+--cosmic-green-light:#8ce1be;
+--delivery-red:#985047;
 }
 
-* {
-box-sizing:border-box;
-}
-
-html {
-scroll-behavior:smooth;
-}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; background:var(--black); }
 
 body {
 margin:0;
@@ -38,10 +49,44 @@ font-family:"Manrope","Aptos","Inter","Segoe UI",Arial,sans-serif;
 background:var(--black);
 color:var(--white);
 overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility;
+}
+
+body.basket-drawer-open {
+overflow:hidden !important;
+overscroll-behavior:none;
 }
 
 img {
 max-width:100%;
+}
+
+button,
+select,
+input,
+a {
+font:inherit;
+}
+
+button,
+a {
+-webkit-tap-highlight-color:transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+outline:2px solid var(--orange);
+outline-offset:3px;
+}
+
+h1,
+h2,
+h3,
+.wordmark {
+font-family:"Bahnschrift","Bahnschrift SemiCondensed","Arial Narrow","Aptos Display","Inter",Arial,sans-serif;
 }
 
 /* ===============================
@@ -49,7 +94,7 @@ MOVING TOP BANNER
 ================================ */
 
 .top-banner {
-background:var(--orange);
+background:var(--catalogue-orange);
 color:#050505;
 overflow:hidden;
 white-space:nowrap;
@@ -79,34 +124,37 @@ transform:translateX(-50%);
 }
 }
 
-/* ===============================
+/* =========================================
 HEADER
-================================ */
+========================================= */
 
 header {
-background:rgba(5,5,5,.96);
-border-bottom:1px solid rgba(255,255,255,.08);
-padding:28px 6% 22px;
+background:rgba(11,12,12,.965);
+border-bottom:1px solid rgba(255,255,255,.09);
+padding:24px 6% 20px;
 display:grid;
 grid-template-columns:1fr auto;
-align-items:center;
+align-items:start;
 gap:32px;
 position:sticky;
 top:0;
-z-index:20;
-backdrop-filter:blur(10px);
+z-index:30;
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+box-shadow:0 8px 30px rgba(0,0,0,.16);
 }
 
 .wordmark-wrap {
 display:grid;
-gap:10px;
+gap:9px;
 }
 
 .wordmark {
-line-height:.94;
-font-weight:950;
-letter-spacing:2.4px;
-font-size:25px;
+line-height:.91;
+font-weight:850;
+letter-spacing:2.8px;
+color:var(--cream);
+font-size:24px;
 text-transform:uppercase;
 width:max-content;
 }
@@ -125,64 +173,277 @@ width:max-content;
 }
 
 .wordmark-domain {
-display:inline-block;
-color:var(--white);
-font-size:.44em;
-font-weight:900;
-letter-spacing:.08px;
+color:var(--steel-light);
+font-size:.40em;
+font-weight:700;
+letter-spacing:.15px;
 line-height:1;
-padding-bottom:1px;
+margin-left:1px;
+padding-bottom:2px;
 text-transform:lowercase;
+}
+
+.header-wordmark-link .wordmark-domain {
+position:relative;
+left:-1px;
+top:1px;
+}
+
+.header-wordmark-link {
+display:block;
+width:max-content;
+max-width:100%;
+color:inherit;
+text-decoration:none;
+}
+
+.address-line {
+font-size:12px;
+line-height:1.45;
+font-weight:600;
+color:rgba(255,255,255,.72);
+letter-spacing:.6px;
+text-transform:uppercase;
 }
 
 .action-icons {
 display:flex;
-gap:10px;
-align-self:center;
+gap:8px;
+align-self:end;
 padding-bottom:1px;
 }
 
+.header-action-wrap {
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
 .action-icons button,
-.action-icons a {
-width:44px;
-height:44px;
-border:1px solid rgba(255,255,255,.18);
-background:transparent;
-color:var(--white);
+.action-icons a.header-icon-button {
+width:42px;
+height:42px;
+border:1px solid rgba(230,233,230,.16);
+background:#111313;
+color:var(--steel-light);
 text-decoration:none;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:19px;
-font-weight:900;
+font-size:18px;
+font-weight:800;
 cursor:pointer;
+transition:
+transform .22s ease,
+border-color .22s ease,
+color .22s ease,
+background .22s ease,
+box-shadow .22s ease;
 line-height:1;
 padding:0;
-transition:
-transform .25s ease,
-border-color .25s ease,
-color .25s ease,
-background .25s ease,
-box-shadow .25s ease;
 }
 
 .action-icons button:hover,
-.action-icons a:hover {
-border-color:var(--orange);
-color:var(--orange);
-background:rgba(245,124,0,.06);
-box-shadow:0 8px 24px rgba(245,124,0,.10);
-transform:translateY(-2px);
+.action-icons a.header-icon-button:hover {
+border-color:rgba(232,120,23,.70);
+color:var(--orange-bright);
+background:#171817;
+box-shadow:0 7px 22px rgba(0,0,0,.25);
+transform:translateY(-1px);
 }
 
-/* ===============================
+.action-icons button.is-selected {
+border-color:rgba(232,120,23,.85);
+color:var(--orange-bright);
+background:#191714;
+box-shadow:
+0 0 0 1px rgba(232,120,23,.08),
+0 7px 22px rgba(0,0,0,.24);
+}
+
+/* =========================================
+WHATSAPP ACTION
+========================================= */
+
+.whatsapp-action {
+position:absolute;
+left:50%;
+bottom:calc(100% + 15px);
+z-index:85;
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:7px;
+background:
+linear-gradient(
+145deg,
+#36e676 0%,
+#25d366 52%,
+#179b46 100%
+);
+border:1px solid rgba(255,255,255,.30);
+box-shadow:
+0 15px 30px rgba(0,0,0,.55),
+0 0 14px rgba(37,211,102,.18),
+inset 0 1px 0 rgba(255,255,255,.30);
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:
+translate(-50%,20px)
+scale(.58);
+transform-origin:center bottom;
+transition:
+opacity .2s ease,
+visibility .2s ease,
+transform .38s cubic-bezier(.18,.82,.28,1.35);
+}
+
+.whatsapp-action.is-open {
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:
+translate(-50%,0)
+scale(1);
+animation:whatsappAttention 4s ease-in-out .9s infinite;
+}
+
+.whatsapp-action svg {
+width:27px;
+height:27px;
+display:block;
+fill:#ffffff;
+filter:drop-shadow(0 2px 2px rgba(0,0,0,.22));
+}
+
+.whatsapp-action:hover,
+.whatsapp-action:active {
+transform:
+translate(-50%,-2px)
+scale(1.04);
+box-shadow:
+0 18px 35px rgba(0,0,0,.62),
+0 0 22px rgba(37,211,102,.38),
+inset 0 1px 0 rgba(255,255,255,.38);
+}
+
+@keyframes whatsappAttention {
+
+0%,
+72%,
+100% {
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+78% {
+transform:
+translate(-50%,-2px)
+scale(1.045);
+}
+
+83% {
+transform:
+translate(-50%,0)
+scale(.99);
+}
+
+88% {
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+}
+
+/* =========================================
+HEADER BASKET TOTAL
+========================================= */
+
+.basket-total-text {
+position:absolute;
+top:-16px;
+left:50%;
+z-index:5;
+font-family:
+"Bahnschrift Condensed",
+"Arial Narrow",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:800;
+line-height:1;
+letter-spacing:.3px;
+color:var(--cream);
+text-align:center;
+white-space:nowrap;
+text-shadow:0 2px 5px rgba(0,0,0,.92);
+opacity:0;
+transform:
+translate(-50%,7px)
+scale(.78);
+transform-origin:center bottom;
+pointer-events:none;
+}
+
+.basket-total-text.is-visible {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+transition:
+opacity .22s ease,
+transform .42s cubic-bezier(.18,.78,.28,1.35);
+}
+
+.basket-total-text.is-updating {
+animation:basketTotalUpdate .52s cubic-bezier(.18,.78,.28,1.28);
+}
+
+@keyframes basketTotalUpdate {
+
+0% {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+42% {
+transform:
+translate(-50%,-4px)
+scale(1.12);
+color:#f6dbc1;
+}
+
+72% {
+transform:
+translate(-50%,1px)
+scale(.98);
+}
+
+100% {
+opacity:1;
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+}
+
+/* =========================================
 MENU
-================================ */
+========================================= */
 
 .menu-overlay {
 position:fixed;
 inset:0;
-background:rgba(5,5,5,.985);
+background:rgba(10,11,11,.992);
 z-index:100;
 display:none;
 padding:55px 6%;
@@ -197,41 +458,1066 @@ display:block;
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
-margin-bottom:70px;
+margin-bottom:60px;
 }
 
 .close-menu {
-background:transparent;
-color:var(--white);
-border:1px solid rgba(255,255,255,.18);
-width:46px;
-height:46px;
-font-size:28px;
+background:#111313;
+color:var(--cream);
+border:1px solid rgba(255,255,255,.16);
+width:44px;
+height:44px;
+font-size:26px;
 cursor:pointer;
 }
 
 .menu-links {
 display:grid;
-gap:24px;
-max-width:680px;
+gap:0;
+max-width:760px;
+border-top:1px solid rgba(255,255,255,.10);
 }
 
 .menu-links a {
-color:var(--white);
+color:var(--cream);
 text-decoration:none;
-font-size:clamp(34px,6vw,72px);
-font-weight:950;
-line-height:.94;
-letter-spacing:-2px;
+font-family:
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+sans-serif;
+font-size:clamp(31px,5vw,62px);
+font-weight:750;
+line-height:1;
+letter-spacing:-1.2px;
 text-transform:uppercase;
-border-bottom:1px solid rgba(255,255,255,.12);
-padding-bottom:18px;
-transition:.25s ease;
+border-bottom:1px solid rgba(255,255,255,.10);
+padding:22px 0;
+transition:
+color .2s ease,
+padding-left .2s ease,
+background .2s ease;
 }
 
 .menu-links a:hover {
+color:var(--orange-bright);
+padding-left:10px;
+}
+
+/* =========================================
+BASKET DRAWER
+70% SCREEN WIDTH RETAINED
+========================================= */
+
+.basket-drawer-layer {
+position:fixed;
+inset:0;
+z-index:2000000000;
+visibility:hidden;
+pointer-events:none;
+overflow:hidden;
+}
+
+.basket-drawer-layer.is-open {
+visibility:visible;
+pointer-events:auto;
+}
+
+.basket-drawer-backdrop {
+position:absolute;
+inset:0;
+z-index:1;
+background:rgba(0,0,0,.72);
+opacity:0;
+transition:opacity .34s ease;
+cursor:pointer;
+}
+
+.basket-drawer-layer.is-open
+.basket-drawer-backdrop {
+opacity:1;
+}
+
+.basket-drawer-panel {
+position:absolute;
+top:0;
+right:0;
+z-index:2;
+width:70vw;
+max-width:70vw;
+min-width:0;
+height:100vh;
+height:100dvh;
+display:grid;
+grid-template-rows:auto minmax(0,1fr) auto;
+overflow:hidden;
+background:
+linear-gradient(
+180deg,
+#111414 0%,
+#0b0d0d 52%,
+#080a0a 100%
+);
+border-left:1px solid rgba(255,255,255,.14);
+box-shadow:
+-26px 0 70px rgba(0,0,0,.54);
+transform:translateX(100%);
+transition:transform .42s cubic-bezier(.18,.72,.28,1);
+outline:0;
+}
+
+.basket-drawer-layer.is-open
+.basket-drawer-panel {
+transform:translateX(0);
+}
+
+.basket-drawer-header {
+position:relative;
+z-index:4;
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:center;
+gap:12px;
+padding:
+clamp(15px,2vw,22px)
+clamp(13px,2vw,22px);
+background:
+linear-gradient(
+180deg,
+rgba(20,23,23,.995),
+rgba(13,15,15,.995)
+);
+border-bottom:1px solid rgba(255,255,255,.11);
+box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+
+.basket-drawer-heading-wrap {
+min-width:0;
+}
+
+.basket-drawer-kicker {
+display:block;
+margin-bottom:5px;
 color:var(--orange);
-padding-left:12px;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:7px;
+font-weight:800;
+line-height:1;
+letter-spacing:1.35px;
+text-transform:uppercase;
+}
+
+.basket-drawer-title {
+margin:0;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(19px,3vw,30px);
+font-weight:800;
+line-height:.95;
+letter-spacing:-.7px;
+}
+
+.basket-drawer-count {
+display:block;
+margin-top:6px;
+color:rgba(247,247,243,.43);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:7px;
+font-weight:700;
+line-height:1.2;
+letter-spacing:.65px;
+text-transform:uppercase;
+}
+
+.basket-drawer-close {
+width:38px;
+height:38px;
+padding:0;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(255,255,255,.17);
+border-radius:10px;
+background:#101212;
+color:var(--cream);
+font-family:
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:23px;
+font-weight:300;
+line-height:1;
+cursor:pointer;
+transition:
+border-color .2s ease,
+background .2s ease,
+color .2s ease,
+transform .15s ease;
+}
+
+.basket-drawer-close:hover {
+border-color:rgba(232,120,23,.56);
+background:#181513;
+color:var(--orange-bright);
+}
+
+.basket-drawer-close:active {
+transform:scale(.95);
+}
+
+.basket-drawer-body {
+min-width:0;
+overflow-x:hidden;
+overflow-y:auto;
+overscroll-behavior:contain;
+-webkit-overflow-scrolling:touch;
+padding:
+clamp(12px,1.7vw,18px)
+clamp(10px,1.7vw,18px)
+clamp(24px,3vw,36px);
+scrollbar-width:thin;
+scrollbar-color:
+rgba(232,120,23,.55)
+rgba(255,255,255,.035);
+}
+
+.basket-drawer-body::-webkit-scrollbar {
+width:5px;
+}
+
+.basket-drawer-body::-webkit-scrollbar-track {
+background:rgba(255,255,255,.025);
+}
+
+.basket-drawer-body::-webkit-scrollbar-thumb {
+background:rgba(232,120,23,.52);
+border-radius:999px;
+}
+
+.basket-drawer-items {
+display:grid;
+gap:10px;
+min-width:0;
+}
+
+.basket-drawer-item {
+min-width:0;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.12);
+border-left:2px solid rgba(232,120,23,.68);
+border-radius:9px;
+background:
+linear-gradient(
+180deg,
+#141717,
+#0c0e0e
+);
+transition:
+border-color .22s ease,
+background .22s ease,
+box-shadow .22s ease;
+}
+
+.basket-drawer-item.is-expanded {
+border-color:rgba(255,255,255,.17);
+border-left-color:var(--orange);
+box-shadow:0 9px 24px rgba(0,0,0,.18);
+}
+
+.basket-drawer-item-head {
+display:block;
+width:100%;
+margin:0;
+padding:12px 11px 10px;
+border:0;
+background:transparent;
+color:inherit;
+text-align:left;
+cursor:pointer;
+transition:
+background .2s ease,
+color .2s ease;
+}
+
+.basket-drawer-item-head:hover {
+background:rgba(255,255,255,.018);
+}
+
+.basket-drawer-item-title {
+display:block;
+margin:0;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(13.2px,2.42vw,19.8px);
+font-weight:800;
+line-height:1.12;
+letter-spacing:-.3px;
+overflow-wrap:anywhere;
+}
+
+.basket-drawer-item-title-quantity {
+color:var(--orange-bright);
+white-space:nowrap;
+}
+
+.basket-drawer-item-title-size-line,
+.basket-drawer-item-title-description {
+display:block;
+}
+
+.basket-drawer-item-title-description {
+margin-top:3px;
+}
+
+.basket-drawer-item-expand-strip {
+position:relative;
+width:100%;
+height:26px;
+margin:0;
+padding:0;
+display:flex;
+align-items:center;
+justify-content:center;
+border:0;
+border-top:1px solid rgba(255,255,255,.24);
+border-bottom:1px solid rgba(255,255,255,.24);
+background:#0a0b0b;
+color:#ffffff;
+cursor:pointer;
+transition:
+background .2s ease,
+border-color .2s ease;
+}
+
+.basket-drawer-item-expand-strip:hover {
+background:#101212;
+border-color:rgba(255,255,255,.34);
+}
+
+.basket-drawer-item-expand-arrow {
+position:relative;
+display:block;
+width:16px;
+height:14px;
+transform-origin:center center;
+animation:
+basketDrawerExpandPrompt
+3.8s
+ease-in-out
+.7s
+infinite;
+}
+
+.basket-drawer-item-expand-arrow::before {
+content:"";
+position:absolute;
+left:50%;
+top:3px;
+width:6px;
+height:6px;
+border-right:1.5px solid rgba(255,255,255,.92);
+border-bottom:1.5px solid rgba(255,255,255,.92);
+transform:
+translateX(-50%)
+rotate(45deg);
+}
+
+.basket-drawer-item.is-expanded
+.basket-drawer-item-expand-arrow {
+animation:none;
+transform:rotate(180deg);
+}
+
+@keyframes basketDrawerExpandPrompt {
+
+0%,
+68%,
+100% {
+transform:translateY(0) scale(1);
+}
+
+74% {
+transform:translateY(2px) scale(1.08);
+}
+
+80% {
+transform:translateY(-1px) scale(.98);
+}
+
+86% {
+transform:translateY(2px) scale(1.05);
+}
+
+92% {
+transform:translateY(0) scale(1);
+}
+
+}
+
+.basket-drawer-item-collapse[hidden] {
+display:none !important;
+}
+
+.basket-drawer-item-collapse:not([hidden]) {
+animation:
+basketDrawerItemReveal
+.28s
+cubic-bezier(.18,.72,.28,1)
+both;
+}
+
+@keyframes basketDrawerItemReveal {
+
+from {
+opacity:0;
+transform:translateY(-4px);
+}
+
+to {
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.basket-drawer-item-specs {
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px 16px;
+min-width:0;
+padding:12px 11px;
+text-align:left;
+}
+
+.basket-drawer-item-spec {
+min-width:0;
+text-align:left;
+}
+
+.basket-drawer-item-spec span {
+display:block;
+color:rgba(247,247,243,.37);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:6.3px;
+font-weight:800;
+line-height:1;
+letter-spacing:.7px;
+text-transform:uppercase;
+}
+
+.basket-drawer-item-spec strong {
+display:block;
+margin-top:4px;
+color:#d6d8d5;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8.25px;
+font-weight:700;
+line-height:1.28;
+overflow-wrap:anywhere;
+text-align:left;
+}
+
+.basket-drawer-item-spec.unit-price strong {
+color:var(--cream);
+font-weight:800;
+}
+
+.basket-drawer-item-total {
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+gap:10px;
+padding:10px 11px;
+border-top:1px solid rgba(232,120,23,.16);
+background:rgba(232,120,23,.025);
+}
+
+.basket-drawer-item-total-label {
+color:rgba(242,138,40,.70);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:6.6px;
+font-weight:800;
+line-height:1;
+letter-spacing:.8px;
+text-transform:uppercase;
+}
+
+.basket-drawer-item-total-price {
+color:var(--orange-bright);
+font-family:
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+sans-serif;
+font-size:clamp(17px,3vw,25px);
+font-weight:850;
+line-height:.9;
+letter-spacing:-.5px;
+white-space:nowrap;
+}
+
+.basket-drawer-item-total-vat {
+margin-top:4px;
+color:rgba(247,247,243,.36);
+font-size:6.3px;
+line-height:1;
+text-transform:lowercase;
+}
+
+.basket-drawer-item-controls {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+gap:7px;
+padding:0 11px 11px;
+}
+
+.basket-drawer-quantity {
+display:grid;
+grid-template-columns:30px minmax(32px,1fr) 30px;
+min-width:0;
+min-height:36px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.15);
+border-radius:10px;
+background:#0a0c0c;
+}
+
+.basket-drawer-quantity button {
+min-width:0;
+padding:0;
+border:0;
+background:transparent;
+color:#bfc2bf;
+font-family:
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:16px;
+font-weight:400;
+line-height:1;
+cursor:pointer;
+touch-action:manipulation;
+}
+
+.basket-drawer-quantity button:first-child {
+border-right:1px solid rgba(255,255,255,.09);
+}
+
+.basket-drawer-quantity button:last-child {
+border-left:1px solid rgba(255,255,255,.09);
+color:var(--orange-bright);
+}
+
+.basket-drawer-quantity button:disabled {
+opacity:.28;
+cursor:default;
+}
+
+.basket-drawer-quantity strong {
+display:flex;
+align-items:center;
+justify-content:center;
+min-width:0;
+color:var(--cream);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+sans-serif;
+font-size:13px;
+font-weight:800;
+line-height:1;
+}
+
+.basket-drawer-remove {
+min-height:36px;
+padding:0 10px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:10px;
+background:#111313;
+color:#bfc2bf;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:5.7px;
+font-weight:800;
+letter-spacing:.65px;
+line-height:1;
+text-transform:uppercase;
+cursor:pointer;
+}
+
+.basket-drawer-remove:hover {
+border-color:rgba(232,120,23,.50);
+color:var(--orange-bright);
+background:#181513;
+}
+
+.basket-drawer-delivery {
+margin-top:12px;
+padding:12px 11px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:9px;
+background:
+linear-gradient(
+180deg,
+rgba(14,17,16,.98),
+rgba(8,10,10,.98)
+);
+}
+
+.basket-drawer-footer .basket-drawer-delivery {
+margin:0 0 12px;
+}
+
+.basket-drawer-delivery-label {
+display:block;
+margin-bottom:7px;
+color:rgba(247,247,243,.43);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:6.2px;
+font-weight:800;
+line-height:1;
+letter-spacing:.8px;
+text-transform:uppercase;
+}
+
+.basket-drawer-postcode {
+display:block;
+width:100%;
+height:39px;
+padding:0 10px;
+border:1px solid rgba(255,255,255,.16);
+border-radius:10px;
+outline:0;
+background:#090b0b;
+color:var(--white);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:9px;
+font-weight:750;
+letter-spacing:.4px;
+text-transform:uppercase;
+}
+
+.basket-drawer-postcode::placeholder {
+color:rgba(247,247,243,.36);
+font-family:
+"Aptos",
+"Segoe UI",
+Arial,
+sans-serif;
+font-weight:500;
+text-transform:none;
+}
+
+.basket-drawer-postcode:hover,
+.basket-drawer-postcode:focus {
+border-color:rgba(232,120,23,.50);
+}
+
+.basket-drawer-postcode.is-invalid {
+border-color:rgba(152,80,71,.85);
+}
+
+.basket-drawer-delivery-result {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:start;
+gap:8px;
+margin-top:9px;
+padding-top:9px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.basket-drawer-estimated-delivery-row {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:start;
+gap:8px;
+margin-top:7px;
+}
+
+.basket-drawer-estimated-delivery-row[hidden] {
+display:none !important;
+}
+
+.basket-drawer-estimated-delivery-label {
+min-width:0;
+color:rgba(247,247,243,.53);
+font-size:7px;
+font-weight:650;
+line-height:1.3;
+overflow-wrap:anywhere;
+}
+
+.basket-drawer-estimated-delivery-date {
+color:var(--orange-bright);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8px;
+font-weight:850;
+line-height:1.2;
+text-align:right;
+white-space:nowrap;
+}
+
+.basket-drawer-delivery-status {
+min-width:0;
+color:rgba(247,247,243,.53);
+font-size:7px;
+font-weight:650;
+line-height:1.3;
+overflow-wrap:anywhere;
+}
+
+.basket-drawer-delivery-charge {
+color:var(--orange-bright);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8px;
+font-weight:850;
+line-height:1.2;
+text-align:right;
+white-space:nowrap;
+}
+
+.basket-drawer-delivery-charge.is-free {
+color:var(--cosmic-green-light);
+}
+
+.basket-drawer-delivery-charge.is-quote {
+max-width:110px;
+white-space:normal;
+font-size:6.5px;
+line-height:1.15;
+text-transform:uppercase;
+}
+
+.basket-drawer-empty {
+min-height:42vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:34px 18px;
+text-align:center;
+}
+
+.basket-drawer-empty h3 {
+margin:0;
+color:var(--cream);
+font-size:clamp(19px,3.4vw,29px);
+font-weight:800;
+line-height:1;
+letter-spacing:-.5px;
+}
+
+.basket-drawer-empty p {
+max-width:310px;
+margin:13px auto 0;
+color:var(--muted-soft);
+font-size:10px;
+line-height:1.55;
+}
+
+.basket-drawer-footer {
+position:relative;
+z-index:4;
+min-width:0;
+padding:
+12px
+clamp(10px,1.7vw,18px)
+max(13px,env(safe-area-inset-bottom));
+background:
+linear-gradient(
+180deg,
+rgba(13,16,15,.995),
+rgba(6,9,8,.995)
+);
+border-top:1px solid rgba(255,255,255,.12);
+box-shadow:0 -12px 30px rgba(0,0,0,.26);
+}
+
+.basket-drawer-total-table {
+display:grid;
+gap:6px;
+margin-bottom:10px;
+}
+
+.basket-drawer-total-row {
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:baseline;
+gap:9px;
+}
+
+.basket-drawer-total-row span {
+color:rgba(247,247,243,.48);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:6.4px;
+font-weight:750;
+line-height:1.2;
+letter-spacing:.65px;
+text-transform:uppercase;
+}
+
+.basket-drawer-total-row strong {
+color:var(--cream);
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:8px;
+font-weight:800;
+line-height:1.2;
+text-align:right;
+white-space:nowrap;
+}
+
+.basket-drawer-total-row.delivery strong {
+color:var(--orange-bright);
+}
+
+.basket-drawer-total-row.final {
+margin-top:2px;
+padding-top:8px;
+border-top:1px solid rgba(232,120,23,.20);
+}
+
+.basket-drawer-total-row.final span {
+color:rgba(247,247,243,.64);
+}
+
+.basket-drawer-total-row.final strong {
+color:var(--white);
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+font-size:clamp(20px,3.6vw,31px);
+font-weight:850;
+line-height:.92;
+letter-spacing:-.7px;
+}
+
+.basket-drawer-vat {
+margin:-3px 0 10px;
+color:rgba(247,247,243,.38);
+font-size:6.9px;
+font-weight:500;
+text-align:right;
+text-transform:lowercase;
+}
+
+.basket-drawer-checkout {
+width:100%;
+min-height:48px;
+border-radius:13px;
+padding:0 30px 0 12px;
+font-size:7.5px;
+letter-spacing:.7px;
+cursor:pointer;
+}
+
+.basket-drawer-empty-footer-copy {
+margin:0 0 9px;
+color:rgba(247,247,243,.44);
+font-size:7px;
+line-height:1.35;
+text-align:center;
+}
+
+@media(max-width:560px) {
+
+.basket-drawer-header {
+gap:8px;
+padding:13px 10px;
+}
+
+.basket-drawer-title {
+font-size:18px;
+}
+
+.basket-drawer-close {
+width:34px;
+height:34px;
+border-radius:9px;
+font-size:20px;
+}
+
+.basket-drawer-body {
+padding:10px 8px 24px;
+}
+
+.basket-drawer-item-specs {
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:8px 12px;
+padding:9px;
+}
+
+.basket-drawer-item-head {
+padding:10px 9px 8px;
+}
+
+.basket-drawer-item-title {
+font-size:12.1px;
+}
+
+.basket-drawer-item-expand-strip {
+height:23px;
+}
+
+.basket-drawer-item-spec span {
+font-size:5.5px;
+}
+
+.basket-drawer-item-spec strong {
+font-size:7.5px;
+}
+
+.basket-drawer-item-total {
+padding:9px;
+}
+
+.basket-drawer-item-total-price {
+font-size:17px;
+}
+
+.basket-drawer-item-controls {
+grid-template-columns:minmax(0,1fr);
+padding:0 9px 9px;
+}
+
+.basket-drawer-remove {
+width:100%;
+}
+
+.basket-drawer-delivery {
+padding:10px 9px;
+}
+
+.basket-drawer-footer {
+padding-left:8px;
+padding-right:8px;
+}
+
+.basket-drawer-total-row.final strong {
+font-size:20px;
+}
+
+}
+
+/* =========================================
+CHECKOUT
+========================================= */
+
+.checkout-now {
+position:relative;
+overflow:hidden;
+width:100%;
+min-height:64px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 45px 0 22px;
+border:1px solid rgba(103,166,140,.58);
+border-radius:18px;
+background:#176149;
+color:#f4faf7;
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+font-size:clamp(10px,1vw,13px);
+font-weight:900;
+letter-spacing:1.15px;
+line-height:1;
+text-decoration:none;
+text-align:center;
+text-transform:uppercase;
+text-shadow:none;
+box-shadow:
+0 12px 27px rgba(0,0,0,.24);
+transition:
+transform .2s ease,
+background .2s ease,
+border-color .2s ease,
+box-shadow .2s ease,
+opacity .2s ease;
+cursor:pointer;
+}
+
+.checkout-now::after {
+content:"→";
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+font-family:
+"Aptos",
+"Segoe UI Symbol",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:20px;
+font-weight:600;
+line-height:1;
+}
+
+.checkout-now:hover:not(:disabled):not(.is-disabled) {
+transform:translateY(-1px);
+background:#1a6d51;
+border-color:rgba(122,186,158,.72);
+box-shadow:
+0 15px 31px rgba(0,0,0,.27);
+}
+
+.checkout-now.is-disabled,
+.checkout-now:disabled {
+opacity:.38;
+cursor:not-allowed;
+pointer-events:none;
+transform:none;
+box-shadow:none;
 }
 
 /* ===============================
@@ -244,26 +1530,17 @@ overflow:hidden;
 padding:42px 6% 38px;
 border-bottom:1px solid rgba(255,255,255,.08);
 background:
-radial-gradient(
-circle at 86% 24%,
-rgba(245,124,0,.12),
-transparent 34%
-),
-linear-gradient(
-135deg,
-#080808 0%,
-#0d0d0d 58%,
-#111111 100%
-);
+radial-gradient(circle at 86% 24%,rgba(245,124,0,.12),transparent 34%),
+linear-gradient(135deg,#080808 0%,#0d0d0d 58%,#111111 100%);
 }
 
 .intro-grid {
 max-width:1180px;
 margin:0 auto;
 display:grid;
-grid-template-columns:1.08fr .92fr;
-gap:34px;
-align-items:stretch;
+grid-template-columns:1fr;
+gap:0;
+align-items:center;
 }
 
 .intro-title-wrap {
@@ -281,77 +1558,20 @@ font-weight:950;
 }
 
 .intro-title span {
-color:var(--orange);
+color:var(--catalogue-orange);
 display:block;
 }
 
 .intro-summary {
 margin:18px 0 0;
-max-width:660px;
-color:var(--muted);
+max-width:760px;
+color:#d8d8d8;
 font-size:15px;
 line-height:1.65;
 }
 
-.intro-features {
-display:grid;
-grid-template-columns:1fr;
-gap:14px;
-}
-
-.intro-feature {
-position:relative;
-overflow:hidden;
-min-height:150px;
-padding:22px;
-background:linear-gradient(135deg,#111,#171717);
-border:1px solid rgba(255,255,255,.11);
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-.intro-feature::before {
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:54px;
-height:2px;
-background:var(--orange);
-}
-
-.intro-feature-label {
-font-size:9px;
-font-weight:950;
-letter-spacing:1.7px;
-text-transform:uppercase;
-color:rgba(255,255,255,.48);
-margin-bottom:10px;
-}
-
-.intro-feature strong {
-display:block;
-font-size:18px;
-line-height:1.15;
-letter-spacing:.3px;
-color:var(--white);
-text-transform:uppercase;
-}
-
-.intro-feature strong span {
-color:var(--red-orange);
-}
-
-.intro-feature p {
-margin:10px 0 0;
-color:var(--muted);
-font-size:12px;
-line-height:1.5;
-}
-
 /* ===============================
-SECTION HEADINGS
+COLLAPSIBLE SECTION HEADINGS
 ================================ */
 
 .product-section {
@@ -362,9 +1582,30 @@ padding:42px 6% 64px;
 
 .section-heading-wrap {
 position:relative;
-z-index:2;
+z-index:3;
 max-width:1180px;
-margin:0 auto 25px;
+margin:0 auto;
+}
+
+.section-toggle {
+width:100%;
+margin:0;
+padding:0 0 22px;
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+align-items:center;
+gap:18px;
+border:0;
+border-bottom:1px solid rgba(255,255,255,.11);
+background:transparent;
+color:inherit;
+text-align:left;
+cursor:pointer;
+}
+
+.section-toggle-copy {
+display:block;
+min-width:0;
 }
 
 .section-number {
@@ -378,20 +1619,52 @@ color:rgba(255,255,255,.38);
 }
 
 .section-title {
+display:block;
 margin:0;
 font-size:clamp(24px,3vw,36px);
 font-weight:950;
 text-transform:uppercase;
 letter-spacing:1.2px;
-color:var(--orange);
+color:var(--catalogue-orange);
 }
 
-.section-subtitle {
-margin:8px 0 0;
+.section-open-copy {
+display:block;
+margin:0 0 22px;
 max-width:720px;
 font-size:14px;
 line-height:1.55;
-color:var(--muted);
+color:#d8d8d8;
+}
+
+.section-chevron {
+display:flex;
+align-items:center;
+justify-content:center;
+width:22px;
+height:22px;
+color:#ffffff;
+font-family:Arial,"Segoe UI",sans-serif;
+font-size:18px;
+font-weight:900;
+line-height:1;
+transform:rotate(90deg);
+transition:none;
+transform-origin:center;
+}
+
+.product-section.is-open .section-chevron {
+transform:rotate(-90deg);
+}
+
+.section-collapse {
+position:relative;
+z-index:2;
+padding-top:25px;
+}
+
+.section-collapse[hidden] {
+display:none !important;
 }
 
 /* ===============================
@@ -400,23 +1673,9 @@ SECTION BACKGROUNDS
 
 .popular-section {
 background:
-radial-gradient(
-circle at 16% 18%,
-rgba(255,154,47,.32),
-transparent 26%
-),
-radial-gradient(
-circle at 86% 70%,
-rgba(245,124,0,.25),
-transparent 28%
-),
-linear-gradient(
-135deg,
-#050505 0%,
-#17100a 36%,
-#241406 68%,
-#050505 100%
-);
+radial-gradient(circle at 16% 18%,rgba(255,154,47,.32),transparent 26%),
+radial-gradient(circle at 86% 70%,rgba(245,124,0,.25),transparent 28%),
+linear-gradient(135deg,#050505 0%,#17100a 36%,#241406 68%,#050505 100%);
 }
 
 .popular-section::before {
@@ -455,6 +1714,7 @@ pointer-events:none;
 }
 
 @keyframes popularGlow {
+
 from {
 transform:translateX(-10%) rotate(0deg);
 opacity:.55;
@@ -464,6 +1724,7 @@ to {
 transform:translateX(10%) rotate(4deg);
 opacity:.95;
 }
+
 }
 
 .small-section {
@@ -536,12 +1797,6 @@ border-top:1px solid rgba(173,105,224,.15);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.popular-section .section-heading-wrap,
-.popular-section .product-grid {
-position:relative;
-z-index:1;
-}
-
 /* ===============================
 PRODUCT GRIDS
 ================================ */
@@ -565,7 +1820,8 @@ grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
 /* ===============================
-PRODUCT CARDS
+FINAL INDEX-MATCHING PRODUCT CARDS
+IMAGES / EXISTING SCALE ARE RETAINED
 ================================ */
 
 .product-card {
@@ -604,7 +1860,7 @@ background:
 linear-gradient(
 120deg,
 transparent 0%,
-rgba(245,124,0,.10) 45%,
+rgba(245,124,0,.12) 45%,
 transparent 75%
 );
 transform:translateX(-120%);
@@ -619,31 +1875,18 @@ transform:translateX(120%);
 
 .product-card:hover,
 .product-card:active {
-transform:translateY(-5px);
-border-color:rgba(245,124,0,.50);
-background:linear-gradient(135deg,#111,#18130f);
-box-shadow:
-0 18px 46px rgba(0,0,0,.38),
-0 12px 32px rgba(245,124,0,.08);
-z-index:4;
-}
-
-.popular-section .product-card:hover,
-.popular-section .product-card:active {
 transform:translateY(-8px) scale(1.035);
 border-color:rgba(255,154,47,.75);
+background:linear-gradient(135deg,#111111,#1b130d);
 box-shadow:
 0 26px 68px rgba(245,124,0,.18),
 0 22px 48px rgba(0,0,0,.42);
+z-index:4;
 }
-
-/* ===============================
-PRODUCT IMAGES
-================================ */
 
 .image-wrap {
 width:100%;
-background:#ffffff;
+background:#fff;
 border:1px solid rgba(255,255,255,.10);
 overflow:hidden;
 position:relative;
@@ -668,21 +1911,17 @@ width:100%;
 height:100%;
 object-fit:contain;
 object-position:center center;
-background:#ffffff;
+background:#fff;
 transform:var(--image-transform,none);
 transform-origin:center center;
-transition:
-transform .32s ease,
-filter .32s ease;
+transition:filter .32s ease;
 }
 
 .product-card:hover .image-wrap img {
 filter:brightness(1.035);
 }
 
-/* =========================================
-STANDARD SIZE PRODUCT IMAGE SCALING
-========================================= */
+/* EXISTING STANDARD-SIZES IMAGE SCALE/POSITION RULES — UNCHANGED */
 
 .product-card.image-size-600x900 .image-wrap img {
 object-fit:cover;
@@ -728,10 +1967,6 @@ object-position:center center;
 --image-transform:scale(1.15);
 }
 
-/* ===============================
-CARD CONTENT
-================================ */
-
 .card-content {
 position:relative;
 z-index:1;
@@ -747,37 +1982,50 @@ line-height:1;
 font-weight:950;
 letter-spacing:-1px;
 margin-bottom:8px;
-transition:.25s ease;
+color:var(--white);
+transition:
+color .25s ease,
+transform .25s ease;
 }
 
 .catalogue-grid .size-title {
 font-size:23px;
 }
 
-.product-card:hover .size-title {
-color:var(--orange);
-transform:scale(1.018);
-transform-origin:left;
+.product-card:hover .size-title,
+.product-card:active .size-title {
+color:var(--catalogue-orange);
+transform:scale(1.025);
+transform-origin:left center;
 }
 
 .spec-line {
 display:grid;
 gap:4px;
-color:var(--muted);
+color:#d8d8d8;
 font-size:12px;
 line-height:1.3;
-margin-bottom:13px;
+margin-bottom:10px;
 }
 
-/* Normal standard-size cards */
 .spec-line .delivery-standard {
-color:#ffffff;
+color:#fff;
 }
 
-/* Extra Large remains orange */
 .spec-line .delivery-chargeable {
 color:var(--sunset);
 font-weight:900;
+}
+
+.glazing-wrap {
+max-width:210px;
+margin-top:auto;
+margin-bottom:10px;
+}
+
+.catalogue-grid .glazing-wrap {
+max-width:none;
+width:100%;
 }
 
 .toggle {
@@ -785,8 +2033,6 @@ display:grid;
 grid-template-columns:1fr 1fr;
 border:1px solid rgba(255,255,255,.15);
 max-width:210px;
-margin-top:auto;
-margin-bottom:0;
 }
 
 .catalogue-grid .toggle {
@@ -804,6 +2050,9 @@ font-weight:950;
 letter-spacing:.8px;
 text-transform:uppercase;
 cursor:pointer;
+transition:
+background .22s ease,
+color .22s ease;
 }
 
 .toggle button + button {
@@ -811,7 +2060,7 @@ border-left:1px solid rgba(255,255,255,.15);
 }
 
 .toggle button.active {
-background:var(--orange);
+background:var(--catalogue-orange);
 color:#050505;
 }
 
@@ -822,7 +2071,6 @@ border:1px solid rgba(255,255,255,.15);
 border-top:none;
 position:relative;
 overflow:hidden;
-margin-bottom:12px;
 background:rgba(255,255,255,.025);
 }
 
@@ -839,7 +2087,7 @@ width:50%;
 text-align:center;
 font-size:9px;
 line-height:1;
-color:#ffffff;
+color:#fff;
 font-weight:950;
 letter-spacing:1.3px;
 text-transform:uppercase;
@@ -852,23 +2100,19 @@ left:50%;
 
 .price-row {
 display:flex;
-justify-content:space-between;
 align-items:flex-end;
+justify-content:space-between;
 gap:14px;
 margin-top:auto;
 }
 
-/* =========================================
-HOMEPAGE-MATCHING PRODUCT CARD PRICE
-========================================= */
-
 .price-label {
-color:rgba(255,255,255,.42);
-font-size:8px;
-font-weight:700;
-letter-spacing:1.35px;
+color:rgba(255,255,255,.60);
+font-size:9px;
+font-weight:900;
+letter-spacing:1.2px;
 text-transform:uppercase;
-margin-bottom:4px;
+margin-bottom:3px;
 }
 
 .price {
@@ -889,6 +2133,9 @@ font-weight:800;
 letter-spacing:-.7px;
 color:#f1f0e9;
 white-space:nowrap;
+transition:
+opacity .16s ease,
+transform .16s ease;
 }
 
 .standard-price-amount {
@@ -926,7 +2173,6 @@ line-height:1;
 letter-spacing:-.15px;
 color:inherit;
 transform:translateY(.10em);
-vertical-align:initial;
 }
 
 .vat-note {
@@ -941,7 +2187,6 @@ letter-spacing:.1px;
 color:rgba(255,255,255,.46);
 white-space:nowrap;
 text-transform:lowercase;
-vertical-align:initial;
 }
 
 .price.is-changing {
@@ -949,27 +2194,28 @@ opacity:.58;
 transform:translateY(1px);
 }
 
-.price {
-transition:
-opacity .16s ease,
-transform .16s ease;
-}
-
 .view-link {
-color:var(--white);
-text-decoration:none;
+color:var(--catalogue-orange);
 font-size:11px;
 font-weight:950;
-text-transform:uppercase;
 letter-spacing:.8px;
-padding-bottom:3px;
-border-bottom:1px solid rgba(245,124,0,.7);
-transition:.25s ease;
+text-transform:uppercase;
+text-decoration:none;
+padding-bottom:2px;
+border-bottom:1px solid rgba(245,124,0,.45);
 white-space:nowrap;
+transform-origin:center;
+transition:
+color .25s ease,
+border-color .25s ease,
+transform .25s ease,
+text-shadow .25s ease;
 }
 
 .view-link:hover {
-color:var(--orange);
+color:var(--white);
+border-color:var(--white);
+transform:translateX(3px);
 }
 
 /* ===============================
@@ -980,7 +2226,7 @@ EXTRA LARGE DELIVERY CHECKER
 position:relative;
 z-index:3;
 max-width:1180px;
-margin:0 auto 30px;
+margin:30px auto 0;
 padding:24px;
 background:
 linear-gradient(
@@ -989,7 +2235,7 @@ rgba(18,10,26,.96),
 rgba(13,13,13,.96)
 );
 border:1px solid rgba(245,124,0,.18);
-border-left:3px solid var(--orange);
+border-left:3px solid var(--catalogue-orange);
 }
 
 .delivery-checker-heading {
@@ -1004,7 +2250,7 @@ letter-spacing:.5px;
 .delivery-checker-copy {
 max-width:760px;
 margin:0;
-color:var(--muted);
+color:#d8d8d8;
 font-size:12px;
 line-height:1.55;
 }
@@ -1047,15 +2293,15 @@ border-radius:0;
 .delivery-field input:focus,
 .delivery-field select:focus {
 outline:none;
-border-color:var(--orange);
+border-color:var(--catalogue-orange);
 box-shadow:0 0 0 2px rgba(245,124,0,.08);
 }
 
 .delivery-check-button {
 height:47px;
 padding:0 22px;
-border:1px solid var(--orange);
-background:var(--orange);
+border:1px solid var(--catalogue-orange);
+background:var(--catalogue-orange);
 color:#050505;
 font:inherit;
 font-size:10px;
@@ -1086,7 +2332,7 @@ display:block;
 }
 
 .delivery-result.is-success {
-border-left:3px solid var(--orange);
+border-left:3px solid var(--catalogue-orange);
 }
 
 .delivery-result.is-quote {
@@ -1111,7 +2357,7 @@ display:block;
 margin-top:6px;
 font-size:12px;
 line-height:1.55;
-color:var(--muted);
+color:#d8d8d8;
 }
 
 .delivery-result-price {
@@ -1120,7 +2366,7 @@ margin-top:7px;
 font-size:24px;
 line-height:1;
 font-weight:950;
-color:var(--orange);
+color:var(--catalogue-orange);
 }
 
 .delivery-note {
@@ -1161,7 +2407,7 @@ font-size:clamp(28px,4vw,44px);
 .bottom-cta p {
 margin:0 auto;
 max-width:760px;
-color:var(--muted);
+color:#d8d8d8;
 line-height:1.65;
 font-size:17px;
 }
@@ -1175,9 +2421,9 @@ flex-wrap:wrap;
 }
 
 .button {
-background:var(--orange);
+background:var(--catalogue-orange);
 color:#050505;
-border:1px solid var(--orange);
+border:1px solid var(--catalogue-orange);
 padding:15px 26px;
 font-size:13px;
 font-weight:950;
@@ -1200,53 +2446,15 @@ border-color:rgba(255,255,255,.25);
 }
 
 .button.secondary:hover {
-color:var(--orange);
-border-color:var(--orange);
+color:var(--catalogue-orange);
+border-color:var(--catalogue-orange);
 }
 
 /* ===============================
-FOOTER
-================================ */
-
-footer {
-background:#050505;
-border-top:1px solid rgba(255,255,255,.10);
-color:var(--muted);
-padding:46px 6%;
-font-size:15px;
-}
-
-.footer-wordmark {
-margin-bottom:24px;
-}
-
-.footer-wordmark span,
-.footer-wordmark .wordmark-domain {
-color:var(--white);
-}
-
-footer p {
-margin:0 0 12px;
-line-height:1.55;
-}
-
-footer p:last-child {
-margin-bottom:0;
-}
-
-/* ===============================
-TABLET
+RESPONSIVE STANDARD-SIZES CONTENT
 ================================ */
 
 @media(max-width:1000px) {
-
-.intro-grid {
-grid-template-columns:1fr;
-}
-
-.intro-features {
-grid-template-columns:1fr;
-}
 
 .catalogue-grid {
 grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1264,6 +2472,7 @@ grid-template-columns:1fr 1fr;
 grid-column:1 / -1;
 width:100%;
 }
+
 }
 
 @media(max-width:760px) {
@@ -1282,33 +2491,10 @@ min-height:auto;
 height:130px;
 margin-bottom:12px;
 }
-}
 
-/* ===============================
-MOBILE
-================================ */
+}
 
 @media(max-width:620px) {
-
-header {
-padding:22px 6%;
-gap:16px;
-}
-
-.wordmark {
-font-size:20px;
-}
-
-.action-icons {
-gap:6px;
-}
-
-.action-icons button,
-.action-icons a {
-width:34px;
-height:34px;
-font-size:16px;
-}
 
 .intro {
 padding:30px 6% 28px;
@@ -1322,31 +2508,32 @@ font-size:34px;
 font-size:13px;
 }
 
-.intro-features {
-grid-template-columns:1fr;
-gap:10px;
-}
-
-.intro-feature {
-min-height:125px;
-padding:18px;
-}
-
 .product-section {
 padding:34px 4% 50px;
 }
 
-.section-heading-wrap {
-margin-bottom:18px;
-padding:0 2%;
+.section-toggle {
+padding:0 2% 17px;
+gap:10px;
 }
 
 .section-title {
 font-size:24px;
 }
 
-.section-subtitle {
+.section-open-copy {
+margin-bottom:16px;
 font-size:12px;
+}
+
+.section-chevron {
+width:18px;
+height:18px;
+font-size:15px;
+}
+
+.section-collapse {
+padding-top:18px;
 }
 
 .popular-grid,
@@ -1385,7 +2572,9 @@ min-height:48px;
 margin-bottom:9px;
 }
 
-.toggle {
+.glazing-wrap,
+.toggle,
+.glazed-label {
 max-width:none;
 width:100%;
 }
@@ -1397,10 +2586,7 @@ letter-spacing:.4px;
 }
 
 .glazed-label {
-max-width:none;
-width:100%;
 height:17px;
-margin-bottom:9px;
 }
 
 .glazed-label span {
@@ -1425,33 +2611,16 @@ align-items:flex-start;
 gap:3px;
 }
 
-.standard-price-amount {
-display:inline-flex;
-align-items:flex-start;
-line-height:1;
-}
-
-.standard-price-main {
-line-height:1;
-}
-
 .standard-price-decimals {
-position:static;
 margin-left:.5px;
-padding:0;
 font-size:.45em;
-line-height:1;
 letter-spacing:-.1px;
 transform:translateY(.28em);
 }
 
 .vat-note {
-position:static;
 align-self:flex-start;
-display:block;
-margin:0;
 font-size:7px;
-line-height:1;
 }
 
 .view-link {
@@ -1460,7 +2629,7 @@ letter-spacing:.35px;
 }
 
 .delivery-checker {
-margin-bottom:22px;
+margin-top:22px;
 padding:18px 15px;
 }
 
@@ -1489,9 +2658,6 @@ font-size:22px;
 padding:60px 6%;
 }
 
-.footer-wordmark {
-font-size:21px;
-}
 }
 
 @media(max-width:390px) {
@@ -1520,6 +2686,302 @@ height:100px;
 .popular-grid .size-title {
 font-size:18px;
 }
+
+}
+
+/* =========================================
+INDEX FOOTER — ISOLATED FOR ORDER PAGE
+WORDMARK + ADDRESS ONLY
+========================================= */
+
+.order-index-footer {
+position:relative;
+width:100%;
+padding:46px 6%;
+background:#090a0a;
+border-top:1px solid rgba(255,255,255,.10);
+color:rgba(247,247,243,.50);
+font-size:13px;
+}
+
+.order-index-footer-inner {
+width:100%;
+max-width:1180px;
+margin:0 auto;
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:40px;
+}
+
+.order-index-footer-home {
+display:block;
+width:max-content;
+max-width:60%;
+color:inherit;
+text-decoration:none;
+}
+
+.order-index-footer .footer-wordmark {
+margin:0;
+color:var(--steel);
+transform:scale(.93);
+transform-origin:left top;
+}
+
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-factory {
+display:block;
+color:#b6b8b7;
+background:
+linear-gradient(
+180deg,
+#e0e1e0 0%,
+#b8bab9 46%,
+#8e9190 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
+}
+
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-toughened {
+display:block;
+color:#f2f2f0;
+background:
+linear-gradient(
+180deg,
+#ffffff 0%,
+#f0f0ee 45%,
+#cfd1cf 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
+}
+
+.order-index-footer
+.footer-wordmark
+.wordmark-bottom {
+color:#b6b8b7;
+}
+
+.order-index-footer
+.footer-wordmark
+.footer-wordmark-rooflights {
+display:block;
+color:#b6b8b7;
+background:
+linear-gradient(
+180deg,
+#e0e1e0 0%,
+#b8bab9 46%,
+#8e9190 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+filter:none;
+}
+
+.order-index-footer
+.footer-wordmark
+.wordmark-domain {
+position:relative;
+left:-1px;
+top:1px;
+color:#9ea19f;
+font-size:.40em;
+-webkit-text-fill-color:#9ea19f;
+}
+
+.order-index-footer-address {
+display:grid;
+gap:0;
+width:max-content;
+max-width:40%;
+margin:0;
+font-style:normal;
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+font-size:8.7px;
+font-weight:600;
+line-height:1.45;
+letter-spacing:.6px;
+text-align:right;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
+transform:scale(.93);
+transform-origin:right top;
+}
+
+.order-index-footer-address span {
+display:block;
+}
+
+.order-index-footer-dots {
+position:absolute;
+left:6%;
+bottom:12px;
+display:flex;
+align-items:center;
+gap:5px;
+pointer-events:none;
+}
+
+.order-index-footer-dots span {
+display:block;
+width:3px;
+height:3px;
+border-radius:50%;
+background:rgba(255,255,255,.88);
+}
+
+/* =========================================
+CURRENT ORDER-PAGE MOBILE HEADER / FOOTER
+========================================= */
+
+@media(max-width:950px) {
+
+.wordmark {
+font-size:20px;
+}
+
+.address-line {
+font-size:9px;
+}
+
+}
+
+@media(max-width:560px) {
+
+.top-banner {
+font-size:7px;
+}
+
+.ticker {
+padding:7px 0;
+}
+
+header {
+padding:19px 5.5%;
+gap:14px;
+}
+
+.action-icons {
+gap:5px;
+}
+
+.action-icons button,
+.action-icons a.header-icon-button {
+width:34px;
+height:34px;
+font-size:15px;
+}
+
+.whatsapp-action {
+width:34px;
+height:34px;
+border-radius:6px;
+bottom:calc(100% + 14px);
+}
+
+.whatsapp-action svg {
+width:22px;
+height:22px;
+}
+
+.basket-total-text {
+top:-15px;
+left:50%;
+font-size:7px;
+transform:translate(-50%,6px) scale(.78);
+}
+
+.basket-total-text.is-visible {
+transform:translate(-50%,0) scale(1);
+}
+
+.order-index-footer {
+padding:34px 5.5%;
+}
+
+.order-index-footer-inner {
+gap:18px;
+}
+
+.order-index-footer .footer-wordmark {
+font-size:20px;
+}
+
+.order-index-footer-address {
+font-size:8.1px;
+line-height:1.45;
+letter-spacing:.46px;
+}
+
+.order-index-footer-dots {
+left:5.5%;
+bottom:10px;
+}
+
+.checkout-now {
+min-height:52px;
+border-radius:14px;
+padding-left:12px;
+padding-right:29px;
+font-size:7.5px;
+letter-spacing:.7px;
+}
+
+.checkout-now::after {
+right:10px;
+font-size:14px;
+}
+
+}
+
+@media(max-width:390px) {
+
+.order-index-footer {
+padding-left:5%;
+padding-right:5%;
+}
+
+.order-index-footer-inner {
+gap:12px;
+}
+
+.order-index-footer .footer-wordmark {
+font-size:18px;
+letter-spacing:2px;
+}
+
+.order-index-footer-address {
+font-size:7.2px;
+letter-spacing:.32px;
+}
+
+.order-index-footer-dots {
+left:5%;
+}
+
+.checkout-now {
+font-size:7px;
+letter-spacing:.5px;
+padding-left:8px;
+padding-right:26px;
+}
+
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -1529,13 +2991,26 @@ scroll-behavior:auto;
 }
 
 .ticker,
+.whatsapp-action,
+.basket-total-text,
+.basket-drawer-item-expand-arrow {
+animation:none !important;
+}
+
+.basket-drawer-panel,
+.basket-drawer-backdrop {
+transition:none !important;
+}
+
+.product-card::before,
 .popular-section::before {
-animation:none;
+animation:none !important;
 }
 
 .price {
 transition:none;
 }
+
 }
 </style>
 </head>
@@ -1568,41 +3043,98 @@ transition:none;
 
 <div class="wordmark-wrap">
 
-<div class="wordmark">
+<a
+href="index.html"
+class="wordmark header-wordmark-link"
+aria-label="Factory Toughened Rooflights homepage"
+>
+
 Factory
-<span>Toughened</span>
+
+<span>
+Toughened
+</span>
+
 <div class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
+
+Rooflights
+
+<small class="wordmark-domain">
+.co.uk
+</small>
+
 </div>
-</div>
+
+</a>
 
 </div>
 
 <div class="action-icons">
 
 <a
-href="mailto:"
-aria-label="Email Factory Toughened Rooflights"
-title="Email"
+href="contact.html"
+class="header-icon-button"
+aria-label="Contact Factory Toughened Rooflights"
+title="Contact our rooflight team"
 >
 ✉
 </a>
 
-<a
-href="tel:"
-aria-label="Call Factory Toughened Rooflights"
-title="Phone"
->
-📱
-</a>
+<div class="header-action-wrap">
 
 <button
 type="button"
+id="whatsappButton"
+aria-label="Show WhatsApp Business button"
+title="WhatsApp our rooflight team"
+aria-expanded="false"
+>
+📱
+</button>
+
+<a
+id="whatsappAction"
+class="whatsapp-action"
+href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
+target="_blank"
+rel="noopener"
+aria-label="Open WhatsApp Business chat with our rooflight team"
+>
+
+<svg
+viewBox="0 0 32 32"
+aria-hidden="true"
+>
+<path d="M16 3.2A12.5 12.5 0 0 0 5.2 22l-1.8 6.8 7-1.8A12.5 12.5 0 1 0 16 3.2zm0 22.7c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.2 10.2 0 1 1 9.2 5.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.9-.9-3.2-1.7-4.5-3.9-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+</svg>
+
+</a>
+
+</div>
+
+<div class="header-action-wrap">
+
+<button
+type="button"
+class="header-icon-button"
+id="basketButton"
 aria-label="View basket and checkout"
 title="Basket and checkout"
+aria-expanded="false"
+aria-controls="basketDrawerLayer"
 >
 💳
 </button>
+
+<span
+class="basket-total-text"
+id="basketTotalText"
+aria-label="Basket total £0.00"
+>
+£0.00
+</span>
+
+</div>
 
 <button
 type="button"
@@ -1617,25 +3149,49 @@ title="Menu"
 
 </header>
 
-<div id="menuOverlay" class="menu-overlay">
+<div
+id="menuOverlay"
+class="menu-overlay"
+>
 
 <div class="menu-top">
 
 <div class="wordmark-wrap">
 
 <div class="wordmark">
+
 Factory
-<span>Toughened</span>
+
+<span>
+Toughened
+</span>
+
 <div class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
+
+Rooflights
+
+<small class="wordmark-domain">
+.co.uk
+</small>
+
 </div>
+
+</div>
+
+<div class="address-line">
+
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
+
 </div>
 
 </div>
 
 <button
-type="button"
 class="close-menu"
+type="button"
 onclick="closeMenu()"
 aria-label="Close menu"
 >
@@ -1645,15 +3201,88 @@ aria-label="Close menu"
 </div>
 
 <div class="menu-links">
+
 <a href="index.html" onclick="closeMenu()">Home</a>
-<a href="#popular" onclick="closeMenu()">Popular Sizes</a>
-<a href="#small" onclick="closeMenu()">Small Sizes</a>
-<a href="#medium" onclick="closeMenu()">Medium Sizes</a>
-<a href="#large" onclick="closeMenu()">Large Sizes</a>
-<a href="#extra-large" onclick="closeMenu()">Extra Large</a>
-<a href="index.html#calculator" onclick="closeMenu()">Build Custom</a>
-<a href="#contact" onclick="closeMenu()">Contact</a>
+<a href="standard-sizes.html" onclick="closeMenu()">Standard Sizes</a>
+<a href="order-page.html" onclick="closeMenu()">Order Your Rooflight</a>
+<a href="index.html#calculator" onclick="closeMenu()">Build A Rooflight</a>
+<a href="index.html#oversized" onclick="closeMenu()">Oversized Rooflights</a>
+<a href="installation-guide.html" onclick="closeMenu()">Installation Guide</a>
+<a href="contact.html" onclick="closeMenu()">Contact Our Team</a>
+
 </div>
+
+</div>
+
+<div
+class="basket-drawer-layer"
+id="basketDrawerLayer"
+aria-hidden="true"
+>
+
+<div
+class="basket-drawer-backdrop"
+data-basket-drawer-backdrop
+aria-hidden="true"
+></div>
+
+<aside
+class="basket-drawer-panel"
+id="basketDrawerPanel"
+role="dialog"
+aria-modal="true"
+aria-labelledby="basketDrawerTitle"
+tabindex="-1"
+>
+
+<div class="basket-drawer-header">
+
+<div class="basket-drawer-heading-wrap">
+
+<span class="basket-drawer-kicker">
+Order
+</span>
+
+<h2
+class="basket-drawer-title"
+id="basketDrawerTitle"
+>
+Your Basket
+</h2>
+
+<span
+class="basket-drawer-count"
+id="basketDrawerCount"
+>
+0 units
+</span>
+
+</div>
+
+<button
+type="button"
+class="basket-drawer-close"
+id="basketDrawerClose"
+aria-label="Close basket"
+>
+×
+</button>
+
+</div>
+
+<div
+class="basket-drawer-body"
+id="basketDrawerBody"
+>
+</div>
+
+<div
+class="basket-drawer-footer"
+id="basketDrawerFooter"
+>
+</div>
+
+</aside>
 
 </div>
 
@@ -1671,114 +3300,324 @@ Frameless Flat Roof Skylights
 </h1>
 
 <p class="intro-summary">
-Browse our listed frameless rooflight sizes, switch instantly between double and
-triple glazing, and see your rooflight price including VAT. Small, Medium and Large
-sizes include free mainland UK delivery, while our Extra Large range uses postcode-based
-delivery pricing.
+The go-to minimalist rooflight design for a cleaner, uninterrupted ceiling finish. Designed to sit cleanly above the roof opening with no visible internal frame, our frameless rooflights create a simple, uninterrupted ceiling finish and maximise the visible area of glass. The result is more natural light, a wider sky view and a rooflight that becomes part of the architecture rather than an added frame.
 </p>
 
 </div>
 
-<div class="intro-features">
+</div>
 
-<div class="intro-feature">
+</section>
 
-<span class="intro-feature-label">
-Premium Specification
+<section
+id="popular"
+class="product-section popular-section"
+data-catalogue-section="popular"
+>
+
+<div class="section-heading-wrap">
+
+<button
+type="button"
+class="section-toggle"
+data-section-toggle
+aria-expanded="false"
+aria-controls="popularPanel"
+>
+
+<span class="section-toggle-copy">
+
+<span class="section-number">
+01 — Best Sellers
 </span>
 
-<strong>
-6mm+ Toughened<br>
-Safety Glass
-</strong>
+<span
+class="section-title"
+role="heading"
+aria-level="2"
+>
+Popular Sizes
+</span>
 
-<p>
-Strong, high-quality glazing combined with Low-E Softcoat performance and a
-clean frameless finish.
-</p>
+</span>
+
+<span
+class="section-chevron"
+aria-hidden="true"
+>
+&gt;
+</span>
+
+</button>
 
 </div>
 
-</div>
+<div
+class="section-collapse"
+id="popularPanel"
+data-section-panel
+hidden
+>
 
-</div>
-
-</section>
-
-<section id="popular" class="product-section popular-section">
-
-<div class="section-heading-wrap">
-<span class="section-number">01 — Best Sellers</span>
-<h2 class="section-title">Popular Sizes</h2>
-<p class="section-subtitle">
+<p class="section-open-copy">
 Frequently selected frameless rooflight sizes for kitchens, extensions and modern residential projects.
 </p>
-</div>
 
-<div class="product-grid popular-grid" id="popularGrid"></div>
+<div
+class="product-grid popular-grid"
+id="popularGrid"
+></div>
+
+</div>
 
 </section>
 
-<section id="small" class="product-section small-section">
+<section
+id="small"
+class="product-section small-section is-open"
+data-catalogue-section="small"
+>
 
 <div class="section-heading-wrap">
-<span class="section-number">02 — Compact Range</span>
-<h2 class="section-title">Small Sizes</h2>
-<p class="section-subtitle">
+
+<button
+type="button"
+class="section-toggle"
+data-section-toggle
+aria-expanded="true"
+aria-controls="smallPanel"
+>
+
+<span class="section-toggle-copy">
+
+<span class="section-number">
+02 — Compact Range
+</span>
+
+<span
+class="section-title"
+role="heading"
+aria-level="2"
+>
+Small Sizes
+</span>
+
+</span>
+
+<span
+class="section-chevron"
+aria-hidden="true"
+>
+&gt;
+</span>
+
+</button>
+
+</div>
+
+<div
+class="section-collapse"
+id="smallPanel"
+data-section-panel
+>
+
+<p class="section-open-copy">
 Ideal for bathrooms, hallways, stairwells, utility rooms and more compact ceiling openings.
 </p>
-</div>
 
-<div class="product-grid catalogue-grid" id="smallGrid"></div>
+<div
+class="product-grid catalogue-grid"
+id="smallGrid"
+></div>
+
+</div>
 
 </section>
 
-<section id="medium" class="product-section medium-section">
+<section
+id="medium"
+class="product-section medium-section"
+data-catalogue-section="medium"
+>
 
 <div class="section-heading-wrap">
-<span class="section-number">03 — Residential Range</span>
-<h2 class="section-title">Medium Sizes</h2>
-<p class="section-subtitle">
+
+<button
+type="button"
+class="section-toggle"
+data-section-toggle
+aria-expanded="false"
+aria-controls="mediumPanel"
+>
+
+<span class="section-toggle-copy">
+
+<span class="section-number">
+03 — Residential Range
+</span>
+
+<span
+class="section-title"
+role="heading"
+aria-level="2"
+>
+Medium Sizes
+</span>
+
+</span>
+
+<span
+class="section-chevron"
+aria-hidden="true"
+>
+&gt;
+</span>
+
+</button>
+
+</div>
+
+<div
+class="section-collapse"
+id="mediumPanel"
+data-section-panel
+hidden
+>
+
+<p class="section-open-copy">
 Versatile rooflight sizes suited to kitchens, home offices, extensions and everyday living spaces.
 </p>
-</div>
 
-<div class="product-grid catalogue-grid" id="mediumGrid"></div>
+<div
+class="product-grid catalogue-grid"
+id="mediumGrid"
+></div>
+
+</div>
 
 </section>
 
-<section id="large" class="product-section large-section">
+<section
+id="large"
+class="product-section large-section"
+data-catalogue-section="large"
+>
 
 <div class="section-heading-wrap">
-<span class="section-number">04 — Larger Openings</span>
-<h2 class="section-title">Large Sizes</h2>
-<p class="section-subtitle">
+
+<button
+type="button"
+class="section-toggle"
+data-section-toggle
+aria-expanded="false"
+aria-controls="largePanel"
+>
+
+<span class="section-toggle-copy">
+
+<span class="section-number">
+04 — Larger Openings
+</span>
+
+<span
+class="section-title"
+role="heading"
+aria-level="2"
+>
+Large Sizes
+</span>
+
+</span>
+
+<span
+class="section-chevron"
+aria-hidden="true"
+>
+&gt;
+</span>
+
+</button>
+
+</div>
+
+<div
+class="section-collapse"
+id="largePanel"
+data-section-panel
+hidden
+>
+
+<p class="section-open-copy">
 Designed to maximise natural light across larger kitchens, extensions and open-plan rooms.
 </p>
-</div>
 
-<div class="product-grid catalogue-grid" id="largeGrid"></div>
+<div
+class="product-grid catalogue-grid"
+id="largeGrid"
+></div>
+
+</div>
 
 </section>
 
-<section id="extra-large" class="product-section extra-large-section">
+<section
+id="extra-large"
+class="product-section extra-large-section"
+data-catalogue-section="extra-large"
+>
 
 <div class="section-heading-wrap">
+
+<button
+type="button"
+class="section-toggle"
+data-section-toggle
+aria-expanded="false"
+aria-controls="extraLargePanel"
+>
+
+<span class="section-toggle-copy">
 
 <span class="section-number">
 05 — Maximum Daylight
 </span>
 
-<h2 class="section-title">
+<span
+class="section-title"
+role="heading"
+aria-level="2"
+>
 Extra Large Sizes
-</h2>
+</span>
 
-<p class="section-subtitle">
-Larger architectural rooflights for expansive rooms, major extensions and premium projects.
-Extra Large units use postcode-based delivery pricing according to rooflight width and delivery distance.
-</p>
+</span>
+
+<span
+class="section-chevron"
+aria-hidden="true"
+>
+&gt;
+</span>
+
+</button>
 
 </div>
+
+<div
+class="section-collapse"
+id="extraLargePanel"
+data-section-panel
+hidden
+>
+
+<p class="section-open-copy">
+Larger architectural rooflights for expansive rooms, major extensions and premium projects. Extra Large units use postcode-based delivery pricing according to rooflight width and delivery distance.
+</p>
+
+<div
+class="product-grid catalogue-grid"
+id="extraLargeGrid"
+></div>
 
 <div
 class="delivery-checker"
@@ -1854,10 +3693,7 @@ a delivery quotation.
 
 </div>
 
-<div
-class="product-grid catalogue-grid"
-id="extraLargeGrid"
-></div>
+</div>
 
 </section>
 
@@ -1868,8 +3704,7 @@ Can’t find your size?
 </h2>
 
 <p>
-If your required size is not listed, return to the calculator and build a
-made-to-order frameless rooflight online.
+If your required size is not listed, return to the calculator and build a made-to-order frameless rooflight online.
 </p>
 
 <div class="cta-actions">
@@ -1888,8 +3723,7 @@ Need Something Larger?
 </h2>
 
 <p>
-Looking for a frameless rooflight beyond our listed range? Contact us for an
-oversized quotation and specialist delivery pricing.
+Looking for a frameless rooflight beyond our listed range? Contact us for an oversized quotation and specialist delivery pricing.
 </p>
 
 <div class="cta-actions">
@@ -1907,49 +3741,75 @@ Oversized Quote
 
 </main>
 
-<footer id="contact">
+<footer
+class="order-index-footer"
+id="contact"
+>
+
+<div class="order-index-footer-inner">
+
+<a
+href="index.html"
+class="order-index-footer-home"
+aria-label="Factory Toughened Rooflights homepage"
+>
 
 <div class="wordmark footer-wordmark">
 
+<span class="footer-wordmark-factory">
 Factory
+</span>
 
-<span>
+<span class="footer-wordmark-toughened">
 Toughened
 </span>
 
 <div class="wordmark-bottom">
-Rooflights<small class="wordmark-domain">.co.uk</small>
-</div>
+
+<span class="footer-wordmark-rooflights">
+Rooflights
+</span>
+
+<small class="wordmark-domain">
+.co.uk
+</small>
 
 </div>
 
-<p>
-Factory Toughened Rooflights is a trading name of Right Glaze Ltd.
-</p>
+</div>
 
-<p>
-Frameless flat roof skylights with free mainland UK delivery on eligible sizes
-and postcode-based delivery pricing on Extra Large units.
-</p>
+</a>
 
-<p>
-Anamax Group Estate<br>
-Oxford Road, Denham<br>
-Buckinghamshire<br>
-SL9 7BB
-</p>
+<address class="order-index-footer-address">
+
+<span>Anamax Group Estate</span>
+<span>Oxford Road, Denham</span>
+<span>Buckinghamshire</span>
+<span>SL9 7BB</span>
+
+</address>
+
+</div>
+
+<div
+class="order-index-footer-dots"
+aria-hidden="true"
+>
+<span></span>
+<span></span>
+<span></span>
+</div>
 
 </footer>
 
 <script>
 
 /* =========================================
-CUSTOMER-FACING PRICING SYSTEM
+STANDARD-SIZES PRICING
 ========================================= */
 
 const ACTIVE_PRICE_CATEGORY =
 "normal";
-
 
 const PRICE_CATEGORIES = {
 
@@ -1966,43 +3826,28 @@ tripleClearToughened100:{
 "400x1000":265,
 "400x1200":315,
 "400x1500":335,
-
-/* provisional missing size */
 "400x1800":370,
 
 "600x600":200,
 "600x900":270,
 "600x1200":365,
 "600x1500":395,
-
-/* provisional missing size */
 "600x1800":425,
-
 "600x2000":445,
-
-/* provisional missing size */
 "600x2500":525,
 
 "800x800":325,
 "800x1000":375,
 "800x1200":400,
 "800x1500":445,
-
-/* provisional missing size */
 "800x1800":485,
-
 "800x2000":515,
-
-/* provisional missing size */
 "800x2500":590,
 
 "1000x1000":340,
 "1000x1200":415,
 "1000x1500":475,
-
-/* provisional missing size */
 "1000x1800":565,
-
 "1000x2000":625,
 "1000x2500":770,
 
@@ -2044,7 +3889,6 @@ border:{
 
 };
 
-
 function getActivePriceCategory() {
 
 const category =
@@ -2066,7 +3910,6 @@ return category;
 
 }
 
-
 function roundToNearestFive(
 value
 ) {
@@ -2081,13 +3924,38 @@ value
 
 }
 
+function normalizeSize(
+size
+) {
+
+return String(
+size ??
+""
+)
+.trim()
+.toLowerCase()
+.replace(
+/mm/g,
+""
+)
+.replace(
+/×/g,
+"x"
+)
+.replace(
+/\s+/g,
+""
+);
+
+}
 
 function normalizeGlazing(
 glazing
 ) {
 
 return String(
-glazing || ""
+glazing ||
+""
 )
 .trim()
 .toLowerCase() ===
@@ -2099,13 +3967,13 @@ glazing || ""
 
 }
 
-
 function normalizeGlassType(
 glassType
 ) {
 
 return String(
-glassType || ""
+glassType ||
+""
 )
 .trim()
 .toLowerCase() ===
@@ -2117,25 +3985,27 @@ glassType || ""
 
 }
 
-
 function normalizeFinish(
 finish
 ) {
 
 const normalized =
 String(
-finish || ""
+finish ||
+""
 )
 .trim()
 .toLowerCase();
 
 if (
-normalized ===
-"blue" ||
-normalized ===
-"blue tinted" ||
-normalized ===
+[
+"blue",
+"blue tinted",
 "blue-tinted"
+]
+.includes(
+normalized
+)
 ) {
 
 return "blue";
@@ -2143,18 +4013,17 @@ return "blue";
 }
 
 if (
-normalized ===
-"grey" ||
-normalized ===
-"gray" ||
-normalized ===
-"grey tinted" ||
-normalized ===
-"grey-tinted" ||
-normalized ===
-"gray tinted" ||
-normalized ===
+[
+"grey",
+"gray",
+"grey tinted",
+"grey-tinted",
+"gray tinted",
 "gray-tinted"
+]
+.includes(
+normalized
+)
 ) {
 
 return "grey";
@@ -2162,14 +4031,15 @@ return "grey";
 }
 
 if (
-normalized ===
-"satin" ||
-normalized ===
-"satin tinted" ||
-normalized ===
-"satin-tinted" ||
-normalized ===
+[
+"satin",
+"satin tinted",
+"satin-tinted",
 "privacy"
+]
+.includes(
+normalized
+)
 ) {
 
 return "satin";
@@ -2179,7 +4049,6 @@ return "satin";
 return "clear";
 
 }
-
 
 function normalizeBorder(
 border
@@ -2205,32 +4074,29 @@ numeric
 
 }
 
-
 function getMasterPrice(
 size
 ) {
 
-const category =
-getActivePriceCategory();
-
-const masterPrice =
+const price =
 Number(
-category
+getActivePriceCategory()
 .tripleClearToughened100[
+normalizeSize(
 size
+)
 ]
 );
 
 return Number.isFinite(
-masterPrice
+price
 )
 ?
-masterPrice
+price
 :
 null;
 
 }
-
 
 function calculateConfiguredProductPrice(
 size,
@@ -2245,13 +4111,13 @@ border = 100
 const category =
 getActivePriceCategory();
 
-const masterPrice =
+const master =
 getMasterPrice(
 size
 );
 
 if (
-masterPrice ===
+master ===
 null
 ) {
 
@@ -2279,74 +4145,67 @@ normalizeBorder(
 border
 );
 
-const glazingAdjustment =
+const glazingBase =
+master *
+(
+1 +
+(
 Number(
 category
 .adjustments
 .glazing[
 normalizedGlazing
 ]
-) || 0;
+) ||
+0
+)
+);
 
-const glassTypeAdjustment =
+const beforeBorder =
+glazingBase *
+(
+1 +
+(
 Number(
 category
 .adjustments
 .glassType[
 normalizedGlassType
 ]
-) || 0;
-
-const finishAdjustment =
+) ||
+0
+)
++
+(
 Number(
 category
 .adjustments
 .finish[
 normalizedFinish
 ]
-) || 0;
+) ||
+0
+)
+);
 
-const borderAdjustment =
+return roundToNearestFive(
+beforeBorder *
+(
+1 +
+(
 Number(
 category
 .adjustments
 .border[
 normalizedBorder
 ]
-) || 0;
-
-
-const glazingBase =
-masterPrice *
-(
-1 +
-glazingAdjustment
-);
-
-
-const configuredBeforeBorder =
-glazingBase *
-(
-1 +
-glassTypeAdjustment +
-finishAdjustment
-);
-
-
-const configuredPrice =
-configuredBeforeBorder *
-(
-1 +
-borderAdjustment
-);
-
-
-return roundToNearestFive(
-configuredPrice
+) ||
+0
+)
+)
 );
 
 }
-
 
 /* =========================================
 PRODUCT IMAGES
@@ -2354,74 +4213,117 @@ PRODUCT IMAGES
 
 const productImages = {
 
-/* SMALL */
+"300x800":
+"ultra-narrow-rectangle.png",
 
-"300x800":"ultra-narrow-rectangle.png",
-"300x1000":"ultra-narrow-rectangle.png",
-"300x1200":"narrow-tall-rectangle.png",
+"300x1000":
+"ultra-narrow-rectangle.png",
 
-"400x800":"small-rectangle.png",
-"400x1000":"narrow-tall-rectangle.png",
-"400x1200":"narrow-tall-rectangle.png",
+"300x1200":
+"narrow-tall-rectangle.png",
 
-"600x600":"small-square.png",
-"600x900":"small-rectangle.png",
+"400x800":
+"small-rectangle.png",
 
-/* MEDIUM */
+"400x1000":
+"narrow-tall-rectangle.png",
 
-"300x1500":"narrow-long-rectangle.png",
-"400x1500":"narrow-long-rectangle.png",
-"400x1800":"narrow-long-rectangle.png",
+"400x1200":
+"narrow-tall-rectangle.png",
 
-"600x1200":"large-rectangle.png",
-"600x1500":"large-rectangle.png",
+"600x600":
+"small-square.png",
 
-"800x800":"medium-square.png",
-"800x1000":"large-square.png",
-"800x1200":"medium-square.png",
-"800x1500":"large-rectangle.png",
+"600x900":
+"small-rectangle.png",
 
-"1000x1000":"large-square.png",
+"300x1500":
+"narrow-long-rectangle.png",
 
-/* LARGE */
+"400x1500":
+"narrow-long-rectangle.png",
 
-"600x1800":"long-rectangle-xl.png",
-"600x2000":"long-rectangle-xl.png",
+"400x1800":
+"narrow-long-rectangle.png",
 
-"800x1800":"large-xl-rectangle.png",
-"800x2000":"large-xl-rectangle.png",
+"600x1200":
+"large-rectangle.png",
 
-"1000x1200":"large-square.png",
-"1000x1500":"large-rectangle.png",
-"1000x1800":"large-rectangle.png",
-"1000x2000":"large-rectangle.png",
+"600x1500":
+"large-rectangle.png",
 
-/* EXTRA LARGE */
+"800x800":
+"medium-square.png",
 
-"600x2500":"long-rectangle-xl.png",
-"800x2500":"large-xl-rectangle.png",
-"1000x2500":"large-xl-rectangle.png",
+"800x1000":
+"large-square.png",
 
-"1500x1500":"large-square.png",
-"1500x1800":"jumbo.png",
-"1500x2500":"jumbo.png"
+"800x1200":
+"medium-square.png",
+
+"800x1500":
+"large-rectangle.png",
+
+"1000x1000":
+"large-square.png",
+
+"600x1800":
+"long-rectangle-xl.png",
+
+"600x2000":
+"long-rectangle-xl.png",
+
+"800x1800":
+"large-xl-rectangle.png",
+
+"800x2000":
+"large-xl-rectangle.png",
+
+"1000x1200":
+"large-square.png",
+
+"1000x1500":
+"large-rectangle.png",
+
+"1000x1800":
+"large-rectangle.png",
+
+"1000x2000":
+"large-rectangle.png",
+
+"600x2500":
+"long-rectangle-xl.png",
+
+"800x2500":
+"large-xl-rectangle.png",
+
+"1000x2500":
+"large-xl-rectangle.png",
+
+"1500x1500":
+"large-square.png",
+
+"1500x1800":
+"jumbo.png",
+
+"1500x2500":
+"jumbo.png"
 
 };
 
-/* =========================================
-SIZE GROUPS
-========================================= */
-
 const popularSizes = [
+
 "600x900",
 "800x800",
 "800x1200",
 "1000x1500",
 "1500x1800",
 "1500x2500"
+
 ];
 
 const smallSizes = [
+
 "300x800",
 "300x1000",
 "300x1200",
@@ -2430,9 +4332,11 @@ const smallSizes = [
 "400x1200",
 "600x600",
 "600x900"
+
 ];
 
 const mediumSizes = [
+
 "300x1500",
 "400x1500",
 "400x1800",
@@ -2443,9 +4347,11 @@ const mediumSizes = [
 "800x1200",
 "800x1500",
 "1000x1000"
+
 ];
 
 const largeSizes = [
+
 "600x1800",
 "600x2000",
 "800x1800",
@@ -2454,73 +4360,17 @@ const largeSizes = [
 "1000x1500",
 "1000x1800",
 "1000x2000"
+
 ];
 
 const extraLargeSizes = [
+
 "600x2500",
 "800x2500",
 "1000x2500",
 "1500x1500",
 "1500x1800",
 "1500x2500"
-];
-
-/* =========================================
-EXTRA LARGE DELIVERY MASTER
-========================================= */
-
-const DELIVERY_ORIGIN_POSTCODE =
-"SL9 7BB";
-
-const ROAD_DISTANCE_ALLOWANCE =
-1.20;
-
-const chargeableExtraLargeSizes =
-new Set([
-"600x2500",
-"800x2500",
-"1000x2500",
-"1500x1500",
-"1500x1800",
-"1500x2500"
-]);
-
-const deliveryRates = [
-
-{
-maxMiles:30,
-XL1:35,
-XL2:55,
-XL3:110
-},
-
-{
-maxMiles:60,
-XL1:65,
-XL2:105,
-XL3:140
-},
-
-{
-maxMiles:100,
-XL1:105,
-XL2:135,
-XL3:175
-},
-
-{
-maxMiles:150,
-XL1:135,
-XL2:170,
-XL3:220
-},
-
-{
-maxMiles:200,
-XL1:170,
-XL2:215,
-XL3:275
-}
 
 ];
 
@@ -2532,13 +4382,102 @@ function formatSize(
 size
 ) {
 
-return size.replace(
-"x",
-" × "
+const [
+width,
+length
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+);
+
+return `${width} × ${length}mm`;
+
+}
+
+function formatDimension(
+size
+) {
+
+const [
+width,
+length
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+return `${width}mm × ${length}mm`;
+
+}
+
+function formatCustomDimension(
+width,
+length
+) {
+
+return `${Number(width)}mm × ${Number(length)}mm`;
+
+}
+
+function formatMoney(
+value
+) {
+
+return new Intl.NumberFormat(
+"en-GB",
+{
+style:"currency",
+currency:"GBP"
+}
+)
+.format(
+Number(
+value
+) ||
+0
 );
 
 }
 
+function escapeHTML(
+value
+) {
+
+return String(
+value ??
+""
+)
+.replace(
+/&/g,
+"&amp;"
+)
+.replace(
+/</g,
+"&lt;"
+)
+.replace(
+/>/g,
+"&gt;"
+)
+.replace(
+/"/g,
+"&quot;"
+)
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
 
 function getTopGlass(
 size
@@ -2548,7 +4487,9 @@ const [
 width,
 length
 ] =
+normalizeSize(
 size
+)
 .split(
 "x"
 )
@@ -2585,9 +4526,125 @@ return "6mm Toughened Safety Glass";
 
 }
 
+function getExternalDimensionsFor(
+size,
+border
+) {
+
+const [
+width,
+length
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const increase =
+Number(
+border
+) *
+2;
+
+return {
+
+width:
+width +
+increase,
+
+length:
+length +
+increase
+
+};
+
+}
+
+function calculateExternalSizeFor(
+size,
+border
+) {
+
+const dimensions =
+getExternalDimensionsFor(
+size,
+border
+);
+
+return `${dimensions.width}mm × ${dimensions.length}mm`;
+
+}
+
+function getTopGlassLabelFor(
+size,
+border,
+glazing
+) {
+
+const external =
+getExternalDimensionsFor(
+size,
+border
+);
+
+const externalArea =
+(
+external.width *
+external.length
+) /
+1000000;
+
+const [
+width,
+length
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const internalArea =
+(
+width *
+length
+) /
+1000000;
+
+if (
+glazing ===
+"double"
+) {
+
+return externalArea >=
+1.70
+?
+"8mm Toughened Safety Glass"
+:
+"6mm Toughened Safety Glass";
+
+}
+
+return internalArea >=
+2.50
+?
+"8mm Toughened Safety Glass"
+:
+"6mm Toughened Safety Glass";
+
+}
 
 /* =========================================
-PRODUCT CARD CONFIGURATION
+CARD CREATION / FINAL INDEX DESIGN
 ========================================= */
 
 function getCardConfiguration(
@@ -2602,7 +4659,7 @@ return null;
 
 }
 
-const activeGlazingButton =
+const active =
 card.querySelector(
 ".toggle button.active"
 );
@@ -2617,9 +4674,9 @@ card.dataset.size ||
 
 glazing:
 normalizeGlazing(
-activeGlazingButton
+active
 ?
-activeGlazingButton.dataset.glazing
+active.dataset.glazing
 :
 card.dataset.glazing
 ),
@@ -2646,7 +4703,6 @@ card.dataset.border ||
 
 }
 
-
 function calculateCardPrice(
 card
 ) {
@@ -2656,38 +4712,29 @@ getCardConfiguration(
 card
 );
 
-if (
-!configuration
-) {
-
-return null;
-
-}
-
-return calculateConfiguredProductPrice(
+return configuration
+?
+calculateConfiguredProductPrice(
 configuration.size,
 configuration
-);
+)
+:
+null;
 
 }
-
-
-/* =========================================
-HOMEPAGE-MATCHING PRICE DISPLAY
-========================================= */
 
 function getPriceParts(
 price
 ) {
 
-const numericPrice =
+const numeric =
 Number(
 price
 );
 
 if (
 !Number.isFinite(
-numericPrice
+numeric
 )
 ) {
 
@@ -2700,13 +4747,13 @@ pence:"00"
 
 const whole =
 Math.trunc(
-numericPrice
+numeric
 );
 
 const pence =
 Math.round(
 (
-numericPrice -
+numeric -
 whole
 ) *
 100
@@ -2720,7 +4767,8 @@ new Intl.NumberFormat(
 {
 maximumFractionDigits:0
 }
-).format(
+)
+.format(
 whole
 ),
 
@@ -2736,7 +4784,6 @@ pence
 };
 
 }
-
 
 function buildPriceMarkup(
 price
@@ -2767,7 +4814,6 @@ inc. vat
 
 }
 
-
 function updateCardPriceDisplay(
 card,
 price
@@ -2796,14 +4842,14 @@ priceElement.querySelector(
 ".standard-price-whole"
 );
 
-const penceElement =
+const decimalElement =
 priceElement.querySelector(
 ".standard-price-decimals"
 );
 
 if (
 !wholeElement ||
-!penceElement
+!decimalElement
 ) {
 
 priceElement.innerHTML =
@@ -2819,13 +4865,13 @@ priceElement.classList.add(
 "is-changing"
 );
 
-window.setTimeout(
+setTimeout(
 () => {
 
 wholeElement.textContent =
 parts.whole;
 
-penceElement.textContent =
+decimalElement.textContent =
 parts.pence;
 
 priceElement.classList.remove(
@@ -2837,11 +4883,6 @@ priceElement.classList.remove(
 );
 
 }
-
-
-/* =========================================
-ORDER PAGE LINK
-========================================= */
 
 function buildOrderPageUrl(
 card
@@ -2878,16 +4919,15 @@ configuration.size,
 configuration
 );
 
-const imageFile =
+const imagePath =
+"images/product-cards/" +
+(
 productImages[
 configuration.size
 ]
 ||
-"medium-rectangle.png";
-
-const imagePath =
-"images/product-cards/" +
-imageFile;
+"medium-rectangle.png"
+);
 
 const params =
 new URLSearchParams();
@@ -2965,7 +5005,6 @@ params.toString()
 
 }
 
-
 function updateCardOrderLink(
 card
 ) {
@@ -2976,12 +5015,8 @@ card?.querySelector(
 );
 
 if (
-!link
+link
 ) {
-
-return;
-
-}
 
 link.href =
 buildOrderPageUrl(
@@ -2990,84 +5025,24 @@ card
 
 }
 
+}
 
-/* =========================================
-DELIVERY HELPERS
-========================================= */
+const chargeableExtraLargeSizes =
+new Set(
+extraLargeSizes
+);
 
 function isChargeableDeliverySize(
 size
 ) {
 
 return chargeableExtraLargeSizes.has(
+normalizeSize(
 size
+)
 );
 
 }
-
-
-function getXLDeliveryBand(
-size
-) {
-
-if (
-!isChargeableDeliverySize(
-size
-)
-) {
-
-return null;
-
-}
-
-const [
-width
-] =
-size
-.split(
-"x"
-)
-.map(
-Number
-);
-
-if (
-width >=
-600 &&
-width <=
-800
-) {
-
-return "XL1";
-
-}
-
-if (
-width >=
-801 &&
-width <=
-1199
-) {
-
-return "XL2";
-
-}
-
-if (
-width >=
-1200 &&
-width <=
-1500
-) {
-
-return "XL3";
-
-}
-
-return null;
-
-}
-
 
 function getDeliveryCardLine(
 size
@@ -3094,324 +5069,6 @@ Delivery Calculated by Postcode
 `;
 
 }
-
-
-function getDeliveryRate(
-adjustedMiles,
-band
-) {
-
-for (
-const rateBand
-of deliveryRates
-) {
-
-if (
-adjustedMiles <=
-rateBand.maxMiles
-) {
-
-return {
-requiresQuote:false,
-price:rateBand[
-band
-],
-maxMiles:rateBand.maxMiles
-};
-
-}
-
-}
-
-return {
-requiresQuote:true,
-price:null,
-maxMiles:null
-};
-
-}
-
-
-function degreesToRadians(
-degrees
-) {
-
-return degrees *
-(
-Math.PI /
-180
-);
-
-}
-
-
-function calculateGeographicalMiles(
-lat1,
-lon1,
-lat2,
-lon2
-) {
-
-const earthRadiusMiles =
-3958.7613;
-
-const latitudeDifference =
-degreesToRadians(
-lat2 -
-lat1
-);
-
-const longitudeDifference =
-degreesToRadians(
-lon2 -
-lon1
-);
-
-const firstLatitude =
-degreesToRadians(
-lat1
-);
-
-const secondLatitude =
-degreesToRadians(
-lat2
-);
-
-const a =
-Math.sin(
-latitudeDifference /
-2
-) ** 2
-+
-Math.cos(
-firstLatitude
-)
-*
-Math.cos(
-secondLatitude
-)
-*
-Math.sin(
-longitudeDifference /
-2
-) ** 2;
-
-const c =
-2 *
-Math.atan2(
-Math.sqrt(
-a
-),
-Math.sqrt(
-1 -
-a
-)
-);
-
-return earthRadiusMiles *
-c;
-
-}
-
-
-async function lookupPostcode(
-postcode
-) {
-
-const cleanedPostcode =
-String(
-postcode ||
-""
-)
-.trim()
-.toUpperCase();
-
-if (
-!cleanedPostcode
-) {
-
-throw new Error(
-"Please enter a postcode."
-);
-
-}
-
-const response =
-await fetch(
-"https://api.postcodes.io/postcodes/" +
-encodeURIComponent(
-cleanedPostcode
-)
-);
-
-if (
-!response.ok
-) {
-
-throw new Error(
-"That postcode could not be found."
-);
-
-}
-
-const data =
-await response.json();
-
-if (
-!data ||
-!data.result
-) {
-
-throw new Error(
-"That postcode could not be found."
-);
-
-}
-
-return data.result;
-
-}
-
-
-async function calculateExtraLargeDelivery(
-size,
-postcode
-) {
-
-if (
-!isChargeableDeliverySize(
-size
-)
-) {
-
-return {
-requiresQuote:false,
-freeDelivery:true,
-price:0,
-size:size,
-band:null,
-rawMiles:0,
-adjustedMiles:0,
-reason:
-"Free mainland UK delivery applies to this size."
-};
-
-}
-
-const band =
-getXLDeliveryBand(
-size
-);
-
-if (
-!band
-) {
-
-return {
-requiresQuote:true,
-freeDelivery:false,
-price:null,
-size:size,
-band:null,
-reason:
-"Delivery for this size requires a quotation."
-};
-
-}
-
-const [
-origin,
-destination
-] =
-await Promise.all([
-lookupPostcode(
-DELIVERY_ORIGIN_POSTCODE
-),
-lookupPostcode(
-postcode
-)
-]);
-
-const destinationCountry =
-String(
-destination.country ||
-""
-)
-.trim();
-
-if (
-destinationCountry !==
-"England"
-) {
-
-return {
-requiresQuote:true,
-freeDelivery:false,
-price:null,
-size:size,
-band:band,
-country:destinationCountry,
-reason:
-"Delivery quotation required for this destination."
-};
-
-}
-
-const rawMiles =
-calculateGeographicalMiles(
-origin.latitude,
-origin.longitude,
-destination.latitude,
-destination.longitude
-);
-
-const adjustedMiles =
-rawMiles *
-ROAD_DISTANCE_ALLOWANCE;
-
-const deliveryRate =
-getDeliveryRate(
-adjustedMiles,
-band
-);
-
-if (
-deliveryRate.requiresQuote
-) {
-
-return {
-requiresQuote:true,
-freeDelivery:false,
-price:null,
-size:size,
-band:band,
-country:destinationCountry,
-rawMiles:rawMiles,
-adjustedMiles:adjustedMiles,
-reason:
-"Delivery quotation required for destinations over 200 adjusted miles."
-};
-
-}
-
-return {
-requiresQuote:false,
-freeDelivery:false,
-price:deliveryRate.price,
-size:size,
-band:band,
-country:destinationCountry,
-rawMiles:rawMiles,
-adjustedMiles:adjustedMiles,
-reason:null
-};
-
-}
-
-
-/* =========================================
-PRODUCT CARD CREATION
-========================================= */
 
 function createCard(
 size
@@ -3463,12 +5120,6 @@ card.dataset.border =
 "100";
 
 card.dataset.deliveryType =
-isChargeableDeliverySize(
-size
-)
-?
-"postcode"
-:
 "postcode";
 
 const initialPrice =
@@ -3494,10 +5145,20 @@ ${formatSize(size)}
 </div>
 
 <div class="spec-line">
-<span>Inside Visible Glass Size</span>
-<span>${topGlass}</span>
+
+<span>
+Inside Visible Glass Size
+</span>
+
+<span>
+${topGlass}
+</span>
+
 ${deliveryLine}
+
 </div>
+
+<div class="glazing-wrap">
 
 <div class="toggle">
 
@@ -3505,7 +5166,6 @@ ${deliveryLine}
 type="button"
 class="active"
 data-glazing="double"
-onclick="setGlazing(this,'${size}','double')"
 >
 Double
 </button>
@@ -3513,7 +5173,6 @@ Double
 <button
 type="button"
 data-glazing="triple"
-onclick="setGlazing(this,'${size}','triple')"
 >
 Triple
 </button>
@@ -3522,6 +5181,8 @@ Triple
 
 <div class="glazed-label double">
 <span>Glazed</span>
+</div>
+
 </div>
 
 <div class="price-row">
@@ -3547,13 +5208,38 @@ href="#"
 class="view-link"
 aria-label="View ${formatSize(size)} rooflight"
 >
-View →
+View Size
 </a>
 
 </div>
 
 </div>
 `;
+
+card
+.querySelectorAll(
+".toggle button"
+)
+.forEach(
+button => {
+
+button.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+setGlazing(
+button,
+size,
+button.dataset.glazing
+);
+
+}
+);
+
+}
+);
 
 updateCardOrderLink(
 card
@@ -3562,11 +5248,6 @@ card
 return card;
 
 }
-
-
-/* =========================================
-GLAZING SWITCHER
-========================================= */
 
 function setGlazing(
 button,
@@ -3633,14 +5314,11 @@ normalizedGlazing
 
 }
 
-const price =
-calculateCardPrice(
-card
-);
-
 updateCardPriceDisplay(
 card,
-price
+calculateCardPrice(
+card
+)
 );
 
 updateCardOrderLink(
@@ -3648,11 +5326,6 @@ card
 );
 
 }
-
-
-/* =========================================
-FUTURE CARD CONFIGURATION SUPPORT
-========================================= */
 
 function setProductCardConfiguration(
 card,
@@ -3722,14 +5395,11 @@ border
 
 }
 
-const price =
-calculateCardPrice(
-card
-);
-
 updateCardPriceDisplay(
 card,
-price
+calculateCardPrice(
+card
+)
 );
 
 updateCardOrderLink(
@@ -3737,11 +5407,6 @@ card
 );
 
 }
-
-
-/* =========================================
-RENDER PRODUCT GRIDS
-========================================= */
 
 function appendCards(
 gridId,
@@ -3752,6 +5417,14 @@ const grid =
 document.getElementById(
 gridId
 );
+
+if (
+!grid
+) {
+
+return;
+
+}
 
 sizes.forEach(
 size => {
@@ -3766,7 +5439,6 @@ size
 );
 
 }
-
 
 function renderCards() {
 
@@ -3797,10 +5469,637 @@ extraLargeSizes
 
 }
 
+/* =========================================
+SECTION ACCORDIONS
+SMALL OPEN ON INITIAL LOAD; ALL OTHERS CLOSED
+========================================= */
+
+function setCatalogueSectionOpen(
+section,
+shouldOpen
+) {
+
+if (
+!section
+) {
+
+return;
+
+}
+
+const toggle =
+section.querySelector(
+"[data-section-toggle]"
+);
+
+const panel =
+section.querySelector(
+"[data-section-panel]"
+);
+
+section.classList.toggle(
+"is-open",
+shouldOpen
+);
+
+if (
+toggle
+) {
+
+toggle.setAttribute(
+"aria-expanded",
+String(
+shouldOpen
+)
+);
+
+}
+
+if (
+panel
+) {
+
+panel.hidden =
+!shouldOpen;
+
+}
+
+}
+
+document
+.querySelectorAll(
+"[data-catalogue-section]"
+)
+.forEach(
+section => {
+
+setCatalogueSectionOpen(
+section,
+section.dataset.catalogueSection ===
+"small"
+);
+
+const toggle =
+section.querySelector(
+"[data-section-toggle]"
+);
+
+toggle?.addEventListener(
+"click",
+() => {
+
+setCatalogueSectionOpen(
+section,
+!section.classList.contains(
+"is-open"
+)
+);
+
+}
+);
+
+}
+);
 
 /* =========================================
-EXTRA LARGE DELIVERY CHECKER
+STANDALONE EXTRA-LARGE DELIVERY CHECKER
 ========================================= */
+
+const DELIVERY_ORIGIN_POSTCODE =
+"SL9 7BB";
+
+const ROAD_DISTANCE_ALLOWANCE =
+1.20;
+
+const deliveryRates = [
+
+{
+maxMiles:30,
+XL1:35,
+XL2:55,
+XL3:110
+},
+
+{
+maxMiles:60,
+XL1:65,
+XL2:105,
+XL3:140
+},
+
+{
+maxMiles:100,
+XL1:105,
+XL2:135,
+XL3:175
+},
+
+{
+maxMiles:150,
+XL1:135,
+XL2:170,
+XL3:220
+},
+
+{
+maxMiles:200,
+XL1:170,
+XL2:215,
+XL3:275
+}
+
+];
+
+function getXLDeliveryBand(
+size
+) {
+
+if (
+!isChargeableDeliverySize(
+size
+)
+) {
+
+return null;
+
+}
+
+const [
+width
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+width >=
+600 &&
+width <=
+800
+) {
+
+return "XL1";
+
+}
+
+if (
+width >=
+801 &&
+width <=
+1199
+) {
+
+return "XL2";
+
+}
+
+if (
+width >=
+1200 &&
+width <=
+1500
+) {
+
+return "XL3";
+
+}
+
+return null;
+
+}
+
+function getDeliveryRate(
+adjustedMiles,
+band
+) {
+
+for (
+const rate
+of deliveryRates
+) {
+
+if (
+adjustedMiles <=
+rate.maxMiles
+) {
+
+return {
+
+requiresQuote:false,
+
+price:
+rate[
+band
+],
+
+maxMiles:
+rate.maxMiles
+
+};
+
+}
+
+}
+
+return {
+
+requiresQuote:true,
+
+price:null,
+
+maxMiles:null
+
+};
+
+}
+
+function degreesToRadians(
+degrees
+) {
+
+return degrees *
+(
+Math.PI /
+180
+);
+
+}
+
+function calculateGeographicalMiles(
+lat1,
+lon1,
+lat2,
+lon2
+) {
+
+const earthRadiusMiles =
+3958.7613;
+
+const latitudeDifference =
+degreesToRadians(
+lat2 -
+lat1
+);
+
+const longitudeDifference =
+degreesToRadians(
+lon2 -
+lon1
+);
+
+const a =
+Math.sin(
+latitudeDifference /
+2
+) ** 2
++
+Math.cos(
+degreesToRadians(
+lat1
+)
+)
+*
+Math.cos(
+degreesToRadians(
+lat2
+)
+)
+*
+Math.sin(
+longitudeDifference /
+2
+) ** 2;
+
+return earthRadiusMiles *
+(
+2 *
+Math.atan2(
+Math.sqrt(
+a
+),
+Math.sqrt(
+1 -
+a
+)
+)
+);
+
+}
+
+function normalizePostcode(
+postcode
+) {
+
+return String(
+postcode ||
+""
+)
+.trim()
+.toUpperCase()
+.replace(
+/\s+/g,
+""
+);
+
+}
+
+function formatPostcode(
+postcode
+) {
+
+const normalized =
+normalizePostcode(
+postcode
+);
+
+return normalized.length <=
+3
+?
+normalized
+:
+normalized.slice(
+0,
+-3
+) +
+" " +
+normalized.slice(
+-3
+);
+
+}
+
+function isCompleteUKPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+return /^(?:GIR0AA|[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2})$/.test(
+cleaned
+);
+
+}
+
+async function lookupPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!isCompleteUKPostcode(
+cleaned
+)
+) {
+
+throw new Error(
+"Please enter a complete UK postcode."
+);
+
+}
+
+const response =
+await fetch(
+"https://api.postcodes.io/postcodes/" +
+encodeURIComponent(
+cleaned
+)
+);
+
+if (
+!response.ok
+) {
+
+throw new Error(
+"That postcode could not be found."
+);
+
+}
+
+const data =
+await response.json();
+
+if (
+!data ||
+!data.result
+) {
+
+throw new Error(
+"That postcode could not be found."
+);
+
+}
+
+return data.result;
+
+}
+
+async function calculateExtraLargeDelivery(
+size,
+postcode
+) {
+
+if (
+!isChargeableDeliverySize(
+size
+)
+) {
+
+return {
+
+requiresQuote:false,
+
+freeDelivery:true,
+
+price:0,
+
+size:
+size,
+
+band:null,
+
+rawMiles:0,
+
+adjustedMiles:0,
+
+reason:
+"Free mainland UK delivery applies to this size."
+
+};
+
+}
+
+const band =
+getXLDeliveryBand(
+size
+);
+
+if (
+!band
+) {
+
+return {
+
+requiresQuote:true,
+
+freeDelivery:false,
+
+price:null,
+
+size:
+size,
+
+band:null,
+
+reason:
+"Delivery for this size requires a quotation."
+
+};
+
+}
+
+const [
+origin,
+destination
+] =
+await Promise.all([
+lookupPostcode(
+DELIVERY_ORIGIN_POSTCODE
+),
+lookupPostcode(
+postcode
+)
+]);
+
+const country =
+String(
+destination.country ||
+""
+)
+.trim();
+
+if (
+country !==
+"England"
+) {
+
+return {
+
+requiresQuote:true,
+
+freeDelivery:false,
+
+price:null,
+
+size:
+size,
+
+band:
+band,
+
+country:
+country,
+
+reason:
+"Delivery quotation required for this destination."
+
+};
+
+}
+
+const rawMiles =
+calculateGeographicalMiles(
+origin.latitude,
+origin.longitude,
+destination.latitude,
+destination.longitude
+);
+
+const adjustedMiles =
+rawMiles *
+ROAD_DISTANCE_ALLOWANCE;
+
+const rate =
+getDeliveryRate(
+adjustedMiles,
+band
+);
+
+if (
+rate.requiresQuote
+) {
+
+return {
+
+requiresQuote:true,
+
+freeDelivery:false,
+
+price:null,
+
+size:
+size,
+
+band:
+band,
+
+country:
+country,
+
+rawMiles:
+rawMiles,
+
+adjustedMiles:
+adjustedMiles,
+
+reason:
+"Delivery quotation required for destinations over 200 adjusted miles."
+
+};
+
+}
+
+return {
+
+requiresQuote:false,
+
+freeDelivery:false,
+
+price:
+rate.price,
+
+size:
+size,
+
+band:
+band,
+
+country:
+country,
+
+rawMiles:
+rawMiles,
+
+adjustedMiles:
+adjustedMiles,
+
+reason:null
+
+};
+
+}
 
 function setDeliveryResult(
 type,
@@ -3814,50 +6113,50 @@ document.getElementById(
 "deliveryResult"
 );
 
-result.className =
-"delivery-result is-visible";
-
 if (
-type
+!result
 ) {
 
-result.classList.add(
-"is-" +
-type
-);
+return;
 
 }
 
-let priceMarkup =
-"";
+result.className =
+"delivery-result is-visible" +
+(
+type
+?
+" is-" +
+type
+:
+""
+);
 
-if (
+const priceMarkup =
 typeof price ===
 "number"
-) {
-
-priceMarkup = `
+?
+`
 <span class="delivery-result-price">
 £${price}
 </span>
-`;
-
-}
+`
+:
+"";
 
 result.innerHTML = `
 <span class="delivery-result-title">
-${title}
+${escapeHTML(title)}
 </span>
 
 ${priceMarkup}
 
 <span class="delivery-result-copy">
-${copy}
+${escapeHTML(copy)}
 </span>
 `;
 
 }
-
 
 async function checkExtraLargeDelivery() {
 
@@ -3898,7 +6197,7 @@ return;
 
 }
 
-const originalButtonText =
+const originalText =
 button.textContent;
 
 button.disabled =
@@ -3919,7 +6218,7 @@ if (
 quote.requiresQuote
 ) {
 
-let quoteCopy =
+let copy =
 quote.reason ||
 "Please contact our rooflight team for a delivery quotation.";
 
@@ -3929,7 +6228,7 @@ quote.adjustedMiles
 )
 ) {
 
-quoteCopy +=
+copy +=
 " Estimated adjusted distance: " +
 Math.round(
 quote.adjustedMiles
@@ -3941,7 +6240,7 @@ quote.adjustedMiles
 setDeliveryResult(
 "quote",
 "Delivery Quotation Required",
-quoteCopy
+copy
 );
 
 return;
@@ -3963,11 +6262,6 @@ return;
 
 }
 
-const adjustedDistance =
-Math.round(
-quote.adjustedMiles
-);
-
 setDeliveryResult(
 "success",
 formatSize(
@@ -3976,7 +6270,9 @@ quote.size
 " — " +
 quote.band,
 "Estimated adjusted delivery distance: " +
-adjustedDistance +
+Math.round(
+quote.adjustedMiles
+) +
 " miles. This includes the 20% road-distance allowance.",
 quote.price
 );
@@ -4000,25 +6296,26 @@ button.disabled =
 false;
 
 button.textContent =
-originalButtonText;
+originalText;
 
 }
 
 }
-
 
 /* =========================================
-MENU
+CURRENT ORDER-PAGE HEADER / MENU / WHATSAPP
 ========================================= */
 
 function openMenu() {
 
-document
-.getElementById(
+closeWhatsAppAction();
+
+const menu =
+document.getElementById(
 "menuOverlay"
-)
-.classList
-.add(
+);
+
+menu?.classList.add(
 "active"
 );
 
@@ -4027,31 +6324,5221 @@ document.body.style.overflow =
 
 }
 
-
 function closeMenu() {
 
-document
-.getElementById(
+const menu =
+document.getElementById(
 "menuOverlay"
-)
-.classList
-.remove(
+);
+
+menu?.classList.remove(
 "active"
 );
+
+if (
+!document.body.classList.contains(
+"basket-drawer-open"
+)
+) {
 
 document.body.style.overflow =
 "";
 
 }
 
+}
+
+const whatsappButton =
+document.getElementById(
+"whatsappButton"
+);
+
+const whatsappAction =
+document.getElementById(
+"whatsappAction"
+);
+
+function setWhatsAppState(
+open
+) {
+
+if (
+!whatsappButton ||
+!whatsappAction
+) {
+
+return;
+
+}
+
+whatsappButton.classList.toggle(
+"is-selected",
+open
+);
+
+whatsappAction.classList.toggle(
+"is-open",
+open
+);
+
+whatsappButton.setAttribute(
+"aria-expanded",
+String(
+open
+)
+);
+
+}
+
+function closeWhatsAppAction() {
+
+setWhatsAppState(
+false
+);
+
+}
+
+if (
+whatsappButton &&
+whatsappAction
+) {
+
+whatsappButton.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+setWhatsAppState(
+!whatsappAction.classList.contains(
+"is-open"
+)
+);
+
+}
+);
+
+whatsappAction.addEventListener(
+"click",
+event => {
+
+event.stopPropagation();
+
+}
+);
+
+}
 
 /* =========================================
-PRICING VALIDATION
+SHARED ORDER-PAGE BASKET
+RETAINS factoryToughenedRooflightsOrderV1
+========================================= */
+
+const ORDER_STORAGE_KEY =
+"factoryToughenedRooflightsOrderV1";
+
+const basketButton =
+document.getElementById(
+"basketButton"
+);
+
+const basketTotalText =
+document.getElementById(
+"basketTotalText"
+);
+
+const basketDrawerLayer =
+document.getElementById(
+"basketDrawerLayer"
+);
+
+const basketDrawerPanel =
+document.getElementById(
+"basketDrawerPanel"
+);
+
+const basketDrawerClose =
+document.getElementById(
+"basketDrawerClose"
+);
+
+const basketDrawerBody =
+document.getElementById(
+"basketDrawerBody"
+);
+
+const basketDrawerFooter =
+document.getElementById(
+"basketDrawerFooter"
+);
+
+const basketDrawerCount =
+document.getElementById(
+"basketDrawerCount"
+);
+
+const basketState = {
+
+orderItems:[],
+
+customOrderItems:[],
+
+deliveryPostcode:"",
+
+deliveryFee:null,
+
+deliveryResolved:false,
+
+deliveryRequiresQuote:false,
+
+deliveryQuoteReason:"",
+
+deliveryAdjustedMiles:null,
+
+deliveryChargeableMiles:null
+
+};
+
+let basketStorageEnvelope = {
+version:5
+};
+
+let basketDrawerIsOpen =
+false;
+
+let basketDrawerScrollY =
+0;
+
+let basketDrawerPreviousBodyStyles =
+null;
+
+let basketDrawerLastFocusedElement =
+null;
+
+const basketDrawerExpandedItems =
+new Set();
+
+let basketAnimationTimer =
+null;
+
+let basketDeliveryLookupTimer =
+null;
+
+let basketDeliveryLookupToken =
+0;
+
+let basketOriginPromise =
+null;
+
+function createBasketOrderItemId(
+prefix = "item"
+) {
+
+if (
+window.crypto &&
+typeof window.crypto.randomUUID ===
+"function"
+) {
+
+return `${prefix}-${window.crypto.randomUUID()}`;
+
+}
+
+return (
+`${prefix}-${Date.now()}-` +
+Math.random()
+.toString(
+36
+)
+.slice(
+2,
+10
+)
+);
+
+}
+
+function isCustomDeliveryItem(
+item
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return false;
+
+}
+
+return (
+item.isCustom ===
+true ||
+item.custom ===
+true ||
+String(
+item.source ||
+""
+)
+.toLowerCase()
+.includes(
+"custom"
+)
+);
+
+}
+
+function getBasketItemStableId(
+item,
+kind = null
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return "";
+
+}
+
+let id =
+String(
+item.id ??
+item._id ??
+""
+)
+.trim();
+
+if (
+!id
+) {
+
+id =
+(
+kind ===
+"custom" ||
+isCustomDeliveryItem(
+item
+)
+)
+?
+createBasketOrderItemId(
+"custom"
+)
+:
+createBasketOrderItemId(
+"standard"
+);
+
+item.id =
+id;
+
+item._id =
+id;
+
+}
+
+return id;
+
+}
+
+function normalizeBasketStandardItem(
+item
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return null;
+
+}
+
+const size =
+normalizeSize(
+item.size
+);
+
+if (
+!size ||
+!size.includes(
+"x"
+)
+) {
+
+return null;
+
+}
+
+const glazing =
+normalizeGlazing(
+item.glazing
+);
+
+const type =
+normalizeGlassType(
+item.type
+);
+
+const border =
+normalizeBorder(
+item.border
+);
+
+const tint =
+normalizeFinish(
+item.tint ??
+item.finish
+);
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+let unitPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+if (
+!Number.isFinite(
+unitPrice
+) ||
+unitPrice <=
+0
+) {
+
+unitPrice =
+calculateConfiguredProductPrice(
+size,
+{
+glazing:
+glazing,
+
+glassType:
+type,
+
+finish:
+tint,
+
+border:
+border
+}
+)
+||
+0;
+
+}
+
+const id =
+getBasketItemStableId(
+item,
+"standard"
+);
+
+return {
+
+...item,
+
+id:
+id,
+
+_id:
+id,
+
+size:
+size,
+
+glazing:
+glazing,
+
+type:
+type,
+
+border:
+border,
+
+tint:
+tint,
+
+finish:
+tint,
+
+quantity:
+quantity,
+
+unitPrice:
+unitPrice
+
+};
+
+}
+
+function normalizeBasketCustomItem(
+item
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return null;
+
+}
+
+const width =
+Math.floor(
+Number(
+item.width ??
+item.internalWidth
+)
+);
+
+const length =
+Math.floor(
+Number(
+item.length ??
+item.internalLength
+)
+);
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+) ||
+width <=
+0 ||
+length <=
+0
+) {
+
+return null;
+
+}
+
+const glazing =
+normalizeGlazing(
+item.glazing ??
+item.glazingConfiguration
+);
+
+const type =
+normalizeGlassType(
+item.type ??
+item.glazingConstruction
+);
+
+const border =
+normalizeBorder(
+item.border
+);
+
+const tint =
+normalizeFinish(
+item.tint ??
+item.finish
+);
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+const unitPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+if (
+!Number.isFinite(
+unitPrice
+) ||
+unitPrice <=
+0
+) {
+
+return null;
+
+}
+
+const id =
+getBasketItemStableId(
+item,
+"custom"
+);
+
+return {
+
+...item,
+
+id:
+id,
+
+_id:
+id,
+
+source:
+item.source ||
+"custom",
+
+isCustom:true,
+
+custom:true,
+
+width:
+width,
+
+length:
+length,
+
+internalWidth:
+width,
+
+internalLength:
+length,
+
+glazing:
+glazing,
+
+glazingConfiguration:
+glazing,
+
+type:
+type,
+
+glazingConstruction:
+type,
+
+border:
+border,
+
+tint:
+tint,
+
+finish:
+tint,
+
+quantity:
+quantity,
+
+qty:
+quantity,
+
+unitPrice:
+unitPrice,
+
+price:
+unitPrice
+
+};
+
+}
+
+function normalizeBasketStateItems() {
+
+basketState.orderItems =
+(
+Array.isArray(
+basketState.orderItems
+)
+?
+basketState.orderItems
+:
+[]
+)
+.map(
+normalizeBasketStandardItem
+)
+.filter(
+Boolean
+);
+
+basketState.customOrderItems =
+(
+Array.isArray(
+basketState.customOrderItems
+)
+?
+basketState.customOrderItems
+:
+[]
+)
+.map(
+normalizeBasketCustomItem
+)
+.filter(
+Boolean
+);
+
+}
+
+function getAllBasketItems() {
+
+normalizeBasketStateItems();
+
+return [
+
+...basketState.orderItems,
+...basketState.customOrderItems
+
+];
+
+}
+
+function loadBasketFromStorage() {
+
+try {
+
+const stored =
+localStorage.getItem(
+ORDER_STORAGE_KEY
+);
+
+if (
+!stored
+) {
+
+basketState.orderItems =
+[];
+
+basketState.customOrderItems =
+[];
+
+basketState.deliveryPostcode =
+"";
+
+basketState.deliveryFee =
+null;
+
+basketState.deliveryResolved =
+false;
+
+basketState.deliveryRequiresQuote =
+false;
+
+basketState.deliveryQuoteReason =
+"";
+
+basketState.deliveryAdjustedMiles =
+null;
+
+basketState.deliveryChargeableMiles =
+null;
+
+return;
+
+}
+
+const parsed =
+JSON.parse(
+stored
+);
+
+basketStorageEnvelope =
+parsed &&
+typeof parsed ===
+"object" &&
+!Array.isArray(
+parsed
+)
+?
+parsed
+:
+{
+version:5
+};
+
+const rawItems =
+Array.isArray(
+parsed
+)
+?
+parsed
+:
+(
+Array.isArray(
+parsed?.items
+)
+?
+parsed.items
+:
+[]
+);
+
+const rawCustom =
+Array.isArray(
+parsed?.customItems
+)
+?
+parsed.customItems
+:
+[];
+
+basketState.orderItems =
+rawItems;
+
+basketState.customOrderItems =
+rawCustom;
+
+normalizeBasketStateItems();
+
+basketState.deliveryPostcode =
+String(
+parsed?.deliveryPostcode ||
+basketState.orderItems[0]?.deliveryPostcode ||
+basketState.customOrderItems[0]?.deliveryPostcode ||
+""
+);
+
+const storedFee =
+parsed?.deliveryFee;
+
+basketState.deliveryFee =
+storedFee !==
+null &&
+storedFee !==
+undefined &&
+storedFee !==
+"" &&
+Number.isFinite(
+Number(
+storedFee
+)
+)
+?
+Number(
+storedFee
+)
+:
+null;
+
+basketState.deliveryResolved =
+parsed?.deliveryResolved ===
+true &&
+Number.isFinite(
+basketState.deliveryFee
+);
+
+basketState.deliveryRequiresQuote =
+parsed?.deliveryRequiresQuote ===
+true;
+
+basketState.deliveryQuoteReason =
+String(
+parsed?.deliveryQuoteReason ||
+""
+);
+
+const storedAdjustedMiles =
+parsed?.deliveryAdjustedMiles;
+
+basketState.deliveryAdjustedMiles =
+storedAdjustedMiles !==
+null &&
+storedAdjustedMiles !==
+undefined &&
+storedAdjustedMiles !==
+"" &&
+Number.isFinite(
+Number(
+storedAdjustedMiles
+)
+)
+?
+Number(
+storedAdjustedMiles
+)
+:
+null;
+
+const storedChargeableMiles =
+parsed?.deliveryChargeableMiles;
+
+basketState.deliveryChargeableMiles =
+storedChargeableMiles !==
+null &&
+storedChargeableMiles !==
+undefined &&
+storedChargeableMiles !==
+"" &&
+Number.isFinite(
+Number(
+storedChargeableMiles
+)
+)
+?
+Number(
+storedChargeableMiles
+)
+:
+null;
+
+}
+catch (
+error
+) {
+
+console.warn(
+"Unable to restore saved order.",
+error
+);
+
+basketState.orderItems =
+[];
+
+basketState.customOrderItems =
+[];
+
+basketState.deliveryPostcode =
+"";
+
+basketState.deliveryFee =
+null;
+
+basketState.deliveryResolved =
+false;
+
+basketState.deliveryRequiresQuote =
+false;
+
+basketState.deliveryQuoteReason =
+"";
+
+basketState.deliveryAdjustedMiles =
+null;
+
+basketState.deliveryChargeableMiles =
+null;
+
+}
+
+}
+
+function saveBasketToStorage() {
+
+try {
+
+normalizeBasketStateItems();
+
+basketStorageEnvelope = {
+
+...basketStorageEnvelope,
+
+version:5,
+
+items:
+basketState.orderItems,
+
+customItems:
+basketState.customOrderItems,
+
+deliveryPostcode:
+basketState.deliveryPostcode,
+
+deliveryFee:
+basketState.deliveryFee,
+
+deliveryResolved:
+basketState.deliveryResolved,
+
+deliveryRequiresQuote:
+basketState.deliveryRequiresQuote,
+
+deliveryQuoteReason:
+basketState.deliveryQuoteReason,
+
+deliveryAdjustedMiles:
+basketState.deliveryAdjustedMiles,
+
+deliveryChargeableMiles:
+basketState.deliveryChargeableMiles
+
+};
+
+localStorage.setItem(
+ORDER_STORAGE_KEY,
+JSON.stringify(
+basketStorageEnvelope
+)
+);
+
+}
+catch (
+error
+) {
+
+console.warn(
+"Unable to save order locally.",
+error
+);
+
+}
+
+}
+
+function getBasketProductSubtotal() {
+
+return getAllBasketItems()
+.reduce(
+(
+total,
+item
+) => {
+
+const price =
+Number(
+item.unitPrice ??
+item.price
+);
+
+const quantity =
+Math.max(
+1,
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+);
+
+return (
+total +
+(
+Number.isFinite(
+price
+)
+?
+price *
+quantity
+:
+0
+)
+);
+
+},
+0
+);
+
+}
+
+function getBasketDeliveryFee() {
+
+return (
+basketState.deliveryResolved &&
+!basketState.deliveryRequiresQuote &&
+Number.isFinite(
+Number(
+basketState.deliveryFee
+)
+)
+)
+?
+Math.max(
+0,
+Number(
+basketState.deliveryFee
+)
+)
+:
+0;
+
+}
+
+function calculateBasketGrandTotal() {
+
+return (
+getBasketProductSubtotal() +
+(
+getAllBasketItems().length
+?
+getBasketDeliveryFee()
+:
+0
+)
+);
+
+}
+
+function getBasketDrawerUnitCount() {
+
+return getAllBasketItems()
+.reduce(
+(
+total,
+item
+) => {
+
+return (
+total +
+Math.max(
+1,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+},
+0
+);
+
+}
+
+function animateBasketTotal() {
+
+if (
+!basketTotalText
+) {
+
+return;
+
+}
+
+basketTotalText.classList.add(
+"is-visible"
+);
+
+basketTotalText.classList.remove(
+"is-updating"
+);
+
+void basketTotalText.offsetWidth;
+
+basketTotalText.classList.add(
+"is-updating"
+);
+
+if (
+basketAnimationTimer !==
+null
+) {
+
+clearTimeout(
+basketAnimationTimer
+);
+
+}
+
+basketAnimationTimer =
+setTimeout(
+() => {
+
+basketTotalText.classList.remove(
+"is-updating"
+);
+
+},
+560
+);
+
+}
+
+function updateBasketTotal(
+total,
+{
+animate = true
+} = {}
+) {
+
+if (
+!basketTotalText
+) {
+
+return;
+
+}
+
+const formatted =
+formatMoney(
+Number.isFinite(
+Number(
+total
+)
+)
+?
+Number(
+total
+)
+:
+0
+);
+
+basketTotalText.textContent =
+formatted;
+
+basketTotalText.setAttribute(
+"aria-label",
+"Basket total " +
+formatted
+);
+
+if (
+animate
+) {
+
+animateBasketTotal();
+
+}
+else {
+
+basketTotalText.classList.remove(
+"is-updating"
+);
+
+basketTotalText.classList.add(
+"is-visible"
+);
+
+}
+
+}
+
+function getGlazingDisplayName(
+glazing
+) {
+
+return glazing ===
+"triple"
+?
+"Triple Glazed"
+:
+"Double Glazed";
+
+}
+
+function getTypeDisplayName(
+type
+) {
+
+return type ===
+"laminated"
+?
+"Laminated"
+:
+"Toughened";
+
+}
+
+function getTintDisplayName(
+tint
+) {
+
+switch (
+normalizeFinish(
+tint
+)
+) {
+
+case "blue":
+return "Blue Tinted";
+
+case "grey":
+return "Grey Tinted";
+
+case "satin":
+return "Satin";
+
+default:
+return "Clear";
+
+}
+
+}
+
+function buildBasketDrawerDescriptionForSelection(
+item
+) {
+
+let tintText =
+"";
+
+const tint =
+normalizeFinish(
+item.tint ??
+item.finish
+);
+
+if (
+tint ===
+"blue"
+) {
+
+tintText =
+"Blue Tinted ";
+
+}
+
+if (
+tint ===
+"grey"
+) {
+
+tintText =
+"Grey Tinted ";
+
+}
+
+if (
+tint ===
+"satin"
+) {
+
+tintText =
+"Satin ";
+
+}
+
+return (
+`${tintText}` +
+(
+item.glazing ===
+"triple"
+?
+"Triple"
+:
+"Double"
+) +
+" Glazed Frameless Skylight"
+);
+
+}
+
+function getBasketDrawerItemKey(
+item,
+kind,
+index
+) {
+
+const id =
+getBasketItemStableId(
+item,
+kind
+);
+
+return id
+?
+`${kind}:${id}`
+:
+[
+kind,
+index
+]
+.join(
+":"
+);
+
+}
+
+function resolveBasketDrawerItem(
+kind,
+itemKey,
+fallbackIndex
+) {
+
+const collection =
+kind ===
+"custom"
+?
+basketState.customOrderItems
+:
+basketState.orderItems;
+
+if (
+itemKey
+) {
+
+const foundIndex =
+collection.findIndex(
+(
+item,
+index
+) => {
+
+return (
+getBasketDrawerItemKey(
+item,
+kind,
+index
+) ===
+itemKey
+);
+
+}
+);
+
+if (
+foundIndex >=
+0
+) {
+
+return {
+
+collection:
+collection,
+
+index:
+foundIndex,
+
+item:
+collection[
+foundIndex
+]
+
+};
+
+}
+
+}
+
+if (
+Number.isInteger(
+fallbackIndex
+) &&
+fallbackIndex >=
+0 &&
+fallbackIndex <
+collection.length
+) {
+
+return {
+
+collection:
+collection,
+
+index:
+fallbackIndex,
+
+item:
+collection[
+fallbackIndex
+]
+
+};
+
+}
+
+return null;
+
+}
+
+/* =========================================
+ORDER-PAGE DELIVERY ENGINE FOR SHARED BASKET
+========================================= */
+
+const DELIVERY_SIZE_CATEGORIES = {
+
+small:[
+
+"300x800",
+"300x1000",
+"300x1200",
+"400x800",
+"400x1000",
+"400x1200",
+"600x600",
+"600x900"
+
+],
+
+medium:[
+
+"300x1500",
+"400x1500",
+"400x1800",
+"600x1200",
+"600x1500",
+"800x800",
+"800x1000",
+"800x1200",
+"800x1500",
+"1000x1000"
+
+],
+
+large:[
+
+"600x1800",
+"600x2000",
+"800x1800",
+"800x2000",
+"1000x1200",
+"1000x1500",
+"1000x1800",
+"1000x2000"
+
+],
+
+extraLarge:[
+
+"600x2500",
+"800x2500",
+"1000x2500",
+"1500x1500",
+"1500x1800",
+"1500x2000",
+"1500x2500"
+
+]
+
+};
+
+const DELIVERY_PRICING = {
+
+small:{
+
+additionalUnit:15,
+
+maxDeliveryMiles:400,
+
+bands:[
+
+{
+maxMiles:34,
+price:25
+},
+
+{
+maxMiles:79,
+price:35
+},
+
+{
+maxMiles:150,
+price:45
+},
+
+{
+maxMiles:400,
+price:70
+}
+
+]
+
+},
+
+medium:{
+
+additionalUnit:15,
+
+maxDeliveryMiles:400,
+
+bands:[
+
+{
+maxMiles:34,
+price:30
+},
+
+{
+maxMiles:79,
+price:40
+},
+
+{
+maxMiles:150,
+price:50
+},
+
+{
+maxMiles:400,
+price:75
+}
+
+]
+
+},
+
+large:{
+
+additionalUnit:25,
+
+maxDeliveryMiles:400,
+
+bands:[
+
+{
+maxMiles:34,
+price:35
+},
+
+{
+maxMiles:79,
+price:45
+},
+
+{
+maxMiles:150,
+price:55
+},
+
+{
+maxMiles:400,
+price:85
+}
+
+]
+
+},
+
+extraLarge:{
+
+additionalUnit:65,
+
+maxDeliveryMiles:200,
+
+bands:[
+
+{
+maxMiles:34,
+price:55
+},
+
+{
+maxMiles:79,
+price:75
+},
+
+{
+maxMiles:150,
+price:85
+},
+
+{
+maxMiles:200,
+price:115
+}
+
+]
+
+}
+
+};
+
+const DELIVERY_SIZE_CATEGORY_LOOKUP =
+new Map();
+
+Object.entries(
+DELIVERY_SIZE_CATEGORIES
+)
+.forEach(
+(
+[
+category,
+sizes
+]
+) => {
+
+sizes.forEach(
+size => {
+
+DELIVERY_SIZE_CATEGORY_LOOKUP.set(
+normalizeSize(
+size
+),
+category
+);
+
+}
+);
+
+}
+);
+
+function normalizeDeliveryCategory(
+category
+) {
+
+const normalized =
+String(
+category ??
+""
+)
+.trim()
+.toLowerCase()
+.replace(
+/[\s_-]+/g,
+""
+);
+
+if (
+normalized ===
+"small"
+) {
+
+return "small";
+
+}
+
+if (
+normalized ===
+"medium"
+) {
+
+return "medium";
+
+}
+
+if (
+normalized ===
+"large"
+) {
+
+return "large";
+
+}
+
+if (
+normalized ===
+"extralarge"
+) {
+
+return "extraLarge";
+
+}
+
+return null;
+
+}
+
+function getDeliveryCategoryForSize(
+size
+) {
+
+return (
+DELIVERY_SIZE_CATEGORY_LOOKUP.get(
+normalizeSize(
+size
+)
+)
+||
+null
+);
+
+}
+
+function getNormalisedDeliveryDimensions(
+width,
+length
+) {
+
+const first =
+Number(
+width
+);
+
+const second =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+first
+) ||
+!Number.isFinite(
+second
+)
+) {
+
+return null;
+
+}
+
+return {
+
+width:
+Math.min(
+first,
+second
+),
+
+length:
+Math.max(
+first,
+second
+)
+
+};
+
+}
+
+function getDeliveryCategoryForCustomDimensions(
+width,
+length
+) {
+
+const customDimensions =
+getNormalisedDeliveryDimensions(
+width,
+length
+);
+
+if (
+!customDimensions
+) {
+
+return null;
+
+}
+
+for (
+const category
+of [
+"small",
+"medium",
+"large",
+"extraLarge"
+]
+) {
+
+const fits =
+(
+DELIVERY_SIZE_CATEGORIES[
+category
+]
+||
+[]
+)
+.some(
+size => {
+
+const [
+widthReference,
+lengthReference
+] =
+normalizeSize(
+size
+)
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const reference =
+getNormalisedDeliveryDimensions(
+widthReference,
+lengthReference
+);
+
+return (
+reference &&
+reference.width >=
+customDimensions.width &&
+reference.length >=
+customDimensions.length
+);
+
+}
+);
+
+if (
+fits
+) {
+
+return category;
+
+}
+
+}
+
+return "extraLarge";
+
+}
+
+function getDeliveryCategoryForItem(
+item
+) {
+
+return isCustomDeliveryItem(
+item
+)
+?
+getDeliveryCategoryForCustomDimensions(
+item.width ??
+item.internalWidth,
+item.length ??
+item.internalLength
+)
+:
+getDeliveryCategoryForSize(
+item.size
+);
+
+}
+
+function expandOrderItemsIntoUnits(
+items
+) {
+
+const units =
+[];
+
+(
+Array.isArray(
+items
+)
+?
+items
+:
+[]
+)
+.forEach(
+item => {
+
+const category =
+getDeliveryCategoryForItem(
+item
+);
+
+if (
+!category
+) {
+
+return;
+
+}
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+const kind =
+isCustomDeliveryItem(
+item
+)
+?
+"custom"
+:
+"standard";
+
+const itemId =
+getBasketItemStableId(
+item,
+kind
+);
+
+for (
+let index = 0;
+index <
+quantity;
+index +=
+1
+) {
+
+units.push(
+{
+
+item:
+item,
+
+itemId:
+itemId,
+
+kind:
+kind,
+
+category:
+category
+
+}
+);
+
+}
+
+}
+);
+
+return units;
+
+}
+
+function getBaseDeliveryPrice(
+category,
+miles
+) {
+
+const normalizedCategory =
+normalizeDeliveryCategory(
+category
+);
+
+const pricing =
+DELIVERY_PRICING[
+normalizedCategory
+];
+
+if (
+!pricing
+) {
+
+return null;
+
+}
+
+const chargeableMiles =
+Math.max(
+0,
+Math.ceil(
+Number(
+miles
+) ||
+0
+)
+);
+
+if (
+chargeableMiles >
+pricing.maxDeliveryMiles
+) {
+
+return null;
+
+}
+
+for (
+const band
+of pricing.bands
+) {
+
+if (
+chargeableMiles <=
+band.maxMiles
+) {
+
+return Number(
+band.price
+);
+
+}
+
+}
+
+return null;
+
+}
+
+function getAdditionalUnitPriceForCategory(
+category
+) {
+
+const price =
+Number(
+DELIVERY_PRICING[
+normalizeDeliveryCategory(
+category
+)
+]
+?.additionalUnit
+);
+
+return Number.isFinite(
+price
+)
+?
+Math.max(
+0,
+price
+)
+:
+0;
+
+}
+
+function calculateDeliveryCombinationForBaseUnit(
+units,
+baseIndex,
+miles
+) {
+
+if (
+!Array.isArray(
+units
+) ||
+!units.length ||
+!Number.isInteger(
+baseIndex
+) ||
+baseIndex <
+0 ||
+baseIndex >=
+units.length
+) {
+
+return null;
+
+}
+
+const baseCategory =
+normalizeDeliveryCategory(
+units[
+baseIndex
+]
+?.category
+);
+
+const basePrice =
+getBaseDeliveryPrice(
+baseCategory,
+miles
+);
+
+if (
+!Number.isFinite(
+basePrice
+)
+) {
+
+return null;
+
+}
+
+const additionalUnitsTotal =
+units.reduce(
+(
+total,
+unit,
+index
+) => {
+
+return index ===
+baseIndex
+?
+total
+:
+total +
+getAdditionalUnitPriceForCategory(
+unit.category
+);
+
+},
+0
+);
+
+return {
+
+baseUnitIndex:
+baseIndex,
+
+baseCategory:
+baseCategory,
+
+basePrice:
+basePrice,
+
+additionalUnitsTotal:
+additionalUnitsTotal,
+
+price:
+basePrice +
+additionalUnitsTotal
+
+};
+
+}
+
+function getMostExpensiveDeliveryCombination(
+units,
+miles
+) {
+
+let best =
+null;
+
+units.forEach(
+(
+unit,
+index
+) => {
+
+const combination =
+calculateDeliveryCombinationForBaseUnit(
+units,
+index,
+miles
+);
+
+if (
+!combination
+) {
+
+return;
+
+}
+
+if (
+!best ||
+combination.price >
+best.price ||
+(
+combination.price ===
+best.price &&
+combination.basePrice >
+best.basePrice
+)
+) {
+
+best =
+combination;
+
+}
+
+}
+);
+
+return best;
+
+}
+
+function getStandardDeliveryGroups(
+units
+) {
+
+const extraLarge =
+units.filter(
+unit => {
+
+return (
+normalizeDeliveryCategory(
+unit.category
+) ===
+"extraLarge"
+);
+
+}
+);
+
+const other =
+units.filter(
+unit => {
+
+return (
+normalizeDeliveryCategory(
+unit.category
+) !==
+"extraLarge"
+);
+
+}
+);
+
+if (
+extraLarge.length &&
+other.length
+) {
+
+return [
+
+{
+name:"extraLarge",
+units:extraLarge
+},
+
+{
+name:"nonExtraLarge",
+units:other
+}
+
+];
+
+}
+
+return [
+
+{
+name:"combined",
+units:units
+}
+
+];
+
+}
+
+function getDeliveryLimitFailure(
+units,
+miles
+) {
+
+const chargeableMiles =
+Math.max(
+0,
+Math.ceil(
+Number(
+miles
+) ||
+0
+)
+);
+
+const failing =
+units.find(
+unit => {
+
+const pricing =
+DELIVERY_PRICING[
+normalizeDeliveryCategory(
+unit.category
+)
+];
+
+return (
+pricing &&
+chargeableMiles >
+pricing.maxDeliveryMiles
+);
+
+}
+);
+
+if (
+!failing
+) {
+
+return null;
+
+}
+
+const category =
+normalizeDeliveryCategory(
+failing.category
+);
+
+return {
+
+reason:
+category ===
+"extraLarge"
+?
+"Delivery quotation required for Extra Large rooflights over 200 adjusted miles."
+:
+"Delivery quotation required for destinations over 400 adjusted miles."
+
+};
+
+}
+
+function calculateBasketDelivery(
+items,
+adjustedMiles
+) {
+
+const safeAdjustedMiles =
+Math.max(
+0,
+Number(
+adjustedMiles
+) ||
+0
+);
+
+const chargeableMiles =
+Math.ceil(
+safeAdjustedMiles
+);
+
+const units =
+expandOrderItemsIntoUnits(
+items
+);
+
+if (
+!units.length
+) {
+
+return {
+
+requiresQuote:false,
+
+price:0,
+
+chargeableMiles:
+chargeableMiles,
+
+adjustedMiles:
+safeAdjustedMiles,
+
+unitCount:0,
+
+groups:[],
+
+reason:null
+
+};
+
+}
+
+const failure =
+getDeliveryLimitFailure(
+units,
+chargeableMiles
+);
+
+if (
+failure
+) {
+
+return {
+
+requiresQuote:true,
+
+price:null,
+
+chargeableMiles:
+chargeableMiles,
+
+adjustedMiles:
+safeAdjustedMiles,
+
+unitCount:
+units.length,
+
+groups:[],
+
+reason:
+failure.reason
+
+};
+
+}
+
+const groups =
+getStandardDeliveryGroups(
+units
+)
+.map(
+group => {
+
+return {
+
+name:
+group.name,
+
+units:
+group.units,
+
+combination:
+getMostExpensiveDeliveryCombination(
+group.units,
+chargeableMiles
+)
+
+};
+
+}
+);
+
+if (
+groups.some(
+group =>
+!group.combination
+)
+) {
+
+return {
+
+requiresQuote:true,
+
+price:null,
+
+chargeableMiles:
+chargeableMiles,
+
+adjustedMiles:
+safeAdjustedMiles,
+
+unitCount:
+units.length,
+
+groups:[],
+
+reason:
+"Delivery quotation required."
+
+};
+
+}
+
+return {
+
+requiresQuote:false,
+
+price:
+groups.reduce(
+(
+total,
+group
+) => {
+
+return (
+total +
+group.combination.price
+);
+
+},
+0
+),
+
+chargeableMiles:
+chargeableMiles,
+
+adjustedMiles:
+safeAdjustedMiles,
+
+unitCount:
+units.length,
+
+groups:
+groups,
+
+reason:null
+
+};
+
+}
+
+async function getBasketDeliveryOrigin() {
+
+if (
+!basketOriginPromise
+) {
+
+basketOriginPromise =
+lookupPostcode(
+DELIVERY_ORIGIN_POSTCODE
+);
+
+}
+
+return basketOriginPromise;
+
+}
+
+async function calculatePostcodeBasketDelivery(
+postcode
+) {
+
+const [
+origin,
+destination
+] =
+await Promise.all([
+getBasketDeliveryOrigin(),
+lookupPostcode(
+postcode
+)
+]);
+
+const straightLineMiles =
+calculateGeographicalMiles(
+origin.latitude,
+origin.longitude,
+destination.latitude,
+destination.longitude
+);
+
+const adjustedMiles =
+straightLineMiles *
+ROAD_DISTANCE_ALLOWANCE;
+
+const delivery =
+calculateBasketDelivery(
+getAllBasketItems(),
+adjustedMiles
+);
+
+return {
+
+postcode:
+formatPostcode(
+postcode
+),
+
+straightLineMiles:
+straightLineMiles,
+
+adjustedMiles:
+adjustedMiles,
+
+chargeableMiles:
+delivery.chargeableMiles,
+
+delivery:
+delivery
+
+};
+
+}
+
+function setBasketDeliveryPending(
+postcode
+) {
+
+const formattedPostcode =
+formatPostcode(
+postcode
+);
+
+basketState.deliveryPostcode =
+formattedPostcode;
+
+basketState.deliveryFee =
+null;
+
+basketState.deliveryResolved =
+false;
+
+basketState.deliveryRequiresQuote =
+false;
+
+basketState.deliveryQuoteReason =
+"";
+
+basketState.deliveryAdjustedMiles =
+null;
+
+basketState.deliveryChargeableMiles =
+null;
+
+getAllBasketItems()
+.forEach(
+item => {
+
+item.deliveryPostcode =
+formattedPostcode;
+
+item.deliveryFee =
+null;
+
+item.deliveryResolved =
+false;
+
+item.deliveryRequiresQuote =
+false;
+
+}
+);
+
+}
+
+function updateAllBasketDeliveryItems(
+postcode,
+delivery
+) {
+
+const formattedPostcode =
+formatPostcode(
+postcode
+);
+
+const requiresQuote =
+delivery?.requiresQuote ===
+true;
+
+const fee =
+requiresQuote
+?
+null
+:
+Number(
+delivery?.price
+);
+
+basketState.deliveryPostcode =
+formattedPostcode;
+
+basketState.deliveryFee =
+(
+!requiresQuote &&
+Number.isFinite(
+fee
+)
+)
+?
+Math.max(
+0,
+fee
+)
+:
+null;
+
+basketState.deliveryResolved =
+!requiresQuote &&
+Number.isFinite(
+fee
+);
+
+basketState.deliveryRequiresQuote =
+requiresQuote;
+
+basketState.deliveryQuoteReason =
+requiresQuote
+?
+String(
+delivery?.reason ||
+"Delivery quotation required."
+)
+:
+"";
+
+basketState.deliveryAdjustedMiles =
+Number.isFinite(
+Number(
+delivery?.adjustedMiles
+)
+)
+?
+Number(
+delivery.adjustedMiles
+)
+:
+null;
+
+basketState.deliveryChargeableMiles =
+Number.isFinite(
+Number(
+delivery?.chargeableMiles
+)
+)
+?
+Number(
+delivery.chargeableMiles
+)
+:
+null;
+
+getAllBasketItems()
+.forEach(
+item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForItem(
+item
+);
+
+item.deliveryPostcode =
+formattedPostcode;
+
+item.deliveryFee =
+basketState.deliveryFee;
+
+item.deliveryResolved =
+basketState.deliveryResolved;
+
+item.deliveryRequiresQuote =
+basketState.deliveryRequiresQuote;
+
+}
+);
+
+}
+
+function getBasketDrawerDeliveryPresentation() {
+
+const postcode =
+String(
+basketState.deliveryPostcode ||
+""
+)
+.trim();
+
+if (
+basketState.deliveryRequiresQuote
+) {
+
+return {
+
+status:
+basketState.deliveryQuoteReason ||
+"Delivery quotation required.",
+
+charge:
+"Quotation Required",
+
+chargeClass:
+"is-quote",
+
+showDeliveryResult:true,
+
+showEstimatedDelivery:false,
+
+estimatedDelivery:""
+
+};
+
+}
+
+if (
+basketState.deliveryResolved &&
+Number.isFinite(
+Number(
+basketState.deliveryFee
+)
+)
+) {
+
+const fee =
+Math.max(
+0,
+Number(
+basketState.deliveryFee
+)
+);
+
+return {
+
+status:
+postcode
+?
+`Delivery calculated for ${postcode}.`
+:
+"Delivery calculated.",
+
+charge:
+fee ===
+0
+?
+"FREE"
+:
+formatMoney(
+fee
+),
+
+chargeClass:
+fee ===
+0
+?
+"is-free"
+:
+"",
+
+showDeliveryResult:true,
+
+showEstimatedDelivery:true,
+
+estimatedDelivery:
+getBasketEstimatedDeliveryText()
+
+};
+
+}
+
+if (
+postcode
+) {
+
+return {
+
+status:
+"Checking delivery for this postcode.",
+
+charge:
+"Calculated by postcode",
+
+chargeClass:"",
+
+showDeliveryResult:true,
+
+showEstimatedDelivery:false,
+
+estimatedDelivery:""
+
+};
+
+}
+
+return {
+
+status:"",
+
+charge:"",
+
+chargeClass:"",
+
+showDeliveryResult:false,
+
+showEstimatedDelivery:false,
+
+estimatedDelivery:""
+
+};
+
+}
+
+/* =========================================
+ESTIMATED DELIVERY FOR SHARED BASKET
+========================================= */
+
+function getLeadTimeForSelection(
+selection
+) {
+
+const type =
+selection?.type ===
+"laminated"
+?
+"laminated"
+:
+"toughened";
+
+const tint =
+normalizeFinish(
+selection?.tint ??
+selection?.finish
+);
+
+if (
+type ===
+"laminated"
+) {
+
+return tint ===
+"clear"
+?
+{
+min:6,
+max:8
+}
+:
+{
+min:8,
+max:10
+};
+
+}
+
+if (
+tint ===
+"clear"
+) {
+
+return {
+min:4,
+max:6
+};
+
+}
+
+if (
+tint ===
+"blue"
+) {
+
+return {
+min:8,
+max:10
+};
+
+}
+
+return {
+min:6,
+max:8
+};
+
+}
+
+function addWorkingDays(
+date,
+count
+) {
+
+const result =
+new Date(
+date.getFullYear(),
+date.getMonth(),
+date.getDate()
+);
+
+let remaining =
+Math.max(
+0,
+Math.floor(
+count
+)
+);
+
+while (
+remaining >
+0
+) {
+
+result.setDate(
+result.getDate() +
+1
+);
+
+const day =
+result.getDay();
+
+if (
+day !==
+0 &&
+day !==
+6
+) {
+
+remaining --;
+
+}
+
+}
+
+return result;
+
+}
+
+function ordinal(
+number
+) {
+
+const value =
+number %
+100;
+
+return (
+number +
+(
+[
+"th",
+"st",
+"nd",
+"rd"
+][
+(
+value -
+20
+) %
+10
+]
+||
+[
+"th",
+"st",
+"nd",
+"rd"
+][
+value
+]
+||
+"th"
+)
+);
+
+}
+
+function formatShortDate(
+date,
+includeMonth = true
+) {
+
+const months = [
+
+"Jan",
+"Feb",
+"Mar",
+"Apr",
+"May",
+"Jun",
+"Jul",
+"Aug",
+"Sept",
+"Oct",
+"Nov",
+"Dec"
+
+];
+
+return (
+ordinal(
+date.getDate()
+) +
+(
+includeMonth
+?
+" " +
+months[
+date.getMonth()
+]
+:
+""
+)
+);
+
+}
+
+function getBasketEstimatedDeliveryText() {
+
+const items =
+getAllBasketItems();
+
+const leadTime =
+items.length
+?
+items.reduce(
+(
+current,
+item
+) => {
+
+const next =
+getLeadTimeForSelection(
+item
+);
+
+return {
+
+min:
+Math.max(
+current.min,
+next.min
+),
+
+max:
+Math.max(
+current.max,
+next.max
+)
+
+};
+
+},
+{
+min:0,
+max:0
+}
+)
+:
+{
+min:4,
+max:6
+};
+
+const now =
+new Date();
+
+const start =
+addWorkingDays(
+now,
+leadTime.min
+);
+
+const end =
+addWorkingDays(
+now,
+leadTime.max
+);
+
+const sameMonth =
+start.getMonth() ===
+end.getMonth() &&
+start.getFullYear() ===
+end.getFullYear();
+
+return sameMonth
+?
+`${formatShortDate(start,false)} to ${formatShortDate(end,true)}.`
+:
+`${formatShortDate(start,true)} to ${formatShortDate(end,true)}.`;
+
+}
+
+/* =========================================
+BASKET MARKUP / RENDERING
+========================================= */
+
+function buildBasketDrawerItemHTML(
+item,
+kind,
+index
+) {
+
+const isCustom =
+kind ===
+"custom";
+
+const quantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+const basketSize =
+isCustom
+?
+`${item.width} × ${item.length}mm`
+:
+formatSize(
+item.size
+);
+
+const description =
+buildBasketDrawerDescriptionForSelection(
+item
+);
+
+const internal =
+isCustom
+?
+formatCustomDimension(
+item.width,
+item.length
+)
+:
+formatDimension(
+item.size
+);
+
+const sizeForGlass =
+isCustom
+?
+`${item.width}x${item.length}`
+:
+item.size;
+
+const externalDimensions =
+getExternalDimensionsFor(
+sizeForGlass,
+item.border
+);
+
+const external =
+isCustom
+?
+formatCustomDimension(
+externalDimensions.width,
+externalDimensions.length
+)
+:
+calculateExternalSizeFor(
+item.size,
+item.border
+);
+
+const topGlass =
+getTopGlassLabelFor(
+sizeForGlass,
+item.border,
+item.glazing
+);
+
+const unitPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+const safeUnitPrice =
+Number.isFinite(
+unitPrice
+) &&
+unitPrice >
+0
+?
+unitPrice
+:
+0;
+
+const lineTotal =
+safeUnitPrice *
+quantity;
+
+const basketItemKey =
+getBasketDrawerItemKey(
+item,
+kind,
+index
+);
+
+const isExpanded =
+basketDrawerExpandedItems.has(
+basketItemKey
+);
+
+const itemId =
+getBasketItemStableId(
+item,
+kind
+);
+
+const collapseId =
+`basketDrawerItemCollapse-${kind}-${itemId.replace(/[^a-zA-Z0-9_-]/g,"-")}`;
+
+return `
+<article
+class="basket-drawer-item${isExpanded ? " is-expanded" : ""}"
+data-basket-item-kind="${escapeHTML(kind)}"
+data-basket-item-index="${index}"
+data-basket-item-key="${escapeHTML(basketItemKey)}"
+data-basket-item-id="${escapeHTML(itemId)}"
+>
+
+<button
+type="button"
+class="basket-drawer-item-head"
+data-basket-item-toggle
+aria-expanded="${isExpanded}"
+aria-controls="${escapeHTML(collapseId)}"
+>
+
+<span class="basket-drawer-item-title">
+
+<span class="basket-drawer-item-title-size-line">
+
+<span class="basket-drawer-item-title-quantity">
+${quantity}x
+</span>
+
+${escapeHTML(basketSize)}
+
+</span>
+
+<span class="basket-drawer-item-title-description">
+${escapeHTML(description)}
+</span>
+
+</span>
+
+</button>
+
+<button
+type="button"
+class="basket-drawer-item-expand-strip"
+data-basket-item-toggle
+aria-expanded="${isExpanded}"
+aria-controls="${escapeHTML(collapseId)}"
+aria-label="${isExpanded ? "Collapse" : "Expand"} full unit summary"
+>
+
+<span
+class="basket-drawer-item-expand-arrow"
+aria-hidden="true"
+></span>
+
+</button>
+
+<div
+class="basket-drawer-item-collapse"
+id="${escapeHTML(collapseId)}"
+data-basket-item-collapse
+aria-hidden="${!isExpanded}"
+${isExpanded ? "" : "hidden"}
+>
+
+<div class="basket-drawer-item-specs">
+
+<div class="basket-drawer-item-spec">
+<span>Glazing</span>
+<strong>${escapeHTML(getGlazingDisplayName(item.glazing))}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Glass Construction</span>
+<strong>${escapeHTML(getTypeDisplayName(item.type))}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Border</span>
+<strong>${escapeHTML(item.border)}mm</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Glass Finish</span>
+<strong>${escapeHTML(getTintDisplayName(item.tint))}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Internal</span>
+<strong>${escapeHTML(internal)}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>External</span>
+<strong>${escapeHTML(external)}</strong>
+</div>
+
+<div class="basket-drawer-item-spec">
+<span>Top Glass</span>
+<strong>${escapeHTML(topGlass)}</strong>
+</div>
+
+<div class="basket-drawer-item-spec unit-price">
+<span>Unit Price</span>
+<strong>${safeUnitPrice > 0 ? escapeHTML(formatMoney(safeUnitPrice)) : ""}</strong>
+</div>
+
+</div>
+
+<div class="basket-drawer-item-total">
+
+<div>
+
+<div class="basket-drawer-item-total-label">
+Line Total
+</div>
+
+<div class="basket-drawer-item-total-vat">
+inc. vat
+</div>
+
+</div>
+
+<div class="basket-drawer-item-total-price">
+${safeUnitPrice > 0 ? escapeHTML(formatMoney(lineTotal)) : ""}
+</div>
+
+</div>
+
+<div class="basket-drawer-item-controls">
+
+<div
+class="basket-drawer-quantity"
+aria-label="Adjust basket item quantity"
+>
+
+<button
+type="button"
+data-basket-quantity-action="decrease"
+data-basket-kind="${escapeHTML(kind)}"
+data-basket-index="${index}"
+data-basket-item-key="${escapeHTML(basketItemKey)}"
+aria-label="Decrease quantity"
+${quantity <= 1 ? "disabled" : ""}
+>
+−
+</button>
+
+<strong>
+${quantity}
+</strong>
+
+<button
+type="button"
+data-basket-quantity-action="increase"
+data-basket-kind="${escapeHTML(kind)}"
+data-basket-index="${index}"
+data-basket-item-key="${escapeHTML(basketItemKey)}"
+aria-label="Increase quantity"
+>
++
+</button>
+
+</div>
+
+<button
+type="button"
+class="basket-drawer-remove"
+data-basket-remove
+data-basket-kind="${escapeHTML(kind)}"
+data-basket-index="${index}"
+data-basket-item-key="${escapeHTML(basketItemKey)}"
+aria-label="Remove this rooflight from the basket"
+>
+Remove
+</button>
+
+</div>
+
+</div>
+
+</article>
+`;
+
+}
+
+function buildBasketDrawerDeliveryHTML() {
+
+const delivery =
+getBasketDrawerDeliveryPresentation();
+
+return `
+<section
+class="basket-drawer-delivery"
+aria-label="Basket delivery"
+>
+
+<label
+class="basket-drawer-delivery-label"
+for="basketDrawerPostcode"
+>
+Delivery Postcode
+</label>
+
+<input
+type="text"
+class="basket-drawer-postcode"
+id="basketDrawerPostcode"
+data-basket-delivery-postcode-input
+value="${escapeHTML(basketState.deliveryPostcode)}"
+placeholder="Enter delivery postcode"
+autocomplete="postal-code"
+inputmode="text"
+aria-label="Delivery postcode"
+>
+
+<div
+class="basket-drawer-delivery-result"
+data-basket-delivery-result
+${delivery.showDeliveryResult ? "" : "hidden"}
+>
+
+<div
+class="basket-drawer-delivery-status"
+data-basket-delivery-status
+>
+${escapeHTML(delivery.status)}
+</div>
+
+<div
+class="basket-drawer-delivery-charge ${escapeHTML(delivery.chargeClass)}"
+data-basket-delivery-charge
+>
+${escapeHTML(delivery.charge)}
+</div>
+
+</div>
+
+<div
+class="basket-drawer-estimated-delivery-row"
+data-basket-estimated-delivery-row
+${delivery.showEstimatedDelivery ? "" : "hidden"}
+>
+
+<div class="basket-drawer-estimated-delivery-label">
+Estimated Delivery
+</div>
+
+<div
+class="basket-drawer-estimated-delivery-date"
+data-basket-estimated-delivery-range
+>
+${escapeHTML(delivery.estimatedDelivery)}
+</div>
+
+</div>
+
+</section>
+`;
+
+}
+
+function buildBasketDrawerFooterHTML() {
+
+const hasItems =
+getAllBasketItems().length >
+0;
+
+if (
+!hasItems
+) {
+
+return `
+<p class="basket-drawer-empty-footer-copy">
+Add a configured rooflight to continue.
+</p>
+
+<button
+type="button"
+class="checkout-now basket-drawer-checkout is-disabled"
+disabled
+aria-disabled="true"
+tabindex="-1"
+>
+Checkout Now
+</button>
+`;
+
+}
+
+const delivery =
+getBasketDrawerDeliveryPresentation();
+
+return `
+${buildBasketDrawerDeliveryHTML()}
+
+<div class="basket-drawer-total-table">
+
+<div class="basket-drawer-total-row">
+
+<span>
+Product Subtotal
+</span>
+
+<strong data-basket-subtotal>
+${escapeHTML(formatMoney(getBasketProductSubtotal()))}
+</strong>
+
+</div>
+
+<div class="basket-drawer-total-row delivery">
+
+<span>
+Delivery
+</span>
+
+<strong data-basket-footer-delivery>
+${escapeHTML(delivery.charge)}
+</strong>
+
+</div>
+
+<div class="basket-drawer-total-row final">
+
+<span>
+Order Total
+</span>
+
+<strong data-basket-final-total>
+${escapeHTML(formatMoney(calculateBasketGrandTotal()))}
+</strong>
+
+</div>
+
+</div>
+
+<div class="basket-drawer-vat">
+inc. vat
+</div>
+
+<button
+type="button"
+class="checkout-now basket-drawer-checkout"
+>
+Checkout Now
+</button>
+`;
+
+}
+
+function updateCheckoutAvailability() {
+
+const hasItems =
+getAllBasketItems().length >
+0;
+
+const hasUnpricedCustom =
+basketState.customOrderItems.some(
+item => {
+
+const price =
+Number(
+item.unitPrice ??
+item.price
+);
+
+return (
+!Number.isFinite(
+price
+) ||
+price <=
+0
+);
+
+}
+);
+
+const shouldDisable =
+!hasItems ||
+!basketState.deliveryResolved ||
+basketState.deliveryRequiresQuote ||
+hasUnpricedCustom;
+
+document
+.querySelectorAll(
+".checkout-now"
+)
+.forEach(
+button => {
+
+button.classList.toggle(
+"is-disabled",
+shouldDisable
+);
+
+button.setAttribute(
+"aria-disabled",
+String(
+shouldDisable
+)
+);
+
+if (
+button instanceof
+HTMLButtonElement
+) {
+
+button.disabled =
+shouldDisable;
+
+}
+
+if (
+shouldDisable
+) {
+
+button.setAttribute(
+"tabindex",
+"-1"
+);
+
+}
+else {
+
+button.removeAttribute(
+"tabindex"
+);
+
+}
+
+}
+);
+
+}
+
+function renderBasketDrawer() {
+
+if (
+!basketDrawerBody ||
+!basketDrawerFooter ||
+!basketDrawerCount
+) {
+
+return;
+
+}
+
+normalizeBasketStateItems();
+
+const unitCount =
+getBasketDrawerUnitCount();
+
+basketDrawerCount.textContent =
+`${unitCount} ${unitCount === 1 ? "unit" : "units"}`;
+
+if (
+!getAllBasketItems().length
+) {
+
+basketDrawerExpandedItems.clear();
+
+basketDrawerBody.innerHTML =
+`
+<div class="basket-drawer-empty">
+
+<h3>
+Your basket is empty
+</h3>
+
+<p>
+Configured rooflights will appear here when you add them to your order.
+</p>
+
+</div>
+`;
+
+basketDrawerFooter.innerHTML =
+buildBasketDrawerFooterHTML();
+
+updateCheckoutAvailability();
+
+return;
+
+}
+
+const standardMarkup =
+basketState.orderItems
+.map(
+(
+item,
+index
+) => {
+
+return buildBasketDrawerItemHTML(
+item,
+"standard",
+index
+);
+
+}
+)
+.join(
+""
+);
+
+const customMarkup =
+basketState.customOrderItems
+.map(
+(
+item,
+index
+) => {
+
+return buildBasketDrawerItemHTML(
+item,
+"custom",
+index
+);
+
+}
+)
+.join(
+""
+);
+
+basketDrawerBody.innerHTML =
+`
+<div class="basket-drawer-items">
+${standardMarkup}
+${customMarkup}
+</div>
+`;
+
+basketDrawerFooter.innerHTML =
+buildBasketDrawerFooterHTML();
+
+updateCheckoutAvailability();
+
+}
+
+function updateBasketDrawerSummaryOnly() {
+
+if (
+!basketDrawerLayer
+) {
+
+return;
+
+}
+
+const delivery =
+getBasketDrawerDeliveryPresentation();
+
+const query =
+selector =>
+basketDrawerLayer.querySelector(
+selector
+);
+
+const subtotal =
+query(
+"[data-basket-subtotal]"
+);
+
+const deliveryFooter =
+query(
+"[data-basket-footer-delivery]"
+);
+
+const finalTotal =
+query(
+"[data-basket-final-total]"
+);
+
+const deliveryResult =
+query(
+"[data-basket-delivery-result]"
+);
+
+const deliveryStatus =
+query(
+"[data-basket-delivery-status]"
+);
+
+const deliveryCharge =
+query(
+"[data-basket-delivery-charge]"
+);
+
+const estimatedRow =
+query(
+"[data-basket-estimated-delivery-row]"
+);
+
+const estimatedRange =
+query(
+"[data-basket-estimated-delivery-range]"
+);
+
+const postcodeInput =
+query(
+"[data-basket-delivery-postcode-input]"
+);
+
+if (
+subtotal
+) {
+
+subtotal.textContent =
+formatMoney(
+getBasketProductSubtotal()
+);
+
+}
+
+if (
+deliveryFooter
+) {
+
+deliveryFooter.textContent =
+delivery.charge;
+
+}
+
+if (
+finalTotal
+) {
+
+finalTotal.textContent =
+formatMoney(
+calculateBasketGrandTotal()
+);
+
+}
+
+if (
+deliveryResult
+) {
+
+deliveryResult.hidden =
+!delivery.showDeliveryResult;
+
+}
+
+if (
+deliveryStatus
+) {
+
+deliveryStatus.textContent =
+delivery.status;
+
+}
+
+if (
+deliveryCharge
+) {
+
+deliveryCharge.textContent =
+delivery.charge;
+
+deliveryCharge.classList.toggle(
+"is-free",
+delivery.chargeClass ===
+"is-free"
+);
+
+deliveryCharge.classList.toggle(
+"is-quote",
+delivery.chargeClass ===
+"is-quote"
+);
+
+}
+
+if (
+estimatedRow
+) {
+
+estimatedRow.hidden =
+!delivery.showEstimatedDelivery;
+
+}
+
+if (
+estimatedRange
+) {
+
+estimatedRange.textContent =
+delivery.estimatedDelivery;
+
+}
+
+if (
+postcodeInput &&
+document.activeElement !==
+postcodeInput
+) {
+
+postcodeInput.value =
+basketState.deliveryPostcode;
+
+}
+
+const unitCount =
+getBasketDrawerUnitCount();
+
+if (
+basketDrawerCount
+) {
+
+basketDrawerCount.textContent =
+`${unitCount} ${unitCount === 1 ? "unit" : "units"}`;
+
+}
+
+updateBasketTotal(
+calculateBasketGrandTotal(),
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
+
+}
+
+function toggleBasketDrawerItem(
+button
+) {
+
+const item =
+button?.closest(
+".basket-drawer-item"
+);
+
+const collapse =
+item?.querySelector(
+"[data-basket-item-collapse]"
+);
+
+if (
+!item ||
+!collapse
+) {
+
+return;
+
+}
+
+const itemKey =
+String(
+item.dataset.basketItemKey ||
+""
+);
+
+const shouldExpand =
+!item.classList.contains(
+"is-expanded"
+);
+
+item.classList.toggle(
+"is-expanded",
+shouldExpand
+);
+
+item
+.querySelectorAll(
+"[data-basket-item-toggle]"
+)
+.forEach(
+toggle => {
+
+toggle.setAttribute(
+"aria-expanded",
+String(
+shouldExpand
+)
+);
+
+if (
+toggle.classList.contains(
+"basket-drawer-item-expand-strip"
+)
+) {
+
+toggle.setAttribute(
+"aria-label",
+shouldExpand
+?
+"Collapse full unit summary"
+:
+"Expand full unit summary"
+);
+
+}
+
+}
+);
+
+collapse.hidden =
+!shouldExpand;
+
+collapse.setAttribute(
+"aria-hidden",
+String(
+!shouldExpand
+)
+);
+
+if (
+itemKey
+) {
+
+if (
+shouldExpand
+) {
+
+basketDrawerExpandedItems.add(
+itemKey
+);
+
+}
+else {
+
+basketDrawerExpandedItems.delete(
+itemKey
+);
+
+}
+
+}
+
+}
+
+/* =========================================
+BASKET MODAL — OUTSIDE CLICK ONLY CLOSES
+AND EXACT PAGE SCROLL POSITION IS RETAINED
+========================================= */
+
+function getBasketBackgroundElements() {
+
+if (
+!basketDrawerLayer
+) {
+
+return [];
+
+}
+
+return Array.from(
+document.body.children
+)
+.filter(
+element => {
+
+return (
+element !==
+basketDrawerLayer &&
+element.tagName !==
+"SCRIPT"
+);
+
+}
+);
+
+}
+
+function setBasketBackgroundInert(
+shouldBeInert
+) {
+
+getBasketBackgroundElements()
+.forEach(
+element => {
+
+element.inert =
+shouldBeInert;
+
+}
+);
+
+}
+
+function lockBasketPageScroll() {
+
+basketDrawerScrollY =
+window.scrollY ||
+document.documentElement.scrollTop ||
+0;
+
+basketDrawerPreviousBodyStyles = {
+
+position:
+document.body.style.position,
+
+top:
+document.body.style.top,
+
+left:
+document.body.style.left,
+
+right:
+document.body.style.right,
+
+width:
+document.body.style.width,
+
+overflow:
+document.body.style.overflow
+
+};
+
+document.body.classList.add(
+"basket-drawer-open"
+);
+
+document.body.style.position =
+"fixed";
+
+document.body.style.top =
+`-${basketDrawerScrollY}px`;
+
+document.body.style.left =
+"0";
+
+document.body.style.right =
+"0";
+
+document.body.style.width =
+"100%";
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+function unlockBasketPageScroll() {
+
+const restoreScrollY =
+basketDrawerScrollY;
+
+document.body.classList.remove(
+"basket-drawer-open"
+);
+
+if (
+basketDrawerPreviousBodyStyles
+) {
+
+Object.assign(
+document.body.style,
+basketDrawerPreviousBodyStyles
+);
+
+}
+else {
+
+document.body.style.position =
+"";
+
+document.body.style.top =
+"";
+
+document.body.style.left =
+"";
+
+document.body.style.right =
+"";
+
+document.body.style.width =
+"";
+
+document.body.style.overflow =
+"";
+
+}
+
+window.scrollTo(
+0,
+restoreScrollY
+);
+
+requestAnimationFrame(
+() => {
+
+if (
+!basketDrawerIsOpen
+) {
+
+window.scrollTo(
+0,
+restoreScrollY
+);
+
+}
+
+}
+);
+
+basketDrawerPreviousBodyStyles =
+null;
+
+}
+
+function getBasketDrawerFocusableElements() {
+
+if (
+!basketDrawerPanel
+) {
+
+return [];
+
+}
+
+return Array.from(
+basketDrawerPanel.querySelectorAll(
+"button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex='-1'])"
+)
+)
+.filter(
+element => {
+
+return (
+!element.hasAttribute(
+"hidden"
+) &&
+element.offsetParent !==
+null
+);
+
+}
+);
+
+}
+
+function openBasketDrawer() {
+
+if (
+!basketDrawerLayer ||
+!basketDrawerPanel ||
+!basketButton ||
+basketDrawerIsOpen
+) {
+
+return;
+
+}
+
+closeMenu();
+
+closeWhatsAppAction();
+
+renderBasketDrawer();
+
+basketDrawerLastFocusedElement =
+document.activeElement;
+
+basketDrawerIsOpen =
+true;
+
+lockBasketPageScroll();
+
+setBasketBackgroundInert(
+true
+);
+
+basketDrawerLayer.classList.add(
+"is-open"
+);
+
+basketDrawerLayer.setAttribute(
+"aria-hidden",
+"false"
+);
+
+basketButton.setAttribute(
+"aria-expanded",
+"true"
+);
+
+requestAnimationFrame(
+() => {
+
+(
+basketDrawerClose ||
+basketDrawerPanel
+)
+.focus(
+{
+preventScroll:true
+}
+);
+
+}
+);
+
+}
+
+function closeBasketDrawer(
+{
+restoreFocus = true
+} = {}
+) {
+
+if (
+!basketDrawerLayer ||
+!basketButton ||
+!basketDrawerIsOpen
+) {
+
+return;
+
+}
+
+basketDrawerIsOpen =
+false;
+
+basketDrawerLayer.classList.remove(
+"is-open"
+);
+
+basketDrawerLayer.setAttribute(
+"aria-hidden",
+"true"
+);
+
+basketButton.setAttribute(
+"aria-expanded",
+"false"
+);
+
+setBasketBackgroundInert(
+false
+);
+
+unlockBasketPageScroll();
+
+if (
+restoreFocus
+) {
+
+requestAnimationFrame(
+() => {
+
+const target =
+basketDrawerLastFocusedElement instanceof
+HTMLElement
+?
+basketDrawerLastFocusedElement
+:
+basketButton;
+
+if (
+target &&
+document.contains(
+target
+)
+) {
+
+target.focus(
+{
+preventScroll:true
+}
+);
+
+}
+
+}
+);
+
+}
+
+basketDrawerLastFocusedElement =
+null;
+
+}
+
+function invalidateBasketDeliveryLookup() {
+
+basketDeliveryLookupToken +=
+1;
+
+if (
+basketDeliveryLookupTimer !==
+null
+) {
+
+clearTimeout(
+basketDeliveryLookupTimer
+);
+
+basketDeliveryLookupTimer =
+null;
+
+}
+
+}
+
+async function applyBasketDeliveryPostcode(
+postcode
+) {
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!isCompleteUKPostcode(
+cleaned
+)
+) {
+
+invalidateBasketDeliveryLookup();
+
+setBasketDeliveryPending(
+cleaned
+);
+
+saveBasketToStorage();
+
+updateBasketDrawerSummaryOnly();
+
+basketDrawerLayer
+?.querySelector(
+"[data-basket-delivery-postcode-input]"
+)
+?.classList
+.add(
+"is-invalid"
+);
+
+return;
+
+}
+
+basketDeliveryLookupToken +=
+1;
+
+const token =
+basketDeliveryLookupToken;
+
+setBasketDeliveryPending(
+cleaned
+);
+
+saveBasketToStorage();
+
+updateBasketDrawerSummaryOnly();
+
+try {
+
+const result =
+await calculatePostcodeBasketDelivery(
+cleaned
+);
+
+if (
+token !==
+basketDeliveryLookupToken
+) {
+
+return;
+
+}
+
+updateAllBasketDeliveryItems(
+result.postcode,
+result.delivery
+);
+
+saveBasketToStorage();
+
+updateBasketDrawerSummaryOnly();
+
+}
+catch (
+error
+) {
+
+if (
+token !==
+basketDeliveryLookupToken
+) {
+
+return;
+
+}
+
+setBasketDeliveryPending(
+cleaned
+);
+
+saveBasketToStorage();
+
+updateBasketDrawerSummaryOnly();
+
+basketDrawerLayer
+?.querySelector(
+"[data-basket-delivery-postcode-input]"
+)
+?.classList
+.add(
+"is-invalid"
+);
+
+}
+
+}
+
+function scheduleBasketDeliveryPostcodeLookup(
+postcode
+) {
+
+if (
+basketDeliveryLookupTimer !==
+null
+) {
+
+clearTimeout(
+basketDeliveryLookupTimer
+);
+
+}
+
+const cleaned =
+normalizePostcode(
+postcode
+);
+
+if (
+!isCompleteUKPostcode(
+cleaned
+)
+) {
+
+basketDeliveryLookupTimer =
+null;
+
+return;
+
+}
+
+basketDeliveryLookupTimer =
+setTimeout(
+() => {
+
+basketDeliveryLookupTimer =
+null;
+
+applyBasketDeliveryPostcode(
+cleaned
+);
+
+},
+550
+);
+
+}
+
+function recalculateBasketDeliveryAfterMutation() {
+
+const postcode =
+String(
+basketState.deliveryPostcode ||
+""
+)
+.trim();
+
+if (
+!postcode ||
+!getAllBasketItems().length
+) {
+
+return;
+
+}
+
+applyBasketDeliveryPostcode(
+postcode
+);
+
+}
+
+function commitBasketDrawerMutation() {
+
+const postcode =
+basketState.deliveryPostcode;
+
+setBasketDeliveryPending(
+postcode
+);
+
+saveBasketToStorage();
+
+renderBasketDrawer();
+
+updateBasketTotal(
+calculateBasketGrandTotal()
+);
+
+if (
+postcode &&
+getAllBasketItems().length
+) {
+
+recalculateBasketDeliveryAfterMutation();
+
+}
+
+}
+
+function adjustBasketDrawerItemQuantity(
+kind,
+itemKey,
+index,
+change
+) {
+
+const resolved =
+resolveBasketDrawerItem(
+kind,
+itemKey,
+index
+);
+
+if (
+!resolved
+) {
+
+return;
+
+}
+
+const item =
+resolved.item;
+
+const currentQuantity =
+Math.max(
+1,
+Math.min(
+999,
+Math.floor(
+Number(
+item.quantity ??
+item.qty
+) ||
+1
+)
+)
+);
+
+const nextQuantity =
+Math.max(
+1,
+Math.min(
+999,
+currentQuantity +
+change
+)
+);
+
+if (
+nextQuantity ===
+currentQuantity
+) {
+
+return;
+
+}
+
+item.quantity =
+nextQuantity;
+
+if (
+kind ===
+"custom"
+) {
+
+item.qty =
+nextQuantity;
+
+}
+
+commitBasketDrawerMutation();
+
+}
+
+function removeBasketDrawerItem(
+kind,
+itemKey,
+index
+) {
+
+const resolved =
+resolveBasketDrawerItem(
+kind,
+itemKey,
+index
+);
+
+if (
+!resolved
+) {
+
+return;
+
+}
+
+basketDrawerExpandedItems.delete(
+getBasketDrawerItemKey(
+resolved.item,
+kind,
+resolved.index
+)
+);
+
+resolved.collection.splice(
+resolved.index,
+1
+);
+
+commitBasketDrawerMutation();
+
+}
+
+if (
+basketButton
+) {
+
+basketButton.addEventListener(
+"click",
+event => {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+openBasketDrawer();
+
+}
+);
+
+}
+
+if (
+basketDrawerClose
+) {
+
+basketDrawerClose.addEventListener(
+"click",
+event => {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+closeBasketDrawer();
+
+}
+);
+
+}
+
+if (
+basketDrawerLayer
+) {
+
+basketDrawerLayer.addEventListener(
+"click",
+event => {
+
+if (
+event.target.closest(
+"[data-basket-drawer-backdrop]"
+)
+) {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+closeBasketDrawer(
+{
+restoreFocus:false
+}
+);
+
+return;
+
+}
+
+const toggle =
+event.target.closest(
+"[data-basket-item-toggle]"
+);
+
+if (
+toggle
+) {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+toggleBasketDrawerItem(
+toggle
+);
+
+return;
+
+}
+
+const remove =
+event.target.closest(
+"[data-basket-remove]"
+);
+
+if (
+remove
+) {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+removeBasketDrawerItem(
+String(
+remove.dataset.basketKind ||
+"standard"
+),
+String(
+remove.dataset.basketItemKey ||
+""
+),
+Number(
+remove.dataset.basketIndex
+)
+);
+
+return;
+
+}
+
+const quantity =
+event.target.closest(
+"[data-basket-quantity-action]"
+);
+
+if (
+quantity
+) {
+
+event.preventDefault();
+
+event.stopPropagation();
+
+adjustBasketDrawerItemQuantity(
+String(
+quantity.dataset.basketKind ||
+"standard"
+),
+String(
+quantity.dataset.basketItemKey ||
+""
+),
+Number(
+quantity.dataset.basketIndex
+),
+quantity.dataset.basketQuantityAction ===
+"increase"
+?
+1
+:
+-1
+);
+
+return;
+
+}
+
+}
+);
+
+basketDrawerLayer.addEventListener(
+"input",
+event => {
+
+const input =
+event.target.closest(
+"[data-basket-delivery-postcode-input]"
+);
+
+if (
+!input
+) {
+
+return;
+
+}
+
+input.value =
+String(
+input.value ||
+""
+)
+.toUpperCase();
+
+input.classList.remove(
+"is-invalid"
+);
+
+invalidateBasketDeliveryLookup();
+
+setBasketDeliveryPending(
+input.value
+);
+
+saveBasketToStorage();
+
+updateBasketDrawerSummaryOnly();
+
+scheduleBasketDeliveryPostcodeLookup(
+input.value
+);
+
+}
+);
+
+basketDrawerLayer.addEventListener(
+"change",
+event => {
+
+const input =
+event.target.closest(
+"[data-basket-delivery-postcode-input]"
+);
+
+if (
+input
+) {
+
+applyBasketDeliveryPostcode(
+input.value
+);
+
+}
+
+}
+);
+
+basketDrawerLayer.addEventListener(
+"keydown",
+event => {
+
+const input =
+event.target.closest(
+"[data-basket-delivery-postcode-input]"
+);
+
+if (
+input &&
+event.key ===
+"Enter"
+) {
+
+event.preventDefault();
+
+applyBasketDeliveryPostcode(
+input.value
+);
+
+}
+
+}
+);
+
+}
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+!basketDrawerIsOpen
+) {
+
+return;
+
+}
+
+if (
+event.key ===
+"Escape"
+) {
+
+event.preventDefault();
+
+closeBasketDrawer();
+
+return;
+
+}
+
+if (
+event.key !==
+"Tab"
+) {
+
+return;
+
+}
+
+const focusableElements =
+getBasketDrawerFocusableElements();
+
+if (
+!focusableElements.length
+) {
+
+event.preventDefault();
+
+basketDrawerPanel?.focus(
+{
+preventScroll:true
+}
+);
+
+return;
+
+}
+
+const first =
+focusableElements[0];
+
+const last =
+focusableElements[
+focusableElements.length -
+1
+];
+
+if (
+event.shiftKey &&
+document.activeElement ===
+first
+) {
+
+event.preventDefault();
+
+last.focus();
+
+}
+else if (
+!event.shiftKey &&
+document.activeElement ===
+last
+) {
+
+event.preventDefault();
+
+first.focus();
+
+}
+
+}
+);
+
+document.addEventListener(
+"click",
+event => {
+
+if (
+basketDrawerIsOpen
+) {
+
+return;
+
+}
+
+if (
+!event.target.closest(
+"#whatsappButton"
+) &&
+!event.target.closest(
+"#whatsappAction"
+)
+) {
+
+closeWhatsAppAction();
+
+}
+
+}
+);
+
+document.addEventListener(
+"click",
+event => {
+
+const checkout =
+event.target.closest(
+".checkout-now"
+);
+
+if (
+checkout
+) {
+
+event.preventDefault();
+
+}
+
+}
+);
+
+/* =========================================
+PRICING VALIDATION / INITIALISE
 ========================================= */
 
 function validatePricingCoverage() {
 
-const allExistingSizes =
+const allSizes =
 Array.from(
 new Set([
 ...popularSizes,
@@ -4063,12 +11550,17 @@ new Set([
 );
 
 const missingPrices =
-allExistingSizes.filter(
-size =>
+allSizes.filter(
+size => {
+
+return (
 getMasterPrice(
 size
 ) ===
 null
+);
+
+}
 );
 
 if (
@@ -4081,16 +11573,8 @@ missingPrices
 );
 
 }
-else {
-
-console.info(
-"All Standard Sizes cards have NORMAL master pricing."
-);
 
 }
-
-}
-
 
 function runPricingChecks() {
 
@@ -4098,67 +11582,79 @@ const tests = [
 
 {
 size:"600x600",
+
 configuration:{
 glazing:"triple",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:200
 },
 
 {
 size:"600x900",
+
 configuration:{
 glazing:"triple",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:270
 },
 
 {
 size:"600x900",
+
 configuration:{
 glazing:"double",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:225
 },
 
 {
 size:"800x1200",
+
 configuration:{
 glazing:"triple",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:400
 },
 
 {
 size:"1000x1000",
+
 configuration:{
 glazing:"triple",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:340
 },
 
 {
 size:"1500x2500",
+
 configuration:{
 glazing:"triple",
 glassType:"toughened",
 finish:"clear",
 border:100
 },
+
 expected:1655
 }
 
@@ -4181,7 +11677,6 @@ test.expected
 console.error(
 "Pricing check failed:",
 test.size,
-test.configuration,
 "Expected:",
 test.expected,
 "Received:",
@@ -4195,7 +11690,6 @@ result
 
 }
 
-
 /* =========================================
 INITIALISE
 ========================================= */
@@ -4206,11 +11700,36 @@ runPricingChecks();
 
 renderCards();
 
+loadBasketFromStorage();
+
+renderBasketDrawer();
+
+updateBasketTotal(
+calculateBasketGrandTotal(),
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
+
+if (
+basketState.deliveryPostcode &&
+getAllBasketItems().length &&
+!basketState.deliveryResolved
+) {
+
+applyBasketDeliveryPostcode(
+basketState.deliveryPostcode
+);
+
+}
+
 document
 .getElementById(
 "checkDeliveryButton"
 )
-.addEventListener(
+?.addEventListener(
 "click",
 checkExtraLargeDelivery
 );
@@ -4219,7 +11738,7 @@ document
 .getElementById(
 "deliveryPostcode"
 )
-.addEventListener(
+?.addEventListener(
 "keydown",
 event => {
 
@@ -4233,6 +11752,63 @@ event.preventDefault();
 checkExtraLargeDelivery();
 
 }
+
+}
+);
+
+window.addEventListener(
+"storage",
+event => {
+
+if (
+event.key !==
+ORDER_STORAGE_KEY
+) {
+
+return;
+
+}
+
+loadBasketFromStorage();
+
+renderBasketDrawer();
+
+updateBasketTotal(
+calculateBasketGrandTotal(),
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
+
+}
+);
+
+window.addEventListener(
+"pageshow",
+event => {
+
+if (
+!event.persisted
+) {
+
+return;
+
+}
+
+loadBasketFromStorage();
+
+renderBasketDrawer();
+
+updateBasketTotal(
+calculateBasketGrandTotal(),
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
 
 }
 );
