@@ -21517,6 +21517,253 @@ in3RefreshHomepageMasterData();
 }
 );
 /* =========================================
+TEMPORARY IN-3 DEBUG PANEL
+
+PASTE THIS DIRECTLY BELOW IN-3
+AND ABOVE THE EXISTING:
+
+/* =========================================
+FINAL INITIALISATION
+========================================= *\/
+========================================= */
+
+(function createIN3DebugPanel() {
+
+const debugPanel =
+document.createElement(
+"div"
+);
+
+debugPanel.id =
+"in3DebugPanel";
+
+debugPanel.style.position =
+"fixed";
+
+debugPanel.style.top =
+"0";
+
+debugPanel.style.left =
+"0";
+
+debugPanel.style.right =
+"0";
+
+debugPanel.style.zIndex =
+"2147483646";
+
+debugPanel.style.padding =
+"12px 14px";
+
+debugPanel.style.background =
+"#7a1111";
+
+debugPanel.style.color =
+"#ffffff";
+
+debugPanel.style.fontFamily =
+"Arial, sans-serif";
+
+debugPanel.style.fontSize =
+"12px";
+
+debugPanel.style.lineHeight =
+"1.45";
+
+debugPanel.style.whiteSpace =
+"pre-wrap";
+
+debugPanel.style.wordBreak =
+"break-word";
+
+debugPanel.style.display =
+"none";
+
+debugPanel.style.maxHeight =
+"45vh";
+
+debugPanel.style.overflowY =
+"auto";
+
+document.body.appendChild(
+debugPanel
+);
+
+function showIN3DebugMessage(
+message
+) {
+
+debugPanel.style.display =
+"block";
+
+debugPanel.textContent =
+message;
+
+}
+
+window.addEventListener(
+"error",
+(event) => {
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG ERROR",
+"",
+`Message: ${event.message || "Unknown error"}`,
+"",
+`File: ${event.filename || "Unknown"}`,
+`Line: ${event.lineno || "Unknown"}`,
+`Column: ${event.colno || "Unknown"}`,
+"",
+event.error?.stack
+? `Stack:\n${event.error.stack}`
+: ""
+]
+.join(
+"\n"
+)
+);
+
+}
+);
+
+window.addEventListener(
+"unhandledrejection",
+(event) => {
+
+const reason =
+event.reason;
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG PROMISE ERROR",
+"",
+`Message: ${
+reason?.message ||
+String(
+reason ||
+"Unknown promise error"
+)
+}`,
+"",
+reason?.stack
+? `Stack:\n${reason.stack}`
+: ""
+]
+.join(
+"\n"
+)
+);
+
+}
+);
+
+if (
+typeof IN3_READY !==
+"undefined"
+) {
+
+Promise.resolve(
+IN3_READY
+)
+.then(
+(result) => {
+
+if (
+result ===
+true
+) {
+
+debugPanel.style.background =
+"#14532d";
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG",
+"",
+"IN-3 READY returned TRUE.",
+"",
+`IN-3 master active: ${
+globalThis.IN3_HOMEPAGE_MASTER_ACTIVE ===
+true
+}`,
+"",
+`Detected pricing strategy: ${
+globalThis.IN3_ACTIVE_PRICE_STRATEGY ||
+"not reported"
+}`
+]
+.join(
+"\n"
+)
+);
+
+return;
+
+}
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG",
+"",
+"IN3_READY completed but returned FALSE.",
+"",
+"Look for the failure message below or send me a screenshot of this box."
+]
+.join(
+"\n"
+)
+);
+
+}
+)
+.catch(
+(error) => {
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG CATCH",
+"",
+`Message: ${
+error?.message ||
+String(
+error ||
+"Unknown error"
+)
+}`,
+"",
+error?.stack
+? `Stack:\n${error.stack}`
+: ""
+]
+.join(
+"\n"
+)
+);
+
+}
+);
+
+}
+else {
+
+showIN3DebugMessage(
+[
+"IN-3 DEBUG",
+"",
+"IN3_READY does not exist.",
+"",
+"This means IN-3 did not finish defining correctly before this debug block ran."
+]
+.join(
+"\n"
+)
+);
+
+}
+
+})();
+/* =========================================
 FINAL INITIALISATION
 ========================================= */
 
