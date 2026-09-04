@@ -7739,12 +7739,6 @@ aria-hidden="true"
 
 </footer>
 
-<script src="js/pricing/pricing-cheap.js"></script>
-<script src="js/pricing/pricing-normal.js"></script>
-<script src="js/pricing/pricing-expensive.js"></script>
-<script src="js/pricing/site-pricing-config.js"></script>
-<script src="js/pricing/master-pricing.js"></script>
-
 <script>
 
 const reducedMotionQuery =
@@ -8515,200 +8509,226 @@ const TINT_IMAGE_BASE_FALLBACKS = {
 
 };
 
-/* =========================================
-SITEWIDE MASTER PRODUCT PRICING
+const ACTIVE_PRICE_CATEGORY =
+"cheap";
 
-FINAL CUSTOMER PRODUCT PRICES ARE PROVIDED
-ONLY BY FactoryRooflightsMasterPricing.
+const PRICE_CATEGORIES = {
 
-THE ACTIVE CHEAP / NORMAL / EXPENSIVE
-STRATEGY IS CONTROLLED EXCLUSIVELY BY:
+cheap:{
 
-js/pricing/site-pricing-config.js
+tripleClearToughened100:{
 
-NO LOCAL ORDER-PAGE PRICE TABLE,
-SELLING-PRICE UPLIFT OR FALLBACK STRATEGY
-IS USED HERE.
-========================================= */
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
 
-function getMasterStandardPricingResult(
-selection
-) {
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+"400x1800":375,
 
-const normalizedSize =
-normalizeSize(
-selection?.size
-);
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+"600x1800":410,
+"600x2000":445,
+"600x2500":625,
 
-const [
-width,
-length
-] =
-normalizedSize
-.split(
-"x"
-)
-.map(
-Number
-);
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+"800x1800":460,
+"800x2000":515,
+"800x2500":655,
 
-if (
-!Number.isFinite(
-width
-) ||
-!Number.isFinite(
-length
-) ||
-width <=
-0 ||
-length <=
-0
-) {
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+"1000x1800":585,
+"1000x2000":625,
+"1000x2500":770,
 
-return {
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
 
-available:false,
+},
 
-price:null,
+adjustments:{
 
-reason:
-"INVALID_STANDARD_SIZE"
+glazing:{
+triple:0,
+double:-.17
+},
 
-};
+glassType:{
+toughened:0,
+laminated:.20
+},
+
+finish:{
+clear:0,
+grey:.22,
+satin:.25,
+blue:.30
+},
+
+border:{
+100:0,
+125:.07,
+150:.15
+}
 
 }
 
-if (
-typeof FactoryRooflightsMasterPricing ===
-"undefined" ||
-!FactoryRooflightsMasterPricing ||
-typeof FactoryRooflightsMasterPricing.getStandardPrice !==
-"function"
-) {
+},
 
-return {
+normal:null,
 
-available:false,
-
-price:null,
-
-reason:
-"MASTER_PRICING_UNAVAILABLE"
+expensive:null
 
 };
 
+function getActivePriceCategory() {
+
+const category =
+PRICE_CATEGORIES[
+ACTIVE_PRICE_CATEGORY
+];
+
+if (
+!category ||
+!category.tripleClearToughened100 ||
+!category.adjustments
+) {
+
+throw new Error(
+`Price category "${ACTIVE_PRICE_CATEGORY}" is not populated.`
+);
+
 }
 
-try {
+return category;
 
-const result =
-FactoryRooflightsMasterPricing.getStandardPrice(
-{
+}
 
-width:
-width,
+function roundToNearestFive(
+value
+) {
 
-length:
-length,
-
-glazing:
-selection?.glazing ===
-"triple"
-?
-"triple"
-:
-"double",
-
-finish:
-normalizeTint(
-selection?.tint ??
-selection?.finish
-),
-
-type:
-selection?.type ===
-"laminated"
-?
-"laminated"
-:
-"toughened",
-
-border:
+return Math.round(
 Number(
-selection?.border
-)
+value
+) /
+5
+) *
+5;
 
 }
-);
 
-const price =
+function calculateConfiguredPrice(
+tripleClearToughened100Price,
+glazing,
+type,
+tint,
+border
+) {
+
+const category =
+getActivePriceCategory();
+
+const adjustments =
+category.adjustments;
+
+const base =
 Number(
-result?.price
+tripleClearToughened100Price
+) || 0;
+
+const glazingAdjustment =
+Number(
+adjustments.glazing?.[
+glazing
+]
+) || 0;
+
+const glassTypeAdjustment =
+Number(
+adjustments.glassType?.[
+type
+]
+) || 0;
+
+const finishAdjustment =
+Number(
+adjustments.finish?.[
+tint
+]
+) || 0;
+
+const borderAdjustment =
+Number(
+adjustments.border?.[
+Number(
+border
+)
+]
+) || 0;
+
+const glazingBase =
+base *
+(
+1 +
+glazingAdjustment
 );
 
-if (
-result?.available !==
-true ||
-!Number.isFinite(
+let price =
+glazingBase *
+(
+1 +
+glassTypeAdjustment +
+finishAdjustment
+);
+
+price *=
+(
+1 +
+borderAdjustment
+);
+
+return roundToNearestFive(
 price
-) ||
-price <=
-0
+);
+
+}
+
+function getTripleAnchorPriceForSize(
+size
 ) {
 
-return {
+const category =
+getActivePriceCategory();
 
-...(
-result &&
-typeof result ===
-"object"
+const directPrice =
+Number(
+category
+.tripleClearToughened100[
+size
+]
+);
+
+return Number.isFinite(
+directPrice
+)
 ?
-result
+directPrice
 :
-{}
-),
-
-available:false,
-
-price:null
-
-};
-
-}
-
-return {
-
-...result,
-
-available:true,
-
-price:
-price
-
-};
-
-}
-catch (
-error
-) {
-
-console.error(
-"Unable to obtain standard product price from FactoryRooflightsMasterPricing.",
-error
-);
-
-return {
-
-available:false,
-
-price:null,
-
-reason:
-"MASTER_PRICING_ERROR"
-
-};
-
-}
+0;
 
 }
 
@@ -8716,16 +8736,18 @@ function calculateStandardPriceForSelection(
 selection
 ) {
 
-const result =
-getMasterStandardPricingResult(
-selection
+const anchorPrice =
+getTripleAnchorPriceForSize(
+selection.size
 );
 
-return result.available
-?
-result.price
-:
-null;
+return calculateConfiguredPrice(
+anchorPrice,
+selection.glazing,
+selection.type,
+selection.tint,
+selection.border
+);
 
 }
 
@@ -11798,7 +11820,6 @@ getBasketEstimatedDeliveryText();
 }
 
 }
-```javascript
 /* =========================================
 OP2
 DELIVERY / BASKET / CUSTOM CALCULATOR
@@ -11807,6 +11828,7 @@ CONTINUATION
 PASTE DIRECTLY UNDER OP1.
 DO NOT ADD ANOTHER <script> TAG.
 ========================================= */
+
 
 /* =========================================
 OP2 ESTIMATED DELIVERY MASTER
@@ -11910,6 +11932,7 @@ max:8
 
 }
 
+
 function getCurrentLeadTime() {
 
 return getLeadTimeForSelection(
@@ -11917,6 +11940,7 @@ state
 );
 
 }
+
 
 function getBasketLeadTime() {
 
@@ -11967,6 +11991,7 @@ max:0
 
 }
 
+
 function getBasketEstimatedDeliveryText() {
 
 const deliveryText =
@@ -11983,6 +12008,7 @@ deliveryText.replace(
 );
 
 }
+
 
 function updateEstimatedDelivery() {
 
@@ -12032,6 +12058,7 @@ getBasketEstimatedDeliveryText();
 
 }
 
+
 /* =========================================
 AUTHORITATIVE POSTCODE DELIVERY PRICING
 
@@ -12067,6 +12094,7 @@ const DELIVERY_ORIGIN_POSTCODE =
 
 const ROAD_DISTANCE_ALLOWANCE =
 1.20;
+
 
 const DELIVERY_SIZE_CATEGORIES = {
 
@@ -12124,6 +12152,7 @@ extraLarge:[
 ]
 
 };
+
 
 /* =========================================
 DELIVERY PRICES
@@ -12269,6 +12298,7 @@ price:115
 
 };
 
+
 const DELIVERY_CATEGORY_RANK = {
 
 small:0,
@@ -12278,8 +12308,10 @@ extraLarge:3
 
 };
 
+
 const DELIVERY_SIZE_CATEGORY_LOOKUP =
 new Map();
+
 
 Object.entries(
 DELIVERY_SIZE_CATEGORIES
@@ -12307,6 +12339,7 @@ category
 
 }
 );
+
 
 /* =========================================
 DELIVERY CATEGORY HELPERS
@@ -12368,6 +12401,7 @@ return null;
 
 }
 
+
 function getDeliveryCategoryForSize(
 size
 ) {
@@ -12383,6 +12417,7 @@ null
 );
 
 }
+
 
 function getDeliveryCategoryRank(
 category
@@ -12406,6 +12441,7 @@ normalized
 ];
 
 }
+
 
 function getDeliveryMaximumMilesForCategory(
 category
@@ -12432,6 +12468,7 @@ maximum
 0;
 
 }
+
 
 /* =========================================
 CUSTOM CALCULATOR DELIVERY CATEGORY
@@ -12502,6 +12539,7 @@ second
 };
 
 }
+
 
 function getDeliveryCategoryForCustomDimensions(
 width,
@@ -12596,9 +12634,16 @@ return category;
 
 }
 
+/*
+Any valid calculator dimension beyond the
+existing Large envelopes is treated as
+Extra Large.
+*/
+
 return "extraLarge";
 
 }
+
 
 function isCustomDeliveryItem(
 item
@@ -12636,6 +12681,7 @@ item.source ||
 
 }
 
+
 function getDeliveryCategoryForItem(
 item
 ) {
@@ -12671,6 +12717,7 @@ item.size
 
 }
 
+
 function getAllBasketItems() {
 
 return [
@@ -12682,8 +12729,12 @@ return [
 
 }
 
+
 /* =========================================
 EXPAND BASKET ITEMS INTO PHYSICAL UNITS
+
+IMPORTANT:
+Custom calculator items are now included.
 ========================================= */
 
 function expandOrderItemsIntoUnits(
@@ -12756,6 +12807,7 @@ return units;
 
 }
 
+
 /* =========================================
 DELIVERY BASE PRICE
 ========================================= */
@@ -12826,6 +12878,7 @@ return null;
 
 }
 
+
 function getAdditionalUnitPriceForCategory(
 category
 ) {
@@ -12854,6 +12907,7 @@ additionalPrice
 0;
 
 }
+
 
 /* =========================================
 ONE BASE UNIT + ADDITIONAL UNIT LOGIC
@@ -12967,8 +13021,12 @@ additionalUnitsTotal
 
 }
 
+
 /* =========================================
 CHOOSE MOST EXPENSIVE VALID BASE COMBINATION
+
+If two candidates create the same total,
+the higher BASE delivery charge wins.
 ========================================= */
 
 function getMostExpensiveDeliveryCombination(
@@ -13043,8 +13101,20 @@ return mostExpensiveCombination;
 
 }
 
+
 /* =========================================
 EXTRA LARGE SPLIT LOGIC
+
+If Extra Large and non-Extra-Large units
+are mixed, there are TWO delivery groups:
+
+1. Extra Large group
+2. Small / Medium / Large group
+
+Each group receives its own base charge.
+
+This applies equally to standard and
+custom calculator rooflights.
 ========================================= */
 
 function getStandardDeliveryGroups(
@@ -13111,6 +13181,7 @@ units:units
 ];
 
 }
+
 
 /* =========================================
 DISTANCE-LIMIT CHECK
@@ -13214,6 +13285,7 @@ reason:
 
 }
 
+
 /* =========================================
 COMPLETE BASKET DELIVERY CALCULATION
 ========================================= */
@@ -13279,6 +13351,7 @@ reason:null
 
 }
 
+
 const distanceFailure =
 getDeliveryLimitFailure(
 units,
@@ -13325,10 +13398,12 @@ distanceFailure.reason
 
 }
 
+
 const deliveryGroups =
 getStandardDeliveryGroups(
 units
 );
+
 
 const groupResults =
 deliveryGroups.map(
@@ -13363,6 +13438,7 @@ combination
 
 }
 );
+
 
 if (
 groupResults.some(
@@ -13407,6 +13483,7 @@ reason:
 
 }
 
+
 const totalPrice =
 groupResults.reduce(
 (
@@ -13422,6 +13499,7 @@ group.combination.price
 },
 0
 );
+
 
 const totalBasePrice =
 groupResults.reduce(
@@ -13439,6 +13517,7 @@ group.combination.basePrice
 0
 );
 
+
 const totalAdditionalUnits =
 groupResults.reduce(
 (
@@ -13455,6 +13534,7 @@ group.combination.additionalUnitsTotal
 0
 );
 
+
 const singleGroup =
 groupResults.length ===
 1
@@ -13462,6 +13542,7 @@ groupResults.length ===
 groupResults[0]
 :
 null;
+
 
 return {
 
@@ -13539,8 +13620,14 @@ reason:null
 
 }
 
+
 /* =========================================
 PER-ITEM DELIVERY CONTRIBUTION
+
+Allows both the standard and custom order
+summaries to display the portion of the
+basket delivery charge belonging to that
+specific line.
 ========================================= */
 
 function getResolvedDeliveryContributionForItem(
@@ -13653,8 +13740,20 @@ return contribution;
 
 }
 
+
 /* =========================================
 POSTCODE LOOKUP / DISTANCE
+
+CHANGE 1:
+A lookup is only started once the user has
+typed a COMPLETE UK postcode.
+
+This prevents longer postcodes such as
+EC1V 2NX from being looked up prematurely
+at EC1V 2 while the user is still typing.
+
+The same logic is shared by the main Order
+Summary and Basket postcode inputs.
 ========================================= */
 
 let deliveryOriginPromise =
@@ -13665,6 +13764,7 @@ let deliveryLookupToken =
 
 let deliveryLookupTimer =
 null;
+
 
 function normalizePostcode(
 postcode
@@ -13681,6 +13781,7 @@ postcode || ""
 );
 
 }
+
 
 function formatPostcode(
 postcode
@@ -13713,6 +13814,28 @@ normalized.slice(
 
 }
 
+
+/* =========================================
+COMPLETE UK POSTCODE CHECK
+
+Supported standard UK formats include:
+
+A9 9AA
+A99 9AA
+A9A 9AA
+AA9 9AA
+AA99 9AA
+AA9A 9AA
+
+Examples:
+SL9 7BB
+EC1V 2NX
+SW1A 1AA
+
+Postcodes.io remains the final authority
+for whether the completed postcode exists.
+========================================= */
+
 function isCompleteUKPostcode(
 postcode
 ) {
@@ -13736,6 +13859,16 @@ cleaned
 
 }
 
+
+/* =========================================
+INVALIDATE ANY OLD POSTCODE LOOKUP
+
+If the user changes the text while a
+previous request is waiting or in flight,
+that old result must not be allowed to
+replace the newer input state.
+========================================= */
+
 function invalidateDeliveryLookup() {
 
 deliveryLookupToken +=
@@ -13756,6 +13889,7 @@ null;
 }
 
 }
+
 
 async function lookupPostcode(
 postcode
@@ -13814,6 +13948,7 @@ return data.result;
 
 }
 
+
 function degreesToRadians(
 degrees
 ) {
@@ -13825,6 +13960,7 @@ Math.PI /
 );
 
 }
+
 
 function calculateGeographicalMiles(
 lat1,
@@ -13894,6 +14030,7 @@ c;
 
 }
 
+
 async function getDeliveryOrigin() {
 
 if (
@@ -13910,6 +14047,7 @@ DELIVERY_ORIGIN_POSTCODE
 return deliveryOriginPromise;
 
 }
+
 
 async function calculatePostcodeDelivery(
 postcode
@@ -13967,6 +14105,7 @@ delivery
 
 }
 
+
 /* =========================================
 CURRENT DELIVERY STATE
 ========================================= */
@@ -14000,6 +14139,7 @@ fee
 0;
 
 }
+
 
 function setDeliveryPending(
 postcode
@@ -14052,6 +14192,7 @@ false;
 
 }
 
+
 /* =========================================
 APPLY RESOLVED DELIVERY TO ALL ITEMS
 ========================================= */
@@ -14079,8 +14220,10 @@ Number(
 delivery?.price
 );
 
+
 state.deliveryPostcode =
 formattedPostcode;
+
 
 state.deliveryFee =
 (
@@ -14097,14 +14240,17 @@ fee
 :
 null;
 
+
 state.deliveryResolved =
 !requiresQuote &&
 Number.isFinite(
 fee
 );
 
+
 state.deliveryRequiresQuote =
 requiresQuote;
+
 
 state.deliveryQuoteReason =
 requiresQuote
@@ -14115,6 +14261,7 @@ delivery?.reason ||
 )
 :
 "";
+
 
 state.deliveryAdjustedMiles =
 Number.isFinite(
@@ -14129,6 +14276,7 @@ delivery.adjustedMiles
 :
 null;
 
+
 state.deliveryChargeableMiles =
 Number.isFinite(
 Number(
@@ -14141,6 +14289,7 @@ delivery.chargeableMiles
 )
 :
 null;
+
 
 state.orderItems.forEach(
 item => {
@@ -14164,6 +14313,7 @@ state.deliveryRequiresQuote;
 
 }
 );
+
 
 state.customOrderItems.forEach(
 item => {
@@ -14190,6 +14340,7 @@ state.deliveryRequiresQuote;
 );
 
 }
+
 
 /* =========================================
 DELIVERY DISPLAY PER ORDER ITEM
@@ -14294,6 +14445,7 @@ fee:null
 
 }
 
+
 function buildDeliveryInlineMarkup(
 deliveryDisplay
 ) {
@@ -14355,6 +14507,7 @@ formattedFee
 `;
 
 }
+
 
 function buildDeliveryControlHTML(
 item,
@@ -14421,6 +14574,7 @@ deliveryDisplay
 
 }
 
+
 /* =========================================
 DELIVERY UI RESET / ANIMATIONS
 ========================================= */
@@ -14473,6 +14627,7 @@ output.setAttribute(
 
 }
 
+
 function markDeliveryInputsChecking(
 postcode
 ) {
@@ -14503,6 +14658,7 @@ updateBasketDrawerSummaryOnly();
 
 }
 
+
 function markDeliveryInputsInvalid() {
 
 document
@@ -14525,6 +14681,7 @@ updateBasketDrawerSummaryOnly();
 
 }
 
+
 function getVisibleSummaryTotalBlocks() {
 
 return Array.from(
@@ -14534,6 +14691,7 @@ document.querySelectorAll(
 );
 
 }
+
 
 function hideSummaryTotalsForDelivery() {
 
@@ -14554,6 +14712,7 @@ block.classList.add(
 
 }
 
+
 function showSummaryTotalsImmediately() {
 
 getVisibleSummaryTotalBlocks()
@@ -14569,6 +14728,7 @@ block.classList.remove(
 );
 
 }
+
 
 function clearDeliveryAnimationTimers() {
 
@@ -14601,6 +14761,7 @@ null;
 }
 
 }
+
 
 function playDeliveryResolutionAnimation() {
 
@@ -14720,300 +14881,14 @@ null;
 
 }
 
-/* =========================================
-MASTER PRODUCT PRICING
-
-OP2 does not choose Cheap / Normal /
-Expensive itself.
-
-FactoryRooflightsMasterPricing is the
-authoritative pricing router.
-
-If the master reports available:false,
-or is not loaded, OP2 returns no price.
-There is deliberately no fallback to an
-old table, another strategy or £0.
-========================================= */
-
-function getFactoryRooflightsMasterPricing() {
-
-const pricing =
-globalThis
-.FactoryRooflightsMasterPricing;
-
-if (
-!pricing ||
-typeof pricing !==
-"object"
-) {
-
-return null;
-
-}
-
-return pricing;
-
-}
-
-function createUnavailableMasterPriceResult(
-source,
-reasonCode =
-"MASTER_PRICING_UNAVAILABLE"
-) {
-
-return {
-
-available:false,
-
-source:
-source,
-
-reasonCode:
-reasonCode,
-
-price:null
-
-};
-
-}
-
-function normalizeMasterPricingResult(
-result,
-source
-) {
-
-if (
-!result ||
-result.available !==
-true
-) {
-
-return {
-
-...(
-result &&
-typeof result ===
-"object"
-?
-result
-:
-{}
-),
-
-available:false,
-
-source:
-result?.source ||
-source,
-
-price:null
-
-};
-
-}
-
-const price =
-Number(
-result.price
-);
-
-if (
-!Number.isFinite(
-price
-) ||
-price <=
-0
-) {
-
-return {
-
-...result,
-
-available:false,
-
-source:
-result.source ||
-source,
-
-price:null
-
-};
-
-}
-
-return {
-
-...result,
-
-available:true,
-
-source:
-result.source ||
-source,
-
-price:
-price
-
-};
-
-}
-
-function getMasterStandardPriceResult(
-selection
-) {
-
-const pricing =
-getFactoryRooflightsMasterPricing();
-
-if (
-!pricing ||
-typeof pricing.getStandardPrice !==
-"function"
-) {
-
-return createUnavailableMasterPriceResult(
-"standard"
-);
-
-}
-
-try {
-
-const result =
-pricing.getStandardPrice(
-{
-size:
-normalizeSize(
-selection?.size
-),
-
-glazing:
-selection?.glazing,
-
-type:
-selection?.type,
-
-finish:
-normalizeTint(
-selection?.tint ??
-selection?.finish
-),
-
-border:
-Number(
-selection?.border
-)
-}
-);
-
-return normalizeMasterPricingResult(
-result,
-"standard"
-);
-
-}
-catch (
-error
-) {
-
-console.warn(
-"Master standard price unavailable.",
-error
-);
-
-return createUnavailableMasterPriceResult(
-"standard"
-);
-
-}
-
-}
-
-function getMasterCustomPriceResult(
-selection
-) {
-
-const pricing =
-getFactoryRooflightsMasterPricing();
-
-if (
-!pricing ||
-typeof pricing.getCustomPrice !==
-"function"
-) {
-
-return createUnavailableMasterPriceResult(
-"custom"
-);
-
-}
-
-try {
-
-const result =
-pricing.getCustomPrice(
-{
-width:
-Number(
-selection?.width ??
-selection?.internalWidth
-),
-
-length:
-Number(
-selection?.length ??
-selection?.internalLength
-),
-
-glazing:
-selection?.glazing,
-
-type:
-selection?.type,
-
-finish:
-normalizeTint(
-selection?.tint ??
-selection?.finish
-),
-
-border:
-Number(
-selection?.border
-)
-}
-);
-
-return normalizeMasterPricingResult(
-result,
-"custom"
-);
-
-}
-catch (
-error
-) {
-
-console.warn(
-"Master custom price unavailable.",
-error
-);
-
-return createUnavailableMasterPriceResult(
-"custom"
-);
-
-}
-
-}
 
 /* =========================================
 CHECKOUT AVAILABILITY
 ========================================= */
 
-function basketContainsUnpricedItem() {
+function basketContainsUnpricedCustomItem() {
 
-return getAllBasketItems().some(
+return state.customOrderItems.some(
 item => {
 
 const price =
@@ -15035,6 +14910,7 @@ price <=
 
 }
 
+
 function updateCheckoutAvailability() {
 
 const hasBasketItems =
@@ -15047,13 +14923,13 @@ const deliveryFullyPriced =
 state.deliveryResolved &&
 !state.deliveryRequiresQuote;
 
-const hasUnpricedItem =
-basketContainsUnpricedItem();
+const hasUnpricedCustom =
+basketContainsUnpricedCustomItem();
 
 const shouldDisable =
 !hasBasketItems ||
 !deliveryFullyPriced ||
-hasUnpricedItem;
+hasUnpricedCustom;
 
 document
 .querySelectorAll(
@@ -15107,6 +14983,7 @@ checkout.removeAttribute(
 
 }
 
+
 document.addEventListener(
 "click",
 event => {
@@ -15128,6 +15005,7 @@ event.preventDefault();
 
 }
 );
+
 
 /* =========================================
 REFRESH BASKET TOTALS
@@ -15176,8 +15054,16 @@ updateBasketDrawerSummaryOnly();
 
 }
 
+
 /* =========================================
 APPLY POSTCODE
+
+CHANGE 1:
+Do not attempt a lookup merely because
+five characters have been entered.
+
+The postcode must have a complete UK
+postcode structure first.
 ========================================= */
 
 async function applyDeliveryPostcode(
@@ -15306,20 +15192,7 @@ animate:false
 }
 );
 
-/*
-CHANGE 2:
-Postcode resolution does not rebuild all
-basket-item HTML.
-
-The products themselves have not changed,
-so retain their existing DOM and update only
-the basket delivery / totals presentation.
-This prevents an asynchronous delivery
-recalculation from replacing basket item
-markup while it is being displayed.
-*/
-
-updateBasketDrawerSummaryOnly();
+renderBasketDrawer();
 
 updateBasketTotal(
 state.basketTotal
@@ -15379,14 +15252,7 @@ animate:false
 }
 );
 
-/*
-CHANGE 2:
-Again, only the delivery presentation needs
-to change here. The basket item cards are
-left intact.
-*/
-
-updateBasketDrawerSummaryOnly();
+renderBasketDrawer();
 
 updateBasketTotal(
 state.basketTotal,
@@ -15407,8 +15273,12 @@ requestOrderSummaryDeliveryWidthSync();
 
 }
 
+
 /* =========================================
 DEBOUNCED POSTCODE LOOKUP
+
+Only a structurally complete postcode is
+allowed to start the 550ms lookup timer.
 ========================================= */
 
 function scheduleDeliveryPostcodeLookup(
@@ -15460,6 +15330,7 @@ cleaned
 );
 
 }
+
 
 /* =========================================
 RECALCULATE DELIVERY AFTER BASKET CHANGE
@@ -15544,6 +15415,7 @@ animate
 
 }
 
+
 /* =========================================
 HOMEPAGE IMPORT MATCHING
 ========================================= */
@@ -15582,6 +15454,7 @@ state.tint
 
 }
 
+
 function homepageImageMatchesCurrentSelection() {
 
 const imported =
@@ -15607,6 +15480,7 @@ state.tint
 );
 
 }
+
 
 function getTintedProductFilename(
 baseFilename,
@@ -15645,6 +15519,7 @@ return `${prefix}${usableBaseFilename}`;
 
 }
 
+
 function selectedProductImage() {
 
 if (
@@ -15682,6 +15557,7 @@ filename
 );
 
 }
+
 
 function getProductImageFinishAdjustment() {
 
@@ -15733,6 +15609,7 @@ finishAdjustment.left
 
 }
 
+
 function getProductImageScale() {
 
 const baseAdjustment =
@@ -15764,11 +15641,13 @@ totalAdjustment /
 
 }
 
+
 function getProductImageLeft() {
 
 return getProductImageFinishAdjustment().left;
 
 }
+
 
 function getProductImageRotation() {
 
@@ -15781,6 +15660,7 @@ state.size
 );
 
 }
+
 
 function updateProductImageTransform() {
 
@@ -15832,6 +15712,7 @@ productImage.style.objectFit =
 objectFit;
 
 }
+
 
 function setProductImage(
 imageSource,
@@ -16006,14 +15887,9 @@ imageSource;
 
 }
 
+
 /* =========================================
 STANDARD SELECTED PRICE
-
-All standard prices now come from the
-master pricing router.
-
-available:false returns null.
-No £0 and no alternative strategy fallback.
 ========================================= */
 
 function selectedPrice() {
@@ -16024,22 +15900,16 @@ state.size
 ]
 ) {
 
-return null;
+return 0;
 
 }
 
-const result =
-getMasterStandardPriceResult(
+return calculateStandardPriceForSelection(
 state
 );
 
-return result.available
-?
-result.price
-:
-null;
-
 }
+
 
 /* =========================================
 MONEY DISPLAY
@@ -16080,6 +15950,7 @@ pence
 
 }
 
+
 function setUnitPriceText(
 value
 ) {
@@ -16097,6 +15968,7 @@ parts.pence;
 
 }
 
+
 function updateUnitPrice(
 value
 ) {
@@ -16105,18 +15977,6 @@ const numericPrice =
 Number(
 value
 );
-
-if (
-!Number.isFinite(
-numericPrice
-) ||
-numericPrice <=
-0
-) {
-
-return;
-
-}
 
 if (
 displayedUnitPriceAmount ===
@@ -16216,6 +16076,7 @@ unitPriceLine.classList.remove(
 
 }
 
+
 function setTotalPriceText(
 value
 ) {
@@ -16232,6 +16093,7 @@ totalPricePence.textContent =
 parts.pence;
 
 }
+
 
 function animateTotalPriceValue(
 value
@@ -16323,6 +16185,7 @@ totalPriceLine.classList.remove(
 );
 
 }
+
 
 function updateTotalPrice(
 orderTotal,
@@ -16549,6 +16412,7 @@ numericTotal
 
 }
 
+
 function updateVatPosition() {
 
 if (
@@ -16595,187 +16459,6 @@ vatLine
 
 }
 
-/* =========================================
-STANDARD PRICE DISPLAY FAIL-SAFE
-
-If master pricing reports unavailable,
-remove the visible monetary value instead
-of allowing null to become £0.
-========================================= */
-
-function clearStandardPriceDisplay() {
-
-displayedUnitPriceAmount =
-null;
-
-displayedTotalAmount =
-null;
-
-unitPriceTransitionToken +=
-1;
-
-totalPriceTransitionToken +=
-1;
-
-totalVisibilityToken +=
-1;
-
-if (
-unitPriceTransitionTimer !==
-null
-) {
-
-clearTimeout(
-unitPriceTransitionTimer
-);
-
-unitPriceTransitionTimer =
-null;
-
-}
-
-if (
-totalPriceTransitionTimer !==
-null
-) {
-
-clearTimeout(
-totalPriceTransitionTimer
-);
-
-totalPriceTransitionTimer =
-null;
-
-}
-
-if (
-totalVisibilityTimer !==
-null
-) {
-
-clearTimeout(
-totalVisibilityTimer
-);
-
-totalVisibilityTimer =
-null;
-
-}
-
-if (
-priceWhole
-) {
-
-priceWhole.textContent =
-"";
-
-}
-
-if (
-pricePence
-) {
-
-pricePence.textContent =
-"";
-
-}
-
-if (
-unitPriceLine
-) {
-
-unitPriceLine.classList.remove(
-"is-changing"
-);
-
-unitPriceLine.style.visibility =
-"hidden";
-
-unitPriceLine.setAttribute(
-"aria-label",
-"Unit price unavailable"
-);
-
-}
-
-if (
-totalPriceWhole
-) {
-
-totalPriceWhole.textContent =
-"";
-
-}
-
-if (
-totalPricePence
-) {
-
-totalPricePence.textContent =
-"";
-
-}
-
-if (
-totalPriceLine
-) {
-
-totalPriceLine.classList.remove(
-"is-changing"
-);
-
-}
-
-if (
-totalPriceBlock
-) {
-
-totalPriceBlock.classList.remove(
-"is-visible"
-);
-
-totalPriceBlock.hidden =
-true;
-
-totalPriceBlock.setAttribute(
-"aria-hidden",
-"true"
-);
-
-}
-
-if (
-vatLine
-) {
-
-vatLine.style.visibility =
-"hidden";
-
-}
-
-}
-
-function showStandardPriceDisplay() {
-
-if (
-unitPriceLine
-) {
-
-unitPriceLine.style.visibility =
-"visible";
-
-}
-
-if (
-vatLine
-) {
-
-vatLine.style.visibility =
-"visible";
-
-}
-
-}
 
 /* =========================================
 CUSTOM PRICE DISPLAY RESET
@@ -16819,34 +16502,6 @@ customTotalPricePence.textContent =
 
 }
 
-const customUnitPriceLineElement =
-document.getElementById(
-"customUnitPriceLine"
-);
-
-if (
-customUnitPriceLineElement
-) {
-
-customUnitPriceLineElement.style.visibility =
-"hidden";
-
-customUnitPriceLineElement.setAttribute(
-"aria-label",
-"Custom unit price unavailable"
-);
-
-}
-
-if (
-customVatLine
-) {
-
-customVatLine.style.visibility =
-"hidden";
-
-}
-
 if (
 customTotalPriceBlock
 ) {
@@ -16866,6 +16521,7 @@ customTotalPriceBlock.setAttribute(
 }
 
 }
+
 
 /* =========================================
 TITLE BUILDERS
@@ -16925,6 +16581,7 @@ return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
 }
 
+
 function buildCustomTitleForSelection(
 selection
 ) {
@@ -16976,6 +16633,7 @@ selection.glazing ===
 return `${size} ${tintText}${glazingText} Glazed Frameless Skylight`;
 
 }
+
 
 function buildBasketDrawerDescriptionForSelection(
 selection
@@ -17029,6 +16687,7 @@ return (
 
 }
 
+
 function buildTitle() {
 
 return buildTitleForSelection(
@@ -17036,6 +16695,7 @@ state
 );
 
 }
+
 
 function updateGlazedAppearance() {
 
@@ -17054,6 +16714,7 @@ state.glazing ===
 );
 
 }
+
 
 function updateTintAppearance() {
 
@@ -17078,6 +16739,7 @@ state.tint !==
 );
 
 }
+
 
 /* =========================================
 QUERY STRING
@@ -17165,6 +16827,7 @@ history.replaceState(
 
 }
 
+
 /* =========================================
 SIZE DROPDOWN
 ========================================= */
@@ -17178,6 +16841,7 @@ sizeDropdownList.querySelectorAll(
 );
 
 }
+
 
 function getSelectedSizeOptionIndex() {
 
@@ -17199,6 +16863,7 @@ selectedIndex
 0;
 
 }
+
 
 function populateSizes() {
 
@@ -17259,6 +16924,7 @@ button.dataset.size
 
 }
 
+
 function updateSizeDropdownDisplay() {
 
 sizeDropdownValue.textContent =
@@ -17292,6 +16958,7 @@ isSelected
 );
 
 }
+
 
 function updateSizeDropdownAvailableHeight() {
 
@@ -17333,6 +17000,7 @@ sizeDropdownList.style.maxHeight =
 `${availableHeight}px`;
 
 }
+
 
 function positionCurrentSizeAtTop() {
 
@@ -17387,6 +17055,7 @@ desiredScroll;
 
 }
 
+
 function openSizeDropdown() {
 
 if (
@@ -17418,6 +17087,7 @@ updateSizeDropdownAvailableHeight();
 positionCurrentSizeAtTop();
 
 }
+
 
 function closeSizeDropdown(
 returnFocus = false
@@ -17457,6 +17127,7 @@ sizeDropdownTrigger.focus();
 
 }
 
+
 function toggleSizeDropdown() {
 
 if (
@@ -17475,6 +17146,7 @@ openSizeDropdown();
 }
 
 }
+
 
 function selectSizeFromDropdown(
 size
@@ -17524,6 +17196,7 @@ sizeChanged
 
 }
 
+
 function focusSizeDropdownOption(
 index
 ) {
@@ -17567,6 +17240,7 @@ block:"nearest"
 
 }
 
+
 sizeDropdownTrigger.addEventListener(
 "click",
 event => {
@@ -17577,6 +17251,7 @@ toggleSizeDropdown();
 
 }
 );
+
 
 sizeDropdownTrigger.addEventListener(
 "keydown",
@@ -17641,6 +17316,7 @@ closeSizeDropdown();
 
 }
 );
+
 
 sizeDropdownList.addEventListener(
 "keydown",
@@ -17777,6 +17453,7 @@ true
 }
 );
 
+
 window.addEventListener(
 "resize",
 () => {
@@ -17801,6 +17478,7 @@ requestOrderSummaryDeliveryWidthSync();
 }
 );
 
+
 /* =========================================
 ORDER TOTALS
 ========================================= */
@@ -17813,30 +17491,13 @@ total,
 item
 ) => {
 
-const unitPrice =
-Number(
-item?.unitPrice ??
-item?.price
-);
-
-if (
-!Number.isFinite(
-unitPrice
-) ||
-unitPrice <=
-0
-) {
-
-return total;
-
-}
-
 return total +
 (
-unitPrice *
 Number(
-item.quantity ??
-item.qty
+item.unitPrice
+) *
+Number(
+item.quantity
 )
 );
 
@@ -17845,6 +17506,7 @@ item.qty
 );
 
 }
+
 
 function calculateCustomProductSubtotal() {
 
@@ -17887,6 +17549,7 @@ item.qty
 
 }
 
+
 function calculateStandardOrderTotal() {
 
 if (
@@ -17901,6 +17564,7 @@ return calculateOrderTotal();
 
 }
 
+
 function calculateCustomOrderTotal() {
 
 if (
@@ -17914,6 +17578,7 @@ return 0;
 return calculateOrderTotal();
 
 }
+
 
 function calculateOrderTotal() {
 
@@ -17935,800 +17600,9 @@ getCurrentDeliveryFee()
 
 }
 
-/* =========================================
-ORDER PAGE CHANGE 2
-STABLE BASKET ITEM IDENTITIES
-
-Every standard and custom basket line now
-receives a persistent unique ID.
-
-The ID is retained through:
-- rendering
-- quantity changes
-- removal
-- delivery recalculation
-- save / reload
-- expand / collapse state
-
-Older version-5 baskets without IDs are
-automatically migrated.
-========================================= */
-
-function createBasketOrderItemId(
-prefix = "item"
-) {
-
-const safePrefix =
-String(
-prefix ||
-"item"
-)
-.replace(
-/[^a-z0-9_-]/gi,
-""
-)
-||
-"item";
-
-if (
-window.crypto &&
-typeof window.crypto.randomUUID ===
-"function"
-) {
-
-return (
-safePrefix +
-"-" +
-window.crypto.randomUUID()
-);
-
-}
-
-return (
-safePrefix +
-"-" +
-Date.now() +
-"-" +
-Math.random()
-.toString(
-36
-)
-.slice(
-2,
-10
-) +
-"-" +
-Math.random()
-.toString(
-36
-)
-.slice(
-2,
-8
-)
-);
-
-}
-
-function createStandardOrderItemId() {
-
-return createBasketOrderItemId(
-"standard"
-);
-
-}
-
-function ensureBasketOrderItemId(
-item,
-kind = "standard"
-) {
-
-if (
-!item ||
-typeof item !==
-"object"
-) {
-
-return "";
-
-}
-
-let itemId =
-String(
-item.id ??
-item._id ??
-""
-).trim();
-
-if (
-!itemId
-) {
-
-itemId =
-kind ===
-"custom"
-?
-createCustomOrderItemId()
-:
-createStandardOrderItemId();
-
-}
-
-item.id =
-itemId;
-
-item._id =
-itemId;
-
-return itemId;
-
-}
-
-function getBasketCollection(
-kind
-) {
-
-return kind ===
-"custom"
-?
-state.customOrderItems
-:
-state.orderItems;
-
-}
-
-function getBasketItemIndexById(
-kind,
-itemId,
-fallbackIndex = null
-) {
-
-const collection =
-getBasketCollection(
-kind
-);
-
-const safeItemId =
-String(
-itemId ||
-""
-);
-
-if (
-safeItemId
-) {
-
-const matchedIndex =
-collection.findIndex(
-item =>
-String(
-item?.id ??
-item?._id ??
-""
-) ===
-safeItemId
-);
-
-if (
-matchedIndex >=
-0
-) {
-
-return matchedIndex;
-
-}
-
-}
-
-if (
-Number.isInteger(
-fallbackIndex
-) &&
-fallbackIndex >=
-0 &&
-fallbackIndex <
-collection.length
-) {
-
-return fallbackIndex;
-
-}
-
-return -1;
-
-}
-
-function getPossibleStandardSizeFromItem(
-item
-) {
-
-let size =
-normalizeSize(
-item?.size
-);
-
-if (
-PRODUCTS[
-size
-]
-) {
-
-return size;
-
-}
-
-const width =
-Math.floor(
-Number(
-item?.width ??
-item?.internalWidth
-)
-);
-
-const length =
-Math.floor(
-Number(
-item?.length ??
-item?.internalLength
-)
-);
-
-if (
-Number.isFinite(
-width
-) &&
-Number.isFinite(
-length
-)
-) {
-
-const candidate =
-normalizeSize(
-`${width}x${length}`
-);
-
-if (
-PRODUCTS[
-candidate
-]
-) {
-
-return candidate;
-
-}
-
-}
-
-return "";
-
-}
-
-function normaliseStandardBasketItemForRender(
-item
-) {
-
-if (
-!item ||
-typeof item !==
-"object"
-) {
-
-return null;
-
-}
-
-const size =
-getPossibleStandardSizeFromItem(
-item
-);
-
-if (
-!size
-) {
-
-return null;
-
-}
-
-const glazing =
-[
-"double",
-"triple"
-]
-.includes(
-item.glazing
-)
-?
-item.glazing
-:
-(
-[
-"double",
-"triple"
-]
-.includes(
-item.glazingConfiguration
-)
-?
-item.glazingConfiguration
-:
-"double"
-);
-
-const type =
-[
-"toughened",
-"laminated"
-]
-.includes(
-item.type
-)
-?
-item.type
-:
-(
-[
-"toughened",
-"laminated"
-]
-.includes(
-item.glazingConstruction
-)
-?
-item.glazingConstruction
-:
-"toughened"
-);
-
-const borderNumber =
-Number(
-item.border
-);
-
-const border =
-[
-100,
-125,
-150
-]
-.includes(
-borderNumber
-)
-?
-borderNumber
-:
-100;
-
-const tint =
-normalizeTint(
-item.tint ??
-item.finish
-);
-
-const quantity =
-Math.max(
-1,
-Math.min(
-999,
-Math.floor(
-Number(
-item.quantity ??
-item.qty
-) || 1
-)
-)
-);
-
-const priceResult =
-getMasterStandardPriceResult(
-{
-size:size,
-glazing:glazing,
-type:type,
-border:border,
-tint:tint
-}
-);
-
-if (
-!priceResult.available
-) {
-
-return null;
-
-}
-
-const unitPrice =
-Number(
-priceResult.price
-);
-
-if (
-!Number.isFinite(
-unitPrice
-) ||
-unitPrice <=
-0
-) {
-
-return null;
-
-}
-
-ensureBasketOrderItemId(
-item,
-"standard"
-);
-
-delete item.priceCategory;
-
-item.size =
-size;
-
-item.glazing =
-glazing;
-
-item.glazingConfiguration =
-glazing;
-
-item.type =
-type;
-
-item.glazingConstruction =
-type;
-
-item.border =
-border;
-
-item.tint =
-tint;
-
-item.finish =
-tint;
-
-item.quantity =
-quantity;
-
-item.qty =
-quantity;
-
-item.unitPrice =
-unitPrice;
-
-item.price =
-unitPrice;
-
-item.deliveryCategory =
-getDeliveryCategoryForSize(
-size
-);
-
-return item;
-
-}
-
-function normaliseCustomBasketItemForRender(
-item
-) {
-
-if (
-!item ||
-typeof item !==
-"object"
-) {
-
-return null;
-
-}
-
-let width =
-Math.floor(
-Number(
-item.width ??
-item.internalWidth
-)
-);
-
-let length =
-Math.floor(
-Number(
-item.length ??
-item.internalLength
-)
-);
-
-if (
-!(
-Number.isFinite(
-width
-) &&
-Number.isFinite(
-length
-)
-)
-) {
-
-const possibleSize =
-normalizeSize(
-item.size
-);
-
-const [
-sizeWidth,
-sizeLength
-] =
-possibleSize
-.split(
-"x"
-)
-.map(
-Number
-);
-
-if (
-Number.isFinite(
-sizeWidth
-) &&
-Number.isFinite(
-sizeLength
-)
-) {
-
-width =
-Math.floor(
-sizeWidth
-);
-
-length =
-Math.floor(
-sizeLength
-);
-
-}
-
-}
-
-if (
-!customDimensionsAreValid(
-width,
-length
-)
-) {
-
-return null;
-
-}
-
-const glazing =
-[
-"double",
-"triple"
-]
-.includes(
-item.glazing
-)
-?
-item.glazing
-:
-(
-[
-"double",
-"triple"
-]
-.includes(
-item.glazingConfiguration
-)
-?
-item.glazingConfiguration
-:
-"double"
-);
-
-const type =
-[
-"toughened",
-"laminated"
-]
-.includes(
-item.type
-)
-?
-item.type
-:
-(
-[
-"toughened",
-"laminated"
-]
-.includes(
-item.glazingConstruction
-)
-?
-item.glazingConstruction
-:
-"toughened"
-);
-
-const borderNumber =
-Number(
-item.border
-);
-
-const border =
-[
-100,
-125,
-150
-]
-.includes(
-borderNumber
-)
-?
-borderNumber
-:
-100;
-
-const tint =
-normalizeTint(
-item.tint ??
-item.finish
-);
-
-const quantity =
-Math.max(
-1,
-Math.min(
-999,
-Math.floor(
-Number(
-item.quantity ??
-item.qty
-) || 1
-)
-)
-);
-
-const priceResult =
-getMasterCustomPriceResult(
-{
-width:width,
-length:length,
-glazing:glazing,
-type:type,
-border:border,
-tint:tint
-}
-);
-
-if (
-!priceResult.available
-) {
-
-return null;
-
-}
-
-const unitPrice =
-Number(
-priceResult.price
-);
-
-if (
-!Number.isFinite(
-unitPrice
-) ||
-unitPrice <=
-0
-) {
-
-return null;
-
-}
-
-ensureBasketOrderItemId(
-item,
-"custom"
-);
-
-delete item.priceCategory;
-
-item.source =
-String(
-item.source ||
-"custom"
-).toLowerCase();
-
-item.isCustom =
-true;
-
-item.custom =
-true;
-
-item.width =
-width;
-
-item.length =
-length;
-
-item.internalWidth =
-width;
-
-item.internalLength =
-length;
-
-item.glazing =
-glazing;
-
-item.glazingConfiguration =
-glazing;
-
-item.type =
-type;
-
-item.glazingConstruction =
-type;
-
-item.border =
-border;
-
-item.tint =
-tint;
-
-item.finish =
-tint;
-
-item.quantity =
-quantity;
-
-item.qty =
-quantity;
-
-item.unitPrice =
-unitPrice;
-
-item.price =
-unitPrice;
-
-item.deliveryCategory =
-getDeliveryCategoryForCustomDimensions(
-width,
-length
-);
-
-return item;
-
-}
-
-function normaliseBasketItemsForStableRendering() {
-
-state.orderItems =
-state.orderItems
-.map(
-normaliseStandardBasketItemForRender
-)
-.filter(
-Boolean
-);
-
-state.customOrderItems =
-state.customOrderItems
-.map(
-normaliseCustomBasketItemForRender
-)
-.filter(
-Boolean
-);
-
-}
 
 /* =========================================
 STORAGE SANITISING
-
-Stored prices are never trusted or rebuilt
-from the old OP1 / OP2 price tables.
-
-Every standard item is regenerated from
-FactoryRooflightsMasterPricing.
 ========================================= */
 
 function sanitizeStoredOrderItem(
@@ -18746,12 +17620,11 @@ return null;
 }
 
 const size =
-getPossibleStandardSizeFromItem(
-item
+normalizeSize(
+item.size
 );
 
 if (
-!size ||
 !PRODUCTS[
 size
 ]
@@ -18772,19 +17645,7 @@ item.glazing
 ?
 item.glazing
 :
-(
-[
-"double",
-"triple"
-]
-.includes(
-item.glazingConfiguration
-)
-?
-item.glazingConfiguration
-:
-"double"
-);
+"double";
 
 const type =
 [
@@ -18797,19 +17658,7 @@ item.type
 ?
 item.type
 :
-(
-[
-"toughened",
-"laminated"
-]
-.includes(
-item.glazingConstruction
-)
-?
-item.glazingConstruction
-:
-"toughened"
-);
+"toughened";
 
 const borderNumber =
 Number(
@@ -18832,8 +17681,7 @@ borderNumber
 
 const tint =
 normalizeTint(
-item.tint ??
-item.finish
+item.tint
 );
 
 const quantity =
@@ -18843,15 +17691,14 @@ Math.min(
 999,
 Math.floor(
 Number(
-item.quantity ??
-item.qty
+item.quantity
 ) || 1
 )
 )
 );
 
-const priceResult =
-getMasterStandardPriceResult(
+const unitPrice =
+calculateStandardPriceForSelection(
 {
 size:size,
 glazing:glazing,
@@ -18862,23 +17709,10 @@ tint:tint
 );
 
 if (
-!priceResult.available
-) {
-
-return null;
-
-}
-
-const unitPrice =
-Number(
-priceResult.price
-);
-
-if (
 !Number.isFinite(
 unitPrice
 ) ||
-unitPrice <=
+unitPrice <
 0
 ) {
 
@@ -18886,54 +17720,26 @@ return null;
 
 }
 
-const itemId =
-ensureBasketOrderItemId(
-item,
-"standard"
-);
-
-const {
-priceCategory:
-legacyPriceCategory,
-...storedItem
-} =
-item;
-
 return {
 
-...storedItem,
-
-id:
-itemId,
-
-_id:
-itemId,
+...item,
 
 size:size,
 
 glazing:glazing,
 
-glazingConfiguration:
-glazing,
-
 type:type,
-
-glazingConstruction:
-type,
 
 border:border,
 
 tint:tint,
 
-finish:tint,
-
 quantity:quantity,
-
-qty:quantity,
 
 unitPrice:unitPrice,
 
-price:unitPrice,
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 
 deliveryCategory:
 getDeliveryCategoryForSize(
@@ -18956,14 +17762,17 @@ deliveryRequiresQuote:false
 
 }
 
+
 /* =========================================
 CUSTOM STORED ORDER SANITISING
 
-Every valid custom item is repriced through
-FactoryRooflightsMasterPricing.getCustomPrice.
+Order-page calculator items are now retained.
 
-Stored unitPrice / price values are not used
-as a selling-price fallback.
+Their price is recalculated from the current
+calculator master when loaded.
+
+Older imported custom items may retain their
+stored unit price.
 ========================================= */
 
 function sanitizeStoredCustomOrderItem(
@@ -19102,8 +17911,19 @@ item.source ||
 ""
 ).toLowerCase();
 
-const priceResult =
-getMasterCustomPriceResult(
+let storedUnitPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+if (
+source ===
+"order-page-custom"
+) {
+
+storedUnitPrice =
+calculateCustomPriceForSelection(
 {
 width:width,
 length:length,
@@ -19114,18 +17934,7 @@ tint:tint
 }
 );
 
-if (
-!priceResult.available
-) {
-
-return null;
-
 }
-
-const storedUnitPrice =
-Number(
-priceResult.price
-);
 
 if (
 !Number.isFinite(
@@ -19139,22 +17948,25 @@ return null;
 
 }
 
-const itemId =
-ensureBasketOrderItemId(
-item,
-"custom"
+let itemId =
+String(
+item.id ??
+item._id ??
+""
 );
 
-const {
-priceCategory:
-legacyPriceCategory,
-...storedItem
-} =
-item;
+if (
+!itemId
+) {
+
+itemId =
+createCustomOrderItemId();
+
+}
 
 return {
 
-...storedItem,
+...item,
 
 id:
 itemId,
@@ -19180,8 +17992,7 @@ internalLength:length,
 
 glazing:glazing,
 
-glazingConfiguration:
-glazing,
+glazingConfiguration:glazing,
 
 type:type,
 
@@ -19225,13 +18036,12 @@ deliveryRequiresQuote:false
 
 }
 
+
 /* =========================================
 SAVE / LOAD
 ========================================= */
 
 function saveOrderToStorage() {
-
-normaliseBasketItemsForStableRendering();
 
 try {
 
@@ -19240,6 +18050,9 @@ ORDER_STORAGE_KEY,
 JSON.stringify(
 {
 version:5,
+
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 
 items:
 state.orderItems,
@@ -19285,6 +18098,7 @@ error
 }
 
 }
+
 
 function loadOrderFromStorage() {
 
@@ -19365,8 +18179,6 @@ sanitizeStoredCustomOrderItem
 Boolean
 );
 
-normaliseBasketItemsForStableRendering();
-
 const restoredPostcode =
 String(
 parsed?.deliveryPostcode ||
@@ -19381,15 +18193,6 @@ restoredPostcode
 
 state.basketTotal =
 calculateOrderTotal();
-
-/*
-Persist any newly-created stable IDs so
-older version-5 baskets are migrated once
-rather than receiving a new identity on
-every page load.
-*/
-
-saveOrderToStorage();
 
 }
 catch (
@@ -19418,6 +18221,7 @@ error
 
 }
 
+
 /* =========================================
 DISPLAY NAMES
 ========================================= */
@@ -19435,6 +18239,7 @@ return glazing ===
 
 }
 
+
 function getTypeDisplayName(
 type
 ) {
@@ -19447,6 +18252,7 @@ return type ===
 "Toughened";
 
 }
+
 
 function getTintDisplayName(
 tint
@@ -19471,6 +18277,7 @@ return "Clear";
 }
 
 }
+
 
 function orderItemsMatch(
 first,
@@ -19508,6 +18315,7 @@ second.unitPrice
 );
 
 }
+
 
 function customOrderItemsMatch(
 first,
@@ -19559,6 +18367,7 @@ second.price
 
 }
 
+
 function updateSummaryTotalDisplay(
 element,
 total
@@ -19598,6 +18407,7 @@ numericTotal >=
 
 }
 
+
 function updateOrderSummaryTotalDisplay(
 total
 ) {
@@ -19608,6 +18418,7 @@ total
 );
 
 }
+
 
 function updateCustomOrderSummaryTotalDisplay(
 total
@@ -19620,6 +18431,7 @@ total
 
 }
 
+
 function getDifferentOrderSizeCount() {
 
 return new Set(
@@ -19631,6 +18443,7 @@ item.size
 
 }
 
+
 function getDifferentCustomOrderSizeCount() {
 
 return new Set(
@@ -19641,6 +18454,7 @@ item =>
 ).size;
 
 }
+
 
 /* =========================================
 BASKET DRAWER HELPERS
@@ -19672,6 +18486,7 @@ item?.qty
 
 }
 
+
 function getBasketDrawerProductSubtotal() {
 
 return (
@@ -19681,8 +18496,21 @@ calculateCustomProductSubtotal()
 
 }
 
+
 /* =========================================
 BASKET DELIVERY PRESENTATION
+
+When no postcode has been entered the
+helper/status row is now completely hidden.
+
+This removes:
+
+"Enter your delivery postcode to calculate
+delivery."
+
+and
+
+"Calculated by postcode"
 ========================================= */
 
 function getBasketDrawerDeliveryPresentation() {
@@ -19817,10 +18645,6 @@ estimatedDelivery:""
 
 }
 
-/* =========================================
-CHANGE 2
-STABLE BASKET ITEM KEY
-========================================= */
 
 function getBasketDrawerItemKey(
 item,
@@ -19828,57 +18652,58 @@ kind,
 index
 ) {
 
-const itemId =
-ensureBasketOrderItemId(
-item,
-kind
+if (
+kind ===
+"custom"
+) {
+
+const customId =
+String(
+item?.id ??
+item?._id ??
+""
 );
 
 if (
-itemId
+customId
 ) {
 
-return (
-kind +
-":" +
-itemId
-);
+return `custom:${customId}`;
 
 }
 
-/*
-Emergency legacy fallback only.
-Normal operation always has a stable ID.
-*/
-
 return [
-
-kind,
-index,
-item?.size,
+"custom",
 item?.width,
-item?.length
-
+item?.length,
+item?.glazing,
+item?.type,
+item?.border,
+item?.tint,
+item?.unitPrice ??
+item?.price,
+index
 ].join(
 ":"
 );
 
 }
 
-function makeBasketDrawerDomId(
-value
-) {
-
-return String(
-value ||
-"item"
-)
-.replace(
-/[^a-zA-Z0-9_-]/g,
-"-"
+return [
+"standard",
+item?.size,
+item?.glazing,
+item?.type,
+item?.border,
+item?.tint,
+item?.unitPrice,
+index
+].join(
+":"
 );
 
 }
+
 
 /* =========================================
 BASKET ITEM MARKUP
@@ -19890,38 +18715,9 @@ kind,
 index
 ) {
 
-const normalizedItem =
-kind ===
-"custom"
-?
-normaliseCustomBasketItemForRender(
-item
-)
-:
-normaliseStandardBasketItemForRender(
-item
-);
-
-if (
-!normalizedItem
-) {
-
-return "";
-
-}
-
-item =
-normalizedItem;
-
 const isCustom =
 kind ===
 "custom";
-
-const itemId =
-ensureBasketOrderItemId(
-item,
-kind
-);
 
 const quantity =
 Math.max(
@@ -20030,14 +18826,13 @@ basketItemKey
 );
 
 const collapseId =
-`basketDrawerItemCollapse-${makeBasketDrawerDomId(kind)}-${makeBasketDrawerDomId(itemId)}`;
+`basketDrawerItemCollapse-${kind}-${index}`;
 
 return `
 <article
 class="basket-drawer-item${isExpanded ? " is-expanded" : ""}"
 data-basket-item-kind="${escapeHTML(kind)}"
 data-basket-item-index="${escapeHTML(index)}"
-data-basket-item-id="${escapeHTML(itemId)}"
 data-basket-item-key="${escapeHTML(basketItemKey)}"
 >
 
@@ -20163,7 +18958,6 @@ aria-label="Adjust basket item quantity"
 type="button"
 data-basket-quantity-action="decrease"
 data-basket-kind="${escapeHTML(kind)}"
-data-basket-item-id="${escapeHTML(itemId)}"
 data-basket-index="${escapeHTML(index)}"
 aria-label="Decrease quantity"
 ${quantity <= 1 ? "disabled" : ""}
@@ -20179,7 +18973,6 @@ ${escapeHTML(quantity)}
 type="button"
 data-basket-quantity-action="increase"
 data-basket-kind="${escapeHTML(kind)}"
-data-basket-item-id="${escapeHTML(itemId)}"
 data-basket-index="${escapeHTML(index)}"
 aria-label="Increase quantity"
 >
@@ -20193,7 +18986,6 @@ type="button"
 class="basket-drawer-remove"
 data-basket-remove
 data-basket-kind="${escapeHTML(kind)}"
-data-basket-item-id="${escapeHTML(itemId)}"
 data-basket-index="${escapeHTML(index)}"
 aria-label="Remove this rooflight from the basket"
 >
@@ -20208,6 +19000,7 @@ Remove
 `;
 
 }
+
 
 /* =========================================
 BASKET DELIVERY CARD
@@ -20288,6 +19081,7 @@ ${escapeHTML(delivery.estimatedDelivery)}
 `;
 
 }
+
 
 function buildBasketDrawerFooterHTML() {
 
@@ -20385,6 +19179,7 @@ Checkout Now
 
 }
 
+
 /* =========================================
 RENDER BASKET DRAWER
 ========================================= */
@@ -20400,14 +19195,6 @@ if (
 return;
 
 }
-
-/*
-CHANGE 2:
-Repair / normalise all item data before
-building the basket markup.
-*/
-
-normaliseBasketItemsForStableRendering();
 
 const unitCount =
 getBasketDrawerUnitCount();
@@ -20499,6 +19286,7 @@ buildBasketDrawerFooterHTML();
 updateCheckoutAvailability();
 
 }
+
 
 function updateBasketDrawerSummaryOnly() {
 
@@ -20673,6 +19461,7 @@ updateCheckoutAvailability();
 
 }
 
+
 /* =========================================
 BASKET ITEM EXPAND / COLLAPSE
 ========================================= */
@@ -20800,16 +19589,9 @@ itemKey
 
 }
 
+
 /* =========================================
 BASKET DRAWER MODAL HELPERS
-
-CHANGE 1:
-Opening / closing the basket cancels any
-pending programmed page scrolling.
-
-An outside / backdrop click closes only
-the basket and restores the exact scroll
-position without moving focus to the page.
 ========================================= */
 
 function getBasketBackgroundElements() {
@@ -20836,6 +19618,7 @@ element.tagName !==
 
 }
 
+
 function setBasketBackgroundInert(
 shouldBeInert
 ) {
@@ -20852,55 +19635,8 @@ shouldBeInert;
 
 }
 
-function cancelPendingOrderPageAutoScrolls() {
-
-if (
-addToOrderScrollTimer !==
-null
-) {
-
-clearTimeout(
-addToOrderScrollTimer
-);
-
-addToOrderScrollTimer =
-null;
-
-}
-
-if (
-customAddToOrderScrollTimer !==
-null
-) {
-
-clearTimeout(
-customAddToOrderScrollTimer
-);
-
-customAddToOrderScrollTimer =
-null;
-
-}
-
-if (
-activeScrollFrame !==
-null
-) {
-
-cancelAnimationFrame(
-activeScrollFrame
-);
-
-activeScrollFrame =
-null;
-
-}
-
-}
 
 function lockBasketPageScroll() {
-
-cancelPendingOrderPageAutoScrolls();
 
 basketDrawerScrollY =
 window.scrollY ||
@@ -20953,15 +19689,8 @@ document.body.style.overflow =
 
 }
 
-function unlockBasketPageScroll() {
 
-const exactScrollY =
-Math.max(
-0,
-Number(
-basketDrawerScrollY
-) || 0
-);
+function unlockBasketPageScroll() {
 
 document.body.classList.remove(
 "basket-drawer-open"
@@ -21012,43 +19741,16 @@ document.body.style.overflow =
 
 }
 
-/*
-Restore the exact position captured before
-the basket opened.
-*/
-
 window.scrollTo(
 0,
-exactScrollY
-);
-
-/*
-Some mobile browsers complete the fixed-body
-release on the next paint. Reassert the same
-position once, without any animation.
-*/
-
-window.requestAnimationFrame(
-() => {
-
-if (
-!basketDrawerIsOpen
-) {
-
-window.scrollTo(
-0,
-exactScrollY
-);
-
-}
-
-}
+basketDrawerScrollY
 );
 
 basketDrawerPreviousBodyStyles =
 null;
 
 }
+
 
 function getBasketDrawerFocusableElements() {
 
@@ -21087,6 +19789,7 @@ null;
 
 }
 
+
 function openBasketDrawer() {
 
 if (
@@ -21106,8 +19809,6 @@ basketDrawerIsOpen
 return;
 
 }
-
-cancelPendingOrderPageAutoScrolls();
 
 closeMenu();
 
@@ -21174,6 +19875,7 @@ preventScroll:true
 
 }
 
+
 function closeBasketDrawer(
 {
 restoreFocus = true
@@ -21189,8 +19891,6 @@ if (
 return;
 
 }
-
-cancelPendingOrderPageAutoScrolls();
 
 basketDrawerIsOpen =
 false;
@@ -21258,13 +19958,12 @@ null;
 
 }
 
+
 /* =========================================
 BASKET MUTATIONS
 ========================================= */
 
 function commitBasketDrawerMutation() {
-
-normaliseBasketItemsForStableRendering();
 
 const postcodeToRecalculate =
 state.deliveryPostcode;
@@ -21320,26 +20019,25 @@ animate:false
 
 }
 
+
 function adjustBasketDrawerItemQuantity(
 kind,
-itemId,
-change,
-fallbackIndex = null
+index,
+change
 ) {
 
 const collection =
-getBasketCollection(
-kind
-);
-
-const index =
-getBasketItemIndexById(
-kind,
-itemId,
-fallbackIndex
-);
+kind ===
+"custom"
+?
+state.customOrderItems
+:
+state.orderItems;
 
 if (
+!Number.isInteger(
+index
+) ||
 index <
 0 ||
 index >=
@@ -21354,11 +20052,6 @@ const item =
 collection[
 index
 ];
-
-ensureBasketOrderItemId(
-item,
-kind
-);
 
 const currentQuantity =
 Math.max(
@@ -21396,32 +20089,38 @@ return;
 item.quantity =
 nextQuantity;
 
+if (
+kind ===
+"custom"
+) {
+
 item.qty =
 nextQuantity;
+
+}
 
 commitBasketDrawerMutation();
 
 }
 
+
 function removeBasketDrawerItem(
 kind,
-itemId,
-fallbackIndex = null
+index
 ) {
 
 const collection =
-getBasketCollection(
-kind
-);
-
-const index =
-getBasketItemIndexById(
-kind,
-itemId,
-fallbackIndex
-);
+kind ===
+"custom"
+?
+state.customOrderItems
+:
+state.orderItems;
 
 if (
+!Number.isInteger(
+index
+) ||
 index <
 0 ||
 index >=
@@ -21457,8 +20156,13 @@ commitBasketDrawerMutation();
 
 }
 
+
 /* =========================================
 BASKET DRAWER EVENTS
+
+CHANGE 1:
+Every edit invalidates any older postcode
+lookup before the new typed value is used.
 ========================================= */
 
 if (
@@ -21480,6 +20184,7 @@ openBasketDrawer();
 
 }
 
+
 if (
 basketDrawerLayer
 ) {
@@ -21494,27 +20199,7 @@ event.target.closest(
 )
 ) {
 
-/*
-CHANGE 1:
-The backdrop click belongs exclusively to
-the basket.
-
-Prevent it from bubbling into any global
-page click handlers and do not restore focus
-to the previously-focused page control.
-*/
-
-event.preventDefault();
-
-event.stopPropagation();
-
-cancelPendingOrderPageAutoScrolls();
-
-closeBasketDrawer(
-{
-restoreFocus:false
-}
-);
+closeBasketDrawer();
 
 return;
 
@@ -21559,10 +20244,6 @@ String(
 removeButton.dataset.basketKind ||
 "standard"
 ),
-String(
-removeButton.dataset.basketItemId ||
-""
-),
 Number(
 removeButton.dataset.basketIndex
 )
@@ -21593,19 +20274,15 @@ String(
 quantityButton.dataset.basketKind ||
 "standard"
 ),
-String(
-quantityButton.dataset.basketItemId ||
-""
+Number(
+quantityButton.dataset.basketIndex
 ),
 action ===
 "increase"
 ?
 1
 :
--1,
-Number(
-quantityButton.dataset.basketIndex
-)
+-1
 );
 
 return;
@@ -21614,6 +20291,7 @@ return;
 
 }
 );
+
 
 basketDrawerLayer.addEventListener(
 "input",
@@ -21688,6 +20366,7 @@ input.value
 }
 );
 
+
 basketDrawerLayer.addEventListener(
 "change",
 event => {
@@ -21711,6 +20390,7 @@ input.value
 
 }
 );
+
 
 basketDrawerLayer.addEventListener(
 "keydown",
@@ -21740,6 +20420,7 @@ input.value
 
 }
 
+
 if (
 basketDrawerClose
 ) {
@@ -21758,6 +20439,7 @@ closeBasketDrawer();
 );
 
 }
+
 
 document.addEventListener(
 "keydown",
@@ -21850,6 +20532,7 @@ first.focus();
 }
 );
 
+
 /* =========================================
 STANDARD ORDER SUMMARY
 ========================================= */
@@ -21870,8 +20553,6 @@ if (
 return;
 
 }
-
-normaliseBasketItemsForStableRendering();
 
 if (
 !state.orderItems.length
@@ -21937,38 +20618,20 @@ item.border,
 item.glazing
 );
 
-const unitPrice =
-Number(
-item.unitPrice ??
-item.price
-);
-
-const hasValidPrice =
-Number.isFinite(
-unitPrice
-) &&
-unitPrice >
-0;
-
 const lineTotal =
-hasValidPrice
-?
-unitPrice *
+Number(
+item.unitPrice
+) *
 Number(
 item.quantity
-)
-:
-0;
+);
 
 const showLineTotal =
-hasValidPrice &&
-(
 multipleSizes ||
 Number(
 item.quantity
 ) >
-1
-);
+1;
 
 const animateItem =
 animate &&
@@ -21981,7 +20644,6 @@ return `
 <div
 class="order-summary-item${animateItem ? " summary-item-enter" : ""}"
 data-order-summary-item-index="${index}"
-data-order-item-id="${escapeHTML(item.id || item._id || "")}"
 >
 
 <h3 class="order-summary-item-title">
@@ -22029,7 +20691,7 @@ ${escapeHTML(item.quantity)} × ${escapeHTML(title)}
 
 <div class="order-summary-spec unit-price-spec">
 <span>Unit Price</span>
-<strong>${hasValidPrice ? escapeHTML(formatMoney(unitPrice)) : ""}</strong>
+<strong>${escapeHTML(formatMoney(item.unitPrice))}</strong>
 </div>
 
 </div>
@@ -22091,7 +20753,7 @@ Line Total:
 </div>
 
 <div class="order-summary-line-total-price">
-${hasValidPrice ? escapeHTML(formatMoney(lineTotal)) : ""}
+${escapeHTML(formatMoney(lineTotal))}
 </div>
 
 <div class="order-summary-line-total-vat">
@@ -22164,6 +20826,7 @@ orderSummarySection.classList.remove(
 
 }
 
+
 /* =========================================
 CUSTOM ORDER SUMMARY
 ========================================= */
@@ -22184,8 +20847,6 @@ if (
 return;
 
 }
-
-normaliseBasketItemsForStableRendering();
 
 if (
 !state.customOrderItems.length
@@ -22485,14 +21146,13 @@ customOrderSummarySection.classList.remove(
 
 }
 
+
 /* =========================================
 SUMMARY CHANGES
 ========================================= */
 
 function commitOrderSummaryChange() {
 
-normaliseBasketItemsForStableRendering();
-
 const postcodeToRecalculate =
 state.deliveryPostcode;
 
@@ -22542,11 +21202,10 @@ animate:false
 }
 
 }
+
 
 function commitCustomOrderSummaryChange() {
 
-normaliseBasketItemsForStableRendering();
-
 const postcodeToRecalculate =
 state.deliveryPostcode;
 
@@ -22596,6 +21255,7 @@ animate:false
 }
 
 }
+
 
 /* =========================================
 SCROLL HELPERS
@@ -22623,6 +21283,7 @@ window.innerHeight /
 );
 
 }
+
 
 function getElementViewportRatioTarget(
 element,
@@ -22654,6 +21315,7 @@ ratio
 
 }
 
+
 function scrollElementToViewportCentre(
 element
 ) {
@@ -22682,6 +21344,7 @@ reducedMotionQuery.matches
 );
 
 }
+
 
 function animateScrollToTarget(
 target,
@@ -22818,6 +21481,7 @@ step
 
 }
 
+
 function animateElementToViewportCentre(
 element,
 duration = 560
@@ -22839,6 +21503,7 @@ duration
 );
 
 }
+
 
 function animateElementToViewportRatio(
 element,
@@ -22863,6 +21528,7 @@ duration
 );
 
 }
+
 
 /* =========================================
 STANDARD ITEM REMOVE / QUANTITY
@@ -22929,6 +21595,7 @@ targetIndex
 
 }
 
+
 function removeOrderItem(
 index
 ) {
@@ -22959,6 +21626,7 @@ index
 );
 
 }
+
 
 function adjustOrderItemQuantity(
 index,
@@ -23014,12 +21682,10 @@ return;
 item.quantity =
 nextQuantity;
 
-item.qty =
-nextQuantity;
-
 commitOrderSummaryChange();
 
 }
+
 
 /* =========================================
 CUSTOM ITEM REMOVE / QUANTITY
@@ -23086,6 +21752,7 @@ targetIndex
 
 }
 
+
 function removeCustomOrderItem(
 index
 ) {
@@ -23116,6 +21783,7 @@ index
 );
 
 }
+
 
 function adjustCustomOrderItemQuantity(
 index,
@@ -23177,6 +21845,7 @@ nextQuantity;
 commitCustomOrderSummaryChange();
 
 }
+
 
 /* =========================================
 SUMMARY ITEM EVENTS
@@ -23258,6 +21927,7 @@ index,
 
 }
 
+
 if (
 customOrderSummaryItems
 ) {
@@ -23334,6 +22004,7 @@ index,
 
 }
 
+
 /* =========================================
 POSTCODE RESULT REOPEN
 ========================================= */
@@ -23380,6 +22051,7 @@ input.select();
 
 }
 
+
 document.addEventListener(
 "click",
 event => {
@@ -23405,6 +22077,7 @@ resultBox
 
 }
 );
+
 
 document.addEventListener(
 "keydown",
@@ -23438,8 +22111,13 @@ resultBox
 }
 );
 
+
 /* =========================================
 ORDER SUMMARY POSTCODE EVENTS
+
+CHANGE 1:
+The same complete-postcode typing logic
+used by the Basket is used here.
 ========================================= */
 
 document.addEventListener(
@@ -23538,6 +22216,7 @@ input.value
 }
 );
 
+
 document.addEventListener(
 "change",
 event => {
@@ -23561,6 +22240,7 @@ input.value
 
 }
 );
+
 
 document.addEventListener(
 "keydown",
@@ -23590,6 +22270,7 @@ input.value
 }
 );
 
+
 /* =========================================
 MAIN STANDARD CONFIGURATOR UI
 ========================================= */
@@ -23614,40 +22295,12 @@ return;
 
 }
 
-const priceResult =
-getMasterStandardPriceResult(
-state
-);
-
-const hasPrice =
-priceResult.available ===
-true &&
-Number.isFinite(
-Number(
-priceResult.price
-)
-) &&
-Number(
-priceResult.price
-) >
-0;
-
 const price =
-hasPrice
-?
-Number(
-priceResult.price
-)
-:
-null;
+selectedPrice();
 
 const orderTotal =
-hasPrice
-?
 price *
-state.quantity
-:
-null;
+state.quantity;
 
 const title =
 buildTitle();
@@ -23700,12 +22353,6 @@ state.size
 externalSize.textContent =
 calculateExternalSize();
 
-if (
-hasPrice
-) {
-
-showStandardPriceDisplay();
-
 updateUnitPrice(
 price
 );
@@ -23717,13 +22364,6 @@ orderTotal,
 state.quantity >
 1
 );
-
-}
-else {
-
-clearStandardPriceDisplay();
-
-}
 
 quantityValue.textContent =
 state.quantity;
@@ -23738,9 +22378,6 @@ state.quantity ===
 
 addToOrderText.textContent =
 `Add ${state.quantity} To Order`;
-
-addToOrder.disabled =
-!hasPrice;
 
 quantityMinus.disabled =
 state.quantity <=
@@ -23835,6 +22472,7 @@ updateQueryString();
 }
 
 }
+
 
 /* =========================================
 LOAD STANDARD CONFIG FROM QUERY
@@ -24094,6 +22732,7 @@ importedImage
 
 }
 
+
 /* =========================================
 STANDARD CONFIGURATOR EVENTS
 ========================================= */
@@ -24124,6 +22763,7 @@ updateUI();
 }
 );
 
+
 document
 .querySelectorAll(
 "[data-type]"
@@ -24149,6 +22789,7 @@ updateUI();
 
 }
 );
+
 
 document
 .querySelectorAll(
@@ -24177,6 +22818,7 @@ updateUI();
 
 }
 );
+
 
 document
 .querySelectorAll(
@@ -24222,6 +22864,7 @@ animateImage:true
 }
 );
 
+
 quantityMinus.addEventListener(
 "click",
 () => {
@@ -24248,6 +22891,7 @@ updateUrl:false
 }
 );
 
+
 quantityPlus.addEventListener(
 "click",
 () => {
@@ -24273,6 +22917,7 @@ updateUrl:false
 
 }
 );
+
 
 /* =========================================
 CUSTOM DIMENSION INPUT EVENTS
@@ -24337,6 +22982,7 @@ updateCustomConfiguratorUI();
 }
 );
 
+
 customQuantityMinus.addEventListener(
 "click",
 () => {
@@ -24359,6 +23005,7 @@ updateCustomConfiguratorUI();
 }
 );
 
+
 customQuantityPlus.addEventListener(
 "click",
 () => {
@@ -24380,6 +23027,7 @@ updateCustomConfiguratorUI();
 
 }
 );
+
 
 /* =========================================
 GLOBAL CLICK / ESCAPE
@@ -24426,6 +23074,7 @@ closeCustomBuildDropdowns();
 }
 );
 
+
 document.addEventListener(
 "keydown",
 event => {
@@ -24456,6 +23105,7 @@ closeMenu();
 }
 );
 
+
 /* =========================================
 ORDER FOCUS HELPERS
 ========================================= */
@@ -24479,17 +23129,6 @@ addToOrderScrollTimer =
 setTimeout(
 () => {
 
-if (
-basketDrawerIsOpen
-) {
-
-addToOrderScrollTimer =
-null;
-
-return;
-
-}
-
 const target =
 orderSummaryItems.querySelector(
 `[data-order-summary-item-index="${index}"]`
@@ -24508,6 +23147,7 @@ null;
 );
 
 }
+
 
 function scheduleCustomOrderFocus(
 index
@@ -24528,17 +23168,6 @@ customAddToOrderScrollTimer =
 setTimeout(
 () => {
 
-if (
-basketDrawerIsOpen
-) {
-
-customAddToOrderScrollTimer =
-null;
-
-return;
-
-}
-
 const target =
 customOrderSummaryItems.querySelector(
 `[data-custom-order-summary-item-index="${index}"]`
@@ -24558,6 +23187,7 @@ null;
 
 }
 
+
 /* =========================================
 ADD STANDARD SELECTION
 ========================================= */
@@ -24568,50 +23198,10 @@ closeSizeDropdown();
 
 closeCustomBuildDropdowns();
 
-const priceResult =
-getMasterStandardPriceResult(
-state
-);
-
-if (
-!priceResult.available ||
-!Number.isFinite(
-Number(
-priceResult.price
-)
-) ||
-Number(
-priceResult.price
-) <=
-0
-) {
-
-updateUI(
-{
-updateUrl:false,
-animateImage:false
-}
-);
-
-return;
-
-}
-
 const unitPrice =
-Number(
-priceResult.price
-);
-
-const itemId =
-createStandardOrderItemId();
+selectedPrice();
 
 const newItem = {
-
-id:
-itemId,
-
-_id:
-itemId,
 
 size:
 state.size,
@@ -24619,13 +23209,7 @@ state.size,
 glazing:
 state.glazing,
 
-glazingConfiguration:
-state.glazing,
-
 type:
-state.type,
-
-glazingConstruction:
 state.type,
 
 border:
@@ -24634,20 +23218,14 @@ state.border,
 tint:
 state.tint,
 
-finish:
-state.tint,
-
 quantity:
-state.quantity,
-
-qty:
 state.quantity,
 
 unitPrice:
 unitPrice,
 
-price:
-unitPrice,
+priceCategory:
+ACTIVE_PRICE_CATEGORY,
 
 deliveryCategory:
 getDeliveryCategoryForSize(
@@ -24681,29 +23259,20 @@ existingIndex >=
 0
 ) {
 
-const existingItem =
 state.orderItems[
 existingIndex
-];
-
-ensureBasketOrderItemId(
-existingItem,
-"standard"
-);
-
-existingItem.quantity =
+].quantity =
 Math.min(
 999,
 Number(
-existingItem.quantity
+state.orderItems[
+existingIndex
+].quantity
 ) +
 Number(
 newItem.quantity
 )
 );
-
-existingItem.qty =
-existingItem.quantity;
 
 targetIndex =
 existingIndex;
@@ -24720,8 +23289,6 @@ state.orderItems.length -
 1;
 
 }
-
-normaliseBasketItemsForStableRendering();
 
 const postcodeToRecalculate =
 state.deliveryPostcode;
@@ -24817,10 +23384,12 @@ animate:false
 
 }
 
+
 addToOrder.addEventListener(
 "click",
 addCurrentSelectionToOrder
 );
+
 
 /* =========================================
 CUSTOM ORDER ITEM ID
@@ -24828,14 +23397,39 @@ CUSTOM ORDER ITEM ID
 
 function createCustomOrderItemId() {
 
-return createBasketOrderItemId(
-"custom"
+if (
+window.crypto &&
+typeof window.crypto.randomUUID ===
+"function"
+) {
+
+return window.crypto.randomUUID();
+
+}
+
+return (
+"custom-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(
+36
+)
+.slice(
+2,
+10
+)
 );
 
 }
 
+
 /* =========================================
 ADD CUSTOM CALCULATOR SELECTION
+
+This is the point where custom calculator
+items now enter the SAME basket and delivery
+system as standard rooflights.
 ========================================= */
 
 function addCurrentCustomSelectionToOrder() {
@@ -24844,53 +23438,25 @@ closeSizeDropdown();
 
 closeCustomBuildDropdowns();
 
-const priceResult =
-getMasterCustomPriceResult(
-{
-width:
-customState.width,
-
-length:
-customState.length,
-
-glazing:
-customState.glazing,
-
-type:
-customState.type,
-
-border:
-customState.border,
-
-tint:
-customState.tint
-}
-);
+const unitPrice =
+selectedCustomPrice();
 
 if (
 !customInputsAreValid() ||
-!priceResult.available ||
 !Number.isFinite(
 Number(
-priceResult.price
+unitPrice
 )
 ) ||
 Number(
-priceResult.price
+unitPrice
 ) <=
 0
 ) {
 
-updateCustomConfiguratorUI();
-
 return;
 
 }
-
-const unitPrice =
-Number(
-priceResult.price
-);
 
 const itemId =
 createCustomOrderItemId();
@@ -24964,10 +23530,17 @@ customState.quantity
 ),
 
 unitPrice:
-unitPrice,
+Number(
+unitPrice
+),
 
 price:
-unitPrice,
+Number(
+unitPrice
+),
+
+priceCategory:
+"custom-cheap",
 
 deliveryCategory:
 getDeliveryCategoryForCustomDimensions(
@@ -24986,6 +23559,7 @@ deliveryRequiresQuote:false
 
 };
 
+
 const existingIndex =
 state.customOrderItems.findIndex(
 item =>
@@ -24995,7 +23569,9 @@ newItem
 )
 );
 
+
 let targetIndex;
+
 
 if (
 existingIndex >=
@@ -25006,11 +23582,6 @@ const existingItem =
 state.customOrderItems[
 existingIndex
 ];
-
-ensureBasketOrderItemId(
-existingItem,
-"custom"
-);
 
 const nextQuantity =
 Math.min(
@@ -25052,29 +23623,34 @@ state.customOrderItems.length -
 
 }
 
-normaliseBasketItemsForStableRendering();
 
 const postcodeToRecalculate =
 state.deliveryPostcode;
+
 
 setDeliveryPending(
 postcodeToRecalculate
 );
 
+
 state.basketTotal =
 calculateOrderTotal();
 
+
 saveOrderToStorage();
+
 
 updateBasketTotal(
 state.basketTotal
 );
+
 
 renderOrderSummary(
 {
 animate:false
 }
 );
+
 
 renderCustomOrderSummary(
 {
@@ -25084,18 +23660,25 @@ targetIndex
 }
 );
 
+
 renderBasketDrawer();
+
 
 updateCheckoutAvailability();
 
+
 updateEstimatedDelivery();
 
+
 requestOrderSummaryDeliveryWidthSync();
+
 
 customState.quantity =
 1;
 
+
 updateCustomConfiguratorUI();
+
 
 if (
 customAddToOrderFeedbackTimer !==
@@ -25108,8 +23691,10 @@ customAddToOrderFeedbackTimer
 
 }
 
+
 customAddToOrderText.textContent =
 "Added To Order ✓";
+
 
 customAddToOrderFeedbackTimer =
 setTimeout(
@@ -25125,9 +23710,11 @@ null;
 1100
 );
 
+
 scheduleCustomOrderFocus(
 targetIndex
 );
+
 
 if (
 postcodeToRecalculate
@@ -25143,10 +23730,12 @@ animate:false
 
 }
 
+
 customAddToOrder.addEventListener(
 "click",
 addCurrentCustomSelectionToOrder
 );
+
 
 /* =========================================
 HOMEPAGE ARRIVAL FOCUS
@@ -25311,6 +23900,7 @@ topRatio
 
 }
 
+
 function consumeHomepageOrderFocusRequest() {
 
 try {
@@ -25364,6 +23954,7 @@ currentUrl.hash
 
 }
 
+
 function findHomepageCustomOrderIndex(
 customItemId
 ) {
@@ -25395,6 +23986,7 @@ customItemId
 );
 
 }
+
 
 function playHomepageCustomAddedFeedback() {
 
@@ -25435,6 +24027,7 @@ null;
 );
 
 }
+
 
 function handleHomepageArrivalFocus() {
 
@@ -25551,12 +24144,14 @@ targetIndex
 
 }
 
+
 /* =========================================
 ESTIMATED DELIVERY CLOCK
 ========================================= */
 
 let deliveryRefreshTimer =
 null;
+
 
 function startDeliveryClock() {
 
@@ -25583,6 +24178,7 @@ updateEstimatedDelivery();
 
 }
 
+
 window.addEventListener(
 "focus",
 () => {
@@ -25591,6 +24187,7 @@ updateEstimatedDelivery();
 
 }
 );
+
 
 document.addEventListener(
 "visibilitychange",
@@ -25606,6 +24203,7 @@ updateEstimatedDelivery();
 
 }
 );
+
 
 /* =========================================
 PAGE RESTORE / STORAGE SYNC
@@ -25625,8 +24223,6 @@ return;
 
 loadOrderFromStorage();
 
-normaliseBasketItemsForStableRendering();
-
 renderOrderSummary(
 {
 animate:false
@@ -25670,6 +24266,7 @@ animate:false
 
 }
 );
+
 
 window.addEventListener(
 "storage",
@@ -25686,8 +24283,6 @@ return;
 
 loadOrderFromStorage();
 
-normaliseBasketItemsForStableRendering();
-
 renderOrderSummary(
 {
 animate:false
@@ -25731,6 +24326,7 @@ animate:false
 
 }
 );
+
 
 /* =========================================
 SCROLL REVEAL
@@ -25806,54 +24402,65 @@ element
 
 }
 
-/* =========================================
-MASTER PRICING INTEGRATION VALIDATION
 
-No pricing strategy is hard-coded here.
-This only confirms that the shared router
-has been loaded before OP2.
+/* =========================================
+STANDARD PRICE VALIDATION
 ========================================= */
 
-function validateMasterPricingIntegration() {
-
-const pricing =
-getFactoryRooflightsMasterPricing();
+function validatePricingConfiguration() {
 
 if (
-!pricing
+ACTIVE_PRICE_CATEGORY !==
+"cheap"
 ) {
 
 console.warn(
-"FactoryRooflightsMasterPricing is not available."
-);
-
-return;
-
-}
-
-if (
-typeof pricing.getStandardPrice !==
-"function"
-) {
-
-console.warn(
-"FactoryRooflightsMasterPricing.getStandardPrice is not available."
+"Expected active price category to be cheap."
 );
 
 }
 
 if (
-typeof pricing.getCustomPrice !==
-"function"
+PRICE_CATEGORIES.normal !==
+null ||
+PRICE_CATEGORIES.expensive !==
+null
 ) {
 
 console.warn(
-"FactoryRooflightsMasterPricing.getCustomPrice is not available."
+"Normal and Expensive price categories must remain unpopulated."
+);
+
+}
+
+const category =
+getActivePriceCategory();
+
+const missingPrices =
+SIZE_DROPDOWN_ORDER.filter(
+size =>
+!Number.isFinite(
+Number(
+category.tripleClearToughened100[
+size
+]
+)
+)
+);
+
+if (
+missingPrices.length
+) {
+
+console.warn(
+"Selectable sizes missing Cheap prices:",
+missingPrices
 );
 
 }
 
 }
+
 
 /* =========================================
 DELIVERY VALIDATION
@@ -25890,6 +24497,11 @@ unmappedSelectableSizes
 );
 
 }
+
+
+/*
+Custom size category checks.
+*/
 
 const customCategoryChecks = [
 
@@ -25949,6 +24561,7 @@ expected:"extraLarge"
 
 ];
 
+
 customCategoryChecks.forEach(
 check => {
 
@@ -25973,6 +24586,15 @@ actual
 
 }
 );
+
+
+/*
+Two Medium custom units at 300 miles:
+
+Medium base = £75
+Additional Medium = £15
+Total = £90
+*/
 
 const customOnlyDelivery =
 calculateBasketDelivery(
@@ -26001,6 +24623,17 @@ customOnlyDelivery
 );
 
 }
+
+
+/*
+One Small standard +
+ten Medium custom at 34 miles.
+
+Best combination:
+Medium base £30
+remaining 10 units × £15
+= £180
+*/
 
 const mixedDelivery =
 calculateBasketDelivery(
@@ -26033,6 +24666,13 @@ mixedDelivery
 );
 
 }
+
+
+/*
+Mixed Extra Large + Small:
+two separate delivery groups.
+£55 + £25 = £80.
+*/
 
 const mixedAdditionalRateDelivery =
 calculateBasketDelivery(
@@ -26067,6 +24707,11 @@ mixedAdditionalRateDelivery
 );
 
 }
+
+
+/*
+Small + Medium + Large.
+*/
 
 const threeCategoryDelivery =
 calculateBasketDelivery(
@@ -26108,6 +24753,12 @@ threeCategoryDelivery
 
 }
 
+
+/*
+Three Small units:
+£25 + £15 + £15 = £55.
+*/
+
 const threeSmallUnitsDelivery =
 calculateBasketDelivery(
 [
@@ -26137,6 +24788,12 @@ threeSmallUnitsDelivery
 );
 
 }
+
+
+/*
+Large + Extra Large:
+£35 + £55 = £90.
+*/
 
 const largeExtraLargeDelivery =
 calculateBasketDelivery(
@@ -26171,6 +24828,14 @@ largeExtraLargeDelivery
 );
 
 }
+
+
+/*
+2 XL + Large + Small:
+XL group = £55 + £65
+non-XL group = £35 + £15
+total = £170
+*/
 
 const groupedAdditionalDelivery =
 calculateBasketDelivery(
@@ -26209,6 +24874,11 @@ groupedAdditionalDelivery
 );
 
 }
+
+
+/*
+Band checks.
+*/
 
 const boundaryChecks = [
 
@@ -26250,6 +24920,7 @@ expected:115
 
 ];
 
+
 boundaryChecks.forEach(
 check => {
 
@@ -26275,6 +24946,12 @@ actual
 }
 );
 
+
+/*
+Small / Medium / Large remain available
+at 251–400 miles.
+*/
+
 const standardAt251 =
 calculateBasketDelivery(
 [
@@ -26298,6 +24975,11 @@ standardAt251
 );
 
 }
+
+
+/*
+Large at exactly 400 miles is allowed.
+*/
 
 const standardAt400 =
 calculateBasketDelivery(
@@ -26323,6 +25005,11 @@ standardAt400
 
 }
 
+
+/*
+Large at 401 miles requires quotation.
+*/
+
 const standardAt401 =
 calculateBasketDelivery(
 [
@@ -26344,6 +25031,11 @@ console.warn(
 );
 
 }
+
+
+/*
+Extra Large at 200 allowed.
+*/
 
 const extraLargeAt200 =
 calculateBasketDelivery(
@@ -26369,6 +25061,11 @@ extraLargeAt200
 
 }
 
+
+/*
+Extra Large at 201 requires quotation.
+*/
+
 const extraLargeAt201 =
 calculateBasketDelivery(
 [
@@ -26390,6 +25087,15 @@ console.warn(
 );
 
 }
+
+
+/*
+CHANGE 1 POSTCODE VALIDATION CHECKS.
+
+These confirm that longer London postcodes
+are treated as incomplete until the final
+characters have actually been typed.
+*/
 
 const postcodeCompletenessChecks = [
 
@@ -26456,14 +25162,69 @@ actual
 
 }
 
+
+/* =========================================
+CUSTOM ROOFLIGHT CALCULATOR PRICING
+
+YOUR MANUALLY ADDED CALCULATOR PRICING
+IS RETAINED HERE.
+
+TRIPLE GLAZED
+CLEAR / TOUGHENED
+100MM BORDER SOURCE PRICES.
+========================================= */
+
+const CUSTOM_CALCULATOR_SOURCE_PRICES = {
+
+"300x800":215,
+"300x1000":235,
+"300x1200":290,
+"300x1500":325,
+"300x2000":365,
+
+"400x800":240,
+"400x1000":265,
+"400x1200":315,
+"400x1500":335,
+"400x1800":375,
+"400x2000":395,
+
+"500x2000":425,
+"500x2500":455,
+
+"600x600":200,
+"600x900":270,
+"600x1200":365,
+"600x1500":395,
+"600x1800":410,
+"600x2000":445,
+"600x2500":625,
+
+"800x800":325,
+"800x1000":375,
+"800x1200":400,
+"800x1500":445,
+"800x1800":460,
+"800x2000":515,
+"800x2500":655,
+
+"1000x1000":340,
+"1000x1200":415,
+"1000x1500":475,
+"1000x1800":585,
+"1000x2000":625,
+"1000x2500":770,
+
+"1500x1500":935,
+"1500x1800":1075,
+"1500x2000":1295,
+"1500x2500":1655
+
+};
+
+
 /* =========================================
 CUSTOM CALCULATOR LIMITS
-
-These are configurator dimension rules only.
-
-The previous custom selling-price tables,
-price points, interpolation and uplift
-constants have been removed from OP2.
 ========================================= */
 
 const CUSTOM_CALCULATOR_MIN_WIDTH =
@@ -26484,8 +25245,89 @@ const CUSTOM_CALCULATOR_LONG_LENGTH =
 const CUSTOM_CALCULATOR_LONG_MIN_WIDTH =
 500;
 
+
+/* =========================================
+CUSTOM CALCULATOR PRICE UPLIFTS
+
+EXISTING:
++5% across all calculator prices.
+
+EXISTING NARROW / LONG:
+A further +5% for widths 290–500mm
+inclusive with lengths 2000mm and above.
+
+NEW LENGTH PRICE ADJUSTMENT:
+Less than 1500mm length = further +20%.
+1500mm length and above = further +7%.
+========================================= */
+
+const CUSTOM_CALCULATOR_BASE_UPLIFT =
+1.05;
+
+const CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT =
+1.05;
+
+const CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT =
+1.20;
+
+const CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT =
+1.07;
+
+
+/* =========================================
+CUSTOM CALCULATOR PRICE POINTS
+========================================= */
+
+const CUSTOM_CALCULATOR_PRICE_POINTS =
+Object.entries(
+CUSTOM_CALCULATOR_SOURCE_PRICES
+)
+.map(
+(
+[
+size,
+price
+]
+) => {
+
+const [
+width,
+length
+] =
+size
+.split(
+"x"
+)
+.map(
+Number
+);
+
+return {
+
+width:
+width,
+
+length:
+length,
+
+price:
+Number(
+price
+)
+
+};
+
+}
+);
+
+
 /* =========================================
 CUSTOM DIMENSION VALIDATION
+
+NO ERROR MESSAGE / POPUP.
+
+INVALID DIMENSIONS SIMPLY KEEP
+ADD TO ORDER DISABLED.
 ========================================= */
 
 function customDimensionsAreValid(
@@ -26538,6 +25380,13 @@ return false;
 
 }
 
+/*
+Exactly 2000mm is permitted below 500mm width.
+
+Only lengths GREATER THAN 2000mm require
+a minimum 500mm width.
+*/
+
 if (
 safeLength >
 CUSTOM_CALCULATOR_LONG_LENGTH &&
@@ -26553,6 +25402,7 @@ return true;
 
 }
 
+
 function customInputsAreValid() {
 
 return customDimensionsAreValid(
@@ -26562,11 +25412,280 @@ customState.length
 
 }
 
+
+/* =========================================
+CUSTOM PRICE INTERPOLATION
+========================================= */
+
+function getInterpolatedCustomSourcePrice(
+width,
+length
+) {
+
+const safeWidth =
+Number(
+width
+);
+
+const safeLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+safeWidth
+) ||
+!Number.isFinite(
+safeLength
+)
+) {
+
+return null;
+
+}
+
+
+/*
+Protect exact supplied anchor prices.
+*/
+
+const exactSize =
+`${safeWidth}x${safeLength}`;
+
+if (
+Object.prototype.hasOwnProperty.call(
+CUSTOM_CALCULATOR_SOURCE_PRICES,
+exactSize
+)
+) {
+
+return Number(
+CUSTOM_CALCULATOR_SOURCE_PRICES[
+exactSize
+]
+);
+
+}
+
+
+/*
+Use the nearest six established anchors.
+*/
+
+const widthRange =
+CUSTOM_CALCULATOR_MAX_WIDTH -
+CUSTOM_CALCULATOR_MIN_WIDTH;
+
+const lengthRange =
+CUSTOM_CALCULATOR_MAX_LENGTH -
+CUSTOM_CALCULATOR_MIN_LENGTH;
+
+const nearestPoints =
+CUSTOM_CALCULATOR_PRICE_POINTS
+.map(
+point => {
+
+const widthDifference =
+(
+safeWidth -
+point.width
+) /
+widthRange;
+
+const lengthDifference =
+(
+safeLength -
+point.length
+) /
+lengthRange;
+
+const distanceSquared =
+(
+widthDifference *
+widthDifference
+) +
+(
+lengthDifference *
+lengthDifference
+);
+
+return {
+
+...point,
+
+distanceSquared:
+distanceSquared
+
+};
+
+}
+)
+.sort(
+(
+first,
+second
+) => {
+
+return (
+first.distanceSquared -
+second.distanceSquared
+);
+
+}
+)
+.slice(
+0,
+6
+);
+
+let weightedPrice =
+0;
+
+let totalWeight =
+0;
+
+nearestPoints.forEach(
+point => {
+
+const weight =
+1 /
+Math.max(
+0.000001,
+point.distanceSquared
+);
+
+weightedPrice +=
+point.price *
+weight;
+
+totalWeight +=
+weight;
+
+}
+);
+
+if (
+!Number.isFinite(
+weightedPrice
+) ||
+!Number.isFinite(
+totalWeight
+) ||
+totalWeight <=
+0
+) {
+
+return null;
+
+}
+
+return (
+weightedPrice /
+totalWeight
+);
+
+}
+
+
+/* =========================================
+CUSTOM BASE PRICE + UPLIFTS
+========================================= */
+
+function getCustomTripleClearToughened100Price(
+width,
+length
+) {
+
+let price =
+getInterpolatedCustomSourcePrice(
+width,
+length
+);
+
+if (
+!Number.isFinite(
+price
+) ||
+price <=
+0
+) {
+
+return null;
+
+}
+
+
+/*
+Existing global calculator uplift.
+*/
+
+price *=
+CUSTOM_CALCULATOR_BASE_UPLIFT;
+
+
+/*
+Existing extra uplift for narrow / long
+calculator sizes.
+*/
+
+if (
+Number(
+width
+) >=
+290 &&
+Number(
+width
+) <=
+500 &&
+Number(
+length
+) >=
+2000
+) {
+
+price *=
+CUSTOM_CALCULATOR_NARROW_LONG_UPLIFT;
+
+}
+
+
+/*
+NEW LENGTH-BASED CALCULATOR PRICE UPLIFT.
+
+Less than 1500mm:
+further +20%.
+
+1500mm and above:
+further +7%.
+*/
+
+if (
+Number(
+length
+) <
+1500
+) {
+
+price *=
+CUSTOM_CALCULATOR_UNDER_1500_LENGTH_UPLIFT;
+
+}
+else {
+
+price *=
+CUSTOM_CALCULATOR_1500_PLUS_LENGTH_UPLIFT;
+
+}
+
+
+return price;
+
+}
+
+
 /* =========================================
 CALCULATE ANY CUSTOM SELECTION
-
-FactoryRooflightsMasterPricing is now the
-only selling-price source for custom units.
 ========================================= */
 
 function calculateCustomPriceForSelection(
@@ -26584,56 +25703,34 @@ return null;
 
 }
 
-const result =
-getMasterCustomPriceResult(
-{
-width:
+const tripleClearToughened100Price =
+getCustomTripleClearToughened100Price(
 selection.width,
-
-length:
-selection.length,
-
-glazing:
-selection.glazing,
-
-type:
-selection.type,
-
-finish:
-selection.tint ??
-selection.finish,
-
-border:
-selection.border
-}
+selection.length
 );
 
 if (
-!result.available
+!Number.isFinite(
+tripleClearToughened100Price
+) ||
+tripleClearToughened100Price <=
+0
 ) {
 
 return null;
 
 }
 
-const price =
-Number(
-result.price
+return calculateConfiguredPrice(
+tripleClearToughened100Price,
+selection.glazing,
+selection.type,
+selection.tint,
+selection.border
 );
 
-return (
-Number.isFinite(
-price
-) &&
-price >
-0
-)
-?
-price
-:
-null;
-
 }
+
 
 function selectedCustomPrice() {
 
@@ -26661,8 +25758,19 @@ customState.border
 
 }
 
+
 /* =========================================
 CUSTOM CALCULATOR UI
+
+VALID CUSTOM SIZES NOW ENABLE
+ADD TO ORDER.
+
+Once added, the item becomes part of:
+- postcode delivery calculation
+- distance category logic
+- delivery totals
+- basket totals
+- estimated delivery calculations
 ========================================= */
 
 function updateCustomConfiguratorUI() {
@@ -26689,6 +25797,11 @@ unitPrice
 ) >
 0;
 
+
+/*
+No warning or popup for invalid dimensions.
+*/
+
 customInternalWidth.classList.remove(
 "is-invalid"
 );
@@ -26707,6 +25820,7 @@ customInternalLength.setAttribute(
 "false"
 );
 
+
 customPurchaseLayout.classList.toggle(
 "is-incomplete",
 !hasPrice
@@ -26714,14 +25828,17 @@ customPurchaseLayout.classList.toggle(
 
 requestCustomSummaryColumnSync();
 
+
 customPriceZone.hidden =
 !hasPrice;
 
 customDimensionsZone.hidden =
 !hasPrice;
 
+
 customQuantityValue.textContent =
 customState.quantity;
+
 
 customQuantityUnitLabel.textContent =
 customState.quantity ===
@@ -26731,9 +25848,11 @@ customState.quantity ===
 :
 "Units";
 
+
 customQuantityMinus.disabled =
 customState.quantity <=
 1;
+
 
 customQuantityMinus.style.opacity =
 customState.quantity <=
@@ -26743,11 +25862,18 @@ customState.quantity <=
 :
 "1";
 
+
 customAddToOrderText.textContent =
 `Add ${customState.quantity} To Order`;
 
+
+/*
+VALID PRICE = ADD TO ORDER ENABLED.
+*/
+
 customAddToOrder.disabled =
 !hasPrice;
+
 
 if (
 !hasPrice
@@ -26759,11 +25885,17 @@ return;
 
 }
 
+
+/* =========================================
+CUSTOM DIMENSIONS
+========================================= */
+
 customInternalSize.textContent =
 formatCustomDimension(
 customState.width,
 customState.length
 );
+
 
 const external =
 getExternalDimensionsFor(
@@ -26771,27 +25903,37 @@ getExternalDimensionsFor(
 customState.border
 );
 
+
 customExternalSize.textContent =
 formatCustomDimension(
 external.width,
 external.length
 );
 
+
+/* =========================================
+CUSTOM UNIT PRICE
+========================================= */
+
 const unitPriceParts =
 moneyParts(
 unitPrice
 );
 
+
 customPriceWhole.textContent =
 unitPriceParts.whole;
 
+
 customPricePence.textContent =
 unitPriceParts.pence;
+
 
 const customUnitPriceLineElement =
 document.getElementById(
 "customUnitPriceLine"
 );
+
 
 if (
 customUnitPriceLineElement
@@ -26835,11 +25977,18 @@ dot.textContent =
 
 }
 
+
 customVatLine.textContent =
 "inc. vat";
 
+
 customVatLine.style.visibility =
 "visible";
+
+
+/* =========================================
+CUSTOM QUANTITY TOTAL
+========================================= */
 
 if (
 customState.quantity >
@@ -26855,11 +26004,14 @@ moneyParts(
 totalPrice
 );
 
+
 customTotalPriceWhole.textContent =
 totalPriceParts.whole;
 
+
 customTotalPricePence.textContent =
 totalPriceParts.pence;
+
 
 const totalPound =
 customTotalPriceBlock.querySelector(
@@ -26870,6 +26022,7 @@ const totalDot =
 customTotalPriceBlock.querySelector(
 ".price-dot"
 );
+
 
 if (
 totalPound
@@ -26889,20 +26042,25 @@ totalDot.textContent =
 
 }
 
+
 customTotalPriceBlock.style.visibility =
 "visible";
 
+
 customTotalPriceBlock.hidden =
 false;
+
 
 customTotalPriceBlock.setAttribute(
 "aria-hidden",
 "false"
 );
 
+
 customTotalPriceBlock.classList.add(
 "is-visible"
 );
+
 
 if (
 customVatLine.parentElement !==
@@ -26922,13 +26080,16 @@ customTotalPriceBlock.classList.remove(
 "is-visible"
 );
 
+
 customTotalPriceBlock.hidden =
 true;
+
 
 customTotalPriceBlock.setAttribute(
 "aria-hidden",
 "true"
 );
+
 
 if (
 customVatLine.parentElement !==
@@ -26945,15 +26106,95 @@ customVatLine
 
 }
 
-/* =========================================
-CUSTOM CALCULATOR DIMENSION CHECKS
 
-The old price-value tests have been removed.
-Only the existing dimension-rule checks
-remain here.
+/* =========================================
+CUSTOM CALCULATOR PRICE CHECKS
 ========================================= */
 
-function validateCustomCalculatorDimensions() {
+function validateCustomCalculatorPricing() {
+
+const tests = [
+
+{
+width:300,
+length:800,
+expected:270
+},
+
+{
+width:300,
+length:2000,
+expected:430
+},
+
+{
+width:400,
+length:2000,
+expected:465
+},
+
+{
+width:500,
+length:2000,
+expected:500
+},
+
+{
+width:500,
+length:2500,
+expected:535
+},
+
+{
+width:600,
+length:900,
+expected:340
+},
+
+{
+width:1000,
+length:1000,
+expected:430
+}
+
+];
+
+
+tests.forEach(
+test => {
+
+const result =
+calculateConfiguredPrice(
+getCustomTripleClearToughened100Price(
+test.width,
+test.length
+),
+"triple",
+"toughened",
+"clear",
+100
+);
+
+if (
+result !==
+test.expected
+) {
+
+console.warn(
+"Custom calculator price check failed:",
+test,
+result
+);
+
+}
+
+}
+);
+
+
+/*
+Dimension-rule checks.
+*/
 
 const dimensionTests = [
 
@@ -27001,6 +26242,7 @@ expected:false
 
 ];
 
+
 dimensionTests.forEach(
 test => {
 
@@ -27027,6 +26269,7 @@ actual
 );
 
 }
+
 
 /* =========================================
 CUSTOM ESTIMATED DELIVERY VALIDATION
@@ -27080,6 +26323,7 @@ max:10
 
 ];
 
+
 checks.forEach(
 check => {
 
@@ -27108,25 +26352,30 @@ result
 
 }
 
+
 /* =========================================
 INITIALISE PAGE
+
+IMPORTANT:
+The custom pricing constants above must
+exist before loadOrderFromStorage() runs
+because stored custom calculator items can
+be repriced during sanitisation.
 ========================================= */
 
-validateMasterPricingIntegration();
-
-validateCustomCalculatorDimensions();
+validateCustomCalculatorPricing();
 
 validateCustomLeadTimes();
 
 populateSizes();
+
+validatePricingConfiguration();
 
 validateDeliveryConfiguration();
 
 loadStateFromQuery();
 
 loadOrderFromStorage();
-
-normaliseBasketItemsForStableRendering();
 
 updateUI(
 {
@@ -27188,4 +26437,3 @@ applyDesktopAccessRestriction();
 
 </body>
 </html>
-```
