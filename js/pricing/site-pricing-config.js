@@ -59,7 +59,7 @@ const ALLOWED_STRATEGIES = Object.freeze([
 * =========================================
 */
 
-const ACTIVE_STRATEGY = "normal";
+const ACTIVE_STRATEGY = "cheap";
 
 function normalizeStrategy(strategy) {
 const value = String(strategy ?? "")
