@@ -1,14 +1,16 @@
-Gmail	Nathan Knight <rightglaze@gmail.com>
-Standard
-Nathan Knight <nathank3290@gmail.com>	Fri, Sep 4, 2026 at 12:23 PM
-To: rightglaze@gmail.com
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Standard Frameless Rooflight Sizes | Factory Toughened Rooflights</title>
-<meta name="description" content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times, free mainland UK delivery on eligible sizes and postcode-based delivery pricing on Extra Large units." />
+
+<meta
+name="description"
+content="Shop standard-size frameless flat roof skylights manufactured from 6mm+ toughened safety glass, with double and triple glazing options, fast lead times, free mainland UK delivery on eligible sizes and postcode-based delivery pricing on Extra Large units."
+/>
+
 <style>
 :root {
 --orange:#e87817;
@@ -40,8 +42,14 @@ To: rightglaze@gmail.com
 --delivery-red:#985047;
 }
 
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; background:var(--black); }
+* {
+box-sizing:border-box;
+}
+
+html {
+scroll-behavior:smooth;
+background:var(--black);
+}
 
 body {
 margin:0;
@@ -531,6 +539,7 @@ background:rgba(0,0,0,.72);
 opacity:0;
 transition:opacity .34s ease;
 cursor:pointer;
+touch-action:none;
 }
 
 .basket-drawer-layer.is-open
@@ -659,6 +668,7 @@ font-size:23px;
 font-weight:300;
 line-height:1;
 cursor:pointer;
+touch-action:manipulation;
 transition:
 border-color .2s ease,
 background .2s ease,
@@ -1577,6 +1587,10 @@ COLLAPSIBLE SECTION HEADINGS
 .product-section {
 position:relative;
 overflow:hidden;
+padding:26px 6%;
+}
+
+.product-section.is-open {
 padding:42px 6% 64px;
 }
 
@@ -1590,13 +1604,12 @@ margin:0 auto;
 .section-toggle {
 width:100%;
 margin:0;
-padding:0 0 22px;
+padding:0;
 display:grid;
 grid-template-columns:minmax(0,1fr) auto;
 align-items:center;
 gap:18px;
 border:0;
-border-bottom:1px solid rgba(255,255,255,.11);
 background:transparent;
 color:inherit;
 text-align:left;
@@ -1638,23 +1651,30 @@ color:#d8d8d8;
 }
 
 .section-chevron {
-display:flex;
-align-items:center;
-justify-content:center;
-width:22px;
-height:22px;
-color:#ffffff;
-font-family:Arial,"Segoe UI",sans-serif;
-font-size:18px;
-font-weight:900;
-line-height:1;
-transform:rotate(90deg);
+position:relative;
+display:block;
+width:16px;
+height:14px;
+transform-origin:center center;
 transition:none;
-transform-origin:center;
+}
+
+.section-chevron::before {
+content:"";
+position:absolute;
+left:50%;
+top:3px;
+width:6px;
+height:6px;
+border-right:1.5px solid rgba(255,255,255,.92);
+border-bottom:1.5px solid rgba(255,255,255,.92);
+transform:
+translateX(-50%)
+rotate(45deg);
 }
 
 .product-section.is-open .section-chevron {
-transform:rotate(-90deg);
+transform:rotate(180deg);
 }
 
 .section-collapse {
@@ -2032,6 +2052,8 @@ width:100%;
 display:grid;
 grid-template-columns:1fr 1fr;
 border:1px solid rgba(255,255,255,.15);
+border-radius:8px 8px 0 0;
+overflow:hidden;
 max-width:210px;
 }
 
@@ -2064,11 +2086,16 @@ background:var(--catalogue-orange);
 color:#050505;
 }
 
+.toggle button[data-glazing="triple"].active {
+color:#ffffff;
+}
+
 .glazed-label {
 max-width:210px;
 height:19px;
 border:1px solid rgba(255,255,255,.15);
 border-top:none;
+border-radius:0 0 8px 8px;
 position:relative;
 overflow:hidden;
 background:rgba(255,255,255,.025);
@@ -2394,14 +2421,13 @@ text-align:center;
 
 .bottom-cta h2 {
 margin:0 0 18px;
-font-size:clamp(34px,5vw,58px);
+font-size:clamp(28px,4vw,44px);
 line-height:.98;
 letter-spacing:-1.6px;
 }
 
 .bottom-cta h2.larger-title {
 margin-top:48px;
-font-size:clamp(28px,4vw,44px);
 }
 
 .bottom-cta p {
@@ -2424,6 +2450,7 @@ flex-wrap:wrap;
 background:var(--catalogue-orange);
 color:#050505;
 border:1px solid var(--catalogue-orange);
+border-radius:6px;
 padding:15px 26px;
 font-size:13px;
 font-weight:950;
@@ -2509,11 +2536,15 @@ font-size:13px;
 }
 
 .product-section {
+padding:22px 4%;
+}
+
+.product-section.is-open {
 padding:34px 4% 50px;
 }
 
 .section-toggle {
-padding:0 2% 17px;
+padding:0 2%;
 gap:10px;
 }
 
@@ -2527,9 +2558,8 @@ font-size:12px;
 }
 
 .section-chevron {
-width:18px;
-height:18px;
-font-size:15px;
+width:16px;
+height:14px;
 }
 
 .section-collapse {
@@ -2690,164 +2720,7 @@ font-size:18px;
 }
 
 /* =========================================
-INDEX FOOTER — ISOLATED FOR ORDER PAGE
-WORDMARK + ADDRESS ONLY
-========================================= */
-
-.order-index-footer {
-position:relative;
-width:100%;
-padding:46px 6%;
-background:#090a0a;
-border-top:1px solid rgba(255,255,255,.10);
-color:rgba(247,247,243,.50);
-font-size:13px;
-}
-
-.order-index-footer-inner {
-width:100%;
-max-width:1180px;
-margin:0 auto;
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:40px;
-}
-
-.order-index-footer-home {
-display:block;
-width:max-content;
-max-width:60%;
-color:inherit;
-text-decoration:none;
-}
-
-.order-index-footer .footer-wordmark {
-margin:0;
-color:var(--steel);
-transform:scale(.93);
-transform-origin:left top;
-}
-
-.order-index-footer
-.footer-wordmark
-.footer-wordmark-factory {
-display:block;
-color:#b6b8b7;
-background:
-linear-gradient(
-180deg,
-#e0e1e0 0%,
-#b8bab9 46%,
-#8e9190 100%
-);
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
-filter:none;
-}
-
-.order-index-footer
-.footer-wordmark
-.footer-wordmark-toughened {
-display:block;
-color:#f2f2f0;
-background:
-linear-gradient(
-180deg,
-#ffffff 0%,
-#f0f0ee 45%,
-#cfd1cf 100%
-);
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
-filter:none;
-}
-
-.order-index-footer
-.footer-wordmark
-.wordmark-bottom {
-color:#b6b8b7;
-}
-
-.order-index-footer
-.footer-wordmark
-.footer-wordmark-rooflights {
-display:block;
-color:#b6b8b7;
-background:
-linear-gradient(
-180deg,
-#e0e1e0 0%,
-#b8bab9 46%,
-#8e9190 100%
-);
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
-filter:none;
-}
-
-.order-index-footer
-.footer-wordmark
-.wordmark-domain {
-position:relative;
-left:-1px;
-top:1px;
-color:#9ea19f;
-font-size:.40em;
--webkit-text-fill-color:#9ea19f;
-}
-
-.order-index-footer-address {
-display:grid;
-gap:0;
-width:max-content;
-max-width:40%;
-margin:0;
-font-style:normal;
-font-family:
-"Aptos",
-"Inter",
-"Segoe UI",
-Arial,
-sans-serif;
-font-size:8.7px;
-font-weight:600;
-line-height:1.45;
-letter-spacing:.6px;
-text-align:right;
-text-transform:uppercase;
-color:rgba(255,255,255,.72);
-transform:scale(.93);
-transform-origin:right top;
-}
-
-.order-index-footer-address span {
-display:block;
-}
-
-.order-index-footer-dots {
-position:absolute;
-left:6%;
-bottom:12px;
-display:flex;
-align-items:center;
-gap:5px;
-pointer-events:none;
-}
-
-.order-index-footer-dots span {
-display:block;
-width:3px;
-height:3px;
-border-radius:50%;
-background:rgba(255,255,255,.88);
-}
-
-/* =========================================
-CURRENT ORDER-PAGE MOBILE HEADER / FOOTER
+CURRENT ORDER-PAGE MOBILE HEADER
 ========================================= */
 
 @media(max-width:950px) {
@@ -2904,34 +2777,15 @@ height:22px;
 top:-15px;
 left:50%;
 font-size:7px;
-transform:translate(-50%,6px) scale(.78);
+transform:
+translate(-50%,6px)
+scale(.78);
 }
 
 .basket-total-text.is-visible {
-transform:translate(-50%,0) scale(1);
-}
-
-.order-index-footer {
-padding:34px 5.5%;
-}
-
-.order-index-footer-inner {
-gap:18px;
-}
-
-.order-index-footer .footer-wordmark {
-font-size:20px;
-}
-
-.order-index-footer-address {
-font-size:8.1px;
-line-height:1.45;
-letter-spacing:.46px;
-}
-
-.order-index-footer-dots {
-left:5.5%;
-bottom:10px;
+transform:
+translate(-50%,0)
+scale(1);
 }
 
 .checkout-now {
@@ -2951,29 +2805,6 @@ font-size:14px;
 }
 
 @media(max-width:390px) {
-
-.order-index-footer {
-padding-left:5%;
-padding-right:5%;
-}
-
-.order-index-footer-inner {
-gap:12px;
-}
-
-.order-index-footer .footer-wordmark {
-font-size:18px;
-letter-spacing:2px;
-}
-
-.order-index-footer-address {
-font-size:7.2px;
-letter-spacing:.32px;
-}
-
-.order-index-footer-dots {
-left:5%;
-}
 
 .checkout-now {
 font-size:7px;
@@ -3344,9 +3175,7 @@ Popular Sizes
 <span
 class="section-chevron"
 aria-hidden="true"
->
-&gt;
-</span>
+></span>
 
 </button>
 
@@ -3407,9 +3236,7 @@ Small Sizes
 <span
 class="section-chevron"
 aria-hidden="true"
->
-&gt;
-</span>
+></span>
 
 </button>
 
@@ -3469,9 +3296,7 @@ Medium Sizes
 <span
 class="section-chevron"
 aria-hidden="true"
->
-&gt;
-</span>
+></span>
 
 </button>
 
@@ -3532,9 +3357,7 @@ Large Sizes
 <span
 class="section-chevron"
 aria-hidden="true"
->
-&gt;
-</span>
+></span>
 
 </button>
 
@@ -3595,9 +3418,7 @@ Extra Large Sizes
 <span
 class="section-chevron"
 aria-hidden="true"
->
-&gt;
-</span>
+></span>
 
 </button>
 
@@ -3740,67 +3561,6 @@ Oversized Quote
 </section>
 
 </main>
-
-<footer
-class="order-index-footer"
-id="contact"
->
-
-<div class="order-index-footer-inner">
-
-<a
-href="index.html"
-class="order-index-footer-home"
-aria-label="Factory Toughened Rooflights homepage"
->
-
-<div class="wordmark footer-wordmark">
-
-<span class="footer-wordmark-factory">
-Factory
-</span>
-
-<span class="footer-wordmark-toughened">
-Toughened
-</span>
-
-<div class="wordmark-bottom">
-
-<span class="footer-wordmark-rooflights">
-Rooflights
-</span>
-
-<small class="wordmark-domain">
-.co.uk
-</small>
-
-</div>
-
-</div>
-
-</a>
-
-<address class="order-index-footer-address">
-
-<span>Anamax Group Estate</span>
-<span>Oxford Road, Denham</span>
-<span>Buckinghamshire</span>
-<span>SL9 7BB</span>
-
-</address>
-
-</div>
-
-<div
-class="order-index-footer-dots"
-aria-hidden="true"
->
-<span></span>
-<span></span>
-<span></span>
-</div>
-
-</footer>
 
 <script>
 
@@ -4644,7 +4404,7 @@ return internalArea >=
 }
 
 /* =========================================
-CARD CREATION / FINAL INDEX DESIGN
+CARD CREATION
 ========================================= */
 
 function getCardConfiguration(
@@ -5471,7 +5231,6 @@ extraLargeSizes
 
 /* =========================================
 SECTION ACCORDIONS
-SMALL OPEN ON INITIAL LOAD; ALL OTHERS CLOSED
 ========================================= */
 
 function setCatalogueSectionOpen(
@@ -6303,7 +6062,7 @@ originalText;
 }
 
 /* =========================================
-CURRENT ORDER-PAGE HEADER / MENU / WHATSAPP
+HEADER / MENU / WHATSAPP
 ========================================= */
 
 function openMenu() {
@@ -6431,7 +6190,6 @@ event.stopPropagation();
 
 /* =========================================
 SHARED ORDER-PAGE BASKET
-RETAINS factoryToughenedRooflightsOrderV1
 ========================================= */
 
 const ORDER_STORAGE_KEY =
@@ -6460,6 +6218,12 @@ document.getElementById(
 const basketDrawerClose =
 document.getElementById(
 "basketDrawerClose"
+);
+
+const basketDrawerBackdrop =
+basketDrawerLayer
+?.querySelector(
+"[data-basket-drawer-backdrop]"
 );
 
 const basketDrawerBody =
@@ -9214,7 +8978,7 @@ estimatedDelivery:""
 }
 
 /* =========================================
-ESTIMATED DELIVERY FOR SHARED BASKET
+ESTIMATED DELIVERY
 ========================================= */
 
 function getLeadTimeForSelection(
@@ -10452,53 +10216,8 @@ itemKey
 }
 
 /* =========================================
-BASKET MODAL — OUTSIDE CLICK ONLY CLOSES
-AND EXACT PAGE SCROLL POSITION IS RETAINED
+BASKET MODAL / SCROLL LOCK
 ========================================= */
-
-function getBasketBackgroundElements() {
-
-if (
-!basketDrawerLayer
-) {
-
-return [];
-
-}
-
-return Array.from(
-document.body.children
-)
-.filter(
-element => {
-
-return (
-element !==
-basketDrawerLayer &&
-element.tagName !==
-"SCRIPT"
-);
-
-}
-);
-
-}
-
-function setBasketBackgroundInert(
-shouldBeInert
-) {
-
-getBasketBackgroundElements()
-.forEach(
-element => {
-
-element.inert =
-shouldBeInert;
-
-}
-);
-
-}
 
 function lockBasketPageScroll() {
 
@@ -10679,10 +10398,6 @@ true;
 
 lockBasketPageScroll();
 
-setBasketBackgroundInert(
-true
-);
-
 basketDrawerLayer.classList.add(
 "is-open"
 );
@@ -10746,10 +10461,6 @@ basketDrawerLayer.setAttribute(
 basketButton.setAttribute(
 "aria-expanded",
 "false"
-);
-
-setBasketBackgroundInert(
-false
 );
 
 unlockBasketPageScroll();
@@ -11143,6 +10854,10 @@ commitBasketDrawerMutation();
 
 }
 
+/* =========================================
+BASKET EVENT HANDLERS
+========================================= */
+
 if (
 basketButton
 ) {
@@ -11166,8 +10881,7 @@ if (
 basketDrawerClose
 ) {
 
-basketDrawerClose.addEventListener(
-"click",
+const closeBasketFromButton =
 event => {
 
 event.preventDefault();
@@ -11176,24 +10890,26 @@ event.stopPropagation();
 
 closeBasketDrawer();
 
-}
+};
+
+basketDrawerClose.addEventListener(
+"pointerup",
+closeBasketFromButton
+);
+
+basketDrawerClose.addEventListener(
+"click",
+closeBasketFromButton
 );
 
 }
 
 if (
-basketDrawerLayer
+basketDrawerBackdrop
 ) {
 
-basketDrawerLayer.addEventListener(
-"click",
+const closeBasketFromBackdrop =
 event => {
-
-if (
-event.target.closest(
-"[data-basket-drawer-backdrop]"
-)
-) {
 
 event.preventDefault();
 
@@ -11205,9 +10921,27 @@ restoreFocus:false
 }
 );
 
-return;
+};
+
+basketDrawerBackdrop.addEventListener(
+"pointerup",
+closeBasketFromBackdrop
+);
+
+basketDrawerBackdrop.addEventListener(
+"click",
+closeBasketFromBackdrop
+);
 
 }
+
+if (
+basketDrawerLayer
+) {
+
+basketDrawerLayer.addEventListener(
+"click",
+event => {
 
 const toggle =
 event.target.closest(
@@ -11533,7 +11267,7 @@ event.preventDefault();
 );
 
 /* =========================================
-PRICING VALIDATION / INITIALISE
+PRICING VALIDATION
 ========================================= */
 
 function validatePricingCoverage() {
