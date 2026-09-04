@@ -144,6 +144,7 @@ const EXPENSIVE_PRICE_UPLIFTS = Object.freeze({
 "600x2000": Object.freeze([15,15,15,15,15,20,15,15]),
 "600x2500": Object.freeze([15,15,15,20,20,20,15,20]),
 "800x800": Object.freeze([10,10,10,10,10,10,10,10]),
+"800x1000": Object.freeze([10,10,10,10,15,15,10,10]),
 "800x1200": Object.freeze([10,10,10,10,15,15,10,10]),
 "800x1500": Object.freeze([10,10,15,15,15,15,15,15]),
 "800x1800": Object.freeze([15,15,15,15,15,15,15,15]),
