@@ -25237,7 +25237,7 @@ const CUSTOM_CALCULATOR_MIN_LENGTH =
 290;
 
 const CUSTOM_CALCULATOR_MAX_LENGTH =
-2500;
+3000;
 
 const CUSTOM_CALCULATOR_LONG_LENGTH =
 2000;
@@ -26349,10 +26349,1919 @@ result
 
 }
 );
+/* =========================================
+OP-3A TEST INTEGRATION
+MASTER FILE LOADER + PRICING / MAKE-UP
+
+PASTE THIS DIRECTLY ABOVE THE EXISTING
+"INITIALISE PAGE" BLOCK AT THE BOTTOM OF OP-2.
+
+KEEP THE EXISTING OP-2 INITIALISATION BLOCK.
+DO NOT REMOVE THE EXISTING LOCAL PRICING,
+MAKE-UP OR DELIVERY CODE FOR THIS TEST.
+
+TEST PURPOSE:
+- Load all seven shared master files.
+- Switch STANDARD pricing to master-pricing.js.
+- Switch CUSTOM pricing to master-pricing.js.
+- Switch displayed top-glass thickness to
+  master-makeup-logic.js.
+- Load and validate master-delivery-rates.js,
+  but DO NOT replace the current working
+  Order Page delivery engine yet.
+
+IMPORTANT:
+The existing OP-2 initialisation will run
+once using the current local code while the
+external master files load. As soon as the
+masters are ready, OP-3A installs the master
+pricing / make-up functions and refreshes the
+already-initialised page without registering
+any duplicate event handlers or starting a
+second delivery clock.
+========================================= */
+
+const OP3A_TEST_MASTER_FILES = Object.freeze([
+{
+src:"js/masters/master-makeup-logic.js",
+requiredGlobal:"MasterMakeupLogic"
+},
+{
+src:"js/masters/master-delivery-rates.js",
+requiredGlobal:"MasterDeliveryRates"
+},
+{
+src:"js/pricing/pricing-cheap.js",
+requiredGlobal:null
+},
+{
+src:"js/pricing/pricing-normal.js",
+requiredGlobal:null
+},
+{
+src:"js/pricing/pricing-expensive.js",
+requiredGlobal:null
+},
+{
+src:"js/pricing/site-pricing-config.js",
+requiredGlobal:null
+},
+{
+src:"js/pricing/master-pricing.js",
+requiredGlobal:"FactoryRooflightsMasterPricing"
+}
+]);
+
+let op3aTestReady =
+false;
+
+let op3aTestFailed =
+false;
+
+let op3aTestOverridesInstalled =
+false;
+
+let op3aOriginalUpdateUI =
+null;
+
+function op3aGetGlobal(
+name
+) {
+
+if (
+!name
+) {
+
+return undefined;
 
 }
 
+return globalThis[
+name
+];
 
+}
+
+function op3aFindExistingScript(
+source
+) {
+
+const expected =
+String(
+source || ""
+)
+.replace(
+/^\.\//,
+""
+);
+
+return Array.from(
+document.scripts
+).find(
+script => {
+
+const currentSource =
+String(
+script.getAttribute(
+"src"
+) || ""
+)
+.replace(
+/^\.\//,
+""
+);
+
+return (
+currentSource ===
+expected ||
+currentSource.endsWith(
+"/" + expected
+)
+);
+
+}
+) ||
+null;
+
+}
+
+function op3aLoadScript(
+source,
+requiredGlobal = null
+) {
+
+if (
+requiredGlobal &&
+op3aGetGlobal(
+requiredGlobal
+)
+) {
+
+return Promise.resolve();
+
+}
+
+const existingScript =
+op3aFindExistingScript(
+source
+);
+
+if (
+existingScript
+) {
+
+if (
+!requiredGlobal ||
+op3aGetGlobal(
+requiredGlobal
+)
+) {
+
+return Promise.resolve();
+
+}
+
+return new Promise(
+(
+resolve,
+reject
+) => {
+
+const handleLoad =
+() => {
+
+if (
+requiredGlobal &&
+!op3aGetGlobal(
+requiredGlobal
+)
+) {
+
+reject(
+new Error(
+`${source} loaded, but ${requiredGlobal} was not created.`
+)
+);
+
+return;
+
+}
+
+resolve();
+
+};
+
+const handleError =
+() => {
+
+reject(
+new Error(
+`Unable to load ${source}.`
+)
+);
+
+};
+
+existingScript.addEventListener(
+"load",
+handleLoad,
+{
+once:true
+}
+);
+
+existingScript.addEventListener(
+"error",
+handleError,
+{
+once:true
+}
+);
+
+}
+);
+
+}
+
+return new Promise(
+(
+resolve,
+reject
+) => {
+
+const script =
+document.createElement(
+"script"
+);
+
+script.src =
+source;
+
+script.async =
+false;
+
+script.dataset.op3aTestMasterSource =
+source;
+
+script.addEventListener(
+"load",
+() => {
+
+if (
+requiredGlobal &&
+!op3aGetGlobal(
+requiredGlobal
+)
+) {
+
+reject(
+new Error(
+`${source} loaded, but ${requiredGlobal} was not created.`
+)
+);
+
+return;
+
+}
+
+resolve();
+
+},
+{
+once:true
+}
+);
+
+script.addEventListener(
+"error",
+() => {
+
+reject(
+new Error(
+`Unable to load ${source}.`
+)
+);
+
+},
+{
+once:true
+}
+);
+
+document.head.appendChild(
+script
+);
+
+}
+);
+
+}
+
+async function op3aLoadMasterFiles() {
+
+for (
+const file of
+OP3A_TEST_MASTER_FILES
+) {
+
+await op3aLoadScript(
+file.src,
+file.requiredGlobal
+);
+
+}
+
+}
+
+function op3aNormalizeSize(
+size
+) {
+
+return String(
+size ?? ""
+)
+.trim()
+.toLowerCase()
+.replace(
+/mm/g,
+""
+)
+.replace(
+/×/g,
+"x"
+)
+.replace(
+/\s+/g,
+""
+);
+
+}
+
+function op3aNormalizeTint(
+finish
+) {
+
+const value =
+String(
+finish ?? ""
+)
+.trim()
+.toLowerCase();
+
+if (
+value ===
+"blue" ||
+value ===
+"blue tinted" ||
+value ===
+"blue-tinted"
+) {
+
+return "blue";
+
+}
+
+if (
+value ===
+"grey" ||
+value ===
+"gray" ||
+value ===
+"grey tinted" ||
+value ===
+"grey-tinted" ||
+value ===
+"gray tinted" ||
+value ===
+"gray-tinted"
+) {
+
+return "grey";
+
+}
+
+if (
+value ===
+"satin" ||
+value ===
+"satin tinted" ||
+value ===
+"satin-tinted" ||
+value ===
+"privacy"
+) {
+
+return "satin";
+
+}
+
+return "clear";
+
+}
+
+function op3aNormalizeGlazing(
+glazing
+) {
+
+return String(
+glazing ?? ""
+)
+.trim()
+.toLowerCase() ===
+"triple"
+?
+"triple"
+:
+"double";
+
+}
+
+function op3aNormalizeGlassType(
+type
+) {
+
+return String(
+type ?? ""
+)
+.trim()
+.toLowerCase() ===
+"laminated"
+?
+"laminated"
+:
+"toughened";
+
+}
+
+function op3aNormalizeBorder(
+border
+) {
+
+const numericBorder =
+Number(
+border
+);
+
+return [
+100,
+125,
+150
+].includes(
+numericBorder
+)
+?
+numericBorder
+:
+100;
+
+}
+
+function op3aSplitSize(
+size
+) {
+
+const normalizedSize =
+op3aNormalizeSize(
+size
+);
+
+const [
+width,
+length
+] =
+normalizedSize
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+) ||
+width <=
+0 ||
+length <=
+0
+) {
+
+return null;
+
+}
+
+return {
+size:
+`${width}x${length}`,
+width:
+width,
+length:
+length
+};
+
+}
+
+function op3aGetPricingMaster() {
+
+const pricing =
+globalThis
+.FactoryRooflightsMasterPricing;
+
+if (
+!pricing ||
+typeof pricing !==
+"object"
+) {
+
+return null;
+
+}
+
+return pricing;
+
+}
+
+function op3aGetMakeupMaster() {
+
+const makeup =
+globalThis
+.MasterMakeupLogic;
+
+if (
+!makeup ||
+typeof makeup !==
+"object"
+) {
+
+return null;
+
+}
+
+return makeup;
+
+}
+
+function op3aGetDeliveryMaster() {
+
+const delivery =
+globalThis
+.MasterDeliveryRates;
+
+if (
+!delivery ||
+typeof delivery !==
+"object"
+) {
+
+return null;
+
+}
+
+return delivery;
+
+}
+
+function op3aNormalizePriceResult(
+result,
+source
+) {
+
+if (
+Number.isFinite(
+Number(
+result
+)
+) &&
+Number(
+result
+) >
+0
+) {
+
+return {
+available:true,
+source:
+source,
+price:
+Number(
+result
+)
+};
+
+}
+
+if (
+!result ||
+typeof result !==
+"object"
+) {
+
+return {
+available:false,
+source:
+source,
+price:null,
+reasonCode:
+"INVALID_MASTER_PRICE_RESULT"
+};
+
+}
+
+const price =
+Number(
+result.price
+);
+
+if (
+result.available !==
+true ||
+!Number.isFinite(
+price
+) ||
+price <=
+0
+) {
+
+return {
+...result,
+available:false,
+source:
+result.source ||
+source,
+price:null
+};
+
+}
+
+return {
+...result,
+available:true,
+source:
+result.source ||
+source,
+price:
+price
+};
+
+}
+
+function op3aGetStandardPriceResult(
+selection
+) {
+
+const pricing =
+op3aGetPricingMaster();
+
+if (
+!pricing ||
+typeof pricing.getStandardPrice !==
+"function"
+) {
+
+return {
+available:false,
+source:"standard",
+price:null,
+reasonCode:
+"MASTER_PRICING_UNAVAILABLE"
+};
+
+}
+
+const sizeData =
+op3aSplitSize(
+selection?.size
+);
+
+if (
+!sizeData
+) {
+
+return {
+available:false,
+source:"standard",
+price:null,
+reasonCode:
+"INVALID_STANDARD_SIZE"
+};
+
+}
+
+try {
+
+const result =
+pricing.getStandardPrice(
+{
+width:
+sizeData.width,
+length:
+sizeData.length,
+internalWidth:
+sizeData.width,
+internalLength:
+sizeData.length,
+size:
+sizeData.size,
+glazing:
+op3aNormalizeGlazing(
+selection?.glazing
+),
+finish:
+op3aNormalizeTint(
+selection?.tint ??
+selection?.finish
+),
+tint:
+op3aNormalizeTint(
+selection?.tint ??
+selection?.finish
+),
+type:
+op3aNormalizeGlassType(
+selection?.type ??
+selection?.glazingConstruction
+),
+border:
+op3aNormalizeBorder(
+selection?.border
+)
+}
+);
+
+return op3aNormalizePriceResult(
+result,
+"standard"
+);
+
+}
+catch (
+error
+) {
+
+console.error(
+"OP-3A master standard pricing failed.",
+error
+);
+
+return {
+available:false,
+source:"standard",
+price:null,
+reasonCode:
+"MASTER_STANDARD_PRICE_ERROR"
+};
+
+}
+
+}
+
+function op3aGetCustomPriceResult(
+selection
+) {
+
+const pricing =
+op3aGetPricingMaster();
+
+if (
+!pricing ||
+typeof pricing.getCustomPrice !==
+"function"
+) {
+
+return {
+available:false,
+source:"custom",
+price:null,
+reasonCode:
+"MASTER_PRICING_UNAVAILABLE"
+};
+
+}
+
+const width =
+Number(
+selection?.width ??
+selection?.internalWidth
+);
+
+const length =
+Number(
+selection?.length ??
+selection?.internalLength
+);
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+) ||
+width <=
+0 ||
+length <=
+0
+) {
+
+return {
+available:false,
+source:"custom",
+price:null,
+reasonCode:
+"INVALID_CUSTOM_SIZE"
+};
+
+}
+
+try {
+
+const finish =
+op3aNormalizeTint(
+selection?.tint ??
+selection?.finish
+);
+
+const result =
+pricing.getCustomPrice(
+{
+width:
+width,
+length:
+length,
+internalWidth:
+width,
+internalLength:
+length,
+size:
+`${width}x${length}`,
+glazing:
+op3aNormalizeGlazing(
+selection?.glazing
+),
+finish:
+finish,
+tint:
+finish,
+type:
+op3aNormalizeGlassType(
+selection?.type ??
+selection?.glazingConstruction
+),
+border:
+op3aNormalizeBorder(
+selection?.border
+)
+}
+);
+
+return op3aNormalizePriceResult(
+result,
+"custom"
+);
+
+}
+catch (
+error
+) {
+
+console.error(
+"OP-3A master custom pricing failed.",
+error
+);
+
+return {
+available:false,
+source:"custom",
+price:null,
+reasonCode:
+"MASTER_CUSTOM_PRICE_ERROR"
+};
+
+}
+
+}
+
+function op3aCalculateStandardPriceForSelection(
+selection
+) {
+
+const result =
+op3aGetStandardPriceResult(
+selection
+);
+
+return result.available
+?
+result.price
+:
+null;
+
+}
+
+function op3aSelectedPrice() {
+
+return op3aCalculateStandardPriceForSelection(
+state
+);
+
+}
+
+function op3aCalculateCustomPriceForSelection(
+selection
+) {
+
+const result =
+op3aGetCustomPriceResult(
+selection
+);
+
+return result.available
+?
+result.price
+:
+null;
+
+}
+
+function op3aSelectedCustomPrice() {
+
+return op3aCalculateCustomPriceForSelection(
+{
+width:
+customState.width,
+length:
+customState.length,
+glazing:
+customState.glazing,
+type:
+customState.type,
+tint:
+customState.tint,
+finish:
+customState.tint,
+border:
+customState.border
+}
+);
+
+}
+
+function op3aResolveMasterMakeup(
+size,
+border,
+glazing,
+type = "toughened",
+finish = "clear"
+) {
+
+const makeup =
+op3aGetMakeupMaster();
+
+if (
+!makeup ||
+typeof makeup.getUnitMakeup !==
+"function"
+) {
+
+return null;
+
+}
+
+const sizeData =
+op3aSplitSize(
+size
+);
+
+if (
+!sizeData
+) {
+
+return null;
+
+}
+
+const normalizedFinish =
+op3aNormalizeTint(
+finish
+);
+
+const normalizedType =
+op3aNormalizeGlassType(
+type
+);
+
+const bottomType =
+normalizedType ===
+"laminated"
+?
+"lam"
+:
+"tough";
+
+try {
+
+const result =
+makeup.getUnitMakeup(
+{
+internalWidth:
+sizeData.width,
+internalLength:
+sizeData.length,
+border:
+op3aNormalizeBorder(
+border
+),
+glazing:
+op3aNormalizeGlazing(
+glazing
+),
+finish:
+normalizedFinish,
+bottomType:
+bottomType
+}
+);
+
+if (
+result?.supported ===
+true &&
+result?.panes?.top
+) {
+
+return result;
+
+}
+
+/*
+The displayed Top Glass value only needs the
+master's top-pane specification. If the full
+combination is deliberately unsupported because
+of the bottom construction, retry with the same
+top finish and a toughened bottom solely to read
+the top pane. This does not make the unsupported
+full unit purchasable.
+*/
+
+const topOnlyResult =
+makeup.getUnitMakeup(
+{
+internalWidth:
+sizeData.width,
+internalLength:
+sizeData.length,
+border:
+op3aNormalizeBorder(
+border
+),
+glazing:
+op3aNormalizeGlazing(
+glazing
+),
+finish:
+normalizedFinish,
+bottomType:
+"tough"
+}
+);
+
+return (
+topOnlyResult?.supported ===
+true &&
+topOnlyResult?.panes?.top
+)
+?
+topOnlyResult
+:
+null;
+
+}
+catch (
+error
+) {
+
+console.error(
+"OP-3A master make-up calculation failed.",
+error
+);
+
+return null;
+
+}
+
+}
+
+function op3aFormatTopGlassLabel(
+makeupResult
+) {
+
+const thickness =
+Number(
+makeupResult?.panes?.top?.thickness
+);
+
+if (
+!Number.isFinite(
+thickness
+) ||
+thickness <=
+0
+) {
+
+return "Glass Specification Unavailable";
+
+}
+
+return `${thickness}mm Toughened Safety Glass`;
+
+}
+
+function op3aGetTopGlassLabelFor(
+size,
+border,
+glazing,
+type = "toughened",
+finish = "clear"
+) {
+
+return op3aFormatTopGlassLabel(
+op3aResolveMasterMakeup(
+size,
+border,
+glazing,
+type,
+finish
+)
+);
+
+}
+
+function op3aGetTopGlassLabel() {
+
+return op3aGetTopGlassLabelFor(
+state.size,
+state.border,
+state.glazing,
+state.type,
+state.tint
+);
+
+}
+
+function op3aInstallGlobalFunction(
+name,
+replacement
+) {
+
+if (
+typeof replacement !==
+"function"
+) {
+
+return false;
+
+}
+
+if (
+typeof globalThis[
+name
+] !==
+"function"
+) {
+
+console.warn(
+`OP-3A could not find existing function ${name}().`
+);
+
+return false;
+
+}
+
+try {
+
+globalThis[
+name
+] =
+replacement;
+
+return globalThis[
+name
+] ===
+replacement;
+
+}
+catch (
+error
+) {
+
+console.warn(
+`OP-3A could not replace ${name}().`,
+error
+);
+
+return false;
+
+}
+
+}
+
+function op3aBlankStandardPriceDisplay() {
+
+if (
+priceWhole
+) {
+
+priceWhole.textContent =
+"";
+
+}
+
+if (
+pricePence
+) {
+
+pricePence.textContent =
+"";
+
+}
+
+if (
+unitPriceLine
+) {
+
+unitPriceLine.setAttribute(
+"aria-label",
+"Price unavailable for this configuration"
+);
+
+}
+
+if (
+totalPriceBlock
+) {
+
+totalPriceBlock.hidden =
+true;
+
+totalPriceBlock.classList.remove(
+"is-visible"
+);
+
+totalPriceBlock.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+
+}
+
+function op3aApplyCurrentStandardAvailability() {
+
+if (
+!op3aTestReady
+) {
+
+return;
+
+}
+
+const result =
+op3aGetStandardPriceResult(
+state
+);
+
+if (
+addToOrder
+) {
+
+addToOrder.disabled =
+!result.available;
+
+}
+
+if (
+!result.available
+) {
+
+op3aBlankStandardPriceDisplay();
+
+}
+
+}
+
+function op3aUpdateUI(
+options = {}
+) {
+
+if (
+typeof op3aOriginalUpdateUI !==
+"function"
+) {
+
+return;
+
+}
+
+op3aOriginalUpdateUI(
+options
+);
+
+op3aApplyCurrentStandardAvailability();
+
+}
+
+function op3aRepriceBasketItem(
+item,
+kind
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return false;
+
+}
+
+const result =
+kind ===
+"custom"
+?
+op3aGetCustomPriceResult(
+{
+width:
+item.width ??
+item.internalWidth,
+length:
+item.length ??
+item.internalLength,
+glazing:
+item.glazing ??
+item.glazingConfiguration,
+type:
+item.type ??
+item.glazingConstruction,
+tint:
+item.tint ??
+item.finish,
+finish:
+item.tint ??
+item.finish,
+border:
+item.border
+}
+)
+:
+op3aGetStandardPriceResult(
+{
+size:
+item.size,
+glazing:
+item.glazing ??
+item.glazingConfiguration,
+type:
+item.type ??
+item.glazingConstruction,
+tint:
+item.tint ??
+item.finish,
+finish:
+item.tint ??
+item.finish,
+border:
+item.border
+}
+);
+
+if (
+!result.available
+) {
+
+item.unitPrice =
+null;
+
+item.price =
+null;
+
+return false;
+
+}
+
+item.unitPrice =
+result.price;
+
+item.price =
+result.price;
+
+return true;
+
+}
+
+function op3aRepriceCurrentBasket() {
+
+state.orderItems.forEach(
+item => {
+
+op3aRepriceBasketItem(
+item,
+"standard"
+);
+
+}
+);
+
+state.customOrderItems.forEach(
+item => {
+
+op3aRepriceBasketItem(
+item,
+"custom"
+);
+
+}
+);
+
+}
+
+function op3aInstallPricingAndMakeupOverrides() {
+
+if (
+op3aTestOverridesInstalled
+) {
+
+return;
+
+}
+
+const pricing =
+op3aGetPricingMaster();
+
+const makeup =
+op3aGetMakeupMaster();
+
+if (
+!pricing ||
+typeof pricing.getStandardPrice !==
+"function" ||
+typeof pricing.getCustomPrice !==
+"function"
+) {
+
+throw new Error(
+"FactoryRooflightsMasterPricing must provide getStandardPrice() and getCustomPrice()."
+);
+
+}
+
+if (
+!makeup ||
+typeof makeup.getUnitMakeup !==
+"function"
+) {
+
+throw new Error(
+"MasterMakeupLogic.getUnitMakeup() is unavailable."
+);
+
+}
+
+op3aOriginalUpdateUI =
+globalThis.updateUI;
+
+const installedFunctions = [
+op3aInstallGlobalFunction(
+"calculateStandardPriceForSelection",
+op3aCalculateStandardPriceForSelection
+),
+op3aInstallGlobalFunction(
+"selectedPrice",
+op3aSelectedPrice
+),
+op3aInstallGlobalFunction(
+"calculateCustomPriceForSelection",
+op3aCalculateCustomPriceForSelection
+),
+op3aInstallGlobalFunction(
+"selectedCustomPrice",
+op3aSelectedCustomPrice
+),
+op3aInstallGlobalFunction(
+"getTopGlassLabelFor",
+op3aGetTopGlassLabelFor
+),
+op3aInstallGlobalFunction(
+"getTopGlassLabel",
+op3aGetTopGlassLabel
+),
+op3aInstallGlobalFunction(
+"updateUI",
+op3aUpdateUI
+)
+];
+
+if (
+installedFunctions.some(
+installed =>
+installed !==
+true
+)
+) {
+
+throw new Error(
+"OP-3A could not install one or more Order Page function overrides."
+);
+
+}
+
+op3aTestOverridesInstalled =
+true;
+
+}
+
+function op3aValidateMasterSystems() {
+
+const standardTest =
+op3aGetStandardPriceResult(
+{
+size:"600x900",
+glazing:"triple",
+type:"toughened",
+finish:"clear",
+border:100
+}
+);
+
+if (
+!standardTest.available ||
+!Number.isFinite(
+Number(
+standardTest.price
+)
+) ||
+Number(
+standardTest.price
+) <=
+0
+) {
+
+throw new Error(
+"OP-3A standard master-pricing test failed for 600x900 Triple / Toughened / Clear / 100mm."
+);
+
+}
+
+const customTest =
+op3aGetCustomPriceResult(
+{
+width:725,
+length:1375,
+glazing:"double",
+type:"toughened",
+finish:"clear",
+border:100
+}
+);
+
+if (
+!customTest.available ||
+!Number.isFinite(
+Number(
+customTest.price
+)
+) ||
+Number(
+customTest.price
+) <=
+0
+) {
+
+throw new Error(
+"OP-3A custom master-pricing test failed for 725x1375 Double / Toughened / Clear / 100mm."
+);
+
+}
+
+const makeupChecks = [
+{
+size:"600x900",
+border:100,
+glazing:"triple",
+expectedThickness:6
+},
+{
+size:"1000x2500",
+border:100,
+glazing:"triple",
+expectedThickness:8
+},
+{
+size:"1500x2500",
+border:100,
+glazing:"double",
+expectedThickness:10
+}
+];
+
+makeupChecks.forEach(
+check => {
+
+const result =
+op3aResolveMasterMakeup(
+check.size,
+check.border,
+check.glazing,
+"toughened",
+"clear"
+);
+
+const actualThickness =
+Number(
+result?.panes?.top?.thickness
+);
+
+if (
+actualThickness !==
+check.expectedThickness
+) {
+
+throw new Error(
+`OP-3A make-up test failed for ${check.size}. Expected ${check.expectedThickness}mm top glass, received ${actualThickness}mm.`
+);
+
+}
+
+}
+);
+
+const delivery =
+op3aGetDeliveryMaster();
+
+if (
+!delivery ||
+typeof delivery.getDeliveryCategoryForSize !==
+"function" ||
+typeof delivery.calculateBasketDelivery !==
+"function"
+) {
+
+throw new Error(
+"MasterDeliveryRates is loaded incorrectly."
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForSize(
+"600x900"
+) !==
+"small"
+) {
+
+throw new Error(
+"OP-3A delivery-master load test failed for 600x900."
+);
+
+}
+
+}
+
+function op3aSetLoadingState() {
+
+if (
+op3aTestReady ||
+op3aTestFailed
+) {
+
+return;
+
+}
+
+if (
+addToOrder
+) {
+
+addToOrder.disabled =
+true;
+
+}
+
+if (
+customAddToOrder
+) {
+
+customAddToOrder.disabled =
+true;
+
+}
+
+}
+
+function op3aSetFailureState(
+error
+) {
+
+op3aTestFailed =
+true;
+
+console.error(
+"OP-3A TEST FAILED. Existing local code has been left in place, but ordering is disabled so the test cannot silently fall back to old prices.",
+error
+);
+
+if (
+addToOrder
+) {
+
+addToOrder.disabled =
+true;
+
+}
+
+if (
+customAddToOrder
+) {
+
+customAddToOrder.disabled =
+true;
+
+}
+
+if (
+productGlassSpec
+) {
+
+productGlassSpec.textContent =
+"Glass Specification Unavailable";
+
+}
+
+}
+
+function op3aRefreshPageFromMasters() {
+
+op3aRepriceCurrentBasket();
+
+/*
+Do not rerun the complete OP-2 initialisation.
+Only refresh data-dependent UI after the master
+files have taken control of pricing / make-up.
+*/
+
+updateUI(
+{
+updateUrl:false,
+animateImage:false
+}
+);
+
+updateCustomConfiguratorUI();
+
+state.basketTotal =
+calculateOrderTotal();
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+renderBasketDrawer();
+
+updateBasketTotal(
+state.basketTotal,
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
+
+updateEstimatedDelivery();
+
+requestCustomSummaryColumnSync();
+
+requestOrderSummaryDeliveryWidthSync();
+
+saveOrderToStorage();
+
+if (
+state.deliveryPostcode
+) {
+
+recalculateResolvedDelivery(
+{
+animate:false
+}
+);
+
+}
+
+}
+
+function op3aBlockOrderActionsUntilReady(
+event
+) {
+
+if (
+op3aTestReady
+) {
+
+return;
+
+}
+
+const eventTarget =
+event.target instanceof
+Element
+?
+event.target
+:
+null;
+
+const orderButton =
+eventTarget?.closest(
+"#addToOrder, #customAddToOrder"
+);
+
+if (
+!orderButton
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+event.stopImmediatePropagation();
+
+}
+
+document.addEventListener(
+"click",
+op3aBlockOrderActionsUntilReady,
+true
+);
+
+queueMicrotask(
+() => {
+
+op3aSetLoadingState();
+
+}
+);
+
+const OP3A_TEST_READY =
+op3aLoadMasterFiles()
+.then(
+() => {
+
+op3aValidateMasterSystems();
+
+op3aInstallPricingAndMakeupOverrides();
+
+op3aTestReady =
+true;
+
+document.removeEventListener(
+"click",
+op3aBlockOrderActionsUntilReady,
+true
+);
+
+op3aRefreshPageFromMasters();
+
+console.info(
+"OP-3A TEST PASSED: master pricing and master make-up are active. Master delivery is loaded and validated but the existing Order Page delivery engine is still in control."
+);
+
+return true;
+
+}
+)
+.catch(
+error => {
+
+op3aSetFailureState(
+error
+);
+
+throw error;
+
+}
+);
 /* =========================================
 INITIALISE PAGE
 
