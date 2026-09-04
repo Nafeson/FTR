@@ -29660,6 +29660,1427 @@ return false;
 }
 );
 /* =========================================
+OP-3C TEST INTEGRATION
+FINAL COMPATIBILITY / CUSTOM RANGE VALIDATION
+
+PASTE THIS DIRECTLY BELOW OP-3B AND
+DIRECTLY ABOVE THE EXISTING
+"INITIALISE PAGE" BLOCK.
+
+KEEP OP-3A IN PLACE.
+KEEP OP-3B IN PLACE.
+KEEP THE EXISTING OP-2 INITIALISATION BLOCK.
+
+OP-3C DOES NOT REDECLARE ANY OF THE EXISTING
+CUSTOM CALCULATOR CONSTANTS.
+
+IT EXPECTS THE EXISTING OP-2 VALUE TO BE:
+CUSTOM_CALCULATOR_MAX_LENGTH = 3000
+
+OP-3C:
+- replaces the now-stale custom calculator
+validation checks with 3000mm-aware checks;
+- confirms the page validity contract;
+- confirms master pricing can price the new
+3000mm calculator range;
+- confirms master make-up works at 1500x3000;
+- confirms master delivery treats the new
+long sizes correctly;
+- verifies OP-3A + OP-3B are actually active;
+- prevents checkout until the complete A/B/C
+integration has passed;
+- preserves an existing stored basket price if
+a temporary master-pricing lookup fails,
+while still preventing checkout.
+========================================= */
+
+let op3cTestReady =
+false;
+
+let op3cTestFailed =
+false;
+
+let op3cCompatibilityActive =
+false;
+
+const op3cOriginalUpdateCheckoutAvailability =
+updateCheckoutAvailability;
+
+/* =========================================
+UPDATED CUSTOM CALCULATOR VALIDATION
+
+This replaces the old validation function
+before the existing OP-2 INITIALISE PAGE block
+runs, so the old 2500mm boundary test does not
+produce a false warning after the maximum was
+changed to 3000mm.
+========================================= */
+
+function op3cValidateCustomCalculatorPricing() {
+
+const priceTests = [
+
+{
+width:300,
+length:800,
+expected:270
+},
+
+{
+width:300,
+length:2000,
+expected:430
+},
+
+{
+width:400,
+length:2000,
+expected:465
+},
+
+{
+width:500,
+length:2000,
+expected:500
+},
+
+{
+width:500,
+length:2500,
+expected:535
+},
+
+{
+width:600,
+length:900,
+expected:340
+},
+
+{
+width:1000,
+length:1000,
+expected:430
+}
+
+];
+
+priceTests.forEach(
+test => {
+
+const result =
+calculateConfiguredPrice(
+getCustomTripleClearToughened100Price(
+test.width,
+test.length
+),
+"triple",
+"toughened",
+"clear",
+100
+);
+
+if (
+result !==
+test.expected
+) {
+
+console.warn(
+"Custom calculator fallback price check failed:",
+test,
+result
+);
+
+}
+
+}
+);
+
+const dimensionTests = [
+
+{
+width:290,
+length:290,
+expected:true
+},
+
+{
+width:290,
+length:2000,
+expected:true
+},
+
+{
+width:499,
+length:2000,
+expected:true
+},
+
+{
+width:499,
+length:2001,
+expected:false
+},
+
+{
+width:500,
+length:2001,
+expected:true
+},
+
+{
+width:500,
+length:3000,
+expected:true
+},
+
+{
+width:499,
+length:3000,
+expected:false
+},
+
+{
+width:1500,
+length:3000,
+expected:true
+},
+
+{
+width:1501,
+length:2000,
+expected:false
+},
+
+{
+width:500,
+length:3001,
+expected:false
+},
+
+{
+width:289,
+length:1000,
+expected:false
+}
+
+];
+
+dimensionTests.forEach(
+test => {
+
+const actual =
+customDimensionsAreValid(
+test.width,
+test.length
+);
+
+if (
+actual !==
+test.expected
+) {
+
+console.warn(
+"Custom calculator 3000mm dimension check failed:",
+test,
+actual
+);
+
+}
+
+}
+);
+
+}
+
+validateCustomCalculatorPricing =
+op3cValidateCustomCalculatorPricing;
+
+/* =========================================
+SAFE OP-3A BASKET REPRICING PATCH
+
+OP-3A normally replaces a basket price with
+null if a master lookup is unavailable.
+For this test architecture we preserve the
+last known stored price instead, mark the item
+as unavailable from the master, and let OP-3C
+block checkout until the master can price it.
+========================================= */
+
+function op3cSafeRepriceBasketItem(
+item,
+kind
+) {
+
+if (
+!item ||
+typeof item !==
+"object"
+) {
+
+return false;
+
+}
+
+const result =
+kind ===
+"custom"
+?
+op3aGetCustomPriceResult(
+{
+width:
+item.width ??
+item.internalWidth,
+length:
+item.length ??
+item.internalLength,
+glazing:
+item.glazing ??
+item.glazingConfiguration,
+type:
+item.type ??
+item.glazingConstruction,
+tint:
+item.tint ??
+item.finish,
+finish:
+item.tint ??
+item.finish,
+border:
+item.border
+}
+)
+:
+op3aGetStandardPriceResult(
+{
+size:
+item.size,
+glazing:
+item.glazing ??
+item.glazingConfiguration,
+type:
+item.type ??
+item.glazingConstruction,
+tint:
+item.tint ??
+item.finish,
+finish:
+item.tint ??
+item.finish,
+border:
+item.border
+}
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0
+) {
+
+item.op3MasterPricingUnavailable =
+true;
+
+return false;
+
+}
+
+const masterPrice =
+Number(
+result.price
+);
+
+item.unitPrice =
+masterPrice;
+
+item.price =
+masterPrice;
+
+delete item.op3MasterPricingUnavailable;
+
+return true;
+
+}
+
+if (
+typeof op3aRepriceBasketItem ===
+"function"
+) {
+
+op3aRepriceBasketItem =
+op3cSafeRepriceBasketItem;
+
+}
+
+/* =========================================
+CUSTOM DIMENSION CONTRACT
+========================================= */
+
+function op3cAssertCustomDimensionContract() {
+
+if (
+CUSTOM_CALCULATOR_MAX_LENGTH !==
+3000
+) {
+
+throw new Error(
+`OP-3C expected CUSTOM_CALCULATOR_MAX_LENGTH to be 3000, received ${CUSTOM_CALCULATOR_MAX_LENGTH}.`
+);
+
+}
+
+const tests = [
+
+{
+width:290,
+length:290,
+expected:true,
+label:"minimum size"
+},
+
+{
+width:499,
+length:2000,
+expected:true,
+label:"499x2000 exact long threshold"
+},
+
+{
+width:499,
+length:2001,
+expected:false,
+label:"499x2001 long-width restriction"
+},
+
+{
+width:500,
+length:2001,
+expected:true,
+label:"500x2001 long-width threshold"
+},
+
+{
+width:500,
+length:3000,
+expected:true,
+label:"500x3000 new maximum length"
+},
+
+{
+width:499,
+length:3000,
+expected:false,
+label:"499x3000 invalid narrow long size"
+},
+
+{
+width:1500,
+length:3000,
+expected:true,
+label:"1500x3000 maximum calculator size"
+},
+
+{
+width:500,
+length:3001,
+expected:false,
+label:"500x3001 over maximum length"
+},
+
+{
+width:1501,
+length:2000,
+expected:false,
+label:"over maximum width"
+}
+
+];
+
+tests.forEach(
+test => {
+
+const actual =
+customDimensionsAreValid(
+test.width,
+test.length
+);
+
+if (
+actual !==
+test.expected
+) {
+
+throw new Error(
+`OP-3C custom dimension contract failed for ${test.label}: ${test.width}x${test.length}. Expected ${test.expected}, received ${actual}.`
+);
+
+}
+
+}
+);
+
+}
+
+/* =========================================
+MASTER PRICING VALIDATION FOR 3000MM RANGE
+========================================= */
+
+function op3cAssertMasterPricingRange() {
+
+if (
+typeof op3aGetStandardPriceResult !==
+"function" ||
+typeof op3aGetCustomPriceResult !==
+"function"
+) {
+
+throw new Error(
+"OP-3C cannot access the OP-3A master pricing adapters."
+);
+
+}
+
+const standardCheck =
+op3aGetStandardPriceResult(
+{
+size:"600x900",
+glazing:"triple",
+type:"toughened",
+finish:"clear",
+tint:"clear",
+border:100
+}
+);
+
+if (
+!standardCheck.available ||
+!Number.isFinite(
+Number(
+standardCheck.price
+)
+) ||
+Number(
+standardCheck.price
+) <=
+0
+) {
+
+throw new Error(
+"OP-3C standard master-pricing compatibility check failed."
+);
+
+}
+
+const customChecks = [
+
+{
+width:500,
+length:3000,
+label:"500x3000"
+},
+
+{
+width:1500,
+length:3000,
+label:"1500x3000"
+}
+
+];
+
+let detectedStrategy =
+String(
+standardCheck.strategy ||
+""
+)
+.trim()
+.toLowerCase();
+
+customChecks.forEach(
+check => {
+
+const result =
+op3aGetCustomPriceResult(
+{
+width:
+check.width,
+length:
+check.length,
+glazing:"triple",
+type:"toughened",
+finish:"clear",
+tint:"clear",
+border:100
+}
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0
+) {
+
+throw new Error(
+`OP-3C master custom-pricing check failed for ${check.label}.`
+);
+
+}
+
+if (
+!detectedStrategy &&
+result.strategy
+) {
+
+detectedStrategy =
+String(
+result.strategy
+)
+.trim()
+.toLowerCase();
+
+}
+
+}
+);
+
+if (
+detectedStrategy &&
+![
+"cheap",
+"normal",
+"expensive"
+].includes(
+detectedStrategy
+)
+) {
+
+throw new Error(
+`OP-3C received an unexpected active pricing strategy: ${detectedStrategy}.`
+);
+
+}
+
+globalThis.OP3_ACTIVE_PRICE_STRATEGY =
+detectedStrategy ||
+null;
+
+return detectedStrategy;
+
+}
+
+/* =========================================
+MASTER MAKE-UP VALIDATION AT NEW MAX SIZE
+========================================= */
+
+function op3cAssertMasterMakeupRange() {
+
+if (
+typeof op3aResolveMasterMakeup !==
+"function"
+) {
+
+throw new Error(
+"OP-3C cannot access the OP-3A master make-up adapter."
+);
+
+}
+
+const tripleResult =
+op3aResolveMasterMakeup(
+"1500x3000",
+100,
+"triple",
+"toughened",
+"clear"
+);
+
+if (
+!tripleResult ||
+tripleResult.supported !==
+true ||
+!tripleResult.panes?.top
+) {
+
+throw new Error(
+"OP-3C master make-up check failed for 1500x3000 Triple Glazed."
+);
+
+}
+
+if (
+Number(
+tripleResult.panes.top.thickness
+) !==
+10
+) {
+
+throw new Error(
+`OP-3C expected 10mm Triple top glass at 1500x3000, received ${tripleResult.panes.top.thickness}mm.`
+);
+
+}
+
+const doubleResult =
+op3aResolveMasterMakeup(
+"1500x3000",
+100,
+"double",
+"toughened",
+"clear"
+);
+
+if (
+!doubleResult ||
+doubleResult.supported !==
+true ||
+Number(
+doubleResult.panes?.top?.thickness
+) !==
+10
+) {
+
+throw new Error(
+"OP-3C master make-up check failed for 1500x3000 Double Glazed."
+);
+
+}
+
+}
+
+/* =========================================
+MASTER DELIVERY VALIDATION AT NEW MAX SIZE
+========================================= */
+
+function op3cAssertMasterDeliveryRange() {
+
+if (
+typeof op3bGetDeliveryCategoryForCustomDimensions !==
+"function" ||
+typeof op3bGetDeliveryMaximumMilesForCategory !==
+"function" ||
+typeof op3bCalculateBasketDelivery !==
+"function"
+) {
+
+throw new Error(
+"OP-3C cannot access the OP-3B master delivery adapters."
+);
+
+}
+
+const category500x3000 =
+op3bGetDeliveryCategoryForCustomDimensions(
+500,
+3000
+);
+
+const category1500x3000 =
+op3bGetDeliveryCategoryForCustomDimensions(
+1500,
+3000
+);
+
+if (
+category500x3000 !==
+"extraLarge" ||
+category1500x3000 !==
+"extraLarge"
+) {
+
+throw new Error(
+"OP-3C expected 500x3000 and 1500x3000 custom rooflights to use Extra Large delivery."
+);
+
+}
+
+if (
+op3bGetDeliveryMaximumMilesForCategory(
+"extraLarge"
+) !==
+200
+) {
+
+throw new Error(
+"OP-3C expected the Extra Large delivery maximum to remain 200 adjusted miles."
+);
+
+}
+
+const at200Miles =
+op3bCalculateBasketDelivery(
+[
+{
+source:"order-page-custom",
+isCustom:true,
+custom:true,
+width:1500,
+length:3000,
+quantity:1
+}
+],
+200
+);
+
+if (
+at200Miles.requiresQuote ||
+at200Miles.price !==
+115
+) {
+
+throw new Error(
+"OP-3C 1500x3000 delivery check failed at 200 adjusted miles."
+);
+
+}
+
+const at201Miles =
+op3bCalculateBasketDelivery(
+[
+{
+source:"order-page-custom",
+isCustom:true,
+custom:true,
+width:1500,
+length:3000,
+quantity:1
+}
+],
+201
+);
+
+if (
+at201Miles.requiresQuote !==
+true
+) {
+
+throw new Error(
+"OP-3C 1500x3000 delivery limit check failed at 201 adjusted miles."
+);
+
+}
+
+}
+
+/* =========================================
+CONFIRM OP-3A / OP-3B OWN THE LIVE FUNCTIONS
+========================================= */
+
+function op3cAssertLiveMasterOwnership() {
+
+const pricingFunctionsActive =
+calculateStandardPriceForSelection ===
+op3aCalculateStandardPriceForSelection &&
+selectedPrice ===
+op3aSelectedPrice &&
+calculateCustomPriceForSelection ===
+op3aCalculateCustomPriceForSelection &&
+selectedCustomPrice ===
+op3aSelectedCustomPrice;
+
+if (
+!pricingFunctionsActive
+) {
+
+throw new Error(
+"OP-3C detected that OP-3A master pricing is not controlling all live pricing functions."
+);
+
+}
+
+const makeupFunctionsActive =
+getTopGlassLabelFor ===
+op3aGetTopGlassLabelFor &&
+getTopGlassLabel ===
+op3aGetTopGlassLabel;
+
+if (
+!makeupFunctionsActive
+) {
+
+throw new Error(
+"OP-3C detected that OP-3A master make-up is not controlling the live glass-label functions."
+);
+
+}
+
+const deliveryFunctionsActive =
+calculateBasketDelivery ===
+op3bCalculateBasketDelivery &&
+calculatePostcodeDelivery ===
+op3bCalculatePostcodeDelivery &&
+getDeliveryCategoryForSize ===
+op3bGetDeliveryCategoryForSize &&
+getDeliveryCategoryForCustomDimensions ===
+op3bGetDeliveryCategoryForCustomDimensions &&
+getLeadTimeForSelection ===
+op3bGetLeadTimeForSelection;
+
+if (
+!deliveryFunctionsActive ||
+globalThis.OP3B_DELIVERY_MASTER_ACTIVE !==
+true
+) {
+
+throw new Error(
+"OP-3C detected that OP-3B master delivery is not controlling all required live delivery functions."
+);
+
+}
+
+}
+
+/* =========================================
+BASKET MASTER-PRICE CONSISTENCY
+========================================= */
+
+function op3cBasketHasMasterPricingProblem() {
+
+if (
+!op3aTestReady
+) {
+
+return true;
+
+}
+
+for (
+const item of
+state.orderItems
+) {
+
+const result =
+op3aGetStandardPriceResult(
+{
+size:item.size,
+glazing:item.glazing,
+type:item.type,
+tint:item.tint,
+finish:item.tint,
+border:item.border
+}
+);
+
+const storedPrice =
+Number(
+item.unitPrice
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0 ||
+!Number.isFinite(
+storedPrice
+) ||
+storedPrice <=
+0 ||
+Math.abs(
+storedPrice -
+Number(
+result.price
+)
+) >
+0.001
+) {
+
+return true;
+
+}
+
+}
+
+for (
+const item of
+state.customOrderItems
+) {
+
+const result =
+op3aGetCustomPriceResult(
+{
+width:
+item.width ??
+item.internalWidth,
+length:
+item.length ??
+item.internalLength,
+glazing:
+item.glazing ??
+item.glazingConfiguration,
+type:
+item.type ??
+item.glazingConstruction,
+tint:
+item.tint ??
+item.finish,
+finish:
+item.tint ??
+item.finish,
+border:
+item.border
+}
+);
+
+const storedPrice =
+Number(
+item.unitPrice ??
+item.price
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0 ||
+!Number.isFinite(
+storedPrice
+) ||
+storedPrice <=
+0 ||
+Math.abs(
+storedPrice -
+Number(
+result.price
+)
+) >
+0.001
+) {
+
+return true;
+
+}
+
+}
+
+return false;
+
+}
+
+/* =========================================
+FINAL CHECKOUT COMPATIBILITY GUARD
+
+The existing OP-2 checkout rules still decide
+normal availability. OP-3C adds only one extra
+condition: A/B/C must all be ready and every
+basket line must have a current master price.
+========================================= */
+
+function op3cUpdateCheckoutAvailability() {
+
+op3cOriginalUpdateCheckoutAvailability();
+
+const integrationNotReady =
+!op3cTestReady ||
+!op3aTestReady ||
+!op3bTestReady ||
+globalThis.OP3B_DELIVERY_MASTER_ACTIVE !==
+true;
+
+const pricingProblem =
+!integrationNotReady &&
+op3cBasketHasMasterPricingProblem();
+
+const forceDisable =
+integrationNotReady ||
+pricingProblem;
+
+if (
+!forceDisable
+) {
+
+return;
+
+}
+
+document
+.querySelectorAll(
+".checkout-now"
+)
+.forEach(
+checkout => {
+
+checkout.classList.add(
+"is-disabled"
+);
+
+checkout.setAttribute(
+"aria-disabled",
+"true"
+);
+
+checkout.setAttribute(
+"tabindex",
+"-1"
+);
+
+if (
+checkout instanceof
+HTMLButtonElement
+) {
+
+checkout.disabled =
+true;
+
+}
+
+}
+);
+
+}
+
+updateCheckoutAvailability =
+op3cUpdateCheckoutAvailability;
+
+/* =========================================
+ORDER-ACTION LOCK UNTIL A/B/C PASS
+========================================= */
+
+function op3cBlockOrderActionsUntilReady(
+event
+) {
+
+if (
+op3cTestReady
+) {
+
+return;
+
+}
+
+const eventTarget =
+event.target instanceof
+Element
+?
+event.target
+:
+null;
+
+const orderAction =
+eventTarget?.closest(
+"#addToOrder, #customAddToOrder, .checkout-now"
+);
+
+if (
+!orderAction
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+event.stopImmediatePropagation();
+
+}
+
+document.addEventListener(
+"click",
+op3cBlockOrderActionsUntilReady,
+true
+);
+
+/* =========================================
+FINAL MASTER REPRICE / PAGE REFRESH
+========================================= */
+
+async function op3cRefreshFinalIntegratedPage() {
+
+op3aRepriceCurrentBasket();
+
+state.orderItems.forEach(
+item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForSize(
+item.size
+);
+
+}
+);
+
+state.customOrderItems.forEach(
+item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForCustomDimensions(
+item.width ??
+item.internalWidth,
+item.length ??
+item.internalLength
+);
+
+}
+);
+
+state.basketTotal =
+calculateOrderTotal();
+
+saveOrderToStorage();
+
+updateUI(
+{
+updateUrl:false,
+animateImage:false
+}
+);
+
+updateCustomConfiguratorUI();
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+renderBasketDrawer();
+
+updateBasketTotal(
+state.basketTotal,
+{
+animate:false
+}
+);
+
+updateEstimatedDelivery();
+
+requestCustomSummaryColumnSync();
+
+requestOrderSummaryDeliveryWidthSync();
+
+const postcode =
+String(
+state.deliveryPostcode ||
+""
+)
+.trim();
+
+if (
+postcode &&
+(
+state.orderItems.length ||
+state.customOrderItems.length
+)
+) {
+
+await recalculateResolvedDelivery(
+{
+animate:false
+}
+);
+
+}
+
+}
+
+/* =========================================
+FINAL A/B/C VALIDATION
+========================================= */
+
+function op3cRunFinalCompatibilityChecks() {
+
+op3cAssertCustomDimensionContract();
+
+op3cAssertLiveMasterOwnership();
+
+const activeStrategy =
+op3cAssertMasterPricingRange();
+
+op3cAssertMasterMakeupRange();
+
+op3cAssertMasterDeliveryRange();
+
+return activeStrategy;
+
+}
+
+/* =========================================
+FAILURE STATE
+========================================= */
+
+function op3cSetFailureState(
+error
+) {
+
+op3cTestFailed =
+true;
+
+op3cTestReady =
+false;
+
+op3cCompatibilityActive =
+false;
+
+globalThis.OP3C_COMPATIBILITY_ACTIVE =
+false;
+
+console.error(
+"OP-3C TEST FAILED. Final A/B/C compatibility was not confirmed and ordering remains disabled.",
+error
+);
+
+if (
+addToOrder
+) {
+
+addToOrder.disabled =
+true;
+
+}
+
+if (
+customAddToOrder
+) {
+
+customAddToOrder.disabled =
+true;
+
+}
+
+updateCheckoutAvailability();
+
+}
+
+/* =========================================
+OP-3C START
+
+The existing OP-2 INITIALISE PAGE block below
+this code still runs normally. OP-3C waits for
+OP-3A and OP-3B asynchronously, performs the
+final integrated checks, refreshes the page,
+and only then releases the final order-action
+lock.
+========================================= */
+
+const op3cOp3aReadyPromise =
+typeof OP3A_TEST_READY !==
+"undefined"
+?
+OP3A_TEST_READY
+:
+Promise.reject(
+new Error(
+"OP-3C requires OP-3A to remain above it."
+)
+);
+
+const op3cOp3bReadyPromise =
+typeof OP3B_TEST_READY !==
+"undefined"
+?
+OP3B_TEST_READY
+:
+Promise.reject(
+new Error(
+"OP-3C requires OP-3B to remain above it."
+)
+);
+
+const OP3C_TEST_READY =
+Promise.all(
+[
+op3cOp3aReadyPromise,
+op3cOp3bReadyPromise
+]
+)
+.then(
+async results => {
+
+if (
+results[0] !==
+true ||
+results[1] !==
+true
+) {
+
+throw new Error(
+"OP-3C cannot continue because OP-3A or OP-3B did not report a successful test result."
+);
+
+}
+
+const activeStrategy =
+op3cRunFinalCompatibilityChecks();
+
+await op3cRefreshFinalIntegratedPage();
+
+if (
+op3cBasketHasMasterPricingProblem()
+) {
+
+throw new Error(
+"OP-3C detected a basket line whose stored price does not match the active master pricing system."
+);
+
+}
+
+op3cTestReady =
+true;
+
+op3cCompatibilityActive =
+true;
+
+globalThis.OP3C_COMPATIBILITY_ACTIVE =
+true;
+
+document.removeEventListener(
+"click",
+op3cBlockOrderActionsUntilReady,
+true
+);
+
+updateCheckoutAvailability();
+
+console.info(
+`OP-3C TEST PASSED: OP-3A pricing/make-up, OP-3B delivery and the 3000mm custom calculator range are fully compatible.${activeStrategy ? ` Active master pricing strategy: ${activeStrategy}.` : ""}`
+);
+
+return true;
+
+}
+)
+.catch(
+error => {
+
+op3cSetFailureState(
+error
+);
+
+return false;
+
+}
+);
+/* =========================================
 INITIALISE PAGE
 
 IMPORTANT:
