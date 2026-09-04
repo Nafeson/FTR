@@ -19651,6 +19651,1874 @@ closeBasketDrawer();
 
 }
 
+```js
+/* =========================================
+IN-3
+HOMEPAGE MASTER PRICING + MASTER MAKE-UP
+
+PASTE THIS ENTIRE BLOCK DIRECTLY ABOVE:
+
+/* =========================================
+FINAL INITIALISATION
+========================================= *\/
+
+THIS INTEGRATION DOES NOT TOUCH THE HOMEPAGE
+DELIVERY-RATE ENGINE.
+
+IT CONNECTS THE HOMEPAGE TO:
+
+js/masters/master-makeup-logic.js
+js/pricing/pricing-cheap.js
+js/pricing/pricing-normal.js
+js/pricing/pricing-expensive.js
+js/pricing/site-pricing-config.js
+js/pricing/master-pricing.js
+
+TARGETS:
+- Popular Sizes prices
+- Tinted & Privacy prices
+- Homepage custom calculator pricing
+- Product-card top-glass specification
+- Homepage basket Top Glass specification
+
+THE EXISTING IN-1 / IN-2 LOCAL PRICING AND
+MAKE-UP CODE IS LEFT PHYSICALLY IN PLACE FOR
+THIS TEST STAGE, BUT THE LIVE FUNCTIONS BELOW
+ARE REPLACED AFTER THE MASTERS LOAD AND PASS
+VALIDATION.
+========================================= */
+
+let in3Ready =
+false;
+
+let in3Failed =
+false;
+
+let in3OverridesInstalled =
+false;
+
+const IN3_MASTER_FILES =
+Object.freeze([
+
+{
+src:"js/masters/master-makeup-logic.js",
+requiredGlobal:"MasterMakeupLogic"
+},
+
+{
+src:"js/pricing/pricing-cheap.js",
+requiredGlobal:null
+},
+
+{
+src:"js/pricing/pricing-normal.js",
+requiredGlobal:null
+},
+
+{
+src:"js/pricing/pricing-expensive.js",
+requiredGlobal:null
+},
+
+{
+src:"js/pricing/site-pricing-config.js",
+requiredGlobal:null
+},
+
+{
+src:"js/pricing/master-pricing.js",
+requiredGlobal:"FactoryRooflightsMasterPricing"
+}
+
+]);
+
+
+/* =========================================
+PRESERVE CURRENT HOMEPAGE FUNCTIONS
+========================================= */
+
+const in3OriginalGetHomepageProductCardPrice =
+getHomepageProductCardPrice;
+
+const in3OriginalUpdateHomepageProductCard =
+updateHomepageProductCard;
+
+const in3OriginalGetCustomCalculatorPrice =
+getCustomCalculatorPrice;
+
+const in3OriginalGetItemTopGlassLabel =
+getItemTopGlassLabel;
+
+
+/* =========================================
+MASTER SCRIPT LOADER
+========================================= */
+
+function in3GetAbsoluteScriptUrl(
+src
+) {
+
+return new URL(
+src,
+document.baseURI
+).href;
+
+}
+
+function in3FindExistingScript(
+src
+) {
+
+const absoluteSrc =
+in3GetAbsoluteScriptUrl(
+src
+);
+
+return Array.from(
+document.scripts
+).find(
+(script) => {
+
+if (
+!script.src
+) {
+
+return false;
+
+}
+
+try {
+
+return new URL(
+script.src,
+document.baseURI
+).href ===
+absoluteSrc;
+
+}
+catch (error) {
+
+return false;
+
+}
+
+}
+) ||
+null;
+
+}
+
+function in3LoadScript(
+file
+) {
+
+return new Promise(
+(resolve,reject) => {
+
+if (
+file.requiredGlobal &&
+globalThis[
+file.requiredGlobal
+]
+) {
+
+resolve();
+return;
+
+}
+
+const existingScript =
+in3FindExistingScript(
+file.src
+);
+
+if (
+existingScript
+) {
+
+if (
+!file.requiredGlobal ||
+globalThis[
+file.requiredGlobal
+]
+) {
+
+resolve();
+return;
+
+}
+
+if (
+existingScript.dataset.in3Loaded ===
+"true"
+) {
+
+reject(
+new Error(
+`IN-3 loaded ${file.src}, but ${file.requiredGlobal} was not created.`
+)
+);
+
+return;
+
+}
+
+const handleExistingLoad =
+() => {
+
+existingScript.dataset.in3Loaded =
+"true";
+
+if (
+file.requiredGlobal &&
+!globalThis[
+file.requiredGlobal
+]
+) {
+
+reject(
+new Error(
+`IN-3 loaded ${file.src}, but ${file.requiredGlobal} was not created.`
+)
+);
+
+return;
+
+}
+
+resolve();
+
+};
+
+const handleExistingError =
+() => {
+
+reject(
+new Error(
+`IN-3 could not load ${file.src}.`
+)
+);
+
+};
+
+existingScript.addEventListener(
+"load",
+handleExistingLoad,
+{
+once:true
+}
+);
+
+existingScript.addEventListener(
+"error",
+handleExistingError,
+{
+once:true
+}
+);
+
+return;
+
+}
+
+const script =
+document.createElement(
+"script"
+);
+
+script.src =
+file.src;
+
+script.async =
+false;
+
+script.dataset.in3MasterScript =
+"true";
+
+script.addEventListener(
+"load",
+() => {
+
+script.dataset.in3Loaded =
+"true";
+
+if (
+file.requiredGlobal &&
+!globalThis[
+file.requiredGlobal
+]
+) {
+
+reject(
+new Error(
+`IN-3 loaded ${file.src}, but ${file.requiredGlobal} was not created.`
+)
+);
+
+return;
+
+}
+
+resolve();
+
+},
+{
+once:true
+}
+);
+
+script.addEventListener(
+"error",
+() => {
+
+reject(
+new Error(
+`IN-3 could not load ${file.src}.`
+)
+);
+
+},
+{
+once:true
+}
+);
+
+document.head.appendChild(
+script
+);
+
+}
+);
+
+}
+
+async function in3LoadMasterFiles() {
+
+for (
+const file of
+IN3_MASTER_FILES
+) {
+
+await in3LoadScript(
+file
+);
+
+}
+
+}
+
+
+/* =========================================
+MASTER ACCESS
+========================================= */
+
+function in3GetMasterPricing() {
+
+const pricing =
+globalThis
+.FactoryRooflightsMasterPricing;
+
+if (
+!pricing ||
+typeof pricing !==
+"object"
+) {
+
+return null;
+
+}
+
+return pricing;
+
+}
+
+function in3RequireMasterPricing() {
+
+const pricing =
+in3GetMasterPricing();
+
+if (
+!pricing ||
+typeof pricing.getStandardPrice !==
+"function" ||
+typeof pricing.getCustomPrice !==
+"function"
+) {
+
+throw new Error(
+"FactoryRooflightsMasterPricing is unavailable or incomplete."
+);
+
+}
+
+return pricing;
+
+}
+
+function in3GetMasterMakeup() {
+
+const makeup =
+globalThis
+.MasterMakeupLogic;
+
+if (
+!makeup ||
+typeof makeup !==
+"object"
+) {
+
+return null;
+
+}
+
+return makeup;
+
+}
+
+function in3RequireMasterMakeup() {
+
+const makeup =
+in3GetMasterMakeup();
+
+if (
+!makeup ||
+typeof makeup.getUnitMakeup !==
+"function"
+) {
+
+throw new Error(
+"MasterMakeupLogic is unavailable or incomplete."
+);
+
+}
+
+return makeup;
+
+}
+
+
+/* =========================================
+COMMON NORMALISERS
+========================================= */
+
+function in3NormalizeSize(
+size
+) {
+
+return String(
+size ??
+""
+)
+.trim()
+.toLowerCase()
+.replace(
+/mm/g,
+""
+)
+.replace(
+/×/g,
+"x"
+)
+.replace(
+/\s+/g,
+""
+);
+
+}
+
+function in3ParseSize(
+size
+) {
+
+const normalized =
+in3NormalizeSize(
+size
+);
+
+const parts =
+normalized
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+parts.length !==
+2 ||
+!Number.isFinite(
+parts[0]
+) ||
+!Number.isFinite(
+parts[1]
+) ||
+parts[0] <=
+0 ||
+parts[1] <=
+0
+) {
+
+return null;
+
+}
+
+return {
+width:parts[0],
+length:parts[1],
+size:
+`${parts[0]}x${parts[1]}`
+};
+
+}
+
+function in3NormalizeGlazing(
+glazing
+) {
+
+return String(
+glazing ??
+""
+)
+.trim()
+.toLowerCase()
+.includes(
+"triple"
+)
+?
+"triple"
+:
+"double";
+
+}
+
+function in3NormalizeGlassType(
+type
+) {
+
+return String(
+type ??
+""
+)
+.trim()
+.toLowerCase()
+.includes(
+"lam"
+)
+?
+"laminated"
+:
+"toughened";
+
+}
+
+function in3NormalizeBottomType(
+type
+) {
+
+return in3NormalizeGlassType(
+type
+) ===
+"laminated"
+?
+"lam"
+:
+"tough";
+
+}
+
+function in3NormalizeBorder(
+border
+) {
+
+const numeric =
+Number(
+border
+);
+
+return Number.isFinite(
+numeric
+)
+?
+numeric
+:
+100;
+
+}
+
+function in3NormalizeMasterPriceResult(
+result
+) {
+
+if (
+Number.isFinite(
+Number(
+result
+)
+) &&
+Number(
+result
+) >
+0
+) {
+
+return {
+available:true,
+price:Number(
+result
+),
+strategy:null,
+raw:result
+};
+
+}
+
+const price =
+Number(
+result?.price
+);
+
+if (
+result?.available ===
+true &&
+Number.isFinite(
+price
+) &&
+price >
+0
+) {
+
+return {
+...result,
+available:true,
+price
+};
+
+}
+
+return {
+...(
+result &&
+typeof result ===
+"object"
+?
+result
+:
+{}
+),
+available:false,
+price:null
+};
+
+}
+
+
+/* =========================================
+MASTER STANDARD-SIZE PRICING
+POPULAR + TINTED / PRIVACY CARDS
+========================================= */
+
+function in3GetStandardPriceResult(
+card,
+glazing
+) {
+
+if (
+!card
+) {
+
+return {
+available:false,
+price:null,
+reasonCode:"CARD_UNAVAILABLE"
+};
+
+}
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+if (
+!dimensions
+) {
+
+return {
+available:false,
+price:null,
+reasonCode:"INVALID_STANDARD_SIZE"
+};
+
+}
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+const pricing =
+in3RequireMasterPricing();
+
+const result =
+pricing.getStandardPrice(
+{
+width:dimensions.width,
+length:dimensions.length,
+internalWidth:dimensions.width,
+internalLength:dimensions.length,
+size:dimensions.size,
+glazing:
+in3NormalizeGlazing(
+glazing
+),
+finish,
+tint:finish,
+type:"toughened",
+border:100
+}
+);
+
+return in3NormalizeMasterPriceResult(
+result
+);
+
+}
+
+function in3GetHomepageProductCardPrice(
+card,
+glazing
+) {
+
+try {
+
+const result =
+in3GetStandardPriceResult(
+card,
+glazing
+);
+
+return result.available
+?
+result.price
+:
+0;
+
+}
+catch (error) {
+
+console.error(
+"IN-3 could not obtain a homepage product-card price from the master pricing system.",
+error
+);
+
+return 0;
+
+}
+
+}
+
+
+/* =========================================
+MASTER CUSTOM CALCULATOR PRICING
+========================================= */
+
+function in3GetCustomPriceResult(
+width,
+length,
+border,
+glazing,
+finish
+) {
+
+const numericWidth =
+Number(
+width
+);
+
+const numericLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+numericWidth
+) ||
+!Number.isFinite(
+numericLength
+) ||
+numericWidth <=
+0 ||
+numericLength <=
+0
+) {
+
+return {
+available:false,
+price:null,
+reasonCode:"INVALID_CUSTOM_SIZE"
+};
+
+}
+
+const glazingDetails =
+getCustomGlazingDetails(
+glazing
+);
+
+const glazingKey =
+glazingDetails.isTriple
+?
+"triple"
+:
+"double";
+
+const typeKey =
+glazingDetails.isLaminated
+?
+"laminated"
+:
+"toughened";
+
+const finishKey =
+getCustomFinishKey(
+finish
+);
+
+const pricing =
+in3RequireMasterPricing();
+
+const result =
+pricing.getCustomPrice(
+{
+width:numericWidth,
+length:numericLength,
+internalWidth:numericWidth,
+internalLength:numericLength,
+glazing:glazingKey,
+finish:finishKey,
+tint:finishKey,
+type:typeKey,
+border:
+in3NormalizeBorder(
+border
+)
+}
+);
+
+return in3NormalizeMasterPriceResult(
+result
+);
+
+}
+
+function in3GetCustomCalculatorPrice(
+width,
+length,
+border,
+glazing,
+finish
+) {
+
+try {
+
+const result =
+in3GetCustomPriceResult(
+width,
+length,
+border,
+glazing,
+finish
+);
+
+return result.available
+?
+result.price
+:
+null;
+
+}
+catch (error) {
+
+console.error(
+"IN-3 could not obtain a homepage custom-calculator price from the master pricing system.",
+error
+);
+
+return null;
+
+}
+
+}
+
+
+/* =========================================
+MASTER MAKE-UP ADAPTER
+========================================= */
+
+function in3ResolveMasterMakeup({
+width,
+length,
+border = 100,
+glazing = "triple",
+finish = "clear",
+type = "toughened"
+} = {}) {
+
+const numericWidth =
+Number(
+width
+);
+
+const numericLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+numericWidth
+) ||
+!Number.isFinite(
+numericLength
+) ||
+numericWidth <=
+0 ||
+numericLength <=
+0
+) {
+
+return null;
+
+}
+
+const makeup =
+in3RequireMasterMakeup();
+
+const normalizedFinish =
+normalizeHomepageFinish(
+finish
+);
+
+const normalizedGlazing =
+in3NormalizeGlazing(
+glazing
+);
+
+const bottomType =
+in3NormalizeBottomType(
+type
+);
+
+let result =
+makeup.getUnitMakeup(
+{
+internalWidth:numericWidth,
+internalLength:numericLength,
+border:
+in3NormalizeBorder(
+border
+),
+glazing:normalizedGlazing,
+finish:normalizedFinish,
+bottomType
+}
+);
+
+/*
+For Top Glass DISPLAY only, a full laminated
+make-up can legitimately be unavailable for a
+particular finish. The top pane itself is still
+resolved by retrying with a toughened bottom,
+matching the safe display behaviour used on the
+Order Page integration.
+*/
+
+if (
+(
+!result ||
+result.supported !==
+true ||
+!result.panes?.top
+) &&
+bottomType ===
+"lam"
+) {
+
+result =
+makeup.getUnitMakeup(
+{
+internalWidth:numericWidth,
+internalLength:numericLength,
+border:
+in3NormalizeBorder(
+border
+),
+glazing:normalizedGlazing,
+finish:normalizedFinish,
+bottomType:"tough"
+}
+);
+
+}
+
+return result;
+
+}
+
+function in3FormatTopGlassLabel(
+makeupResult
+) {
+
+const thickness =
+Number(
+makeupResult?.panes?.top?.thickness
+);
+
+if (
+!Number.isFinite(
+thickness
+) ||
+thickness <=
+0
+) {
+
+return "Glass Specification Unavailable";
+
+}
+
+return (
+`${thickness}mm Toughened Safety Glass`
+);
+
+}
+
+
+/* =========================================
+PRODUCT-CARD GLASS SPECIFICATION
+========================================= */
+
+function in3GetHomepageCardGlassSpecElement(
+card
+) {
+
+if (
+!card
+) {
+
+return null;
+
+}
+
+const explicit =
+card.querySelector(
+".home-product-spec .product-glass-spec"
+);
+
+if (
+explicit
+) {
+
+return explicit;
+
+}
+
+const spans =
+Array.from(
+card.querySelectorAll(
+".home-product-spec > span"
+)
+);
+
+const candidate =
+spans[1] ||
+null;
+
+if (
+candidate
+) {
+
+candidate.classList.add(
+"product-glass-spec"
+);
+
+}
+
+return candidate;
+
+}
+
+function in3UpdateHomepageProductCardGlassSpec(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+const target =
+in3GetHomepageCardGlassSpecElement(
+card
+);
+
+if (
+!dimensions ||
+!target
+) {
+
+return;
+
+}
+
+const glazing =
+getHomepageProductCardGlazing(
+card
+);
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+try {
+
+const result =
+in3ResolveMasterMakeup(
+{
+width:dimensions.width,
+length:dimensions.length,
+border:100,
+glazing,
+finish,
+type:"toughened"
+}
+);
+
+target.textContent =
+in3FormatTopGlassLabel(
+result
+);
+
+}
+catch (error) {
+
+target.textContent =
+"Glass Specification Unavailable";
+
+console.error(
+"IN-3 could not obtain a product-card glass specification from MasterMakeupLogic.",
+error
+);
+
+}
+
+}
+
+function in3UpdateHomepageProductCard(
+card
+) {
+
+in3OriginalUpdateHomepageProductCard(
+card
+);
+
+in3UpdateHomepageProductCardGlassSpec(
+card
+);
+
+}
+
+
+/* =========================================
+HOMEPAGE BASKET TOP GLASS
+========================================= */
+
+function in3GetItemTopGlassLabel(
+item
+) {
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+if (
+dimensions.width <=
+0 ||
+dimensions.length <=
+0
+) {
+
+return in3OriginalGetItemTopGlassLabel(
+item
+);
+
+}
+
+try {
+
+const result =
+in3ResolveMasterMakeup(
+{
+width:dimensions.width,
+length:dimensions.length,
+border:getItemBorder(
+item
+),
+glazing:getItemGlazing(
+item
+),
+finish:getItemFinish(
+item
+),
+type:getItemGlassType(
+item
+)
+}
+);
+
+const label =
+in3FormatTopGlassLabel(
+result
+);
+
+if (
+label !==
+"Glass Specification Unavailable"
+) {
+
+return label;
+
+}
+
+}
+catch (error) {
+
+console.error(
+"IN-3 could not obtain a basket Top Glass specification from MasterMakeupLogic.",
+error
+);
+
+}
+
+return in3OriginalGetItemTopGlassLabel(
+item
+);
+
+}
+
+
+/* =========================================
+MASTER VALIDATION
+========================================= */
+
+function in3AssertPositiveMasterPrice(
+result,
+label
+) {
+
+if (
+!result ||
+result.available !==
+true ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0
+) {
+
+throw new Error(
+`IN-3 master pricing validation failed for ${label}.`
+);
+
+}
+
+}
+
+function in3ValidateAllHomepageCardPrices() {
+
+const cards =
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+);
+
+if (
+!cards.length
+) {
+
+throw new Error(
+"IN-3 could not find any homepage product cards to validate."
+);
+
+}
+
+cards.forEach(
+(card) => {
+
+const size =
+card.dataset.productSize ||
+"unknown-size";
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+[
+"double",
+"triple"
+].forEach(
+(glazing) => {
+
+const result =
+in3GetStandardPriceResult(
+card,
+glazing
+);
+
+in3AssertPositiveMasterPrice(
+result,
+`${size} ${finish} ${glazing}`
+);
+
+}
+);
+
+}
+);
+
+}
+
+function in3ValidateCustomMasterPricing() {
+
+const checks = [
+
+{
+width:725,
+length:1375,
+border:100,
+glazing:"toughened-double",
+finish:"Clear",
+label:"725x1375 Toughened Double Clear"
+},
+
+{
+width:900,
+length:1700,
+border:125,
+glazing:"toughened-triple",
+finish:"Blue Tinted",
+label:"900x1700 Toughened Triple Blue"
+},
+
+{
+width:1000,
+length:2000,
+border:150,
+glazing:"laminated-double",
+finish:"Grey Tinted",
+label:"1000x2000 Laminated Double Grey"
+}
+
+];
+
+checks.forEach(
+(check) => {
+
+const result =
+in3GetCustomPriceResult(
+check.width,
+check.length,
+check.border,
+check.glazing,
+check.finish
+);
+
+in3AssertPositiveMasterPrice(
+result,
+check.label
+);
+
+}
+);
+
+return in3GetCustomPriceResult(
+725,
+1375,
+100,
+"toughened-double",
+"Clear"
+);
+
+}
+
+function in3ValidateMasterMakeup() {
+
+const checks = [
+
+{
+width:600,
+length:900,
+glazing:"triple",
+finish:"clear",
+expectedTop:6,
+label:"600x900 Triple Clear"
+},
+
+{
+width:1500,
+length:1800,
+glazing:"double",
+finish:"clear",
+expectedTop:8,
+label:"1500x1800 Double Clear"
+},
+
+{
+width:800,
+length:1000,
+glazing:"double",
+finish:"blue",
+expectedTop:6,
+label:"800x1000 Double Blue"
+},
+
+{
+width:800,
+length:1500,
+glazing:"triple",
+finish:"satin",
+expectedTop:6,
+label:"800x1500 Triple Satin"
+}
+
+];
+
+checks.forEach(
+(check) => {
+
+const result =
+in3ResolveMasterMakeup(
+{
+width:check.width,
+length:check.length,
+border:100,
+glazing:check.glazing,
+finish:check.finish,
+type:"toughened"
+}
+);
+
+const topThickness =
+Number(
+result?.panes?.top?.thickness
+);
+
+if (
+result?.supported !==
+true ||
+topThickness !==
+check.expectedTop
+) {
+
+throw new Error(
+`IN-3 master make-up validation failed for ${check.label}. Expected ${check.expectedTop}mm top glass, received ${topThickness || "unavailable"}mm.`
+);
+
+}
+
+}
+);
+
+}
+
+function in3ValidateMasterSystems() {
+
+in3RequireMasterPricing();
+in3RequireMasterMakeup();
+
+in3ValidateAllHomepageCardPrices();
+
+const customResult =
+in3ValidateCustomMasterPricing();
+
+in3ValidateMasterMakeup();
+
+const strategy =
+String(
+customResult?.strategy ||
+""
+)
+.trim()
+.toLowerCase();
+
+if (
+strategy &&
+![
+"cheap",
+"normal",
+"expensive"
+].includes(
+strategy
+)
+) {
+
+throw new Error(
+`IN-3 received an unexpected active pricing strategy: ${strategy}.`
+);
+
+}
+
+globalThis.IN3_ACTIVE_PRICE_STRATEGY =
+strategy ||
+null;
+
+return strategy;
+
+}
+
+
+/* =========================================
+INSTALL LIVE HOMEPAGE OVERRIDES
+========================================= */
+
+function in3InstallOverrides() {
+
+if (
+in3OverridesInstalled
+) {
+
+return;
+
+}
+
+getHomepageProductCardPrice =
+in3GetHomepageProductCardPrice;
+
+updateHomepageProductCard =
+in3UpdateHomepageProductCard;
+
+getCustomCalculatorPrice =
+in3GetCustomCalculatorPrice;
+
+getItemTopGlassLabel =
+in3GetItemTopGlassLabel;
+
+if (
+getHomepageProductCardPrice !==
+in3GetHomepageProductCardPrice ||
+updateHomepageProductCard !==
+in3UpdateHomepageProductCard ||
+getCustomCalculatorPrice !==
+in3GetCustomCalculatorPrice ||
+getItemTopGlassLabel !==
+in3GetItemTopGlassLabel
+) {
+
+throw new Error(
+"IN-3 could not install one or more homepage master overrides."
+);
+
+}
+
+in3OverridesInstalled =
+true;
+
+globalThis.IN3_HOMEPAGE_MASTER_ACTIVE =
+true;
+
+}
+
+
+/* =========================================
+REFRESH HOMEPAGE FROM THE MASTERS
+
+Do NOT call initializeHomepageProductPrices()
+again here because IN-2 already attached the
+card event listeners. We only refresh their
+live data through the newly-installed master
+functions.
+========================================= */
+
+function in3RefreshHomepageProductCards() {
+
+const cards =
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+);
+
+cards.forEach(
+(card) => {
+
+updateHomepageProductCard(
+card
+);
+
+}
+);
+
+}
+
+function in3RefreshHomepageMasterData() {
+
+in3RefreshHomepageProductCards();
+
+calculatePrice();
+
+refreshHomepageBasket();
+
+if (
+basketDrawerIsOpen
+) {
+
+renderHomepageBasket();
+
+}
+
+}
+
+
+/* =========================================
+TEMPORARY MASTER-READY CLICK GUARD
+
+Product-card View Size links and the homepage
+calculator Add To Order link are held only
+while the master scripts are loading. This
+prevents a visitor from acting on stale local
+homepage prices during the short test-loading
+window.
+
+Delivery / basket checkout is deliberately
+NOT controlled by IN-3.
+========================================= */
+
+function in3BlockPriceDependentActionsUntilReady(
+event
+) {
+
+if (
+in3Ready
+) {
+
+return;
+
+}
+
+const target =
+event.target instanceof
+Element
+?
+event.target
+:
+null;
+
+const action =
+target?.closest(
+".home-product-link, #addCustomRooflightToOrder"
+);
+
+if (
+!action
+) {
+
+return;
+
+}
+
+event.preventDefault();
+event.stopImmediatePropagation();
+
+}
+
+document.addEventListener(
+"click",
+in3BlockPriceDependentActionsUntilReady,
+true
+);
+
+
+/* =========================================
+FAILURE PRESENTATION
+
+If the master integration fails, do not leave
+old local prices looking as though IN-3 worked.
+The relevant homepage pricing UI is marked
+unavailable and the price-dependent links stay
+blocked. Existing delivery / basket behaviour
+is otherwise untouched.
+========================================= */
+
+function in3MarkHomepagePricingUnavailable() {
+
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+).forEach(
+(card) => {
+
+const main =
+card.querySelector(
+".home-price-main"
+);
+
+const decimals =
+card.querySelector(
+".home-price-decimals"
+);
+
+const glassSpec =
+in3GetHomepageCardGlassSpecElement(
+card
+);
+
+if (
+main
+) {
+
+main.textContent =
+"—";
+
+}
+
+if (
+decimals
+) {
+
+decimals.textContent =
+"";
+
+}
+
+if (
+glassSpec
+) {
+
+glassSpec.textContent =
+"Glass Specification Unavailable";
+
+}
+
+}
+);
+
+hideCustomCalculatorPrice();
+
+}
+
+function in3SetFailureState(
+error
+) {
+
+in3Failed =
+true;
+
+in3Ready =
+false;
+
+globalThis.IN3_HOMEPAGE_MASTER_ACTIVE =
+false;
+
+in3MarkHomepagePricingUnavailable();
+
+console.error(
+"IN-3 TEST FAILED. Homepage master pricing / make-up was not activated. Popular Sizes, Tinted & Privacy and the homepage calculator have been blocked from silently displaying the old local prices.",
+error
+);
+
+}
+
+
+/* =========================================
+IN-3 START
+========================================= */
+
+const IN3_READY =
+(async () => {
+
+try {
+
+await in3LoadMasterFiles();
+
+const activeStrategy =
+in3ValidateMasterSystems();
+
+in3InstallOverrides();
+
+in3Ready =
+true;
+
+in3RefreshHomepageMasterData();
+
+document.removeEventListener(
+"click",
+in3BlockPriceDependentActionsUntilReady,
+true
+);
+
+console.info(
+`IN-3 TEST PASSED: homepage Popular Sizes, Tinted & Privacy, custom calculator pricing and top-glass specifications are now using the shared master system.${activeStrategy ? ` Active master pricing strategy: ${activeStrategy}.` : ""} Homepage delivery rates remain controlled entirely by the existing IN-2 delivery engine.`
+);
+
+return true;
+
+}
+catch (error) {
+
+in3SetFailureState(
+error
+);
+
+return false;
+
+}
+
+})();
+
+
+/* =========================================
+BFCache / RETURN NAVIGATION REFRESH
+========================================= */
+
+window.addEventListener(
+"pageshow",
+() => {
+
+if (
+!in3Ready
+) {
+
+return;
+
+}
+
+in3RefreshHomepageMasterData();
+
+}
+);
+```
 
 /* =========================================
 FINAL INITIALISATION
