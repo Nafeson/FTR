@@ -28266,6 +28266,1400 @@ throw error;
 }
 );
 /* =========================================
+OP-3B TEST INTEGRATION
+MASTER DELIVERY ACTIVATION
+
+PASTE THIS DIRECTLY BELOW OP-3A AND
+DIRECTLY ABOVE THE EXISTING
+"INITIALISE PAGE" BLOCK.
+
+KEEP OP-3A IN PLACE.
+KEEP THE EXISTING OP-2 INITIALISATION BLOCK.
+DO NOT REMOVE THE EXISTING LOCAL DELIVERY
+CODE YET.
+
+OP-3B WAITS FOR OP-3A TO FINISH LOADING
+AND VALIDATING THE SHARED MASTER FILES,
+THEN SWITCHES THE LIVE ORDER PAGE DELIVERY
+CALCULATIONS TO:
+
+js/masters/master-delivery-rates.js
+
+THE OLD OP-2 DELIVERY CODE REMAINS IN THE
+PAGE ONLY AS A TEST FALLBACK / REFERENCE.
+========================================= */
+
+let op3bTestReady =
+false;
+
+let op3bTestFailed =
+false;
+
+let op3bDeliveryOverridesInstalled =
+false;
+
+function op3bGetDeliveryMaster() {
+
+const delivery =
+globalThis
+.MasterDeliveryRates;
+
+if (
+!delivery ||
+typeof delivery !==
+"object"
+) {
+
+return null;
+
+}
+
+return delivery;
+
+}
+
+function op3bRequireDeliveryMaster() {
+
+const delivery =
+op3bGetDeliveryMaster();
+
+if (
+!delivery
+) {
+
+throw new Error(
+"MasterDeliveryRates is unavailable."
+);
+
+}
+
+return delivery;
+
+}
+
+function op3bInstallGlobalFunction(
+name,
+replacement
+) {
+
+if (
+typeof replacement !==
+"function"
+) {
+
+return false;
+
+}
+
+if (
+typeof globalThis[
+name
+] !==
+"function"
+) {
+
+console.warn(
+`OP-3B could not find existing function ${name}().`
+);
+
+return false;
+
+}
+
+try {
+
+globalThis[
+name
+] =
+replacement;
+
+return globalThis[
+name
+] ===
+replacement;
+
+}
+catch (
+error
+) {
+
+console.warn(
+`OP-3B could not replace ${name}().`,
+error
+);
+
+return false;
+
+}
+
+}
+
+/* =========================================
+MASTER-BACKED DELIVERY NORMALISERS
+========================================= */
+
+function op3bNormalizeDeliveryCategory(
+category
+) {
+
+return op3bRequireDeliveryMaster()
+.normalizeDeliveryCategory(
+category
+);
+
+}
+
+function op3bNormalizePostcode(
+postcode
+) {
+
+return op3bRequireDeliveryMaster()
+.normalizePostcode(
+postcode
+);
+
+}
+
+function op3bFormatPostcode(
+postcode
+) {
+
+return op3bRequireDeliveryMaster()
+.formatPostcode(
+postcode
+);
+
+}
+
+function op3bIsCompleteUKPostcode(
+postcode
+) {
+
+return op3bRequireDeliveryMaster()
+.isCompleteUKPostcode(
+postcode
+);
+
+}
+
+/* =========================================
+MASTER-BACKED DELIVERY CATEGORIES
+========================================= */
+
+function op3bGetDeliveryCategoryForSize(
+size
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryCategoryForSize(
+size
+);
+
+}
+
+function op3bGetDeliveryCategoryRank(
+category
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryCategoryRank(
+category
+);
+
+}
+
+function op3bGetDeliveryMaximumMilesForCategory(
+category
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryMaximumMilesForCategory(
+category
+);
+
+}
+
+function op3bGetNormalisedDeliveryDimensions(
+width,
+length
+) {
+
+return op3bRequireDeliveryMaster()
+.getNormalisedDeliveryDimensions(
+width,
+length
+);
+
+}
+
+function op3bGetDeliveryCategoryForCustomDimensions(
+width,
+length
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryCategoryForCustomDimensions(
+width,
+length
+);
+
+}
+
+function op3bIsCustomDeliveryItem(
+item
+) {
+
+return op3bRequireDeliveryMaster()
+.isCustomDeliveryItem(
+item
+);
+
+}
+
+function op3bGetDeliveryCategoryForItem(
+item
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryCategoryForItem(
+item
+);
+
+}
+
+/* =========================================
+MASTER-BACKED DELIVERY PRICE ENGINE
+========================================= */
+
+function op3bExpandOrderItemsIntoUnits(
+items
+) {
+
+return op3bRequireDeliveryMaster()
+.expandOrderItemsIntoUnits(
+items
+);
+
+}
+
+function op3bGetBaseDeliveryPrice(
+category,
+chargeableMiles
+) {
+
+return op3bRequireDeliveryMaster()
+.getBaseDeliveryPrice(
+category,
+chargeableMiles
+);
+
+}
+
+function op3bGetAdditionalUnitPriceForCategory(
+category
+) {
+
+return op3bRequireDeliveryMaster()
+.getAdditionalUnitPriceForCategory(
+category
+);
+
+}
+
+function op3bCalculateDeliveryCombinationForBaseUnit(
+units,
+baseUnitIndex,
+chargeableMiles
+) {
+
+return op3bRequireDeliveryMaster()
+.calculateDeliveryCombinationForBaseUnit(
+units,
+baseUnitIndex,
+chargeableMiles
+);
+
+}
+
+function op3bGetMostExpensiveDeliveryCombination(
+units,
+chargeableMiles
+) {
+
+return op3bRequireDeliveryMaster()
+.getMostExpensiveDeliveryCombination(
+units,
+chargeableMiles
+);
+
+}
+
+function op3bGetStandardDeliveryGroups(
+units
+) {
+
+return op3bRequireDeliveryMaster()
+.getStandardDeliveryGroups(
+units
+);
+
+}
+
+function op3bGetDeliveryLimitFailure(
+units,
+chargeableMiles
+) {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryLimitFailure(
+units,
+chargeableMiles
+);
+
+}
+
+function op3bCalculateBasketDelivery(
+items,
+adjustedMiles
+) {
+
+return op3bRequireDeliveryMaster()
+.calculateBasketDelivery(
+items,
+adjustedMiles
+);
+
+}
+
+/* =========================================
+MASTER-BACKED PER-ITEM DELIVERY CONTRIBUTION
+
+The Order Page version accepts only the
+item because it reads the basket and mileage
+from state. The master accepts all three
+inputs, so this adapter preserves the
+existing Order Page function signature.
+========================================= */
+
+function op3bGetResolvedDeliveryContributionForItem(
+targetItem
+) {
+
+if (
+!state.deliveryResolved ||
+state.deliveryRequiresQuote
+) {
+
+return null;
+
+}
+
+const chargeableMiles =
+Number(
+state.deliveryChargeableMiles
+);
+
+if (
+!Number.isFinite(
+chargeableMiles
+)
+) {
+
+return Number(
+state.deliveryFee
+) || 0;
+
+}
+
+const contribution =
+op3bRequireDeliveryMaster()
+.getResolvedDeliveryContributionForItem(
+getAllBasketItems(),
+targetItem,
+chargeableMiles
+);
+
+return Number.isFinite(
+Number(
+contribution
+)
+)
+?
+Number(
+contribution
+)
+:
+null;
+
+}
+
+/* =========================================
+MASTER-BACKED POSTCODE / DISTANCE ENGINE
+========================================= */
+
+async function op3bLookupPostcode(
+postcode
+) {
+
+return op3bRequireDeliveryMaster()
+.lookupPostcode(
+postcode
+);
+
+}
+
+function op3bDegreesToRadians(
+degrees
+) {
+
+return op3bRequireDeliveryMaster()
+.degreesToRadians(
+degrees
+);
+
+}
+
+function op3bCalculateGeographicalMiles(
+lat1,
+lon1,
+lat2,
+lon2
+) {
+
+return op3bRequireDeliveryMaster()
+.calculateGeographicalMiles(
+lat1,
+lon1,
+lat2,
+lon2
+);
+
+}
+
+async function op3bGetDeliveryOrigin() {
+
+return op3bRequireDeliveryMaster()
+.getDeliveryOrigin();
+
+}
+
+async function op3bCalculatePostcodeDelivery(
+postcode
+) {
+
+return op3bRequireDeliveryMaster()
+.calculatePostcodeDelivery(
+postcode,
+getAllBasketItems()
+);
+
+}
+
+/* =========================================
+MASTER-BACKED ESTIMATED DELIVERY / LEAD TIME
+
+The master deliberately reuses the existing
+Order Page working-day date formatter, so the
+visible date-range behaviour remains unchanged
+while the actual lead-time rules come from the
+shared delivery master.
+========================================= */
+
+function op3bGetLeadTimeForSelection(
+selection
+) {
+
+return op3bRequireDeliveryMaster()
+.getLeadTimeForSelection(
+selection,
+{
+normalizeTint:
+normalizeTint
+}
+);
+
+}
+
+function op3bGetBasketLeadTime() {
+
+return op3bRequireDeliveryMaster()
+.getBasketLeadTime(
+getAllBasketItems(),
+state,
+{
+normalizeTint:
+normalizeTint
+}
+);
+
+}
+
+function op3bGetBasketEstimatedDeliveryText() {
+
+const result =
+op3bRequireDeliveryMaster()
+.getBasketEstimatedDeliveryText(
+getAllBasketItems(),
+state,
+getEstimatedDeliveryTextForLeadTime,
+{
+normalizeTint:
+normalizeTint
+}
+);
+
+return typeof result ===
+"string"
+?
+result
+:
+"";
+
+}
+
+/* =========================================
+STATIC MASTER DELIVERY VALIDATION
+
+No live postcode lookup is performed here.
+These checks confirm that the master contains
+and returns the delivery rules expected by the
+current working Order Page before it is allowed
+to take control.
+========================================= */
+
+function op3bValidateMasterDelivery() {
+
+const delivery =
+op3bRequireDeliveryMaster();
+
+const requiredFunctions = [
+"normalizeDeliveryCategory",
+"normalizePostcode",
+"formatPostcode",
+"isCompleteUKPostcode",
+"getDeliveryCategoryForSize",
+"getDeliveryCategoryRank",
+"getDeliveryMaximumMilesForCategory",
+"getNormalisedDeliveryDimensions",
+"getDeliveryCategoryForCustomDimensions",
+"isCustomDeliveryItem",
+"getDeliveryCategoryForItem",
+"expandOrderItemsIntoUnits",
+"getBaseDeliveryPrice",
+"getAdditionalUnitPriceForCategory",
+"calculateDeliveryCombinationForBaseUnit",
+"getMostExpensiveDeliveryCombination",
+"getStandardDeliveryGroups",
+"getDeliveryLimitFailure",
+"calculateBasketDelivery",
+"getResolvedDeliveryContributionForItem",
+"lookupPostcode",
+"degreesToRadians",
+"calculateGeographicalMiles",
+"getDeliveryOrigin",
+"calculatePostcodeDelivery",
+"getLeadTimeForSelection",
+"getBasketLeadTime",
+"getBasketEstimatedDeliveryText"
+];
+
+const missingFunctions =
+requiredFunctions.filter(
+name =>
+typeof delivery[
+name
+] !==
+"function"
+);
+
+if (
+missingFunctions.length
+) {
+
+throw new Error(
+"MasterDeliveryRates is missing required functions: " +
+missingFunctions.join(
+", "
+)
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForSize(
+"600x900"
+) !==
+"small"
+) {
+
+throw new Error(
+"OP-3B delivery category test failed for 600x900."
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForSize(
+"1000x1500"
+) !==
+"large"
+) {
+
+throw new Error(
+"OP-3B delivery category test failed for 1000x1500."
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForSize(
+"1500x2500"
+) !==
+"extraLarge"
+) {
+
+throw new Error(
+"OP-3B delivery category test failed for 1500x2500."
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForCustomDimensions(
+777,
+1333
+) !==
+"medium"
+) {
+
+throw new Error(
+"OP-3B custom delivery category test failed for 777x1333."
+);
+
+}
+
+if (
+delivery.getDeliveryCategoryForCustomDimensions(
+500,
+3000
+) !==
+"extraLarge"
+) {
+
+throw new Error(
+"OP-3B custom delivery category test failed for 500x3000."
+);
+
+}
+
+if (
+delivery.getBaseDeliveryPrice(
+"small",
+400
+) !==
+70
+) {
+
+throw new Error(
+"OP-3B Small 400-mile delivery price test failed."
+);
+
+}
+
+if (
+delivery.getBaseDeliveryPrice(
+"large",
+400
+) !==
+85
+) {
+
+throw new Error(
+"OP-3B Large 400-mile delivery price test failed."
+);
+
+}
+
+if (
+delivery.getBaseDeliveryPrice(
+"extraLarge",
+200
+) !==
+115
+) {
+
+throw new Error(
+"OP-3B Extra Large 200-mile delivery price test failed."
+);
+
+}
+
+if (
+delivery.getBaseDeliveryPrice(
+"extraLarge",
+201
+) !==
+null
+) {
+
+throw new Error(
+"OP-3B Extra Large 201-mile limit test failed."
+);
+
+}
+
+const customOnlyDelivery =
+delivery.calculateBasketDelivery(
+[
+{
+source:"order-page-custom",
+isCustom:true,
+custom:true,
+width:777,
+length:1333,
+quantity:2
+}
+],
+300
+);
+
+if (
+customOnlyDelivery.requiresQuote ||
+customOnlyDelivery.price !==
+90
+) {
+
+throw new Error(
+"OP-3B custom-only delivery calculation test failed."
+);
+
+}
+
+const splitDelivery =
+delivery.calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:1
+},
+{
+size:"600x900",
+quantity:1
+}
+],
+34
+);
+
+if (
+splitDelivery.requiresQuote ||
+splitDelivery.groupCount !==
+2 ||
+splitDelivery.price !==
+80
+) {
+
+throw new Error(
+"OP-3B Extra-Large split-group delivery test failed."
+);
+
+}
+
+const groupedAdditionalDelivery =
+delivery.calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:2
+},
+{
+size:"1000x1500",
+quantity:1
+},
+{
+size:"600x900",
+quantity:1
+}
+],
+34
+);
+
+if (
+groupedAdditionalDelivery.requiresQuote ||
+groupedAdditionalDelivery.groupCount !==
+2 ||
+groupedAdditionalDelivery.price !==
+170
+) {
+
+throw new Error(
+"OP-3B grouped additional-unit delivery test failed."
+);
+
+}
+
+const largeAt401 =
+delivery.calculateBasketDelivery(
+[
+{
+size:"1000x1500",
+quantity:1
+}
+],
+401
+);
+
+if (
+largeAt401.requiresQuote !==
+true
+) {
+
+throw new Error(
+"OP-3B 401-mile Large delivery-limit test failed."
+);
+
+}
+
+const extraLargeAt201 =
+delivery.calculateBasketDelivery(
+[
+{
+size:"1500x2500",
+quantity:1
+}
+],
+201
+);
+
+if (
+extraLargeAt201.requiresQuote !==
+true
+) {
+
+throw new Error(
+"OP-3B 201-mile Extra Large delivery-limit test failed."
+);
+
+}
+
+const toughenedClearLeadTime =
+delivery.getLeadTimeForSelection(
+{
+type:"toughened",
+tint:"clear"
+},
+{
+normalizeTint:
+normalizeTint
+}
+);
+
+if (
+toughenedClearLeadTime.min !==
+4 ||
+toughenedClearLeadTime.max !==
+6
+) {
+
+throw new Error(
+"OP-3B Toughened Clear lead-time test failed."
+);
+
+}
+
+const laminatedBlueLeadTime =
+delivery.getLeadTimeForSelection(
+{
+type:"laminated",
+tint:"blue"
+},
+{
+normalizeTint:
+normalizeTint
+}
+);
+
+if (
+laminatedBlueLeadTime.min !==
+8 ||
+laminatedBlueLeadTime.max !==
+10
+) {
+
+throw new Error(
+"OP-3B Laminated Blue lead-time test failed."
+);
+
+}
+
+}
+
+/* =========================================
+INSTALL LIVE DELIVERY OVERRIDES
+========================================= */
+
+function op3bInstallDeliveryOverrides() {
+
+if (
+op3bDeliveryOverridesInstalled
+) {
+
+return;
+
+}
+
+op3bValidateMasterDelivery();
+
+const installedFunctions = [
+op3bInstallGlobalFunction(
+"normalizeDeliveryCategory",
+op3bNormalizeDeliveryCategory
+),
+op3bInstallGlobalFunction(
+"normalizePostcode",
+op3bNormalizePostcode
+),
+op3bInstallGlobalFunction(
+"formatPostcode",
+op3bFormatPostcode
+),
+op3bInstallGlobalFunction(
+"isCompleteUKPostcode",
+op3bIsCompleteUKPostcode
+),
+op3bInstallGlobalFunction(
+"getDeliveryCategoryForSize",
+op3bGetDeliveryCategoryForSize
+),
+op3bInstallGlobalFunction(
+"getDeliveryCategoryRank",
+op3bGetDeliveryCategoryRank
+),
+op3bInstallGlobalFunction(
+"getDeliveryMaximumMilesForCategory",
+op3bGetDeliveryMaximumMilesForCategory
+),
+op3bInstallGlobalFunction(
+"getNormalisedDeliveryDimensions",
+op3bGetNormalisedDeliveryDimensions
+),
+op3bInstallGlobalFunction(
+"getDeliveryCategoryForCustomDimensions",
+op3bGetDeliveryCategoryForCustomDimensions
+),
+op3bInstallGlobalFunction(
+"isCustomDeliveryItem",
+op3bIsCustomDeliveryItem
+),
+op3bInstallGlobalFunction(
+"getDeliveryCategoryForItem",
+op3bGetDeliveryCategoryForItem
+),
+op3bInstallGlobalFunction(
+"expandOrderItemsIntoUnits",
+op3bExpandOrderItemsIntoUnits
+),
+op3bInstallGlobalFunction(
+"getBaseDeliveryPrice",
+op3bGetBaseDeliveryPrice
+),
+op3bInstallGlobalFunction(
+"getAdditionalUnitPriceForCategory",
+op3bGetAdditionalUnitPriceForCategory
+),
+op3bInstallGlobalFunction(
+"calculateDeliveryCombinationForBaseUnit",
+op3bCalculateDeliveryCombinationForBaseUnit
+),
+op3bInstallGlobalFunction(
+"getMostExpensiveDeliveryCombination",
+op3bGetMostExpensiveDeliveryCombination
+),
+op3bInstallGlobalFunction(
+"getStandardDeliveryGroups",
+op3bGetStandardDeliveryGroups
+),
+op3bInstallGlobalFunction(
+"getDeliveryLimitFailure",
+op3bGetDeliveryLimitFailure
+),
+op3bInstallGlobalFunction(
+"calculateBasketDelivery",
+op3bCalculateBasketDelivery
+),
+op3bInstallGlobalFunction(
+"getResolvedDeliveryContributionForItem",
+op3bGetResolvedDeliveryContributionForItem
+),
+op3bInstallGlobalFunction(
+"lookupPostcode",
+op3bLookupPostcode
+),
+op3bInstallGlobalFunction(
+"degreesToRadians",
+op3bDegreesToRadians
+),
+op3bInstallGlobalFunction(
+"calculateGeographicalMiles",
+op3bCalculateGeographicalMiles
+),
+op3bInstallGlobalFunction(
+"getDeliveryOrigin",
+op3bGetDeliveryOrigin
+),
+op3bInstallGlobalFunction(
+"calculatePostcodeDelivery",
+op3bCalculatePostcodeDelivery
+),
+op3bInstallGlobalFunction(
+"getLeadTimeForSelection",
+op3bGetLeadTimeForSelection
+),
+op3bInstallGlobalFunction(
+"getBasketLeadTime",
+op3bGetBasketLeadTime
+),
+op3bInstallGlobalFunction(
+"getBasketEstimatedDeliveryText",
+op3bGetBasketEstimatedDeliveryText
+)
+];
+
+if (
+installedFunctions.some(
+installed =>
+installed !==
+true
+)
+) {
+
+throw new Error(
+"OP-3B could not install one or more delivery-master overrides."
+);
+
+}
+
+op3bDeliveryOverridesInstalled =
+true;
+
+globalThis.OP3B_DELIVERY_MASTER_ACTIVE =
+true;
+
+}
+
+/* =========================================
+REFRESH EXISTING ORDER PAGE USING MASTER
+DELIVERY WITHOUT RE-REGISTERING EVENTS OR
+STARTING A SECOND DELIVERY CLOCK.
+========================================= */
+
+function op3bRefreshDeliveryFromMaster() {
+
+/*
+Invalidate any local postcode request that may
+have started during the original OP-2 page
+initialisation before OP-3B became active.
+*/
+
+if (
+typeof invalidateDeliveryLookup ===
+"function"
+) {
+
+invalidateDeliveryLookup();
+
+}
+
+state.orderItems.forEach(
+item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForSize(
+item.size
+);
+
+}
+);
+
+state.customOrderItems.forEach(
+item => {
+
+item.deliveryCategory =
+getDeliveryCategoryForCustomDimensions(
+item.width ??
+item.internalWidth,
+item.length ??
+item.internalLength
+);
+
+}
+);
+
+const postcode =
+String(
+state.deliveryPostcode ||
+""
+).trim();
+
+if (
+postcode &&
+(
+state.orderItems.length ||
+state.customOrderItems.length
+)
+) {
+
+return recalculateResolvedDelivery(
+{
+animate:false
+}
+)
+.then(
+() => {
+
+updateEstimatedDelivery();
+
+requestOrderSummaryDeliveryWidthSync();
+
+console.info(
+"OP-3B TEST PASSED: MasterDeliveryRates is now controlling live delivery categories, delivery pricing, postcode distance calculations and estimated-delivery lead times."
+);
+
+}
+);
+
+}
+
+setDeliveryPending(
+postcode
+);
+
+state.basketTotal =
+calculateOrderTotal();
+
+saveOrderToStorage();
+
+renderOrderSummary(
+{
+animate:false
+}
+);
+
+renderCustomOrderSummary(
+{
+animate:false
+}
+);
+
+renderBasketDrawer();
+
+updateBasketTotal(
+state.basketTotal,
+{
+animate:false
+}
+);
+
+updateCheckoutAvailability();
+
+updateEstimatedDelivery();
+
+requestOrderSummaryDeliveryWidthSync();
+
+console.info(
+"OP-3B TEST PASSED: MasterDeliveryRates is now controlling live delivery categories, delivery pricing, postcode distance calculations and estimated-delivery lead times."
+);
+
+return Promise.resolve();
+
+}
+
+/* =========================================
+FAIL-SAFE
+
+Ordering remains blocked until both OP-3A
+and OP-3B have successfully activated. This
+prevents a failed delivery-master test from
+silently falling back to the embedded OP-2
+rates while appearing successful.
+========================================= */
+
+function op3bBlockOrderActionsUntilReady(
+event
+) {
+
+if (
+op3bTestReady
+) {
+
+return;
+
+}
+
+const eventTarget =
+event.target instanceof
+Element
+?
+event.target
+:
+null;
+
+const orderButton =
+eventTarget?.closest(
+"#addToOrder, #customAddToOrder, .checkout-now"
+);
+
+if (
+!orderButton
+) {
+
+return;
+
+}
+
+event.preventDefault();
+
+event.stopImmediatePropagation();
+
+}
+
+function op3bSetFailureState(
+error
+) {
+
+op3bTestFailed =
+true;
+
+globalThis.OP3B_DELIVERY_MASTER_ACTIVE =
+false;
+
+console.error(
+"OP-3B TEST FAILED. Master delivery was not activated and ordering has been disabled so the page cannot silently use the embedded OP-2 delivery rates.",
+error
+);
+
+if (
+addToOrder
+) {
+
+addToOrder.disabled =
+true;
+
+}
+
+if (
+customAddToOrder
+) {
+
+customAddToOrder.disabled =
+true;
+
+}
+
+document
+.querySelectorAll(
+".checkout-now"
+)
+.forEach(
+checkout => {
+
+checkout.classList.add(
+"is-disabled"
+);
+
+checkout.setAttribute(
+"aria-disabled",
+"true"
+);
+
+if (
+checkout instanceof
+HTMLButtonElement
+) {
+
+checkout.disabled =
+true;
+
+}
+
+}
+);
+
+}
+
+document.addEventListener(
+"click",
+op3bBlockOrderActionsUntilReady,
+true
+);
+
+/* =========================================
+OP-3B START
+
+OP-3A owns loading of the seven external
+master files. OP-3B waits for OP-3A's ready
+promise, then activates the delivery master.
+========================================= */
+
+const op3bOp3aReadyPromise =
+typeof OP3A_TEST_READY !==
+"undefined"
+?
+OP3A_TEST_READY
+:
+Promise.reject(
+new Error(
+"OP-3B requires OP-3A to remain directly above it."
+)
+);
+
+const OP3B_TEST_READY =
+Promise.resolve(
+op3bOp3aReadyPromise
+)
+.then(
+() => {
+
+op3bInstallDeliveryOverrides();
+
+/*
+Run the existing Order Page validation again,
+this time through the master-backed functions.
+*/
+
+validateDeliveryConfiguration();
+
+return op3bRefreshDeliveryFromMaster();
+
+}
+)
+.then(
+() => {
+
+op3bTestReady =
+true;
+
+document.removeEventListener(
+"click",
+op3bBlockOrderActionsUntilReady,
+true
+);
+
+return true;
+
+}
+)
+.catch(
+error => {
+
+op3bSetFailureState(
+error
+);
+
+return false;
+
+}
+);
+/* =========================================
 INITIALISE PAGE
 
 IMPORTANT:
