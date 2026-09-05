@@ -109,6 +109,11 @@ font-family:"Bahnschrift","Bahnschrift SemiCondensed","Arial Narrow","Aptos Disp
 
 /* =========================================
 HEADER
+
+CHANGE 12:
+RESTORE THE HEADER TO ITS ORIGINAL
+PRE-CHANGE-1 DISPLAY SCALE WHILE KEEPING
+ITS FULL-WIDTH FOOTPRINT.
 ========================================= */
 
 header {
@@ -125,6 +130,8 @@ z-index:30;
 backdrop-filter:blur(14px);
 -webkit-backdrop-filter:blur(14px);
 box-shadow:0 8px 30px rgba(0,0,0,.16);
+zoom:1.1111111111;
+width:90%;
 }
 
 .wordmark-wrap {
@@ -10457,6 +10464,1002 @@ function runPricingChecks() {
 return true;
 
 }
+/* =========================================
+SS-1
+STANDARD SIZES MASTER PRICING + MAKE-UP BRIDGE
+
+PASTE DIRECTLY ABOVE THE EXISTING
+INITIALISE SECTION.
+
+PRODUCT CARD HTML / CSS / IMAGE SIZING /
+PLACEMENT / STYLING ARE NOT ALTERED.
+
+DELIVERY PRICING IS NOT PART OF SS-1.
+========================================= */
+
+</script>
+
+<script src="js/masters/master-makeup-logic.js"></script>
+
+<script src="js/pricing/pricing-cheap.js"></script>
+<script src="js/pricing/pricing-normal.js"></script>
+<script src="js/pricing/pricing-expensive.js"></script>
+<script src="js/pricing/site-pricing-config.js"></script>
+<script src="js/pricing/master-pricing.js"></script>
+
+<script>
+
+/* =========================================
+SS-1
+MASTER SYSTEM BRIDGE
+========================================= */
+
+const SS1_GLASS_SPECIFICATION_UNAVAILABLE =
+"Glass Specification Unavailable";
+
+let SS1_ACTIVE_BASKET_ITEM =
+null;
+
+
+/* =========================================
+CAPTURE EXISTING BASKET ITEM RENDERER
+
+The existing renderer is retained exactly.
+SS-1 only gives its Top Glass lookup access
+to the actual basket item's finish / type.
+========================================= */
+
+const SS1_ORIGINAL_BUILD_BASKET_DRAWER_ITEM_HTML =
+typeof globalThis.buildBasketDrawerItemHTML ===
+"function"
+?
+globalThis.buildBasketDrawerItemHTML
+:
+null;
+
+
+/* =========================================
+MASTER STANDARD PRICING
+========================================= */
+
+function SS1GetStandardMasterPricingResult(
+size,
+configuration = {}
+) {
+
+const normalizedSize =
+normalizeSize(
+size
+);
+
+const [
+width,
+length
+] =
+normalizedSize
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const pricing =
+globalThis.FactoryRooflightsMasterPricing;
+
+if (
+!Number.isFinite(
+width
+) ||
+!Number.isFinite(
+length
+) ||
+width <=
+0 ||
+length <=
+0 ||
+!pricing ||
+typeof pricing.getStandardPrice !==
+"function"
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"MASTER_PRICING_UNAVAILABLE"
+
+};
+
+}
+
+try {
+
+const result =
+pricing.getStandardPrice(
+{
+
+width:
+width,
+
+length:
+length,
+
+glazing:
+normalizeGlazing(
+configuration.glazing ??
+"double"
+),
+
+finish:
+normalizeFinish(
+configuration.finish ??
+configuration.tint ??
+"clear"
+),
+
+type:
+normalizeGlassType(
+configuration.glassType ??
+configuration.type ??
+"toughened"
+),
+
+border:
+normalizeBorder(
+configuration.border ??
+100
+)
+
+}
+);
+
+const price =
+Number(
+result?.price
+);
+
+if (
+result?.available !==
+true ||
+!Number.isFinite(
+price
+) ||
+price <=
+0
+) {
+
+return {
+
+...(
+result &&
+typeof result ===
+"object"
+?
+result
+:
+{}
+),
+
+available:false,
+
+price:null
+
+};
+
+}
+
+return {
+
+...result,
+
+available:true,
+
+price:
+price
+
+};
+
+}
+catch (
+error
+) {
+
+console.error(
+"SS-1: FactoryRooflightsMasterPricing.getStandardPrice failed.",
+error
+);
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"MASTER_PRICING_ERROR"
+
+};
+
+}
+
+}
+
+
+/* =========================================
+REPLACE STANDARD-SIZES LOCAL SELLING PRICE
+
+From this point onwards:
+calculateConfiguredProductPrice(...)
+uses FactoryRooflightsMasterPricing only.
+
+The old local PRICE_CATEGORIES structure may
+remain in the main page, but it is no longer
+the authority for customer product prices.
+========================================= */
+
+globalThis.calculateConfiguredProductPrice =
+function (
+size,
+configuration = {}
+) {
+
+const result =
+SS1GetStandardMasterPricingResult(
+size,
+configuration
+);
+
+return result.available ===
+true
+?
+result.price
+:
+null;
+
+};
+
+
+/* =========================================
+MASTER MAKE-UP LOOKUP
+========================================= */
+
+function SS1GetMasterMakeupForConfiguration(
+size,
+configuration = {}
+) {
+
+const normalizedSize =
+normalizeSize(
+size
+);
+
+const [
+internalWidth,
+internalLength
+] =
+normalizedSize
+.split(
+"x"
+)
+.map(
+Number
+);
+
+const makeupMaster =
+globalThis.MasterMakeupLogic;
+
+if (
+!Number.isFinite(
+internalWidth
+) ||
+!Number.isFinite(
+internalLength
+) ||
+internalWidth <=
+0 ||
+internalLength <=
+0 ||
+!makeupMaster ||
+typeof makeupMaster.getUnitMakeup !==
+"function"
+) {
+
+return {
+
+supported:false,
+
+panes:null,
+
+reason:
+SS1_GLASS_SPECIFICATION_UNAVAILABLE
+
+};
+
+}
+
+try {
+
+return makeupMaster.getUnitMakeup(
+{
+
+internalWidth:
+internalWidth,
+
+internalLength:
+internalLength,
+
+border:
+normalizeBorder(
+configuration.border ??
+100
+),
+
+glazing:
+normalizeGlazing(
+configuration.glazing ??
+"double"
+),
+
+finish:
+normalizeFinish(
+configuration.finish ??
+configuration.tint ??
+"clear"
+),
+
+bottomType:
+normalizeGlassType(
+configuration.glassType ??
+configuration.type ??
+"toughened"
+) ===
+"laminated"
+?
+"lam"
+:
+"tough"
+
+}
+);
+
+}
+catch (
+error
+) {
+
+console.error(
+"SS-1: MasterMakeupLogic.getUnitMakeup failed.",
+error
+);
+
+return {
+
+supported:false,
+
+panes:null,
+
+reason:
+SS1_GLASS_SPECIFICATION_UNAVAILABLE
+
+};
+
+}
+
+}
+
+
+/* =========================================
+FORMAT MASTER TOP-PANE SPECIFICATION
+
+This only formats the result returned by
+MasterMakeupLogic.
+
+No thickness rules are duplicated here.
+========================================= */
+
+function SS1GetTopPaneSpecificationText(
+makeupResult
+) {
+
+const top =
+makeupResult?.supported ===
+true
+?
+makeupResult?.panes?.top
+:
+null;
+
+const thickness =
+Number(
+top?.thickness
+);
+
+if (
+!top ||
+!Number.isFinite(
+thickness
+)
+) {
+
+return SS1_GLASS_SPECIFICATION_UNAVAILABLE;
+
+}
+
+const materialLabel =
+String(
+top.materialLabel ||
+""
+)
+.trim();
+
+if (
+top.construction ===
+"toughened" &&
+(
+normalizeFinish(
+top.finish
+) ===
+"clear" ||
+materialLabel ===
+"Clear Toughened"
+)
+) {
+
+return `${thickness}mm Toughened Safety Glass`;
+
+}
+
+if (
+materialLabel
+) {
+
+const safetySuffix =
+top.construction ===
+"toughened" &&
+!/Safety Glass$/i.test(
+materialLabel
+)
+?
+" Safety Glass"
+:
+"";
+
+return (
+`${thickness}mm ` +
+`${materialLabel}` +
+`${safetySuffix}`
+);
+
+}
+
+return SS1_GLASS_SPECIFICATION_UNAVAILABLE;
+
+}
+
+
+/* =========================================
+REPLACE OLD getTopGlass()
+
+createCard() already calls getTopGlass(size).
+
+Keeping that call means the existing card
+markup remains untouched while the returned
+specification now comes from MasterMakeupLogic.
+========================================= */
+
+globalThis.getTopGlass =
+function (
+size
+) {
+
+return SS1GetTopPaneSpecificationText(
+SS1GetMasterMakeupForConfiguration(
+size,
+{
+
+glazing:
+"double",
+
+glassType:
+"toughened",
+
+finish:
+"clear",
+
+border:
+100
+
+}
+)
+);
+
+};
+
+
+/* =========================================
+REPLACE OLD getTopGlassLabelFor()
+
+Used by the basket and any other existing
+Standard Sizes functions requesting a
+top-pane specification.
+========================================= */
+
+globalThis.getTopGlassLabelFor =
+function (
+size,
+border,
+glazing,
+glassType,
+finish
+) {
+
+const contextualItem =
+SS1_ACTIVE_BASKET_ITEM;
+
+const resolvedGlassType =
+glassType ??
+contextualItem?.type ??
+contextualItem?.glazingConstruction ??
+"toughened";
+
+const resolvedFinish =
+finish ??
+contextualItem?.tint ??
+contextualItem?.finish ??
+"clear";
+
+return SS1GetTopPaneSpecificationText(
+SS1GetMasterMakeupForConfiguration(
+size,
+{
+
+border:
+border,
+
+glazing:
+glazing,
+
+glassType:
+resolvedGlassType,
+
+finish:
+resolvedFinish
+
+}
+)
+);
+
+};
+
+
+/* =========================================
+UPDATE EXISTING CARD SPECIFICATION TEXT
+
+No HTML is rebuilt.
+
+The existing second specification <span>
+inside .spec-line is simply given the result
+from MasterMakeupLogic.
+========================================= */
+
+function SS1UpdateCardGlassSpecification(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const configuration =
+getCardConfiguration(
+card
+);
+
+if (
+!configuration
+) {
+
+return;
+
+}
+
+const specLine =
+card.querySelector(
+".spec-line"
+);
+
+const specSpans =
+specLine
+?
+Array.from(
+specLine.children
+)
+.filter(
+element =>
+element.tagName ===
+"SPAN"
+)
+:
+[];
+
+const glassSpecificationElement =
+specSpans[
+1
+];
+
+if (
+!glassSpecificationElement
+) {
+
+return;
+
+}
+
+glassSpecificationElement.textContent =
+getTopGlassLabelFor(
+configuration.size,
+configuration.border,
+configuration.glazing,
+configuration.glassType,
+configuration.finish
+);
+
+}
+
+
+/* =========================================
+REPLACE EXISTING GLAZING TOGGLE HANDLER
+
+VISUAL STRUCTURE IS UNCHANGED.
+
+Double / Triple still behaves exactly as
+before, but now changing glazing refreshes:
+
+1. Master price
+2. Master glass make-up
+3. Existing Order Page link
+========================================= */
+
+globalThis.setGlazing =
+function (
+button,
+size,
+glazing
+) {
+
+const card =
+button?.closest(
+".product-card"
+);
+
+if (
+!card ||
+normalizeSize(
+card.dataset.size
+) !==
+normalizeSize(
+size
+)
+) {
+
+return;
+
+}
+
+const normalizedGlazing =
+normalizeGlazing(
+glazing
+);
+
+const glazedLabel =
+card.querySelector(
+".glazed-label"
+);
+
+card.dataset.glazing =
+normalizedGlazing;
+
+card
+.querySelectorAll(
+".toggle button"
+)
+.forEach(
+item => {
+
+item.classList.toggle(
+"active",
+item ===
+button
+);
+
+}
+);
+
+if (
+glazedLabel
+) {
+
+glazedLabel.classList.remove(
+"double",
+"triple"
+);
+
+glazedLabel.classList.add(
+normalizedGlazing
+);
+
+}
+
+updateCardPriceDisplay(
+card,
+calculateCardPrice(
+card
+)
+);
+
+SS1UpdateCardGlassSpecification(
+card
+);
+
+updateCardOrderLink(
+card
+);
+
+};
+
+
+/* =========================================
+REPLACE PROGRAMMATIC CARD CONFIGURATION
+
+This preserves the existing public helper but
+ensures any future configuration changes also
+refresh from both master systems.
+========================================= */
+
+globalThis.setProductCardConfiguration =
+function (
+card,
+{
+glazing,
+glassType,
+finish,
+border
+} = {}
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+if (
+glazing !==
+undefined
+) {
+
+const normalizedGlazing =
+normalizeGlazing(
+glazing
+);
+
+card.dataset.glazing =
+normalizedGlazing;
+
+card
+.querySelectorAll(
+".toggle button"
+)
+.forEach(
+button => {
+
+button.classList.toggle(
+"active",
+button.dataset.glazing ===
+normalizedGlazing
+);
+
+}
+);
+
+const glazedLabel =
+card.querySelector(
+".glazed-label"
+);
+
+if (
+glazedLabel
+) {
+
+glazedLabel.classList.remove(
+"double",
+"triple"
+);
+
+glazedLabel.classList.add(
+normalizedGlazing
+);
+
+}
+
+}
+
+if (
+glassType !==
+undefined
+) {
+
+card.dataset.glassType =
+normalizeGlassType(
+glassType
+);
+
+}
+
+if (
+finish !==
+undefined
+) {
+
+card.dataset.finish =
+normalizeFinish(
+finish
+);
+
+}
+
+if (
+border !==
+undefined
+) {
+
+card.dataset.border =
+String(
+normalizeBorder(
+border
+)
+);
+
+}
+
+updateCardPriceDisplay(
+card,
+calculateCardPrice(
+card
+)
+);
+
+SS1UpdateCardGlassSpecification(
+card
+);
+
+updateCardOrderLink(
+card
+);
+
+};
+
+
+/* =========================================
+BASKET MAKE-UP BRIDGE
+
+The original basket HTML renderer remains
+untouched.
+
+While it renders one basket item, SS-1 makes
+that item's real glass type / finish available
+to getTopGlassLabelFor() so MasterMakeupLogic
+receives the complete configuration.
+========================================= */
+
+if (
+SS1_ORIGINAL_BUILD_BASKET_DRAWER_ITEM_HTML
+) {
+
+globalThis.buildBasketDrawerItemHTML =
+function (
+item,
+kind,
+index
+) {
+
+SS1_ACTIVE_BASKET_ITEM =
+item;
+
+try {
+
+return SS1_ORIGINAL_BUILD_BASKET_DRAWER_ITEM_HTML(
+item,
+kind,
+index
+);
+
+}
+finally {
+
+SS1_ACTIVE_BASKET_ITEM =
+null;
+
+}
+
+};
+
+}
+
+
+/* =========================================
+MASTER SYSTEM AVAILABILITY CHECK
+
+These replace the existing placeholder
+validation functions immediately before the
+main page INITIALISE section calls them.
+========================================= */
+
+globalThis.validatePricingCoverage =
+function () {
+
+const pricingReady =
+Boolean(
+globalThis.FactoryRooflightsMasterPricing &&
+typeof globalThis
+.FactoryRooflightsMasterPricing
+.getStandardPrice ===
+"function"
+);
+
+const makeupReady =
+Boolean(
+globalThis.MasterMakeupLogic &&
+typeof globalThis
+.MasterMakeupLogic
+.getUnitMakeup ===
+"function"
+);
+
+if (
+!pricingReady
+) {
+
+console.error(
+"SS-1: FactoryRooflightsMasterPricing is not available. Check the pricing file paths and load order."
+);
+
+}
+
+if (
+!makeupReady
+) {
+
+console.error(
+"SS-1: MasterMakeupLogic is not available. Check js/masters/master-makeup-logic.js."
+);
+
+}
+
+return (
+pricingReady &&
+makeupReady
+);
+
+};
+
+
+globalThis.runPricingChecks =
+function () {
+
+return validatePricingCoverage();
+
+};
 
 /* =========================================
 INITIALISE
