@@ -66,6 +66,16 @@ overflow:hidden !important;
 overscroll-behavior:none;
 }
 
+/* =========================================
+STANDARD-SIZES PAGE SCALE
+10% SMALLER
+========================================= */
+
+main {
+zoom:.90;
+width:111.111111%;
+}
+
 img {
 max-width:100%;
 }
@@ -95,41 +105,6 @@ h2,
 h3,
 .wordmark {
 font-family:"Bahnschrift","Bahnschrift SemiCondensed","Arial Narrow","Aptos Display","Inter",Arial,sans-serif;
-}
-
-/* ===============================
-MOVING TOP BANNER
-================================ */
-
-.top-banner {
-background:var(--catalogue-orange);
-color:#050505;
-overflow:hidden;
-white-space:nowrap;
-font-size:5px;
-font-weight:950;
-letter-spacing:1px;
-text-transform:uppercase;
-}
-
-.ticker {
-display:inline-block;
-padding:7px 0;
-animation:ticker 50s linear infinite;
-}
-
-.ticker span {
-margin-right:85px;
-}
-
-@keyframes ticker {
-from {
-transform:translateX(0);
-}
-
-to {
-transform:translateX(-50%);
-}
 }
 
 /* =========================================
@@ -2086,10 +2061,6 @@ background:var(--catalogue-orange);
 color:#050505;
 }
 
-.toggle button[data-glazing="triple"].active {
-color:#ffffff;
-}
-
 .glazed-label {
 max-width:210px;
 height:19px;
@@ -2124,6 +2095,11 @@ transition:left .28s ease;
 .glazed-label.triple span {
 left:50%;
 }
+
+/* =========================================
+PRICE PRESENTATION
+RETAINED FOR FUTURE LIVE PRICING
+========================================= */
 
 .price-row {
 display:flex;
@@ -2688,6 +2664,14 @@ font-size:22px;
 padding:60px 6%;
 }
 
+/*
+Prevents iPhone/Safari automatically zooming into
+the Extra Large delivery postcode field.
+*/
+#deliveryPostcode {
+font-size:16px;
+}
+
 }
 
 @media(max-width:390px) {
@@ -2736,14 +2720,6 @@ font-size:9px;
 }
 
 @media(max-width:560px) {
-
-.top-banner {
-font-size:7px;
-}
-
-.ticker {
-padding:7px 0;
-}
 
 header {
 padding:19px 5.5%;
@@ -2821,7 +2797,6 @@ html {
 scroll-behavior:auto;
 }
 
-.ticker,
 .whatsapp-action,
 .basket-total-text,
 .basket-drawer-item-expand-arrow {
@@ -2847,28 +2822,6 @@ transition:none;
 </head>
 
 <body>
-
-<div class="top-banner">
-<div class="ticker">
-
-<span>Fast lead times from 4 working days</span>
-<span>6mm+ toughened safety glass</span>
-<span>Switch between double and triple glazing instantly</span>
-<span>Free mainland UK delivery on eligible sizes</span>
-<span>Postcode-based delivery on Extra Large sizes</span>
-<span>Low-E Softcoat glass</span>
-<span>20 year warranty on all units</span>
-
-<span>Fast lead times from 4 working days</span>
-<span>6mm+ toughened safety glass</span>
-<span>Switch between double and triple glazing instantly</span>
-<span>Free mainland UK delivery on eligible sizes</span>
-<span>Postcode-based delivery on Extra Large sizes</span>
-<span>Low-E Softcoat glass</span>
-<span>20 year warranty on all units</span>
-
-</div>
-</div>
 
 <header>
 
@@ -3534,7 +3487,7 @@ If your required size is not listed, return to the calculator and build a made-t
 href="index.html#calculator"
 class="button"
 >
-Build Custom Size
+Build A Custom Size
 </a>
 
 </div>
@@ -3553,7 +3506,7 @@ Looking for a frameless rooflight beyond our listed range? Contact us for an ove
 href="index.html#oversized"
 class="button secondary"
 >
-Oversized Quote
+Oversized Rooflights
 </a>
 
 </div>
@@ -3566,6 +3519,8 @@ Oversized Quote
 
 /* =========================================
 STANDARD-SIZES PRICING
+PRODUCT PRICES TEMPORARILY UNASSIGNED
+PRICE PRESENTATION CODE RETAINED
 ========================================= */
 
 const ACTIVE_PRICE_CATEGORY =
@@ -3575,48 +3530,7 @@ const PRICE_CATEGORIES = {
 
 normal:{
 
-tripleClearToughened100:{
-
-"300x800":215,
-"300x1000":235,
-"300x1200":290,
-"300x1500":325,
-
-"400x800":240,
-"400x1000":265,
-"400x1200":315,
-"400x1500":335,
-"400x1800":370,
-
-"600x600":200,
-"600x900":270,
-"600x1200":365,
-"600x1500":395,
-"600x1800":425,
-"600x2000":445,
-"600x2500":525,
-
-"800x800":325,
-"800x1000":375,
-"800x1200":400,
-"800x1500":445,
-"800x1800":485,
-"800x2000":515,
-"800x2500":590,
-
-"1000x1000":340,
-"1000x1200":415,
-"1000x1500":475,
-"1000x1800":565,
-"1000x2000":625,
-"1000x2500":770,
-
-"1500x1500":935,
-"1500x1800":1075,
-"1500x2000":1295,
-"1500x2500":1655
-
-},
+tripleClearToughened100:{},
 
 adjustments:{
 
@@ -3838,14 +3752,30 @@ function getMasterPrice(
 size
 ) {
 
-const price =
-Number(
+const rawPrice =
 getActivePriceCategory()
 .tripleClearToughened100[
 normalizeSize(
 size
 )
-]
+];
+
+if (
+rawPrice ===
+null ||
+rawPrice ===
+undefined ||
+rawPrice ===
+""
+) {
+
+return null;
+
+}
+
+const price =
+Number(
+rawPrice
 );
 
 return Number.isFinite(
@@ -4487,6 +4417,23 @@ function getPriceParts(
 price
 ) {
 
+if (
+price ===
+null ||
+price ===
+undefined ||
+price ===
+""
+) {
+
+return {
+available:false,
+whole:"",
+pence:""
+};
+
+}
+
 const numeric =
 Number(
 price
@@ -4499,8 +4446,9 @@ numeric
 ) {
 
 return {
-whole:"TBC",
-pence:"00"
+available:false,
+whole:"",
+pence:""
 };
 
 }
@@ -4520,6 +4468,8 @@ whole
 );
 
 return {
+
+available:true,
 
 whole:
 new Intl.NumberFormat(
@@ -4553,6 +4503,28 @@ const parts =
 getPriceParts(
 price
 );
+
+if (
+!parts.available
+) {
+
+return `
+<span
+class="standard-price-amount"
+aria-hidden="true"
+>
+&nbsp;
+</span>
+
+<span
+class="vat-note"
+aria-hidden="true"
+>
+&nbsp;
+</span>
+`;
+
+}
 
 return `
 <span class="standard-price-amount">
@@ -4596,6 +4568,19 @@ const parts =
 getPriceParts(
 price
 );
+
+if (
+!parts.available
+) {
+
+priceElement.innerHTML =
+buildPriceMarkup(
+null
+);
+
+return;
+
+}
 
 const wholeElement =
 priceElement.querySelector(
@@ -5608,6 +5593,79 @@ cleaned
 
 }
 
+/* =========================================
+MOBILE POSTCODE VIEWPORT RESET
+========================================= */
+
+function restoreDeliveryPostcodeViewport() {
+
+const postcodeInput =
+document.getElementById(
+"deliveryPostcode"
+);
+
+if (
+postcodeInput &&
+document.activeElement ===
+postcodeInput
+) {
+
+postcodeInput.blur();
+
+}
+
+const viewport =
+document.querySelector(
+'meta[name="viewport"]'
+);
+
+if (
+!viewport
+) {
+
+return;
+
+}
+
+const originalContent =
+viewport.getAttribute(
+"content"
+) ||
+"width=device-width, initial-scale=1.0";
+
+viewport.setAttribute(
+"content",
+"width=device-width, initial-scale=1.0, maximum-scale=1.0"
+);
+
+requestAnimationFrame(
+() => {
+
+window.scrollTo(
+{
+left:0,
+top:window.scrollY,
+behavior:"auto"
+}
+);
+
+setTimeout(
+() => {
+
+viewport.setAttribute(
+"content",
+originalContent
+);
+
+},
+120
+);
+
+}
+);
+
+}
+
 async function lookupPostcode(
 postcode
 ) {
@@ -5955,6 +6013,10 @@ postcodeInput.focus();
 return;
 
 }
+
+postcodeInput.blur();
+
+restoreDeliveryPostcodeViewport();
 
 const originalText =
 button.textContent;
@@ -11268,159 +11330,18 @@ event.preventDefault();
 
 /* =========================================
 PRICING VALIDATION
+NO HARDCODED PRODUCT PRICES CURRENTLY ACTIVE
 ========================================= */
 
 function validatePricingCoverage() {
 
-const allSizes =
-Array.from(
-new Set([
-...popularSizes,
-...smallSizes,
-...mediumSizes,
-...largeSizes,
-...extraLargeSizes
-])
-);
-
-const missingPrices =
-allSizes.filter(
-size => {
-
-return (
-getMasterPrice(
-size
-) ===
-null
-);
-
-}
-);
-
-if (
-missingPrices.length
-) {
-
-console.error(
-"Missing NORMAL master prices:",
-missingPrices
-);
-
-}
+return true;
 
 }
 
 function runPricingChecks() {
 
-const tests = [
-
-{
-size:"600x600",
-
-configuration:{
-glazing:"triple",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:200
-},
-
-{
-size:"600x900",
-
-configuration:{
-glazing:"triple",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:270
-},
-
-{
-size:"600x900",
-
-configuration:{
-glazing:"double",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:225
-},
-
-{
-size:"800x1200",
-
-configuration:{
-glazing:"triple",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:400
-},
-
-{
-size:"1000x1000",
-
-configuration:{
-glazing:"triple",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:340
-},
-
-{
-size:"1500x2500",
-
-configuration:{
-glazing:"triple",
-glassType:"toughened",
-finish:"clear",
-border:100
-},
-
-expected:1655
-}
-
-];
-
-tests.forEach(
-test => {
-
-const result =
-calculateConfiguredProductPrice(
-test.size,
-test.configuration
-);
-
-if (
-result !==
-test.expected
-) {
-
-console.error(
-"Pricing check failed:",
-test.size,
-"Expected:",
-test.expected,
-"Received:",
-result
-);
-
-}
-
-}
-);
+return true;
 
 }
 
@@ -11459,6 +11380,11 @@ basketState.deliveryPostcode
 
 }
 
+const standaloneDeliveryPostcodeInput =
+document.getElementById(
+"deliveryPostcode"
+);
+
 document
 .getElementById(
 "checkDeliveryButton"
@@ -11468,10 +11394,66 @@ document
 checkExtraLargeDelivery
 );
 
-document
-.getElementById(
-"deliveryPostcode"
+standaloneDeliveryPostcodeInput
+?.addEventListener(
+"input",
+() => {
+
+standaloneDeliveryPostcodeInput.value =
+String(
+standaloneDeliveryPostcodeInput.value ||
+""
 )
+.toUpperCase();
+
+if (
+isCompleteUKPostcode(
+standaloneDeliveryPostcodeInput.value
+)
+) {
+
+standaloneDeliveryPostcodeInput.value =
+formatPostcode(
+standaloneDeliveryPostcodeInput.value
+);
+
+setTimeout(
+() => {
+
+standaloneDeliveryPostcodeInput.blur();
+
+restoreDeliveryPostcodeViewport();
+
+},
+80
+);
+
+}
+
+}
+);
+
+standaloneDeliveryPostcodeInput
+?.addEventListener(
+"blur",
+() => {
+
+restoreDeliveryPostcodeViewport();
+
+}
+);
+
+standaloneDeliveryPostcodeInput
+?.addEventListener(
+"change",
+() => {
+
+restoreDeliveryPostcodeViewport();
+
+}
+);
+
+standaloneDeliveryPostcodeInput
 ?.addEventListener(
 "keydown",
 event => {
@@ -11482,6 +11464,10 @@ event.key ===
 ) {
 
 event.preventDefault();
+
+standaloneDeliveryPostcodeInput.blur();
+
+restoreDeliveryPostcodeViewport();
 
 checkExtraLargeDelivery();
 
