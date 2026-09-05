@@ -4860,7 +4860,7 @@ footer {
 background:#090a0a;
 border-top:1px solid rgba(255,255,255,.10);
 color:rgba(247,247,243,.50);
-padding:46px 6%;
+padding:28px 6% 46px;
 font-size:13px;
 }
 
@@ -7252,112 +7252,117 @@ linear-gradient(
 );
 }
 
+/* =========================================
+IN-1 CHANGE 3
+PROFESSIONALLY INSTALLED BOTTOM SEPARATOR
+========================================= */
+
 #specification-advice {
 padding-bottom:0;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 /* =========================================
-OVERSIZED BACKGROUND
+IN-1 CHANGES 1 + 2
+SPECIALIST MANUFACTURE / OVERSIZED
 ========================================= */
 
 .oversized-showcase-section {
 position:relative;
 isolation:isolate;
 overflow:hidden;
+
+/* Change 2:
+previous combined top spacing was 48px + 72px.
+Both are reduced by 50%. */
 padding:
-48px
+24px
 0
 0;
+
 border:0;
-background:#090a0a;
+border-bottom:1px solid rgba(255,255,255,.08);
+
+background:#0e1010;
 }
 
-.oversized-showcase-section::before {
-content:"";
-position:absolute;
-z-index:0;
-top:0;
-left:0;
-right:0;
-bottom:0;
-pointer-events:none;
-
-background:
-
-linear-gradient(
-180deg,
-#090a0a 0%,
-rgba(9,10,10,.985) 5%,
-rgba(9,10,10,.94) 10%,
-rgba(9,10,10,.82) 15%,
-rgba(9,10,10,.62) 20%,
-rgba(9,10,10,.38) 24%,
-rgba(9,10,10,.16) 28%,
-rgba(9,10,10,0) 32%
-),
-
-radial-gradient(
-ellipse 94% 58% at 50% 24%,
-rgba(31,92,66,.58) 0%,
-rgba(25,74,54,.47) 30%,
-rgba(18,51,39,.32) 56%,
-rgba(10,27,21,.16) 78%,
-transparent 98%
-),
-
-linear-gradient(
-180deg,
-#0b0e0d 0%,
-#0d1713 15%,
-#10241b 29%,
-#122d21 46%,
-#11291f 63%,
-#0e1b15 79%,
-#0b0d0c 100%
-);
-}
-
+/* Remove previous green gradient / grid treatment */
+.oversized-showcase-section::before,
 .oversized-showcase-section::after {
-content:"";
-position:absolute;
-z-index:0;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background-image:
-linear-gradient(
-rgba(255,255,255,.012) 1px,
-transparent 1px
-),
-linear-gradient(
-90deg,
-rgba(255,255,255,.012) 1px,
-transparent 1px
-);
-background-size:52px 52px;
-opacity:.45;
-pointer-events:none;
+display:none;
+content:none;
 }
-
-/* =========================================
-OVERSIZED CONTENT
-========================================= */
 
 .oversized-showcase-section .oversized-section {
 position:relative;
 z-index:2;
-background:transparent;
+
+background:#0e1010;
+
 padding:
-72px
+36px
 6%
 48px;
 }
 
+/* Same indented visual language as Order Direct */
 .oversized-showcase-section .oversized-direct-inner {
 position:relative;
 z-index:2;
+
+display:block;
+
+max-width:1180px;
+margin:0 auto;
+
+border-left:2px solid var(--orange);
+
+padding-left:28px;
 }
+
+/* Heading proportions matched to Order Direct */
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-heading {
+max-width:820px;
+
+font-size:
+clamp(38px,4.9vw,61px);
+
+font-weight:750;
+}
+
+/* Main copy given the same controlled readable width */
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy {
+max-width:790px;
+
+margin-top:26px;
+padding-top:0;
+}
+
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy p {
+max-width:790px;
+
+font-size:18px;
+line-height:1.65;
+
+color:var(--muted);
+}
+
+/* Button spacing matched to the Order Direct action area */
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy > .button {
+margin-top:30px;
+}
+
+/* =========================================
+HOMEPAGE CLOSING BLOCK
+========================================= */
 
 .homepage-closing-section {
 position:relative;
@@ -7453,52 +7458,46 @@ aspect-ratio:4 / 3;
 margin-top:32px;
 }
 
+/* Change 2:
+mobile oversized top spacing also reduced by 50% */
 .oversized-showcase-section {
-padding-top:32px;
-}
-
-.oversized-showcase-section::before {
-
-background:
-
-linear-gradient(
-180deg,
-#090a0a 0%,
-rgba(9,10,10,.99) 5%,
-rgba(9,10,10,.95) 10%,
-rgba(9,10,10,.84) 15%,
-rgba(9,10,10,.64) 20%,
-rgba(9,10,10,.40) 24%,
-rgba(9,10,10,.17) 28%,
-rgba(9,10,10,0) 32%
-),
-
-radial-gradient(
-ellipse 118% 60% at 50% 25%,
-rgba(31,91,66,.61) 0%,
-rgba(24,71,52,.49) 31%,
-rgba(17,49,37,.33) 57%,
-rgba(10,27,21,.16) 79%,
-transparent 98%
-),
-
-linear-gradient(
-180deg,
-#0a0d0c 0%,
-#0d1813 15%,
-#10261c 29%,
-#132f23 47%,
-#11291f 64%,
-#0e1a15 80%,
-#0a0c0b 100%
-);
+padding-top:16px;
 }
 
 .oversized-showcase-section .oversized-section {
 padding:
-44px
+22px
 6%
 32px;
+}
+
+.oversized-showcase-section .oversized-direct-inner {
+padding-left:16px;
+}
+
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-heading {
+font-size:38px;
+}
+
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy {
+margin-top:26px;
+}
+
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy p {
+font-size:16px;
+line-height:1.65;
+}
+
+.oversized-showcase-section
+.oversized-direct-inner
+.direct-copy > .button {
+margin-top:30px;
 }
 
 .homepage-closing-section {
