@@ -1,0 +1,3429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Cookies Policy | Factory Toughened Rooflights
+</title>
+
+<meta
+name="description"
+content="Cookies Policy for Factory Toughened Rooflights, explaining how cookies, browser storage and similar technologies may be used on our website."
+>
+
+<style>
+
+/* =========================================
+FACTORY TOUGHENED ROOFLIGHTS
+INFORMATION / FOOTER PAGE MASTER TEMPLATE
+========================================= */
+
+:root {
+
+--orange:#e87817;
+--orange-bright:#f28a28;
+
+--black:#090a0a;
+--dark:#0d0f0f;
+--dark-2:#111313;
+
+--panel:#151818;
+--panel-raised:#191c1c;
+
+--graphite:#242828;
+--graphite-light:#303535;
+
+--steel:#9ca3a1;
+--steel-light:#c9cecb;
+--steel-dark:#686f6d;
+
+--cream:#f1f0e9;
+--white:#f7f7f3;
+
+--muted:#b7bbb8;
+--muted-soft:#8f9692;
+
+--line:rgba(216,221,217,.14);
+--line-strong:rgba(216,221,217,.24);
+
+--whatsapp:#25d366;
+
+}
+
+
+* {
+box-sizing:border-box;
+}
+
+
+html {
+scroll-behavior:smooth;
+}
+
+
+body {
+margin:0;
+
+font-family:
+"Aptos",
+"Inter",
+"Segoe UI",
+Arial,
+sans-serif;
+
+background:var(--black);
+color:var(--white);
+
+overflow-x:hidden;
+
+-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility;
+}
+
+
+img {
+max-width:100%;
+}
+
+
+/* =========================================
+DESKTOP ACCESS BLOCKER
+MATCHES MAIN SITE
+========================================= */
+
+.desktop-access-blocker {
+display:none;
+
+position:fixed;
+inset:0;
+
+z-index:2147483647;
+
+width:100%;
+height:100%;
+min-height:100dvh;
+
+padding:clamp(24px,5vw,72px);
+
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(
+180deg,
+rgba(9,10,10,.995) 0%,
+rgba(13,15,15,.995) 100%
+);
+
+color:var(--cream);
+text-align:center;
+
+overflow:hidden;
+
+overscroll-behavior:none;
+touch-action:none;
+pointer-events:auto;
+}
+
+
+.desktop-access-blocker::before {
+content:"";
+
+position:absolute;
+inset:0;
+
+background-image:
+linear-gradient(
+rgba(255,255,255,.018) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.018) 1px,
+transparent 1px
+);
+
+background-size:48px 48px;
+
+opacity:.42;
+
+pointer-events:none;
+}
+
+
+.desktop-access-blocker::after {
+content:"";
+
+position:absolute;
+
+left:50%;
+top:0;
+
+width:min(620px,72vw);
+height:2px;
+
+background:var(--orange);
+
+transform:translateX(-50%);
+
+box-shadow:
+0 0 24px rgba(232,120,23,.18);
+
+pointer-events:none;
+}
+
+
+.desktop-access-blocker-panel {
+position:relative;
+
+z-index:1;
+
+width:min(680px,100%);
+
+padding:
+clamp(34px,5vw,58px)
+clamp(24px,5vw,54px);
+
+border:1px solid rgba(255,255,255,.12);
+border-top:2px solid var(--orange);
+
+background:
+linear-gradient(
+145deg,
+rgba(21,24,24,.97) 0%,
+rgba(12,14,14,.985) 58%,
+rgba(9,10,10,.995) 100%
+);
+
+box-shadow:
+0 32px 90px rgba(0,0,0,.45),
+inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+
+.desktop-access-blocker-panel::before {
+content:"";
+
+display:block;
+
+width:42px;
+height:1px;
+
+margin:
+0
+auto
+clamp(20px,2.5vw,28px);
+
+background:var(--orange);
+}
+
+
+.desktop-access-blocker h1 {
+margin:0;
+
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+
+font-size:clamp(34px,4.6vw,58px);
+font-weight:800;
+
+line-height:.98;
+letter-spacing:-1.35px;
+
+color:var(--cream);
+}
+
+
+.desktop-access-blocker p {
+max-width:520px;
+
+margin:
+clamp(18px,2.4vw,26px)
+auto
+0;
+
+font-size:clamp(14px,1.4vw,17px);
+font-weight:500;
+
+line-height:1.65;
+
+color:var(--muted);
+}
+
+
+@media (hover:hover) and (pointer:fine) {
+
+html,
+body {
+overflow:hidden !important;
+overscroll-behavior:none;
+}
+
+.desktop-access-blocker {
+display:flex;
+}
+
+}
+
+
+/* =========================================
+TOP MOVING BANNER
+MATCHES HOMEPAGE
+========================================= */
+
+.top-banner {
+background:#161918;
+
+color:rgba(247,247,243,.72);
+
+overflow:hidden;
+white-space:nowrap;
+
+border-bottom:1px solid rgba(255,255,255,.07);
+
+font-family:
+"Bahnschrift",
+"Arial Narrow",
+"Aptos",
+Arial,
+sans-serif;
+
+font-size:8px;
+font-weight:700;
+
+letter-spacing:1.65px;
+
+text-transform:uppercase;
+}
+
+
+.ticker {
+display:inline-block;
+
+padding:8px 0;
+
+animation:
+ticker
+52s
+linear
+infinite;
+}
+
+
+.ticker span {
+margin-right:90px;
+}
+
+
+@keyframes ticker {
+
+from {
+transform:translateX(0);
+}
+
+to {
+transform:translateX(-50%);
+}
+
+}
+
+
+/* =========================================
+HEADER
+MATCHES HOMEPAGE
+========================================= */
+
+header {
+background:rgba(11,12,12,.965);
+
+border-bottom:1px solid rgba(255,255,255,.09);
+
+padding:
+24px
+6%
+20px;
+
+display:grid;
+
+grid-template-columns:
+1fr
+auto;
+
+align-items:start;
+
+gap:32px;
+
+position:sticky;
+top:0;
+
+z-index:30;
+
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.16);
+}
+
+
+.wordmark-wrap {
+display:grid;
+gap:9px;
+}
+
+
+.header-home-link {
+display:block;
+
+width:max-content;
+max-width:100%;
+
+color:inherit;
+text-decoration:none;
+}
+
+
+.header-home-link:visited {
+color:inherit;
+}
+
+
+.header-home-link:focus-visible {
+outline:
+1px solid rgba(232,120,23,.65);
+
+outline-offset:6px;
+}
+
+
+.wordmark {
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+
+line-height:.91;
+
+font-weight:850;
+
+letter-spacing:2.8px;
+
+color:var(--cream);
+
+font-size:24px;
+
+text-transform:uppercase;
+
+width:max-content;
+}
+
+
+.wordmark > span {
+color:var(--orange);
+display:block;
+}
+
+
+.wordmark-bottom {
+display:flex;
+
+align-items:flex-end;
+
+gap:0;
+
+white-space:nowrap;
+
+width:max-content;
+}
+
+
+.wordmark-domain {
+color:var(--steel-light);
+
+font-size:.40em;
+font-weight:700;
+
+letter-spacing:.15px;
+
+line-height:1;
+
+margin-left:1px;
+
+padding-bottom:2px;
+
+text-transform:lowercase;
+
+transform:
+translate(-1px,1px);
+}
+
+
+.action-icons {
+display:flex;
+
+gap:8px;
+
+align-self:end;
+
+padding-bottom:1px;
+}
+
+
+.header-action-wrap {
+position:relative;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+}
+
+
+.action-icons button,
+.action-icons a.header-icon-button {
+width:42px;
+height:42px;
+
+border:
+1px solid rgba(230,233,230,.16);
+
+background:#111313;
+
+color:var(--steel-light);
+
+text-decoration:none;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+font-weight:800;
+
+cursor:pointer;
+
+transition:
+transform .22s ease,
+border-color .22s ease,
+color .22s ease,
+background .22s ease,
+box-shadow .22s ease;
+
+line-height:1;
+
+padding:0;
+}
+
+
+.action-icons button:hover,
+.action-icons a.header-icon-button:hover {
+border-color:
+rgba(232,120,23,.70);
+
+color:var(--orange-bright);
+
+background:#171817;
+
+box-shadow:
+0 7px 22px rgba(0,0,0,.25);
+
+transform:
+translateY(-1px);
+}
+
+
+.action-icons button.is-selected {
+border-color:
+rgba(232,120,23,.85);
+
+color:var(--orange-bright);
+
+background:#191714;
+
+box-shadow:
+0 0 0 1px rgba(232,120,23,.08),
+0 7px 22px rgba(0,0,0,.24);
+}
+
+
+/* =========================================
+WHATSAPP ACTION
+========================================= */
+
+.whatsapp-action {
+position:absolute;
+
+left:50%;
+
+bottom:
+calc(100% + 15px);
+
+z-index:85;
+
+width:42px;
+height:42px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:7px;
+
+background:
+linear-gradient(
+145deg,
+#36e676 0%,
+#25d366 52%,
+#179b46 100%
+);
+
+border:
+1px solid rgba(255,255,255,.30);
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.55),
+0 0 14px rgba(37,211,102,.18),
+inset 0 1px 0 rgba(255,255,255,.30);
+
+opacity:0;
+visibility:hidden;
+
+pointer-events:none;
+
+transform:
+translate(-50%,20px)
+scale(.58);
+
+transform-origin:
+center bottom;
+
+transition:
+opacity .2s ease,
+visibility .2s ease,
+transform .38s cubic-bezier(.18,.82,.28,1.35);
+}
+
+
+.whatsapp-action.is-open {
+opacity:1;
+visibility:visible;
+
+pointer-events:auto;
+
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+
+.whatsapp-action svg {
+width:27px;
+height:27px;
+
+display:block;
+
+fill:#ffffff;
+
+filter:
+drop-shadow(
+0
+2px
+2px
+rgba(0,0,0,.22)
+);
+}
+
+
+/* =========================================
+BASKET HEADER TOTAL
+========================================= */
+
+.basket-total-text {
+position:absolute;
+
+top:-16px;
+left:50%;
+
+z-index:5;
+
+font-family:
+"Bahnschrift Condensed",
+"Arial Narrow",
+"Aptos",
+sans-serif;
+
+font-size:9px;
+font-weight:800;
+
+line-height:1;
+
+letter-spacing:.3px;
+
+color:var(--cream);
+
+text-align:center;
+
+white-space:nowrap;
+
+text-shadow:
+0 2px 5px rgba(0,0,0,.92);
+
+opacity:0;
+
+transform:
+translate(-50%,7px)
+scale(.78);
+
+transform-origin:
+center bottom;
+
+pointer-events:none;
+}
+
+
+.basket-total-text.is-visible {
+opacity:1;
+
+transform:
+translate(-50%,0)
+scale(1);
+}
+
+
+/* =========================================
+MENU
+========================================= */
+
+.menu-overlay {
+position:fixed;
+
+inset:0;
+
+background:
+rgba(10,11,11,.992);
+
+z-index:100;
+
+display:none;
+
+padding:
+55px
+6%;
+
+overflow-y:auto;
+}
+
+
+.menu-overlay.active {
+display:block;
+}
+
+
+.menu-top {
+display:flex;
+
+justify-content:space-between;
+align-items:flex-start;
+
+margin-bottom:60px;
+}
+
+
+.address-line {
+font-size:12px;
+
+line-height:1.45;
+
+font-weight:600;
+
+color:rgba(255,255,255,.72);
+
+letter-spacing:.6px;
+
+text-transform:uppercase;
+}
+
+
+.close-menu {
+background:#111313;
+
+color:var(--cream);
+
+border:
+1px solid rgba(255,255,255,.16);
+
+width:44px;
+height:44px;
+
+font-size:26px;
+
+cursor:pointer;
+}
+
+
+.menu-links {
+display:grid;
+
+gap:0;
+
+max-width:760px;
+
+border-top:
+1px solid rgba(255,255,255,.10);
+}
+
+
+.menu-links a {
+color:var(--cream);
+
+text-decoration:none;
+
+font-family:
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+sans-serif;
+
+font-size:
+clamp(27.9px,4.5vw,55.8px);
+
+font-weight:750;
+
+line-height:1;
+
+letter-spacing:-1.2px;
+
+text-transform:uppercase;
+
+border-bottom:
+1px solid rgba(255,255,255,.10);
+
+padding:
+22px
+0;
+
+transition:
+color .2s ease,
+padding-left .2s ease,
+background .2s ease;
+}
+
+
+.menu-links a:hover {
+color:var(--orange-bright);
+
+padding-left:10px;
+}
+
+
+/* =========================================
+INFORMATION PAGE HERO
+========================================= */
+
+.information-page {
+position:relative;
+
+min-height:
+calc(100dvh - 120px);
+
+overflow:hidden;
+
+background:
+linear-gradient(
+180deg,
+#0a0b0b 0%,
+#0d0f0f 45%,
+#090a0a 100%
+);
+}
+
+
+.information-page::before {
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(
+ellipse 68% 48% at 88% 15%,
+rgba(232,120,23,.11) 0%,
+rgba(117,61,15,.055) 32%,
+transparent 72%
+),
+
+linear-gradient(
+rgba(255,255,255,.012) 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+rgba(255,255,255,.012) 1px,
+transparent 1px
+);
+
+background-size:
+auto,
+52px 52px,
+52px 52px;
+
+pointer-events:none;
+}
+
+
+.information-hero {
+position:relative;
+
+z-index:2;
+
+padding:
+clamp(68px,8vw,110px)
+6%
+clamp(52px,6vw,80px);
+}
+
+
+.information-hero-inner {
+max-width:1120px;
+
+margin:0 auto;
+}
+
+
+.information-kicker {
+margin:0 0 19px;
+
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+
+font-size:10px;
+font-weight:800;
+
+line-height:1;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:rgba(247,247,243,.50);
+}
+
+
+.information-title {
+max-width:900px;
+
+margin:0;
+
+font-family:
+"Bahnschrift",
+"Bahnschrift SemiCondensed",
+"Arial Narrow",
+"Aptos Display",
+"Inter",
+Arial,
+sans-serif;
+
+font-size:
+clamp(40.8px,5.95vw,74.8px);
+
+font-weight:800;
+
+line-height:.96;
+
+letter-spacing:-2.5px;
+
+color:var(--cream);
+}
+
+
+.information-title-main {
+display:block;
+}
+
+
+.information-title-accent {
+display:block;
+
+margin-top:5px;
+
+color:var(--orange);
+}
+
+
+.information-introduction {
+max-width:900px;
+
+margin:
+clamp(32px,4vw,48px)
+0
+0;
+
+font-size:
+clamp(13.6px,1.6vw,17.6px);
+
+font-weight:400;
+
+line-height:1.7;
+
+color:rgba(247,247,243,.72);
+}
+
+
+/* =========================================
+INFORMATION DOCUMENT HOUSING
+========================================= */
+
+.information-document-section {
+position:relative;
+
+z-index:2;
+
+padding:
+0
+6%
+clamp(76px,9vw,130px);
+}
+
+
+.information-document-shell {
+width:min(930px,84%);
+
+margin-left:
+clamp(22px,7vw,105px);
+
+margin-right:auto;
+}
+
+
+.information-document-panel {
+position:relative;
+
+padding:
+clamp(34px,4.5vw,58px)
+clamp(25px,4.5vw,54px);
+
+background:
+linear-gradient(
+145deg,
+rgba(23,26,26,.98) 0%,
+rgba(15,18,18,.99) 58%,
+rgba(11,13,13,.995) 100%
+);
+
+border:
+1px solid rgba(255,255,255,.105);
+
+border-left:
+3px solid var(--orange);
+
+box-shadow:
+0 28px 65px rgba(0,0,0,.26),
+inset 0 1px 0 rgba(255,255,255,.018);
+}
+
+
+.information-document-panel::before {
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+
+height:1px;
+
+background:
+linear-gradient(
+90deg,
+rgba(232,120,23,.24),
+rgba(255,255,255,.05),
+transparent
+);
+}
+
+
+.information-document-label {
+margin:0 0 28px;
+
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+
+font-size:9px;
+font-weight:800;
+
+line-height:1;
+
+letter-spacing:1.7px;
+
+text-transform:uppercase;
+
+color:var(--orange-bright);
+}
+
+
+.information-document-content {
+max-width:760px;
+}
+
+
+.information-document-content section {
+margin:0;
+padding:0;
+}
+
+
+.information-document-content section + section {
+margin-top:
+clamp(34px,4vw,48px);
+
+padding-top:
+clamp(30px,3.5vw,42px);
+
+border-top:
+1px solid rgba(255,255,255,.08);
+}
+
+
+.information-document-content h2 {
+margin:
+0
+0
+16px;
+
+font-family:
+"Bahnschrift SemiCondensed",
+"Aptos Display",
+"Arial Narrow",
+sans-serif;
+
+font-size:
+clamp(24px,2.8vw,34px);
+
+font-weight:750;
+
+line-height:1.08;
+
+letter-spacing:-.6px;
+
+color:var(--cream);
+}
+
+
+.information-section-number {
+display:block;
+
+margin-bottom:8px;
+
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+
+font-size:8px;
+font-weight:800;
+
+line-height:1;
+
+letter-spacing:1.45px;
+
+text-transform:uppercase;
+
+color:var(--orange);
+}
+
+
+.information-document-content p {
+margin:
+0
+0
+17px;
+
+font-size:
+clamp(14px,1.5vw,17px);
+
+font-weight:400;
+
+line-height:1.72;
+
+color:rgba(247,247,243,.64);
+}
+
+
+.information-document-content p:last-child {
+margin-bottom:0;
+}
+
+
+.information-document-content strong {
+color:rgba(247,247,243,.88);
+
+font-weight:700;
+}
+
+
+.information-document-content a {
+color:var(--orange-bright);
+
+text-decoration:
+underline;
+
+text-decoration-thickness:1px;
+
+text-underline-offset:3px;
+
+text-decoration-color:
+rgba(232,120,23,.52);
+
+transition:
+color .18s ease,
+text-decoration-color .18s ease;
+}
+
+
+.information-document-content a:hover,
+.information-document-content a:focus {
+color:var(--cream);
+
+text-decoration-color:var(--cream);
+
+outline:none;
+}
+
+
+.information-document-content ul {
+margin:
+16px 0 0;
+
+padding-left:21px;
+
+color:rgba(247,247,243,.64);
+}
+
+
+.information-document-content li {
+margin-bottom:10px;
+
+padding-left:4px;
+
+font-size:
+clamp(14px,1.5vw,17px);
+
+line-height:1.65;
+}
+
+
+.information-document-content li::marker {
+color:var(--orange);
+}
+
+
+/* =========================================
+OPTIONAL INFORMATION EMPHASIS
+========================================= */
+
+.information-emphasis {
+margin-top:20px;
+
+padding:
+18px 20px;
+
+border:
+1px solid rgba(232,120,23,.22);
+
+border-left:
+2px solid var(--orange);
+
+background:
+rgba(232,120,23,.04);
+}
+
+
+.information-emphasis strong {
+display:block;
+
+margin-bottom:7px;
+
+color:var(--orange-bright);
+
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+
+font-size:10px;
+font-weight:800;
+
+line-height:1.25;
+
+letter-spacing:1px;
+
+text-transform:uppercase;
+}
+
+
+.information-emphasis p {
+margin:0;
+}
+
+
+/* =========================================
+LAST UPDATED LINE
+========================================= */
+
+.information-last-updated {
+margin-top:
+clamp(40px,4vw,54px);
+
+padding-top:20px;
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+font-family:
+"Bahnschrift",
+"Aptos",
+sans-serif;
+
+font-size:9px;
+
+font-weight:650;
+
+line-height:1.45;
+
+letter-spacing:.5px;
+
+text-transform:uppercase;
+
+color:rgba(247,247,243,.37);
+}
+
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media(max-width:560px) {
+
+.top-banner {
+font-size:7px;
+}
+
+
+.ticker {
+padding:7px 0;
+}
+
+
+header {
+padding:
+19px
+5.5%;
+
+gap:14px;
+}
+
+
+.wordmark {
+font-size:20px;
+}
+
+
+.wordmark-domain {
+font-size:.40em;
+
+padding-bottom:1px;
+}
+
+
+.action-icons {
+gap:5px;
+}
+
+
+.action-icons button,
+.action-icons a.header-icon-button {
+width:34px;
+height:34px;
+
+font-size:15px;
+}
+
+
+.whatsapp-action {
+width:34px;
+height:34px;
+
+border-radius:6px;
+
+bottom:
+calc(100% + 14px);
+}
+
+
+.whatsapp-action svg {
+width:22px;
+height:22px;
+}
+
+
+.basket-total-text {
+top:-15px;
+
+font-size:7px;
+}
+
+
+.menu-overlay {
+padding:
+45px
+6%;
+}
+
+
+.menu-top {
+margin-bottom:42px;
+}
+
+
+.address-line {
+font-size:9px;
+}
+
+
+.information-hero {
+padding:
+53px
+6%
+41px;
+}
+
+
+.information-kicker {
+margin-bottom:15px;
+
+font-size:8px;
+
+letter-spacing:1.6px;
+}
+
+
+.information-title {
+font-size:
+clamp(35.7px,11.05vw,50.15px);
+
+line-height:.97;
+
+letter-spacing:-1.8px;
+}
+
+
+.information-title-accent {
+margin-top:4px;
+}
+
+
+.information-introduction {
+width:94%;
+
+margin-top:31px;
+
+font-size:12.8px;
+
+line-height:1.7;
+}
+
+
+.information-document-section {
+padding:
+0
+4%
+65px;
+}
+
+
+.information-document-shell {
+width:94%;
+
+margin-left:4%;
+margin-right:auto;
+}
+
+
+.information-document-panel {
+padding:
+31px
+22px
+35px;
+
+border-left-width:2px;
+}
+
+
+.information-document-label {
+margin-bottom:24px;
+
+font-size:8px;
+
+letter-spacing:1.35px;
+}
+
+
+.information-document-content h2 {
+font-size:25px;
+
+letter-spacing:-.4px;
+}
+
+
+.information-section-number {
+font-size:7px;
+}
+
+
+.information-document-content p,
+.information-document-content li {
+font-size:14px;
+
+line-height:1.7;
+}
+
+
+.information-document-content section + section {
+margin-top:31px;
+
+padding-top:29px;
+}
+
+
+.information-emphasis {
+padding:
+16px
+17px;
+}
+
+
+.information-last-updated {
+font-size:8px;
+}
+
+}
+
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media(max-width:390px) {
+
+.information-title {
+font-size:34.85px;
+}
+
+
+.information-introduction {
+font-size:12px;
+}
+
+
+.information-document-shell {
+width:95%;
+
+margin-left:3%;
+}
+
+
+.information-document-panel {
+padding:
+28px
+19px
+32px;
+}
+
+
+.information-document-content h2 {
+font-size:23px;
+}
+
+
+.information-document-content p,
+.information-document-content li {
+font-size:13.5px;
+}
+
+}
+
+
+/* =========================================
+REDUCED MOTION
+========================================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+html {
+scroll-behavior:auto;
+}
+
+
+.ticker {
+animation:none;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================
+DESKTOP ACCESS BLOCKER
+======================================= -->
+
+<div
+class="desktop-access-blocker"
+id="desktopAccessBlocker"
+role="dialog"
+aria-modal="true"
+aria-labelledby="desktopAccessBlockerTitle"
+aria-hidden="false"
+tabindex="-1"
+>
+
+<div class="desktop-access-blocker-panel">
+
+<h1 id="desktopAccessBlockerTitle">
+Mobile Access Only
+</h1>
+
+<p>
+Please visit Factory Toughened Rooflights using a mobile device.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =======================================
+TOP BANNER
+======================================= -->
+
+<div class="top-banner">
+
+<div class="ticker">
+
+<span>
+Specialist British workshop for frameless rooflights
+</span>
+
+<span>
+Brand new rooflights made to order
+</span>
+
+<span>
+British glass • British manufacturing
+</span>
+
+<span>
+Estimated production from 4 working days
+</span>
+
+<span>
+Factory insulated and ready for fitting
+</span>
+
+<span>
+Expected 30+ year service life
+</span>
+
+<span>
+UKCA compliant • CE marked • building regs compliant
+</span>
+
+<span>
+Free mainland UK delivery on listed sizes
+</span>
+
+<span>
+Collection available with prior booking
+</span>
+
+<span>
+Specialist British workshop for frameless rooflights
+</span>
+
+<span>
+Brand new rooflights made to order
+</span>
+
+<span>
+British glass • British manufacturing
+</span>
+
+<span>
+Estimated production from 4 working days
+</span>
+
+<span>
+Factory insulated and ready for fitting
+</span>
+
+<span>
+Expected 30+ year service life
+</span>
+
+<span>
+UKCA compliant • CE marked • building regs compliant
+</span>
+
+<span>
+Free mainland UK delivery on listed sizes
+</span>
+
+<span>
+Collection available with prior booking
+</span>
+
+</div>
+
+</div>
+
+
+<!-- =======================================
+HEADER
+======================================= -->
+
+<header>
+
+<div class="wordmark-wrap">
+
+<a
+href="index.html"
+class="header-home-link"
+id="headerHomeLink"
+aria-label="Factory Toughened Rooflights homepage"
+>
+
+<div class="wordmark">
+
+Factory
+
+<span>
+Toughened
+</span>
+
+<div class="wordmark-bottom">
+
+Rooflights
+
+<small class="wordmark-domain">
+.co.uk
+</small>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+
+<div class="action-icons">
+
+
+<a
+href="contact.html"
+class="header-icon-button"
+aria-label="Contact Factory Toughened Rooflights"
+title="Contact our rooflight team"
+>
+✉
+</a>
+
+
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="whatsappButton"
+aria-label="Show WhatsApp Business button"
+title="WhatsApp our rooflight team"
+aria-expanded="false"
+>
+📱
+</button>
+
+<a
+id="whatsappAction"
+class="whatsapp-action"
+href="https://wa.me/447000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20frameless%20rooflight.%0A%0ASize%20(if%20known)%3A%0ADouble%20or%20Triple%20glazed%3A%0ADelivery%20postcode%3A"
+target="_blank"
+rel="noopener"
+aria-label="Open WhatsApp Business chat with our rooflight team"
+>
+
+<svg
+viewBox="0 0 32 32"
+aria-hidden="true"
+focusable="false"
+>
+
+<path
+d="M16 3.2A12.5 12.5 0 0 0 5.2 22l-1.8 6.8 7-1.8A12.5 12.5 0 1 0 16 3.2zm0 22.7c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.2 10.2 0 1 1 9.2 5.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.9-.9-3.2-1.7-4.5-3.9-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"
+/>
+
+</svg>
+
+</a>
+
+</div>
+
+
+<div class="header-action-wrap">
+
+<button
+type="button"
+id="basketButton"
+aria-label="View basket and checkout"
+title="Basket and checkout"
+>
+💳
+</button>
+
+<span
+class="basket-total-text"
+id="basketTotalText"
+aria-label="Basket total £0.00"
+>
+£0.00
+</span>
+
+</div>
+
+
+<button
+type="button"
+id="menuButton"
+aria-label="Open menu"
+title="Menu"
+>
+☰
+</button>
+
+
+</div>
+
+</header>
+
+
+<!-- =======================================
+MENU
+======================================= -->
+
+<div
+id="menuOverlay"
+class="menu-overlay"
+>
+
+<div class="menu-top">
+
+<div class="wordmark-wrap">
+
+<div class="wordmark">
+
+Factory
+
+<span>
+Toughened
+</span>
+
+<div class="wordmark-bottom">
+
+Rooflights
+
+<small class="wordmark-domain">
+.co.uk
+</small>
+
+</div>
+
+</div>
+
+<div class="address-line">
+
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
+
+</div>
+
+</div>
+
+
+<button
+class="close-menu"
+type="button"
+id="closeMenuButton"
+aria-label="Close menu"
+>
+×
+</button>
+
+</div>
+
+
+<div class="menu-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="standard-sizes.html">
+Standard Sizes
+</a>
+
+<a href="order-page.html">
+Order Your Rooflight
+</a>
+
+<a
+href="order-page.html?source=information-page-menu-custom-builder&focus=custom-builder&viewportOffset=0.30"
+>
+Build A Rooflight
+</a>
+
+<a href="index.html#oversized">
+Oversized Rooflights
+</a>
+
+<a href="installation-guide.html">
+Installation Guide
+</a>
+
+<a href="contact.html">
+Contact Our Team
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =======================================
+COOKIES POLICY PAGE
+======================================= -->
+
+<main class="information-page">
+
+
+<!-- =======================================
+PAGE INTRODUCTION
+======================================= -->
+
+<section class="information-hero">
+
+<div class="information-hero-inner">
+
+<div class="information-kicker">
+Cookies &amp; Website Storage
+</div>
+
+<h1 class="information-title">
+
+<span class="information-title-main">
+Cookies
+</span>
+
+<span class="information-title-accent">
+Policy
+</span>
+
+</h1>
+
+<p class="information-introduction">
+
+This Cookies Policy explains how Factory Toughened Rooflights
+uses cookies, browser storage and similar technologies when you
+visit or use our website, including technologies that help our
+shopping, ordering and website features operate correctly.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =======================================
+COOKIES POLICY DOCUMENT
+======================================= -->
+
+<section class="information-document-section">
+
+<div class="information-document-shell">
+
+<div class="information-document-panel">
+
+<div class="information-document-label">
+Cookies Policy
+</div>
+
+
+<article class="information-document-content">
+
+
+<!-- =======================================
+SECTION 01
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 01
+</span>
+
+<h2>
+Who We Are
+</h2>
+
+<p>
+Factory Toughened Rooflights is a trading name of
+<strong>Right Glaze Ltd</strong>.
+</p>
+
+<p>
+<strong>Company number:</strong> 14336400<br>
+<strong>VAT number:</strong> 487373544
+</p>
+
+<p>
+<strong>Business address:</strong><br>
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
+</p>
+
+<p>
+If you have any questions about our use of cookies, browser
+storage or similar technologies, you can contact us at
+<a href="mailto:sales@factorytoughenedrooflights.co.uk">
+sales@factorytoughenedrooflights.co.uk
+</a>.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 02
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 02
+</span>
+
+<h2>
+What Are Cookies?
+</h2>
+
+<p>
+Cookies are small files or pieces of information that can be
+stored on your computer, smartphone, tablet or other device when
+you visit a website.
+</p>
+
+<p>
+They can allow a website to recognise a device, remember
+information from an earlier page or visit, maintain a shopping
+basket, remember preferences or support other website functions.
+</p>
+
+<p>
+Some cookies exist only while your browser is open, while others
+may remain on your device for a longer period.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 03
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 03
+</span>
+
+<h2>
+Similar Technologies
+</h2>
+
+<p>
+The rules applying to cookies can also apply to other
+technologies that store information on, or access information
+from, your device.
+</p>
+
+<p>
+These may include browser storage such as local storage or
+session storage, scripts, tags, pixels and other technologies
+used to provide or support website functionality.
+</p>
+
+<p>
+For simplicity, references to cookies in this policy may also
+include these similar storage and access technologies where
+appropriate.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 04
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 04
+</span>
+
+<h2>
+How We Use Cookies And Browser Storage
+</h2>
+
+<p>
+We may use cookies and similar technologies to operate and
+support features of the Factory Toughened Rooflights website.
+</p>
+
+<p>
+This may include remembering products or rooflight
+configurations added to your basket, maintaining order
+information while you move between pages, remembering delivery
+information or website preferences, supporting security and
+ensuring that important website functions operate correctly.
+</p>
+
+<p>
+Where appropriate, we may also use technologies to understand
+how the website is being used so that we can identify technical
+problems and improve the website, its navigation and its
+performance.
+</p>
+
+<p>
+We aim to use only the information reasonably necessary for the
+particular purpose for which the technology is used.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 05
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 05
+</span>
+
+<h2>
+Strictly Necessary Technologies
+</h2>
+
+<p>
+Some cookies or similar technologies are necessary for the
+website or a service requested by you to operate properly.
+</p>
+
+<p>
+For example, they may be required to maintain products in a
+shopping basket, preserve an order configuration while moving
+between pages, provide security features or complete a
+transaction.
+</p>
+
+<p>
+Where a technology is strictly necessary to provide a service
+you have requested, we may use it without asking for consent
+where permitted by law.
+</p>
+
+<p>
+Disabling these technologies through your browser or device
+settings may prevent some parts of the website from operating
+correctly.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 06
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 06
+</span>
+
+<h2>
+Functional And Preference Technologies
+</h2>
+
+<p>
+We may use technologies that allow the website to remember
+choices or preferences and provide functionality based on those
+choices.
+</p>
+
+<p>
+For example, a website may remember a setting you have
+previously selected so that you do not have to enter or select
+it again unnecessarily.
+</p>
+
+<p>
+Where the law allows a preference or appearance technology to
+be used without prior consent, we will comply with the
+conditions applying to that exception and provide a simple way
+to object where required.
+</p>
+
+<p>
+Where an exception does not apply, we will obtain consent before
+using the technology where consent is required.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 07
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 07
+</span>
+
+<h2>
+Website Analytics And Statistics
+</h2>
+
+<p>
+We may use limited website usage information to understand how
+visitors use the Factory Toughened Rooflights website and to
+identify ways of improving it.
+</p>
+
+<p>
+This could include information such as the number of visits to
+particular pages, general interactions with pages, the types of
+devices or browsers used and how visitors reached the website.
+</p>
+
+<p>
+Where analytics or statistical technologies qualify for an
+exception under applicable UK law, they may be used without
+prior consent provided the relevant legal requirements are met.
+</p>
+
+<p>
+Where such an exception requires us to provide a simple way for
+you to object, we will make that option available.
+</p>
+
+<p>
+If an analytics or tracking technology does not qualify for an
+exception and requires consent, it will only be used after the
+required consent has been obtained.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 08
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 08
+</span>
+
+<h2>
+Advertising And Marketing Technologies
+</h2>
+
+<p>
+We may in the future use advertising, marketing or
+conversion-measurement technologies to understand the
+effectiveness of advertising or marketing campaigns.
+</p>
+
+<p>
+Where these technologies require consent, they will not be used
+for those purposes unless you have made the required choice to
+allow them.
+</p>
+
+<p>
+We will not treat continued use of the website by itself as
+consent to non-essential advertising or tracking technologies.
+</p>
+
+<p>
+If advertising or marketing technologies are introduced or
+changed, this Cookies Policy and the website's cookie controls
+may be updated accordingly.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 09
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 09
+</span>
+
+<h2>
+Third-Party Technologies
+</h2>
+
+<p>
+Some website functions may be provided by third-party companies.
+</p>
+
+<p>
+For example, third-party technologies may be involved in payment
+processing, website hosting, security, communications, analytics
+or other services used to operate the website.
+</p>
+
+<p>
+Where a third party places or accesses information on your
+device through our website, we will take reasonable steps to
+ensure that its use is considered as part of our cookie and
+privacy arrangements.
+</p>
+
+<p>
+Third-party providers may also process information in accordance
+with their own privacy or cookie information.
+</p>
+
+<p>
+We may change the service providers used by the website from
+time to time, so this policy is not tied to a particular payment,
+analytics or technology provider unless it is necessary to
+identify one.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 10
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 10
+</span>
+
+<h2>
+Shopping Basket And Order Information
+</h2>
+
+<p>
+Our website may use browser storage to remember products,
+configurations or other information connected with your basket
+or order.
+</p>
+
+<p>
+This allows information to remain available when you move
+between pages and helps prevent you from having to configure the
+same rooflight again each time you visit another part of the
+website.
+</p>
+
+<p>
+This information is used to provide the shopping and ordering
+functionality requested by you.
+</p>
+
+<p>
+Removing website data from your browser may clear your saved
+basket, configuration or other locally stored website
+information.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 11
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 11
+</span>
+
+<h2>
+Delivery And Postcode Information
+</h2>
+
+<p>
+Where you enter a postcode or other delivery information into
+the website, limited information may be stored in your browser
+so that delivery calculations or related website features can
+continue to operate as you move between pages.
+</p>
+
+<p>
+This information may be used to calculate delivery availability,
+delivery charges or estimated delivery information.
+</p>
+
+<p>
+Information required as part of an actual order may subsequently
+form part of the order records described in our Privacy Policy.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 12
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 12
+</span>
+
+<h2>
+How Long Cookies And Similar Information Last
+</h2>
+
+<p>
+Different cookies and browser-storage technologies may remain in
+place for different periods.
+</p>
+
+<p>
+Some are temporary and are removed when the browser session
+ends. Others may remain for longer so that a website feature,
+choice or preference can be remembered on a later visit.
+</p>
+
+<p>
+We aim to keep stored information only for as long as is
+reasonably necessary for its purpose.
+</p>
+
+<p>
+Where individual cookies or technologies have specific expiry
+periods, these may also be shown through the website's cookie
+information or settings where appropriate.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 13
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 13
+</span>
+
+<h2>
+Your Cookie Choices
+</h2>
+
+<p>
+Where your consent is required for a particular cookie or
+similar technology, you will be given a choice about whether to
+allow it.
+</p>
+
+<p>
+Where the law instead permits us to rely on an exception that
+requires an opportunity to object, we will provide a simple way
+for you to do so.
+</p>
+
+<p>
+You can change or withdraw a previous choice where the relevant
+website controls provide that option.
+</p>
+
+<p>
+Withdrawing consent will not make earlier processing carried out
+on the basis of valid consent unlawful.
+</p>
+
+<div class="information-emphasis">
+
+<strong>
+Your Choices
+</strong>
+
+<p>
+You may also be able to control or remove cookies and locally
+stored website information through your browser or device
+settings. Blocking or deleting website storage may affect
+shopping basket, order configuration, delivery or other website
+functionality.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =======================================
+SECTION 14
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 14
+</span>
+
+<h2>
+Browser And Device Controls
+</h2>
+
+<p>
+Most web browsers provide settings that allow you to view,
+block or delete cookies and other website data.
+</p>
+
+<p>
+You may also be able to remove locally stored website
+information through your browser or device settings.
+</p>
+
+<p>
+The exact controls available depend on the browser and device
+you use.
+</p>
+
+<p>
+Blocking or deleting all website storage may affect
+functionality. In particular, features such as a shopping
+basket, saved rooflight configuration, delivery calculations or
+other website functions may no longer operate as intended.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 15
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 15
+</span>
+
+<h2>
+Changes To Our Use Of Cookies
+</h2>
+
+<p>
+The technologies used by our website may change as the website
+develops.
+</p>
+
+<p>
+For example, we may introduce a new payment service, analytics
+service, security feature or other website functionality.
+</p>
+
+<p>
+We will review our use of cookies and similar technologies
+periodically and update this policy where appropriate.
+</p>
+
+<p>
+Where a change means that new consent is required, we will
+obtain that consent before using the relevant technology for the
+new purpose.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 16
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 16
+</span>
+
+<h2>
+Privacy And Personal Information
+</h2>
+
+<p>
+Some information collected through cookies or similar
+technologies may constitute personal information.
+</p>
+
+<p>
+Where personal information is involved, our use of that
+information is also subject to applicable data protection law.
+</p>
+
+<p>
+Further information about how Factory Toughened Rooflights
+collects, uses, shares and protects personal information is
+available in our
+<a href="privacy-policy.html">
+Privacy Policy
+</a>.
+</p>
+
+</section>
+
+
+<!-- =======================================
+SECTION 17
+======================================= -->
+
+<section>
+
+<span class="information-section-number">
+Section 17
+</span>
+
+<h2>
+Contact Us
+</h2>
+
+<p>
+If you have any questions about cookies, website storage or the
+choices available to you, please contact:
+</p>
+
+<p>
+<strong>
+Right Glaze Ltd trading as Factory Toughened Rooflights
+</strong>
+</p>
+
+<p>
+Anamax Group Estate<br>
+Oxford Road, Denham<br>
+Buckinghamshire<br>
+SL9 7BB
+</p>
+
+<p>
+Email:
+<a href="mailto:sales@factorytoughenedrooflights.co.uk">
+sales@factorytoughenedrooflights.co.uk
+</a>
+</p>
+
+</section>
+
+
+<div class="information-last-updated">
+Last updated: 5 September 2026
+</div>
+
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =========================================
+INFORMATION PAGE TEMPLATE
+HEADER INTERACTIONS
+========================================= */
+
+const prefersReducedMotion =
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+).matches;
+
+
+/* =========================================
+DESKTOP ACCESS RESTRICTION
+========================================= */
+
+function applyDesktopAccessRestriction() {
+
+const blocker =
+document.getElementById(
+"desktopAccessBlocker"
+);
+
+if (
+!blocker
+) {
+
+return;
+
+}
+
+const desktopPointer =
+window.matchMedia(
+"(hover: hover) and (pointer: fine)"
+);
+
+if (
+desktopPointer.matches
+) {
+
+blocker.setAttribute(
+"aria-hidden",
+"false"
+);
+
+try {
+
+blocker.focus({
+preventScroll:true
+});
+
+}
+catch (error) {
+
+blocker.focus();
+
+}
+
+}
+else {
+
+blocker.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+
+}
+
+applyDesktopAccessRestriction();
+
+
+/* =========================================
+MENU
+========================================= */
+
+const menuOverlay =
+document.getElementById(
+"menuOverlay"
+);
+
+const menuButton =
+document.getElementById(
+"menuButton"
+);
+
+const closeMenuButton =
+document.getElementById(
+"closeMenuButton"
+);
+
+
+function openMenu() {
+
+if (
+!menuOverlay
+) {
+
+return;
+
+}
+
+menuOverlay.classList.add(
+"active"
+);
+
+}
+
+
+function closeMenu() {
+
+if (
+!menuOverlay
+) {
+
+return;
+
+}
+
+menuOverlay.classList.remove(
+"active"
+);
+
+}
+
+
+if (
+menuButton
+) {
+
+menuButton.addEventListener(
+"click",
+openMenu
+);
+
+}
+
+
+if (
+closeMenuButton
+) {
+
+closeMenuButton.addEventListener(
+"click",
+closeMenu
+);
+
+}
+
+
+if (
+menuOverlay
+) {
+
+menuOverlay
+.querySelectorAll(
+"a"
+)
+.forEach(
+(link) => {
+
+link.addEventListener(
+"click",
+closeMenu
+);
+
+}
+);
+
+}
+
+
+/* =========================================
+WHATSAPP
+========================================= */
+
+const whatsappButton =
+document.getElementById(
+"whatsappButton"
+);
+
+const whatsappAction =
+document.getElementById(
+"whatsappAction"
+);
+
+
+function closeWhatsappAction() {
+
+if (
+!whatsappButton ||
+!whatsappAction
+) {
+
+return;
+
+}
+
+whatsappAction.classList.remove(
+"is-open"
+);
+
+whatsappButton.classList.remove(
+"is-selected"
+);
+
+whatsappButton.setAttribute(
+"aria-expanded",
+"false"
+);
+
+}
+
+
+if (
+whatsappButton &&
+whatsappAction
+) {
+
+whatsappButton.addEventListener(
+"click",
+(event) => {
+
+event.stopPropagation();
+
+const willOpen =
+!whatsappAction.classList.contains(
+"is-open"
+);
+
+whatsappAction.classList.toggle(
+"is-open",
+willOpen
+);
+
+whatsappButton.classList.toggle(
+"is-selected",
+willOpen
+);
+
+whatsappButton.setAttribute(
+"aria-expanded",
+willOpen
+? "true"
+: "false"
+);
+
+}
+);
+
+
+document.addEventListener(
+"click",
+(event) => {
+
+if (
+event.target.closest(
+"#whatsappButton"
+) ||
+event.target.closest(
+"#whatsappAction"
+)
+) {
+
+return;
+
+}
+
+closeWhatsappAction();
+
+}
+);
+
+}
+
+
+/* =========================================
+ESCAPE KEY
+========================================= */
+
+document.addEventListener(
+"keydown",
+(event) => {
+
+if (
+event.key !==
+"Escape"
+) {
+
+return;
+
+}
+
+closeMenu();
+
+closeWhatsappAction();
+
+}
+);
+
+
+/* =========================================
+HEADER BASKET
+========================================= */
+
+const basketButton =
+document.getElementById(
+"basketButton"
+);
+
+const basketTotalText =
+document.getElementById(
+"basketTotalText"
+);
+
+const INFORMATION_ORDER_STORAGE_KEY =
+"factoryToughenedRooflightsOrderV1";
+
+
+function informationParseMoney(
+value
+) {
+
+if (
+typeof value ===
+"number"
+) {
+
+return Number.isFinite(
+value
+)
+? value
+: 0;
+
+}
+
+if (
+typeof value !==
+"string"
+) {
+
+return 0;
+
+}
+
+const parsed =
+Number(
+value.replace(
+/[^0-9.\-]/g,
+""
+)
+);
+
+return Number.isFinite(
+parsed
+)
+? parsed
+: 0;
+
+}
+
+
+function informationGetQuantity(
+item
+) {
+
+const candidates = [
+
+item?.quantity,
+item?.qty,
+item?.count,
+item?.totalUnitsQty
+
+];
+
+for (
+const candidate of
+candidates
+) {
+
+const numeric =
+Number(
+candidate
+);
+
+if (
+Number.isFinite(
+numeric
+) &&
+numeric >
+0
+) {
+
+return Math.max(
+1,
+Math.round(
+numeric
+)
+);
+
+}
+
+}
+
+return 1;
+
+}
+
+
+function informationGetUnitPrice(
+item
+) {
+
+const directCandidates = [
+
+item?.unitPrice,
+item?.price,
+item?.unitPriceIncVat,
+item?.unitPriceIncVAT,
+item?.priceIncVat,
+item?.priceIncVAT,
+item?.unitTotal,
+item?.configuredPrice
+
+];
+
+for (
+const candidate of
+directCandidates
+) {
+
+const price =
+informationParseMoney(
+candidate
+);
+
+if (
+price >
+0
+) {
+
+return price;
+
+}
+
+}
+
+const quantity =
+informationGetQuantity(
+item
+);
+
+const totalCandidates = [
+
+item?.total,
+item?.lineTotal,
+item?.totalPrice,
+item?.subtotal
+
+];
+
+for (
+const candidate of
+totalCandidates
+) {
+
+const total =
+informationParseMoney(
+candidate
+);
+
+if (
+total >
+0
+) {
+
+return (
+total /
+quantity
+);
+
+}
+
+}
+
+return 0;
+
+}
+
+
+function informationReadBasketItems() {
+
+try {
+
+const raw =
+localStorage.getItem(
+INFORMATION_ORDER_STORAGE_KEY
+);
+
+if (
+!raw
+) {
+
+return [];
+
+}
+
+const payload =
+JSON.parse(
+raw
+);
+
+if (
+Array.isArray(
+payload
+)
+) {
+
+return payload;
+
+}
+
+if (
+!payload ||
+typeof payload !==
+"object"
+) {
+
+return [];
+
+}
+
+const items = [];
+
+const possibleStandardKeys = [
+
+"items",
+"orderItems",
+"confirmedUnits",
+"units",
+"basketItems"
+
+];
+
+for (
+const key of
+possibleStandardKeys
+) {
+
+if (
+Array.isArray(
+payload[
+key
+]
+)
+) {
+
+items.push(
+...payload[
+key
+]
+);
+
+break;
+
+}
+
+}
+
+if (
+Array.isArray(
+payload.customItems
+)
+) {
+
+items.push(
+...payload.customItems
+);
+
+}
+
+return items;
+
+}
+catch (error) {
+
+return [];
+
+}
+
+}
+
+
+function informationFormatMoney(
+amount
+) {
+
+return (
+"£" +
+Number(
+amount
+).toLocaleString(
+"en-GB",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+)
+);
+
+}
+
+
+function refreshInformationHeaderBasket() {
+
+if (
+!basketTotalText
+) {
+
+return;
+
+}
+
+const items =
+informationReadBasketItems();
+
+const subtotal =
+items.reduce(
+(total,item) => {
+
+return (
+total +
+informationGetUnitPrice(
+item
+) *
+informationGetQuantity(
+item
+)
+);
+
+},
+0
+);
+
+basketTotalText.textContent =
+informationFormatMoney(
+subtotal
+);
+
+basketTotalText.setAttribute(
+"aria-label",
+`Basket product total ${informationFormatMoney(subtotal)}`
+);
+
+basketTotalText.classList.toggle(
+"is-visible",
+items.length >
+0
+);
+
+}
+
+
+if (
+basketButton
+) {
+
+basketButton.addEventListener(
+"click",
+() => {
+
+window.location.href =
+"order-page.html?source=information-page-header";
+
+}
+);
+
+}
+
+
+window.addEventListener(
+"storage",
+(event) => {
+
+if (
+event.key ===
+INFORMATION_ORDER_STORAGE_KEY
+) {
+
+refreshInformationHeaderBasket();
+
+}
+
+}
+);
+
+
+window.addEventListener(
+"pageshow",
+refreshInformationHeaderBasket
+);
+
+
+refreshInformationHeaderBasket();
+
+</script>
+
+
+</body>
+
+</html>
