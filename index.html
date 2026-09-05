@@ -19078,16 +19078,2139 @@ closeBasketDrawer();
 
 
 /* =========================================
-IN-3 IS PASTED IMMEDIATELY ABOVE THE
-FINAL INITIALISATION SECTION BELOW.
+IN-3
+HOMEPAGE MASTER PRICING + MASTER MAKE-UP BRIDGE
 
-IN-3 MUST INSTALL:
+PASTE THIS ENTIRE BLOCK DIRECTLY ABOVE THE
+EXISTING "FINAL INITIALISATION" SECTION IN IN-2.
 
-- getHomepageProductCardPrice()
-- getCustomCalculatorPrice()
-- getItemTopGlassLabel()
+THE UPDATED IN-2 DEFERS ALL MASTER-DEPENDENT
+START-UP UNTIL AFTER THIS BLOCK HAS LOADED.
 
-BEFORE THE INITIALISATION BELOW EXECUTES.
+IN-3 CONNECTS THE HOMEPAGE TO:
+
+js/masters/master-makeup-logic.js
+js/pricing/pricing-cheap.js
+js/pricing/pricing-normal.js
+js/pricing/pricing-expensive.js
+js/pricing/site-pricing-config.js
+js/pricing/master-pricing.js
+
+CONTROLS:
+- Popular Sizes product-card pricing
+- Tinted & Privacy product-card pricing
+- Double / Triple card price switching
+- Homepage custom-calculator pricing
+- Product-card Top Glass specification
+- Homepage basket Top Glass specification
+- Active Cheap / Normal / Expensive strategy
+
+DOES NOT CONTROL:
+- Homepage delivery pricing
+- Basket delivery calculations
+- Basket stored product prices
+- Lead-time calculations
+- Product-card styling / images / layout
+- IN-1 / IN-2 visual behaviour
+
+IMPORTANT:
+STANDARD PRICING, CUSTOM PRICING AND MAKE-UP
+ARE VALIDATED INDEPENDENTLY.
+
+A FAILURE IN ONE MASTER AREA NO LONGER STOPS
+THE OTHER MASTER AREAS FROM WORKING.
+========================================= */
+
+</script>
+
+<script src="js/masters/master-makeup-logic.js"></script>
+
+<script src="js/pricing/pricing-cheap.js"></script>
+<script src="js/pricing/pricing-normal.js"></script>
+<script src="js/pricing/pricing-expensive.js"></script>
+<script src="js/pricing/site-pricing-config.js"></script>
+<script src="js/pricing/master-pricing.js"></script>
+
+<script>
+
+const IN3_PRICE_UNAVAILABLE_TEXT =
+"—";
+
+const IN3_GLASS_UNAVAILABLE_TEXT =
+"Glass Specification Unavailable";
+
+
+/* =========================================
+MASTER AVAILABILITY
+
+Standard pricing is deliberately checked
+separately from custom pricing.
+
+This prevents a missing custom-pricing method
+from blanking all standard homepage prices.
+========================================= */
+
+function in3GetMasterPricing() {
+
+const master =
+globalThis
+.FactoryRooflightsMasterPricing;
+
+return (
+master &&
+typeof master ===
+"object" &&
+typeof master.getStandardPrice ===
+"function"
+)
+?
+master
+:
+null;
+
+}
+
+function in3GetCustomPricingMaster() {
+
+const master =
+globalThis
+.FactoryRooflightsMasterPricing;
+
+return (
+master &&
+typeof master ===
+"object" &&
+typeof master.getCustomPrice ===
+"function"
+)
+?
+master
+:
+null;
+
+}
+
+function in3GetMasterMakeupLogic() {
+
+const master =
+globalThis
+.MasterMakeupLogic;
+
+return (
+master &&
+typeof master ===
+"object" &&
+typeof master.getUnitMakeup ===
+"function"
+)
+?
+master
+:
+null;
+
+}
+
+function in3RequireMasterPricing() {
+
+const master =
+in3GetMasterPricing();
+
+if (
+!master
+) {
+
+throw new Error(
+"IN-3 requires FactoryRooflightsMasterPricing.getStandardPrice()."
+);
+
+}
+
+return master;
+
+}
+
+function in3RequireCustomPricingMaster() {
+
+const master =
+in3GetCustomPricingMaster();
+
+if (
+!master
+) {
+
+throw new Error(
+"IN-3 requires FactoryRooflightsMasterPricing.getCustomPrice() for the homepage custom calculator."
+);
+
+}
+
+return master;
+
+}
+
+function in3RequireMasterMakeupLogic() {
+
+const master =
+in3GetMasterMakeupLogic();
+
+if (
+!master
+) {
+
+throw new Error(
+"IN-3 requires MasterMakeupLogic.getUnitMakeup()."
+);
+
+}
+
+return master;
+
+}
+
+
+/* =========================================
+COMMON NORMALISERS
+========================================= */
+
+function in3NormalizeSize(
+size
+) {
+
+return String(
+size ??
+""
+)
+.trim()
+.toLowerCase()
+.replace(
+/mm/g,
+""
+)
+.replace(
+/×/g,
+"x"
+)
+.replace(
+/\s+/g,
+""
+);
+
+}
+
+function in3ParseSize(
+size
+) {
+
+const normalized =
+in3NormalizeSize(
+size
+);
+
+const parts =
+normalized
+.split(
+"x"
+)
+.map(
+Number
+);
+
+if (
+parts.length !==
+2 ||
+!Number.isFinite(
+parts[0]
+) ||
+!Number.isFinite(
+parts[1]
+) ||
+parts[0] <=
+0 ||
+parts[1] <=
+0
+) {
+
+return null;
+
+}
+
+return {
+
+width:
+parts[0],
+
+length:
+parts[1],
+
+size:
+`${parts[0]}x${parts[1]}`
+
+};
+
+}
+
+function in3NormalizeGlazing(
+glazing
+) {
+
+return String(
+glazing ??
+""
+)
+.toLowerCase()
+.includes(
+"triple"
+)
+?
+"triple"
+:
+"double";
+
+}
+
+function in3NormalizeGlassType(
+type
+) {
+
+return String(
+type ??
+""
+)
+.toLowerCase()
+.includes(
+"lam"
+)
+?
+"laminated"
+:
+"toughened";
+
+}
+
+function in3NormalizeBottomType(
+type
+) {
+
+return in3NormalizeGlassType(
+type
+) ===
+"laminated"
+?
+"lam"
+:
+"tough";
+
+}
+
+function in3NormalizeBorder(
+border
+) {
+
+const numeric =
+Number(
+border
+);
+
+return [
+100,
+125,
+150
+]
+.includes(
+numeric
+)
+?
+numeric
+:
+100;
+
+}
+
+function in3NormalisePriceResult(
+result
+) {
+
+if (
+Number.isFinite(
+Number(
+result
+)
+) &&
+Number(
+result
+) >
+0
+) {
+
+return {
+
+available:true,
+
+price:
+Number(
+result
+),
+
+raw:
+result
+
+};
+
+}
+
+const price =
+Number(
+result?.price
+);
+
+const explicitlyUnavailable =
+result?.available ===
+false;
+
+if (
+!explicitlyUnavailable &&
+Number.isFinite(
+price
+) &&
+price >
+0
+) {
+
+return {
+
+...result,
+
+available:true,
+
+price:
+price
+
+};
+
+}
+
+return {
+
+...(
+result &&
+typeof result ===
+"object"
+?
+result
+:
+{}
+),
+
+available:false,
+
+price:null
+
+};
+
+}
+
+
+/* =========================================
+MASTER STANDARD PRODUCT-CARD PRICING
+
+Live card pricing fails closed per card.
+A problem here does not stop make-up or the
+custom calculator from continuing separately.
+========================================= */
+
+function in3GetStandardPriceResult(
+card,
+glazing
+) {
+
+if (
+!card
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"CARD_UNAVAILABLE"
+
+};
+
+}
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+if (
+!dimensions
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"INVALID_SIZE"
+
+};
+
+}
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+const master =
+in3GetMasterPricing();
+
+if (
+!master
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"STANDARD_PRICING_MASTER_UNAVAILABLE"
+
+};
+
+}
+
+try {
+
+const result =
+master.getStandardPrice(
+{
+
+width:
+dimensions.width,
+
+length:
+dimensions.length,
+
+internalWidth:
+dimensions.width,
+
+internalLength:
+dimensions.length,
+
+size:
+dimensions.size,
+
+glazing:
+in3NormalizeGlazing(
+glazing
+),
+
+finish:
+finish,
+
+tint:
+finish,
+
+type:
+"toughened",
+
+glassType:
+"toughened",
+
+border:
+100
+
+}
+);
+
+return in3NormalisePriceResult(
+result
+);
+
+}
+catch (
+error
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"STANDARD_PRICE_ERROR",
+
+error
+
+};
+
+}
+
+}
+
+function in3GetHomepageProductCardPrice(
+card,
+glazing
+) {
+
+const result =
+in3GetStandardPriceResult(
+card,
+glazing
+);
+
+return result.available
+?
+result.price
+:
+null;
+
+}
+
+
+/* =========================================
+KEEP CARD PRICE DATA ATTRIBUTES IN SYNC
+
+There are no authoritative hard-coded prices
+in IN-2 or the homepage card HTML.
+
+These runtime data attributes are populated
+only from master-pricing.js for compatibility
+with any existing DOM behaviour that reads
+those attributes.
+========================================= */
+
+function in3PrimeHomepageProductCardPrices(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+[
+"double",
+"triple"
+]
+.forEach(
+(glazing) => {
+
+const result =
+in3GetStandardPriceResult(
+card,
+glazing
+);
+
+const datasetKey =
+glazing ===
+"double"
+?
+"doublePrice"
+:
+"triplePrice";
+
+if (
+result.available
+) {
+
+card.dataset[
+datasetKey
+] =
+String(
+result.price
+);
+
+}
+else {
+
+delete card.dataset[
+datasetKey
+];
+
+}
+
+}
+);
+
+}
+
+
+/* =========================================
+PRODUCT-CARD PRICE PRESENTATION
+========================================= */
+
+function in3RenderHomepageProductPrice(
+card,
+price
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const main =
+card.querySelector(
+".home-price-main"
+);
+
+const decimals =
+card.querySelector(
+".home-price-decimals"
+);
+
+const numeric =
+Number(
+price
+);
+
+if (
+!main ||
+!decimals
+) {
+
+return;
+
+}
+
+if (
+!Number.isFinite(
+numeric
+) ||
+numeric <=
+0
+) {
+
+main.textContent =
+IN3_PRICE_UNAVAILABLE_TEXT;
+
+decimals.textContent =
+"";
+
+return;
+
+}
+
+formatHomepageProductPrice(
+card,
+numeric
+);
+
+}
+
+
+/* =========================================
+MASTER MAKE-UP ADAPTER
+
+NO THICKNESS THRESHOLDS ARE DUPLICATED HERE.
+
+All pane decisions remain the responsibility
+of master-makeup-logic.js.
+
+A make-up failure returns null rather than
+throwing through the rest of the homepage.
+========================================= */
+
+function in3GetUnitMakeup(
+{
+width,
+length,
+border = 100,
+glazing = "double",
+finish = "clear",
+type = "toughened"
+} = {}
+) {
+
+const numericWidth =
+Number(
+width
+);
+
+const numericLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+numericWidth
+) ||
+!Number.isFinite(
+numericLength
+) ||
+numericWidth <=
+0 ||
+numericLength <=
+0
+) {
+
+return null;
+
+}
+
+const master =
+in3GetMasterMakeupLogic();
+
+if (
+!master
+) {
+
+return null;
+
+}
+
+try {
+
+return master.getUnitMakeup(
+{
+
+internalWidth:
+numericWidth,
+
+internalLength:
+numericLength,
+
+border:
+in3NormalizeBorder(
+border
+),
+
+glazing:
+in3NormalizeGlazing(
+glazing
+),
+
+finish:
+normalizeHomepageFinish(
+finish
+),
+
+bottomType:
+in3NormalizeBottomType(
+type
+)
+
+}
+);
+
+}
+catch (
+error
+) {
+
+return null;
+
+}
+
+}
+
+
+/* =========================================
+TOP-PANE RESULT READER
+========================================= */
+
+function in3GetTopPaneThickness(
+makeupResult
+) {
+
+const topPane =
+makeupResult?.panes?.top ??
+makeupResult?.topPane ??
+makeupResult?.top ??
+null;
+
+const candidates = [
+
+typeof topPane ===
+"number"
+?
+topPane
+:
+null,
+
+topPane?.thickness,
+topPane?.thicknessMm,
+topPane?.thicknessMM,
+makeupResult?.topThickness,
+makeupResult?.topThicknessMm,
+makeupResult?.topPaneThickness,
+makeupResult?.topPaneThicknessMm,
+makeupResult?.topGlassThickness,
+makeupResult?.topGlassThicknessMm
+
+];
+
+for (
+const candidate of
+candidates
+) {
+
+const numeric =
+Number(
+candidate
+);
+
+if (
+Number.isFinite(
+numeric
+) &&
+numeric >
+0
+) {
+
+return numeric;
+
+}
+
+}
+
+return null;
+
+}
+
+function in3FormatTopGlassLabel(
+makeupResult
+) {
+
+if (
+!makeupResult ||
+makeupResult.supported ===
+false
+) {
+
+return IN3_GLASS_UNAVAILABLE_TEXT;
+
+}
+
+const thickness =
+in3GetTopPaneThickness(
+makeupResult
+);
+
+if (
+!Number.isFinite(
+thickness
+) ||
+thickness <=
+0
+) {
+
+return IN3_GLASS_UNAVAILABLE_TEXT;
+
+}
+
+return (
+`${thickness}mm Toughened Safety Glass`
+);
+
+}
+
+
+/* =========================================
+PRODUCT-CARD GLASS SPECIFICATION TARGET
+========================================= */
+
+function in3GetHomepageCardGlassSpecElement(
+card
+) {
+
+if (
+!card
+) {
+
+return null;
+
+}
+
+const explicit =
+card.querySelector(
+".home-product-spec .product-glass-spec"
+);
+
+if (
+explicit
+) {
+
+return explicit;
+
+}
+
+const spans =
+Array.from(
+card.querySelectorAll(
+".home-product-spec > span"
+)
+);
+
+const target =
+spans[1] ||
+null;
+
+if (
+target
+) {
+
+target.classList.add(
+"product-glass-spec"
+);
+
+}
+
+return target;
+
+}
+
+
+/* =========================================
+PRODUCT-CARD MASTER MAKE-UP REFRESH
+========================================= */
+
+function in3UpdateHomepageProductCardGlassSpec(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+const target =
+in3GetHomepageCardGlassSpecElement(
+card
+);
+
+if (
+!dimensions ||
+!target
+) {
+
+return;
+
+}
+
+const glazing =
+getHomepageProductCardGlazing(
+card
+);
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+const makeup =
+in3GetUnitMakeup(
+{
+
+width:
+dimensions.width,
+
+length:
+dimensions.length,
+
+border:
+100,
+
+glazing:
+glazing,
+
+finish:
+finish,
+
+type:
+"toughened"
+
+}
+);
+
+target.textContent =
+in3FormatTopGlassLabel(
+makeup
+);
+
+}
+
+
+/* =========================================
+PRODUCT-CARD ORDER URL
+
+Homepage standard cards are Toughened with
+a 100mm border.
+
+The active glazing and actual card finish are
+passed through to the Order Page.
+
+No locally calculated price is passed in the
+URL. The Order Page remains responsible for
+obtaining its price from master-pricing.js.
+========================================= */
+
+function in3BuildHomepageProductOrderUrl(
+card,
+glazing
+) {
+
+if (
+!card
+) {
+
+return "order-page.html";
+
+}
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+if (
+!dimensions
+) {
+
+return "order-page.html";
+
+}
+
+const finish =
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+);
+
+const params =
+new URLSearchParams();
+
+params.set(
+"source",
+"homepage-product-card"
+);
+
+params.set(
+"size",
+dimensions.size
+);
+
+params.set(
+"width",
+String(
+dimensions.width
+)
+);
+
+params.set(
+"length",
+String(
+dimensions.length
+)
+);
+
+params.set(
+"glazing",
+in3NormalizeGlazing(
+glazing
+)
+);
+
+params.set(
+"type",
+"toughened"
+);
+
+params.set(
+"border",
+"100"
+);
+
+params.set(
+"finish",
+finish
+);
+
+return (
+"order-page.html?" +
+params.toString()
+);
+
+}
+
+
+/* =========================================
+LIVE PRODUCT-CARD UPDATE
+
+This replaces IN-2's bridge placeholder card
+update after IN-3 is installed.
+
+The existing buttons, animations, selected
+states and product-card HTML remain untouched.
+========================================= */
+
+function in3UpdateHomepageProductCard(
+card
+) {
+
+if (
+!card
+) {
+
+return;
+
+}
+
+const glazing =
+getHomepageProductCardGlazing(
+card
+);
+
+const price =
+in3GetHomepageProductCardPrice(
+card,
+glazing
+);
+
+in3RenderHomepageProductPrice(
+card,
+price
+);
+
+const glazedLabel =
+card.querySelector(
+".home-glazed-label"
+);
+
+if (
+glazedLabel
+) {
+
+glazedLabel.classList.toggle(
+"triple",
+glazing ===
+"triple"
+);
+
+}
+
+in3UpdateHomepageProductCardGlassSpec(
+card
+);
+
+const productLink =
+card.querySelector(
+".home-product-link"
+);
+
+if (
+productLink
+) {
+
+productLink.href =
+in3BuildHomepageProductOrderUrl(
+card,
+glazing
+);
+
+const unavailable =
+!Number.isFinite(
+Number(
+price
+)
+) ||
+Number(
+price
+) <=
+0;
+
+productLink.classList.toggle(
+"is-master-price-unavailable",
+unavailable
+);
+
+productLink.setAttribute(
+"aria-disabled",
+String(
+unavailable
+)
+);
+
+}
+
+}
+
+
+/* =========================================
+MASTER CUSTOM-CALCULATOR PRICING
+
+IN-2 contains only the calculator UI,
+validation and display behaviour.
+
+The actual price comes only from the shared
+master-pricing.js custom-pricing method.
+
+A missing/invalid custom-pricing result hides
+only the custom calculator price. It does not
+blank the standard product-card prices.
+========================================= */
+
+function in3GetCustomPriceResult(
+width,
+length,
+border,
+glazing,
+finish
+) {
+
+const numericWidth =
+Number(
+width
+);
+
+const numericLength =
+Number(
+length
+);
+
+if (
+!Number.isFinite(
+numericWidth
+) ||
+!Number.isFinite(
+numericLength
+) ||
+numericWidth <=
+0 ||
+numericLength <=
+0
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"INVALID_CUSTOM_SIZE"
+
+};
+
+}
+
+const glazingDetails =
+getCustomGlazingDetails(
+glazing
+);
+
+const glazingKey =
+glazingDetails.isTriple
+?
+"triple"
+:
+"double";
+
+const typeKey =
+glazingDetails.isLaminated
+?
+"laminated"
+:
+"toughened";
+
+const finishKey =
+getCustomFinishKey(
+finish
+);
+
+const master =
+in3GetCustomPricingMaster();
+
+if (
+!master
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"CUSTOM_PRICING_MASTER_UNAVAILABLE"
+
+};
+
+}
+
+try {
+
+const result =
+master.getCustomPrice(
+{
+
+width:
+numericWidth,
+
+length:
+numericLength,
+
+internalWidth:
+numericWidth,
+
+internalLength:
+numericLength,
+
+glazing:
+glazingKey,
+
+finish:
+finishKey,
+
+tint:
+finishKey,
+
+type:
+typeKey,
+
+glassType:
+typeKey,
+
+border:
+in3NormalizeBorder(
+border
+)
+
+}
+);
+
+return in3NormalisePriceResult(
+result
+);
+
+}
+catch (
+error
+) {
+
+return {
+
+available:false,
+
+price:null,
+
+reasonCode:
+"CUSTOM_PRICE_ERROR",
+
+error
+
+};
+
+}
+
+}
+
+function in3GetCustomCalculatorPrice(
+width,
+length,
+border,
+glazing,
+finish
+) {
+
+const result =
+in3GetCustomPriceResult(
+width,
+length,
+border,
+glazing,
+finish
+);
+
+return result.available
+?
+result.price
+:
+null;
+
+}
+
+
+/* =========================================
+HOMEPAGE BASKET TOP GLASS
+
+Basket product prices themselves are NOT
+recalculated here.
+
+The basket continues retaining the exact
+unitPrice written into shared storage by the
+Order Page.
+
+Only the Top Glass specification is replaced
+with the live MasterMakeupLogic result.
+========================================= */
+
+function in3GetItemTopGlassLabel(
+item
+) {
+
+const dimensions =
+normalizeItemDimensions(
+item
+);
+
+if (
+dimensions.width <=
+0 ||
+dimensions.length <=
+0
+) {
+
+return IN3_GLASS_UNAVAILABLE_TEXT;
+
+}
+
+const makeup =
+in3GetUnitMakeup(
+{
+
+width:
+dimensions.width,
+
+length:
+dimensions.length,
+
+border:
+getItemBorder(
+item
+),
+
+glazing:
+getItemGlazing(
+item
+),
+
+finish:
+getItemFinish(
+item
+),
+
+type:
+getItemGlassType(
+item
+)
+
+}
+);
+
+return in3FormatTopGlassLabel(
+makeup
+);
+
+}
+
+
+/* =========================================
+INSTALL LIVE OVERRIDES
+
+The updated IN-2 no longer calls these master
+functions before this point.
+
+Use globalThis explicitly so the bridge-owned
+functions exist as page globals before FINAL
+INITIALISATION runs.
+========================================= */
+
+function in3InstallHomepageMasterOverrides() {
+
+globalThis.getHomepageProductCardPrice =
+in3GetHomepageProductCardPrice;
+
+globalThis.buildHomepageProductOrderUrl =
+in3BuildHomepageProductOrderUrl;
+
+globalThis.updateHomepageProductCard =
+in3UpdateHomepageProductCard;
+
+globalThis.getCustomCalculatorPrice =
+in3GetCustomCalculatorPrice;
+
+globalThis.getItemTopGlassLabel =
+in3GetItemTopGlassLabel;
+
+}
+
+
+/* =========================================
+MASTER VALIDATION
+
+Validation is diagnostic only.
+
+It no longer throws one global error that can
+blank all homepage prices merely because one
+separate master area is unavailable.
+========================================= */
+
+function in3ValidateStandardCard(
+card
+) {
+
+const issues = [];
+
+if (
+!card
+) {
+
+issues.push(
+"IN-3 received an invalid homepage product card."
+);
+
+return issues;
+
+}
+
+[
+"double",
+"triple"
+]
+.forEach(
+(glazing) => {
+
+const result =
+in3GetStandardPriceResult(
+card,
+glazing
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0
+) {
+
+issues.push(
+`No valid ${glazing} master price for ${card.dataset.productSize || "unknown size"} / ${card.dataset.finish || "clear"}${result.reasonCode ? ` (${result.reasonCode})` : ""}.`
+);
+
+}
+
+}
+);
+
+const dimensions =
+in3ParseSize(
+card.dataset.productSize
+);
+
+if (
+!dimensions
+) {
+
+issues.push(
+"Homepage product card has an invalid size."
+);
+
+return issues;
+
+}
+
+const makeup =
+in3GetUnitMakeup(
+{
+
+width:
+dimensions.width,
+
+length:
+dimensions.length,
+
+border:
+100,
+
+glazing:
+getHomepageProductCardGlazing(
+card
+),
+
+finish:
+normalizeHomepageFinish(
+card.dataset.finish ||
+"clear"
+),
+
+type:
+"toughened"
+
+}
+);
+
+if (
+!makeup ||
+makeup.supported ===
+false ||
+!Number.isFinite(
+in3GetTopPaneThickness(
+makeup
+)
+)
+) {
+
+issues.push(
+`Master make-up is unavailable for ${card.dataset.productSize || "unknown size"} / ${card.dataset.finish || "clear"}.`
+);
+
+}
+
+return issues;
+
+}
+
+function in3ValidateCustomPricing() {
+
+const result =
+in3GetCustomPriceResult(
+1000,
+1000,
+100,
+"toughened-double",
+"Clear"
+);
+
+if (
+!result.available ||
+!Number.isFinite(
+Number(
+result.price
+)
+) ||
+Number(
+result.price
+) <=
+0
+) {
+
+return [
+`Homepage custom master pricing validation failed${result.reasonCode ? ` (${result.reasonCode})` : ""}.`
+];
+
+}
+
+return [];
+
+}
+
+function in3ValidateMasterIntegration() {
+
+const issues = [];
+
+const standardPricingAvailable =
+Boolean(
+in3GetMasterPricing()
+);
+
+const customPricingAvailable =
+Boolean(
+in3GetCustomPricingMaster()
+);
+
+const makeupAvailable =
+Boolean(
+in3GetMasterMakeupLogic()
+);
+
+if (
+!standardPricingAvailable
+) {
+
+issues.push(
+"FactoryRooflightsMasterPricing.getStandardPrice() is unavailable."
+);
+
+}
+
+if (
+!customPricingAvailable
+) {
+
+issues.push(
+"FactoryRooflightsMasterPricing.getCustomPrice() is unavailable."
+);
+
+}
+
+if (
+!makeupAvailable
+) {
+
+issues.push(
+"MasterMakeupLogic.getUnitMakeup() is unavailable."
+);
+
+}
+
+const cards =
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+);
+
+if (
+!cards.length
+) {
+
+issues.push(
+"IN-3 could not find the homepage product cards."
+);
+
+}
+else {
+
+cards.forEach(
+(card) => {
+
+issues.push(
+...in3ValidateStandardCard(
+card
+)
+);
+
+}
+);
+
+}
+
+issues.push(
+...in3ValidateCustomPricing()
+);
+
+return {
+standardPricingAvailable,
+customPricingAvailable,
+makeupAvailable,
+issues
+};
+
+}
+
+
+/* =========================================
+REFRESH HOMEPAGE PRODUCT CARDS
+========================================= */
+
+function in3RefreshHomepageProductCards() {
+
+const cards =
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+);
+
+cards.forEach(
+(card) => {
+
+in3PrimeHomepageProductCardPrices(
+card
+);
+
+in3UpdateHomepageProductCard(
+card
+);
+
+}
+);
+
+}
+
+
+/* =========================================
+REFRESH MASTER-DERIVED HOMEPAGE DATA
+
+Initial page start-up is handled by the FINAL
+INITIALISATION section in the corrected IN-2.
+
+This helper is retained for return-navigation
+refreshes after IN-3 is already active.
+========================================= */
+
+function in3RefreshHomepageMasterData() {
+
+in3RefreshHomepageProductCards();
+
+if (
+typeof calculatePrice ===
+"function"
+) {
+
+calculatePrice();
+
+}
+
+if (
+basketDrawerIsOpen &&
+typeof renderHomepageBasket ===
+"function"
+) {
+
+renderHomepageBasket();
+
+}
+
+}
+
+
+/* =========================================
+FAIL-CLOSED PRESENTATION HELPERS
+
+These are subsystem-specific.
+One unavailable subsystem no longer disables
+all other homepage master functionality.
+========================================= */
+
+function in3MarkStandardPricingUnavailable() {
+
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+)
+.forEach(
+(card) => {
+
+in3RenderHomepageProductPrice(
+card,
+null
+);
+
+}
+);
+
+}
+
+function in3MarkMakeupUnavailable() {
+
+Array.from(
+document.querySelectorAll(
+".home-product-card[data-product-size]"
+)
+)
+.forEach(
+(card) => {
+
+const glassSpec =
+in3GetHomepageCardGlassSpecElement(
+card
+);
+
+if (
+glassSpec
+) {
+
+glassSpec.textContent =
+IN3_GLASS_UNAVAILABLE_TEXT;
+
+}
+
+}
+);
+
+}
+
+function in3MarkCustomPricingUnavailable() {
+
+if (
+typeof hideCustomCalculatorPrice ===
+"function"
+) {
+
+hideCustomCalculatorPrice();
+
+}
+
+}
+
+
+/* =========================================
+ACTIVATE IN-3
+
+IMPORTANT CORRECTION:
+
+IN-3 now installs its global bridge functions
+first and does NOT perform the page's initial
+product/calculator/basket render here.
+
+The corrected IN-2 FINAL INITIALISATION runs
+immediately after this block and performs that
+start-up only once, after all masters exist.
+========================================= */
+
+let IN3_HOMEPAGE_MASTER_ACTIVE =
+false;
+
+try {
+
+in3InstallHomepageMasterOverrides();
+
+IN3_HOMEPAGE_MASTER_ACTIVE =
+true;
+
+globalThis.IN3_HOMEPAGE_MASTER_ACTIVE =
+true;
+
+const validation =
+in3ValidateMasterIntegration();
+
+globalThis.IN3_STANDARD_PRICING_AVAILABLE =
+validation.standardPricingAvailable;
+
+globalThis.IN3_CUSTOM_PRICING_AVAILABLE =
+validation.customPricingAvailable;
+
+globalThis.IN3_MAKEUP_AVAILABLE =
+validation.makeupAvailable;
+
+if (
+!validation.standardPricingAvailable
+) {
+
+in3MarkStandardPricingUnavailable();
+
+}
+
+if (
+!validation.makeupAvailable
+) {
+
+in3MarkMakeupUnavailable();
+
+}
+
+if (
+!validation.customPricingAvailable
+) {
+
+in3MarkCustomPricingUnavailable();
+
+}
+
+if (
+validation.issues.length
+) {
+
+console.warn(
+"IN-3 loaded with one or more master-integration warnings:",
+validation.issues
+);
+
+}
+
+console.info(
+"IN-3 bridge installed: homepage standard pricing, custom pricing and Top Glass make-up now resolve from the shared master files. Initial rendering is deferred to IN-2 FINAL INITIALISATION. Homepage delivery remains controlled by IN-2."
+);
+
+}
+catch (
+error
+) {
+
+IN3_HOMEPAGE_MASTER_ACTIVE =
+false;
+
+globalThis.IN3_HOMEPAGE_MASTER_ACTIVE =
+false;
+
+globalThis.IN3_STANDARD_PRICING_AVAILABLE =
+false;
+
+globalThis.IN3_CUSTOM_PRICING_AVAILABLE =
+false;
+
+globalThis.IN3_MAKEUP_AVAILABLE =
+false;
+
+in3MarkStandardPricingUnavailable();
+
+in3MarkMakeupUnavailable();
+
+in3MarkCustomPricingUnavailable();
+
+console.error(
+"IN-3 could not install the homepage master bridge.",
+error
+);
+
+}
+
+
+/* =========================================
+BFCache / RETURN NAVIGATION REFRESH
+
+IN-2 already restores basket/calculator state
+on pageshow.
+
+IN-3 refreshes the master-derived card data
+and current master-calculator result after the
+page has been restored from browser history.
+========================================= */
+
+window.addEventListener(
+"pageshow",
+() => {
+
+if (
+!IN3_HOMEPAGE_MASTER_ACTIVE
+) {
+
+return;
+
+}
+
+in3RefreshHomepageMasterData();
+
+}
+);
+
+
+/* =========================================
+END IN-3
+
+DO NOT CLOSE THIS SCRIPT HERE.
+
+THE EXISTING IN-2:
+
+FINAL INITIALISATION
+
+SECTION CONTINUES DIRECTLY BELOW.
 ========================================= */
 
 
